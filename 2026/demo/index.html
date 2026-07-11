@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Demo deck — the live smoke test and the worked reference for this repo.
+     Exercises: dir-a title/divider, dir-b content+rail, dir-c callouts,
+     MathJax (\sem), examples.css, compose-kit trees. -->
+<title>Demo deck · slides.tstephen.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/examples.css" />
+<link rel="stylesheet" href="../../shared/compose-kit/compose-kit.css" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<script>
+window.TALK = {
+  mark: "TS",
+  name: "Demo<br>deck",
+  code: "slides.tstephen.com",
+  foot: "July 2026",
+  sections: ["Design", "Math", "Examples", "Trees"]
+};
+</script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+</style>
+</head>
+<body class="pal-a">
+
+<deck-stage width="1920" height="1080">
+
+<section class="slide" data-label="Title">
+  <div class="a-watermark">⟦⟧</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">slides.tstephen.com · demo</div>
+      <h1 class="a-course-title" style="font-size:104px;margin:18px 0 0">The slides workspace</h1>
+      <div class="a-course-sub">Design-system smoke test — every moving part on one URL</div>
+    </div>
+    <div class="a-meta">
+      <div class="who">Thomas Stephen</div>
+      <div>School of Linguistic, Speech &amp; Communication Sciences</div>
+      <div class="a-hairline"></div>
+      <div>Dublin · July 2026</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Roadmap">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">This deck</div>
+      <h2 class="b-h">What gets smoke-tested</h2>
+      <div class="b-road" style="max-width:1080px">
+        <div class="b-road-item is-active"><div class="b-chip-n">1</div><div class="b-road-t">Design directions — title, rail, dividers, callouts</div></div>
+        <div class="b-road-item"><div class="b-chip-n">2</div><div class="b-road-t">Math — MathJax with the ⟦·⟧ macro</div></div>
+        <div class="b-road-item"><div class="b-chip-n">3</div><div class="b-road-t">Examples — numbered data, judgments, glosses</div></div>
+        <div class="b-road-item"><div class="b-chip-n">4</div><div class="b-road-t">Trees — a COMPOSE derivation on a slide</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§1">
+  <div class="a-div">
+    <div class="a-div-kick">Part one</div>
+    <div class="a-div-num">01</div>
+    <div class="a-div-title">Design directions</div>
+    <div class="a-div-rule"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Callouts">
+  <div class="b-slide pal-a">
+    <div class="b-rail" data-section="0"></div>
+    <div class="b-main">
+      <div class="b-kick">Design</div>
+      <h2 class="b-h">Rail, kicker, callout</h2>
+      <p style="font-size:29px;line-height:1.45;color:var(--tcd-grey-100);max-width:1200px;margin:0 0 22px">
+        This slide is the dir-b shell: left rail (filled by <code>talk-rail.js</code> from
+        <code>window.TALK</code>), kicker, serif head, and a dir-c callout box below.
+      </p>
+      <div class="c-box" style="max-width:1080px">
+        <div class="c-box-head">Claim</div>
+        <div class="c-box-body">One vendored design system, zero build steps: if this page renders, the port worked.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Math">
+  <div class="b-slide pal-a">
+    <div class="b-rail" data-section="1"></div>
+    <div class="b-main">
+      <div class="b-kick">Math</div>
+      <h2 class="b-h">MathJax + the ⟦·⟧ macro</h2>
+      <p style="font-size:29px;line-height:1.45;color:var(--tcd-grey-100);max-width:1200px;margin:0 0 10px">
+        Inline: \( \sem{\text{giggle}} = \lambda x.\,\mathrm{giggle}(x) \), type \( \langle e,t\rangle \). Display:
+      </p>
+      \[ \sem{\text{every}} \;=\; \lambda P_{\langle e,t\rangle}.\,\lambda Q_{\langle e,t\rangle}.\,\forall x\,\bigl(P(x)\rightarrow Q(x)\bigr) \]
+      \[ \sem{\text{every student left}} = 1 \iff \forall x\,\bigl(\mathrm{student}(x)\rightarrow \mathrm{left}(x)\bigr) \]
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Examples">
+  <div class="b-slide pal-a">
+    <div class="b-rail" data-section="2"></div>
+    <div class="b-main">
+      <div class="b-kick">Examples</div>
+      <h2 class="b-h">Numbered data</h2>
+      <div class="ex" id="ex-donkey">
+        <div class="ex-b">Every farmer who owns a donkey beats it.<div class="src">Geach 1962</div></div>
+      </div>
+      <div class="ex" id="ex-subs">
+        <div class="ex-b">
+          <ol class="sub">
+            <li>Neil giggled quietly.</li>
+            <li><span class="ju">*</span>Neil giggled quietly tomorrow.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="ex" id="ex-gloss">
+        <div class="ex-b">
+          <div class="igl">
+            <span class="wd"><span class="tx">jeder</span><span class="gl">every.NOM</span></span>
+            <span class="wd"><span class="tx">Bauer</span><span class="gl">farmer</span></span>
+            <span class="wd"><span class="tx">lacht</span><span class="gl">laugh.3SG</span></span>
+          </div>
+          <div class="ft">'Every farmer laughs.'</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Tree">
+  <div class="b-slide pal-a">
+    <div class="b-rail" data-section="3"></div>
+    <div class="b-main">
+      <div class="b-kick">Trees</div>
+      <h2 class="b-h">A COMPOSE derivation</h2>
+      <div class="tree-frame" id="tree-demo" data-compose='{"sentence":"Neil giggles","lexicon":{"Neil":"n","giggles":"Lx.giggle(x)"},"tree":"[.S [.DP Neil ] [.VP giggles ] ]","mode":"static","showTypes":true,"density":"regular","scale":1.25}'></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Wrap">
+  <div class="b-slide pal-a">
+    <div class="b-rail" data-section="3"></div>
+    <div class="b-main">
+      <div class="b-kick">Wrap</div>
+      <h2 class="b-h">All parts moving</h2>
+      <p style="font-size:29px;line-height:1.45;color:var(--tcd-grey-100);max-width:1200px">
+        Title lockup, rail, divider, callout, MathJax, examples, tree — the full vendored
+        system. New decks start from <code>templates/deck/</code>; this deck is the worked
+        reference.
+      </p>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/talk-rail.js"></script>
+<script src="../../shared/compose-kit/compose-engine.js"></script>
+<script src="../../shared/compose-kit/compose-kit.js"></script>
+<script src="../../shared/deck-trees.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "slides",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Research talk decks served at slides.tstephen.com — static HTML, no build.",
+  "scripts": {
+    "test": "node scripts/check.mjs"
+  }
+}

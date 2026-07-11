@@ -1,0 +1,127 @@
+/* ============================================================
+   Describing Meaning (LI7869) — TCD deck design tokens
+   Official Trinity College Dublin palette (tcd.ie/identity)
+   ============================================================ */
+:root {
+  /* --- TCD primary --- */
+  --tcd-blue: #0569b9;
+  --tcd-blue-75: #448fcb;
+  --tcd-blue-50: #82b4dc;
+  --tcd-blue-25: #c1daee;
+  --tcd-blue-10: #e6f0f8;
+  --tcd-grey-100: #50555a;
+  --tcd-grey-75: #7c8083;
+  --tcd-grey-50: #a8aaad;
+  --tcd-grey-25: #d3d5d6;
+  --tcd-grey-10: #eeeeef;
+  --tcd-white: #ffffff;
+  --tcd-black: #11151a;
+  /* derived "Trinity ink" navy for dark dividers — deepened brand blue */
+  --tcd-ink: #07284a;
+  --tcd-ink-2: #0b3360;
+
+  /* --- content-type accents (subordinate to blue; matched L/C, varied hue) --- */
+  --c-def: #0569b9;                 /* definition  — Trinity blue */
+  --c-ex:  oklch(0.56 0.10 162);    /* example     — green */
+  --c-key: oklch(0.66 0.13 74);     /* key idea    — gold */
+  --c-exr: oklch(0.60 0.14 32);     /* exercise    — coral */
+  --c-note: oklch(0.55 0.11 292);   /* note/aside  — violet */
+
+  /* --- type --- */
+  --serif: "STIX Two Text", Georgia, "Times New Roman", serif;
+  --sans: "Source Sans 3", "Source Sans Pro", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  /* --- type scale (authored @ 1920×1080) --- */
+  --type-title: 64px;
+  --type-subtitle: 44px;
+  --type-section: 96px;
+  --type-body: 34px;
+  --type-small: 28px;
+  --type-kicker: 22px;
+  --type-micro: 18px;
+
+  /* --- spacing --- */
+  --pad-x: 110px;
+  --pad-top: 96px;
+  --pad-bottom: 84px;
+  --gap-title: 44px;
+  --gap-item: 26px;
+}
+
+/* ============================================================
+   Slide frame — authored at 1920×1080, scaled into the artboard
+   ============================================================ */
+.slide {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background: var(--tcd-white);
+  color: var(--tcd-black);
+  font-family: var(--serif);
+  font-size: var(--type-body);
+  line-height: 1.32;
+  -webkit-font-smoothing: antialiased;
+}
+.slide * { box-sizing: border-box; }
+
+/* MathJax sizing inside slides */
+.slide mjx-container { font-size: inherit !important; }
+.slide mjx-container[display="true"] { margin: 0 !important; }
+
+/* shared utility text bits */
+.kicker {
+  font-family: var(--sans);
+  font-size: var(--type-kicker);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.serif { font-family: var(--serif); }
+.sans { font-family: var(--sans); }
+.mono { font-family: var(--mono); }
+
+/* notation chip — inline monospace token */
+.chip {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--tcd-blue-10);
+  color: var(--tcd-ink);
+  padding: 0.08em 0.4em;
+  border-radius: 5px;
+  border: 1px solid var(--tcd-blue-25);
+  white-space: nowrap;
+}
+
+/* sentence-annotation highlight (for the "scope for animation" archetype) */
+.anno {
+  position: relative;
+  padding: 0.04em 0.14em;
+  border-radius: 4px;
+}
+.anno-subj { background: color-mix(in srgb, var(--tcd-blue) 18%, white); box-shadow: inset 0 -2px 0 var(--tcd-blue); }
+.anno-pred { background: color-mix(in srgb, var(--c-ex) 20%, white); box-shadow: inset 0 -2px 0 var(--c-ex); }
+.anno-obj  { background: color-mix(in srgb, var(--c-key) 26%, white); box-shadow: inset 0 -2px 0 var(--c-key); }
+
+/* ============================================================
+   Build-step dimming (shows "incremental reveal" intent statically)
+   ============================================================ */
+.step-future { opacity: 0.26; }
+.step-now { opacity: 1; }
+
+/* ============================================================
+   Official TCD identity — wordmark lockup + crest slot
+   (the crest is a USER-DROPPED official asset, not a recreation:
+    drop your toolkit crest onto the slot and it persists everywhere)
+   ============================================================ */
+.tcd-lockup { display: flex; align-items: center; gap: 22px; }
+.tcd-rule { width: 1.5px; align-self: stretch; background: currentColor; opacity: 0.28; }
+.tcd-names { display: flex; flex-direction: column; gap: 2px; line-height: 1.12; }
+.tcd-names .en { font-family: var(--serif); font-weight: 600; font-size: 29px; letter-spacing: 0.005em; }
+.tcd-names .ga { font-family: var(--serif); font-style: italic; font-size: 21px; opacity: 0.82; }
+.tcd-names .uni { font-family: var(--sans); font-size: 16px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.66; margin-top: 4px; }
+
+/* crest drop-slot — shield silhouette placeholder for the official crest */
+.tcd-crest { display: inline-block; }
+

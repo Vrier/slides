@@ -1,0 +1,39 @@
+/* ============================================================
+   theme-indigo.css — LIU44010 Semantics III
+   A deep indigo re-skin of the deck/handout system. Shares ALL
+   structure/layout/components — only re-points the brand colour
+   variables and the hard-coded ink fills.
+
+   LOAD ORDER: link this LAST, after
+     deck   : tokens · dir-a · dir-b · dir-c · deck-slides
+     handout: tokens · lens · handout (· readings / exercises)
+   ============================================================ */
+
+:root {
+  --tcd-blue:    #4b3c9a;   /* deep indigo (primary) */
+  --tcd-blue-75: #6d5fb0;
+  --tcd-blue-50: #9389c8;
+  --tcd-blue-25: #c8c2e3;
+  --tcd-blue-10: #eceaf6;
+
+  --tcd-ink:   #2a2056;     /* indigo ink */
+  --tcd-ink-2: #382a72;
+
+  --c-def: #4b3c9a;
+
+  --lens-emp: oklch(0.50 0.068 172);
+  --lens-his: oklch(0.50 0.075 64);
+  --lens-for: oklch(0.46 0.130 290);
+  --lens-typ: oklch(0.50 0.090 18);
+}
+
+.pal-a {
+  --lens-emp: oklch(0.50 0.068 172);
+  --lens-his: oklch(0.50 0.075 64);
+  --lens-for: oklch(0.46 0.130 290);
+  --lens-typ: oklch(0.50 0.090 18);
+}
+
+.lxd2-foot { background: rgba(42, 32, 86, 0.82); }
+.wk-nav { background: rgba(42, 32, 86, 0.92); }
+.wk-nav select option { background: #2a2056; }

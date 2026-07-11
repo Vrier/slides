@@ -1,0 +1,45 @@
+/* ============================================================
+   theme-rust.css — LIU44008 Pragmatics II
+   A deep orange-red ("rust") re-skin of the deck/handout system.
+   Shares ALL structure/layout/components — this file only re-points
+   the brand colour variables and the hard-coded ink fills.
+
+   LOAD ORDER: link this LAST, after
+     deck   : tokens · dir-a · dir-b · dir-c · deck-slides
+     handout: tokens · lens · handout (· readings / exercises)
+   so its values win the cascade.
+   ============================================================ */
+
+:root {
+  /* --- primary ramp: deep orange-red replaces Trinity blue --- */
+  --tcd-blue:    #b23a1e;   /* deep rust / orange-red (primary) */
+  --tcd-blue-75: #c4633f;
+  --tcd-blue-50: #d99878;
+  --tcd-blue-25: #efcab9;
+  --tcd-blue-10: #faeae2;
+
+  /* --- dark "ink" for dividers / rail marks: burnt sienna --- */
+  --tcd-ink:   #5a1c0e;
+  --tcd-ink-2: #74230f;
+
+  /* --- definition accent follows the brand into rust --- */
+  --c-def: #b23a1e;
+
+  /* --- warm secondary palette (kept well-separated in hue) --- */
+  --lens-emp: oklch(0.50 0.068 172);
+  --lens-his: oklch(0.50 0.075 64);
+  --lens-for: oklch(0.50 0.140 36);
+  --lens-typ: oklch(0.48 0.090 318);
+}
+
+.pal-a {
+  --lens-emp: oklch(0.50 0.068 172);
+  --lens-his: oklch(0.50 0.075 64);
+  --lens-for: oklch(0.50 0.140 36);
+  --lens-typ: oklch(0.48 0.090 318);
+}
+
+/* --- hard-coded navy fills in deck-slides.css → rust ink --- */
+.lxd2-foot { background: rgba(90, 28, 14, 0.82); }
+.wk-nav { background: rgba(90, 28, 14, 0.92); }
+.wk-nav select option { background: #5a1c0e; }

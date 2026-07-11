@@ -1,0 +1,84 @@
+/* ============================================================
+   Direction C — "Vivid Diagram-forward"
+   Blue-10 wash · white stage cards · coloured header bands ·
+   segmented progress · saturated pills · diagram stage
+   ============================================================ */
+.c-slide {
+  position: absolute; inset: 0;
+  background: var(--tcd-blue-10);
+  padding: 60px 70px 66px;
+  display: flex; flex-direction: column;
+}
+
+/* segmented progress */
+.c-topline { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; font-family: var(--sans); font-size: var(--type-micro); color: var(--tcd-grey-75); letter-spacing: 0.04em; }
+.c-topline .l { color: var(--tcd-ink); font-weight: 600; }
+.c-topline .r .sec { color: var(--tcd-blue); font-weight: 600; }
+.c-prog { display: flex; gap: 7px; margin-bottom: 30px; }
+.c-seg { flex: 1; height: 9px; border-radius: 5px; background: var(--tcd-grey-25); }
+.c-seg.done { background: var(--tcd-blue-50); }
+.c-seg.active { background: var(--tcd-blue); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tcd-blue) 16%, transparent); }
+
+/* white stage card */
+.c-stage { flex: 1 1 0; background: #fff; border-radius: 18px; box-shadow: 0 10px 36px rgba(7,40,74,0.10), 0 2px 6px rgba(7,40,74,0.06); overflow: hidden; display: flex; flex-direction: column; }
+.c-band { background: var(--acc, var(--tcd-blue)); color: #fff; padding: 16px 48px; display: flex; align-items: center; justify-content: space-between; }
+.c-band .k { font-family: var(--sans); font-size: var(--type-micro); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.c-band .topic { font-family: var(--serif); font-size: 26px; font-style: italic; opacity: 0.92; }
+.c-inner { padding: 44px 48px 48px; flex: 1; display: flex; flex-direction: column; }
+.c-h { font-family: var(--serif); font-size: var(--type-title); font-weight: 600; letter-spacing: -0.01em; line-height: 1.04; margin: 0 0 28px; color: var(--tcd-ink); }
+
+/* pills */
+.c-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.c-pill { font-family: var(--sans); font-size: var(--type-micro); font-weight: 600; letter-spacing: 0.04em; padding: 8px 18px; border-radius: 999px; background: color-mix(in srgb, var(--pc, var(--tcd-blue)) 14%, white); color: var(--pc, var(--tcd-blue)); border: 1.5px solid color-mix(in srgb, var(--pc, var(--tcd-blue)) 40%, white); }
+
+/* content boxes (top-band, not left-accent) */
+.c-box { border: 1.5px solid color-mix(in srgb, var(--acc, var(--tcd-blue)) 35%, white); border-radius: 12px; overflow: hidden; background: #fff; }
+.c-box + .c-box { margin-top: 20px; }
+.c-box-head { display: flex; align-items: center; gap: 12px; padding: 14px 24px 12px; }
+.c-box-badge { font-family: var(--sans); font-size: 17px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--acc, var(--tcd-blue)); padding: 5px 14px; border-radius: 999px; }
+.c-box-body { padding: 4px 24px 22px; font-size: var(--type-small); line-height: 1.36; color: var(--tcd-black); }
+
+/* roadmap cards */
+.c-road { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 28px; }
+.c-road-item { display: flex; gap: 20px; align-items: center; padding: 20px 24px; border-radius: 12px; background: var(--tcd-blue-10); border: 1.5px solid transparent; }
+.c-road-item.is-active { background: #fff; border-color: var(--tcd-blue); box-shadow: 0 4px 14px rgba(7,40,74,0.08); }
+.c-badge-n { width: 50px; height: 50px; flex: 0 0 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 600; font-size: 26px; color: #fff; }
+.c-road-t { font-size: 25px; line-height: 1.2; color: var(--tcd-grey-100); }
+.c-road-item.is-active .c-road-t { color: var(--tcd-ink); font-weight: 600; }
+
+/* worked example — step flow with arrows */
+.c-flow { display: flex; align-items: stretch; gap: 0; margin-top: 8px; }
+.c-fstep { flex: 1 1 0; background: #fff; border: 1.5px solid var(--tcd-blue-25); border-radius: 12px; padding: 24px 22px; display: flex; flex-direction: column; gap: 14px; }
+.c-fstep .lab { font-family: var(--sans); font-size: 18px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tcd-blue); }
+.c-fstep .m { font-size: 34px; }
+.c-arrow { flex: 0 0 56px; display: flex; align-items: center; justify-content: center; color: var(--tcd-blue-50); }
+.c-arrow svg { width: 34px; height: 34px; }
+
+/* semantic tree */
+.c-tree { position: relative; width: 820px; height: 470px; margin: 6px auto 0; }
+.c-tree svg.lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+.c-node { position: absolute; border-radius: 12px; padding: 12px 16px; text-align: center; border: 2px solid var(--nc, var(--tcd-blue)); background: color-mix(in srgb, var(--nc, var(--tcd-blue)) 9%, white); }
+.c-node .cat { font-family: var(--serif); font-weight: 700; font-size: 30px; color: var(--nc, var(--tcd-blue)); line-height: 1; }
+.c-node .den { font-size: 23px; color: var(--tcd-grey-100); margin-top: 8px; }
+.c-leaf { background: #fff; border-style: dashed; }
+.c-leaf .cat { font-style: italic; color: var(--tcd-ink); }
+
+/* divider — bold navy with set-circle motif */
+.c-div { position: absolute; inset: 0; background: var(--tcd-ink); color: #fff; overflow: hidden; padding: var(--pad-top) var(--pad-x); display: flex; flex-direction: column; justify-content: center; }
+.c-div-circles { position: absolute; right: -60px; top: 50%; transform: translateY(-50%); width: 720px; height: 720px; }
+.c-div-circ { position: absolute; border-radius: 50%; mix-blend-mode: screen; }
+.c-div-num { font-family: var(--sans); font-size: var(--type-kicker); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tcd-blue-50); margin-bottom: 22px; position: relative; }
+.c-div-title { font-family: var(--serif); font-size: 116px; font-weight: 600; line-height: 0.98; letter-spacing: -0.01em; margin: 0; position: relative; max-width: 1100px; }
+.c-div-sub { font-family: var(--serif); font-style: italic; font-size: var(--type-subtitle); color: var(--tcd-blue-50); margin-top: 30px; position: relative; }
+
+/* title slide */
+.c-title { position: absolute; inset: 0; background: var(--tcd-blue-10); padding: 110px var(--pad-x); display: flex; flex-direction: column; overflow: hidden; }
+.c-title-circles { position: absolute; right: -120px; top: -120px; width: 760px; height: 760px; }
+.c-tcirc { position: absolute; border-radius: 50%; }
+.c-title .code { font-family: var(--sans); font-size: var(--type-kicker); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--tcd-blue); position: relative; }
+.c-title .t { font-family: var(--serif); font-size: 156px; font-weight: 600; line-height: 0.96; letter-spacing: -0.02em; color: var(--tcd-ink); margin: 24px 0 0; position: relative; }
+.c-title .s { font-family: var(--serif); font-style: italic; font-size: 50px; color: var(--tcd-grey-100); margin-top: 30px; position: relative; max-width: 1000px; }
+.c-title .foot { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; position: relative; }
+.c-title .foot .who { font-family: var(--sans); font-size: var(--type-small); color: var(--tcd-grey-100); line-height: 1.5; }
+.c-title .foot .who .n { font-weight: 600; color: var(--tcd-ink); }
+.c-title .foot .uni { font-family: var(--serif); font-size: var(--type-small); color: var(--tcd-blue); text-align: right; }

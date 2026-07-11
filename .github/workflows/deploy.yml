@@ -1,0 +1,43 @@
+# Deploy: push to main → run checks → VPS pulls.
+#
+# Same recipe as the other static repos (www, teaching). Requires Actions
+# secret DEPLOY_SSH_KEY: the private key for compose@167.233.233.109,
+# BASE64-ENCODED single-line (PowerShell mangles pasted multi-line keys —
+# "error in libcrypto"). Same value as the compose repo's secret; it's a
+# server credential, shareable across repos. The decode step tries base64
+# first and falls back to raw, so either form works.
+
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run checks
+        run: npm test
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/key.in
+          if base64 -d ~/.ssh/key.in > ~/.ssh/deploy_key 2>/dev/null && grep -q "PRIVATE KEY" ~/.ssh/deploy_key; then
+            echo "key: base64-decoded"
+          else
+            cp ~/.ssh/key.in ~/.ssh/deploy_key
+            echo "key: used raw"
+          fi
+          printf '\n' >> ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          rm ~/.ssh/key.in
+          ssh-keyscan -H 167.233.233.109 >> ~/.ssh/known_hosts
+
+      - name: Update served files
+        run: |
+          ssh -i ~/.ssh/deploy_key compose@167.233.233.109 \
+            'git -C /srv/slides fetch origin main && git -C /srv/slides reset --hard origin/main'

@@ -1,0 +1,139 @@
+/* ============================================================================
+   compose-kit.css — COMPOSE visual style, extracted from the app and scoped
+   under .compose-root so it can be embedded in slides or handouts without
+   touching the surrounding page. Parchment theme (the app's default).
+   Pairs with compose-engine.js (the semantic engine) + compose-kit.js (render).
+   ============================================================================ */
+
+.compose-root {
+  /* ---- parchment tokens (verbatim from COMPOSE) ---- */
+  --bg:        oklch(0.961 0.013 78);
+  --bg-grain:  oklch(0.945 0.016 76);
+  --panel:     oklch(0.985 0.008 82);
+  --panel-2:   oklch(0.972 0.011 80);
+  --ink:       oklch(0.285 0.022 52);
+  --ink-soft:  oklch(0.42 0.02 55);
+  --muted:     oklch(0.56 0.018 58);
+  --faint:     oklch(0.69 0.014 62);
+  --line:      oklch(0.875 0.016 72);
+  --line-soft: oklch(0.915 0.012 74);
+  --accent:    oklch(0.585 0.13 44);
+  --accent-ink:oklch(0.46 0.13 42);
+  --accent-soft:oklch(0.93 0.05 56);
+  --good:      oklch(0.55 0.1 150);
+  --good-soft: oklch(0.93 0.05 152);
+  --bad:       oklch(0.55 0.16 26);
+  --bad-soft:  oklch(0.94 0.05 30);
+  --select:    oklch(0.62 0.11 250);
+  --select-soft:oklch(0.93 0.045 250);
+  --shadow:    0 1px 2px oklch(0.4 0.03 60 / 0.08), 0 8px 24px oklch(0.4 0.03 60 / 0.07);
+  --shadow-sm: 0 1px 2px oklch(0.4 0.03 60 / 0.1);
+  --radius: 10px;
+
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle at 18% 14%, var(--bg-grain) 0, transparent 40%),
+    radial-gradient(circle at 84% 80%, var(--bg-grain) 0, transparent 44%),
+    var(--bg);
+  color: var(--ink);
+  font-family: 'Spectral', Georgia, 'Times New Roman', serif;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 10px 14px 18px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.compose-root * { box-sizing: border-box; }
+.compose-root .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+
+/* ---- header: sentence gloss + caption + controls ---- */
+.compose-head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 18px; padding: 6px 8px 12px;
+}
+.compose-head-l { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.compose-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent-ink); font-weight: 600;
+}
+.compose-sentence { font-size: 21px; font-style: italic; color: var(--ink-soft); line-height: 1.3; }
+.compose-caption { font-size: 14px; color: var(--muted); line-height: 1.4; }
+
+.compose-controls { display: flex; gap: 7px; flex-shrink: 0; }
+.compose-btn {
+  font-family: 'Spectral', serif; font-size: 14px; font-weight: 600;
+  border: 1px solid var(--line); background: var(--panel-2); color: var(--ink-soft);
+  border-radius: 9px; padding: 7px 13px; cursor: pointer; transition: all .15s;
+  white-space: nowrap; line-height: 1;
+}
+.compose-btn:hover { border-color: var(--accent); color: var(--ink); }
+.compose-btn.primary { background: var(--accent); border-color: var(--accent); color: oklch(0.99 0.01 80); }
+.compose-btn.primary:hover { filter: brightness(1.06); }
+.compose-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* ---- tree (verbatim geometry from COMPOSE) ---- */
+.compose-root .tree-wrap { position: relative; transform-origin: top left; }
+.compose-root .tree-svg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.compose-root .tree-svg line { stroke: var(--line); stroke-width: 1.5; transition: opacity .4s; }
+.compose-root .tree-node {
+  position: absolute; transform: translate(-50%, 0); z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  text-align: center;
+}
+.compose-root .node-box {
+  min-width: 46px; padding: 7px 13px; border-radius: 9px;
+  border: 1.5px solid var(--line); background: var(--panel);
+  cursor: default; transition: all .16s; position: relative; overflow: visible;
+  box-shadow: var(--shadow-sm);
+}
+.compose-root .node-box .node-label { font-size: 13px; color: var(--muted); font-style: italic; }
+.compose-root .node-box .node-word { font-size: 16px; font-weight: 500; }
+.compose-root .node-leaf .node-box { background: var(--panel-2); border-style: solid; }
+.compose-root .node-box.selectable { cursor: pointer; }
+.compose-root .node-box.selectable:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.compose-root .node-box.available { border-color: var(--accent); border-style: dashed; cursor: pointer; }
+.compose-root .node-box.available::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 12px;
+  border: 1px solid var(--accent); opacity: 0.25; animation: compose-pulse 1.8s ease-in-out infinite;
+}
+@keyframes compose-pulse { 0%,100% { opacity: 0.12; } 50% { opacity: 0.4; } }
+.compose-root .node-box.done { border-color: var(--good); }
+
+.compose-root .node-meaning {
+  font-size: 14.5px; padding: 3px 9px; border-radius: 7px;
+  background: color-mix(in oklab, var(--good-soft) 60%, transparent);
+  color: var(--ink); max-width: 280px; line-height: 1.35;
+}
+.compose-root .node-meaning.pending { background: var(--panel-2); color: var(--muted); font-style: italic; }
+.compose-root .node-type-badge { font-size: 11px; color: var(--accent-ink); margin-top: 1px; }
+.compose-root .node-rule-tag {
+  position: absolute; top: -10px; right: -8px; font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.04em; background: var(--good); color: white;
+  padding: 2px 6px; border-radius: 6px; box-shadow: var(--shadow-sm);
+}
+.compose-root .node-word sub, .compose-root .node-meaning sub { font-size: 0.72em; }
+
+/* ---- λ-notation glyph styling (verbatim from COMPOSE) ---- */
+.compose-root .lx { font-size: calc(1em * var(--lx-scale, 1)); }
+.compose-root .lx-var, .compose-root .lx-bv { font-style: italic; font-family: 'Spectral', serif; }
+.compose-root .lx-const { font-style: normal; }
+.compose-root .lx-binder { font-style: normal; }
+.compose-root .lx-dot { color: var(--faint); margin: 0 1px 0 0; }
+.compose-root .lx-op { padding: 0 0.32em; color: var(--ink-soft); }
+.compose-root .lx-neg { padding: 0 0.04em 0 0; }
+.compose-root .lx-paren, .compose-root .lx-comma { color: var(--faint); }
+.compose-root .ty-atom { font-style: italic; }
+.compose-root .ty-var { font-style: italic; color: var(--accent-ink); }
+.compose-root .ty-ang, .compose-root .ty-comma { color: var(--faint); }
+.compose-root .ty-prod { color: var(--faint); padding: 0 0.1em; }
+
+/* ---- error state ---- */
+.compose-root .compose-error {
+  font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--bad);
+  background: var(--bad-soft); border: 1px solid color-mix(in oklab, var(--bad) 40%, transparent);
+  border-radius: 9px; padding: 12px 16px; margin: 8px; line-height: 1.5; max-width: 560px;
+}

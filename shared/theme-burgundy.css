@@ -1,0 +1,48 @@
+/* ============================================================
+   theme-burgundy.css — LI7862 Linguistic Pragmatics
+   A burgundy re-skin of the "Describing Meaning" deck system.
+   Shares ALL structure/layout/components — this file only
+   re-points the brand colour variables and the handful of
+   hard-coded navy fills that don't read from a variable.
+
+   LOAD ORDER: link this LAST, after
+     deck   : tokens · dir-a · dir-b · dir-c · lens · deck-slides
+     handout: tokens · lens · handout
+   so its values win the cascade.
+   ============================================================ */
+
+:root {
+  /* --- primary ramp: deep TCD burgundy replaces Trinity blue --- */
+  --tcd-blue:    #6e1423;   /* deep burgundy (primary) */
+  --tcd-blue-75: #8b3a44;
+  --tcd-blue-50: #b07b82;
+  --tcd-blue-25: #ddbdc1;
+  --tcd-blue-10: #f4e7e9;
+
+  /* --- dark "ink" for dividers / rail marks: oxblood wine --- */
+  --tcd-ink:   #4a0e1a;
+  --tcd-ink-2: #5f1322;
+
+  /* --- definition accent follows the brand into burgundy --- */
+  --c-def: #8c1d2a;
+
+  /* --- four-lens palette, re-tuned warm for the burgundy course
+         (formal echoes the brand; others stay well-separated in hue) --- */
+  --lens-emp: oklch(0.50 0.068 172);   /* empirical  — observation teal-green */
+  --lens-his: oklch(0.50 0.070 64);    /* historical — bronze / archive */
+  --lens-for: oklch(0.45 0.125 18);    /* formal     — burgundy (brand) */
+  --lens-typ: oklch(0.48 0.090 318);   /* applied    — aubergine / plum */
+}
+
+/* deck content elements pull lens vars through the .pal-a class — mirror them */
+.pal-a {
+  --lens-emp: oklch(0.50 0.068 172);
+  --lens-his: oklch(0.50 0.070 64);
+  --lens-for: oklch(0.45 0.125 18);
+  --lens-typ: oklch(0.48 0.090 318);
+}
+
+/* --- hard-coded navy fills in deck-slides.css → burgundy ink --- */
+.lxd2-foot { background: rgba(74, 14, 26, 0.82); }
+.wk-nav { background: rgba(74, 14, 26, 0.92); }
+.wk-nav select option { background: #4a0e1a; }

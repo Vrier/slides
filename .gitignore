@@ -1,0 +1,7 @@
+# repo-unique deploy key — NEVER commit (public half goes in GitHub → Deploy keys)
+.deploy-key
+.deploy-key.pub
+
+.DS_Store
+Thumbs.db
+*.tmp
