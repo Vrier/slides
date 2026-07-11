@@ -143,6 +143,12 @@ what the next session must know)*
   files matching Thomas's photos, strawson only 120px so upscaled-soft).
   All hotlinks removed. Still name-plates (no usable photo found):
   Wilson, Horn, Levinson, Chierchia, Fox/Spector.
+- **More portraits:** wilson.jpg (Commons 'Deirdre Wilson Books.jpg' — the
+  photo Thomas pasted) and spector.jpg (Institut Nicod). Fox card removed
+  from the Grammaticalism slide at Thomas's request; Spector has his own
+  card. Horn & Levinson photos NOT found online (MPI/Yale pages are
+  JS-rendered) — still plates; Thomas has photos, needs to send as FILE
+  attachments (pasted-inline images never reach disk).
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.
