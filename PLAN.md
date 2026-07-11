@@ -136,6 +136,13 @@ what the next session must know)*
   portraits (pattern: sem1 wk1 images/pearse.jpg). Commons has no usable
   photos for Horn/Levinson/Sperber/Wilson/Frank/Goodman/Chierchia/Fox
   ("Danny Fox.jpg" is a footballer).
+- **Wk1 portraits self-hosted:** week-01/images/ now holds 14 portraits
+  (frege, russell, wittgenstein×2, schlick, neurath, carnap, ayer,
+  austin, strawson, grice, sperber, frank, goodman — sourced via
+  Wikipedia/Commons APIs; austin/strawson/grice are en-wiki fair-use
+  files matching Thomas's photos, strawson only 120px so upscaled-soft).
+  All hotlinks removed. Still name-plates (no usable photo found):
+  Wilson, Horn, Levinson, Chierchia, Fox/Spector.
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.
