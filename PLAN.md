@@ -82,12 +82,12 @@ Every shipped feature adds a check. CI runs `npm test` before deploying.
 - [x] **W2 — Demo deck** at `2026/demo/` exercising math, examples, a
       compose-kit tree, and the three visual directions — doubles as the live
       smoke test and the worked reference deck.
-- [ ] **W3 — Thomas: one-time setup** (browser/SSH): create `Vrier/slides` on
+- [x] **W3 — Thomas: one-time setup** (browser/SSH): create `Vrier/slides` on
       GitHub; Porkbun A record `slides` → 167.233.233.109 **before** the
       Caddy block; add repo deploy key (write access); add `DEPLOY_SSH_KEY`
       secret; after first push, paste the VPS root block (clone → chown
       compose → Caddy block → reload). Full recipe: `DEPLOY.md`.
-- [ ] **W4 — First deploy**: push main, watch Actions, `curl -sI` the hub and
+- [x] **W4 — First deploy**: push main, watch Actions, `curl -sI` the hub and
       the demo deck; fix until green and live.
 - [ ] **W5 — First real deck** (content from Thomas).
 
@@ -131,6 +131,9 @@ what the next session must know)*
   (`GIT_DIR=/tmp/slides.git GIT_WORK_TREE=<mounted repo>`). Ephemeral: if
   the session ends before the first push, re-init and recommit from the
   mounted tree. After the first push, clone from GitHub instead.
-- **Next session must know:** W3 (DNS, repo creation, deploy key, secret,
-  VPS block) is on Thomas — nothing can deploy until then. First push after
-  repo creation, then W4 curl verification. Repo not yet pushed anywhere.
+- **Shipped later same session:** W3 (Thomas: repo, deploy key, secret, DNS,
+  VPS block) and W4 — first push deployed; hub, demo deck and shared assets
+  verified live over HTTPS with curl (all 200).
+- **Next session must know:** site is live; clone from GitHub (repo is the
+  source of truth). Next work item is W5 — first real deck, content from
+  Thomas. Start green: npm test before touching anything.
