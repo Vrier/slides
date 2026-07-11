@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Figure · The join semilattice of plural individuals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="./figure.css" />
+</head>
+<body class="pal-a">
+<div class="fig lens-formal" id="fig">
+  <div class="fig-head">
+    <span class="fig-kick"><span class="dot"></span>Plurals</span>
+    <div class="fig-htext">
+      <h1 class="fig-title">The join semilattice of individuals</h1>
+      <p class="fig-sub">A plural denotes the closure of the singular under <b>⊕</b> (sum)</p>
+    </div>
+    <div class="fig-src">Link 1983<br>“The logical analysis of plurals &amp; mass terms”</div>
+  </div>
+
+  <div class="fig-stage">
+    <svg id="svg" viewBox="0 0 1060 600" preserveAspectRatio="xMidYMid meet" aria-label="Hasse diagram of three atoms and their sums"></svg>
+  </div>
+
+  <div class="fig-cap" id="cap">
+    Three boys <span class="chip">a, b, c</span> are the <b>atoms</b>. The plural <span class="sent">the boys</span> denotes
+    <span class="chip">*⟦boy⟧</span> — every <b>sum</b> of atoms. Click atoms to form their join (least sum containing them).
+  </div>
+
+  <div class="fig-controls">
+    <button class="fig-btn" id="star">Apply&nbsp;∗&nbsp;&nbsp;·&nbsp;&nbsp;close under ⊕</button>
+    <button class="fig-btn ghost" id="reset">Reset</button>
+    <span class="fig-readout" id="out">⟦boy⟧ = { a, b, c }&nbsp;&nbsp;·&nbsp;&nbsp;singular: the three atoms</span>
+  </div>
+</div>
+
+<script>
+const A=1,B=2,C=4;
+const NM={1:"a",2:"b",4:"c"};
+function label(mask){ return [["a",1],["b",2],["c",4]].filter(([,m])=>mask&m).map(([s])=>s).join("⊕"); }
+
+// node geometry (Hasse: atoms low, sum high)
+const NODES = [
+  {mask:A, x:200, y:500, lvl:1, lx:0,  ly:46},
+  {mask:B, x:530, y:500, lvl:1, lx:0,  ly:46},
+  {mask:C, x:860, y:500, lvl:1, lx:0,  ly:46},
+  {mask:A|B, x:310, y:300, lvl:2, lx:-46, ly:-2},
+  {mask:A|C, x:530, y:300, lvl:2, lx:0,  ly:-34},
+  {mask:B|C, x:750, y:300, lvl:2, lx:46,  ly:-2},
+  {mask:A|B|C, x:530, y:96, lvl:3, lx:0, ly:-34},
+];
+const byMask = m => NODES.find(n=>n.mask===m);
+// cover edges: child ⊂ parent and popcount(parent)=popcount(child)+1
+function pop(m){let c=0;while(m){c+=m&1;m>>=1;}return c;}
+const EDGES=[];
+for(const p of NODES) for(const c of NODES)
+  if(c.mask!==p.mask && (c.mask & p.mask)===c.mask && pop(p.mask)===pop(c.mask)+1)
+    EDGES.push({p,c});
+
+const SVG="http://www.w3.org/2000/svg";
+const svg=document.getElementById('svg');
+const gE=document.createElementNS(SVG,'g'), gN=document.createElementNS(SVG,'g');
+svg.append(gE,gN);
+
+const edgeEls=EDGES.map(e=>{
+  const ln=document.createElementNS(SVG,'line');
+  ln.setAttribute('x1',e.c.x);ln.setAttribute('y1',e.c.y);
+  ln.setAttribute('x2',e.p.x);ln.setAttribute('y2',e.p.y);
+  ln.setAttribute('class','lat-edge anim'); gE.appendChild(ln);
+  return {e,ln};
+});
+const nodeEls=NODES.map(n=>{
+  const g=document.createElementNS(SVG,'g'); g.setAttribute('class','anim');
+  g.style.cursor = n.lvl===1 ? 'pointer':'default';
+  const c=document.createElementNS(SVG,'circle');
+  c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r', n.lvl===1?17:15);
+  c.setAttribute('class','lat-node'+(n.lvl===1?' atom':''));
+  const t=document.createElementNS(SVG,'text');
+  t.setAttribute('x',n.x+n.lx);t.setAttribute('y',n.y+n.ly);
+  t.setAttribute('class','lat-label');
+  t.setAttribute('font-size', n.lvl===1?34:30);
+  t.setAttribute('font-style','italic');
+  t.setAttribute('dominant-baseline','middle');
+  t.textContent=label(n.mask);
+  g.append(c,t); gN.appendChild(g);
+  if(n.lvl===1) g.addEventListener('click',()=>toggle(n.mask));
+  return {n,g,c,t};
+});
+
+let revealed=false, sel=0;
+const out=document.getElementById('out');
+
+function render(){
+  // reveal: sums (lvl>1) + all edges hidden until *
+  for(const {n,g} of nodeEls) g.style.opacity = (n.lvl===1 || revealed) ? 1 : 0;
+  for(const {ln} of edgeEls) ln.style.opacity = revealed ? 1 : 0;
+
+  const join = sel; // union of selected atoms = the join's mask
+  for(const {n,c,t} of nodeEls){
+    const subsetOfJoin = sel && (n.mask & join)===n.mask;
+    const isJoin = n.mask===join;
+    c.classList.toggle('sel', !!subsetOfJoin);
+    c.setAttribute('r', isJoin ? 22 : (n.lvl===1?17:15));
+    t.classList.toggle('lt', isJoin);
+    t.setAttribute('font-weight', subsetOfJoin?600:400);
+  }
+  for(const {e,ln} of edgeEls){
+    const lit = sel && (e.c.mask & join)===e.c.mask && (e.p.mask & join)===e.p.mask;
+    ln.classList.toggle('on', !!lit);
+  }
+  if(!revealed){
+    out.className='fig-readout';
+    out.innerHTML='⟦boy⟧ = { a, b, c }&nbsp;&nbsp;·&nbsp;&nbsp;singular: the three atoms';
+  } else if(!sel){
+    out.className='fig-readout';
+    out.innerHTML='⟦boys⟧ = *⟦boy⟧ = { a, b, c, a⊕b, a⊕c, b⊕c, a⊕b⊕c }&nbsp;&nbsp;·&nbsp;&nbsp;7 sums';
+  } else {
+    out.className='fig-readout ok';
+    const parts=label(sel).split('⊕');
+    out.innerHTML = parts.join(' ⊕ ') + ' &nbsp;=&nbsp; <b>'+label(sel)+'</b>'+(parts.length>1?'&nbsp;&nbsp;the join (least upper bound)':'&nbsp;&nbsp;an atom');
+  }
+}
+function toggle(mask){ if(!revealed){reveal();} sel ^= mask; render(); }
+function reveal(){ revealed=true; render(); }
+document.getElementById('star').addEventListener('click',()=>{ if(!revealed) reveal(); });
+document.getElementById('reset').addEventListener('click',()=>{ revealed=false; sel=0; render(); });
+render();
+</script>
+</body>
+</html>

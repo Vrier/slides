@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 5 — Determiners & Quantifiers · Lecture Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .b-main > .lens-progress { margin-top: auto; }
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+</style>
+</head>
+<body class="pal-a" data-week="5">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title">
+  <div class="a-watermark">∀∃</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7869 · Formal Semantics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 5</h1>
+      <div class="a-course-sub">Determiners, Quantifiers &amp; Generalised Quantifiers</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 2 · 2026</div></div>
+  </div>
+</section>
+
+<!-- 02 · Roadmap -->
+<section class="slide" data-label="Roadmap">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Today's four lenses</div>
+      <h2 class="b-h">Determiners &amp; Quantifiers</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div>
+          <div class="track"></div>
+          <div class="q">Quantified DPs aren't names</div>
+          <div class="d"><em>every, some, no, most, exactly two</em> — DPs that don't pick out an individual.</div>
+        </div>
+        <div class="stop lens-historical">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div>
+          <div class="track"></div>
+          <div class="q">Frege to Barwise &amp; Cooper</div>
+          <div class="d">From variable-binding operators to determiners as relations between two sets.</div>
+        </div>
+        <div class="stop lens-formal">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div>
+          <div class="track"></div>
+          <div class="q">Determiners as set relations</div>
+          <div class="d">\(\forall,\exists\) and their set equivalents; generalised quantifiers; \(\mathrm{DET}(A)(B)\).</div>
+        </div>
+        <div class="stop lens-typological">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div>
+          <div class="track"></div>
+          <div class="q">Conservativity as a universal</div>
+          <div class="d">Determiner inventories vary; conservativity and monotonicity constrain them all.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ EMPIRICAL ════════ -->
+<section class="slide" data-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LI7869 · Week 5</div><h2>Quantified DPs aren't names</h2><div class="ask">A quantified DP like <em>every hippo</em> doesn't denote an individual — so subject–predicate membership won't do.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="empirical" data-label="Empirical — The data">
+  <div class="b-slide pal-a lens-empirical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical<span class="ct">LENS 01 / 04</span></div>
+      <h2 class="b-h">The data: NPs that quantify</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Data</span></div>
+          <div class="c-box-body"><p><em>Every / all / some / no / most hippo(s) swam.</em></p><p><em>Exactly two / fewer than five / infinitely many hippos swam.</em></p><p>These DPs make claims about <strong>how many</strong> — not about a particular hippo.</p></div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Why names won't do</span></div>
+          <div class="c-box-body"><em>Neil</em> denotes an individual \(n\), and <em>Neil swam</em> is true iff \(n \in \sem{\text{swam}}\). But <em>no hippo</em> denotes no individual at all — there is nothing to drop into the set.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Inference</span></div>
+          <div class="c-box-body">We want entailments — <em>every hippo swam</em> ⊨ <em>every grey hippo swam</em> — to fall out of <strong>set relations</strong>, not stipulations about special objects.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="empirical"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ HISTORICAL ════════ -->
+<section class="slide" data-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LI7869 · Week 5</div><h2>Frege to Barwise &amp; Cooper</h2><div class="ask">From quantifiers as variable-binding operators to natural-language determiners as relations between sets.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="historical" data-label="Historical — Three moves">
+  <div class="b-slide pal-a lens-historical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical<span class="ct">LENS 02 / 04</span></div>
+      <h2 class="b-h">Three moves to generalised quantifiers</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Frege (1879)</span></div>
+          <div class="c-box-body">Quantifiers as second-order operators binding variables: \(\forall x,\ \exists x\). The modern logical analysis of <em>every</em> and <em>some</em>.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Mostowski / Montague</span></div>
+          <div class="c-box-body">Mid-century logic (Mostowski 1957) generalised \(\forall,\exists\) to arbitrary cardinality quantifiers; Montague (1973) put DPs and logic on one compositional footing.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Barwise &amp; Cooper (1981)</span></div>
+          <div class="c-box-body">Treat a <strong>determiner as a relation between two sets</strong> \(A\) and \(B\). This puts <em>most, exactly two, infinitely many</em> on a par with <em>every</em> — and opens the door to semantic universals.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="historical"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FORMAL ════════ -->
+<section class="slide" data-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · LI7869 · Week 5</div><h2>Determiners as set relations</h2><div class="ask">From \(\forall,\exists\) to set-theoretic conditions on \((A,B)\), then to generalised quantifiers as sets of sets.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Set equivalents">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">From \(\forall,\exists\) to set relations</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Predicate logic</span></div>
+          <div class="c-box-body"><em>Some hippo swam</em>: \(\exists x[\text{hippo}(x)\wedge\text{swim}(x)]\). <em>Every hippo swam</em>: \(\forall x[\text{hippo}(x)\to\text{swim}(x)]\).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Set equivalents</span></div>
+          <div class="c-box-body">With \(A=\sem{\text{hippo}}\), \(B=\sem{\text{swim}}\): &nbsp; <em>every</em> ⇔ \(A\subseteq B\); &nbsp; <em>some</em> ⇔ \(A\cap B\neq\varnothing\); &nbsp; <em>no</em> ⇔ \(A\cap B=\varnothing\).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Why this is better</span></div>
+          <div class="c-box-body"><em>most</em> and <em>exactly two</em> have no first-order \(\forall/\exists\) translation, but state easily as conditions on \((A,B)\): \(|A\cap B|>|A\setminus B|\); \(|A\cap B|=2\).</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Worked example">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Worked: evaluate in a model</h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">Model</div><div class="b-step-math">A = \sem{\text{hippo}} = \{a,b,c\},\quad B = \sem{\text{swam}} = \{a,c\}</div></div>
+        <div class="b-step"><div class="b-step-lab">Every hippo swam</div><div class="b-step-math">A\subseteq B?\ \ \{a,b,c\}\not\subseteq\{a,c\}\ \Rightarrow\ \textbf{false}</div></div>
+        <div class="b-step"><div class="b-step-lab">Some hippo swam</div><div class="b-step-math">A\cap B=\{a,c\}\neq\varnothing\ \Rightarrow\ \textbf{true}</div></div>
+        <div class="b-step"><div class="b-step-lab">No hippo swam</div><div class="b-step-math">A\cap B\neq\varnothing\ \Rightarrow\ \textbf{false}</div></div>
+        <div class="b-step step-future"><div class="b-step-lab">Exactly two hippos swam</div><div class="b-step-math">|A\cap B|=2\ \Rightarrow\ \textbf{true}</div></div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — GQ as sets of sets">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Generalised quantifiers as sets of sets</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Definition</span></div>
+          <div class="c-box-body">A predicate denotes a set of individuals \(B\). A <em>generalised quantifier</em> denotes a <strong>set of such sets</strong> — the VP-meanings that make the DP true.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Example</span></div>
+          <div class="c-box-body">Fix \(A=\sem{\text{hippo}}\). &nbsp;<em>every hippo</em> = \(\{B : A\subseteq B\}\); &nbsp;<em>some hippo</em> = \(\{B : A\cap B\neq\varnothing\}\).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Determiner = relation</span></div>
+          <div class="c-box-body">A determiner is a condition \(\mathrm{DET}(A)(B)\) on the pair of sets. \(\sem{\text{every}}(A)(B)=[A\subseteq B]\); \(\sem{\text{no}}(A)(B)=[A\cap B=\varnothing]\).</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Conservativity">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Conservativity &amp; monotonicity</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Conservativity</span></div>
+          <div class="c-box-body">\(\mathrm{DET}(A)(B)\Leftrightarrow\mathrm{DET}(A)(A\cap B)\). To evaluate <em>DET A are B</em> you only look at the \(A\)s — never things outside \(A\). <em>every</em>: \(A\subseteq B \Leftrightarrow A\subseteq A\cap B\). ✓</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Monotonicity</span></div>
+          <div class="c-box-body">Upward in \(B\): \(B\subseteq C \Rightarrow [\mathrm{DET}(A)(B)\Rightarrow\mathrm{DET}(A)(C)]\). <em>every platypus is a mammal</em> ⊨ <em>… an animal</em>. <em>no</em> is downward; <em>exactly two</em> is neither.</div>
+        </div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:24px">Monotonicity does real work: downward-entailing environments are exactly where negative-polarity items (<em>any, ever</em>) are licensed.</p>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TYPOLOGICAL ════════ -->
+<section class="slide" data-label="§ Typological">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
+    <div class="r"><div class="lab">Typological</div><div class="ct">LENS 04 / 04 · LI7869 · Week 5</div><h2>Conservativity as a universal</h2><div class="ask">Languages differ wildly in their determiner inventories — yet the determiners they lexicalise are sharply constrained.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="typological" data-label="Typological — Determiner universals">
+  <div class="b-slide pal-a lens-typological">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological<span class="ct">LENS 04 / 04</span></div>
+      <h2 class="b-h">A semantic universal</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">The claim</span></div>
+          <div class="c-box-body">Barwise &amp; Cooper (1981): <strong>all simple natural-language determiners are conservative</strong>. No language lexicalises a determiner like <em>only</em>* that needs to look outside \(A\).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Why it's striking</span></div>
+          <div class="c-box-body">Of the vast space of logically possible set-relations, languages draw only from the conservative ones. Variation in <em>form</em>; invariance in <em>logical type</em>.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Monotonicity &amp; polarity</span></div>
+          <div class="c-box-body">Downward-monotone determiners (<em>no, few, fewer than three</em>) license NPIs cross-linguistically — a second robust generalisation linking logic to grammar.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="typological"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Summary -->
+<section class="slide" data-label="Summary">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Week 5 — wrap-up</div>
+      <h2 class="b-h">Four lenses, one picture</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--lens-emp)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-emp)">Empirical</span></div><div class="c-box-body">Quantified DPs (<em>every, no, most, exactly two</em>) don't denote individuals; entailments should follow from set relations.</div></div>
+        <div class="c-box" style="--acc:var(--lens-his)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-his)">Historical</span></div><div class="c-box-body">Frege's binding operators → Mostowski/Montague → Barwise &amp; Cooper's determiners-as-relations.</div></div>
+        <div class="c-box" style="--acc:var(--lens-for)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-for)">Formal</span></div><div class="c-box-body">\(\mathrm{DET}(A)(B)\) as a set condition; generalised quantifiers as sets of sets; conservativity and monotonicity.</div></div>
+        <div class="c-box" style="--acc:var(--lens-typ)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-typ)">Typological</span></div><div class="c-box-body">Conservativity is a candidate universal; downward monotonicity governs NPI licensing across languages.</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next:</strong> Scope — what happens when two quantifiers, or a quantifier and negation, share a sentence.</p>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/week-meta.js"></script>
+<script src="../../shared/deck-rail.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#07284a"/>
+    <circle cx="38" cy="50" r="18" fill="none" stroke="#82b4dc" stroke-width="2.5"/>
+    <circle cx="58" cy="50" r="18" fill="none" stroke="#c1daee" stroke-width="2.5"/>
+    <text x="50" y="30" font-family="serif" font-size="11" fill="#82b4dc" text-anchor="middle">A ∩ B</text>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#82b4dc" text-anchor="middle">LI7869 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 5 — Determiners & Quantifiers · Homework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+<link rel="stylesheet" href="../../shared/exercises.css" />
+</head>
+<body class="pal-a">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<div class="handout-week hw" data-week="5"><div class="page">
+
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 5 · Homework</div>
+    <h1 class="h-title">Determiners &amp; Generalised Quantifiers</h1>
+  </div>
+
+  <div class="hw-band">
+    <span class="tag">Homework</span>
+    <span class="due">Due <b>Friday, Week 6 · 17:00</b> · submit via Blackboard</span>
+    <span class="pts">30 marks</span>
+  </div>
+
+  <div class="hw-sub">
+    <div class="f"><span class="lab">Name</span><span class="ln"></span></div>
+    <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
+  </div>
+
+  <p class="hw-intro">Common nouns and VPs denote sets. Write \(A\) for the restrictor, \(B\) for the nuclear scope, and \(\mathrm{DET}(A)(B)\) for a determiner's truth condition. Use only \(\subseteq,\cap,\setminus,\varnothing,|\cdot|\). The fictional determiners are: <b>ex2</b> ("exactly two A are B"), <b>equi</b> ("#A = #B that are A&hellip;"), <b>even</b> ("an even number of A are B"), <b>b35</b> ("between 3 and 5 A are B"). Show your reasoning.</p>
+
+  <div class="hw-legend">
+    <span class="lg lens-empirical"><i style="background:var(--lens)"></i>Empirical</span>
+    <span class="lg lens-historical"><i style="background:var(--lens)"></i>Historical</span>
+    <span class="lg lens-formal"><i style="background:var(--lens)"></i>Formal</span>
+    <span class="lg lens-typological"><i style="background:var(--lens)"></i>Typological</span>
+  </div>
+
+  <!-- 1 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head"><span class="n">1</span><span class="q">Evaluating determiners<span class="lens-pip">Formal</span></span><span class="marks">5 marks</span></div>
+    <p class="lead">Let \(A=\{a,b,c,d\}\) and \(B=\{b,c,e\}\).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">Compute \(A\cap B\) and \(A\setminus B\). Is \(A\subseteq B\)? Is \(B\subseteq A\)?<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Evaluate \(\mathbf{every}(A)(B)\), \(\mathbf{some}(A)(B)\), \(\mathbf{no}(A)(B)\), \(\mathbf{most}(A)(B)\).<div class="answer-space" style="--lines:2"></div></span></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head"><span class="n">2</span><span class="q">Deriving determiner meanings<span class="lens-pip">Formal</span></span><span class="marks">6 marks</span></div>
+    <p class="lead">Give set-theoretic truth conditions, using only \(\subseteq,\cap,\setminus,\varnothing,|\cdot|\).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">\(\mathbf{no}(A)(B)\), \(\mathbf{at\ least\ two}(A)(B)\), \(\mathbf{most}(A)(B)\).<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">\(\mathbf{ex2}(A)(B)\), \(\mathbf{equi}(A)(B)\), \(\mathbf{even}(A)(B)\), \(\mathbf{b35}(A)(B)\).<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="hw-prob lens-empirical">
+    <div class="hw-prob-head"><span class="n">3</span><span class="q">Evaluate the fictional determiners<span class="lens-pip">Empirical</span></span><span class="marks">4 marks</span></div>
+    <p class="lead">Let \(A=\{a,b,c\}\) and \(B=\{b,c,d,e\}\).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">Is \(\mathbf{ex2}(A)(B)\) true? Is \(\mathbf{equi}(A)(B)\) true?<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Is \(\mathbf{even}(A)(B)\) true? Is \(\mathbf{b35}(A)(B)\) true? Show the cardinalities you used.<div class="answer-space" style="--lines:2"></div></span></div>
+    </div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Homework</span>
+    <span>Week 5 · Determiners &amp; Generalised Quantifiers</span>
+    <span>1</span>
+  </div>
+</div><!-- /page 1 -->
+
+<div class="page">
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Week 5 · Homework</div>
+    </div>
+  </header>
+
+  <!-- 4 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head"><span class="n">4</span><span class="q">Conservativity<span class="lens-pip">Formal</span></span><span class="marks">6 marks</span></div>
+    <p class="lead">A determiner is conservative iff \(\mathrm{DET}(A)(B)\Leftrightarrow\mathrm{DET}(A)(A\cap B)\).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">For each, state whether it is conservative (justify briefly): \(\mathbf{some}\), \(\mathbf{no}\), \(\mathbf{most}\), \(\mathbf{at\ least\ two}\), \(\mathbf{ex2}\), \(\mathbf{equi}\), \(\mathbf{even}\), \(\mathbf{b35}\).<div class="answer-space" style="--lines:5"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Find one of the eight (if any) that is <em>not</em> conservative and give a model proving it.<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head"><span class="n">5</span><span class="q">Monotonicity in \(B\)<span class="lens-pip">Formal</span></span><span class="marks">5 marks</span></div>
+    <p class="lead">Upward: \(B\subseteq C\Rightarrow[\mathrm{DET}(A)(B)\Rightarrow\mathrm{DET}(A)(C)]\). Downward: \(B\subseteq C\Rightarrow[\mathrm{DET}(A)(C)\Rightarrow\mathrm{DET}(A)(B)]\).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">Classify each as upward, downward, or neither in \(B\): \(\mathbf{some}\), \(\mathbf{no}\), \(\mathbf{most}\), \(\mathbf{at\ least\ two}\), \(\mathbf{ex2}\), \(\mathbf{equi}\), \(\mathbf{even}\), \(\mathbf{b35}\).<div class="answer-space" style="--lines:5"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Using <em>mammal</em> ⊆ <em>animal</em>, show <em>every</em> is upward but not downward monotone.<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="hw-prob lens-typological">
+    <div class="hw-prob-head"><span class="n">6</span><span class="q">Universals &amp; polarity<span class="lens-pip">Typological</span></span><span class="marks">4 marks</span></div>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">Conservativity is offered as a semantic universal. State it in one sentence and explain why it is surprising that languages draw only from the conservative determiners.<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Downward-monotone determiners license NPIs (<em class="sent">no student read any books</em> vs <em class="sent">*every student read any books</em>). Which of your Q5 answers predict NPI licensing? Test one in a language you know.<div class="answer-space" style="--lines:4"></div></span></div>
+    </div>
+  </div>
+
+  <div class="hw-sechead">Optional · Challenge</div>
+  <div class="hw-prob">
+    <div class="hw-prob-head"><span class="n">★</span><span class="q">Why conservativity?</span><span class="marks">bonus</span></div>
+    <p class="lead">Conservativity makes <em>DET A are B</em> equivalent to <em>DET A are A-that-are-B</em>. Sketch why this might follow from how determiners compose syntactically with their noun restrictor before meeting the predicate.</p>
+    <div class="hw-work" style="--lines:5"></div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Homework</span>
+    <span>Week 5 · Determiners &amp; Generalised Quantifiers</span>
+    <span>2</span>
+  </div>
+</div><!-- /page 2 -->
+</div><!-- /handout-week 5 -->
+
+<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbeae3"/>
+    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#c0512c" stroke-width="2"/>
+    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">1</text>
+    <line x1="46" y1="31" x2="64" y2="31" stroke="#e0b3a3" stroke-width="2"/>
+    <line x1="38" y1="44" x2="64" y2="44" stroke="#e0b3a3" stroke-width="1.6"/>
+    <line x1="38" y1="52" x2="64" y2="52" stroke="#e0b3a3" stroke-width="1.6"/>
+    <text x="38" y="68" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">2</text>
+    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#c0512c" text-anchor="middle">LI7869 · HOMEWORK</text>
+  </svg>
+</template>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 2 — Speech Acts · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+<link rel="stylesheet" href="../../shared/theme-burgundy.css" />
+<style>
+  /* compact reference table for the five illocutionary types */
+  .sa-ref { width: 100%; border-collapse: separate; border-spacing: 0; margin: 5pt 0 2pt; font-family: var(--sans); }
+  .sa-ref th { background: var(--tcd-ink); color: #fff; font-family: var(--serif); font-weight: 600; font-size: 8.5pt; text-align: left; padding: 4pt 7pt; }
+  .sa-ref td { font-size: 8.5pt; padding: 4pt 7pt; border-bottom: 0.5pt solid var(--tcd-grey-25); vertical-align: top; }
+  .sa-ref tr:last-child td { border-bottom: none; }
+  .sa-ref .cat { font-family: var(--serif); font-weight: 600; color: var(--tcd-ink); }
+  .sa-ref .sc { font-family: var(--mono); font-size: 8pt; color: var(--tcd-grey-100); }
+
+  /* keep handout mono on print despite the burgundy override layer */
+  @media print {
+    :root {
+      --tcd-blue: #000; --tcd-blue-75: #555; --tcd-blue-50: #888;
+      --tcd-blue-25: #bbb; --tcd-blue-10: #f2f2f2;
+      --tcd-ink: #000; --c-def: #000;
+      --lens-emp: #000; --lens-his: #000; --lens-for: #000; --lens-typ: #000;
+    }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+<div class="handout-week" data-week="2"><div class="page">
+
+  <!-- Header -->
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7862 · Linguistic Pragmatics</div>
+      <div class="term">Thomas Stephen · Semester 1, 2026</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 2</div>
+    <h1 class="h-title">Speech Acts</h1>
+  </div>
+
+  <!-- Lens roadmap bar -->
+  <div class="lens-roadmap">
+    <div class="lr-item lens-empirical">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div>
+      <div class="lr-lab">Empirical</div>
+      <div class="lr-q">When is saying also doing?</div>
+    </div>
+    <div class="lr-item lens-historical">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div>
+      <div class="lr-lab">Historical</div>
+      <div class="lr-q">Austin &amp; Searle at Oxford</div>
+    </div>
+    <div class="lr-item lens-formal">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div>
+      <div class="lr-lab">Formal</div>
+      <div class="lr-q">Force, content &amp; the taxonomy</div>
+    </div>
+    <div class="lr-item lens-typological">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div>
+      <div class="lr-lab">Applied</div>
+      <div class="lr-q">Speech acts in the wild</div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       EMPIRICAL — When is saying also doing?
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-empirical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>
+      <span class="lsh-lab">Empirical</span>
+      <span class="lsh-q">Performatives, felicity, and misfires</span>
+    </div>
+
+    <div class="callout callout-ex">
+      <span class="badge">Data</span>
+      <p>Some utterances do not describe the world — in saying them you perform an act: <em class="sent">I apologize</em> · <em class="sent">I promise to pay you tomorrow</em> · <em class="sent">I hereby declare the meeting open</em>.</p>
+      <p>Such a <strong>performative</strong> can misfire without being false. We evaluate it for <em>felicity</em>, not truth: is there an appropriate procedure, do participants have the right authority, is it executed correctly and completely, with the right intention and follow-through?</p>
+    </div>
+
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">Felicity conditions</div>
+        <p>A performative succeeds only if its felicity conditions hold. Five common failure points: <strong>procedure</strong> (is there a recognised practice?), <strong>authority</strong> (right roles/standing?), <strong>sincerity</strong> (right intention?), <strong>uptake</strong> (do others take it up as that act?), and <strong>follow-through</strong> (is it completed?).</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Felicity debugging · for each case, name what fails &amp; propose a minimal fix</div>
+        <div class="ex-task">
+          <span class="tn">1</span>
+          <span class="tb">A student says: <em class="sent">I hereby award you a First.</em>
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">2</span>
+          <span class="tb">A stranger says <em class="sent">I forgive you</em> — to someone they have never met.
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">3</span>
+          <span class="tb">Someone says <em class="sent">I promise to help you tomorrow</em> while making clear they have no intention to help.
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">4</span>
+          <span class="tb">A spectator says <em class="sent">You're out!</em> in a sport they are not officiating.
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       HISTORICAL — Austin & Searle
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-historical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>
+      <span class="lsh-lab">Historical</span>
+      <span class="lsh-q">Two figures of ordinary-language philosophy</span>
+    </div>
+
+    <div class="callout callout-note">
+      <span class="badge">Background</span>
+      <p><strong>J. L. Austin (1911–1960)</strong> — Oxford philosopher, wartime intelligence; <em>How to Do Things with Words</em> (1962, posthumous). Disrupts the assumption that utterances primarily describe and are true/false: many are actions performed in speaking.</p>
+      <p><strong>John Searle (1932–2024)</strong> — Oxford then Berkeley; gave a systematic taxonomy of illocutionary acts (1976), plus work on intentionality (the Chinese Room) and institutional facts. Both belong to a milieu — with Grice and Strawson — that treats everyday usage as serious evidence.</p>
+    </div>
+
+    <div class="ex-instrn">
+      <div class="ex-instrn-head">Reflect</div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">1</span><span class="it-instr">In your own words:</span></div>
+        <p class="it-task">Why was Austin's claim — that many utterances are <em>actions</em>, not descriptions — a disruption to the picture of language as primarily true-or-false description?</p>
+        <div class="answer-space" style="--lines:4"></div>
+      </div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">2</span><span class="it-instr">Critical engagement:</span></div>
+        <p class="it-task">Searle wants classification that is stable across surface forms and languages. Give one reason a theory built from a <em>list of performative verbs</em> (apologise, promise, …) is inadequate by comparison.</p>
+        <div class="answer-space" style="--lines:4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       FORMAL — Force, content & the taxonomy
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-formal">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>
+      <span class="lsh-lab">Formal</span>
+      <span class="lsh-q">Force over content, and three diagnostic dimensions</span>
+    </div>
+
+    <div class="callout callout-def">
+      <span class="badge">Definition</span>
+      <p>Separate <em>propositional content</em> from <em>illocutionary force</em>: every illocution is <span class="chip">F(p)</span>. Classify the force on three dimensions — <strong>point</strong> (what it is for), <strong>direction of fit</strong> (<span class="chip">↓</span> word-to-world, <span class="chip">↑</span> world-to-word, <span class="chip">0</span> none), and <strong>sincerity</strong> (<span class="chip">B</span> belief, <span class="chip">W</span> want, <span class="chip">I</span> intention).</p>
+    </div>
+
+    <table class="sa-ref">
+      <thead><tr><th style="width:24%">Type</th><th style="width:30%">Point</th><th style="width:10%">Fit</th><th style="width:12%">Sincerity</th><th style="width:24%">Schema</th></tr></thead>
+      <tbody>
+        <tr><td class="cat">Representatives</td><td>commit S to how things are</td><td>↓</td><td>B</td><td class="sc">⊢ ↓ B(p)</td></tr>
+        <tr><td class="cat">Directives</td><td>get H to do something</td><td>↑</td><td>W</td><td class="sc">! ↑ W(H does A)</td></tr>
+        <tr><td class="cat">Commissives</td><td>commit S to future action</td><td>↑</td><td>I</td><td class="sc">C ↑ I(S does A)</td></tr>
+        <tr><td class="cat">Expressives</td><td>express an attitude</td><td>0</td><td>varies</td><td class="sc">E 0 (…)</td></tr>
+        <tr><td class="cat">Declarations</td><td>change institutional reality</td><td>↕</td><td>special</td><td class="sc">authority + procedure</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">Locution / illocution / perlocution</div>
+        <p>Austin's three layers: the <strong>locutionary</strong> act (an utterance with a form and content), the <strong>illocutionary</strong> act (what is performed in saying it — asserting, requesting, warning), and the <strong>perlocutionary</strong> effects (what is brought about — persuading, embarrassing). One locution, one illocution, many possible perlocutions.</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Separate the layers · locution · illocution · two plausible perlocutionary effects</div>
+        <div class="ex-task">
+          <span class="tn">1</span>
+          <span class="tb">A: <em class="sent">Are you free to talk?</em> &nbsp;B: <em class="sent">I'm walking into a meeting.</em>
+          <div class="answer-space" style="--lines:3"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">2</span>
+          <span class="tb"><em class="sent">That was a brave thing to say.</em>
+          <div class="answer-space" style="--lines:3"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">3</span>
+          <span class="tb">(in court) <em class="sent">I object.</em>
+          <div class="answer-space" style="--lines:3"></div></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-prog" style="margin-top:8pt">
+      <div class="ex-prog-head">Classify &amp; justify</div>
+      <div class="ex-prog-instruction">For each item, propose a likely Searle category and justify it using <strong>point + direction of fit + sincerity</strong>. Then give one plausible alternative and the context that would support it.</div>
+      <div class="prog-item">
+        <span class="pi-lab">(a)</span>
+        <div class="pi-body"><p><em class="sent">I hereby resign from the committee.</em></p><div class="answer-space" style="--lines:2"></div></div>
+      </div>
+      <div class="prog-item">
+        <span class="pi-lab">(b)</span>
+        <div class="pi-body"><p><em class="sent">Could you close the window?</em></p><div class="answer-space" style="--lines:2"></div></div>
+      </div>
+      <div class="prog-item">
+        <span class="pi-lab">(c)</span>
+        <div class="pi-body"><p><em class="sent">I'm afraid you have the wrong number.</em></p><div class="answer-space" style="--lines:2"></div></div>
+      </div>
+      <div class="prog-item">
+        <span class="pi-lab">(d)</span>
+        <div class="pi-body"><p><em class="sent">I'll send you the draft by Friday.</em></p><div class="answer-space" style="--lines:2"></div></div>
+      </div>
+      <div class="prog-item">
+        <span class="pi-lab">(e)</span>
+        <div class="pi-body"><p><em class="sent">Congratulations on the job offer!</em></p><div class="answer-space" style="--lines:2"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       APPLIED — Speech acts in the wild
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-typological">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>
+      <span class="lsh-lab">Applied</span>
+      <span class="lsh-q">Institutions, authority, and dogwhistles</span>
+    </div>
+
+    <div class="callout callout-note">
+      <span class="badge">Overview</span>
+      <p>Institutions run on speech acts whose force depends on authority and procedure (declarations, verdicts, pronouncements). <strong>Dogwhistles</strong> (Saul) exploit the gap between audiences: a target audience takes up a message while a broader public is managed. <em>Overt</em> vs <em>covert</em> turns on whether the target meaning is accessible; <em>protean</em> dogwhistles let the target shift across hearers (e.g. immigration talk in the Brexit campaign).</p>
+    </div>
+
+    <div class="ex-instrn">
+      <div class="ex-instrn-head">Apply it</div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">1</span><span class="it-instr">Speech acts in institutions:</span></div>
+        <p class="it-task">Choose one setting (court, hospital, university, workplace). Identify three speech acts central to how it functions; for each, state what authority/role is required, what counts as uptake, and what makes the act challengeable (procedurally or evidentially).</p>
+        <div class="answer-space" style="--lines:5"></div>
+      </div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">2</span><span class="it-instr">Analyse a political case:</span></div>
+        <p class="it-task">Take one public utterance about immigration, borders, or "ordinary people". Decide whether it best fits <em>overt</em>, <em>covert</em>, or <em>protean</em> dogwhistling and justify. Then say what its <strong>Norm Acceptance</strong> and <strong>Target Match</strong> conditions are, and describe a plausible <em>misfire</em> or <em>backfire</em>.</p>
+        <div class="answer-space" style="--lines:5"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="h-footer">
+    <span class="left">LI7862 · Linguistic Pragmatics</span>
+    <span>Week 2 · Speech Acts</span>
+    <span>1</span>
+  </div>
+
+</div><!-- /page -->
+</div><!-- /handout-week 2 -->
+
+<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f4e7e9"/>
+    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#6e1423" stroke-width="2"/>
+    <line x1="36" y1="32" x2="64" y2="32" stroke="#6e1423" stroke-width="2.5"/>
+    <line x1="36" y1="42" x2="58" y2="42" stroke="#ddbdc1" stroke-width="2"/>
+    <line x1="36" y1="50" x2="62" y2="50" stroke="#ddbdc1" stroke-width="2"/>
+    <line x1="36" y1="58" x2="54" y2="58" stroke="#ddbdc1" stroke-width="2"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#6e1423" text-anchor="middle">LI7862 · HANDOUT</text>
+  </svg>
+</template>
+</body>
+</html>

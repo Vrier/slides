@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 12 — Modality · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<div class="handout-week" data-week="12"><div class="page">
+
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 12</div>
+    <h1 class="h-title">Modality</h1>
+  </div>
+
+  <div class="lens-roadmap">
+    <div class="lr-item lens-empirical"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><div class="lr-lab">Empirical</div><div class="lr-q">Beyond the actual world</div></div>
+    <div class="lr-item lens-historical"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><div class="lr-lab">Historical</div><div class="lr-q">Kripke to Kratzer</div></div>
+    <div class="lr-item lens-formal"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><div class="lr-lab">Formal</div><div class="lr-q">Force × restriction</div></div>
+    <div class="lr-item lens-typological"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><div class="lr-lab">Typological</div><div class="lr-q">What modals lexicalise</div></div>
+  </div>
+
+  <!-- EMPIRICAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-empirical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>
+      <span class="lsh-lab">Empirical</span>
+      <span class="lsh-q">Flavours of modality</span>
+    </div>
+    <div class="callout callout-note">
+      <span class="badge">Five flavours</span>
+      <p><b>epistemic</b> (given what is known/inferred) · <b>deontic</b> (given rules, duties, permissions) · <b>circumstantial</b> (given the circumstances) · <b>bouletic</b> (given desires) · <b>teleological</b> (given a goal). English usually leaves the flavour to context.</p>
+    </div>
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">Reading off modal flavour</div>
+        <p>Ask: is the modal interpreted given what we <em>know</em>, or given <em>rules / goals / desires</em>? Many items allow more than one flavour.</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Practice · 3 tasks</div>
+        <div class="ex-task"><span class="tn">1</span><span class="tb">Identify the most natural flavour: <em class="sent">Harry needs to return the book by noon.</em> · <em class="sent">The sunlight faded to our left, so we must be facing north.</em> · <em class="sent">According to the teacher, Mario cannot go on the trip.</em><div class="answer-space" style="--lines:3"></div></span></div>
+        <div class="ex-task"><span class="tn">2</span><span class="tb">For <em class="sent">Theo may be in the archive</em> and <em class="sent">Nadia must submit the form by noon</em>: which flavours are available? Give a context for each.<div class="answer-space" style="--lines:3"></div></span></div>
+        <div class="ex-task"><span class="tn">3</span><span class="tb">de re vs de dicto: paraphrase both readings of <em class="sent">Clara might marry a violinist</em>.<div class="answer-space" style="--lines:3"></div></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORICAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-historical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>
+      <span class="lsh-lab">Historical</span>
+      <span class="lsh-q">From worlds to conversational backgrounds</span>
+    </div>
+    <div class="callout callout-note">
+      <span class="badge">Background</span>
+      <p><strong>Kripke</strong> gave modal logic a possible-worlds semantics with an accessibility relation; <strong>Hintikka</strong> extended it to attitudes (<em>believe</em>, <em>know</em>). <strong>Kratzer (1981, 1991)</strong> unified the picture for natural language: one modal word gets its <em>flavour</em> from a contextual conversational background (modal base + ordering source) and its <em>force</em> from \(\exists\) vs \(\forall\).</p>
+    </div>
+  </div>
+
+  <!-- FORMAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-formal">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>
+      <span class="lsh-lab">Formal</span>
+      <span class="lsh-q">Force and restriction over worlds</span>
+    </div>
+    <div class="callout callout-def">
+      <span class="badge">Notation</span>
+      <p>\(w_0\) the actual world · \(\textsc{Acc}(w_0,w')\) "\(w'\) is accessible from \(w_0\)" · possibility \(\rightsquigarrow \exists w'\) · necessity \(\rightsquigarrow \forall w'\). <em>might</em> \(p\): true iff \(p\) in some belief-compatible world; <em>must</em> \(p\): true iff \(p\) in all.</p>
+    </div>
+    <div class="callout callout-key">
+      <span class="badge">de re / de dicto</span>
+      <p>de re fixes the individual <em>outside</em> the modal (in \(w_0\)); de dicto interprets the description <em>inside</em> it. For <em>Clara might marry a violinist</em>, the difference is the scope of \(\exists x\) relative to \(\exists w'\) — and the world where <em>violinist</em> is evaluated.</p>
+    </div>
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">Force test</div>
+        <p>Does the expression pattern with \(\exists w\) (existential) or \(\forall w\) (universal) over worlds?</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Apply it</div>
+        <div class="ex-task"><span class="tn">1</span><span class="tb">Classify by force: <em>possibly</em>, <em>necessarily</em>, <em>may</em>, <em>can</em>, <em>have to</em>, <em>should</em>, <em>ought to</em>. Flag any that are less straightforward.<div class="answer-space" style="--lines:3"></div></span></div>
+        <div class="ex-task"><span class="tn">2</span><span class="tb">Given the de re form \(\exists x[\text{violinist}(x,w_0)\wedge\exists w'(\textsc{Acc}(w_0,w')\wedge\text{marry}(c,x,w'))]\), write the de dicto form and say what changed.<div class="answer-space" style="--lines:3"></div></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOLOGICAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-typological">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>
+      <span class="lsh-lab">Typological</span>
+      <span class="lsh-q">Force and flavour can be lexicalised separately</span>
+    </div>
+    <div class="callout callout-note">
+      <span class="badge">Overview</span>
+      <p>In <strong>St'át'imcets</strong> (Lillooet Salish), the epistemic clitic is only epistemic and the deontic only deontic — <em>flavour</em> is lexically fixed — while <em>force</em> ('must/might/may/can') varies with context. This is the mirror image of English, where force is fixed and flavour is contextual. Force and restriction are separable.</p>
+    </div>
+    <div class="ex-instrn">
+      <div class="ex-instrn-head">Cross-linguistic</div>
+      <div class="ex-it"><div class="it-lead"><span class="it-n">1</span><span class="it-instr">Your own data:</span></div><p class="it-task">In a language you know, pick a modal. Does it fix flavour, force, both, or neither? Give a minimal pair showing what is fixed and what varies with context.</p><div class="answer-space" style="--lines:4"></div></div>
+    </div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Describing Meaning</span>
+    <span>Week 12 · Modality</span>
+    <span>1</span>
+  </div>
+</div><!-- /page -->
+</div><!-- /handout-week 12 -->
+<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#e6f0f8"/>
+    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#0569b9" stroke-width="2"/>
+    <line x1="36" y1="32" x2="64" y2="32" stroke="#0569b9" stroke-width="2.5"/>
+    <line x1="36" y1="42" x2="58" y2="42" stroke="#c1daee" stroke-width="2"/>
+    <line x1="36" y1="50" x2="62" y2="50" stroke="#c1daee" stroke-width="2"/>
+    <line x1="36" y1="58" x2="54" y2="58" stroke="#c1daee" stroke-width="2"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#0569b9" text-anchor="middle">LI7869 · HANDOUT</text>
+  </svg>
+</template>
+</body>
+</html>

@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 2, Speech Acts · Lecture Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-burgundy.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); line-height:1.04; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ figure portraits ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(74,14,26,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-of-type{ border-top:none; padding-top:2px; }
+  .fbio{ font-family:var(--sans); font-size:16.5px; color:var(--tcd-grey-100); line-height:1.4; margin:2px 0 15px; }
+  .fbio em{ font-style:italic; } .fbio b{ color:var(--tcd-ink); font-weight:600; }
+  .figbody .fbio{ margin-top:0; }
+  .npf .npmono{ width:100%; height:360px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:86px; font-weight:600; letter-spacing:.02em; }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:46px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+
+  /* ============ question + answer slides ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+  .aline{ font-family:var(--serif); font-size:38px; color:var(--tcd-ink); line-height:1.22; margin:22px 0 2px; }
+
+  /* ============ felicity conditions ============ */
+  .felgrp{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--tcd-grey-75); padding:20px 0 2px; }
+  .felgrp:first-of-type{ padding-top:10px; }
+  .felrow{ display:grid; grid-template-columns:74px 1fr; gap:0 26px; padding:12px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .felrow .fno{ font-family:var(--mono); font-size:21px; font-weight:600; color:var(--lens); }
+  .felrow .ftx{ font-size:25px; line-height:1.34; color:var(--tcd-black); }
+
+  /* ============ misfires vs abuses split ============ */
+  .mabs{ display:flex; gap:26px; margin-top:20px; }
+  .mabs .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:22px 28px; }
+  .mabs .arm .cond{ font-family:var(--mono); font-size:16px; color:var(--tcd-grey-75); letter-spacing:.03em; }
+  .mabs .arm .h{ font-family:var(--serif); font-size:37px; font-weight:600; color:var(--tcd-ink); margin:8px 0 10px; }
+  .mabs .arm .t{ font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); line-height:1.4; }
+  .mabs .arm .t b{ color:var(--tcd-ink); font-weight:600; }
+  .mabs .arm .egq{ margin-top:16px; padding:13px 18px; background:color-mix(in srgb, var(--lens) 7%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens) 20%, #fff); border-radius:8px;
+    font-family:var(--serif); font-style:italic; font-size:20px; color:var(--tcd-ink); line-height:1.34; }
+  .mabs .arm .egq b{ font-style:normal; font-family:var(--sans); font-size:15px; color:var(--tcd-grey-75); display:block; margin-top:6px; }
+
+  /* ============ three acts (locution / illocution / perlocution) ============ */
+  .acts3{ display:flex; flex-direction:column; gap:14px; margin-top:20px; }
+  .act{ display:grid; grid-template-columns:210px 300px 1fr 340px; gap:0 28px; align-items:center;
+    background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:19px 26px; }
+  .act .an{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--tcd-ink); }
+  .act .an small{ display:block; font-family:var(--mono); font-size:13px; font-weight:400; letter-spacing:.03em; text-transform:none; color:var(--tcd-grey-75); margin-top:5px; }
+  .act .ad{ font-family:var(--serif); font-size:22px; color:var(--tcd-ink); line-height:1.3; }
+  .act .aw{ font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); line-height:1.35; }
+  .act .ae{ font-family:var(--serif); font-style:italic; font-size:19px; color:var(--tcd-grey-100); line-height:1.32; border-left:2px solid var(--tcd-grey-25); padding-left:20px; }
+  .act.hot{ border-color:color-mix(in srgb, var(--lens) 50%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .act.hot .an{ color:var(--lens); }
+  .act.hot .ae{ border-left-color:color-mix(in srgb, var(--lens) 40%, #fff); }
+
+  /* ============ F(p): force over content ============ */
+  .fpd{ display:flex; align-items:center; gap:30px; margin-top:20px; }
+  .fpd .pnode{ flex:0 0 auto; background:#fff; border:1.5px solid var(--tcd-grey-25); border-radius:12px; padding:22px 30px; text-align:center; }
+  .fpd .pnode .pt{ font-family:var(--sans); font-size:13px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .fpd .pnode .pv{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); }
+  .fpd .fan{ font-family:var(--mono); font-size:30px; color:var(--lens); flex:0 0 auto; }
+  .fpd .fcol{ flex:1 1 0; display:flex; flex-direction:column; gap:10px; }
+  .fpd .frow{ display:grid; grid-template-columns:110px 190px 1fr; gap:0 22px; align-items:center;
+    background:color-mix(in srgb, var(--lens) 6%, #fff); border:1px solid color-mix(in srgb, var(--lens) 20%, #fff); border-radius:9px; padding:12px 22px; }
+  .fpd .frow .op{ font-family:var(--mono); font-size:24px; font-weight:600; color:var(--lens); }
+  .fpd .frow .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-ink); }
+  .fpd .frow .fe{ font-family:var(--serif); font-style:italic; font-size:23px; color:var(--tcd-ink); }
+
+  /* ============ direction of fit cards ============ */
+  .fitcards{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; margin-top:22px; }
+  .fitc{ background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:24px 28px; }
+  .fitc .fa{ font-family:var(--serif); font-size:56px; line-height:1; color:var(--lens); }
+  .fitc .fh{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--tcd-ink); margin:14px 0 10px; }
+  .fitc .ft{ font-family:var(--serif); font-size:22px; color:var(--tcd-ink); line-height:1.32; }
+  .fitc .ft b{ font-weight:700; }
+  .fitc .fx{ font-family:var(--mono); font-size:15px; color:var(--tcd-grey-75); margin-top:14px; }
+
+  /* ============ five types, editorial table ============ */
+  .taxE{ width:100%; border-collapse:collapse; margin-top:16px; }
+  .taxE th{ font-family:var(--sans); font-size:15px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--lens); text-align:left; padding:10px 18px 12px 0; border-bottom:2px solid color-mix(in srgb, var(--lens) 34%, #fff); }
+  .taxE td{ padding:16px 18px 16px 0; border-bottom:1px solid var(--tcd-grey-25); vertical-align:baseline; }
+  .taxE tr:last-child td{ border-bottom:none; }
+  .taxE .cat{ font-family:var(--serif); font-size:28px; font-weight:600; color:var(--tcd-ink); line-height:1.1; }
+  .taxE .sch{ display:inline-block; margin-top:7px; }
+  .taxE .pt2{ font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); line-height:1.3; }
+  .taxE .fit{ font-family:var(--serif); font-size:34px; line-height:1; color:var(--tcd-ink); }
+  .taxE .ex{ font-family:var(--serif); font-style:italic; font-size:20px; color:var(--tcd-grey-100); line-height:1.3; }
+
+  /* ============ dogwhistle split arms ============ */
+  .brn{ margin:20px 0 4px; }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:20px 26px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:15px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--lens); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:25px; color:var(--tcd-ink); line-height:1.3; }
+
+  /* ============ summary recap ============ */
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  .lens-kick .ct{ display:none; }
+</style>
+</head>
+<body class="pal-a" data-week="2">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark" style="font-style:italic">“</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7862 · Linguistic Pragmatics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 2</h1>
+      <div class="a-course-sub">Speech Acts</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · 2026</div></div>
+  </div>
+</section>
+
+<!-- 02 · Framing hook -->
+<section class="slide" data-label="Saying as doing" data-screen-label="02">
+  <div class="b-slide pal-a" data-sec="how">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">The question behind this week</div>
+      <h2 class="b-h">How do we do things with words?</h2>
+      <div class="lead">Some utterances do not describe the world at all. They <mk>change</mk> it.</div>
+      <div class="accrule"></div>
+      <div class="erow"><div class="lb">The received picture</div><div class="tx">An utterance reports a state of affairs, and we judge it <strong>true or false</strong>. Week 1 already strained this picture: much of what we say is not description.</div></div>
+      <div class="erow"><div class="lb">This week's claim</div><div class="tx">Saying can be <strong>doing</strong>. Some utterances are actions, and the right question is not whether they are true but whether they <strong>succeed</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · Roadmap -->
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="b-kick">Through four strands</div>
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Pronouncing</li><li>Betting</li><li>A misfire</li><li>Felicity conditions</li><li>Misfires &amp; abuses</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Ordinary-language Oxford</li><li>Austin</li><li>Searle</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Three acts</li><li>Force &amp; content</li><li>Direction of fit</li><li>The five types</li><li>Indirect speech acts</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Institutions</li><li>Dogwhistles</li><li>Defusing &amp; failure</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · Empirical divider -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LI7862 · Week 2</div><h2>When is saying also doing?</h2><div class="ask">Performatives and felicity: utterances we judge successful or failed acts in context, not true or false descriptions.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+<!-- 05 · Empirical, pronouncing · question -->
+<section class="slide" data-label="What is this doing?, pronouncing" data-screen-label="05 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="pron">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What is this utterance doing?</div>
+        <div class="bigq anim" style="font-size:72px;--d:.35s">I now pronounce you husband and wife.<span class="src anim" style="--d:.7s">an officiant, at a wedding</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · Empirical, pronouncing · answer -->
+<section class="slide" data-label="Pronouncing, a consideration" data-screen-label="05 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="pron">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Saying it makes it so</h2>
+      <div class="qref">I now pronounce you husband and wife.<span class="src">an officiant, at a wedding</span></div>
+      <div class="erow"><div class="lb">Not a report</div><div class="tx">You cannot reply <em>That's false</em>. Nothing is being described: before the words there is no marriage, and after them there is one.</div></div>
+      <div class="erow"><div class="lb">Performative</div><div class="tx">Austin's name for utterances that <strong>perform</strong> the very act they name. In saying <em>I pronounce</em>, the officiant pronounces.</div></div>
+      <div class="egpanel">
+        <div class="eghead">More performatives · first person, present tense</div>
+        <div class="eg"><div class="no">(1)</div><div class="ex">I apologize.</div></div>
+        <div class="eg"><div class="no">(2)</div><div class="ex">I promise to pay you tomorrow.</div></div>
+        <div class="eg"><div class="no">(3)</div><div class="ex">I hereby declare the meeting open.<span class="gl">the <span class="chip">hereby</span> test: a performative still sounds natural with <em>hereby</em> inserted</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · Empirical, betting · question -->
+<section class="slide" data-label="What is this doing?, betting" data-screen-label="06 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="bet">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What is this utterance doing?</div>
+        <div class="bigq anim" style="font-size:70px;--d:.35s">I bet you sixpence it will rain tomorrow.<span class="src anim" style="--d:.7s">J. L. Austin's own example</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · Empirical, betting · answer -->
+<section class="slide" data-label="Betting, a consideration" data-screen-label="06 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="bet">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">A bet needs taking</h2>
+      <div class="qref">I bet you sixpence it will rain tomorrow.</div>
+      <div class="erow"><div class="lb">Uptake</div><div class="tx">The bet exists only once you answer <em>You're on</em>. Some acts need the hearer's <strong>uptake</strong> to come off at all.</div></div>
+      <div class="erow"><div class="lb">Evaluation</div><div class="tx">If it rains I win, and if not you do. But the bet itself was never true or false; it was <strong>on</strong>, or it was <strong>off</strong>.</div></div>
+      <div class="aline">In effect, or not in effect. Never true, never false.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · Empirical, misfire · question -->
+<section class="slide" data-label="What is this doing?, house party" data-screen-label="07 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="party">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What is this utterance doing?</div>
+        <div class="bigq anim" style="font-size:72px;--d:.35s">I hereby declare you married.<span class="src anim" style="--d:.7s">someone at a house party, glass raised</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Empirical, misfire · answer -->
+<section class="slide" data-label="House party, a misfire" data-screen-label="07 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="party">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Nothing happened</h2>
+      <div class="qref">I hereby declare you married.<span class="src">someone at a house party, glass raised</span></div>
+      <div class="erow"><div class="lb">What went wrong</div><div class="tx">Not falsity. There is no recognised procedure for house-party weddings, the speaker has no standing, and everyone treats it as a joke: the act simply <strong>fails to come off</strong>.</div></div>
+      <div class="erow"><div class="lb">The diagnosis</div><div class="tx">The utterance is <strong>infelicitous</strong>. To say exactly when performatives fail, Austin wrote out conditions of <mk>felicity</mk>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · Empirical, felicity conditions -->
+<section class="slide" data-label="Felicity conditions" data-screen-label="08">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="fel">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Austin's felicity conditions</h2>
+      <div class="lead">Six conditions, lettered A, B and Γ. Break one, and the act <mk>misfires</mk> or is <mk>abused</mk>.</div>
+      <div class="accrule"></div>
+      <div class="felgrp">A · The procedure</div>
+      <div class="felrow"><div class="fno">A.1</div><div class="ftx">There must exist an accepted <strong>conventional procedure</strong> with a conventional effect, including the uttering of certain words by certain persons in certain circumstances.</div></div>
+      <div class="felrow"><div class="fno">A.2</div><div class="ftx">The particular <strong>persons and circumstances</strong> must be appropriate for the procedure invoked.</div></div>
+      <div class="felgrp">B · The execution</div>
+      <div class="felrow"><div class="fno">B.1</div><div class="ftx">The procedure must be executed <strong>correctly</strong>…</div></div>
+      <div class="felrow"><div class="fno">B.2</div><div class="ftx">…and <strong>completely</strong>.</div></div>
+      <div class="felgrp">Γ · The spirit</div>
+      <div class="felrow"><div class="fno">Γ.1</div><div class="ftx">Participants must have the <strong>thoughts, feelings and intentions</strong> the procedure requires…</div></div>
+      <div class="felrow"><div class="fno">Γ.2</div><div class="ftx">…and must subsequently <strong>conduct themselves accordingly</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Empirical, misfires vs abuses -->
+<section class="slide" data-label="Misfires and abuses" data-screen-label="09">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="mis">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Misfires and abuses</h2>
+      <div class="lead">Which condition breaks determines <mk>how</mk> the act fails.</div>
+      <div class="accrule"></div>
+      <div class="mabs">
+        <div class="arm">
+          <div class="cond">A or B broken</div>
+          <div class="h">Misfire</div>
+          <div class="t">The act is <b>null and void</b>: it does not come off at all.</div>
+          <div class="egq">I hereby declare you married.<b>the house-party wedding: no procedure, no authority. No marriage exists.</b></div>
+        </div>
+        <div class="arm">
+          <div class="cond">Γ broken</div>
+          <div class="h">Abuse</div>
+          <div class="t">The act <b>comes off, but hollow</b>: performed without the required spirit.</div>
+          <div class="egq">I promise to pay you tomorrow.<b>said with no intention of paying. Insincere, but the promise was made, and you may hold me to it.</b></div>
+        </div>
+      </div>
+      <div class="erow" style="margin-top:24px"><div class="lb">The lesson</div><div class="tx tight">Performatives have their own dimension of assessment: not truth, but <strong>felicity</strong>. That dimension has structure.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · Historical divider -->
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">STRAND 02 / 04 · LI7862 · Week 2</div><h2>Austin &amp; Searle</h2><div class="ask">Post-war Oxford ordinary-language philosophy, and the move from Austin's disruptive observations to Searle's systematic theory.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+<!-- 14 · Historical, ordinary-language Oxford -->
+<section class="slide" data-label="Historical, Oxford" data-screen-label="14">
+  <div class="b-slide pal-a lens-historical dB" data-sec="oxf">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Ordinary-language Oxford</h2>
+      <div class="lead">After the war, Oxford philosophers treated <mk>everyday usage</mk> as serious evidence about meaning.</div>
+      <div class="accrule"></div>
+      <div class="erow"><div class="lb">The milieu</div><div class="tx">Austin, Grice and Strawson, with Searle arriving as a Rhodes Scholar: careful attention to what we actually say, when we would say it, and what saying it <strong>does</strong>.</div></div>
+      <div class="erow"><div class="lb">Against the positivists</div><div class="tx">Where logical positivism dismissed unverifiable sentences as meaningless (week 1), the ordinary-language school asked what those sentences were <strong>for</strong>.</div></div>
+      <div class="erow"><div class="lb">Saturday mornings</div><div class="tx tight">Austin ran weekly term-time discussions where philosophers worked through usage together: collective, meticulous, and suspicious of grand theory.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 · Historical, Austin -->
+<section class="slide" data-label="Historical, Austin" data-screen-label="15">
+  <div class="b-slide pal-a lens-historical" data-sec="aus">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Austin: saying as doing</h2>
+      <div class="figrow">
+        <div class="portrait npf">
+          <div class="npmono">JLA</div>
+          <div class="pc"><div class="nm">J. L. Austin</div><div class="dt">1911 – 1960 · Oxford</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio">John Langshaw Austin was an Oxford ordinary-language philosopher, trained as a classicist at Balliol. During the war he led the intelligence section preparing for the D-Day landings, with a meticulousness colleagues considered decisive. He published almost nothing in his lifetime; his lectures were reconstructed and published after his early death.</div>
+          <div class="erow"><div class="lb">How to Do Things with Words</div><div class="tx tight">The 1955 William James Lectures at Harvard, published posthumously in 1962. They disrupt the received picture: many utterances are <strong>actions performed in speaking</strong>, not descriptions to be judged true or false.</div></div>
+          <div class="erow"><div class="lb">The collapse</div><div class="tx tight">Austin begins by separating <strong>performatives</strong> from truth-evaluable <strong>constatives</strong>, then shows the border will not hold: stating is itself an act, with its own ways of failing. Every utterance does something.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 · Historical, Searle -->
+<section class="slide" data-label="Historical, Searle" data-screen-label="16">
+  <div class="b-slide pal-a lens-historical" data-sec="sea">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Searle: the systematiser</h2>
+      <div class="figrow">
+        <div class="portrait">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/John%20searle2.jpg?width=700" alt="John Searle" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">John Searle</div><div class="dt">1932 – 2025 · Berkeley</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio">John Searle came to Oxford from the United States as a Rhodes Scholar and studied at Christ Church while Austin was lecturing. He spent his career at Berkeley, where his later work ranged over intentionality, consciousness (the Chinese Room), and institutional facts. Where Austin observed, Searle built theory.</div>
+          <div class="erow"><div class="lb">Speech Acts (1969)</div><div class="tx tight">Turned Austin's observations into a theory: every illocution analysed as a <strong>force applied to a content</strong>, governed by statable conditions.</div></div>
+          <div class="erow"><div class="lb">The taxonomy (1976)</div><div class="tx tight">Classified every possible illocutionary act into <strong>five types</strong>, using three diagnostic dimensions. The formal strand works through both.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 · Formal divider -->
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">STRAND 03 / 04 · LI7862 · Week 2</div><h2>Force, content &amp; fit</h2><div class="ask">Separating what an utterance is about from what it does: three acts, the force/content split, and the five illocutionary types.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<!-- 18 · Formal, three acts -->
+<section class="slide" data-label="Formal, Three acts" data-screen-label="18">
+  <div class="b-slide pal-a lens-formal dB" data-sec="acts">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">One utterance, three acts</h2>
+      <div class="lead">Austin splits any utterance into three simultaneous acts.</div>
+      <div class="accrule"></div>
+      <div class="qref" style="margin-top:20px">There's a bull in that field.</div>
+      <div class="acts3">
+        <div class="act">
+          <div class="an">Locution<small>the act of saying</small></div>
+          <div class="ad">Producing the words, with their sense and reference.</div>
+          <div class="aw">She uttered an English sentence about a bull and a field.</div>
+          <div class="ae">“She said that there is a bull in that field.”</div>
+        </div>
+        <div class="act hot">
+          <div class="an">Illocution<small>the act in saying</small></div>
+          <div class="ad">What the utterance <strong>counts as</strong>: its force.</div>
+          <div class="aw">Speech-act theory lives here. This is the act we classify.</div>
+          <div class="ae">“She warned me not to cross.”</div>
+        </div>
+        <div class="act">
+          <div class="an">Perlocution<small>the act by saying</small></div>
+          <div class="ad">The effects the utterance has on the hearer.</div>
+          <div class="aw">Not conventional: the same warning may reassure or terrify.</div>
+          <div class="ae">“She talked me into taking the long way round.”</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 · Formal, force over content -->
+<section class="slide" data-label="Formal, Force over content" data-screen-label="19">
+  <div class="b-slide pal-a lens-formal dB" data-sec="fp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Force over content</h2>
+      <div class="lead">Every illocution splits into what it is <strong>about</strong> and what it <strong>does</strong>. Searle writes <span class="chip">F(p)</span>: a force applied to a content.</div>
+      <div class="accrule"></div>
+      <div class="fpd">
+        <div class="pnode"><div class="pt">one content p</div><div class="pv">Sam smokes<br>habitually</div></div>
+        <div class="fan">⟶</div>
+        <div class="fcol">
+          <div class="frow"><div class="op">⊢(p)</div><div class="fl">Assertion</div><div class="fe">Sam smokes habitually.</div></div>
+          <div class="frow"><div class="op">?(p)</div><div class="fl">Question</div><div class="fe">Does Sam smoke habitually?</div></div>
+          <div class="frow"><div class="op">!(p)</div><div class="fl">Order</div><div class="fe">Sam, smoke habitually!</div></div>
+          <div class="frow"><div class="op">W(p)</div><div class="fl">Wish</div><div class="fe">Would that Sam smoked habitually.</div></div>
+        </div>
+      </div>
+      <div class="erow" style="margin-top:26px"><div class="lb">Why it matters</div><div class="tx tight">Same content, four different acts. Force is not part of <em>p</em>; it is what the speaker <strong>does with</strong> <em>p</em>. Searle's example, from <em>Speech Acts</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 · Formal, direction of fit -->
+<section class="slide" data-label="Formal, Direction of fit" data-screen-label="20">
+  <div class="b-slide pal-a lens-formal dB" data-sec="fit">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Direction of fit</h2>
+      <div class="lead">When words and world disagree, which one is at <mk>fault</mk>?</div>
+      <div class="accrule"></div>
+      <div class="fitcards">
+        <div class="fitc">
+          <div class="fa">↓</div>
+          <div class="fh">Word to world</div>
+          <div class="ft">The words must match the world. If they do not, the <b>words</b> are wrong: retract the claim.</div>
+          <div class="fx">assertions · predictions</div>
+        </div>
+        <div class="fitc">
+          <div class="fa">↑</div>
+          <div class="fh">World to word</div>
+          <div class="ft">The world must be made to match the words. If it is not, the <b>world</b> is at fault: the order was disobeyed, the promise broken.</div>
+          <div class="fx">requests · promises</div>
+        </div>
+        <div class="fitc">
+          <div class="fa">0</div>
+          <div class="fh">No fit</div>
+          <div class="ft">The fit is presupposed. The point is to <b>express an attitude</b> toward a content taken for granted.</div>
+          <div class="fx">thanks · apologies</div>
+        </div>
+      </div>
+      <div class="erow" style="margin-top:26px"><div class="lb">Second dimension</div><div class="tx tight">Alongside the illocutionary <strong>point</strong> and the <strong>sincerity condition</strong> (the state expressed: belief, want, intention), direction of fit is one of Searle's three diagnostics for the taxonomy.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 · Formal, the five types -->
+<section class="slide" data-label="Formal, The five types" data-screen-label="21">
+  <div class="b-slide pal-a lens-formal dB" data-sec="tax">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Searle's five illocutionary types</h2>
+      <table class="taxE">
+        <thead>
+          <tr><th style="width:26%">Type</th><th style="width:28%">Point</th><th style="width:9%">Fit</th><th style="width:14%">Sincerity</th><th style="width:23%">Examples</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="cat">Representatives</div><span class="chip sch">⊢ ↓ B(p)</span></td>
+            <td class="pt2">commit S to how things are</td>
+            <td><span class="fit">↓</span></td>
+            <td><span class="chip">B</span> belief</td>
+            <td class="ex">assert, claim, predict</td>
+          </tr>
+          <tr>
+            <td><div class="cat">Directives</div><span class="chip sch">! ↑ W(H does A)</span></td>
+            <td class="pt2">get H to do something</td>
+            <td><span class="fit">↑</span></td>
+            <td><span class="chip">W</span> want</td>
+            <td class="ex">request, command, advise</td>
+          </tr>
+          <tr>
+            <td><div class="cat">Commissives</div><span class="chip sch">C ↑ I(S does A)</span></td>
+            <td class="pt2">commit S to future action</td>
+            <td><span class="fit">↑</span></td>
+            <td><span class="chip">I</span> intention</td>
+            <td class="ex">promise, vow, offer</td>
+          </tr>
+          <tr>
+            <td><div class="cat">Expressives</div><span class="chip sch">E 0 (…)</span></td>
+            <td class="pt2">express an attitude</td>
+            <td><span class="fit">0</span></td>
+            <td class="pt2">varies</td>
+            <td class="ex">thank, apologize, congratulate</td>
+          </tr>
+          <tr>
+            <td><div class="cat">Declarations</div><span class="chip sch">authority + procedure</span></td>
+            <td class="pt2">change institutional reality</td>
+            <td><span class="fit">↕</span></td>
+            <td class="pt2">special</td>
+            <td class="ex">resign, pronounce, adjourn</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 22 · Formal, indirect speech acts -->
+<section class="slide" data-label="Formal, Indirect speech acts" data-screen-label="22">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ind">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Indirect speech acts</h2>
+      <div class="qref">Can you pass me the salt?</div>
+      <div class="erow"><div class="lb">Two acts at once</div><div class="tx tight">Literally a <strong>question</strong> about ability (the secondary act); in use, a polite <strong>request</strong> (the primary act). The hearer computes the request from the question, plus context.</div></div>
+      <div class="egpanel">
+        <div class="eghead">Spot the primary act</div>
+        <div class="eg"><div class="no">(1)</div><div class="ex">It's cold in here.<span class="gl">→ a request: close the window</span></div></div>
+        <div class="eg"><div class="no">(2)</div><div class="ex">Do you know what time it is?<span class="gl">→ a request: tell me the time</span></div></div>
+        <div class="eg"><div class="no">(3)</div><div class="ex">I wouldn't do that if I were you.<span class="gl">→ a warning</span></div></div>
+      </div>
+      <div class="erow"><div class="lb">Why indirect?</div><div class="tx tight">Indirectness leaves the hearer an out: they can respond to the literal act. This is where speech acts meet <strong>politeness</strong>, in week 8.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 23 · Applied divider -->
+<section class="slide" data-label="§ Applied" data-screen-label="§ Applied">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-app"/></svg></div></div>
+    <div class="r"><div class="lab">Applied</div><div class="ct">STRAND 04 / 04 · LI7862 · Week 2</div><h2>Speech acts in the wild</h2><div class="ask">From institutions that run on declarations to dogwhistles engineered for deniability: speech-act theory as a tool for analysing real communication.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+<!-- 24 · Applied, institutions -->
+<section class="slide" data-label="Applied, Institutions" data-screen-label="24">
+  <div class="b-slide pal-a lens-typological dB" data-sec="inst">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Institutions run on declarations</h2>
+      <div class="lead">Whole institutions exist because the right person can say the right words in the right setting.</div>
+      <div class="accrule"></div>
+      <div class="egpanel">
+        <div class="eghead">Declarations at work</div>
+        <div class="eg"><div class="no">(1)</div><div class="ex">I resign.</div></div>
+        <div class="eg"><div class="no">(2)</div><div class="ex">You're out.<span class="gl">an umpire says it, and the batter is out</span></div></div>
+        <div class="eg"><div class="no">(3)</div><div class="ex">The meeting is adjourned.</div></div>
+        <div class="eg"><div class="no">(4)</div><div class="ex">I sentence you to five years.<span class="gl">only a judge, only in court, only after a verdict</span></div></div>
+      </div>
+      <div class="erow"><div class="lb">The infrastructure</div><div class="tx tight">Each works only inside a <strong>procedure</strong> with recognised <strong>authority</strong>: Austin's A-conditions, hardened into standing institutions.</div></div>
+      <div class="erow"><div class="lb">Institutional facts</div><div class="tx tight">Searle's later point: money, marriage, property and games exist partly <strong>because we declare them</strong>, and keep treating them as declared.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 25 · Applied, dogwhistles -->
+<section class="slide" data-label="Applied, Dogwhistles" data-screen-label="25">
+  <div class="b-slide pal-a lens-typological dB" data-sec="dwm">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Dogwhistles as communicative acts</h2>
+      <div class="lead">An utterance engineered to perform <mk>different acts</mk> for different audiences.</div>
+      <div class="accrule"></div>
+      <div class="brn">
+        <div class="arms">
+          <div class="arm">
+            <div class="h">Overt</div>
+            <div class="t">The target meaning is accessible to all hearers, but its <strong>significance</strong> goes unrecognised by outsiders.</div>
+          </div>
+          <div class="arm">
+            <div class="h">Covert</div>
+            <div class="t">The target meaning itself is <strong>concealed</strong> from at least part of the audience.</div>
+          </div>
+        </div>
+      </div>
+      <div class="erow" style="margin-top:24px"><div class="lb">The common core</div><div class="tx">Audience <strong>segmentation</strong> plus <strong>deniability</strong>: both kinds rely on concealment from some hearers, and the speaker can always retreat to the innocent reading.</div></div>
+      <div class="erow"><div class="lb">Read as speech acts</div><div class="tx tight">One locution, two intended illocutions: an innocuous act for the broad audience, a signal of allegiance for the target audience.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 26 · Applied, defusing & failure -->
+<section class="slide" data-label="Applied, Defusing and failure" data-screen-label="26">
+  <div class="b-slide pal-a lens-typological dB" data-sec="dwf">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Defusing, misfire, backfire</h2>
+      <div class="lead">Publicly naming a dogwhistle can defuse it, but only under conditions: <mk>felicity conditions</mk>, again.</div>
+      <div class="accrule"></div>
+      <div class="erow"><div class="lb">Norm acceptance</div><div class="tx tight">Defusing works only where the audience shares a norm against explicit prejudice, so that exposure carries a cost.</div></div>
+      <div class="erow"><div class="lb">Target match</div><div class="tx tight">…and only where the audience agrees on who the target is. <em>Protean</em> dogwhistles shift targets, so both conditions wobble and defusing fails.</div></div>
+      <div class="erow"><div class="lb">Misfire</div><div class="tx tight">The target audience misses the signal: nothing beyond the innocent reading is communicated. The covert act does not come off.</div></div>
+      <div class="erow"><div class="lb">Backfire</div><div class="tx tight">The broad audience recognises the signal: deniability collapses, and the speaker owns the act in public.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 27 · Summary -->
+<section class="slide" data-label="Summary" data-screen-label="27">
+  <div class="b-slide pal-a" data-sec="sum">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="b-kick">Week 2 wrap-up</div>
+      <h2 class="b-h">Four strands, one act</h2>
+      <div class="recap">
+        <div class="rr" style="--rc:var(--lens-emp)"><div class="rl">Empirical</div><div class="rt">Performatives and felicity: utterances judged successful or failed, not true or false. Misfires and abuses.</div></div>
+        <div class="rr" style="--rc:var(--lens-his)"><div class="rl">Historical</div><div class="rt">Austin's disruption and Searle's system, out of post-war Oxford ordinary-language philosophy.</div></div>
+        <div class="rr" style="--rc:var(--lens-for)"><div class="rl">Formal</div><div class="rt">Three acts, force over content, direction of fit, and the five illocutionary types.</div></div>
+        <div class="rr" style="--rc:var(--lens-typ)"><div class="rl">Applied</div><div class="rt">Institutions built from declarations; dogwhistles and their modes of failure.</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next week:</strong> Implicature. What we mean beyond what we say, and Grice's cooperative principle.</p>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/prag-meta.js"></script>
+<script src="../../shared/prag-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-semantics1/week-01: the TOC reflects THIS lecture's
+   sections; the active group expands to show its sub-sections. */
+(function () {
+  var TITLES = {
+    how:"Saying as doing", road:"Roadmap",
+    pron:"Pronouncing", bet:"Betting", party:"A misfire", fel:"Felicity conditions", mis:"Misfires & abuses",
+    oxf:"Ordinary-language Oxford", aus:"Austin", sea:"Searle",
+    acts:"Three acts", fp:"Force & content", fit:"Direction of fit", tax:"The five types", ind:"Indirect speech acts",
+    inst:"Institutions", dwm:"Dogwhistles", dwf:"Defusing & failure",
+    sum:"Wrap-up"
+  };
+  var GROUPS = [
+    { t:"Introduction",            sc:null,         keys:["how","road"] },
+    { t:"What is this doing?",     sc:"--lens-emp", keys:["pron","bet","party","fel","mis"] },
+    { t:"Austin & Searle",         sc:"--lens-his", keys:["oxf","aus","sea"] },
+    { t:"Force & the taxonomy",    sc:"--lens-for", keys:["acts","fp","fit","tax","ind"] },
+    { t:"In the wild",             sc:"--lens-typ", keys:["inst","dwm","dwf"] },
+    { t:"Wrap-up",                 sc:null,         keys:["sum"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "\u25be" : "\u25b8";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LI7862<br>Week 2</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 2</div><div class="t2">Speech Acts</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#4a0e1a"/>
+    <rect x="8" y="10" width="84" height="3" rx="1.5" fill="#ddbdc1" opacity=".6"/>
+    <rect x="8" y="20" width="84" height="22" rx="3" fill="#5f1322"/>
+    <rect x="8" y="48" width="84" height="44" rx="3" fill="#5f1322" opacity=".7"/>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#b07b82" text-anchor="middle">LI7862 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>

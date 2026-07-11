@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 9 — Thematic Roles & UTAH · Lecture Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .b-main > .lens-progress { margin-top: auto; }
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  .role-tbl{width:100%;border-collapse:collapse;font-size:25px;margin-top:8px}
+  .role-tbl th,.role-tbl td{text-align:left;padding:9px 16px;border-bottom:1px solid var(--tcd-grey-25)}
+  .role-tbl th{font-family:var(--sans);font-size:20px;text-transform:uppercase;letter-spacing:.08em;color:var(--tcd-grey-75);font-weight:600}
+  .role-tbl td:first-child{font-weight:600;color:var(--tcd-ink)}
+  .role-tbl .mono{font-family:var(--mono);font-size:22px}
+</style>
+</head>
+<body class="pal-a" data-week="9">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title">
+  <div class="a-watermark">θ</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7869 · Formal Semantics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 9</h1>
+      <div class="a-course-sub">Thematic Roles, Event Structure &amp; UTAH</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 2 · 2026</div></div>
+  </div>
+</section>
+
+<!-- 02 · Roadmap -->
+<section class="slide" data-label="Roadmap">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Today's four lenses</div>
+      <h2 class="b-h">Thematic Roles &amp; UTAH</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div>
+          <div class="track"></div>
+          <div class="q">Roles, alternations &amp; psych verbs</div>
+          <div class="d">A role inventory, dative/spray–load alternations, and the experiencer puzzle.</div>
+        </div>
+        <div class="stop lens-historical">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div>
+          <div class="track"></div>
+          <div class="q">Fillmore to Dowty</div>
+          <div class="d">Case Grammar, localist roles, UTAH, and Dowty's proto-roles.</div>
+        </div>
+        <div class="stop lens-formal">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div>
+          <div class="track"></div>
+          <div class="q">From grids to LCS</div>
+          <div class="d">Theta Criterion, UTAH, LCS decomposition, and neo-Davidsonian role predicates.</div>
+        </div>
+        <div class="stop lens-typological">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div>
+          <div class="track"></div>
+          <div class="q">Mapping roles to syntax</div>
+          <div class="d">Case, Burzio's Generalisation, and how languages realise the same roles.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ EMPIRICAL ════════ -->
+<section class="slide" data-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LI7869 · Week 9</div><h2>Roles, alternations &amp; psych verbs</h2><div class="ask">What classes of participant do verbs distinguish, and how do they surface?</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="empirical" data-label="Empirical — Role inventory">
+  <div class="b-slide pal-a lens-empirical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical<span class="ct">LENS 01 / 04</span></div>
+      <h2 class="b-h">A working role inventory</h2>
+      <table class="role-tbl">
+        <tr><th>Tier</th><th>Roles</th><th>Diagnostic</th></tr>
+        <tr><td>Action / causation</td><td class="mono">agent · causer · patient</td><td>who acts; what is affected</td></tr>
+        <tr><td>Event / motion</td><td class="mono">theme · goal · source · path</td><td>what moves / changes; from / to / along</td></tr>
+        <tr><td>Possession</td><td class="mono">recipient · benefactive</td><td>who ends up with it; for whom</td></tr>
+        <tr><td>Psych</td><td class="mono">experiencer · stimulus</td><td>who feels; what is felt</td></tr>
+      </table>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:20px"><strong>Agent</strong> is volitional; <strong>causer</strong> brings about change without volition (<em>the storm broke the window</em>).</p>
+      <div class="lens-progress" data-lens="empirical"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="empirical" data-label="Empirical — Alternations & psych">
+  <div class="b-slide pal-a lens-empirical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical<span class="ct">LENS 01 / 04</span></div>
+      <h2 class="b-h">Alternations and the psych puzzle</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Dative</span></div>
+          <div class="c-box-body"><em>gave a bone to the puppy / gave the puppy a bone</em>, but <em>*donated the shelter a bone</em>. Verbs in a class share alternations; near-synonyms may not.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Spray–load &amp; causative</span></div>
+          <div class="c-box-body"><em>sprayed paint on the wall / sprayed the wall with paint</em> (not <em>*poured the wall</em>); <em>John broke the vase / the vase broke</em>.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Psych verbs</span></div>
+          <div class="c-box-body"><em>Midge loves ice cream</em> (experiencer subject) vs <em>The article enraged Thomas</em> (experiencer object). Same two participants, opposite syntax.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="empirical"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ HISTORICAL ════════ -->
+<section class="slide" data-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LI7869 · Week 9</div><h2>Fillmore to Dowty</h2><div class="ask">From Case Grammar's deep cases to proto-roles defined by entailment.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="historical" data-label="Historical — Four moves">
+  <div class="b-slide pal-a lens-historical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical<span class="ct">LENS 02 / 04</span></div>
+      <h2 class="b-h">A lineage of thematic theory</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Fillmore (1968)</span></div>
+          <div class="c-box-body"><em>The Case for Case</em>: every clause has an inventory of deep "cases" (Agentive, Instrumental, Dative…) mapped to surface form.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Gruber &amp; Jackendoff</span></div>
+          <div class="c-box-body"><em>Localist</em> roles: theme, goal, source and path generalise spatial motion to change and possession, encoded in Lexical Conceptual Structure.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Baker (1988)</span></div>
+          <div class="c-box-body"><strong>UTAH</strong>: identical thematic relations are mapped to identical syntactic positions — a bridge between meaning and structure.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Dowty (1991)</span></div>
+          <div class="c-box-body"><em>Proto-roles</em>: not discrete labels but cluster concepts — Proto-Agent and Proto-Patient entailments — with argument selection by entailment count.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="historical"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FORMAL ════════ -->
+<section class="slide" data-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · LI7869 · Week 9</div><h2>From grids to LCS</h2><div class="ask">The Theta Criterion, UTAH, decompositional LCS, and neo-Davidsonian role predicates.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Theta Criterion & UTAH">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Three principles of realisation</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Theta Criterion</span></div>
+          <div class="c-box-body">Each argument bears exactly one theta-role, and each theta-role is assigned to exactly one argument. A one-to-one match between roles and positions.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">UTAH</span></div>
+          <div class="c-box-body">A given theta-role is uniformly associated with the same kind of syntactic position — so systematic thematic structure is mirrored systematically in syntax.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Burzio's Generalisation</span></div>
+          <div class="c-box-body">A verb assigning no external argument assigns no accusative case: <em>John broke the vase</em> / <em>the vase broke</em> / <em>*broke the vase</em>. Role structure constrains case.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — LCS & roles">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Roles as positions in structure</h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">Agent</div><div class="b-step-math">x\ \text{in}\ \textsc{do}(x,[\dots])</div></div>
+        <div class="b-step"><div class="b-step-lab">Causer</div><div class="b-step-math">x\ \text{in}\ x\ \textsc{cause}\ [\dots]</div></div>
+        <div class="b-step"><div class="b-step-lab">Theme (change of state)</div><div class="b-step-math">y\ \text{in}\ \textsc{become}[\,P(y)\,]</div></div>
+        <div class="b-step"><div class="b-step-lab">Goal</div><div class="b-step-math">z\ \text{in}\ \textsc{become}[\textsc{be-at}(y,z)]</div></div>
+        <div class="b-step step-future"><div class="b-step-lab">Object-experiencer</div><div class="b-step-math">x\ \textsc{cause}\ [\textsc{become}[\textsc{feel}(y,\text{state})]]</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:18px">In neo-Davidsonian terms each label is a role predicate: <em>The storm broke the window</em> = \(\exists e[\textsc{break}(e)\wedge\textsc{causer}(e,s)\wedge\textsc{theme}(e,w)]\).</p>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Reinhart features">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Reinhart's two features</h2>
+      <table class="role-tbl">
+        <tr><th>Role</th><th>[c] cause</th><th>[m] mental</th></tr>
+        <tr><td>Agent</td><td class="mono">+</td><td class="mono">+</td></tr>
+        <tr><td>Causer / Instrument</td><td class="mono">+</td><td class="mono">−</td></tr>
+        <tr><td>Experiencer</td><td class="mono">−</td><td class="mono">+</td></tr>
+        <tr><td>Theme / Patient</td><td class="mono">−</td><td class="mono">−</td></tr>
+      </table>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:18px">Decompose each role into <strong>[±c]</strong> (causes change) and <strong>[±m]</strong> (sentient). When two positions are open, the higher role takes the structurally higher one — predicting subject- vs object-experiencer patterns.</p>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TYPOLOGICAL ════════ -->
+<section class="slide" data-label="§ Typological">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
+    <div class="r"><div class="lab">Typological</div><div class="ct">LENS 04 / 04 · LI7869 · Week 9</div><h2>Mapping roles to syntax</h2><div class="ask">If UTAH is right, the role-to-position mapping should recur across languages — modulo their case systems.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="typological" data-label="Typological — Roles across languages">
+  <div class="b-slide pal-a lens-typological">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological<span class="ct">LENS 04 / 04</span></div>
+      <h2 class="b-h">One hierarchy, many case systems</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Thematic hierarchy</span></div>
+          <div class="c-box-body">Agent &gt; recipient/benefactive &gt; theme &gt; location/source/goal — a recurring ranking that predicts which role becomes subject and which object.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Case strategies</span></div>
+          <div class="c-box-body">Nominative–accusative vs ergative–absolutive systems realise the <em>same</em> roles differently. Dative subjects (Icelandic, Hindi) show experiencers needn't be nominative.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Psych verbs cross-linguistically</span></div>
+          <div class="c-box-body">Subject- vs object-experiencer splits recur widely; Reinhart's [±c]/[±m] aims to predict the variation from a single feature system.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="typological"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Summary -->
+<section class="slide" data-label="Summary">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Week 9 — wrap-up</div>
+      <h2 class="b-h">Four lenses, one picture</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--lens-emp)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-emp)">Empirical</span></div><div class="c-box-body">A role inventory, argument alternations, and the subject/object-experiencer psych-verb puzzle.</div></div>
+        <div class="c-box" style="--acc:var(--lens-his)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-his)">Historical</span></div><div class="c-box-body">Fillmore's Case Grammar → localist LCS → Baker's UTAH → Dowty's proto-roles → Reinhart's features.</div></div>
+        <div class="c-box" style="--acc:var(--lens-for)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-for)">Formal</span></div><div class="c-box-body">Theta Criterion, UTAH, Burzio; LCS schemas; neo-Davidsonian role predicates; [±c]/[±m].</div></div>
+        <div class="c-box" style="--acc:var(--lens-typ)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-typ)">Typological</span></div><div class="c-box-body">A recurring thematic hierarchy realised through varied case systems and experiencer patterns.</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next:</strong> Aktionsart — how the inner temporal shape of events (states, activities, achievements, accomplishments) is built.</p>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/week-meta.js"></script>
+<script src="../../shared/deck-rail.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#07284a"/>
+    <text x="50" y="60" font-family="serif" font-size="34" fill="#82b4dc" text-anchor="middle">θ</text>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#82b4dc" text-anchor="middle">LI7869 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>

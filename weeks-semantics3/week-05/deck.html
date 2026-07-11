@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU44010 · Week 5 — The Granularity Problem · Lecture Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-indigo.css" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .p3-q{font-family:var(--serif);font-style:italic;font-size:33px;color:var(--tcd-ink);background:var(--tcd-blue-10);border-left:6px solid var(--tcd-blue);border-radius:0 10px 10px 0;padding:18px 26px;margin:6px 0 24px}
+  .p3-arcs{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .p3-arc{border:2px solid var(--tcd-grey-25);border-radius:16px;padding:24px 28px;background:#fff}
+  .p3-arc.on{border-color:var(--tcd-blue);box-shadow:0 10px 34px rgba(0,0,0,.09)}
+  .p3-arc .ci{font-family:var(--mono);font-size:19px;letter-spacing:.1em;text-transform:uppercase;color:var(--tcd-grey-75)}
+  .p3-arc h3{font-family:var(--serif);font-size:34px;margin:8px 0 10px;color:var(--tcd-ink)}
+  .p3-arc.on h3{color:var(--tcd-blue)}
+  .p3-arc p{font-size:23px;color:var(--tcd-grey-100);margin:0;line-height:1.3}
+  .p3-figs{margin-top:24px;font-family:var(--sans);font-size:24px;color:var(--tcd-grey-100)}
+  .p3-figs b{color:var(--tcd-ink)}
+  .p3-reads{border:1px solid var(--tcd-grey-25);border-radius:12px;padding:18px 24px;background:#fff}
+  .p3-reads .h{font-family:var(--mono);font-size:17px;letter-spacing:.1em;text-transform:uppercase;color:var(--tcd-blue);margin-bottom:8px}
+  .p3-reads ul{margin:0;padding-left:24px}
+  .p3-reads li{font-size:23px;color:var(--tcd-grey-100);line-height:1.45;margin:4px 0}
+  .p3-reads .bk{font-style:italic}
+  .p3-todo{border:2px dashed var(--tcd-grey-50);border-radius:14px;padding:24px 28px;color:var(--tcd-grey-75);font-style:italic;font-size:25px;line-height:1.4;background:repeating-linear-gradient(45deg,#fafafa,#fafafa 11px,#f4f4f4 11px,#f4f4f4 22px)}
+  .p3-todo b{color:var(--tcd-grey-100);font-style:normal}
+  .p3-park{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .p3-pk{border:1px dashed var(--tcd-blue-50);border-radius:12px;padding:16px 22px;background:var(--tcd-blue-10)}
+  .p3-pk h4{font-family:var(--serif);font-size:27px;margin:0 0 6px;color:var(--tcd-ink)}
+  .p3-pk p{font-size:20px;color:var(--tcd-grey-100);margin:0 0 8px;line-height:1.3}
+  .p3-pk .r{font-family:var(--mono);font-size:16px;color:var(--tcd-blue-75)}
+</style>
+</head>
+<body class="pal-a" data-week="5">
+
+<deck-stage width="1920" height="1080">
+
+<section class="slide" data-label="Title">
+  <div class="a-watermark" style="font-style:italic">⟦⟧</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LIU44010 · Semantics III</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 5</h1>
+      <div class="a-course-sub">The Granularity Problem</div>
+    </div>
+    <div class="a-meta">
+      <div class="who">Thomas Stephen</div>
+      <div>School of Linguistic, Speech &amp; Communication Sciences</div>
+      <div class="a-hairline"></div>
+      <div>Semester 2 · Hilary</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="This week">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Objects of Attitude · Arc I — Formal Tools</div>
+      <h2 class="b-h">The Granularity Problem</h2>
+      <div class="p3-q">The object of an attitude — what does the verb relate the agent to?</div>
+      <div class="p3-arcs">
+        <div class="p3-arc on"><div class="ci">Arc I</div><h3>Formal Tools</h3><p>What an attitude relates an agent to, and how a clause composes with the verb.</p></div>
+        <div class="p3-arc "><div class="ci">Arc II</div><h3>Empirical Phenomena</h3><p>The grammar of embedding run through the major puzzles.</p></div>
+      </div>
+      <div class="p3-figs"><b>Figures:</b> Cresswell & von Stechow · Moltmann</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Key ideas">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Core</div>
+      <h2 class="b-h">Key ideas</h2>
+      <p style="font-size:29px;line-height:1.42;color:var(--tcd-grey-100);max-width:1200px;margin:0 0 22px">Sets of worlds are too coarse — you can believe P without believing logically-equivalent Q. Three responses: structured / Russellian propositions, impossible-worlds models, and Moltmann's attitudinal objects. The second refinement of the object, and the bridge to decomposition.</p>
+      <div class="p3-reads"><div class="h">Set readings</div><ul><li>Cresswell, M. & von Stechow, A. (1982). Structured meanings.</li><li>Moltmann, F. (2017). Cognitive Products and the Semantics of Attitude Verbs.</li><li>Berto, F. & Jago, M. Impossible Worlds (SEP entry).</li></ul></div>
+      <div class="p3-todo" style="margin-top:20px"><b>Content to add.</b> Expand into worked slides — mirror <b>weeks-pragmatics/week-02/deck.html</b> for callout cards, examples and diagrams.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Wrap">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Week 5 — wrap-up</div>
+      <h2 class="b-h">Where this sits</h2>
+      <div class="p3-todo"><b>Summary to add.</b> Restate the week on the course's through-line — what an attitude relates an agent to. Next: decomposing attitude verbs — the hinge.</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/sem3-meta.js"></script>
+<script src="../../shared/sem3-rail.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#2a2056"/>
+    <rect x="8" y="10" width="84" height="3" rx="1.5" fill="#c8c2e3" opacity=".6"/>
+    <rect x="8" y="20" width="84" height="22" rx="3" fill="#382a72"/>
+    <rect x="8" y="48" width="84" height="44" rx="3" fill="#382a72" opacity=".7"/>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#9389c8" text-anchor="middle">LIU44010 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>

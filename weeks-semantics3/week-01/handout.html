@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU44010 · Week 1 — Sense, Reference and Opacity · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+<link rel="stylesheet" href="../../shared/theme-indigo.css" />
+<style>
+  .p3-band{display:flex;gap:7pt;flex-wrap:wrap;margin:6pt 0 4pt}
+  .p3-tag{font-family:var(--sans);font-size:8pt;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3pt 9pt;border-radius:999px;background:var(--tcd-blue-10);color:var(--tcd-ink)}
+  .p3-todo{border:1.5pt dashed var(--tcd-grey-50);border-radius:6pt;padding:9pt 11pt;color:var(--tcd-grey-75);font-style:italic;background:#fafafa;font-size:9.5pt;line-height:1.4}
+  .p3-todo b{color:var(--tcd-grey-100);font-style:normal}
+  .p3-reads-h{list-style:none;padding-left:0;margin:3pt 0 0}
+  .p3-reads-h li{font-size:9pt;margin:2pt 0;line-height:1.35}
+  .p3-reads-h .bk{font-style:italic}
+  @media print { :root { --tcd-blue:#000; --tcd-blue-75:#555; --tcd-blue-50:#888; --tcd-blue-25:#bbb; --tcd-blue-10:#f2f2f2; --tcd-ink:#000; --c-def:#000; } }
+</style>
+</head>
+<body>
+
+<div class="handout-week" data-week="1"><div class="page">
+
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LIU44010 · Semantics III</div>
+      <div class="term">Thomas Stephen · Semester 2, Hilary</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 1</div>
+    <h1 class="h-title">Sense, Reference and Opacity</h1>
+  </div>
+
+  <div class="p3-band">
+    <span class="p3-tag">Arc I — Formal Tools</span>
+    <span class="p3-tag">Intensionality</span>
+  </div>
+
+  <div class="callout callout-note">
+    <span class="badge">This week</span>
+    <p>Frege, Russell and Carnap as a toolkit, not a history. The diagnostics you'll use all term: substitution failure, existential-generalization failure, opacity.</p>
+  </div>
+
+  <div class="callout callout-def">
+    <span class="badge">Set readings</span>
+    <ul class="p3-reads-h"><li>Frege, G. (1892). On Sense and Reference. — <em>Oblique reference; the Sinn / Bedeutung split.</em></li><li>Russell, B. (1905). On Denoting (selections). — <em>Primary / secondary occurrence — de re/de dicto avant la lettre.</em></li><li>Carnap, R. (1947). <span class="bk">Meaning and Necessity</span>, ch. I. — <em>Intensions, and the granularity worry (paid off in Week 5).</em></li></ul>
+  </div>
+
+  <div class="ex-block">
+    <div class="ex-tool-intro">
+      <div class="tl-label">Skeleton</div>
+      <div class="tl-name">Content to add</div>
+      <p>Build out this week's handout — mirror the worked sheet in <b>weeks-pragmatics/week-02/handout.html</b>: callouts (<b>.callout</b>), tool intros + tasks (<b>.ex-block</b>), and ruled <b>.answer-space</b>. As a proseminar week, lead with the reading and a set of discussion prompts.</p>
+    </div>
+  </div>
+
+  <div class="p3-todo"><b>Discussion prompts &amp; exercises to add.</b></div>
+
+  <div class="h-footer">
+    <span class="left">LIU44010 · Semantics III</span>
+    <span>Week 1 · Sense, Reference and Opacity</span>
+    <span>1</span>
+  </div>
+
+</div></div>
+
+<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#eceaf6"/><rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#4b3c9a" stroke-width="2"/><line x1="36" y1="32" x2="64" y2="32" stroke="#4b3c9a" stroke-width="2.5"/><line x1="36" y1="42" x2="58" y2="42" stroke="#c8c2e3" stroke-width="2"/><line x1="36" y1="50" x2="62" y2="50" stroke="#c8c2e3" stroke-width="2"/><text x="50" y="92" font-family="serif" font-size="7" fill="#4b3c9a" text-anchor="middle">LIU44010</text></svg></template>
+</body>
+</html>

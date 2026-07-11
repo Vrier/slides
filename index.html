@@ -3,64 +3,565 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="robots" content="noindex, nofollow" />
-<title>Slides · tstephen.com</title>
+<title>Teaching Workspace · Semantics I · II · III · Pragmatics I · II</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="shared/tokens.css" />
 <style>
-  /* Unlisted hub — the author's working view. Audiences get direct deck links. */
-  body { margin: 0; background: #f6f7f8; color: var(--tcd-ink); font-family: var(--sans); }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 72px 28px 96px; }
-  header .kick { font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--tcd-blue); }
-  header h1 { font-family: var(--serif); font-size: 44px; font-weight: 600; margin: 10px 0 6px; }
-  header p { color: var(--tcd-grey-100); margin: 0; max-width: 620px; line-height: 1.5; }
-  .year { margin-top: 52px; }
-  .year > .y { font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--tcd-grey-75); border-bottom: 1px solid var(--tcd-grey-25); padding-bottom: 8px; }
-  a.deck { display: flex; align-items: baseline; gap: 16px; padding: 18px 4px; border-bottom: 1px solid var(--tcd-grey-25); text-decoration: none; color: inherit; }
-  a.deck:hover { background: #fff; }
-  .deck .t { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--tcd-ink); flex: 1 1 auto; min-width: 0; }
-  .deck .v { font-size: 15px; color: var(--tcd-grey-100); white-space: nowrap; }
-  .deck .d { font-family: var(--mono); font-size: 13px; color: var(--tcd-grey-75); white-space: nowrap; }
-  .chip { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
-  .chip.ready { background: color-mix(in srgb, var(--tcd-blue) 12%, white); color: var(--tcd-blue); }
-  .chip.draft { background: var(--tcd-grey-25); color: var(--tcd-grey-100); }
-  .empty { padding: 40px 4px; color: var(--tcd-grey-75); font-style: italic; }
+  :root {
+    --sem: #0569b9;            /* Semantics I — TCD blue */
+    --sem2: #136f5c;           /* Semantics II — deep teal-green */
+    --sem3: #4b3c9a;           /* Semantics III — deep indigo */
+    --prag: #8a2f4a;           /* Pragmatics — deep plum/burgundy */
+    --prag2: #b23a1e;          /* Pragmatics II — deep orange-red / rust */
+    --paper: #ece8e0;
+    --card: #ffffff;
+    --ink: var(--tcd-ink);
+    --rule: #d8d3c8;
+    --st-ready: oklch(0.55 0.10 162);
+    --st-prog:  oklch(0.62 0.13 74);
+    --st-soon:  var(--tcd-grey-50);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper);
+    color: var(--tcd-black);
+    font-family: var(--sans);
+    font-size: 16px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.035) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 40px 32px 80px; }
+
+  /* ── Masthead ── */
+  .mast { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; flex-wrap: wrap; padding-bottom: 22px; border-bottom: 2px solid var(--sem); }
+  .mast .lock { display: flex; align-items: center; gap: 16px; }
+  .mast .lock img { width: 52px; height: 60px; object-fit: contain; display: block; }
+  .mast .lock .vr { width: 1px; align-self: stretch; background: var(--rule); }
+  .mast .names .en { font-family: var(--serif); font-weight: 600; font-size: 18px; color: var(--ink); line-height: 1.15; }
+  .mast .names .ga { font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--tcd-grey-100); }
+  .mast .names .uni { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--tcd-grey-75); margin-top: 3px; }
+  .mast .meta { text-align: right; }
+  .mast .meta .who { font-family: var(--serif); font-size: 15px; color: var(--ink); }
+  .mast .meta .term { font-size: 12.5px; color: var(--tcd-grey-75); }
+
+  .hero { margin: 30px 0 6px; }
+  .hero h1 { font-family: var(--serif); font-weight: 600; font-size: 40px; letter-spacing: -0.015em; line-height: 1.05; margin: 0 0 8px; color: var(--ink); }
+  .hero p { font-size: 16px; color: var(--tcd-grey-100); max-width: 720px; margin: 0; }
+  .hero p .mono { font-family: var(--mono); font-size: 13px; background: #fff; border: 1px solid var(--rule); border-radius: 5px; padding: 1px 6px; }
+
+  /* ── Controls ── */
+  .controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 28px 0 24px; }
+  .seg { display: inline-flex; background: #fff; border: 1px solid var(--rule); border-radius: 10px; padding: 4px; gap: 2px; }
+  .seg button { font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--tcd-grey-100); background: none; border: none; padding: 8px 16px; border-radius: 7px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background .12s, color .12s; }
+  .seg button .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .seg button[data-mod="sem"] .dot { background: var(--sem); }
+  .seg button[data-mod="sem2"] .dot { background: var(--sem2); }
+  .seg button[data-mod="sem3"] .dot { background: var(--sem3); }
+  .seg button[data-mod="prag"] .dot { background: var(--prag); }
+  .seg button[data-mod="prag2"] .dot { background: var(--prag2); }
+  .seg button[data-mod="all"] .dot { display: none; }
+  .seg button .ct { font-family: var(--mono); font-size: 11px; font-weight: 500; color: var(--tcd-grey-50); }
+  .seg button:hover { color: var(--ink); }
+  .seg button.on { background: var(--ink); color: #fff; }
+  .seg button.on .ct { color: rgba(255,255,255,0.7); }
+  .seg button.on[data-mod="sem"] { background: var(--sem); }
+  .seg button.on[data-mod="sem2"] { background: var(--sem2); }
+  .seg button.on[data-mod="sem3"] { background: var(--sem3); }
+  .seg button.on[data-mod="prag"] { background: var(--prag); }
+  .seg button.on[data-mod="prag2"] { background: var(--prag2); }
+  /* term-relevant module highlight (when a term filter is active) */
+  .seg button.rel:not(.on) { box-shadow: inset 0 0 0 2px var(--tcd-blue-25); color: var(--ink); }
+  .seg button.dim:not(.on) { opacity: 0.4; }
+
+  .search { position: relative; margin-left: auto; }
+  .search input { font-family: var(--sans); font-size: 14px; padding: 10px 14px 10px 36px; border: 1px solid var(--rule); border-radius: 9px; background: #fff; width: 230px; color: var(--ink); }
+  .search input:focus { outline: none; border-color: var(--sem); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sem) 16%, transparent); }
+  .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--tcd-grey-50); }
+
+  .statusbar { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin: -8px 0 22px; font-size: 12.5px; color: var(--tcd-grey-75); }
+  .statusbar .key { display: inline-flex; align-items: center; gap: 6px; }
+  .statusbar .key i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .statusbar .count { margin-left: auto; font-family: var(--mono); font-size: 12px; }
+
+  /* ── Grid ── */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 18px; }
+
+  .modhead { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 12px; margin: 18px 0 2px; }
+  .modhead:first-child { margin-top: 0; }
+  .modhead h2 { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--ink); margin: 0; }
+  .modhead .code { font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 999px; color: #fff; }
+  .modhead.sem .code { background: var(--sem); }
+  .modhead.sem2 .code { background: var(--sem2); }
+  .modhead.sem3 .code { background: var(--sem3); }
+  .modhead.prag .code { background: var(--prag); }
+  .modhead.prag2 .code { background: var(--prag2); }
+  .modhead .ln { flex: 1; height: 1px; background: var(--rule); align-self: center; }
+  .modhead.sem { --accent: var(--sem); }
+  .modhead.sem2 { --accent: var(--sem2); }
+  .modhead.sem3 { --accent: var(--sem3); }
+  .modhead.prag { --accent: var(--prag); }
+  .modhead.prag2 { --accent: var(--prag2); }
+  .mod-twin { display: inline-flex; gap: 2px; background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 3px; align-self: center; }
+  .mod-twin button { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--tcd-grey-75); background: none; border: none; padding: 4px 11px; border-radius: 6px; cursor: pointer; transition: background .12s, color .12s; white-space: nowrap; }
+  .mod-twin button:hover { color: var(--ink); }
+  .mod-twin button.on { color: #fff; background: var(--accent); }
+
+  .card { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 0; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,0.03); transition: box-shadow .15s, transform .15s; }
+  .card:hover { box-shadow: 0 8px 26px rgba(0,0,0,0.09); transform: translateY(-2px); }
+  .card::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 16px; width: 3px; border-radius: 0 3px 3px 0; background: var(--accent); }
+  .card.sem { --accent: var(--sem); }
+  .card.sem2 { --accent: var(--sem2); }
+  .card.sem3 { --accent: var(--sem3); }
+  .card.prag { --accent: var(--prag); }
+  .card.prag2 { --accent: var(--prag2); }
+
+  .c-top { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; }
+  .c-sec { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+  .c-status { margin-left: auto; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 5px; }
+  .c-status i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .c-status.ready { color: var(--st-ready); } .c-status.ready i { background: var(--st-ready); }
+  .c-status.prog { color: var(--st-prog); } .c-status.prog i { background: var(--st-prog); }
+  .c-status.soon { color: var(--st-soon); } .c-status.soon i { background: var(--st-soon); }
+
+  .c-title { display: flex; align-items: baseline; gap: 11px; margin-bottom: 15px; }
+  .c-no { font-family: var(--serif); font-size: 30px; font-weight: 700; line-height: 1; color: var(--accent); flex-shrink: 0; min-width: 30px; }
+  .c-no small { font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tcd-grey-50); display: block; margin-bottom: 2px; }
+  .c-namewrap { display: flex; flex-direction: column; gap: 3px; }
+  .c-name { font-family: var(--serif); font-size: 19px; font-weight: 600; line-height: 1.12; color: var(--ink); }
+  .c-fig { font-size: 11.5px; font-style: italic; color: var(--tcd-grey-75); line-height: 1.25; }
+
+  .c-links { display: flex; flex-direction: column; gap: 7px; margin-top: auto; }
+  .lk { display: flex; align-items: center; gap: 11px; padding: 9px 11px; border: 1px solid var(--rule); border-radius: 9px; font-size: 13.5px; font-weight: 600; color: var(--ink); transition: border-color .12s, background .12s; }
+  a.lk:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 5%, white); }
+  .lk .ico { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent); }
+  .lk .ico svg { width: 100%; height: 100%; }
+  .lk .lab { flex: 1; }
+  .lk .badge { font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+  .lk .badge.ready { color: var(--st-ready); background: color-mix(in srgb, var(--st-ready) 12%, white); }
+  .lk .badge.draft { color: var(--st-prog); background: color-mix(in srgb, var(--st-prog) 14%, white); }
+  .lk .open { font-size: 11px; color: var(--tcd-grey-50); }
+  a.lk:hover .open { color: var(--accent); }
+  .lk.disabled { opacity: 0.5; cursor: default; background: repeating-linear-gradient(45deg,#fafafa,#fafafa 7px,#f4f4f4 7px,#f4f4f4 14px); }
+  .lk.disabled .ico { color: var(--tcd-grey-50); }
+  .lk.disabled .badge { color: var(--tcd-grey-75); background: #eee; }
+
+  .card-reading { background: repeating-linear-gradient(135deg, #faf8f4, #faf8f4 10px, #f4f1ea 10px, #f4f1ea 20px); border-style: dashed; box-shadow: none; }
+  .card-reading::before { opacity: 0.35; }
+  .card-reading:hover { transform: none; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .card-reading .c-name { color: var(--tcd-grey-100); }
+
+  .empty { grid-column: 1 / -1; text-align: center; padding: 60px 0; color: var(--tcd-grey-75); font-family: var(--serif); font-style: italic; font-size: 18px; }
+
+  /* ── Module-level tools (overview + assessments) ── */
+  .mod-tools { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 14px 18px; flex-wrap: wrap; margin: 2px 0 6px; padding: 9px 14px; background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 10px; }
+  .mod-tools.sem { --accent: var(--sem); }
+  .mod-tools.sem2 { --accent: var(--sem2); }
+  .mod-tools.sem3 { --accent: var(--sem3); }
+  .mod-tools.prag { --accent: var(--prag); }
+  .mod-tools.prag2 { --accent: var(--prag2); }
+  .mod-tools .badge { font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--tcd-grey-75); background: #eee; padding: 2px 7px; border-radius: 999px; }
+  .mt-ov { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--tcd-grey-100); border: 1px dashed var(--tcd-grey-50); border-radius: 8px; padding: 6px 11px; background: repeating-linear-gradient(45deg,#fafafa,#fafafa 7px,#f4f4f4 7px,#f4f4f4 14px); }
+  .mt-ov .ico { width: 16px; height: 16px; color: var(--accent); display: inline-flex; }
+  .mt-ov .ico svg { width: 100%; height: 100%; }
+  .mt-as { display: inline-flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .mt-lab { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .mt-sum { font-family: var(--mono); font-size: 11.5px; color: var(--tcd-grey-75); }
+  .mt-chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+  .achip { display: inline-flex; align-items: baseline; gap: 5px; font-size: 12px; font-weight: 600; color: var(--tcd-grey-100); border: 1px dashed var(--tcd-grey-50); border-radius: 7px; padding: 4px 9px; background: #fafafa; }
+  .achip .aw { font-family: var(--mono); font-size: 10.5px; color: var(--accent); font-weight: 700; }
+
+  footer { margin-top: 46px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--tcd-grey-75); display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
+  footer .mono { font-family: var(--mono); font-size: 11.5px; }
+  footer a { color: var(--sem); font-weight: 600; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    .wrap { padding: 24px 16px 60px; }
+    .hero h1 { font-size: 30px; }
+    .search { margin-left: 0; width: 100%; }
+    .search input { width: 100%; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <div class="kick">slides.tstephen.com</div>
-    <h1>Slides</h1>
-    <p>Research talk decks — Thomas Stephen. This page is an unlisted working index;
-       each deck lives at a stable URL <code>/&lt;year&gt;/&lt;slug&gt;/</code>.</p>
+
+  <header class="mast">
+    <div class="lock">
+      <img src="shared/tcd-crest.webp" alt="Trinity College Dublin crest" />
+      <div class="vr"></div>
+      <div class="names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="who">Dr. Thomas Stephen</div>
+      <div class="term">2026–2027</div>
+    </div>
   </header>
-  <main id="list"></main>
+
+  <div class="hero">
+    <h1>Teaching Workspace</h1>
+    <p>Every week of both modules in one place. Open a <strong>deck</strong>, <strong>handout</strong>, <strong>readings</strong> list, or downloadable <strong>homework</strong> sheet to view or edit. Homework and readings open print-ready — students use <span class="mono">Print → Save as PDF</span> to work on them on a laptop or tablet.</p>
+  </div>
+
+  <div class="controls">
+    <div class="seg" id="termseg">
+      <button data-term="all" class="on">All terms</button>
+      <button data-term="michaelmas"><span class="dot" style="background:var(--sem2)"></span>Michaelmas <span class="ct" id="ct-michaelmas"></span></button>
+      <button data-term="hilary"><span class="dot" style="background:var(--sem)"></span>Hilary <span class="ct" id="ct-hilary"></span></button>
+    </div>
+    <div class="seg" id="modseg">
+      <button data-mod="all" class="on">All weeks <span class="ct" id="ct-all"></span></button>
+      <button data-mod="sem"><span class="dot"></span>Semantics I <span class="ct" id="ct-sem"></span></button>
+      <button data-mod="sem2"><span class="dot"></span>Semantics II <span class="ct" id="ct-sem2"></span></button>
+      <button data-mod="sem3"><span class="dot"></span>Semantics III <span class="ct" id="ct-sem3"></span></button>
+      <button data-mod="prag"><span class="dot"></span>Pragmatics I <span class="ct" id="ct-prag"></span></button>
+      <button data-mod="prag2"><span class="dot"></span>Pragmatics II <span class="ct" id="ct-prag2"></span></button>
+    </div>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="q" placeholder="Search topic…" autocomplete="off" />
+    </div>
+  </div>
+
+  <div class="statusbar">
+    <span class="key"><i style="background:var(--st-ready)"></i>Ready</span>
+    <span class="key"><i style="background:var(--st-prog)"></i>In progress</span>
+    <span class="key"><i style="background:var(--st-soon)"></i>Upcoming</span>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <span><strong>LIU11011 / LI7869</strong> Semantics I · <strong>LIU33008</strong> Semantics II · <strong>LIU44010</strong> Semantics III · <strong>LIU22012 / LI7862</strong> Pragmatics I · <strong>LIU44008</strong> Pragmatics II</span>
+    <span class="mono">decks · readings · handouts · homework</span>
+    <span style="margin-left:auto">Catalogue: <span class="mono">shared/week-meta.js</span> · <span class="mono">shared/sem2-meta.js</span> · <span class="mono">shared/sem3-meta.js</span> · <span class="mono">shared/prag-meta.js</span> · <span class="mono">shared/prag2-meta.js</span></span>
+  </footer>
+
 </div>
 
-<script src="shared/decks.js"></script>
+<!-- glyphs -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none"><defs>
+  <symbol id="i-deck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-handout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-hw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 5v15h16V9M4 5 9 .5"/><path d="M9 12h7M9 16h7"/><path d="M19 3l2 2-5 5-2.5.5.5-2.5z"/></symbol>
+  <symbol id="i-read" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.5 4 4.7v13C8 17.5 10.5 18 12 19.5M12 6.5C13.5 5 16 4.5 20 4.7v13C16 17.5 13.5 18 12 19.5M12 6.5v13"/></symbol>
+</defs></svg>
+
 <script>
-(function () {
-  var decks = (window.DECKS || []).slice().sort(function (a, b) {
-    return b.year - a.year || (b.date < a.date ? -1 : b.date > a.date ? 1 : 0);
+/* ============================================================
+   DATA — mirrors shared/week-meta.js (LI7869) and
+   shared/prag-meta.js (LI7862). Edit here to add/restatus weeks.
+   art state per artifact: 'ready' (built) · 'draft' (scaffold) · 'none' (no file)
+   ============================================================ */
+const WEEKS = [
+  // ── Semantics · LI7869 ──
+  { m:'sem', no:1,  sec:'Foundations',       title:'What is Meaning?',            deck:'ready', handout:'ready', ex:'draft' },
+  { m:'sem', no:2,  sec:'Logic & Sets',      title:'Sentences and Connectives',   deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem', no:3,  sec:'Logic & Sets',      title:'Predicates and Set Theory',   deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:4,  sec:'Nouns & Plurality', title:'Stuff and Things',            deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:5,  sec:'Quantification',    title:'Quantifiers and Scope',       deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:6,  sec:'Quantification',    title:'Generalised Quantifiers',     deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:7,  sec:'Reading Week',      title:'Reading Week',                reading:true },
+  { m:'sem', no:8,  sec:'Events & Roles',    title:'Verbs and Events',            deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:9,  sec:'Events & Roles',    title:'Thematic Roles and Argument Selection',     deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:10, sec:'Time & Aspect',     title:'Aktionsart and Time',         deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:11, sec:'Time & Aspect',     title:'Tense and Aspect',            deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'sem', no:12, sec:'Modality',          title:'Necessity and Possibility',   deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  // ── Semantics II · LIU33008 ──
+  { m:'sem2', no:1,  sec:'Foundations',           title:'Recap & the Intensional Turn',         fig:'Frege · Carnap · Montague',   deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:2,  sec:'Polarity',              title:'Negation',                             fig:'Klima · Ladusaw · Horn',      deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:3,  sec:'Modality',              title:'Worlds, Intensions & Modal Logic',     fig:'Kripke · von Wright',         deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:4,  sec:'Modality',              title:'The Kratzer System',                   fig:'Kratzer',                     deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:5,  sec:'Attitudes & Embedding', title:'Attitude Reports',                     fig:'Frege · Hintikka · Quine',    deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:6,  sec:'Attitudes & Embedding', title:'Factivity, Selection & Neg-Raising',   fig:'Kiparsky² · Karttunen',       deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:7,  sec:'Reading Week',          title:'Reading Week',                         reading:true },
+  { m:'sem2', no:8,  sec:'Conditionals',          title:'Indicatives & the Restrictor Analysis',fig:'Kratzer · Lewis · Stalnaker', deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:9,  sec:'Conditionals',          title:'Counterfactuals & Similarity',         fig:'Stalnaker · Lewis · Iatridou',deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:10, sec:'Time & Aspect',         title:'Aspect & the Perfect',                 fig:'Klein · Dowty · Vendler',     deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:11, sec:'Evidentiality',         title:'Evidentiality',                        fig:'Aikhenvald · Faller · Matthewson', deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:12, sec:'Interactions',          title:'Modals & Tense',                       fig:'Condoravdi · Hacquard · Bhatt',deck:'none', handout:'none', ex:'none', rd:'ready' },
+  // ── Semantics III · LIU44010 ──
+  { m:'sem3', no:1,  sec:'Intensionality',       title:'Sense, Reference and Opacity',   fig:'Frege · Russell · Carnap',          deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:2,  sec:'Modality & Attitudes', title:'Frames and Accessibility',       fig:'Kripke',                            deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:3,  sec:'Modality & Attitudes', title:'Quantifying over Alternatives',  fig:'Hintikka · Kratzer',                deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:4,  sec:'Objects of Attitude',  title:'De Re, De Dicto, De Se',         fig:'Lewis · Percus & Sauerland',        deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:5,  sec:'Objects of Attitude',  title:'The Granularity Problem',        fig:'Cresswell & von Stechow · Moltmann',deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:6,  sec:'Decomposition',        title:'Decomposing Attitude Verbs',     fig:'Kratzer · Moulton · Davidson',      deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:7,  sec:'Reading Week',         title:'Reading Week',                   reading:true },
+  { m:'sem3', no:8,  sec:'Factivity',            title:'Factivity',                      fig:'Kiparsky & Kiparsky · Karttunen',   deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:9,  sec:'Presentations',        title:'Student Presentations',          present:true },
+  { m:'sem3', no:10, sec:'Presentations',        title:'Student Presentations',          present:true },
+  { m:'sem3', no:11, sec:'Presentations',        title:'Student Presentations',          present:true },
+  { m:'sem3', no:12, sec:'Presentations',        title:'Student Presentations',          present:true },
+  // ── Pragmatics · LI7862 ──
+  { m:'prag', no:1,  sec:'Foundations',                    title:'Pragmatic Meaning',          fig:'Logical Positivism · Wittgenstein', deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:2,  sec:'Speech Acts',                    title:'Speech Acts',                fig:'Austin · Searle',                   deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
+  { m:'prag', no:3,  sec:'Implicature',                    title:'Implicature',                fig:'Grice',                             deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:4,  sec:'Presupposition & Common Ground', title:'Presupposition',             fig:'Russell · Frege · Strawson',        deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:5,  sec:'Presupposition & Common Ground', title:'Common Ground & Projection', fig:'Stalnaker · Heim',                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:6,  sec:'Information',                    title:'Information',                fig:'Shannon · Huffman · Zipf · Hamming',deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:7,  sec:'Reading Week',                   title:'Reading Week',               reading:true },
+  { m:'prag', no:8,  sec:'Politeness',                     title:'Politeness',                 fig:'Brown · Levinson',                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:9,  sec:'Gricean & Probabilistic',        title:'Neo-Gricean Pragmatics',     fig:'Horn · Levinson',                   deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:10, sec:'Gricean & Probabilistic',        title:'Relevance Theory',           fig:'Sperber · Wilson',                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:11, sec:'Gricean & Probabilistic',        title:'Rational Speech Acts (RSA)', fig:'Bayes · Lewis · Franke · Goodman',  deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:12, sec:'Grammar',                        title:'Grammaticalism',             fig:'',                                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  // ── Pragmatics II · LIU44008 ──
+  { m:'prag2', no:1,  sec:'Introduction',      title:'Three Roads to Meaning',  fig:'Grice · Sperber & Wilson',          deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:2,  sec:'Inference',         title:'Intention and Relevance', fig:'Grice · Sperber & Wilson · Clark',  deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:3,  sec:'Inference',         title:'Implicature and Accommodation', fig:'Geurts · Sauerland · Stalnaker', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:4,  sec:'Grammar',           title:'Meaning in the Grammar',  fig:'Chierchia · Potts · Levinson',      deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:5,  sec:'Grammar',           title:'Exhaustification and Projection', fig:'Chierchia, Fox & Spector · Heim', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:6,  sec:'Information & Probability', title:'Information and Surprisal', fig:'Shannon · Bender & Koller · Mahowald', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:7,  sec:'Reading Week',      title:'Reading Week',            reading:true },
+  { m:'prag2', no:8,  sec:'Information & Probability', title:'Probability and the Rational Speaker', fig:'Frank & Goodman · Bott & Noveck · Hu et al.', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:9,  sec:'Presentations',     title:'Student Presentations',   present:true },
+  { m:'prag2', no:10, sec:'Presentations',     title:'Student Presentations',   present:true },
+  { m:'prag2', no:11, sec:'Presentations',     title:'Student Presentations',   present:true },
+  { m:'prag2', no:12, sec:'Presentations',     title:'Student Presentations',   present:true },
+];
+
+const DIR = { sem:'weeks-semantics1', sem2:'weeks-semantics2', sem3:'weeks-semantics3', prag:'weeks-pragmatics', prag2:'weeks-pragmatics2' };
+
+/* Module identities. Describing Meaning & Linguistic Pragmatics are dual-coded:
+   the same weeks are taught under an undergrad code (default) and an MPhil code.
+   The weeks are SHARED (one set of files); only the identity label + the distinct
+   overview/assessment docs change. Weightings from the 2025-26 handbooks; docs are
+   'not created' placeholders. index 0 = default identity (undergrad). */
+const IDENTITIES = {
+  sem: [
+    { key:'liu11011', code:'LIU11011', name:'Semantics I',       term:'Semester 2 · Hilary', coord:'Dr Thomas Stephen',
+      assessments:[ {no:1,title:'Data-analysis assignment',w:30}, {no:2,title:'Written assignment',w:70} ] },
+    { key:'li7869',   code:'LI7869',   name:'Describing Meaning', term:'Semester 2 · Hilary', coord:'Dr Thomas Stephen',
+      assessments:[ {no:1,title:'Exercises',w:40}, {no:2,title:'Essay · 3,000 words',w:60} ] },
+  ],
+  sem2: [
+    { key:'liu33008', code:'LIU33008', name:'Semantics II',      term:'Semester 1 · Michaelmas', coord:'Dr Thomas Stephen',
+      assessments:[ {no:1,title:'Assessment 1',w:10}, {no:2,title:'Assessment 2',w:30}, {no:3,title:'Assessment 3',w:60} ] },
+  ],
+  sem3: [
+    { key:'liu44010', code:'LIU44010', name:'Semantics III',     term:'Semester 2 · Hilary', coord:'Dr Thomas Stephen',
+      assessments:[ {no:1,title:'Participation & discussion-leading',w:30}, {no:2,title:'Research paper',w:70} ] },
+  ],
+  prag: [
+    { key:'liu22012', code:'LIU22012', name:'Pragmatics I',          term:'Semester 2 · Hilary', coord:'Dr Conor Pyle',
+      assessments:[ {no:1,title:'Assessment 1',w:20}, {no:2,title:'Assessment 2',w:20}, {no:3,title:'Assessment 3',w:60} ] },
+    { key:'li7862',   code:'LI7862',   name:'Linguistic Pragmatics', term:'Semester 1 · Michaelmas', coord:'Dr Thomas Stephen',
+      assessments:[ {no:1,title:'Assignment · 3,500–4,000 words',w:100} ] },
+  ],
+  prag2: [
+    { key:'liu44008', code:'LIU44008', name:'Pragmatics II', term:'Semester 1 · Michaelmas', coord:'Dr Thomas Stephen',
+      assessments:[ {no:1,title:'Presentation',w:40}, {no:2,title:'Essay',w:60} ] },
+  ],
+};
+const ID_STORE = 'tcd-ws-identity';
+let identityState = {};
+try { identityState = JSON.parse(localStorage.getItem(ID_STORE)) || {}; } catch(e) { identityState = {}; }
+function activeIdx(g){ const i = identityState[g]; return (typeof i === 'number' && i < IDENTITIES[g].length) ? i : 0; }
+function activeId(g){ return IDENTITIES[g][activeIdx(g)]; }
+function saveIdentity(){ try { localStorage.setItem(ID_STORE, JSON.stringify(identityState)); } catch(e) {} }
+// Readings exist for every teaching week (seeded with canonical sources).
+WEEKS.forEach(w => { if (!w.reading && !('rd' in w)) w.rd = 'ready'; });
+const pad = n => String(n).padStart(2,'0');
+
+function overall(w){
+  if (w.deck==='ready' && w.handout==='ready') return {k:'ready', t:'Ready'};
+  if (w.deck==='none' && w.handout==='none') return {k:'soon', t:'Upcoming'};
+  return {k:'prog', t:'In progress'};
+}
+
+function linkRow(w, kind, file, label, icon){
+  const state = w[kind];
+  const href = DIR[w.m] + '/week-' + pad(w.no) + '/' + file;
+  if (state === 'none') {
+    return `<div class="lk disabled"><span class="ico"><svg viewBox="0 0 24 24"><use href="#${icon}"/></svg></span>`
+      + `<span class="lab">${label}</span><span class="badge">not created</span></div>`;
+  }
+  const badge = state==='ready' ? '<span class="badge ready">ready</span>' : '<span class="badge draft">draft</span>';
+  return `<a class="lk" href="${href}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#${icon}"/></svg></span>`
+    + `<span class="lab">${label}</span>${badge}<span class="open">open →</span></a>`;
+}
+
+function modToolsHTML(g, id){
+  const dir = DIR[g];
+  const as = id.assessments || [];
+  const sum = as.map(a=>a.w).join('/');
+  const noun = as.length===1 ? 'assessment' : 'assessments';
+  const chips = as.map(a =>
+    `<span class="achip" title="${a.title} — ${dir}/assessments/${id.key}-a${a.no}.html (not created)"><span class="an">A${a.no}</span><span class="aw">${a.w}%</span></span>`
+  ).join('');
+  return `<div class="mod-tools ${g}">
+    <div class="mt-ov" title="${dir}/overview-${id.key}.html (not created)"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Overview</span><span class="badge">not created</span></div>
+    <div class="mt-as">
+      <span class="mt-lab">Assessments</span>
+      <span class="mt-sum">${as.length} ${noun} · ${sum}</span>
+      <span class="mt-chips">${chips}</span>
+      <span class="badge">not created</span>
+    </div>
+  </div>`;
+}
+
+function modheadHTML(g, id){
+  const ids = IDENTITIES[g];
+  let toggle = '';
+  if (ids.length > 1){
+    const cur = activeIdx(g);
+    toggle = `<div class="mod-twin" role="group" aria-label="Module identity">` + ids.map((x,i)=>
+      `<button class="${i===cur?'on':''}" data-mod="${g}" data-id="${i}" title="${x.code}">${x.name}</button>`).join('') + `</div>`;
+  }
+  return `<div class="modhead ${g}"><span class="code">${id.code}</span><h2>${id.name}</h2>${toggle}<span class="ln"></span></div>`;
+}
+
+function cardHTML(w){
+  if (w.reading){
+    return `<article class="card ${w.m} card-reading" data-mod="${w.m}" data-status="soon" data-title="reading week break">
+      <div class="c-top"><span class="c-sec">${w.sec}</span><span class="c-status soon"><i></i>No class</span></div>
+      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Reading Week</div><div class="c-fig">No lecture, handout or homework — catch up on readings and coursework.</div></div></div>
+    </article>`;
+  }
+  if (w.present){
+    return `<article class="card ${w.m} card-reading" data-mod="${w.m}" data-status="soon" data-title="student presentations">
+      <div class="c-top"><span class="c-sec">${w.sec}</span><span class="c-status soon"><i></i>Student-led</span></div>
+      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Student Presentations</div><div class="c-fig">From the 10-topic pool — student-led, no lecture materials.</div></div></div>
+    </article>`;
+  }
+  const ov = overall(w);
+  return `<article class="card ${w.m}" data-mod="${w.m}" data-status="${ov.k}" data-title="${w.title.toLowerCase()} ${w.sec.toLowerCase()}">
+    <div class="c-top">
+      <span class="c-sec">${w.sec}</span>
+      <span class="c-status ${ov.k}"><i></i>${ov.t}</span>
+    </div>
+    <div class="c-title">
+      <div class="c-no"><small>Week</small>${w.no}</div>
+      <div class="c-namewrap"><div class="c-name">${w.title}</div>${w.fig ? `<div class="c-fig">${w.fig}</div>` : ''}</div>
+    </div>
+    <div class="c-links">
+      ${linkRow(w,'deck','deck.html','Presentation','i-deck')}
+      ${linkRow(w,'handout','handout.html','Handout','i-handout')}
+      ${linkRow(w,'rd','readings.html','Readings','i-read')}
+      ${linkRow(w,'ex','exercises.html','Homework','i-hw')}
+    </div>
+  </article>`;
+}
+
+const grid = document.getElementById('grid');
+let curMod = 'all', curQ = '', curTerm = 'all';
+
+// term is DERIVED from the active identity (twin modules differ: Pragmatics I is
+// Hilary, its MPhil twin Linguistic Pragmatics is Michaelmas).
+const ALL_MODS = ['sem','sem2','sem3','prag','prag2'];
+function termOf(g){ return /michaelmas/i.test(activeId(g).term) ? 'michaelmas' : 'hilary'; }
+
+function render(){
+  const list = WEEKS.filter(w =>
+    (curMod==='all' || w.m===curMod) &&
+    (curTerm==='all' || termOf(w.m)===curTerm) &&
+    (curQ==='' || (w.title+' '+w.sec).toLowerCase().includes(curQ))
+  );
+  let html = '';
+  if (!list.length) { grid.innerHTML = '<div class="empty">No weeks match the current filters.</div>'; updateCount(0); updateTermUI(); return; }
+  const base = curMod==='all' ? ALL_MODS : [curMod];
+  const groups = base.filter(g => curTerm==='all' || termOf(g)===curTerm);
+  for (const g of groups){
+    const ws = list.filter(w=>w.m===g);
+    if (!ws.length) continue;
+    const id = activeId(g);
+    html += modheadHTML(g, id);
+    html += modToolsHTML(g, id);
+    html += ws.map(cardHTML).join('');
+  }
+  grid.innerHTML = html;
+  updateCount(list.length);
+  updateTermUI();
+}
+function updateCount(n){ document.getElementById('count').textContent = n + (n===1?' week':' weeks') + ' shown'; }
+
+// term-dependent UI: live counts + highlight the modules taught in the active term
+function updateTermUI(){
+  document.getElementById('ct-michaelmas').textContent = WEEKS.filter(w=>termOf(w.m)==='michaelmas').length;
+  document.getElementById('ct-hilary').textContent = WEEKS.filter(w=>termOf(w.m)==='hilary').length;
+  document.querySelectorAll('#modseg button').forEach(b => {
+    const g = b.dataset.mod;
+    const match = curTerm!=='all' && g!=='all' && termOf(g)===curTerm;
+    const miss  = curTerm!=='all' && g!=='all' && termOf(g)!==curTerm;
+    b.classList.toggle('rel', match);
+    b.classList.toggle('dim', miss);
   });
-  var byYear = {};
-  decks.forEach(function (d) { (byYear[d.year] = byYear[d.year] || []).push(d); });
-  var years = Object.keys(byYear).sort(function (a, b) { return b - a; });
-  var out = years.map(function (y) {
-    var rows = byYear[y].map(function (d) {
-      return '<a class="deck" href="' + d.year + "/" + d.slug + '/">' +
-        '<span class="t">' + d.title + "</span>" +
-        '<span class="v">' + (d.venue || "") + "</span>" +
-        '<span class="d">' + (d.date || "") + "</span>" +
-        '<span class="chip ' + d.status + '">' + d.status + "</span></a>";
-    }).join("");
-    return '<section class="year"><div class="y">' + y + "</div>" + rows + "</section>";
-  }).join("");
-  document.getElementById("list").innerHTML = out || '<div class="empty">No decks yet.</div>';
-})();
+}
+
+// counts in segmented control
+document.getElementById('ct-all').textContent  = WEEKS.length;
+document.getElementById('ct-sem').textContent  = WEEKS.filter(w=>w.m==='sem').length;
+document.getElementById('ct-sem2').textContent = WEEKS.filter(w=>w.m==='sem2').length;
+document.getElementById('ct-sem3').textContent = WEEKS.filter(w=>w.m==='sem3').length;
+document.getElementById('ct-prag').textContent = WEEKS.filter(w=>w.m==='prag').length;
+document.getElementById('ct-prag2').textContent = WEEKS.filter(w=>w.m==='prag2').length;
+
+document.getElementById('modseg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#modseg button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); curMod = b.dataset.mod;
+  // if this module isn't taught in the active term, fall back to all terms
+  if (curMod!=='all' && curTerm!=='all' && termOf(curMod)!==curTerm){
+    curTerm = 'all';
+    document.querySelectorAll('#termseg button').forEach(x=>x.classList.toggle('on', x.dataset.term==='all'));
+  }
+  render();
+});
+document.getElementById('termseg').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#termseg button').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); curTerm = b.dataset.term;
+  // for twin modules, switch to the identity taught in the selected term
+  // (e.g. Hilary → Pragmatics I, Michaelmas → Linguistic Pragmatics)
+  if (curTerm!=='all'){
+    ALL_MODS.forEach(g => {
+      const ids = IDENTITIES[g];
+      if (ids.length < 2) return;
+      const idx = ids.findIndex(x => /michaelmas/i.test(x.term) ? curTerm==='michaelmas' : curTerm==='hilary');
+      if (idx >= 0 && idx !== activeIdx(g)){ identityState[g] = idx; }
+    });
+    saveIdentity();
+  }
+  // if the selected module isn't taught in this term, fall back to all modules
+  if (curMod!=='all' && curTerm!=='all' && termOf(curMod)!==curTerm){
+    curMod = 'all';
+    document.querySelectorAll('#modseg button').forEach(x=>x.classList.toggle('on', x.dataset.mod==='all'));
+  }
+  render();
+});
+document.getElementById('q').addEventListener('input', e => { curQ = e.target.value.trim().toLowerCase(); render(); });
+
+// twin-identity toggle (delegated — grid is rebuilt on each render)
+grid.addEventListener('click', e => {
+  const b = e.target.closest('.mod-twin button'); if (!b) return;
+  identityState[b.dataset.mod] = +b.dataset.id;
+  saveIdentity(); render();
+});
+
+render();
 </script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#ece8e0"/>
+    <rect x="18" y="22" width="28" height="22" rx="2.5" fill="#fff" stroke="#0569b9" stroke-width="2"/>
+    <rect x="54" y="22" width="28" height="22" rx="2.5" fill="#fff" stroke="#8a2f4a" stroke-width="2"/>
+    <rect x="18" y="54" width="28" height="22" rx="2.5" fill="#fff" stroke="#0569b9" stroke-width="2"/>
+    <rect x="54" y="54" width="28" height="22" rx="2.5" fill="#fff" stroke="#8a2f4a" stroke-width="2"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#07284a" text-anchor="middle">WORKSPACE</text>
+  </svg>
+</template>
 </body>
 </html>

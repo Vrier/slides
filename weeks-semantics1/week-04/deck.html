@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 4 — Stuff & Things · Lecture Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .b-main > .lens-progress { margin-top: auto; }
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  /* lattice figure */
+  .lat-fig{display:flex;gap:64px;align-items:center;justify-content:center;margin-top:18px}
+  .lat-svg{flex:0 0 auto}
+  .lat-node{font-family:var(--mono);font-size:25px;fill:var(--tcd-ink)}
+  .lat-node.atom{font-weight:600}
+  .lat-cap{font-size:var(--type-small);color:var(--tcd-grey-100);max-width:520px}
+  .lat-cap b{color:var(--tcd-ink)}
+</style>
+</head>
+<body class="pal-a" data-week="4">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title">
+  <div class="a-watermark">⊔</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7869 · Formal Semantics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 4</h1>
+      <div class="a-course-sub">Stuff &amp; Things — Count, Plural &amp; Mass</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 2 · 2026</div></div>
+  </div>
+</section>
+
+<!-- 02 · Roadmap -->
+<section class="slide" data-label="Roadmap">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Today's four lenses</div>
+      <h2 class="b-h">Stuff &amp; Things</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div>
+          <div class="track"></div>
+          <div class="q">Count, mass &amp; plural — three ways to individuate</div>
+          <div class="d">Numerals, <em>much/little</em>, pluralisation and agreement carve nouns into systematic classes.</div>
+        </div>
+        <div class="stop lens-historical">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div>
+          <div class="track"></div>
+          <div class="q">Link and the mereological turn</div>
+          <div class="d">Godehard Link (1983) rebuilt noun denotations as lattices, reviving part–whole logic.</div>
+        </div>
+        <div class="stop lens-formal">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div>
+          <div class="track"></div>
+          <div class="q">Lattices, sums &amp; atoms</div>
+          <div class="d">Partial orders, join/meet, part-of (+), cumulativity, and the atom / no-atom split.</div>
+        </div>
+        <div class="stop lens-typological">
+          <div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div>
+          <div class="track"></div>
+          <div class="q">Where unithood is realised</div>
+          <div class="d">Classifiers, numeral-plus-singular, and measure words — one semantics, many morphologies.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ EMPIRICAL ════════ -->
+<section class="slide" data-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LI7869 · Week 4</div><h2>Three ways of individuating</h2><div class="ask">Count, mass and plural nouns differ systematically in how they combine with numerals, quantity words, and agreement.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="empirical" data-label="Empirical — Count vs mass">
+  <div class="b-slide pal-a lens-empirical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical<span class="ct">LENS 01 / 04</span></div>
+      <h2 class="b-h">Count vs mass: the diagnostics</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Count nouns</span></div>
+          <div class="c-box-body"><p>Combine with numerals — <em>three rings</em>.</p><p>Take <em>a/an</em> — <em>a ring</em>.</p><p>Pluralise — <em>ring / rings</em>.</p></div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Mass nouns</span></div>
+          <div class="c-box-body"><p>Take <em>much / little</em> — <em>much water, a little wine</em>.</p><p>Resist bare numerals — <em>*three water</em> (need a measure).</p><p>Resist count plural — <em>water / *waters</em>, unless shifted.</p></div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Key idea</span></div>
+          <div class="c-box-body">The contrast is <strong>grammatical</strong>, not about the world: <em>furniture</em> is mass, <em>chairs</em> is count, though both describe discrete objects.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="empirical"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="empirical" data-label="Empirical — Plurals pattern with mass">
+  <div class="b-slide pal-a lens-empirical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical<span class="ct">LENS 01 / 04</span></div>
+      <h2 class="b-h">Plurals look two ways at once</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Built from atoms</span></div>
+          <div class="c-box-body"><em>horses</em> is built from the count atom <em>horse</em> — it inherits bounded units.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">…yet pattern with mass</span></div>
+          <div class="c-box-body"><em>a lot of horses / a lot of water</em> · <em>more horses / more water</em> · <em>enough horses / enough water</em>. The same quantity words span plural and mass.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Agreement</span></div>
+          <div class="c-box-body">Collective nouns split dialects: American English prefers <em>the team has won</em>; many Irish/British/Canadian speakers also allow <em>the team have won</em>.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">The target</span></div>
+          <div class="c-box-body">We want one semantics that captures <strong>both</strong> the atomhood of plurals and their mass-like cumulativity.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="empirical"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="empirical" data-label="Empirical — Why sets aren't enough">
+  <div class="b-slide pal-a lens-empirical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical<span class="ct">LENS 01 / 04</span></div>
+      <h2 class="b-h">Why predicates-as-sets isn't enough</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">What we had</span></div>
+          <div class="c-box-body">A flat membership claim: \(a \in \sem{\text{dog}}\). Individuals are unanalysed points with no internal parts.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">What mass &amp; plurality need</span></div>
+          <div class="c-box-body"><p>Parts and sums — how entities combine and divide.</p><p>Bounded atoms vs no privileged atoms.</p><p>Structure-sensitive operations: <em>combine</em> (+) and <em>split</em>.</p></div>
+        </div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:26px">→ The domain of individuals needs internal <strong>part–whole structure</strong>. That is the formal job of this week.</p>
+      <div class="lens-progress" data-lens="empirical"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ HISTORICAL ════════ -->
+<section class="slide" data-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LI7869 · Week 4</div><h2>Link and the mereological turn</h2><div class="ask">How part–whole logic, dormant since Leśniewski and Quine, became the standard semantics of plurals and mass terms.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="historical" data-label="Historical — From mereology to Link">
+  <div class="b-slide pal-a lens-historical">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical<span class="ct">LENS 02 / 04</span></div>
+      <h2 class="b-h">A part–whole tradition</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Leśniewski &amp; Goodman</span></div>
+          <div class="c-box-body">Mereology — the formal logic of parts and wholes (Leśniewski, 1916; Leonard &amp; Goodman's <em>Calculus of Individuals</em>, 1940) — gave a rigorous alternative to set membership.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Quine (1960)</span></div>
+          <div class="c-box-body"><em>Cumulative reference</em>: any sum of water is water. Quine isolated the property that distinguishes mass terms — and that sets, on their own, cannot express.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Link (1983)</span></div>
+          <div class="c-box-body">Godehard Link unified count plurals and mass nouns in a single <strong>lattice-structured domain</strong>: atoms for count, atomless join-semilattices for mass. The framework we use today.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="historical"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FORMAL ════════ -->
+<section class="slide" data-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · LI7869 · Week 4</div><h2>Lattices, sums &amp; atoms</h2><div class="ask">Partial orders give us part-of; join gives us sums; cumulativity and atoms separate mass from count.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Orders to lattices">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">From an order to a lattice</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Partial order</span></div>
+          <div class="c-box-body">A relation \(\le\) that is <em>reflexive</em> (\(x \le x\)), <em>antisymmetric</em> (\(x\le y \wedge y\le x \Rightarrow x=y\)), and <em>transitive</em> (\(x\le y \wedge y\le z \Rightarrow x\le z\)).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Lattice</span></div>
+          <div class="c-box-body">A poset in which every pair has a <em>join</em> \(x \sqcup y\) (least upper bound) and a <em>meet</em> \(x \sqcap y\) (greatest lower bound). Intuition: \(\sqcup\) is like union, \(\sqcap\) like intersection.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">For nouns</span></div>
+          <div class="c-box-body">Read \(\le\) as <strong>part-of</strong> and write the join as a <strong>sum</strong> \(+\). Noun denotations become regions of a part-of lattice.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Semilattice axioms">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Sum is a join-semilattice</h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">Associative</div><div class="b-step-math">\((x + y) + z = x + (y + z)\)</div></div>
+        <div class="b-step"><div class="b-step-lab">Commutative</div><div class="b-step-math">\(x + y = y + x\)</div></div>
+        <div class="b-step"><div class="b-step-lab">Idempotent</div><div class="b-step-math">\(x + x = x\)</div></div>
+        <div class="b-step step-future"><div class="b-step-lab">Induces the part-of order</div><div class="b-step-math">\(x \le y \;\Leftrightarrow\; x + y = y\)</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:24px">These three laws are exactly what we need: order and sum are two views of one structure.</p>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — horse vs horses">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">A part-of lattice: three horses</h2>
+      <div class="lat-fig">
+        <svg class="lat-svg" width="560" height="430" viewBox="0 0 560 430" fill="none">
+          <line x1="280" y1="70" x2="120" y2="200" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="280" y1="70" x2="280" y2="200" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="280" y1="70" x2="440" y2="200" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="120" y1="200" x2="120" y2="340" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="120" y1="200" x2="280" y2="340" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="280" y1="200" x2="120" y2="340" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="280" y1="200" x2="440" y2="340" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="440" y1="200" x2="280" y2="340" stroke="#9aa6b2" stroke-width="2"/>
+          <line x1="440" y1="200" x2="440" y2="340" stroke="#9aa6b2" stroke-width="2"/>
+          <g class="lat-node"><text x="280" y="60" text-anchor="middle">A+B+C</text></g>
+          <g class="lat-node"><text x="120" y="200" text-anchor="middle">A+B</text><text x="280" y="200" text-anchor="middle">A+C</text><text x="440" y="200" text-anchor="middle">B+C</text></g>
+          <g class="lat-node atom"><text x="120" y="362" text-anchor="middle">A</text><text x="280" y="362" text-anchor="middle">B</text><text x="440" y="362" text-anchor="middle">C</text></g>
+        </svg>
+        <div class="lat-cap">
+          <p>World \(w_3\) with exactly three horses \(A,B,C\):</p>
+          <p>\(\sem{\text{horse}}_{w_3} = \{A,\,B,\,C\}\) &nbsp;— the <b>atoms</b>.</p>
+          <p>\(\sem{\text{horses}}_{w_3} = \{A{+}B,\ A{+}C,\ B{+}C,\ A{+}B{+}C\}\) &nbsp;— the <b>proper sums</b>.</p>
+          <p style="margin-top:14px"><b>the horses</b> picks the maximal sum \(A{+}B{+}C\).</p>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Cumulativity & atoms">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Cumulativity and bounded atoms</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Cumulative</span></div>
+          <div class="c-box-body">Mass and plural predicates are closed under sum: \(\text{water}(x) \wedge \text{water}(y) \Rightarrow \text{water}(x{+}y)\); likewise <em>horses</em>. Singular count is <strong>not</strong>: \(\text{horse}(x)\wedge\text{horse}(y) \not\Rightarrow \text{horse}(x{+}y)\).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Splitting</span></div>
+          <div class="c-box-body">Split a plural and you eventually hit an <em>atom</em> — a bounded "one horse". Split mass (<em>water</em>) and every part is still water: no privileged atom.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">The split</span></div>
+          <div class="c-box-body">Count nouns come with <strong>bounded atoms</strong>; mass nouns are <strong>atomless</strong> (downward-closed). One lattice domain, two regimes.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="formal" data-label="Formal — Grinder & Packager">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Two productive shifts</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Universal Grinder</span></div>
+          <div class="c-box-body">Count → mass. Put any object through the grinder: <em>There was dog all over the road.</em> The atoms are erased; the predicate becomes downward-closed.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Universal Packager</span></div>
+          <div class="c-box-body">Mass → count. Impose units: <em>two waters, three coffees</em> = two/three contextually standard portions. Atoms are supplied by the context.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Material vs artefact</span></div>
+          <div class="c-box-body">A sum-preserving map \(\mathit{mat}\) sends a <em>ring</em> to its <em>gold</em>, a <em>statue</em> to its <em>clay</em>: \(\mathit{mat}(x{+}y)=\mathit{mat}(x)+\mathit{mat}(y)\). Same matter, different counting.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TYPOLOGICAL ════════ -->
+<section class="slide" data-label="§ Typological">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
+    <div class="r"><div class="lab">Typological</div><div class="ct">LENS 04 / 04 · LI7869 · Week 4</div><h2>Where unithood is realised</h2><div class="ask">Numerals always need units — but languages supply them in strikingly different places.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+<section class="slide" data-lens="typological" data-label="Typological — Classifiers & numerals">
+  <div class="b-slide pal-a lens-typological">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological<span class="ct">LENS 04 / 04</span></div>
+      <h2 class="b-h">Three places to put the unit</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">English</span></div>
+          <div class="c-box-body">Unithood in the lexicon (count vs mass), in plural morphology, and in measure phrases — <em>three glasses of water</em>.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Mandarin — classifier</span></div>
+          <div class="c-box-body"><span style="font-family:var(--mono)">sān&nbsp;zhī&nbsp;gǒu</span> · 'three&nbsp;<span style="font-variant:small-caps">cl</span>&nbsp;dog' = 'three dogs'. The noun is number-neutral; the classifier supplies the counting unit.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Turkish — numeral + singular</span></div>
+          <div class="c-box-body"><span style="font-family:var(--mono)">üç&nbsp;kitap</span> · 'three book' = 'three books'. The unit is present, just not spelled out as plural morphology.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="typological"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-lens="typological" data-label="Typological — Measure vs classifier, modality">
+  <div class="b-slide pal-a lens-typological">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological<span class="ct">LENS 04 / 04</span></div>
+      <h2 class="b-h">One semantics, many morphologies</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Classifier vs measure</span></div>
+          <div class="c-box-body">A <em>classifier</em> counts discrete units already individuated by the noun; a <em>measure word</em> (cup, kilo, litre) counts amounts. The split tracks count vs mass.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Beyond speech</span></div>
+          <div class="c-box-body">The mass/count contrast is not tied to the speech modality: sign languages encode analogous unithood and individuation distinctions with classifier-like resources.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Moral</span></div>
+          <div class="c-box-body">The semantic architecture — atoms, sums, parts, units — stays stable; only <strong>where</strong> and <strong>how</strong> it is realised varies.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="typological"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Summary -->
+<section class="slide" data-label="Summary">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Week 4 — wrap-up</div>
+      <h2 class="b-h">Four lenses, one picture</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--lens-emp)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-emp)">Empirical</span></div><div class="c-box-body">Count, mass and plural differ in numerals, quantity words and agreement; plurals straddle the count/mass divide.</div></div>
+        <div class="c-box" style="--acc:var(--lens-his)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-his)">Historical</span></div><div class="c-box-body">Mereology (Leśniewski, Quine's cumulative reference) → Link's 1983 lattice semantics of plurals and mass.</div></div>
+        <div class="c-box" style="--acc:var(--lens-for)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-for)">Formal</span></div><div class="c-box-body">A part-of lattice with sum (+); cumulativity and the atom / no-atom split separate mass from count.</div></div>
+        <div class="c-box" style="--acc:var(--lens-typ)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-typ)">Typological</span></div><div class="c-box-body">Classifiers, numeral-plus-singular and measure words realise the same unithood semantics differently.</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next:</strong> Determiners and quantifiers — <em>every, some, no, most</em> — and the generalised-quantifier architecture.</p>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/week-meta.js"></script>
+<script src="../../shared/deck-rail.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#07284a"/>
+    <circle cx="50" cy="26" r="4" fill="#82b4dc"/>
+    <circle cx="30" cy="50" r="4" fill="#82b4dc"/><circle cx="50" cy="50" r="4" fill="#82b4dc"/><circle cx="70" cy="50" r="4" fill="#82b4dc"/>
+    <circle cx="30" cy="74" r="4" fill="#c1daee"/><circle cx="50" cy="74" r="4" fill="#c1daee"/><circle cx="70" cy="74" r="4" fill="#c1daee"/>
+    <g stroke="#3f6a96" stroke-width="1.5"><line x1="50" y1="26" x2="30" y2="50"/><line x1="50" y1="26" x2="50" y2="50"/><line x1="50" y1="26" x2="70" y2="50"/><line x1="30" y1="50" x2="30" y2="74"/><line x1="30" y1="50" x2="50" y2="74"/><line x1="50" y1="50" x2="30" y2="74"/><line x1="50" y1="50" x2="70" y2="74"/><line x1="70" y1="50" x2="50" y2="74"/><line x1="70" y1="50" x2="70" y2="74"/></g>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#82b4dc" text-anchor="middle">LI7869 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>

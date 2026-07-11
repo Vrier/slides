@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU44008 · Information-rate attractor — Slide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/tokens.css" />
+<link rel="stylesheet" href="../shared/dir-a.css" />
+<link rel="stylesheet" href="../shared/dir-b.css" />
+<link rel="stylesheet" href="../shared/dir-c.css" />
+<link rel="stylesheet" href="../shared/deck-slides.css" />
+<link rel="stylesheet" href="../shared/density-rate-chart.css" />
+<link rel="stylesheet" href="../shared/theme-rust.css" />
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .drc-slide .b-h { margin-bottom: 8px; }
+  .drc-take {
+    font-family: var(--serif); font-size: 29px; line-height: 1.32;
+    color: var(--tcd-grey-100); max-width: 1180px; margin: 0;
+  }
+  .drc-wrap { width: 940px; margin: 12px auto 0; }
+  .drc-src {
+    position: absolute; right: 96px; bottom: 38px;
+    font-family: var(--sans); font-size: 19px; color: var(--tcd-grey-75);
+    letter-spacing: 0.01em;
+  }
+  .drc-src b { font-weight: 600; color: var(--tcd-grey-100); }
+</style>
+</head>
+<body class="pal-a" data-week="6">
+
+<deck-stage width="1920" height="1080">
+
+<section class="slide" data-label="Information-rate attractor"
+  data-speaker-notes="The hook from Shannon: a channel has a capacity, and an efficient code pushes the average rate of information up against it. Read the plot as exactly that — 17 languages, wildly different phonologies, all settling near ~39 bits/s. Connect to Uniform Information Density (Levy & Jaeger 2007; Aylett & Turk 2004): within an utterance, speakers smooth surprisal toward a roughly constant rate (lengthening / reducing, choosing optional words) so as not to over- or under-shoot the channel. The slide's claim is that the SAME efficiency logic shows up at two scales. STRESS THE DISTINCTION: this attractor is a BETWEEN-language regularity (each dot is a whole language); UID is a WITHIN-utterance regularity (moment-to-moment). They are analogous, not identical. Tie to rational / efficiency-based pragmatics (RSA): speakers as approximately optimal encoders. CAVEAT: 'density' here is a within-word syllable-bigram entropy — it deliberately excludes morphosyntactic and discourse information, so '40 bits/s' is the phonological encoding rate, not total communicative throughput. Spreads: density ±15%, rate ±15%, but information rate only ±8% — the trade-off cancels most of the variance.">
+  <div class="b-slide pal-a drc-slide">
+    <div class="b-rail"></div><!-- filled by prag2-rail.js -->
+    <div class="b-main">
+      <div class="b-kick">Approach · Information &middot; Week 6</div>
+      <h2 class="b-h">An information-rate attractor (~39 bits/s)</h2>
+      <p class="drc-take">The cross-linguistic attractor mirrors within-language Uniform Information Density — speakers and languages both smooth toward channel capacity.</p>
+      <div class="drc-wrap"><div data-drc='{"callout":true,"statStrip":true}'></div></div>
+      <div class="drc-src"><b>Coupé et al. (2019)</b>, Science Advances.</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../shared/deck-stage.js"></script>
+<script src="../shared/prag2-meta.js"></script>
+<script src="../shared/prag2-rail.js"></script>
+<script src="../shared/density-rate-chart.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#5a1c0e"/>
+    <line x1="22" y1="78" x2="78" y2="30" stroke="#e8a23d" stroke-width="2"/>
+    <circle cx="32" cy="64" r="3" fill="#efcab9"/>
+    <circle cx="46" cy="56" r="3" fill="#efcab9"/>
+    <circle cx="58" cy="50" r="3" fill="#efcab9"/>
+    <circle cx="68" cy="40" r="3" fill="#efcab9"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#d99878" text-anchor="middle">INFO-RATE ATTRACTOR</text>
+  </svg>
+</template>
+</body>
+</html>

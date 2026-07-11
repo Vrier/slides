@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Figure · Mass vs count — atomicity &amp; divisive reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="./figure.css" />
+<style>
+  .mc-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; width:100%; height:100%; }
+  .mc-col { display:flex; flex-direction:column; min-height:0; }
+  .mc-top { display:flex; flex-direction:column; align-items:flex-start; gap:7px; margin-bottom:10px; flex:0 0 auto; }
+  .mc-name { font-family:var(--serif); font-style:italic; font-size:30px; font-weight:600; color:var(--tcd-ink); white-space:nowrap; line-height:1; }
+  .mc-tag  { font-family:var(--sans); font-size:15px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:4px 12px; border-radius:6px; white-space:nowrap; }
+  .mc-tag.count { color:var(--tcd-ink); background:var(--tcd-blue-10); border:1px solid var(--tcd-blue-25); }
+  .mc-tag.mass  { color:var(--c-ex); background:color-mix(in srgb,var(--c-ex) 12%,white); border:1px solid color-mix(in srgb,var(--c-ex) 30%,white); }
+  .mc-stage { flex:1 1 auto; border-radius:14px; border:1.5px solid var(--tcd-grey-25); overflow:hidden; display:flex; }
+  .mc-stage.water { border-color:color-mix(in srgb,var(--tcd-blue) 30%,white); }
+  .mc-cells { display:flex; gap:0; flex:1 1 auto; padding:0; }
+  .mc-cell { flex:1 1 0; position:relative; display:flex; align-items:center; justify-content:center;
+             transition:flex-basis .5s ease, background .4s ease; }
+  .mc-cell + .mc-cell { box-shadow:inset 2px 0 0 #fff; }
+  /* water */
+  .mc-cell.w { background:repeating-linear-gradient(135deg, var(--tcd-blue-50), var(--tcd-blue-50) 9px, var(--tcd-blue-25) 9px, var(--tcd-blue-25) 18px); }
+  .mc-cell.w .pl { font-family:var(--sans); font-weight:700; font-size:14px; letter-spacing:.06em; color:var(--tcd-ink); background:rgba(255,255,255,.82); padding:2px 8px; border-radius:5px; }
+  /* apple whole / split */
+  .mc-cell.a  { background:color-mix(in srgb,var(--c-exr) 70%,white); }
+  .mc-cell.a.split { background:repeating-linear-gradient(135deg,#cfcfcf,#cfcfcf 9px,#dedede 9px,#dedede 18px); }
+  .mc-cell .ic { font-family:var(--serif); font-style:italic; font-weight:600; font-size:26px; color:#fff; }
+  .mc-cell .x  { font-family:var(--sans); font-weight:800; font-size:16px; color:#fff; background:var(--tcd-grey-75); border-radius:5px; padding:2px 8px; }
+  .mc-foot { margin-top:14px; min-height:30px; }
+</style>
+</head>
+<body class="pal-a">
+<div class="fig lens-formal" id="fig">
+  <div class="fig-head">
+    <span class="fig-kick"><span class="dot"></span>Mass &amp; count</span>
+    <div class="fig-htext">
+      <h1 class="fig-title">Atoms, or all the way down?</h1>
+      <p class="fig-sub">The same cut, two outcomes</p>
+    </div>
+    <div class="fig-src">Quine 1960 · Link 1983<br>cumulative / divisive reference</div>
+  </div>
+
+  <div class="fig-stage">
+    <div class="mc-grid">
+      <div class="mc-col">
+        <div class="mc-top"><span class="mc-name">an apple</span><span class="mc-tag count">count · atomic</span></div>
+        <div class="mc-stage" id="appleStage"><div class="mc-cells" id="appleCells"></div></div>
+        <div class="mc-foot"><span class="fig-readout" id="appleOut">A whole apple. One object.</span></div>
+      </div>
+      <div class="mc-col">
+        <div class="mc-top"><span class="mc-name">water</span><span class="mc-tag mass">mass · divisive</span></div>
+        <div class="mc-stage water" id="waterStage"><div class="mc-cells" id="waterCells"></div></div>
+        <div class="mc-foot"><span class="fig-readout ok" id="waterOut">A body of water.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fig-cap">
+    A <b>count</b> noun has <b>atoms</b> — minimal parts that still fall under it. Cut <span class="sent">an apple</span> and the halves are no longer apples.
+    A <b>mass</b> noun is <b>divisive</b>: any part of <span class="sent">water</span> is still water, with no smallest unit.
+  </div>
+
+  <div class="fig-controls">
+    <button class="fig-btn" id="divide">Divide ↓</button>
+    <button class="fig-btn ghost" id="reset">Reset</button>
+    <span class="fig-readout" id="lvl" style="font-size:17px">cut depth: 0</span>
+  </div>
+</div>
+
+<script>
+let level = 0;
+const MAXW = 4;       // water keeps going (capped for display)
+const appleCells=document.getElementById('appleCells');
+const waterCells=document.getElementById('waterCells');
+const appleOut=document.getElementById('appleOut');
+const waterOut=document.getElementById('waterOut');
+const lvlOut=document.getElementById('lvl');
+
+function build(){
+  // water: 2^level cells, all water
+  const wN = Math.pow(2, Math.min(level, MAXW));
+  waterCells.innerHTML='';
+  for(let i=0;i<wN;i++){
+    const d=document.createElement('div'); d.className='mc-cell w';
+    if(wN<=4){ const s=document.createElement('span'); s.className='pl'; s.textContent='water ✓'; d.appendChild(s); }
+    waterCells.appendChild(d);
+  }
+  // apple: level 0 = 1 whole; level>=1 = 2 inert pieces (cutting an apple gives non-apples)
+  appleCells.innerHTML='';
+  const aN = level===0 ? 1 : 2;
+  for(let i=0;i<aN;i++){
+    const d=document.createElement('div'); d.className='mc-cell a'+(level>0?' split':'');
+    const s=document.createElement('span');
+    if(level===0){ s.className='ic'; s.textContent='an apple ✓'; }
+    else { s.className='x'; s.textContent='✗ not an apple'; }
+    d.appendChild(s); appleCells.appendChild(d);
+  }
+  // readouts
+  if(level===0){ appleOut.className='fig-readout'; appleOut.textContent='A whole apple. One object.'; }
+  else { appleOut.className='fig-readout bad'; appleOut.innerHTML='✗ atomic — the apple has <b>no proper part</b> that is an apple'; }
+
+  waterOut.className='fig-readout ok';
+  waterOut.innerHTML = level===0 ? 'A body of water.' :
+    '✓ divisive — every part of water is <b>still water</b>' + (level>=MAXW ? ' · … and on, with no atom' : '');
+  lvlOut.textContent='cut depth: '+level;
+  document.getElementById('divide').disabled = level>=MAXW+1;
+}
+document.getElementById('divide').addEventListener('click',()=>{ level++; build(); });
+document.getElementById('reset').addEventListener('click',()=>{ level=0; build(); });
+build();
+</script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+/* ============================================================
+   lens.css — the FOUR-LENS system for Describing Meaning
+   Empirical · Historical · Formal · Typological
+   Subtle, subordinate to TCD blue: label + accent only.
+   Two candidate palettes (.pal-a / .pal-b) are defined so the
+   exploration can show them side by side; the chosen one becomes
+   the default in the master templates.
+   ============================================================ */
+
+/* ---- Palette A — "Quiet scholarly": four desaturated hues ---- */
+.pal-a {
+  --lens-emp: oklch(0.50 0.065 168);   /* empirical   — sage/observation green */
+  --lens-his: oklch(0.50 0.068 64);    /* historical  — bronze/archive */
+  --lens-for: oklch(0.46 0.110 250);   /* formal      — deep Trinity blue */
+  --lens-typ: oklch(0.49 0.072 352);   /* typological — muted rose/plum */
+}
+
+/* ---- Palette B — "Tonal navy": one family, varied depth ---- */
+.pal-b {
+  --lens-emp: oklch(0.56 0.085 232);   /* steel blue */
+  --lens-his: oklch(0.50 0.045 248);   /* slate */
+  --lens-for: oklch(0.43 0.115 252);   /* deep navy (core) */
+  --lens-typ: oklch(0.48 0.085 286);   /* cool indigo */
+}
+
+/* per-lens active accent — set by the .lens-* class on a block */
+.lens-empirical   { --lens: var(--lens-emp); --lens-name: "Empirical"; }
+.lens-historical  { --lens: var(--lens-his); --lens-name: "Historical"; }
+.lens-formal      { --lens: var(--lens-for); --lens-name: "Formal"; }
+.lens-typological { --lens: var(--lens-typ); --lens-name: "Typological"; }
+
+/* ============================================================
+   LENS BADGE — the reusable label (kicker + glyph + counter)
+   ============================================================ */
+.lx-badge {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--sans);
+}
+.lx-badge .glyph {
+  width: 30px; height: 30px; flex: 0 0 30px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--lens); 
+}
+.lx-badge .glyph svg { width: 100%; height: 100%; }
+.lx-badge .txt { display: flex; flex-direction: column; gap: 3px; line-height: 1; }
+.lx-badge .lab {
+  font-size: var(--type-kicker); font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--lens);
+}
+.lx-badge .ct {
+  font-size: var(--type-micro); font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--tcd-grey-75);
+  font-variant-numeric: tabular-nums;
+}
+
+/* a thin accent rule that carries the lens colour */
+.lx-rule { height: 4px; border-radius: 3px; background: var(--lens); }
+
+/* ============================================================
+   FOUR-LENS STEPPER — shows which of the four we are inside
+   ============================================================ */
+.lx-stepper { display: flex; gap: 12px; }
+.lx-step {
+  flex: 1 1 0; display: flex; flex-direction: column; gap: 12px;
+  font-family: var(--sans);
+}
+.lx-step .bar { height: 6px; border-radius: 4px; background: var(--tcd-grey-25); }
+.lx-step .nm {
+  font-size: var(--type-micro); font-weight: 600; letter-spacing: 0.04em;
+  color: var(--tcd-grey-50);
+}
+.lx-step.done .bar { background: var(--tcd-grey-50); }
+.lx-step.done .nm  { color: var(--tcd-grey-75); }
+.lx-step.active .bar { background: var(--lens); box-shadow: 0 0 0 4px color-mix(in srgb, var(--lens) 16%, transparent); }
+.lx-step.active .nm  { color: var(--lens); font-weight: 700; }
+
+/* ============================================================
+   DIVIDER OPTION 1 — "Navy numeral" (evolves Direction A)
+   ============================================================ */
+.lxd1 {
+  position: absolute; inset: 0; background: var(--tcd-ink); color: #fff;
+  padding: 96px var(--pad-x) 80px; display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.lxd1 .ghost {
+  position: absolute; right: 60px; top: 50%; transform: translateY(-50%);
+  font-family: var(--serif); font-size: 620px; line-height: 0.8;
+  color: color-mix(in srgb, var(--lens) 30%, transparent);
+  opacity: 0.5; pointer-events: none; user-select: none;
+}
+.lxd1 .top { display: flex; align-items: center; justify-content: space-between; position: relative; }
+.lxd1 .top .ctx { font-family: var(--sans); font-size: var(--type-small); color: var(--tcd-blue-50); letter-spacing: 0.04em; }
+.lxd1 .mid { margin-top: auto; margin-bottom: auto; position: relative; }
+.lxd1 .lab {
+  font-family: var(--sans); font-size: var(--type-kicker); font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--lens) 60%, white);
+}
+.lxd1 .ct { font-family: var(--mono); color: var(--tcd-blue-50); margin-left: 14px; font-size: var(--type-micro); letter-spacing: 0.1em; }
+.lxd1 h2 {
+  font-family: var(--serif); font-size: 150px; font-weight: 600;
+  line-height: 0.96; letter-spacing: -0.02em; margin: 22px 0 0;
+}
+.lxd1 .ask {
+  font-family: var(--serif); font-style: italic; font-size: var(--type-subtitle);
+  color: var(--tcd-blue-25); margin-top: 30px; max-width: 1100px;
+}
+.lxd1 .hair { width: 150px; height: 5px; border-radius: 3px; background: var(--lens); margin-top: 40px; }
+.lxd1 .foot { position: relative; }
+.lxd1 .foot .lx-step .bar { background: rgba(255,255,255,0.16); }
+.lxd1 .foot .lx-step .nm { color: rgba(255,255,255,0.5); }
+.lxd1 .foot .lx-step.done .bar { background: rgba(255,255,255,0.4); }
+.lxd1 .foot .lx-step.done .nm { color: rgba(255,255,255,0.7); }
+.lxd1 .foot .lx-step.active .bar { background: color-mix(in srgb, var(--lens) 70%, white); box-shadow: none; }
+.lxd1 .foot .lx-step.active .nm { color: #fff; }
+
+/* ============================================================
+   DIVIDER OPTION 2 — "Split rule" (evolves Direction B)
+   ============================================================ */
+.lxd2 { position: absolute; inset: 0; display: flex; }
+.lxd2 .l {
+  width: 42%; flex: 0 0 42%; background: var(--tcd-ink); color: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.lxd2 .l .num {
+  font-family: var(--serif); font-size: 300px; font-weight: 600; line-height: 0.8;
+  color: transparent; -webkit-text-stroke: 2px color-mix(in srgb, var(--lens) 70%, white);
+}
+.lxd2 .l .glyph { width: 96px; height: 96px; margin-top: 36px; color: color-mix(in srgb, var(--lens) 60%, white); }
+.lxd2 .l .glyph svg { width: 100%; height: 100%; }
+.lxd2 .r {
+  flex: 1 1 0; background: color-mix(in srgb, var(--lens) 7%, white);
+  padding: 84px 96px; display: flex; flex-direction: column;
+}
+.lxd2 .r .mid { flex: 1 1 0; display: flex; flex-direction: column; justify-content: center; }
+.lxd2 .r .foot { margin-top: 36px; }
+.lxd2 .r .lab {
+  font-family: var(--sans); font-size: var(--type-kicker); font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--lens); margin-bottom: 6px;
+}
+.lxd2 .r .ct { font-family: var(--mono); font-size: var(--type-micro); color: var(--tcd-grey-75); letter-spacing: 0.1em; margin-bottom: 22px; }
+.lxd2 .r h2 { font-family: var(--serif); font-size: 104px; font-weight: 600; line-height: 0.98; letter-spacing: -0.01em; margin: 0; color: var(--tcd-ink); }
+.lxd2 .r .ask { font-family: var(--serif); font-style: italic; font-size: var(--type-subtitle); color: var(--tcd-grey-100); margin-top: 28px; }
+.lxd2 .r .lx-rule { width: 130px; margin-top: 34px; }
+
+/* ============================================================
+   DIVIDER OPTION 3 — "Light editorial" (subtle, accent-only)
+   ============================================================ */
+.lxd3 {
+  position: absolute; inset: 0; background: #fff; color: var(--tcd-black);
+  padding: 110px var(--pad-x) 84px; display: flex; flex-direction: column;
+}
+.lxd3 .ctx { font-family: var(--sans); font-size: var(--type-small); color: var(--tcd-grey-75); letter-spacing: 0.04em; }
+.lxd3 .mid { margin: auto 0; }
+.lxd3 .row { display: flex; align-items: center; gap: 22px; }
+.lxd3 .glyph { width: 64px; height: 64px; color: var(--lens); flex: 0 0 64px; }
+.lxd3 .glyph svg { width: 100%; height: 100%; }
+.lxd3 .lab { font-family: var(--sans); font-size: var(--type-kicker); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lens); }
+.lxd3 .ct { font-family: var(--mono); font-size: var(--type-micro); color: var(--tcd-grey-50); margin-left: 12px; letter-spacing: 0.1em; }
+.lxd3 h2 { font-family: var(--serif); font-size: 134px; font-weight: 600; line-height: 0.98; letter-spacing: -0.02em; margin: 18px 0 0; color: var(--tcd-ink); }
+.lxd3 .lx-rule { width: 220px; margin-top: 30px; height: 5px; }
+.lxd3 .ask { font-family: var(--serif); font-style: italic; font-size: var(--type-subtitle); color: var(--tcd-grey-100); margin-top: 30px; max-width: 1180px; }
+.lxd3 .foot { margin-top: auto; }
+
+/* ============================================================
+   ROADMAP OPTION 1 — "Four-lens map" (2×2 grid)
+   ============================================================ */
+.lxr-head { margin-bottom: 34px; }
+.lxr1 { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.lxr1 .cell {
+  border: 1.5px solid color-mix(in srgb, var(--lens) 34%, white);
+  border-radius: 14px; background: color-mix(in srgb, var(--lens) 5%, white);
+  padding: 30px 34px; position: relative; overflow: hidden;
+}
+.lxr1 .cell::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 7px; background: var(--lens); }
+.lxr1 .cell .top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.lxr1 .cell .glyph { width: 34px; height: 34px; color: var(--lens); flex: 0 0 34px; }
+.lxr1 .cell .glyph svg { width: 100%; height: 100%; }
+.lxr1 .cell .lab { font-family: var(--sans); font-size: var(--type-micro); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lens); }
+.lxr1 .cell .no { margin-left: auto; font-family: var(--serif); font-size: 40px; font-weight: 600; color: color-mix(in srgb, var(--lens) 45%, white); }
+.lxr1 .cell .q { font-family: var(--serif); font-size: 32px; font-weight: 600; color: var(--tcd-ink); line-height: 1.15; margin-bottom: 8px; }
+.lxr1 .cell .d { font-family: var(--serif); font-size: var(--type-small); color: var(--tcd-grey-100); line-height: 1.32; }
+
+/* ============================================================
+   ROADMAP OPTION 2 — "Vertical journey" (accent spine)
+   ============================================================ */
+.lxr2 { position: relative; padding-left: 56px; }
+.lxr2::before { content: ""; position: absolute; left: 19px; top: 16px; bottom: 16px; width: 3px; background: var(--tcd-grey-25); }
+.lxr2 .item { display: grid; grid-template-columns: 1fr auto; gap: 6px 0; padding: 22px 0; position: relative; }
+.lxr2 .item + .item { border-top: 1px solid var(--tcd-grey-10); }
+.lxr2 .item .dot {
+  position: absolute; left: -49px; top: 26px; width: 40px; height: 40px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--lens); color: var(--lens);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 600; font-size: 22px;
+}
+.lxr2 .item .lab { grid-column: 1; font-family: var(--sans); font-size: var(--type-micro); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--lens); }
+.lxr2 .item .q { grid-column: 1; grid-row: 2; font-family: var(--serif); font-size: 34px; font-weight: 600; color: var(--tcd-ink); line-height: 1.12; }
+.lxr2 .item .glyph { grid-column: 2; grid-row: 1 / span 2; align-self: center; width: 46px; height: 46px; color: color-mix(in srgb, var(--lens) 55%, white); }
+.lxr2 .item .glyph svg { width: 100%; height: 100%; }
+
+/* ============================================================
+   ROADMAP OPTION 3 — "Horizontal track"
+   ============================================================ */
+.lxr3 { display: flex; align-items: stretch; gap: 0; }
+.lxr3 .stop { flex: 1 1 0; display: flex; flex-direction: column; gap: 16px; padding: 0 26px; position: relative; }
+.lxr3 .stop:first-child { padding-left: 0; }
+.lxr3 .stop:last-child { padding-right: 0; }
+.lxr3 .stop .head { display: flex; align-items: center; gap: 12px; }
+.lxr3 .stop .node {
+  width: 56px; height: 56px; flex: 0 0 56px; border-radius: 50%;
+  background: var(--lens); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif); font-weight: 600; font-size: 26px;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--lens) 30%, transparent);
+}
+.lxr3 .stop .node svg { width: 28px; height: 28px; }
+.lx-ico { display: block; }
+.lxr3 .stop .lab { font-family: var(--sans); font-size: var(--type-micro); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lens); }
+.lxr3 .stop .track { height: 3px; background: var(--tcd-grey-25); border-radius: 2px; position: relative; }
+.lxr3 .stop .track::before { content: ""; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: color-mix(in srgb, var(--lens) 40%, white); border-radius: 2px; }
+.lxr3 .stop .q { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--tcd-ink); line-height: 1.16; }
+.lxr3 .stop .d { font-family: var(--serif); font-size: var(--type-micro); color: var(--tcd-grey-100); line-height: 1.3; }
+
+/* ============================================================
+   HANDOUT PRACTICE ZONES  (authored at on-paper px ≈ screen scale)
+   A4 working column ≈ 720px wide. base 17px sans.
+   ============================================================ */
+.hz {
+  width: 720px; background: #fff; color: var(--tcd-black);
+  font-family: var(--sans); font-size: 17px; line-height: 1.5;
+  border: 1px solid var(--tcd-grey-25); border-radius: 10px; overflow: hidden;
+}
+.hz .math-term, .hz em.sent { font-family: var(--serif); font-style: italic; }
+.hz .chip {
+  font-family: var(--mono); font-size: 0.86em; background: var(--tcd-blue-10);
+  color: var(--tcd-ink); padding: 0.08em 0.4em; border-radius: 4px;
+  border: 1px solid var(--tcd-blue-25); white-space: nowrap;
+}
+.hz-lines {
+  --lh: 30px; height: calc(var(--n, 3) * var(--lh));
+  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--lh) - 1px), #cfd2d6 calc(var(--lh) - 1px), #cfd2d6 var(--lh));
+  margin-top: 10px;
+}
+
+/* --- P1: Worked → You try (parallel two-up) --- */
+.hz1 .bar {
+  display: flex; align-items: center; gap: 12px; padding: 13px 22px;
+  background: var(--c-exr); color: #fff;
+}
+.hz1 .bar .b-lab { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+.hz1 .bar .b-topic { font-family: var(--serif); font-style: italic; font-size: 17px; opacity: 0.92; margin-left: auto; }
+.hz1 .cols { display: grid; grid-template-columns: 1fr 1fr; }
+.hz1 .col { padding: 20px 22px 24px; }
+.hz1 .col.work { background: var(--tcd-blue-10); border-right: 1px dashed var(--tcd-blue-25); }
+.hz1 .col .h { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tcd-blue); margin-bottom: 12px; }
+.hz1 .col.try .h { color: var(--c-exr); }
+.hz1 .step { display: grid; grid-template-columns: 96px 1fr; gap: 4px 12px; padding: 7px 0; font-size: 15.5px; }
+.hz1 .step + .step { border-top: 1px solid var(--tcd-blue-25); }
+.hz1 .step .s-lab { font-weight: 600; color: var(--tcd-grey-75); font-size: 13px; padding-top: 2px; }
+.hz1 .step .s-m { font-family: var(--serif); }
+.hz1 .col.try p { margin: 0 0 4px; }
+.hz1 .task { font-size: 15.5px; }
+
+/* --- P2: Toolbox + tasks --- */
+.hz2 { border-color: color-mix(in srgb, var(--c-def) 30%, white); }
+.hz2 .tool {
+  background: color-mix(in srgb, var(--c-def) 7%, white);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-def) 22%, white);
+  padding: 18px 24px 20px;
+}
+.hz2 .tool .tlab { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--c-def); margin-bottom: 9px; }
+.hz2 .tool .tlab .g { width: 18px; height: 18px; }
+.hz2 .tool .tname { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--tcd-ink); margin-bottom: 6px; }
+.hz2 .tool .tbody { font-size: 16px; color: var(--tcd-black); }
+.hz2 .tasks { padding: 16px 24px 20px; }
+.hz2 .tasks .th { font-size: 12px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--c-exr); margin-bottom: 8px; }
+.hz2 .t { display: grid; grid-template-columns: 26px 1fr; gap: 0 8px; padding: 9px 0; }
+.hz2 .t + .t { border-top: 1px solid var(--tcd-grey-10); }
+.hz2 .t .n { font-weight: 700; color: var(--c-exr); }
+.hz2 .t .tx { font-size: 16px; }
+.hz2 .key {
+  border-top: 1px dashed var(--tcd-grey-25);
+  background: repeating-linear-gradient(45deg, #fafafa, #fafafa 8px, #f4f4f4 8px, #f4f4f4 16px);
+  padding: 10px 24px; font-size: 13px; color: var(--tcd-grey-75); font-style: italic;
+}
+
+/* --- P3: Staged ladder (Warm-up / Build / Stretch) --- */
+.hz3 .tier { display: grid; grid-template-columns: 132px 1fr; }
+.hz3 .tier + .tier { border-top: 1px solid var(--tcd-grey-25); }
+.hz3 .rail { padding: 18px 18px 20px; border-right: 1px solid var(--tcd-grey-25); display: flex; flex-direction: column; gap: 8px; }
+.hz3 .rail .tg { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--tcd-ink); }
+.hz3 .rail .dots { display: flex; gap: 4px; }
+.hz3 .rail .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--tcd-grey-25); }
+.hz3 .rail .dot.on { background: var(--tier, var(--tcd-blue)); }
+.hz3 .rail .meta { font-size: 12px; color: var(--tcd-grey-75); letter-spacing: 0.04em; }
+.hz3 .work { padding: 18px 22px 22px; }
+.hz3 .work .task { font-size: 16px; margin: 0 0 4px; }
+.hz3 .t1 { --tier: var(--c-ex); }
+.hz3 .t2 { --tier: var(--c-key); }
+.hz3 .t3 { --tier: var(--c-exr); }
+.hz3 .tier .rail .tg::after { content: ""; display: block; width: 30px; height: 3px; border-radius: 2px; background: var(--tier); margin-top: 6px; }
+
+/* ============================================================
+   PALETTE SWATCH CARD (exploration only)
+   ============================================================ */
+.sw { width: 620px; background: #fff; padding: 40px 44px 44px; font-family: var(--sans); color: var(--tcd-black); }
+.sw h3 { font-family: var(--serif); font-size: 30px; font-weight: 600; margin: 0 0 4px; color: var(--tcd-ink); }
+.sw .cap { font-size: 17px; color: var(--tcd-grey-75); margin: 0 0 28px; }
+.sw .rows { display: flex; flex-direction: column; gap: 18px; }
+.sw .r { display: flex; align-items: center; gap: 20px; }
+.sw .chipc { width: 64px; height: 64px; flex: 0 0 64px; border-radius: 12px; background: var(--lens); display: flex; align-items: center; justify-content: center; color: #fff; }
+.sw .chipc svg { width: 30px; height: 30px; }
+.sw .meta { flex: 1 1 0; }
+.sw .meta .nm { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--tcd-ink); }
+.sw .meta .as { font-size: 15px; color: var(--tcd-grey-75); }
+.sw .swatchline { display: flex; gap: 7px; margin-top: 9px; }
+.sw .swatchline i { display: block; height: 10px; border-radius: 3px; }
+.sw .demo { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--tcd-grey-25); }

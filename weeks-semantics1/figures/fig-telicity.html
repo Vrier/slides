@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Figure · Telicity — bounded vs unbounded</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="./figure.css" />
+<style>
+  .tl-wrap { display:flex; flex-direction:column; gap:30px; width:100%; height:100%; justify-content:center; }
+  .tl-compose { display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+  .tl-tok { font-family:var(--serif); font-style:italic; font-size:34px; font-weight:600; color:var(--tcd-ink); padding:8px 18px; border-radius:10px; background:var(--tcd-grey-10); }
+  .tl-op  { font-family:var(--mono); font-size:30px; color:var(--tcd-grey-50); }
+  .tl-seg { display:inline-flex; border-radius:10px; overflow:hidden; box-shadow:inset 0 0 0 2px var(--tcd-grey-25); }
+  .tl-seg button { font-family:var(--serif); font-style:italic; font-size:30px; font-weight:600; border:none; background:#fff; color:var(--tcd-grey-75); padding:9px 22px; cursor:pointer; }
+  .tl-seg button.on { background:var(--acc); color:#fff; }
+  .tl-seg button .kk { display:block; font-family:var(--sans); font-style:normal; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; opacity:.7; }
+  .tl-tag { margin-left:auto; font-family:var(--sans); font-size:24px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; padding:10px 22px; border-radius:10px; }
+  .tl-tag.telic  { color:#fff; background:var(--c-key); }
+  .tl-tag.atelic { color:#fff; background:var(--c-ex); }
+
+  .tl-track-wrap { display:flex; align-items:center; gap:18px; }
+  .tl-axis { font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--tcd-grey-75); white-space:nowrap; }
+  .tl-track { position:relative; flex:1 1 auto; height:64px; border-radius:12px; background:var(--tcd-blue-10); overflow:hidden; border:1.5px solid var(--tcd-blue-25); }
+  .tl-track.open { border-right:none; border-top-right-radius:0; border-bottom-right-radius:0; }
+  .tl-fill { position:absolute; left:0; top:0; bottom:0; width:0; background:var(--tcd-blue); }
+  .tl-end { position:absolute; right:-2px; top:50%; transform:translateY(-50%); font-size:40px; color:var(--c-key); }
+  .tl-open-marks { position:absolute; right:-70px; top:0; bottom:0; width:70px;
+    background:repeating-linear-gradient(90deg, transparent, transparent 12px, var(--tcd-blue-25) 12px, var(--tcd-blue-25) 14px);
+    -webkit-mask:linear-gradient(90deg,#000,transparent); mask:linear-gradient(90deg,#000,transparent); }
+  .tl-dots { position:absolute; right:-86px; top:50%; transform:translateY(-50%); font-family:var(--mono); font-size:34px; color:var(--tcd-blue-50); }
+
+  .tl-tests { display:flex; gap:18px; }
+  .tl-test { flex:1 1 0; display:flex; align-items:center; gap:14px; padding:14px 20px; border-radius:11px; border:1.5px solid var(--tcd-grey-25); font-family:var(--serif); font-size:25px; color:var(--tcd-ink); }
+  .tl-test .mk { width:34px; height:34px; flex:0 0 34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-family:var(--sans); font-weight:800; font-size:18px; }
+  .tl-test.ok  { border-color:color-mix(in srgb,var(--c-ex) 35%,white); background:color-mix(in srgb,var(--c-ex) 7%,white); } .tl-test.ok .mk{ background:var(--c-ex); }
+  .tl-test.bad { border-color:color-mix(in srgb,var(--c-exr) 35%,white); background:color-mix(in srgb,var(--c-exr) 7%,white); } .tl-test.bad .mk{ background:var(--c-exr); }
+  .tl-test .sd { margin-left:auto; font-style:italic; font-size:19px; color:var(--tcd-grey-75); }
+</style>
+</head>
+<body class="pal-a">
+<div class="fig lens-formal" id="fig">
+  <div class="fig-head">
+    <span class="fig-kick"><span class="dot"></span>Telicity</span>
+    <div class="fig-htext">
+      <h1 class="fig-title">Where the finish line comes from</h1>
+      <p class="fig-sub">Swap the object and the very same verb flips <b>telic ⇄ atelic</b></p>
+    </div>
+    <div class="fig-src">Verkuyl 1972 · Krifka 1989 · Dowty 1979<br>(a)telicity from the incremental theme</div>
+  </div>
+
+  <div class="fig-stage">
+    <div class="tl-wrap">
+      <div class="tl-compose">
+        <span class="tl-tok">eat</span>
+        <span class="tl-op">+</span>
+        <div class="tl-seg" id="seg">
+          <button data-mode="telic" class="on">an apple<span class="kk">quantized</span></button>
+          <button data-mode="atelic">soup<span class="kk">cumulative</span></button>
+        </div>
+        <span class="tl-op">=</span>
+        <span class="tl-tok" id="pred">eat an apple</span>
+        <span class="tl-tag telic" id="tag">Telic</span>
+      </div>
+
+      <div class="tl-track-wrap">
+        <span class="tl-axis">event<br>runtime</span>
+        <div class="tl-track" id="track">
+          <div class="tl-fill" id="fill"></div>
+          <span class="tl-end" id="endmk">★</span>
+          <span class="tl-dots" id="dots" style="display:none">…</span>
+        </div>
+        <span class="tl-axis" id="axisEnd">culmination</span>
+      </div>
+
+      <div class="tl-tests">
+        <div class="tl-test" id="testIn"><span class="mk"></span><span><span class="sent">…in ten minutes</span></span><span class="sd">measures to an endpoint</span></div>
+        <div class="tl-test" id="testFor"><span class="mk"></span><span><span class="sent">…for ten minutes</span></span><span class="sd">measures a homogeneous span</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fig-cap" id="cap">
+    A <b>quantized</b> object (<span class="sent">an apple</span>) gives the event a built-in finish — when the apple is gone, the eating is over: <b>telic</b>.
+    A <b>cumulative</b> object (<span class="sent">soup</span>, <span class="sent">apples</span>) gives no endpoint: you can stop any time and still have <span class="sent">eaten soup</span> — <b>atelic</b>.
+  </div>
+
+  <div class="fig-controls">
+    <button class="fig-btn" id="play">▶ Run the event</button>
+    <span class="fig-readout" id="out">eat an apple — telic: runs to a set terminal point</span>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let mode='telic', raf=null, t=0;
+function setMode(m){
+  mode=m; stop(); t=0;
+  [...$('seg').children].forEach(b=>b.classList.toggle('on',b.dataset.mode===m));
+  const telic = m==='telic';
+  $('pred').textContent = telic ? 'eat an apple' : 'eat soup';
+  $('tag').className = 'tl-tag '+(telic?'telic':'atelic');
+  $('tag').textContent = telic ? 'Telic' : 'Atelic';
+  $('track').classList.toggle('open', !telic);
+  $('endmk').style.display = telic ? 'block':'none';
+  $('dots').style.display = telic ? 'none':'block';
+  $('axisEnd').textContent = telic ? 'culmination ★' : 'no endpoint →';
+  // tests
+  setTest('testIn',  telic,  telic? '✓':'✗');
+  setTest('testFor', !telic, telic? '✗':'✓');
+  $('out').className='fig-readout';
+  $('out').innerHTML = telic
+    ? '<b>eat an apple</b> — telic: runs to a set terminal point'
+    : '<b>eat soup</b> — atelic: homogeneous, sub-events are also “eating soup”';
+  $('fill').style.width='0%';
+}
+function setTest(id,good,glyph){
+  const el=$(id); el.className='tl-test '+(good?'ok':'bad');
+  el.querySelector('.mk').textContent=glyph;
+}
+$('seg').addEventListener('click',e=>{ const b=e.target.closest('button'); if(b) setMode(b.dataset.mode); });
+
+function step(){
+  t+=0.012;
+  if(mode==='telic'){
+    if(t>=1){ t=1; $('fill').style.width='100%'; stop(); $('out').className='fig-readout ok'; $('out').innerHTML='✓ apple gone — <b>culmination reached</b>, the event is complete'; return; }
+    $('fill').style.width=(t*100)+'%';
+  } else {
+    // atelic: fill sweeps and loops, never "completes"
+    let p=(t%1);
+    $('fill').style.width=(p*100)+'%';
+  }
+  raf=requestAnimationFrame(step);
+}
+function stop(){ if(raf){cancelAnimationFrame(raf);raf=null;} $('play').textContent='▶ Run the event'; }
+$('play').addEventListener('click',()=>{
+  if(raf){stop();return;}
+  if(mode==='telic'&&t>=1) t=0;
+  $('play').textContent='❚❚ Pause'; step();
+});
+setMode('telic');
+</script>
+</body>
+</html>

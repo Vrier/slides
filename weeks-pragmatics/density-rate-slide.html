@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Density vs Speed — Slide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/tokens.css" />
+<link rel="stylesheet" href="../shared/dir-a.css" />
+<link rel="stylesheet" href="../shared/dir-b.css" />
+<link rel="stylesheet" href="../shared/dir-c.css" />
+<link rel="stylesheet" href="../shared/lens.css" />
+<link rel="stylesheet" href="../shared/deck-slides.css" />
+<link rel="stylesheet" href="../shared/density-rate-chart.css" />
+<link rel="stylesheet" href="../shared/theme-burgundy.css" />
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .drc-slide .b-h { margin-bottom: 10px; }
+  .drc-take {
+    font-family: var(--serif); font-size: 30px; line-height: 1.34;
+    color: var(--tcd-grey-100); max-width: 1180px; margin: 0;
+  }
+  .drc-wrap { width: 1080px; margin: 16px auto 0; }
+  .drc-src {
+    position: absolute; right: 96px; bottom: 40px;
+    font-family: var(--sans); font-size: 19px; color: var(--tcd-grey-75);
+    letter-spacing: 0.01em;
+  }
+  .drc-src b { font-weight: 600; color: var(--tcd-grey-100); }
+</style>
+</head>
+<body class="pal-a" data-week="6">
+
+<!-- lens glyph defs (empirical) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<section class="slide" data-label="Density vs speed"
+  data-speaker-notes="Frame as evidence for an efficiency / least-effort pressure on language form (Zipf): speakers economise, and the trade-off is the system-level signature of that pressure. This is the bridge into Grice — the Quantity and Manner maxims as the conversational face of the same economy. Keep the information-theoretic machinery out of it here; we only need the intuition that each syllable carries a measurable amount of information. Be honest on two points: (1) ~39 bits/s is a MEAN across 17 languages, not a constant — note the scatter and SD ~5; (2) this measures phonological encoding only (within-word syllable entropy), not everything a language conveys. Reading of the plot: top-left = low density, fast (Basque, Japanese); bottom-right = high density, slow (Thai, Vietnamese); yet all hug the 40 bits/s line. Across-language density-rate correlation r = -0.69.">
+  <div class="b-slide pal-a lens-empirical drc-slide">
+    <div class="b-rail"></div><!-- filled by prag-rail.js -->
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical<span class="ct">LI7862 · Week 6 · Information</span></div>
+      <h2 class="b-h">Languages trade density against speed</h2>
+      <p class="drc-take">Pack more into each syllable, and you say fewer per second — so different languages end up conveying information at a similar rate.</p>
+      <div class="drc-wrap"><div data-drc='{}'></div></div>
+      <div class="drc-src"><b>Coupé et al. (2019)</b>, Science Advances.</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../shared/deck-stage.js"></script>
+<script src="../shared/prag-meta.js"></script>
+<script src="../shared/prag-rail.js"></script>
+<script src="../shared/density-rate-chart.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#4a0e1a"/>
+    <line x1="22" y1="78" x2="78" y2="30" stroke="#e8a23d" stroke-width="2"/>
+    <circle cx="32" cy="64" r="3" fill="#ddbdc1"/>
+    <circle cx="46" cy="56" r="3" fill="#ddbdc1"/>
+    <circle cx="58" cy="50" r="3" fill="#ddbdc1"/>
+    <circle cx="68" cy="40" r="3" fill="#ddbdc1"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#b07b82" text-anchor="middle">DENSITY × SPEED</text>
+  </svg>
+</template>
+</body>
+</html>

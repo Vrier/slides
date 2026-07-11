@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 6 — Scope & Quantification · Homework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+<link rel="stylesheet" href="../../shared/exercises.css" />
+</head>
+<body class="pal-a">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<div class="handout-week hw" data-week="6"><div class="page">
+
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 6 · Homework</div>
+    <h1 class="h-title">Quantifiers, Scope &amp; Evidence</h1>
+  </div>
+
+  <div class="hw-band">
+    <span class="tag">Homework</span>
+    <span class="due">Due <b>Friday, after reading week · 17:00</b> · submit via Blackboard</span>
+    <span class="pts">30 marks</span>
+  </div>
+
+  <div class="hw-sub">
+    <div class="f"><span class="lab">Name</span><span class="ln"></span></div>
+    <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
+  </div>
+
+  <p class="hw-intro">Use predicate logic with the obvious predicates (<span class="chip">student(·)</span>, <span class="chip">paper(·)</span>, <span class="chip">read(·,·)</span>, …). Mark quantifier and negation scope explicitly, e.g. ∀&gt;∃. Where a sentence is scopally ambiguous, give <em>every</em> available reading with a paraphrase. Show your reasoning.</p>
+
+  <div class="hw-legend">
+    <span class="lg lens-empirical"><i style="background:var(--lens)"></i>Empirical</span>
+    <span class="lg lens-historical"><i style="background:var(--lens)"></i>Historical</span>
+    <span class="lg lens-formal"><i style="background:var(--lens)"></i>Formal</span>
+    <span class="lg lens-typological"><i style="background:var(--lens)"></i>Typological</span>
+  </div>
+
+  <!-- 1 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head"><span class="n">1</span><span class="q">Prose to logical form<span class="lens-pip">Formal</span></span><span class="marks">6 marks</span></div>
+    <p class="lead">Translate into predicate logic. Where there is no ambiguity, give one form.</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb"><em class="sent">Every dog is happy.</em><div class="answer-space" style="--lines:1"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb"><em class="sent">John loves every dog.</em><div class="answer-space" style="--lines:1"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb"><em class="sent">Some dog chased some cat.</em><div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(d)</span><span class="pb"><em class="sent">No student read every paper.</em> — give both readings.<div class="answer-space" style="--lines:2"></div></span></div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="hw-prob lens-empirical">
+    <div class="hw-prob-head"><span class="n">2</span><span class="q">Two quantifiers<span class="lens-pip">Empirical</span></span><span class="marks">6 marks</span></div>
+    <p class="lead">For each: (i) list the scope-taking expressions, (ii) state the two readings, (iii) paraphrase both.</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb"><em class="sent">Every student read a paper.</em><div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb"><em class="sent">A teacher praised every student.</em><div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Homework</span>
+    <span>Week 6 · Quantifiers, Scope &amp; Evidence</span>
+    <span>1</span>
+  </div>
+</div><!-- /page 1 -->
+
+<div class="page">
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Week 6 · Homework</div>
+    </div>
+  </header>
+
+  <!-- 3 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head"><span class="n">3</span><span class="q">Scope with negation<span class="lens-pip">Formal</span></span><span class="marks">5 marks</span></div>
+    <p class="lead">For <em class="sent">A student didn't pass</em>:</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">List the distinct readings and paraphrase each.<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Give a logical form for each reading (mark ∃&gt;¬ vs ¬&gt;∃).<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb">Which reading entails the other, if either? Justify.<div class="answer-space" style="--lines:2"></div></span></div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="hw-prob lens-empirical">
+    <div class="hw-prob-head"><span class="n">4</span><span class="q">Modals &amp; structural ambiguity<span class="lens-pip">Empirical</span></span><span class="marks">5 marks</span></div>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb"><em class="sent">John can't leave the prison.</em> Give the two scope relations of modal and negation (¬◇ vs ◇¬), and paraphrase each. Which surfaces most easily?<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb"><em class="sent">She saw the man with a telescope.</em> Draw or describe the two attachments (PP on VP vs on NP) and the meaning each gives.<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="hw-prob lens-typological">
+    <div class="hw-prob-head"><span class="n">5</span><span class="q">Scope across languages<span class="lens-pip">Typological</span></span><span class="marks">4 marks</span></div>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">For the Mandarin <em>měi…dōu</em> sentence in the lecture, give logical forms for the surface and inverse readings, and state which the sentence actually has.<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">In a language you know, build a sentence with two quantifiers. Is inverse scope available? What word order or marker forces one reading?<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <div class="hw-sechead">Optional · Challenge</div>
+  <div class="hw-prob">
+    <div class="hw-prob-head"><span class="n">★</span><span class="q">Why isn't scope free?</span><span class="marks">bonus</span></div>
+    <p class="lead">Quantifier Raising would, in principle, generate every ordering of operators. Yet some predicted readings are unavailable. Give one example of a missing reading and sketch a constraint (structural or processing) that would rule it out.</p>
+    <div class="hw-work" style="--lines:5"></div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Homework</span>
+    <span>Week 6 · Quantifiers, Scope &amp; Evidence</span>
+    <span>2</span>
+  </div>
+</div><!-- /page 2 -->
+</div><!-- /handout-week 6 -->
+
+<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbeae3"/>
+    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#c0512c" stroke-width="2"/>
+    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">1</text>
+    <line x1="46" y1="31" x2="64" y2="31" stroke="#e0b3a3" stroke-width="2"/>
+    <line x1="38" y1="44" x2="64" y2="44" stroke="#e0b3a3" stroke-width="1.6"/>
+    <line x1="38" y1="52" x2="64" y2="52" stroke="#e0b3a3" stroke-width="1.6"/>
+    <text x="38" y="68" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">2</text>
+    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#c0512c" text-anchor="middle">LI7869 · HOMEWORK</text>
+  </svg>
+</template>
+</body>
+</html>

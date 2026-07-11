@@ -97,6 +97,3 @@
 .slide-skeleton .sk-n { font-family: var(--serif); font-size: 80px; font-weight: 600; opacity: 0.15; color: var(--tcd-ink); line-height: 1; }
 .slide-skeleton .sk-m { font-size: var(--type-body); font-weight: 600; }
 .slide-skeleton .sk-h { font-size: var(--type-small); opacity: 0.7; max-width: 860px; text-align: center; line-height: 1.4; }
-
-/* ── COMPOSE tree slot on slides (deck-side twin of handout.css's rule) ── */
-.tree-frame { margin: 12px 0; display: flex; justify-content: center; }

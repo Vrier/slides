@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logic in Exile — Migration Map</title>
+<meta name="ext-resource-dependency" content="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js">
+<meta name="ext-resource-dependency" content="https://cdn.jsdelivr.net/gh/aourednik/historical-basemaps@master/geojson/world_1930.geojson">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efe6cf;          /* ocean / page    */
+    --paper-2:#e7dcbe;        /* card fill       */
+    --land:#e0d2ad;           /* land fill       */
+    --land-hi:#e6dab9;
+    --occupied:#2c2720;       /* occupied / annexed (charcoal) */
+    --border:#b6a079;         /* country borders */
+    --coast:#8f7a55;          /* coast emphasis  */
+    --ink:#3c3122;            /* main sepia ink  */
+    --ink-2:#6a5a40;          /* secondary ink   */
+    --ink-3:#8a7857;          /* tertiary        */
+    /* school accents tuned for cream */
+    --vienna:#1f7a6b;         /* teal-green   */
+    --berlin:#a83e26;         /* brick / terracotta */
+    --lvov:#9c6f12;           /* ochre / dark gold */
+    --stay:#736550;           /* remained */
+    --serif:"STIX Two Text",Georgia,serif;
+    --serif2:"Spectral",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:#1c160c;overflow:hidden;}
+  #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:#1c160c;}
+  #slide{
+    position:relative;width:1920px;height:1080px;flex:0 0 auto;transform-origin:center center;
+    background:
+      radial-gradient(135% 120% at 50% 42%, #f3ebd6 0%, var(--paper) 46%, #e4d8ba 86%, #d8c9a4 100%);
+    color:var(--ink);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased;
+  }
+  /* aged paper grain + vignette */
+  #slide::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      radial-gradient(120% 120% at 18% 12%, rgba(120,95,55,.05), transparent 45%),
+      radial-gradient(120% 120% at 88% 88%, rgba(90,70,40,.10), transparent 50%);
+    mix-blend-mode:multiply;}
+  #slide::after{content:"";position:absolute;inset:0;z-index:7;pointer-events:none;
+    box-shadow:inset 0 0 160px rgba(70,52,26,.30), inset 0 0 40px rgba(70,52,26,.16);}
+  #grain{position:absolute;inset:0;z-index:6;pointer-events:none;opacity:.5;mix-blend-mode:multiply;}
+
+  /* plate frame (atlas neatline) */
+  .frame{position:absolute;z-index:5;pointer-events:none;border:1.5px solid var(--coast);}
+  .frame.outer{inset:22px;}
+  .frame.inner{inset:30px;border-width:3px;border-color:var(--ink-2);}
+
+  svg#map{position:absolute;inset:0;width:100%;height:100%;z-index:2;}
+
+  /* title cartouche */
+  .cartouche{position:absolute;left:60px;top:58px;z-index:5;width:610px;
+    background:linear-gradient(180deg, rgba(247,240,222,.93), rgba(238,228,202,.9));
+    border:2px solid var(--ink-2);border-radius:3px;
+    box-shadow:0 0 0 5px rgba(239,230,207,.7), 0 14px 36px rgba(60,44,20,.22);
+    padding:26px 34px 26px;}
+  .cartouche::after{content:"";position:absolute;inset:6px;border:1px solid var(--ink-3);opacity:.55;border-radius:2px;pointer-events:none;}
+  .kick{font-family:var(--mono);font-size:17px;font-weight:500;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--berlin);margin:0 0 14px;}
+  .cartouche h1{font-family:var(--serif);font-weight:700;font-size:64px;line-height:.98;
+    letter-spacing:-.015em;margin:0;color:var(--ink);}
+  .cartouche h1 em{font-style:italic;font-weight:600;}
+  .subt{font-family:var(--serif2);font-size:28px;font-style:italic;line-height:1.2;
+    color:var(--ink-2);margin:10px 0 0;}
+  .rule{display:flex;align-items:center;gap:12px;margin:16px 0 14px;}
+  .rule .ln{height:1px;background:var(--ink-3);flex:1;opacity:.6;}
+  .rule .dot{width:6px;height:6px;border:1px solid var(--ink-2);transform:rotate(45deg);}
+  .cartouche p{font-family:var(--serif2);font-size:21px;font-style:italic;line-height:1.36;
+    color:var(--ink-2);margin:0;}
+
+  /* legend (map key) */
+  .legend{position:absolute;right:56px;bottom:52px;z-index:5;width:332px;
+    background:linear-gradient(180deg, rgba(247,240,222,.94), rgba(238,228,202,.9));
+    border:2px solid var(--ink-2);border-radius:3px;padding:20px 24px 18px;
+    box-shadow:0 0 0 5px rgba(239,230,207,.7), 0 14px 36px rgba(60,44,20,.22);}
+  .legend::after{content:"";position:absolute;inset:6px;border:1px solid var(--ink-3);opacity:.5;border-radius:2px;pointer-events:none;}
+  .legend h2{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-2);margin:0 0 16px;position:relative;}
+  .legend ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:13px;position:relative;}
+  .legend li{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:22px;color:var(--ink);}
+  .legend li.pending{opacity:0;transform:translateX(14px);}
+  .legend .ico{flex:0 0 40px;height:18px;position:relative;}
+  .legend .ico svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
+  .legend .city{font-family:var(--mono);font-size:13px;color:var(--ink-3);margin-left:auto;letter-spacing:.04em;}
+  .legend .yr{font-family:var(--mono);font-size:13px;color:var(--ink-2);letter-spacing:.04em;margin-left:10px;}
+  .legend li.stay .lbl{color:var(--ink-2);}
+
+  /* city / node labels (HTML overlay) */
+  #labels{position:absolute;inset:0;z-index:4;pointer-events:none;}
+  .nd{position:absolute;}
+  .nd .nm{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1;color:var(--ink);white-space:nowrap;
+    text-shadow:0 1px 0 rgba(247,240,222,.9),0 0 7px rgba(247,240,222,.95);}
+  .nd .in{font-family:var(--mono);font-size:13.5px;letter-spacing:.04em;color:var(--ink-3);margin-top:5px;white-space:nowrap;
+    text-transform:uppercase;text-shadow:0 1px 0 rgba(247,240,222,.9),0 0 7px rgba(247,240,222,.95);}
+  .nd.origin .nm{color:var(--c);}
+  .nd.l{text-align:right;transform:translate(-100%,-50%);}
+  .nd.r{text-align:left;transform:translate(0,-50%);}
+  .nd.up{text-align:center;transform:translate(-50%,-100%);}
+  .nd.down{text-align:center;transform:translate(-50%,0);}
+  .nd.stay .nm{font-style:italic;font-weight:500;font-size:21px;color:var(--ink-2);}
+  .nd.stay .note{font-family:var(--serif2);font-style:italic;font-size:15px;color:var(--stay);margin-top:3px;white-space:nowrap;
+    text-shadow:0 1px 0 rgba(247,240,222,.9);}
+
+  .arc-hit{cursor:pointer;}
+  .nd{transition:opacity .22s,font-weight .1s;}
+  path.land{transition:fill 1.5s ease;}
+  /* event annotations (publication pin in sea + death daggers) */
+  .ev-anno{position:absolute;z-index:5;opacity:0;transition:opacity .6s ease;pointer-events:none;}
+  .ev-anno.pub{transform:translate(-50%,-50%);text-align:center;width:200px;}
+  .ev-anno.death{transform:translate(0,-50%);display:flex;align-items:baseline;gap:7px;white-space:nowrap;}
+  .ev-anno .ttl{font-family:var(--serif);font-style:italic;font-weight:600;font-size:16px;color:var(--ink);line-height:1.12;
+    text-shadow:0 1px 0 rgba(247,240,222,.9);}
+  .ev-anno .yr{font-family:var(--mono);font-size:11px;color:var(--ink-2);letter-spacing:.06em;margin-top:3px;}
+  .ev-anno.death .dag{font-family:var(--serif);font-size:21px;color:#171410;line-height:1;}
+  .ev-anno.death .ttl{font-size:15px;}
+  .ev-anno.death .yr{margin-top:1px;}
+  .ev-dot,.ev-leader{transition:opacity .5s ease;}
+
+  /* animation controls */
+  .controls{position:absolute;left:90px;right:90px;bottom:46px;z-index:6;display:flex;align-items:center;justify-content:flex-start;gap:26px;}
+  .rbtn{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink);background:rgba(247,240,222,.9);border:1.5px solid var(--ink-2);border-radius:6px;
+    padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex:none;
+    box-shadow:0 0 0 3px rgba(239,230,207,.55),0 5px 13px rgba(60,44,20,.14);transition:background .2s,transform .1s;}
+  .rbtn:hover{background:#fff;}
+  .rbtn:active{transform:translateY(1px);}
+  .rbtn .tri{font-size:10px;color:var(--berlin);min-width:13px;text-align:center;}
+  .ticker{display:flex;align-items:baseline;gap:9px;flex:none;}
+  .ticker .tlabel{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);}
+  .ticker #year{font-family:var(--serif);font-weight:700;font-size:34px;line-height:1;color:var(--ink);
+    font-variant-numeric:tabular-nums;text-shadow:0 1px 0 rgba(247,240,222,.9);min-width:74px;}
+  /* timeline */
+  .timeline{flex:0 0 auto;width:1040px;position:relative;height:54px;display:flex;align-items:center;cursor:pointer;}
+  .tl-track{position:relative;width:100%;height:2px;background:var(--ink-3);opacity:.85;}
+  .tl-track::before{content:"";position:absolute;left:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--ink-3);transform:translateY(-50%);}
+  .tl-track::after{content:"";position:absolute;right:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:var(--ink-3);transform:translateY(-50%);}
+  .tl-fill{position:absolute;left:0;top:0;height:100%;background:var(--ink);width:0;}
+  .tl-handle{position:absolute;top:50%;left:0;width:2.5px;height:22px;background:var(--ink);
+    transform:translate(-50%,-50%);z-index:4;box-shadow:0 0 0 2px rgba(247,240,222,.85);}
+  /* timeline marks */
+  .tl-mark{position:absolute;top:50%;width:0;z-index:2;}
+  .tl-mark .tl-tick{position:absolute;left:0;top:1px;width:1.5px;height:6px;background:var(--c);transform:translateX(-50%);opacity:.7;}
+  .tl-mark .tl-name{position:absolute;left:0;transform-origin:center;transform:translateX(-50%);
+    font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.01em;color:var(--c);
+    white-space:nowrap;cursor:pointer;transition:transform .2s ease,text-shadow .2s ease,opacity .2s ease;opacity:.92;}
+  .tl-mark .tl-name i{font-style:normal;opacity:.6;font-weight:500;font-size:8.5px;}
+  /* migration names — below the axis, three tiers */
+  .tl-mark.b0 .tl-name{top:9px;}
+  .tl-mark.b1 .tl-name{top:21px;}
+  .tl-mark.b2 .tl-name{top:33px;}
+  .tl-mark.active .tl-name{font-weight:700;opacity:1;transform:translateX(-50%) scale(1.22);}
+  .tl-mark.active .tl-tick{opacity:1;}
+  .tl-mark.flash .tl-name{animation:tlflash .7s ease-out;}
+  @keyframes tlflash{0%{text-shadow:0 0 0 transparent;}35%{text-shadow:0 0 12px var(--c),0 0 4px var(--c);}100%{text-shadow:0 0 0 transparent;}}
+  /* context events (school foundings, publication) — above the axis */
+  .tl-ctx{position:absolute;top:50%;width:0;z-index:2;}
+  .tl-ctx .tl-tick{position:absolute;left:0;top:-7px;width:1.5px;height:7px;background:var(--c);transform:translateX(-50%);opacity:.7;}
+  .tl-ctx .tl-dot{position:absolute;left:0;top:0;width:7px;height:7px;border-radius:50%;background:var(--c);
+    transform:translate(-50%,-50%);box-shadow:0 0 0 2px var(--paper);}
+  .tl-ctx .tl-name{position:absolute;left:0;bottom:8px;transform:translateX(-50%);white-space:nowrap;
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.02em;color:var(--c);}
+  .tl-ctx .tl-name i{font-style:normal;opacity:.6;font-weight:500;}
+  .tl-ctx.a1 .tl-name{bottom:23px;}
+  .tl-ctx.a1 .tl-tick{height:21px;top:-21px;}
+  .tl-ctx.pub .tl-name{color:var(--ink);}
+  .tl-ctx.death .tl-name{color:#171410;font-weight:700;}
+  .tl-ctx.flash .tl-name{animation:tlflash .7s ease-out;}
+  /* political events — full-height black markers, pinned */
+  .tl-pol{position:absolute;top:50%;width:0;z-index:3;opacity:.22;transition:opacity .45s ease;}
+  .tl-pol.on{opacity:1;}
+  .tl-pol .ln{position:absolute;left:0;top:-20px;width:2px;height:40px;transform:translateX(-50%);background:#171410;border-radius:1px;}
+  .tl-pol .lab{position:absolute;left:0;transform:translateX(-50%);white-space:nowrap;
+    font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#171410;}
+  .tl-pol.hi .lab{bottom:24px;}
+  .tl-pol.lo .lab{bottom:40px;}
+  .tl-pol.pulse .ln{animation:polpulse .9s ease-out;}
+  @keyframes polpulse{0%{box-shadow:0 0 0 0 rgba(20,18,12,.55);}55%{box-shadow:0 0 11px 3px rgba(20,18,12,.45);}100%{box-shadow:0 0 0 0 transparent;}}
+
+  /* arc draw-on */
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .arc{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.6s cubic-bezier(.45,.05,.2,1) forwards;}
+  .arclabel{opacity:1;}
+  @keyframes fadein{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .arc{animation:none;stroke-dashoffset:0;}
+    .arclabel{animation:none;opacity:1;}
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="slide">
+    <svg id="grain"><filter id="paperGrain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.42  0 0 0 0 0.34  0 0 0 0 0.2  0 0 0 0.6 0"/></filter><rect width="100%" height="100%" filter="url(#paperGrain)"/></svg>
+
+    <svg id="map" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+    <div id="labels"></div>
+
+    <div class="controls">
+      <button id="replay" class="rbtn" type="button"><span class="tri">&#9658;</span> <span class="blab">Play</span></button>
+      <div class="ticker"><span class="tlabel">year</span><span id="year">1921</span></div>
+      <div class="timeline" id="tlBar">
+        <div class="tl-track" id="tlTrack">
+          <div class="tl-fill" id="tlFill"></div>
+          <div class="tl-handle" id="tlHandle"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame outer"></div>
+    <div class="frame inner"></div>
+
+    <div class="cartouche">
+      <h1>Logical Positivism</h1>
+      <p class="subt">from Europe to America</p>
+    </div>
+
+    <div class="legend">
+      <h2>Three schools</h2>
+      <ul>
+        <li data-school="vienna" class="pending"><span class="ico" data-arc="vienna"></span><span class="lbl">Vienna Circle</span><span class="yr">1924</span><span class="city">Wien</span></li>
+        <li data-school="berlin" class="pending"><span class="ico" data-arc="berlin"></span><span class="lbl">Berlin Circle</span><span class="yr">1928</span><span class="city">Berlin</span></li>
+        <li data-school="lvov" class="pending"><span class="ico" data-arc="lvov"></span><span class="lbl">Lwów–Warsaw</span><span class="yr">est. 1895</span><span class="city">Warszawa</span></li>
+      </ul>
+    </div>
+
+    <div class="loading" id="loading">Drawing the 1930 world …</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+const GEO_URL = 'https://cdn.jsdelivr.net/gh/aourednik/historical-basemaps@master/geojson/world_1930.geojson';
+
+const HEX = {vienna:'#1f7a6b', berlin:'#a83e26', lvov:'#9c6f12', stay:'#736550'};
+
+/* cities: [lon, lat] (WGS84) + label side + institution */
+const CITY = {
+  berkeley : {ll:[-122.27,37.87], nm:'Berkeley',     in:'UC Berkeley',          side:'up'},
+  ucla     : {ll:[-118.44,34.07], nm:'Los Angeles',  in:'UCLA',                 side:'down'},
+  princeton: {ll:[ -74.66,40.35], nm:'Princeton',    in:'Inst. for Adv. Study', side:'down'},
+  dublin   : {ll:[  -6.26,53.34], nm:'Dublin',       in:'Royal Irish Academy',  side:'l',  nudge:[-30,-34]},
+  manchester:{ll:[  -2.24,53.48], nm:'Manchester',   in:'',                     side:'up', nudge:[2,-50]},
+  oxford   : {ll:[  -1.26,51.75], nm:'Oxford',       in:'',                     side:'l',  nudge:[-48,44]},
+  cambridge: {ll:[   0.12,52.21], nm:'Cambridge',    in:'',                     side:'down', nudge:[-8,86]},
+  london   : {ll:[  -0.13,51.51], nm:'London',       in:'',                     side:'r',  nudge:[46,44]},
+  chicago  : {ll:[ -87.65,41.85], nm:'Chicago',      in:'',                     side:'up',   nudge:[-24,-14]},
+  harvard  : {ll:[ -71.12,42.37], nm:'Harvard',      in:'',                     side:'up',   nudge:[0,-14]},
+  yale     : {ll:[ -72.93,41.31], nm:'Yale',         in:'',                     side:'r',    nudge:[14,0]},
+  berlin   : {ll:[  13.40,52.52], nm:'Berlin',       in:'',                     side:'up',   origin:'berlin'},
+  warsaw   : {ll:[  21.01,52.23], nm:'Warsaw',       in:'',                     side:'up',   origin:'lvov'},
+  vienna   : {ll:[  16.37,48.21], nm:'Vienna',       in:'',                     side:'r',    origin:'vienna'},
+};
+
+const REMAINED = [];
+
+/* journeys — segmented legs; showName:false → year-only label on continuation legs */
+const J = [
+  // Lwów–Warsaw (ochre)
+  {who:'Tarski',      yr:'1939', from:'warsaw',   to:'harvard',   s:'lvov',   bow:1.05, off:36,  showName:true},
+  {who:'Tarski',      yr:'1941', from:'harvard',  to:'princeton', s:'lvov',   bow:5.00, off:50,  showName:false},
+  {who:'Tarski',      yr:'1942', from:'princeton',to:'berkeley',  s:'lvov',   bow:0.80, off:50,  showName:false},
+  {who:'Łukasiewicz', yr:'1946', from:'warsaw',   to:'dublin',    s:'lvov',   bow:4.00, off:50,  showName:true,  fs:19},
+  {who:'Lejewski',    yr:'1946', from:'warsaw',   to:'london',    s:'lvov',   bow:2.10, off:50,  showName:true,  fs:19},
+  {who:'Lejewski',    yr:'1951', from:'london',   to:'manchester',s:'lvov',   bow:4.00, off:50,  showName:false},
+  // Vienna (teal)
+  {who:'Carnap',      yr:'1935', from:'vienna',   to:'chicago',   s:'vienna', bow:1.10, off:42,  showName:true},
+  {who:'Carnap',      yr:'1954', from:'chicago',  to:'ucla',      s:'vienna', bow:0.75, off:50,  showName:false},
+  {who:'Gödel',       yr:'1940', from:'vienna',   to:'princeton', s:'vienna', bow:0.70, off:58,  showName:true},
+  {who:'Rand',        yr:'1939', from:'vienna',   to:'cambridge', s:'vienna', bow:2.90, off:50,  showName:true,  fs:19},
+  {who:'Neurath',     yr:'1940', from:'vienna',   to:'oxford',    s:'vienna', bow:4.15, off:50,  showName:true,  fs:19},
+  {who:'Waismann',    yr:'1937', from:'vienna',   to:'oxford',    s:'vienna', bow:0.74, off:50,  showName:true,  fs:19},
+  {who:'Popper',      yr:'1937', from:'vienna',   to:'london',    s:'vienna', bow:2.00, off:50,  showName:true,  fs:19, note:'via Christchurch, NZ'},
+  // Berlin (brick)
+  {who:'Einstein',    yr:'1933', from:'berlin',   to:'princeton', s:'berlin', bow:2.10, off:44,  showName:true},
+  {who:'von Neumann', yr:'1933', from:'berlin',   to:'princeton', s:'berlin', bow:1.45, off:54,  showName:true},
+  {who:'Hempel',      yr:'1937', from:'berlin',   to:'chicago',   s:'berlin', bow:1.30, off:40,  showName:true},
+  {who:'Hempel',      yr:'1948', from:'chicago',  to:'yale',      s:'berlin', bow:1.00, off:50,  showName:false},
+  {who:'Hempel',      yr:'1955', from:'yale',     to:'princeton', s:'berlin', bow:6.00, off:50,  showName:false},
+  {who:'Reichenbach', yr:'1938', from:'berlin',   to:'ucla',      s:'berlin', bow:0.85, off:26,  showName:true},
+];
+
+const NS='http://www.w3.org/2000/svg';
+const svg=document.getElementById('map');
+const labels=document.getElementById('labels');
+const el=(n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+
+/* projection fit to a North-Atlantic bbox */
+const MAP_BOX=[[46,150],[1874,1046]];
+/* fit to corner POINTS (a MultiPoint has unambiguous bounds — a Polygon ring can
+   be read with inverted winding and fit the whole sphere) */
+const fitObj={type:'MultiPoint',coordinates:[[-127,33],[30,33],[30,57],[-127,57]]};
+const proj=d3.geoMercator().fitExtent(MAP_BOX, fitObj);
+proj.clipExtent([[36,120],[1884,1060]]);
+const path=d3.geoPath(proj);
+const P=(key)=>{const p=proj(CITY[key].ll);return {x:p[0],y:p[1]};};
+
+/* legend swatches */
+function legendSwatches(){
+  document.querySelectorAll('.ico[data-arc]').forEach(ic=>{
+    const k=ic.dataset.arc;
+    const s=el('svg',{viewBox:'0 0 40 18'});
+    if(k==='stay'){
+      s.appendChild(el('line',{x1:13,y1:4,x2:27,y2:14,stroke:HEX.stay,'stroke-width':2.4,'stroke-linecap':'round'}));
+      s.appendChild(el('line',{x1:27,y1:4,x2:13,y2:14,stroke:HEX.stay,'stroke-width':2.4,'stroke-linecap':'round'}));
+    } else {
+      s.appendChild(el('path',{d:'M 2 15 Q 20 -3 36 11',fill:'none',stroke:HEX[k],'stroke-width':2.6,'stroke-linecap':'round'}));
+      s.appendChild(el('path',{d:'M 31 6 L 38 11 L 30 14 Z',fill:HEX[k]}));
+    }
+    ic.appendChild(s);
+  });
+}
+
+/* quadratic arc; returns visible-d (origin→dest) and label-d (west→east) */
+function arcs(a,b,bow){
+  const mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dist=Math.hypot(b.x-a.x,b.y-a.y);
+  const lift=Math.min(dist*0.30,420)*bow, cx=mx, cy=my-lift;
+  const vis=`M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`;
+  const w=a.x<=b.x?a:b, e=a.x<=b.x?b:a;
+  const lab=`M ${w.x} ${w.y} Q ${cx} ${cy} ${e.x} ${e.y}`;
+  return {vis,lab};
+}
+
+function buildDefs(){
+  const defs=el('defs');
+  for(const k in HEX){
+    const m=el('marker',{id:'ah-'+k,viewBox:'0 0 10 10',refX:'8.2',refY:'5',
+      markerWidth:'7.5',markerHeight:'7.5',orient:'auto-start-reverse'});
+    m.appendChild(el('path',{d:'M 0.5 0.8 L 9.4 5 L 0.5 9.2 L 3.4 5 Z',fill:HEX[k]}));
+    defs.appendChild(m);
+  }
+  svg.appendChild(defs);
+}
+
+function drawBase(geo){
+  const gLand=el('g');
+  const OCC_RE=/^(Germany|Austria|Poland|France|Czechoslovakia|Norway|Denmark|Netherlands|Belgium|Luxembourg)$/;
+  geo.features.forEach(f=>{
+    const nm=f.properties&&f.properties.NAME;
+    // Denmark's feature bundles Greenland — split it so only the European part can darken
+    if(nm==='Denmark' && f.geometry && f.geometry.type==='MultiPolygon'){
+      f.geometry.coordinates.forEach(poly=>{
+        const sub={type:'Feature',properties:f.properties,geometry:{type:'Polygon',coordinates:poly}};
+        const d=path(sub); if(!d) return;
+        const p=el('path',{d,fill:'var(--land)',stroke:'var(--border)','stroke-width':0.8,
+          'stroke-linejoin':'round','vector-effect':'non-scaling-stroke'});
+        p.setAttribute('class','land');
+        const lon=d3.geoCentroid(sub)[0];
+        if(lon>-20){ p.dataset.country='Denmark'; (countryEls['Denmark']=countryEls['Denmark']||[]).push(p); }
+        gLand.appendChild(p);
+      });
+      return;
+    }
+    const d=path(f); if(!d) return;
+    const p=el('path',{d,fill:'var(--land)',stroke:'var(--border)','stroke-width':0.8,
+      'stroke-linejoin':'round','vector-effect':'non-scaling-stroke'});
+    p.setAttribute('class','land');
+    if(nm && OCC_RE.test(nm)){ p.dataset.country=nm; (countryEls[nm]=countryEls[nm]||[]).push(p); }
+    gLand.appendChild(p);
+  });
+  svg.appendChild(gLand);
+}
+
+let arcRefs=[]; const cityDotEls=new Map(); const countryEls={};
+function drawArcs(){
+  const gArc=el('g'), gLab=el('g');
+  const defs=el('defs');
+  arcRefs=[];
+  const DASH='stroke-dasharray:1;stroke-dashoffset:1;transition:opacity .22s ease;';
+  J.forEach((j,i)=>{
+    const a=P(j.from), b=P(j.to), {vis,lab}=arcs(a,b,j.bow), col=HEX[j.s];
+    const lid='lp'+i;
+    defs.appendChild(el('path',{id:lid,d:lab,fill:'none'}));
+    // soft underlay
+    const under=el('path',{d:vis,fill:'none',stroke:col,'stroke-width':5,opacity:.14,'stroke-linecap':'round',
+      pathLength:1,style:DASH});
+    gArc.appendChild(under);
+    // main arc (marker added by the animation once drawn)
+    const main=el('path',{d:vis,fill:'none',stroke:col,'stroke-width':2.1,opacity:.96,
+      'stroke-linecap':'round',pathLength:1,style:DASH});
+    gArc.appendChild(main);
+    // curved label — showName:false shows year only (continuation legs)
+    const showName = j.showName !== false;
+    const nameFs = j.fs || 22;
+    const t=el('text',{class:'arclabel',style:'opacity:0;transition:opacity .6s ease;',
+      'font-family':'STIX Two Text, Georgia, serif',
+      'font-size': showName ? String(nameFs) : '16',
+      'font-weight': showName ? '700' : '500',
+      fill:col,'paint-order':'stroke',stroke:'var(--paper)','stroke-width':'3.8','stroke-linejoin':'round'});
+    const tp=el('textPath',{href:'#'+lid,startOffset:j.off+'%','text-anchor':'middle'});
+    tp.setAttribute('dy','-4');
+    if(showName){
+      const n=el('tspan',{}); n.textContent=j.who;
+      const y=el('tspan',{dx:'7','font-family':'IBM Plex Mono, monospace','font-size':String(Math.round(nameFs*0.68)),'font-weight':'500','stroke-width':'2.6'}); y.textContent=j.yr;
+      tp.appendChild(n); tp.appendChild(y);
+      if(j.note){
+        const nt=el('tspan',{dx:'8','font-family':'STIX Two Text, Georgia, serif','font-size':String(Math.round(nameFs*0.54)),'font-style':'italic','font-weight':'400','stroke-width':'2.2'});
+        nt.textContent='('+j.note+')'; tp.appendChild(nt);
+      }
+    } else {
+      const y=el('tspan',{'font-family':'IBM Plex Mono, monospace','font-weight':'500','stroke-width':'2.4'}); y.textContent=j.yr; tp.appendChild(y);
+    }
+    t.appendChild(tp);
+    gLab.appendChild(t);
+    arcRefs.push({yr:+j.yr, paths:[under,main], main, label:t, marker:`url(#ah-${j.s})`, from:j.from, to:j.to, shown:false, who:j.who, s:j.s});
+  });
+  svg.appendChild(defs); svg.appendChild(gArc); svg.appendChild(gLab);
+  // transparent wide hit areas (on top so pointer events work)
+  const gHit=el('g');
+  J.forEach((j,i)=>{
+    const a=P(j.from),b=P(j.to),{vis}=arcs(a,b,j.bow);
+    const hit=el('path',{d:vis,fill:'none',stroke:'transparent','stroke-width':22,
+      'stroke-linecap':'round','pointer-events':'stroke',cursor:'pointer'});
+    hit.setAttribute('class','arc-hit'); hit.setAttribute('data-journey',String(i));
+    gHit.appendChild(hit);
+  });
+  svg.appendChild(gHit);
+}
+
+function drawNodes(){
+  const g=el('g');
+  for(const k in CITY){
+    const n=CITY[k], p=P(k), isO=!!n.origin, col=isO?HEX[n.origin]:'var(--ink)';
+    const cg=el('g',{'data-city':k,cursor:'pointer','pointer-events':'all',style:'transition:opacity .55s ease,transform .4s ease;'});
+    const ringR=isO?20:14;
+    // lit ring (initially hidden)
+    const ring=el('circle',{cx:p.x,cy:p.y,r:ringR,fill:'none',stroke:isO?col:'var(--ink)',
+      'stroke-width':2.2,opacity:0,style:'transition:opacity .2s;'});
+    ring.setAttribute('class','lit-ring'); cg.appendChild(ring);
+    if(isO){
+      cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:13,fill:'none',stroke:col,'stroke-width':1.2,opacity:.5}));
+      cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:6.5,fill:col}));
+      cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:2.4,fill:'var(--paper)'}));
+    } else {
+      cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:16,fill:'transparent',stroke:'none'}));
+      cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:5.4,fill:'var(--paper)',stroke:'var(--ink)','stroke-width':1.8}));
+      cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:2,fill:'var(--ink)'}));
+    }
+    g.appendChild(cg); cityDotEls.set(k,cg);
+  }
+  REMAINED.forEach(r=>{
+    const p=proj(r.ll); const x=p[0]+(r.mark?r.mark[0]:0), y=p[1]+(r.mark?r.mark[1]:0);
+    g.appendChild(el('line',{x1:x-6,y1:y-6,x2:x+6,y2:y+6,stroke:HEX.stay,'stroke-width':2.2,'stroke-linecap':'round'}));
+    g.appendChild(el('line',{x1:x+6,y1:y-6,x2:x-6,y2:y+6,stroke:HEX.stay,'stroke-width':2.2,'stroke-linecap':'round'}));
+  });
+  svg.appendChild(g);
+}
+
+function drawLeaders(){
+  const g=el('g');
+  for(const k in CITY){
+    const n=CITY[k]; if(!n.nudge) continue;
+    const p=P(k);
+    const lg=el('g',{style:'transition:opacity .55s ease;opacity:0;'}); lg.dataset.leader=k;
+    lg.appendChild(el('line',{x1:p.x,y1:p.y,x2:p.x+n.nudge[0],y2:p.y+n.nudge[1],
+      stroke:'var(--ink-3)','stroke-width':1,opacity:.5}));
+    lg.appendChild(el('circle',{cx:p.x+n.nudge[0],cy:p.y+n.nudge[1],r:1.6,fill:'var(--ink-3)',opacity:.5}));
+    g.appendChild(lg);
+  }
+  REMAINED.forEach(r=>{
+    if(!r.lab) return;
+    const p=proj(r.ll); const mx=p[0]+(r.mark?r.mark[0]:0), my=p[1]+(r.mark?r.mark[1]:0);
+    g.appendChild(el('line',{x1:mx,y1:my,x2:mx+r.lab[0],y2:my+r.lab[1],
+      stroke:HEX.stay,'stroke-width':1,opacity:.45}));
+  });
+  svg.appendChild(g);
+}
+
+function drawLabels(){
+  for(const k in CITY){
+    const n=CITY[k], p=P(k);
+    const d=document.createElement('div'); d.className='nd '+n.side+(n.origin?' origin':''); d.setAttribute('data-city',k);
+    if(n.origin) d.style.setProperty('--c',HEX[n.origin]);
+    let ox=0,oy=0;
+    if(n.side==='l') ox=-14; else if(n.side==='r') ox=14;
+    else if(n.side==='up') oy=-12; else oy=14;
+    if(n.nudge){ ox+=n.nudge[0]; oy+=n.nudge[1]; }
+    d.style.left=(p.x+ox)+'px'; d.style.top=(p.y+oy)+'px';
+    d.innerHTML=`<div class="nm">${n.nm}</div>`+(n.in?`<div class="in">${n.in}</div>`:'');
+    labels.appendChild(d);
+  }
+  REMAINED.forEach(r=>{
+    const p=proj(r.ll); const mx=p[0]+(r.mark?r.mark[0]:0), my=p[1]+(r.mark?r.mark[1]:0);
+    const lx=mx+(r.lab?r.lab[0]:0), ly=my+(r.lab?r.lab[1]:0);
+    const align=(r.lab&&r.lab[0]<0)?'l':'r';
+    const d=document.createElement('div'); d.className='nd stay '+align;
+    d.style.left=lx+'px'; d.style.top=ly+'px';
+    d.innerHTML=`<div class="nm">${r.nm}</div><div class="note">${r.note}</div>`;
+    labels.appendChild(d);
+  });
+}
+
+function fit(){
+  const s=document.getElementById('slide');
+  s.style.transform='scale('+Math.min(window.innerWidth/1920,window.innerHeight/1080)+')';
+}
+window.addEventListener('resize',fit); fit();
+
+legendSwatches();
+buildDefs();
+
+function setFocus(litIdxs,litCities){
+  const any=litIdxs.size>0;
+  arcRefs.forEach((r,i)=>{
+    if(!r.shown) return;
+    const lit=litIdxs.has(i), dim=any&&!lit;
+    r.paths.forEach(p=>p.style.opacity=dim?'0.07':'');
+    r.label.style.opacity=dim?'0':'';
+    if(lit){r.main.style.strokeWidth='3.8px';r.main.style.filter=`drop-shadow(0 0 5px ${HEX[J[i].s]})`; }
+    else{r.main.style.strokeWidth='';r.main.style.filter='';}
+  });
+  cityDotEls.forEach((cg,k)=>{
+    const lit=litCities.has(k),dim=any&&!lit;
+    cg.style.opacity=dim?'0.08':'';
+    const ring=cg.querySelector('.lit-ring'); if(ring) ring.style.opacity=lit?'1':'0';
+  });
+  document.querySelectorAll('#labels .nd[data-city]').forEach(d=>{
+    const lit=litCities.has(d.dataset.city);
+    d.style.opacity=any&&!lit?'0.08':'';
+    d.style.fontWeight=lit?'700':'';
+  });
+}
+function clearFocus(){
+  arcRefs.forEach(r=>{
+    r.paths.forEach(p=>p.style.opacity='');
+    r.label.style.opacity='';
+    r.main.style.strokeWidth=''; r.main.style.filter='';
+  });
+  cityDotEls.forEach(cg=>{
+    cg.style.opacity='';
+    const ring=cg.querySelector('.lit-ring'); if(ring) ring.style.opacity='0';
+  });
+  document.querySelectorAll('#labels .nd[data-city]').forEach(d=>{d.style.opacity='';d.style.fontWeight='';});
+  if(typeof renderFrame==='function') renderFrame(tCur);
+}
+function setupHover(){
+  svg.querySelectorAll('.arc-hit').forEach(hit=>{
+    const i=+hit.dataset.journey;
+    hit.addEventListener('mouseenter',()=>{
+      if(!arcRefs[i].shown) return;
+      const who=J[i].who, idxs=new Set(), cities=new Set();
+      arcRefs.forEach((r,j)=>{if(J[j].who===who&&r.shown){idxs.add(j);cities.add(J[j].from);cities.add(J[j].to);}});
+      setFocus(idxs,cities);
+    });
+    hit.addEventListener('mouseleave',clearFocus);
+  });
+  cityDotEls.forEach((cg,k)=>{
+    cg.addEventListener('mouseenter',()=>{
+      // every person whose route touches this city → light up ALL their legs
+      const people=new Set();
+      arcRefs.forEach(r=>{ if(r.shown&&(r.from===k||r.to===k)) people.add(r.who); });
+      if(!people.size) return;
+      const idxs=new Set(),cities=new Set();
+      arcRefs.forEach((r,i)=>{
+        if(r.shown&&people.has(r.who)){idxs.add(i);cities.add(r.from);cities.add(r.to);}
+      });
+      setFocus(idxs,cities);
+    });
+    cg.addEventListener('mouseleave',clearFocus);
+  });
+  // hover a timeline name → highlight that figure's full route on the map
+  tlMarks.forEach(m=>{
+    m.el.addEventListener('mouseenter',()=>{
+      const idxs=new Set(),cities=new Set();
+      arcRefs.forEach((r,i)=>{ if(r.shown&&r.who===m.who){idxs.add(i);cities.add(r.from);cities.add(r.to);} });
+      if(idxs.size) setFocus(idxs,cities);
+    });
+    m.el.addEventListener('mouseleave',clearFocus);
+  });
+}
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+function setYear(y){const e=document.getElementById('year'); if(e) e.textContent=y;}
+
+function pulseCity(k,on){
+  const cg=cityDotEls.get(k); if(!cg) return;
+  const ring=cg.querySelector('.lit-ring'); if(ring) ring.style.opacity=on?'1':'0';
+  cg.style.transformBox='fill-box'; cg.style.transformOrigin='center';
+  cg.style.transform=on?'scale(1.18)':'';
+  const lab=document.querySelector(`#labels .nd[data-city="${k}"]`);
+  if(lab){ lab.style.fontWeight=on?'700':''; }
+}
+function setCityVisible(k,on){
+  const cg=cityDotEls.get(k); if(cg) cg.style.opacity=on?'1':'0';
+  const lab=document.querySelector(`#labels .nd[data-city="${k}"]`);
+  if(lab) lab.style.opacity=on?'':'0';
+  const ld=svg.querySelector(`g[data-leader="${k}"]`); if(ld) ld.style.opacity=on?'1':'0';
+}
+
+/* ---- clock-driven, scrubbable YEAR-AXIS animation (1920–1955) ---- */
+const YEAR_START=1920, YEAR_END=1955, MS_PER_WEIGHT=500;
+const DRAW_DUR=1700, LABEL_AT=0.30, PULSE_DUR=900, REVEAL_DUR=620, OCC_END=1945, FAN=2.9;
+let order=[], yearSpanMs=0, totalDur=0, tCur=0, playing=false, lastTs=0, dragging=false, holdUntil=0;
+
+const clampYear=y=>y<YEAR_START?YEAR_START:(y>YEAR_END?YEAR_END:y);
+const yearFrac=y=>(clampYear(y)-YEAR_START)/(YEAR_END-YEAR_START);
+// non-linear time: war years (1933–45) stretched (slow & spacious), post-1946 elided (compressed)
+function yearWeight(y){ return y<1933?1.3 : (y<1946?2.1 : 0.22); }
+let WARP=[], WARP_TOTAL=1;
+function buildWarp(){ WARP=[]; let cum=0;
+  for(let y=YEAR_START;y<=YEAR_END;y++){ WARP.push({year:y,cum}); if(y<YEAR_END) cum+=yearWeight(y); }
+  WARP_TOTAL=cum; yearSpanMs=cum*MS_PER_WEIGHT; }
+function warpFrac(y){ y=clampYear(y); const i=Math.min(Math.max(Math.floor(y-YEAR_START),0),WARP.length-2);
+  const a=WARP[i], b=WARP[i+1]; return (a.cum+(b.cum-a.cum)*(y-a.year))/WARP_TOTAL; }
+function warpYear(frac){ const tgt=clamp(frac,0,1)*WARP_TOTAL;
+  for(let i=1;i<WARP.length;i++){ if(tgt<=WARP[i].cum){ const a=WARP[i-1],b=WARP[i]; return a.year+(tgt-a.cum)/((b.cum-a.cum)||1); } }
+  return YEAR_END; }
+const timeFor=y=>warpFrac(y)*yearSpanMs;
+function yearAt(t){ const c=t<0?0:(t>yearSpanMs?yearSpanMs:t); return Math.floor(warpYear(c/(yearSpanMs||1))); }
+function axisFrac(t){ const c=t<0?0:(t>totalDur?totalDur:t); return c/(totalDur||1); }
+const posFrac=y=>timeFor(y)/(totalDur||1);
+
+const ORIGIN_CITY={lvov:'warsaw', vienna:'vienna', berlin:'berlin'};
+const FOUND=[
+  {s:'lvov',   year:1920, name:'Lwów–Warsaw', note:'est. 1895'},
+  {s:'vienna', year:1924, name:'Vienna Circle', note:'1924'},
+  {s:'berlin', year:1928, name:'Berlin Circle', note:'1928'},
+];
+const PUBS=[ {year:1921, city:'cambridge', short:'Tractatus', ttl:'Tractatus Logico-Philosophicus'} ];
+// map annotations: publication pin (with sea label) + death daggers
+const MAP_EVENTS=[
+  {id:'tractatus', kind:'pub',   city:'cambridge', ttl:'Tractatus Logico-Philosophicus', short:'Tractatus', yr:1921, sea:[120,-72], fadeAt:1939},
+  {id:'schlick',   kind:'death', city:'vienna',    ttl:'Schlick murdered', short:'Schlick', yr:1936, off:[14,54]},
+];
+// timeline-marked political events (these also darken their country)
+const POLITICAL=[
+  {year:1933, country:'Germany', label:'1933 · Nazi seizure of power', tier:'hi'},
+  {year:1938, country:'Austria', label:'1938 · Anschluss', tier:'lo'},
+  {year:1939, country:'Poland',  label:'1939 · Invasion of Poland', tier:'hi'},
+];
+// all occupied/annexed territories darkened on the map (no timeline marker)
+const OCCUPY=[
+  {country:'Germany',        year:1933},
+  {country:'Austria',        year:1938},
+  {country:'Czechoslovakia', year:1939},
+  {country:'Poland',         year:1939},
+  {country:'Norway',         year:1940},
+  {country:'Denmark',        year:1940},
+  {country:'Netherlands',    year:1940},
+  {country:'Belgium',        year:1940},
+  {country:'Luxembourg',     year:1940},
+  {country:'France',         year:1940},
+];
+
+function buildSchedule(){
+  buildWarp();
+  order=[...arcRefs].sort((a,b)=>a.yr-b.yr);
+  const seen={};
+  order.forEach(r=>{ const k=seen[r.yr]||0; r.start=timeFor(r.yr)+k*200; seen[r.yr]=k+1; });
+  totalDur=yearSpanMs+DRAW_DUR+500;
+}
+function updateRows(t){
+  FOUND.forEach(f=>{
+    const li=document.querySelector(`.legend li[data-school="${f.s}"]`); if(!li) return;
+    const p=clamp((t-timeFor(f.year))/REVEAL_DUR,0,1);
+    li.classList.remove('pending');
+    li.style.opacity=String(p);
+    li.style.transform='translateX('+((1-p)*14).toFixed(1)+'px)';
+  });
+}
+function updateOrigins(t){
+  FOUND.forEach(f=>{ const city=ORIGIN_CITY[f.s], ft=timeFor(f.year);
+    setCityVisible(city, t>=ft-200);
+    pulseCity(city, t>=ft && t<ft+PULSE_DUR);
+  });
+}
+function updateCountries(yr){
+  OCCUPY.forEach(o=>{ const on=yr>=o.year && yr<OCC_END;
+    (countryEls[o.country]||[]).forEach(p=>{ p.style.fill = on?'#2c2720':''; });
+  });
+}
+function updateEvents(t){
+  const yr=yearAt(t);
+  MAP_EVENTS.forEach(ev=>{
+    const shown=t>=timeFor(ev.yr);
+    const faded = ev.kind==='pub' && ev.fadeAt && yr>=ev.fadeAt;
+    const an=document.getElementById('anno-'+ev.id);
+    const dot=svg.querySelector(`.ev-dot[data-ev="${ev.id}"]`);
+    const ln=svg.querySelector(`.ev-leader[data-ev="${ev.id}"]`);
+    if(an) an.style.opacity=String(shown ? (faded?0.34:1) : 0);
+    if(dot) dot.style.opacity=String(shown ? (faded?0.4:1) : 0);
+    if(ln) ln.style.opacity=String(shown ? (faded?0.16:0.5) : 0);
+  });
+}
+function renderFrame(t){
+  const yr=yearAt(t);
+  updateOrigins(t);
+  updateRows(t);
+  updateCountries(yr);
+  updateEvents(t);
+  const cityOn={};
+  arcRefs.forEach(r=>{
+    const p=clamp((t-r.start)/DRAW_DUR,0,1);
+    r.paths.forEach(pa=>pa.style.strokeDashoffset=String(1-p));
+    r.shown=p>0;
+    if(p>=1) r.main.setAttribute('marker-end',r.marker); else r.main.removeAttribute('marker-end');
+    r.label.style.opacity = p>=LABEL_AT ? '1':'0';
+    if(p>0){ cityOn[r.from]=true; cityOn[r.to]=true; }
+  });
+  for(const k in CITY){ if(!CITY[k].origin) setCityVisible(k, !!cityOn[k]); }
+  tlMarks.forEach(m=>{
+    const p=clamp((t-m.start)/DRAW_DUR,0,1), drawing=p>0&&p<1;
+    if(drawing && !m._on){ m.el.classList.remove('flash'); void m.el.offsetWidth; m.el.classList.add('flash'); }
+    m._on=drawing;
+    m.el.classList.toggle('active',drawing);
+  });
+  ctxMarks.forEach(c=>{ const reached=t>=c.start; if(reached&&!c._on){ c.el.classList.remove('flash'); void c.el.offsetWidth; c.el.classList.add('flash'); } c._on=reached; });
+  polMarks.forEach(p=>{ p.el.classList.toggle('on', yr>=p.year); });
+  setYear(yr);
+  updateTimeline(t);
+}
+function updateTimeline(t){
+  const frac=axisFrac(t);
+  const fill=document.getElementById('tlFill'), h=document.getElementById('tlHandle');
+  if(fill) fill.style.width=(frac*100)+'%';
+  if(h) h.style.left=(frac*100)+'%';
+}
+function buildEvents(){
+  const g=el('g'); g.setAttribute('id','ev-layer');
+  MAP_EVENTS.forEach(ev=>{
+    const p=P(ev.city);
+    if(ev.kind==='pub'){
+      const sx=p.x+ev.sea[0], sy=p.y+ev.sea[1];
+      const ln=el('line',{x1:p.x,y1:p.y,x2:sx,y2:sy,stroke:'var(--ink-2)','stroke-width':1});
+      ln.setAttribute('class','ev-leader'); ln.dataset.ev=ev.id; ln.style.opacity='0'; g.appendChild(ln);
+      const dot=el('circle',{cx:p.x,cy:p.y,r:4,fill:'var(--ink)',stroke:'var(--paper)','stroke-width':1.4});
+      dot.setAttribute('class','ev-dot'); dot.dataset.ev=ev.id; dot.style.opacity='0'; g.appendChild(dot);
+      const d=document.createElement('div'); d.className='ev-anno pub'; d.id='anno-'+ev.id;
+      d.style.left=sx+'px'; d.style.top=sy+'px';
+      d.innerHTML=`<div class="ttl">${ev.ttl}</div><div class="yr">${ev.yr}</div>`;
+      labels.appendChild(d);
+    } else {
+      const dot=el('circle',{cx:p.x,cy:p.y,r:3.4,fill:'#171410'});
+      dot.setAttribute('class','ev-dot'); dot.dataset.ev=ev.id; dot.style.opacity='0'; g.appendChild(dot);
+      const d=document.createElement('div'); d.className='ev-anno death'; d.id='anno-'+ev.id;
+      d.style.left=(p.x+ev.off[0])+'px'; d.style.top=(p.y+ev.off[1])+'px';
+      d.innerHTML=`<div class="dag">†</div><div class="txt"><div class="ttl">${ev.ttl}</div><div class="yr">${ev.yr}</div></div>`;
+      labels.appendChild(d);
+    }
+  });
+  svg.appendChild(g);
+}
+let tlMarks=[], ctxMarks=[], polMarks=[];
+function buildTimeline(){
+  const track=document.getElementById('tlTrack'); if(!track) return;
+  tlMarks=[]; ctxMarks=[]; polMarks=[];
+  // context: school foundings + publications (above axis), merged & tier-alternated by year
+  const ctx=[
+    ...FOUND.map(f=>({year:f.year, name:f.name, note:f.note, c:HEX[f.s], pub:false, death:false})),
+    ...MAP_EVENTS.map(ev=>({year:ev.yr, name:(ev.kind==='death'?'† '+ev.short:ev.short), note:String(ev.yr), c:'var(--ink)', pub:ev.kind==='pub', death:ev.kind==='death'})),
+  ].sort((a,b)=>a.year-b.year);
+  ctx.forEach((cx,i)=>{
+    const e=document.createElement('div');
+    e.className='tl-ctx '+(i%2?'a1':'a0')+(cx.pub?' pub':'')+(cx.death?' death':'');
+    e.style.left=(posFrac(cx.year)*100)+'%';
+    e.style.setProperty('--c',cx.c);
+    e.innerHTML=`<span class="tl-name">${cx.name} <i>${cx.note}</i></span><span class="tl-tick"></span><span class="tl-dot"></span>`;
+    e.addEventListener('click',ev=>{ev.stopPropagation();seek(posFrac(cx.year));stopPlay();});
+    track.appendChild(e);
+    ctxMarks.push({el:e,start:timeFor(cx.year),_on:false});
+  });
+  // political (above axis, full-height black, pinned)
+  POLITICAL.forEach(po=>{
+    const e=document.createElement('div');
+    e.className='tl-pol '+po.tier;
+    e.style.left=(posFrac(po.year)*100)+'%';
+    e.innerHTML=`<span class="ln"></span><span class="lab">${po.label}</span>`;
+    e.addEventListener('click',ev=>{ev.stopPropagation();seek(posFrac(po.year));stopPlay();});
+    track.appendChild(e);
+    polMarks.push({el:e,year:po.year,t:timeFor(po.year),_held:false});
+  });
+  // migration names (below axis), fanned within same-year groups
+  const first={};
+  arcRefs.forEach(r=>{ if(!(r.who in first)||r.start<first[r.who].start) first[r.who]={start:r.start,yr:r.yr,s:r.s}; });
+  const marks=Object.entries(first).map(([who,d])=>({who,...d})).sort((a,b)=>a.start-b.start);
+  const byYear={}; marks.forEach(m=>{(byYear[m.yr]=byYear[m.yr]||[]).push(m);});
+  Object.values(byYear).forEach(g=>{ const n=g.length; g.forEach((m,k)=>m._fan=(k-(n-1)/2)); });
+  marks.forEach((m,i)=>{
+    const e=document.createElement('div');
+    e.className='tl-mark b'+(i%3);
+    e.style.left=(posFrac(m.yr)*100 + m._fan*FAN)+'%';
+    e.style.setProperty('--c',HEX[m.s]);
+    e.innerHTML=`<span class="tl-name">${m.who} <i>${m.yr}</i></span><span class="tl-tick"></span>`;
+    e.addEventListener('click',ev=>{ ev.stopPropagation(); seek(posFrac(m.yr)); stopPlay(); });
+    track.appendChild(e);
+    tlMarks.push({el:e, start:m.start, who:m.who, _on:false});
+  });
+}
+function frameLoop(ts){
+  if(!playing) return;
+  const dt=Math.min(ts-lastTs,100); lastTs=ts;
+  if(performance.now()<holdUntil){ requestAnimationFrame(frameLoop); return; }
+  const prev=tCur; tCur+=dt;
+  for(const p of polMarks){
+    if(!p._held && prev<p.t && tCur>=p.t){ p._held=true; tCur=p.t; holdUntil=performance.now()+1100;
+      p.el.classList.remove('pulse'); void p.el.offsetWidth; p.el.classList.add('pulse'); break; }
+  }
+  if(tCur>=totalDur){ tCur=totalDur; renderFrame(tCur); stopPlay(); return; }
+  renderFrame(tCur); requestAnimationFrame(frameLoop);
+}
+function setPlayBtn(){
+  const b=document.getElementById('replay'); if(!b) return;
+  const done=tCur>=totalDur;
+  b.querySelector('.tri').innerHTML = playing?'&#10074;&#10074;':(done?'&#8635;':'&#9658;');
+  b.querySelector('.blab').textContent = playing?'Pause':(done?'Replay':'Play');
+}
+function startPlay(){ if(tCur>=totalDur) tCur=0; if(tCur<=0) polMarks.forEach(p=>p._held=false); playing=true; lastTs=performance.now(); holdUntil=0; setPlayBtn(); requestAnimationFrame(frameLoop); }
+function stopPlay(){ playing=false; setPlayBtn(); }
+function seek(frac){ tCur=clamp(frac,0,1)*totalDur; renderFrame(tCur); setPlayBtn(); }
+function setupTimelineDrag(){
+  const bar=document.getElementById('tlBar'), track=document.getElementById('tlTrack'); if(!bar||!track) return;
+  const fx=cx=>{ const r=track.getBoundingClientRect(); return clamp((cx-r.left)/r.width,0,1); };
+  const move=e=>{ if(!dragging) return; const x=e.touches?e.touches[0].clientX:e.clientX; seek(fx(x)); };
+  const down=e=>{ dragging=true; stopPlay(); const x=e.touches?e.touches[0].clientX:e.clientX; seek(fx(x)); e.preventDefault(); };
+  const up=()=>{ dragging=false; };
+  bar.addEventListener('mousedown',down); window.addEventListener('mousemove',move); window.addEventListener('mouseup',up);
+  bar.addEventListener('touchstart',down,{passive:false}); window.addEventListener('touchmove',move,{passive:false}); window.addEventListener('touchend',up);
+}
+
+d3.json(GEO_URL).then(geo=>{
+  document.getElementById('loading').remove();
+  drawBase(geo);
+  drawLeaders();
+  drawArcs();
+  drawNodes();
+  drawLabels();
+  buildEvents();
+  buildSchedule(); buildTimeline(); setupTimelineDrag(); setupHover();
+  const rb=document.getElementById('replay');
+  if(reduceMotion){ tCur=totalDur; renderFrame(totalDur); setPlayBtn(); }
+  else {
+    renderFrame(0);
+    if(rb) rb.addEventListener('click', ()=>{ if(playing) stopPlay(); else startPlay(); });
+    startPlay();
+  }
+}).catch(err=>{
+  console.error('Map data failed to load:', err);
+  const l=document.getElementById('loading');
+  if(l) l.textContent='Could not load 1930 map data (network).';
+});
+</script>
+</body>
+</html>

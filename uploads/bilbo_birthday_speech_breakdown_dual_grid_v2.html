@@ -1,0 +1,69 @@
+<style>
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+.bw{padding:0.5rem 0;font-family:var(--font-sans);color:var(--text-primary);line-height:1.6;}
+.bq{font-family:var(--font-voice);font-style:italic;font-size:17px;line-height:1.5;color:var(--text-primary);max-width:580px;}
+.attr{font-size:13px;color:var(--text-muted);margin-top:8px;}
+.panel{margin-top:18px;padding:16px;background:var(--surface-1);border:0.5px solid var(--border);border-radius:12px;}
+.clause{font-family:var(--font-voice);font-style:italic;font-size:15px;color:var(--text-secondary);margin-bottom:14px;}
+.gwrap{position:relative;width:230px;}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;width:230px;min-height:200px;}
+.dot{aspect-ratio:1;border-radius:50%;}
+.halfline{position:absolute;left:-6px;right:-6px;top:50%;transform:translateY(-50%);border-top:1.5px dashed var(--border-strong);pointer-events:none;}
+.leg{font-size:13px;color:var(--text-secondary);}
+.leg>div{margin-bottom:8px;}
+.sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:8px;vertical-align:middle;}
+.cap{font-size:12px;color:var(--text-muted);margin-top:8px;}
+.scale{margin-top:16px;}
+.track{position:relative;height:8px;background:var(--surface-2);border:0.5px solid var(--border);border-radius:4px;}
+.tick{position:absolute;left:50%;top:-5px;bottom:-5px;border-left:1.5px dashed var(--border-strong);}
+.slabels{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:7px;}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;}
+</style>
+<div class="bw">
+  <h2 class="sr-only">A breakdown of Bilbo Baggins's birthday-speech joke, splitting his 144 guests two different ways, each shown as a grid of dots.</h2>
+  <div class="bq">"I don't know half of you half as well as I should like; and I like less than half of you half as well as you deserve."</div>
+  <div class="attr">— Bilbo Baggins, at his eleventy-first birthday · 144 guests, "one gross"</div>
+
+  <div class="panel">
+    <div class="clause">"I don't know half of you half as well as I should like."</div>
+    <div class="row">
+      <div>
+        <div class="gwrap"><div class="grid" id="grid1"></div><div class="halfline"></div></div>
+      </div>
+      <div class="leg" style="flex:1;min-width:210px;">
+        <div><span class="sw" style="background:#378ADD;"></span>72 — he <em>does</em> know at least half as well as he'd like</div>
+        <div><span class="sw" style="background:#639922;"></span>72 — he does <em>not</em> know half as well as he'd like</div>
+        <div class="scale">
+          <div class="track"><div style="position:absolute;left:0;top:0;bottom:0;width:50%;background:#63992233;border-radius:4px 0 0 4px;"></div><div style="position:absolute;right:0;top:0;bottom:0;width:50%;background:#378ADD33;border-radius:0 4px 4px 0;"></div><div class="tick"></div></div>
+          <div class="slabels"><span>doesn't know them</span><span>half as well</span><span>as well as he'd like</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="clause">"...and I like less than half of you half as well as you deserve."</div>
+    <div class="row">
+      <div>
+        <div class="gwrap"><div class="grid" id="grid2"></div><div class="halfline"></div></div>
+      </div>
+      <div class="leg" style="flex:1;min-width:210px;">
+        <div><span class="sw" style="background:#E24B4A;"></span>up to 71 — he likes these <em>less than</em> half as much as they deserve</div>
+        <div><span class="sw" style="background:#EF9F27;"></span>73+ — he likes these at least as much as they deserve</div>
+        <div class="scale">
+          <div class="track"><div style="position:absolute;left:0;top:0;bottom:0;width:50%;background:#E24B4A33;border-radius:4px 0 0 4px;"></div><div style="position:absolute;right:0;top:0;bottom:0;width:50%;background:#EF9F2733;border-radius:0 4px 4px 0;"></div><div class="tick"></div></div>
+          <div class="slabels"><span>likes them little</span><span>half as well</span><span>as much as they deserve</span></div>
+          <div class="cap">"Less than half" is vague — anywhere from 1 to 71, plausibly the Sackville-Bagginses.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var g1=document.getElementById('grid1');
+  if(g1){var h='';for(var i=0;i<144;i++){h+='<div class="dot" style="background:'+(i<72?'#378ADD':'#639922')+'"></div>';}g1.innerHTML=h;}
+  var g2=document.getElementById('grid2');
+  if(g2){var h2='';for(var j=0;j<144;j++){h2+='<div class="dot" style="background:'+(j<71?'#E24B4A':'#EF9F27')+'"></div>';}g2.innerHTML=h2;}
+})();
+</script>

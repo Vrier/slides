@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 9 — Thematic Roles & UTAH · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<div class="handout-week" data-week="9"><div class="page">
+
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 9</div>
+    <h1 class="h-title">Thematic Roles, Event Structure &amp; UTAH</h1>
+  </div>
+
+  <div class="lens-roadmap">
+    <div class="lr-item lens-empirical"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><div class="lr-lab">Empirical</div><div class="lr-q">Roles, alternations &amp; psych verbs</div></div>
+    <div class="lr-item lens-historical"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><div class="lr-lab">Historical</div><div class="lr-q">Fillmore to Dowty</div></div>
+    <div class="lr-item lens-formal"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><div class="lr-lab">Formal</div><div class="lr-q">From grids to LCS</div></div>
+    <div class="lr-item lens-typological"><div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><div class="lr-lab">Typological</div><div class="lr-q">Mapping roles to syntax</div></div>
+  </div>
+
+  <!-- EMPIRICAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-empirical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>
+      <span class="lsh-lab">Empirical</span>
+      <span class="lsh-q">What does a verb's participant structure look like?</span>
+    </div>
+    <div class="callout callout-note">
+      <span class="badge">Role labels</span>
+      <p><b>Agent</b> volitional controller · <b>Causer</b> brings about change, non-volitional · <b>Theme</b> moves/changes/is located · <b>Patient</b> affected · <b>Goal/Source/Path</b> endpoint/start/route · <b>Recipient/Benefactive</b> possessor reached / intended · <b>Experiencer</b> feels or perceives · <b>Stimulus</b> is perceived or provokes.</p>
+    </div>
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">Reading off thematic roles</div>
+        <p>For each DP, ask: does it act, undergo change, mark an endpoint, or feel something? Then label it. Severed into neo-Davidsonian form, <em class="sent">Sarah threw the branch at the window</em> = \(\exists e[\textsc{throw}(e)\wedge\textsc{agent}(e,s)\wedge\textsc{theme}(e,b)\wedge\textsc{goal}(e,w)]\).</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Practice · 3 tasks</div>
+        <div class="ex-task"><span class="tn">1</span><span class="tb">Label the roles, then give neo-Davidsonian forms: <em class="sent">The vase broke.</em> · <em class="sent">The faucet dripped water onto the floor.</em><div class="answer-space" style="--lines:3"></div></span></div>
+        <div class="ex-task"><span class="tn">2</span><span class="tb"><em class="sent">Selena sent Luke a postcard.</em> · <em class="sent">Maya baked Leo a cake.</em> — identify recipient vs benefactive.<div class="answer-space" style="--lines:3"></div></span></div>
+        <div class="ex-task"><span class="tn">3</span><span class="tb"><em class="sent">All of the hikers trudged along the ridge to the lodge from their camp.</em> — label every PP (path, goal, source).<div class="answer-space" style="--lines:3"></div></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORICAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-historical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>
+      <span class="lsh-lab">Historical</span>
+      <span class="lsh-q">How did role theory get from labels to entailments?</span>
+    </div>
+    <div class="callout callout-note">
+      <span class="badge">Background</span>
+      <p><strong>Fillmore (1968)</strong> proposed deep "cases"; <strong>Gruber &amp; Jackendoff</strong> developed localist roles (theme, goal, source, path) in Lexical Conceptual Structure; <strong>Baker (1988)</strong> formulated UTAH; <strong>Dowty (1991)</strong> replaced discrete labels with <em>Proto-Agent</em> and <em>Proto-Patient</em> entailment clusters, deriving argument selection by counting entailments.</p>
+    </div>
+  </div>
+
+  <!-- FORMAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-formal">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>
+      <span class="lsh-lab">Formal</span>
+      <span class="lsh-q">LCS decomposition and role predicates</span>
+    </div>
+    <div class="callout callout-def">
+      <span class="badge">LCS schemas</span>
+      <p>agent = \(x\) in \(\textsc{do}(x,[\dots])\) · causer = \(x\) in \(x\ \textsc{cause}\ [\dots]\) · theme = \(y\) in \(\textsc{become}[P(y)]\) · goal = \(z\) in \(\textsc{become}[\textsc{be-at}(y,z)]\) · object-experiencer = \(x\ \textsc{cause}\ [\textsc{become}[\textsc{feel}(y,\text{state})]]\).</p>
+    </div>
+    <div class="callout callout-key">
+      <span class="badge">Key idea</span>
+      <p>The <strong>Theta Criterion</strong> (one role per argument, one argument per role) and <strong>UTAH</strong> (same role → same position) link decomposition to syntax. <strong>Burzio's Generalisation</strong> ties accusative case to having an external argument.</p>
+    </div>
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">LCS ↔ neo-Davidsonian</div>
+        <p>Read a role off a structural position in the LCS, then realise it as a role predicate of the event.</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Apply it</div>
+        <div class="ex-task"><span class="tn">1</span><span class="tb">For each LCS, give (i) an English verb, (ii) the main roles, (iii) a neo-Davidsonian form: \(x\ \textsc{cause}[\textsc{become}[\text{broken}(y)]]\); \(\textsc{do}(x,[\text{walk}(x)])\); \(x\ \textsc{cause}[\textsc{become}[\textsc{be-at}(y,z)]]\).<div class="answer-space" style="--lines:4"></div></span></div>
+        <div class="ex-task"><span class="tn">2</span><span class="tb">Causative/inchoative: give forms for <em class="sent">John broke the vase</em> and <em class="sent">The vase broke</em>, and state the entailment.<div class="answer-space" style="--lines:2"></div></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOLOGICAL -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-typological">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>
+      <span class="lsh-lab">Typological</span>
+      <span class="lsh-q">Reinhart's features and the psych-verb puzzle</span>
+    </div>
+    <div class="callout callout-note">
+      <span class="badge">Overview</span>
+      <p>Reinhart decomposes roles into <b>[±c]</b> (causes change) and <b>[±m]</b> (mental): Agent [+c,+m], Causer [+c,−m], Experiencer [−c,+m], Theme [−c,−m]. When two positions are open, the higher role takes the higher position — predicting subject- vs object-experiencer realisation across languages.</p>
+    </div>
+    <div class="ex-instrn">
+      <div class="ex-instrn-head">Cross-linguistic</div>
+      <div class="ex-it"><div class="it-lead"><span class="it-n">1</span><span class="it-instr">Classify:</span></div><p class="it-task">For <em class="sent">The article enraged Thomas</em>, <em class="sent">Midge loves ice cream</em>, and <em class="sent">The poltergeist frightened John</em>: is the non-experiencer more a cause or a target? Do realisations track Reinhart's features?</p><div class="answer-space" style="--lines:4"></div></div>
+      <div class="ex-it"><div class="it-lead"><span class="it-n">2</span><span class="it-instr">Your own data:</span></div><p class="it-task">In a language you know, give a subject-experiencer and an object-experiencer psych verb. How is each participant case-marked?</p><div class="answer-space" style="--lines:4"></div></div>
+    </div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Describing Meaning</span>
+    <span>Week 9 · Thematic Roles &amp; UTAH</span>
+    <span>1</span>
+  </div>
+</div><!-- /page -->
+</div><!-- /handout-week 9 -->
+<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#e6f0f8"/>
+    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#0569b9" stroke-width="2"/>
+    <line x1="36" y1="32" x2="64" y2="32" stroke="#0569b9" stroke-width="2.5"/>
+    <line x1="36" y1="42" x2="58" y2="42" stroke="#c1daee" stroke-width="2"/>
+    <line x1="36" y1="50" x2="62" y2="50" stroke="#c1daee" stroke-width="2"/>
+    <line x1="36" y1="58" x2="54" y2="58" stroke="#c1daee" stroke-width="2"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#0569b9" text-anchor="middle">LI7869 · HANDOUT</text>
+  </svg>
+</template>
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundations &amp; Modern Schools of Pragmatics — Map</title>
+<meta name="ext-resource-dependency" content="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js">
+<meta name="ext-resource-dependency" content="https://cdn.jsdelivr.net/gh/aourednik/historical-basemaps@master/geojson/world_2010.geojson">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================ THEME DIRECTIONS ============================ */
+  /* shared accents (per school + per foundational lineage) — editorial, matched L/C, varied hue */
+  :root{
+    --neo:#1f7a6b;        /* Neo-Gricean      — teal-green */
+    --rel:#b1533a;        /* Relevance        — terracotta */
+    --formal:#48579e;     /* Formal broad     — indigo     */
+    --gram:#8c4a82;       /* Grammaticalism   — plum       */
+    --rsa:#9a7626;        /* Probabilistic    — ochre      */
+    --oxf:#5e513d;        /* Oxford ordinary-language */
+    --pwf:#566480;        /* Possible-worlds / formal */
+    --inf:#6a7770;        /* Information-theoretic    */
+    --hinge:#9a7626;      /* Grice halo */
+    --serif:"STIX Two Text",Georgia,serif;
+    --serif2:"Spectral",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  /* A — WARM PLATE (sibling-leaning ivory, cleaner & lighter) */
+  body[data-dir="a"]{
+    --bg:#1d1810; --paper:#f4efe2; --paper-2:#ece4d2; --land:#e6ddc8; --land-2:#ece4d1;
+    --border:#cabfa3; --coast:#a99875; --grid:#cfc4ab;
+    --ink:#2f2a20; --ink-2:#5f5440; --ink-3:#8a7c61; --halo:rgba(244,239,226,.94);
+    --frame:#a99875; --frame2:#5f5440; --grain:.42; --vign:.20;
+  }
+  /* B — MODERN ATLAS (cool near-white, fine graticule, restrained) */
+  body[data-dir="b"]{
+    --bg:#141719; --paper:#f6f7f5; --paper-2:#eef0ee; --land:#e6e9e7; --land-2:#edefed;
+    --border:#c5cbc8; --coast:#a7afac; --grid:#d6dbd8;
+    --ink:#1e2421; --ink-2:#4f5854; --ink-3:#828b87; --halo:rgba(246,247,245,.96);
+    --frame:#aab2ae; --frame2:#4f5854; --grain:.16; --vign:.10;
+  }
+  /* C — EDITORIAL INK (warm off-white, deeper duotone land, bolder type) */
+  body[data-dir="c"]{
+    --bg:#171208; --paper:#efe7d6; --paper-2:#e5dac3; --land:#d8ccb1; --land-2:#ddd2b9;
+    --border:#bbab8b; --coast:#8f7c57; --grid:#c4b596;
+    --ink:#241d12; --ink-2:#564731; --ink-3:#7e6c4c; --halo:rgba(239,231,214,.94);
+    --frame:#8f7c57; --frame2:#564731; --grain:.50; --vign:.30;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;}
+  #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg);}
+  #slide{
+    position:relative;width:1920px;height:1080px;flex:0 0 auto;transform-origin:center center;
+    background:radial-gradient(135% 120% at 50% 40%, color-mix(in oklab,var(--paper),#fff 7%) 0%, var(--paper) 48%, color-mix(in oklab,var(--paper),#000 6%) 92%);
+    color:var(--ink);font-family:var(--serif);overflow:hidden;-webkit-font-smoothing:antialiased;
+  }
+  #slide::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(120% 120% at 16% 10%, rgba(120,95,55,.04), transparent 46%),
+               radial-gradient(120% 120% at 88% 90%, rgba(60,46,24,.08), transparent 52%);
+    mix-blend-mode:multiply;}
+  #slide::after{content:"";position:absolute;inset:0;z-index:7;pointer-events:none;
+    box-shadow:inset 0 0 200px rgba(50,38,18,calc(var(--vign)*.9)), inset 0 0 50px rgba(50,38,18,calc(var(--vign)*.5));}
+  #grain{position:absolute;inset:0;z-index:6;pointer-events:none;opacity:var(--grain);mix-blend-mode:multiply;}
+
+  /* plate frame (atlas neatline) */
+  .frame{position:absolute;z-index:5;pointer-events:none;border:1.5px solid var(--frame);}
+  .frame.outer{inset:22px;}
+  .frame.inner{inset:30px;border-width:2.5px;border-color:var(--frame2);}
+
+  svg#map{position:absolute;inset:0;width:100%;height:100%;z-index:2;}
+
+  /* title cartouche */
+  .cartouche{position:absolute;left:60px;top:54px;z-index:5;width:638px;
+    background:linear-gradient(180deg, color-mix(in oklab,var(--paper),#fff 6%) 0%, var(--paper-2) 100%);
+    border:2px solid var(--frame2);border-radius:3px;
+    box-shadow:0 0 0 5px color-mix(in oklab,var(--paper),transparent 30%), 0 16px 40px rgba(50,38,18,.20);
+    padding:24px 34px 26px;}
+  .cartouche::after{content:"";position:absolute;inset:6px;border:1px solid var(--ink-3);opacity:.5;border-radius:2px;pointer-events:none;}
+  .kick{font-family:var(--mono);font-size:16px;font-weight:600;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--rel);margin:0 0 12px;}
+  .cartouche h1{font-family:var(--serif);font-weight:700;font-size:50px;line-height:1.0;
+    letter-spacing:-.012em;margin:0;color:var(--ink);}
+  .cartouche h1 em{font-style:italic;font-weight:600;color:var(--ink-2);}
+  .rule{display:flex;align-items:center;gap:12px;margin:14px 0 12px;}
+  .rule .ln{height:1px;background:var(--ink-3);flex:1;opacity:.55;}
+  .rule .dot{width:6px;height:6px;border:1px solid var(--ink-2);transform:rotate(45deg);}
+  .subt{font-family:var(--serif2);font-size:23px;font-style:italic;line-height:1.34;
+    color:var(--ink-2);margin:0;}
+
+  /* legend */
+  .legend{position:absolute;right:50px;bottom:128px;z-index:5;width:392px;
+    background:linear-gradient(180deg, color-mix(in oklab,var(--paper),#fff 6%) 0%, var(--paper-2) 100%);
+    border:2px solid var(--frame2);border-radius:3px;padding:20px 26px 20px;
+    box-shadow:0 0 0 5px color-mix(in oklab,var(--paper),transparent 30%), 0 16px 40px rgba(50,38,18,.20);}
+  .legend::after{content:"";position:absolute;inset:6px;border:1px solid var(--ink-3);opacity:.45;border-radius:2px;pointer-events:none;}
+  .legend h2{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-2);margin:0 0 14px;position:relative;}
+  .legend ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;position:relative;}
+  .legend li{display:grid;grid-template-columns:42px 1fr auto;align-items:baseline;column-gap:13px;
+    font-family:var(--serif);cursor:pointer;transition:opacity .25s;}
+  .legend li.pending{opacity:0;}
+  .legend .ico{grid-row:1 / span 2;align-self:center;height:18px;position:relative;}
+  .legend .ico svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;}
+  .legend .lbl{font-size:22px;color:var(--ink);line-height:1.05;}
+  .legend .yr{font-family:var(--mono);font-size:13px;color:var(--ink-2);letter-spacing:.03em;}
+  .legend .onset{grid-column:2 / span 2;font-family:var(--serif2);font-style:italic;font-size:15.5px;
+    color:var(--ink-3);margin-top:1px;line-height:1.15;}
+  .legend .sep{position:relative;height:1px;background:var(--ink-3);opacity:.4;margin:6px 0 4px;}
+  .legend h3{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-3);margin:8px 0 10px;position:relative;}
+  .legend .founds{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;position:relative;}
+  .legend .founds li{grid-template-columns:42px 1fr;}
+  .legend .founds .fdot{grid-row:1;align-self:center;justify-self:center;width:13px;height:13px;border-radius:50%;}
+  .legend .founds .lbl{font-size:18px;font-style:italic;color:var(--ink-2);}
+
+  /* node / person labels (HTML overlay) */
+  #labels{position:absolute;inset:0;z-index:4;pointer-events:none;}
+  .nd{position:absolute;transition:opacity .3s ease;}
+  .nd .nm{font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.02;color:var(--c,var(--ink));white-space:nowrap;
+    text-shadow:0 1px 0 var(--halo),0 0 8px var(--halo);}
+  .nd .in{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;color:var(--ink-3);margin-top:4px;white-space:nowrap;
+    text-transform:uppercase;text-shadow:0 1px 0 var(--halo),0 0 7px var(--halo);}
+  .nd.l{text-align:right;transform:translate(-100%,-50%);}
+  .nd.r{text-align:left;transform:translate(0,-50%);}
+  .nd.up{text-align:center;transform:translate(-50%,-100%);}
+  .nd.down{text-align:center;transform:translate(-50%,0);}
+  .nd.hinge .nm{font-size:30px;font-weight:700;letter-spacing:-.01em;}
+  .nd.faint .nm{font-style:italic;font-weight:500;font-size:20px;color:var(--ink-3);}
+
+  .arc-hit{cursor:pointer;}
+  path.land{transition:fill 1s ease;}
+
+  /* publication sea-pins (onset markers) */
+  .pub-anno{position:absolute;z-index:5;opacity:0;transition:opacity .6s ease;pointer-events:none;transform:translate(-50%,-50%);text-align:center;width:210px;}
+  .pub-anno .ttl{font-family:var(--serif);font-style:italic;font-weight:600;font-size:16px;color:var(--c,var(--ink));line-height:1.14;
+    text-shadow:0 1px 0 var(--halo),0 0 7px var(--halo);}
+  .pub-anno .yr{font-family:var(--mono);font-size:11px;color:var(--ink-2);letter-spacing:.06em;margin-top:3px;}
+  .pub-dot,.pub-leader{transition:opacity .5s ease;}
+
+  /* controls */
+  .controls{position:absolute;left:60px;right:60px;bottom:40px;z-index:6;display:flex;align-items:center;gap:24px;}
+  .rbtn{font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink);background:color-mix(in oklab,var(--paper),#fff 4%);border:1.5px solid var(--frame2);border-radius:6px;
+    padding:8px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;flex:none;
+    box-shadow:0 0 0 3px color-mix(in oklab,var(--paper),transparent 40%),0 5px 13px rgba(50,38,18,.14);transition:background .2s,transform .1s;}
+  .rbtn:hover{background:#fff;}
+  .rbtn:active{transform:translateY(1px);}
+  .rbtn .tri{font-size:10px;color:var(--rel);min-width:13px;text-align:center;}
+  .ticker{display:flex;align-items:baseline;gap:9px;flex:none;}
+  .ticker .tlabel{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);}
+  .ticker #year{font-family:var(--serif);font-weight:700;font-size:33px;line-height:1;color:var(--ink);
+    font-variant-numeric:tabular-nums;text-shadow:0 1px 0 var(--halo);min-width:84px;}
+  /* timeline */
+  .timeline{flex:1 1 auto;position:relative;height:56px;display:flex;align-items:center;cursor:pointer;}
+  .tl-track{position:relative;width:100%;height:2px;background:var(--ink-3);opacity:.8;}
+  .tl-track::before,.tl-track::after{content:"";position:absolute;top:50%;width:5px;height:5px;border-radius:50%;background:var(--ink-3);transform:translateY(-50%);}
+  .tl-track::before{left:-3px;}.tl-track::after{right:-3px;}
+  .tl-fill{position:absolute;left:0;top:0;height:100%;background:var(--ink);width:0;}
+  .tl-handle{position:absolute;top:50%;left:0;width:2.5px;height:22px;background:var(--ink);
+    transform:translate(-50%,-50%);z-index:5;box-shadow:0 0 0 2px var(--halo);}
+  /* school spans (founding → present) */
+  .tl-span{position:absolute;height:2.5px;border-radius:2px;opacity:.3;z-index:1;transition:opacity .4s;}
+  .tl-span.on{opacity:.85;}
+  /* below-axis: foundational figures */
+  .tl-mark{position:absolute;top:50%;width:0;z-index:2;}
+  .tl-mark .tl-tick{position:absolute;left:0;top:1px;width:1.5px;height:6px;background:var(--c);transform:translateX(-50%);opacity:.7;}
+  .tl-mark .tl-name{position:absolute;left:0;transform:translateX(-50%);
+    font-family:var(--mono);font-size:9.5px;font-weight:600;letter-spacing:.01em;color:var(--c);
+    white-space:nowrap;cursor:pointer;transition:transform .2s,opacity .2s;opacity:.9;}
+  .tl-mark .tl-name i{font-style:normal;opacity:.6;font-weight:500;font-size:8.5px;}
+  .tl-mark.b0 .tl-name{top:9px;}.tl-mark.b1 .tl-name{top:21px;}.tl-mark.b2 .tl-name{top:33px;}
+  .tl-mark.active .tl-name{font-weight:700;opacity:1;transform:translateX(-50%) scale(1.2);}
+  .tl-mark.active .tl-tick{opacity:1;}
+  .tl-mark.flash .tl-name{animation:tlflash .7s ease-out;}
+  @keyframes tlflash{0%{text-shadow:0 0 0 transparent;}35%{text-shadow:0 0 12px var(--c),0 0 4px var(--c);}100%{text-shadow:0 0 0 transparent;}}
+  /* above-axis: school foundings + pubs */
+  .tl-ctx{position:absolute;top:50%;width:0;z-index:3;}
+  .tl-ctx .tl-tick{position:absolute;left:0;top:-7px;width:1.5px;height:7px;background:var(--c);transform:translateX(-50%);opacity:.7;}
+  .tl-ctx .tl-dot{position:absolute;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--c);
+    transform:translate(-50%,-50%);box-shadow:0 0 0 2px var(--paper);}
+  .tl-ctx .tl-name{position:absolute;left:0;bottom:8px;transform:translateX(-50%);white-space:nowrap;
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.02em;color:var(--c);}
+  .tl-ctx .tl-name i{font-style:normal;opacity:.6;font-weight:500;}
+  .tl-ctx.a1 .tl-name{bottom:23px;}
+  .tl-ctx.a1 .tl-tick{height:21px;top:-21px;}
+  .tl-ctx.pub .tl-name{color:var(--ink-2);font-weight:500;font-style:italic;font-family:var(--serif2);font-size:11px;}
+  .tl-ctx.flash .tl-name{animation:tlflash .7s ease-out;}
+
+  /* direction switch (chrome) */
+  .dirsw{position:absolute;right:50px;top:60px;z-index:8;display:flex;gap:0;
+    background:color-mix(in oklab,var(--paper),#fff 4%);border:1.5px solid var(--frame2);border-radius:7px;overflow:hidden;
+    box-shadow:0 0 0 3px color-mix(in oklab,var(--paper),transparent 40%),0 6px 16px rgba(50,38,18,.16);}
+  .dirsw button{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap;
+    color:var(--ink-2);background:transparent;border:0;border-right:1px solid var(--frame2);padding:8px 12px;cursor:pointer;transition:background .15s,color .15s;}
+  .dirsw button:last-child{border-right:0;}
+  .dirsw button.on{background:var(--ink);color:var(--paper);}
+  body.embed .dirsw{display:none;}
+
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion: reduce){ .arc{stroke-dashoffset:0;} }
+  .loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:9;
+    font-family:var(--serif2);font-style:italic;font-size:26px;color:var(--ink-2);}
+</style>
+</head>
+<body data-dir="a">
+<div id="stage">
+  <div id="slide">
+    <svg id="grain"><filter id="paperGrain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.42  0 0 0 0 0.34  0 0 0 0 0.2  0 0 0 0.6 0"/></filter><rect width="100%" height="100%" filter="url(#paperGrain)"/></svg>
+
+    <svg id="map" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+    <div id="labels"></div>
+
+    <div class="dirsw" id="dirsw">
+      <button data-dir="a" class="on">Warm Plate</button>
+      <button data-dir="b">Modern Atlas</button>
+      <button data-dir="c">Editorial Ink</button>
+    </div>
+
+    <div class="controls">
+      <button id="replay" class="rbtn" type="button"><span class="tri">&#9658;</span> <span class="blab">Play</span></button>
+      <div class="ticker"><span class="tlabel">year</span><span id="year">1955</span></div>
+      <div class="timeline" id="tlBar">
+        <div class="tl-track" id="tlTrack">
+          <div class="tl-fill" id="tlFill"></div>
+          <div class="tl-handle" id="tlHandle"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame outer"></div>
+    <div class="frame inner"></div>
+
+    <div class="cartouche">
+      <p class="kick">After Grice · 1955–present</p>
+      <h1>Foundations &amp; Modern<br>Schools of <em>Pragmatics</em></h1>
+      <div class="rule"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>
+      <p class="subt">How four post-Gricean schools branch from a single hinge — and where they took root.</p>
+    </div>
+
+    <div class="legend">
+      <h2>Five post-Gricean schools</h2>
+      <ul id="schoolList"></ul>
+      <div class="sep"></div>
+      <h3>Foundations, by lineage</h3>
+      <ul class="founds" id="founList"></ul>
+    </div>
+
+    <div class="loading" id="loading">Drawing the North Atlantic …</div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+/* ---------- direction switch ---------- */
+(function(){
+  const p=new URLSearchParams(location.search);
+  const d=p.get('dir'); if(d&&/^[abc]$/.test(d)) document.body.dataset.dir=d;
+  if(p.get('embed')==='1') document.body.classList.add('embed');
+  window.__static = p.get('static')==='1';
+  document.querySelectorAll('#dirsw button').forEach(b=>{
+    b.classList.toggle('on', b.dataset.dir===document.body.dataset.dir);
+    b.addEventListener('click',()=>{
+      document.body.dataset.dir=b.dataset.dir;
+      document.querySelectorAll('#dirsw button').forEach(x=>x.classList.toggle('on',x===b));
+    });
+  });
+})();
+
+const GEO_URL='https://cdn.jsdelivr.net/gh/aourednik/historical-basemaps@master/geojson/world_2010.geojson';
+const CV=k=>`var(--${k})`;   /* category → css colour var */
+
+/* ---------- institutions [lon,lat] ---------- */
+const INST={
+  oxford:   {ll:[ -1.26,51.75]},
+  berkeley: {ll:[-122.27,37.87]},
+  stanford: {ll:[-122.17,37.43]},
+  cornell:  {ll:[ -76.50,42.44]},
+  princeton:{ll:[ -74.66,40.35]},
+  bell:     {ll:[ -74.40,40.68]},
+  yale:     {ll:[ -72.93,41.31]},
+  harvardmit:{ll:[-71.10,42.37]},
+  utaustin: {ll:[ -97.74,30.28]},
+  ohio:     {ll:[ -83.00,40.00]},
+  cambridge:{ll:[  0.12,52.21]},
+  sussex:   {ll:[ -0.14,50.82]},
+  ucl:      {ll:[ -0.13,51.52]},
+  paris:    {ll:[  2.35,48.85]},
+};
+
+/* ---------- labels (people / groups) ---------- */
+/* cat: school id (neo/rel/formal/gram/rsa) or lineage (oxf/pwf/inf). yr=reveal year.
+   side + nudge place the label; in=institution mono line. */
+const LAB=[
+  // foundations — Oxford ordinary-language
+  {t:'Grice',    in:'UC Berkeley',inst:'berkeley', cat:'oxf', yr:1967, side:'up', nudge:[6,-42], hinge:true},
+  {t:'Searle',   in:'UC Berkeley',inst:'berkeley', cat:'oxf', yr:1969, side:'down', nudge:[26,26]},
+  {t:'Austin',   in:'Oxford',     inst:'oxford',   cat:'oxf', yr:1955, side:'l',  nudge:[-30,-40]},
+  {t:'Strawson', in:'Oxford',     inst:'oxford',   cat:'oxf', yr:1955, side:'l',  nudge:[-54,62]},
+  // foundations — possible-worlds / formal
+  {t:'Stalnaker',in:'Cornell',    inst:'cornell',  cat:'pwf', yr:1974, side:'up', nudge:[-52,-46]},
+  {t:'Lewis',    in:'Princeton',  inst:'princeton',cat:'pwf', yr:1969, side:'down',nudge:[-26,46]},
+  // foundations — information-theoretic
+  {t:'Shannon',  in:'Bell Labs',  inst:'bell',     cat:'inf', yr:1955, side:'down', nudge:[118,104], faint:true},
+  // Neo-Gricean
+  {t:'Horn',     in:'Yale',       inst:'yale',     cat:'neo', yr:1981, side:'down', nudge:[26,46]},
+  {t:'Levinson', in:'Cambridge',  inst:'cambridge',cat:'neo', yr:1981, side:'up', nudge:[40,-42]},
+  {t:'Gazdar',   in:'Sussex',     inst:'sussex',   cat:'neo', yr:1981, side:'down',nudge:[-26,52]},
+  // Relevance Theory
+  {t:'Wilson · Carston', in:'UCL', inst:'ucl',     cat:'rel', yr:1986, side:'l',  nudge:[-56,4]},
+  {t:'Sperber',  in:'Jean Nicod',  inst:'paris',   cat:'rel', yr:1986, side:'down', nudge:[30,60]},
+  // Grammaticalism
+  {t:'Chierchia · Fox', in:'Harvard · MIT', inst:'harvardmit', cat:'gram', yr:2004, side:'up', nudge:[64,-32]},
+  {t:'Schlenker',in:'Jean Nicod · NYU', inst:'paris', cat:'gram', yr:2004, side:'down', nudge:[12,112]},
+  // Formal pragmatics (broad)
+  {t:'Beaver',   in:'UT Austin',  inst:'utaustin', cat:'formal', yr:2005, side:'down',nudge:[0,28]},
+  {t:'Tonhauser',in:'Ohio State', inst:'ohio',     cat:'formal', yr:2005, side:'l',  nudge:[-24,0]},
+  {t:'Potts',    in:'Stanford',   inst:'stanford', cat:'formal', yr:2005, side:'down', nudge:[-24,84]},
+  // Probabilistic / RSA
+  {t:'Goodman · Frank · Degen', in:'Stanford', inst:'stanford', cat:'rsa', yr:2012, side:'down', nudge:[64,148]},
+];
+
+/* ---------- descent arcs ---------- */
+const ARC=[
+  {id:'move', yr:1967, from:'oxford',   to:'berkeley',  s:'oxf',    kind:'move',    bow:0.95, off:50, lab:'Grice', sub:'1967'},
+  {id:'neo',  yr:1981, from:'berkeley', to:'yale',      s:'neo',    kind:'descent', bow:1.15, off:50, lab:'Neo-Gricean', sub:'1981'},
+  {id:'rel',  yr:1986, from:'berkeley', to:'ucl',       s:'rel',    kind:'descent', bow:0.72, off:46, lab:'Relevance', sub:'1986'},
+  {id:'gram', yr:2004, from:'berkeley', to:'harvardmit',s:'gram',   kind:'descent', bow:1.45, off:50, lab:'Grammaticalism', sub:'2004'},
+  {id:'formal',yr:2005,from:'cornell',  to:'utaustin',  s:'formal', kind:'descent', bow:1.30, off:52, lab:'Formal pragmatics', sub:'2005'},
+  {id:'rsa2', yr:2012, from:'princeton',to:'stanford',  s:'rsa',    kind:'descent', bow:0.95, off:50, lab:'Probabilistic · RSA', sub:'2012'},
+  {id:'rsa',  yr:2012, from:'berkeley', to:'stanford',  s:'rsa',    kind:'descent', bow:2.20, off:50, secondary:true},
+];
+
+/* ---------- schools (legend + timeline) ---------- */
+const SCHOOL={
+  neo:   {nm:'Neo-Gricean',          yr:1981, onset:'Atlas &amp; Levinson 1981 · Horn 1984'},
+  rel:   {nm:'Relevance Theory',     yr:1986, onset:'Sperber &amp; Wilson 1986'},
+  gram:  {nm:'Grammaticalism',       yr:2004, onset:'Chierchia 2004'},
+  formal:{nm:'Formal pragmatics',    yr:2005, onset:'Potts 2005 · Tonhauser et al. 2013'},
+  rsa:   {nm:'Probabilistic / RSA',  yr:2012, onset:'Frank &amp; Goodman 2012'},
+};
+const SCHOOL_ORDER=['neo','rel','gram','formal','rsa'];
+const LIN={oxf:'Oxford ordinary-language', pwf:'Possible-worlds / formal', inf:'Information-theoretic'};
+
+/* ---------- onset publication sea-pins ---------- */
+const PUBS=[
+  {id:'p_neo', s:'neo',  yr:1981, anchor:'yale',      ttl:'Horn 1984 · Q/R',          sea:[40,-120]},
+  {id:'p_rel', s:'rel',  yr:1986, anchor:'ucl',       ttl:'Sperber &amp; Wilson, <em>Relevance</em>', sea:[-40,150]},
+  {id:'p_gram',s:'gram', yr:2004, anchor:'harvardmit',ttl:'Chierchia 2004 · exhaustification', sea:[60,-130]},
+  {id:'p_rsa', s:'rsa',  yr:2012, anchor:'stanford',  ttl:'Frank &amp; Goodman 2012', sea:[120,140]},
+  {id:'p_grice',s:'oxf', yr:1967, anchor:'berkeley',  ttl:'Grice, <em>Logic &amp; Conversation</em>', sea:[150,150]},
+];
+
+const NS='http://www.w3.org/2000/svg';
+const svg=document.getElementById('map');
+const labels=document.getElementById('labels');
+const el=(n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+
+/* projection: North-Atlantic window (US west coast → France) */
+const MAP_BOX=[[72,158],[1848,1030]];
+const fitObj={type:'MultiPoint',coordinates:[[-128,29],[10,29],[10,56],[-128,56]]};
+const proj=d3.geoMercator().fitExtent(MAP_BOX, fitObj);
+proj.clipExtent([[60,140],[1860,1044]]);
+const path=d3.geoPath(proj);
+const P=k=>{const p=proj(INST[k].ll);return {x:p[0],y:p[1]};};
+
+/* ---------- legend ---------- */
+function buildLegend(){
+  const ul=document.getElementById('schoolList');
+  SCHOOL_ORDER.forEach(id=>{
+    const s=SCHOOL[id];
+    const li=document.createElement('li'); li.className='pending'; li.dataset.school=id;
+    li.innerHTML=`<span class="ico" data-arc="${id}"></span>`+
+      `<span class="lbl">${s.nm}</span><span class="yr">${s.yr}</span>`+
+      `<span class="onset">${s.onset}</span>`;
+    ul.appendChild(li);
+  });
+  const fl=document.getElementById('founList');
+  Object.keys(LIN).forEach(id=>{
+    const li=document.createElement('li'); li.dataset.lin=id;
+    li.innerHTML=`<span class="fdot" style="background:${CV(id)}"></span><span class="lbl">${LIN[id]}</span>`;
+    fl.appendChild(li);
+  });
+  document.querySelectorAll('.ico[data-arc]').forEach(ic=>{
+    const k=ic.dataset.arc, s=el('svg',{viewBox:'0 0 42 18'});
+    s.appendChild(el('path',{d:'M 2 15 Q 21 -4 38 11',fill:'none',stroke:CV(k),'stroke-width':2.6,'stroke-linecap':'round'}));
+    s.appendChild(el('path',{d:'M 33 6 L 40 11 L 32 14 Z',fill:CV(k)}));
+    ic.appendChild(s);
+  });
+}
+
+/* quadratic arc; returns visible-d (origin→dest) and label-d (west→east) */
+function arcs(a,b,bow){
+  const mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dist=Math.hypot(b.x-a.x,b.y-a.y);
+  const base=Math.max(dist*0.30,70), lift=Math.min(base,460)*bow, cx=mx, cy=my-lift;
+  const vis=`M ${a.x} ${a.y} Q ${cx} ${cy} ${b.x} ${b.y}`;
+  const w=a.x<=b.x?a:b, e=a.x<=b.x?b:a;
+  const lab=`M ${w.x} ${w.y} Q ${cx} ${cy} ${e.x} ${e.y}`;
+  return {vis,lab};
+}
+
+function buildDefs(){
+  const defs=el('defs');
+  ['neo','rel','formal','gram','rsa','oxf'].forEach(k=>{
+    const m=el('marker',{id:'ah-'+k,viewBox:'0 0 10 10',refX:'8.2',refY:'5',
+      markerWidth:'7.5',markerHeight:'7.5',orient:'auto-start-reverse'});
+    m.appendChild(el('path',{d:'M 0.5 0.8 L 9.4 5 L 0.5 9.2 L 3.4 5 Z',fill:CV(k)}));
+    defs.appendChild(m);
+  });
+  svg.appendChild(defs);
+}
+
+function drawBase(geo){
+  const g=el('g');
+  (geo.features||[]).forEach(f=>{
+    const d=path(f); if(!d) return;
+    const p=el('path',{d,fill:'var(--land)',stroke:'var(--border)','stroke-width':0.8,
+      'stroke-linejoin':'round','vector-effect':'non-scaling-stroke'});
+    p.setAttribute('class','land'); g.appendChild(p);
+  });
+  svg.appendChild(g);
+}
+function drawGraticule(){
+  if(document.body.dataset.dir!=='b') return;   /* graticule only in Modern Atlas */
+  const g=el('g',{opacity:'0.5'});
+  const grat=d3.geoGraticule().step([10,10]);
+  g.appendChild(el('path',{d:path(grat()),fill:'none',stroke:'var(--grid)','stroke-width':0.7,'vector-effect':'non-scaling-stroke'}));
+  svg.appendChild(g);
+}
+
+let arcRefs=[]; const instDots=new Map();
+function drawArcs(){
+  const gArc=el('g'), gLab=el('g'), defs=el('defs');
+  const DASH='stroke-dasharray:1;stroke-dashoffset:1;transition:opacity .25s ease;';
+  arcRefs=[];
+  ARC.forEach((j,i)=>{
+    const a=P(j.from), b=P(j.to), {vis,lab}=arcs(a,b,j.bow), col=CV(j.s);
+    const lid='ap'+i; defs.appendChild(el('path',{id:lid,d:lab,fill:'none'}));
+    const w=j.kind==='move'?1.8:(j.secondary?1.6:2.2);
+    const under=el('path',{d:vis,fill:'none',stroke:col,'stroke-width':5,opacity:.13,'stroke-linecap':'round',pathLength:1,style:DASH});
+    gArc.appendChild(under);
+    const main=el('path',{d:vis,fill:'none',stroke:col,'stroke-width':w,opacity:j.kind==='move'?.8:(j.secondary?.7:.95),
+      'stroke-linecap':'round',pathLength:1,
+      style:'stroke-dashoffset:1;transition:opacity .25s ease;'});
+    gArc.appendChild(main);
+    let t=null;
+    if(j.lab){
+      const showName=j.kind!=='secondary';
+      t=el('text',{class:'arclabel',style:'opacity:0;transition:opacity .6s ease;',
+        'font-family':'STIX Two Text, Georgia, serif','font-size': j.kind==='move'?'20':'22',
+        'font-weight':'700',fill:col,'paint-order':'stroke',stroke:'var(--paper)','stroke-width':'4','stroke-linejoin':'round'});
+      const tp=el('textPath',{href:'#'+lid,startOffset:j.off+'%','text-anchor':'middle'}); tp.setAttribute('dy','-5');
+      const n=el('tspan',{}); n.textContent=j.lab;
+      const y=el('tspan',{dx:'7','font-family':'IBM Plex Mono, monospace','font-size':'15','font-weight':'500','stroke-width':'2.6'}); y.textContent=j.sub;
+      tp.appendChild(n); tp.appendChild(y); t.appendChild(tp); gLab.appendChild(t);
+    }
+    arcRefs.push({yr:j.yr,under,main,label:t,marker:`url(#ah-${j.s})`,from:j.from,to:j.to,s:j.s,kind:j.kind,shown:false});
+  });
+  svg.appendChild(defs); svg.appendChild(gArc); svg.appendChild(gLab);
+  const gHit=el('g');
+  ARC.forEach((j,i)=>{
+    const a=P(j.from),b=P(j.to),{vis}=arcs(a,b,j.bow);
+    const hit=el('path',{d:vis,fill:'none',stroke:'transparent','stroke-width':22,'stroke-linecap':'round','pointer-events':'stroke',cursor:'pointer'});
+    hit.setAttribute('class','arc-hit'); hit.dataset.arc=i; gHit.appendChild(hit);
+  });
+  svg.appendChild(gHit);
+}
+
+function drawNodes(){
+  const g=el('g');
+  for(const k in INST){
+    const p=P(k);
+    const cg=el('g',{'data-inst':k,style:'transition:opacity .5s ease;'});
+    const ring=el('circle',{cx:p.x,cy:p.y,r:13,fill:'none',stroke:'var(--ink)','stroke-width':2,opacity:0,style:'transition:opacity .2s;'});
+    ring.setAttribute('class','lit-ring'); cg.appendChild(ring);
+    cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:5.2,fill:'var(--paper)',stroke:'var(--ink)','stroke-width':1.8}));
+    cg.appendChild(el('circle',{cx:p.x,cy:p.y,r:2,fill:'var(--ink)'}));
+    cg.style.opacity='0';
+    g.appendChild(cg); instDots.set(k,cg);
+  }
+  svg.appendChild(g);
+}
+function drawLeaders(){
+  const g=el('g');
+  LAB.forEach((n,i)=>{
+    if(!n.nudge) return;
+    const p=P(n.inst);
+    const lg=el('g',{style:'transition:opacity .5s ease;opacity:0;'}); lg.dataset.leader=i;
+    lg.appendChild(el('line',{x1:p.x,y1:p.y,x2:p.x+n.nudge[0],y2:p.y+n.nudge[1],stroke:'var(--ink-3)','stroke-width':1,opacity:.5}));
+    lg.appendChild(el('circle',{cx:p.x+n.nudge[0],cy:p.y+n.nudge[1],r:1.6,fill:'var(--ink-3)',opacity:.5}));
+    g.appendChild(lg);
+  });
+  svg.appendChild(g);
+}
+function drawLabels(){
+  LAB.forEach((n,i)=>{
+    const p=P(n.inst);
+    const d=document.createElement('div');
+    d.className='nd '+n.side+(n.hinge?' hinge':'')+(n.faint?' faint':'');
+    d.dataset.lab=i; d.dataset.cat=n.cat;
+    d.style.setProperty('--c',CV(n.cat));
+    let ox=0,oy=0;
+    if(n.side==='l') ox=-14; else if(n.side==='r') ox=14; else if(n.side==='up') oy=-12; else oy=14;
+    if(n.nudge){ox+=n.nudge[0];oy+=n.nudge[1];}
+    d.style.left=(p.x+ox)+'px'; d.style.top=(p.y+oy)+'px'; d.style.opacity='0';
+    d.innerHTML=`<div class="nm">${n.t}</div>`+(n.in?`<div class="in">${n.in}</div>`:'');
+    labels.appendChild(d);
+  });
+}
+
+/* publication pins */
+function buildPubs(){
+  const g=el('g'); g.id='pub-layer';
+  PUBS.forEach(pb=>{
+    const p=P(pb.anchor), sx=p.x+pb.sea[0], sy=p.y+pb.sea[1];
+    const ln=el('line',{x1:p.x,y1:p.y,x2:sx,y2:sy,stroke:CV(pb.s),'stroke-width':1});
+    ln.setAttribute('class','pub-leader'); ln.dataset.pub=pb.id; ln.style.opacity='0'; g.appendChild(ln);
+    const dot=el('circle',{cx:sx,cy:sy,r:3.4,fill:CV(pb.s),stroke:'var(--paper)','stroke-width':1.4});
+    dot.setAttribute('class','pub-dot'); dot.dataset.pub=pb.id; dot.style.opacity='0'; g.appendChild(dot);
+    const d=document.createElement('div'); d.className='pub-anno'; d.id='pub-'+pb.id;
+    d.style.left=sx+'px'; d.style.top=(sy+(pb.sea[1]<0?-18:18))+'px'; d.style.setProperty('--c',CV(pb.s));
+    d.innerHTML=`<div class="ttl">${pb.ttl}</div><div class="yr">${pb.yr}</div>`;
+    labels.appendChild(d);
+  });
+  svg.appendChild(g);
+}
+
+/* ---------- hover focus ---------- */
+function setFocus(litArcs,litCats,litInsts){
+  arcRefs.forEach((r,i)=>{
+    if(!r.shown) return;
+    const lit=litArcs.has(i), dim=!lit;
+    [r.under,r.main].forEach(p=>p.style.opacity=dim?'0.06':'');
+    if(r.label) r.label.style.opacity=dim?'0':'1';
+    if(lit){r.main.style.strokeWidth='3.6px';r.main.style.filter=`drop-shadow(0 0 5px ${CV(r.s)})`;}
+    else{r.main.style.strokeWidth='';r.main.style.filter='';}
+  });
+  document.querySelectorAll('#labels .nd[data-lab]').forEach(d=>{
+    if(d.style.opacity==='0'&&!d.dataset.shown) return;
+    const lit=litCats.has(d.dataset.cat);
+    d.style.opacity=lit?'1':'0.1'; d.style.fontWeight=lit?'700':'';
+  });
+  instDots.forEach((cg,k)=>{
+    if(cg.style.opacity==='0') return;
+    const lit=litInsts.has(k);
+    cg.style.opacity=lit?'1':'0.12';
+    const ring=cg.querySelector('.lit-ring'); if(ring) ring.style.opacity=lit?'1':'0';
+  });
+}
+function clearFocus(){
+  arcRefs.forEach(r=>{[r.under,r.main].forEach(p=>p.style.opacity='');if(r.label)r.label.style.opacity=r.shown?'1':'0';r.main.style.strokeWidth='';r.main.style.filter='';});
+  document.querySelectorAll('#labels .nd[data-lab]').forEach(d=>{d.style.fontWeight='';});
+  instDots.forEach(cg=>{const ring=cg.querySelector('.lit-ring');if(ring)ring.style.opacity='0';});
+  if(typeof renderFrame==='function') renderFrame(tCur);
+}
+/* highlight one school: its arc(s) + figures + endpoints */
+function focusSchool(id){
+  const arcsLit=new Set(), insts=new Set();
+  arcRefs.forEach((r,i)=>{ if(r.s===id&&r.kind==='descent'){arcsLit.add(i);insts.add(r.from);insts.add(r.to);} });
+  LAB.forEach(n=>{ if(n.cat===id) insts.add(n.inst); });
+  setFocus(arcsLit,new Set([id]),insts);
+}
+/* highlight a foundational lineage (and, for Grice, all he feeds) */
+function focusLineage(cat){
+  const arcsLit=new Set(), insts=new Set();
+  LAB.forEach(n=>{ if(n.cat===cat) insts.add(n.inst); });
+  setFocus(arcsLit,new Set([cat]),insts);
+}
+function focusGrice(){
+  const arcsLit=new Set(), cats=new Set(['oxf']), insts=new Set(['berkeley']);
+  arcRefs.forEach((r,i)=>{ if(r.from==='berkeley'||r.id==='move'){arcsLit.add(i);insts.add(r.from);insts.add(r.to);if(r.kind==='descent')cats.add(r.s);} });
+  setFocus(arcsLit,cats,insts);
+}
+function setupHover(){
+  svg.querySelectorAll('.arc-hit').forEach(hit=>{
+    const i=+hit.dataset.arc, r=ARC[i];
+    hit.addEventListener('mouseenter',()=>{ if(!arcRefs[i].shown) return; if(r.kind==='move') focusGrice(); else focusSchool(r.s); });
+    hit.addEventListener('mouseleave',clearFocus);
+  });
+  document.querySelectorAll('#labels .nd[data-lab]').forEach(d=>{
+    const n=LAB[+d.dataset.lab];
+    d.style.pointerEvents='auto';
+    d.addEventListener('mouseenter',()=>{ if(d.style.opacity==='0') return;
+      if(n.hinge) focusGrice(); else if(['oxf','pwf','inf'].includes(n.cat)) focusLineage(n.cat); else focusSchool(n.cat); });
+    d.addEventListener('mouseleave',clearFocus);
+  });
+  document.querySelectorAll('.legend li[data-school]').forEach(li=>{
+    li.addEventListener('mouseenter',()=>{ if(!li.classList.contains('pending')) focusSchool(li.dataset.school); });
+    li.addEventListener('mouseleave',clearFocus);
+  });
+  document.querySelectorAll('.legend li[data-lin]').forEach(li=>{
+    li.addEventListener('mouseenter',()=>focusLineage(li.dataset.lin));
+    li.addEventListener('mouseleave',clearFocus);
+  });
+}
+
+function fit(){
+  const s=document.getElementById('slide');
+  s.style.transform='scale('+Math.min(window.innerWidth/1920,window.innerHeight/1080)+')';
+}
+window.addEventListener('resize',fit); fit();
+
+/* ---------- clock ---------- */
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const setYear=y=>{const e=document.getElementById('year');if(e)e.textContent=y;};
+
+const YEAR_START=1955, YEAR_END=2026, MS_PER_WEIGHT=470;
+const DRAW_DUR=1700, REVEAL_DUR=620, PULSE_DUR=900;
+let yearSpanMs=0, totalDur=0, tCur=0, playing=false, lastTs=0, dragging=false;
+const clampYear=y=>y<YEAR_START?YEAR_START:(y>YEAR_END?YEAR_END:y);
+function yearWeight(y){ return y<1967?0.85 : (y<1981?1.0 : (y<2014?1.7 : 0.5)); }
+let WARP=[],WARP_TOTAL=1;
+function buildWarp(){ WARP=[];let cum=0; for(let y=YEAR_START;y<=YEAR_END;y++){WARP.push({year:y,cum}); if(y<YEAR_END)cum+=yearWeight(y);} WARP_TOTAL=cum; yearSpanMs=cum*MS_PER_WEIGHT; }
+function warpFrac(y){y=clampYear(y);const i=Math.min(Math.max(Math.floor(y-YEAR_START),0),WARP.length-2);const a=WARP[i],b=WARP[i+1];return (a.cum+(b.cum-a.cum)*(y-a.year))/WARP_TOTAL;}
+function warpYear(frac){const tgt=clamp(frac,0,1)*WARP_TOTAL;for(let i=1;i<WARP.length;i++){if(tgt<=WARP[i].cum){const a=WARP[i-1],b=WARP[i];return a.year+(tgt-a.cum)/((b.cum-a.cum)||1);}}return YEAR_END;}
+const timeFor=y=>warpFrac(y)*yearSpanMs;
+const yearAt=t=>{const c=t<0?0:(t>yearSpanMs?yearSpanMs:t);return Math.floor(warpYear(c/(yearSpanMs||1)));};
+const axisFrac=t=>{const c=t<0?0:(t>totalDur?totalDur:t);return c/(totalDur||1);};
+const posFrac=y=>timeFor(y)/(totalDur||1);
+
+function buildSchedule(){
+  buildWarp();
+  const seen={};
+  arcRefs.forEach(r=>{const k=seen[r.yr]||0;r.start=timeFor(r.yr)+k*180;seen[r.yr]=k+1;});
+  totalDur=yearSpanMs+DRAW_DUR+500;
+}
+function setInstVisible(k,on){const cg=instDots.get(k);if(cg)cg.style.opacity=on?'1':'0';}
+function renderFrame(t){
+  const yr=yearAt(t);
+  const instOn={};
+  // labels
+  document.querySelectorAll('#labels .nd[data-lab]').forEach(d=>{
+    const n=LAB[+d.dataset.lab]; const p=clamp((t-timeFor(n.yr))/REVEAL_DUR,0,1);
+    d.style.opacity=String(p); d.dataset.shown=p>0?'1':'';
+    if(p>0) instOn[n.inst]=true;
+  });
+  // arcs
+  arcRefs.forEach(r=>{
+    const p=clamp((t-r.start)/DRAW_DUR,0,1);
+    r.under.style.strokeDashoffset=String(1-p); r.main.style.strokeDashoffset=String(1-p);
+    r.shown=p>0;
+    if(p>=1&&r.kind!=='move') r.main.setAttribute('marker-end',r.marker); else r.main.removeAttribute('marker-end');
+    if(r.label) r.label.style.opacity=p>=0.32?'1':'0';
+    if(p>0){instOn[r.from]=true;instOn[r.to]=true;}
+  });
+  for(const k in INST) setInstVisible(k,!!instOn[k]);
+  // legend rows
+  document.querySelectorAll('.legend li[data-school]').forEach(li=>{
+    const s=SCHOOL[li.dataset.school]; const p=clamp((t-timeFor(s.yr))/REVEAL_DUR,0,1);
+    li.classList.toggle('pending',p<=0); li.style.opacity=String(p);
+  });
+  // pubs
+  PUBS.forEach(pb=>{
+    const on=t>=timeFor(pb.yr);
+    const an=document.getElementById('pub-'+pb.id), dot=svg.querySelector(`.pub-dot[data-pub="${pb.id}"]`), ln=svg.querySelector(`.pub-leader[data-pub="${pb.id}"]`);
+    if(an)an.style.opacity=on?'1':'0'; if(dot)dot.style.opacity=on?'1':'0'; if(ln)ln.style.opacity=on?'0.5':'0';
+  });
+  // timeline marks
+  tlMarks.forEach(m=>{const p=clamp((t-m.start)/DRAW_DUR,0,1),drawing=p>0&&p<1;
+    if(drawing&&!m._on){m.el.classList.remove('flash');void m.el.offsetWidth;m.el.classList.add('flash');}
+    m._on=drawing; m.el.classList.toggle('active',drawing);});
+  ctxMarks.forEach(c=>{const reached=t>=c.start;if(reached&&!c._on){c.el.classList.remove('flash');void c.el.offsetWidth;c.el.classList.add('flash');}c._on=reached;
+    if(c.span) c.span.classList.toggle('on',reached);});
+  setYear(yr); updateTimeline(t);
+}
+function updateTimeline(t){
+  const frac=axisFrac(t);
+  const fill=document.getElementById('tlFill'),h=document.getElementById('tlHandle');
+  if(fill)fill.style.width=(frac*100)+'%'; if(h)h.style.left=(frac*100)+'%';
+}
+
+let tlMarks=[],ctxMarks=[];
+function buildTimeline(){
+  const track=document.getElementById('tlTrack'); if(!track) return;
+  tlMarks=[];ctxMarks=[];
+  // above axis: school foundings (with → present span) + key pubs
+  const ctx=[
+    ...SCHOOL_ORDER.map(id=>({id,year:SCHOOL[id].yr,name:SCHOOL[id].nm,note:String(SCHOOL[id].yr),c:CV(id),span:true})),
+    {year:1967,name:'Logic & Conversation',note:'Grice',c:'var(--oxf)',pub:true},
+  ].sort((a,b)=>a.year-b.year);
+  ctx.forEach((cx,i)=>{
+    const e=document.createElement('div');
+    e.className='tl-ctx '+(i%2?'a1':'a0')+(cx.pub?' pub':'');
+    e.style.left=(posFrac(cx.year)*100)+'%'; e.style.setProperty('--c',cx.c);
+    e.innerHTML=`<span class="tl-name">${cx.name} <i>${cx.note}</i></span><span class="tl-tick"></span><span class="tl-dot"></span>`;
+    e.addEventListener('click',ev=>{ev.stopPropagation();seek(posFrac(cx.year));stopPlay();});
+    track.appendChild(e);
+    let span=null;
+    if(cx.span){ span=document.createElement('div'); span.className='tl-span'; span.style.background=cx.c;
+      span.style.left=(posFrac(cx.year)*100)+'%'; span.style.right='0'; span.style.bottom=(i%2?'21px':'7px');
+      track.appendChild(span); }
+    ctxMarks.push({el:e,start:timeFor(cx.year),span,_on:false});
+  });
+  // below axis: foundational figures (fanned within same-year groups)
+  const founders=LAB.filter(n=>['oxf','pwf','inf'].includes(n.cat));
+  const grp={}; founders.forEach(n=>{(grp[n.yr]=grp[n.yr]||[]).push(n);});
+  let bi=0;
+  Object.keys(grp).sort().forEach(yk=>{
+    const arr=grp[yk], nn=arr.length;
+    arr.forEach((n,k)=>{
+      const fan=(k-(nn-1)/2)*3.0;
+      const e=document.createElement('div'); e.className='tl-mark b'+(bi%3); bi++;
+      e.style.left=(posFrac(n.yr)*100+fan)+'%'; e.style.setProperty('--c',CV(n.cat));
+      e.innerHTML=`<span class="tl-name">${n.t.split(' ·')[0]} <i>${n.yr}</i></span><span class="tl-tick"></span>`;
+      e.addEventListener('click',ev=>{ev.stopPropagation();seek(posFrac(n.yr));stopPlay();});
+      track.appendChild(e);
+      tlMarks.push({el:e,start:timeFor(n.yr),_on:false});
+    });
+  });
+}
+function frameLoop(ts){
+  if(!playing) return;
+  const dt=Math.min(ts-lastTs,100); lastTs=ts; tCur+=dt;
+  if(tCur>=totalDur){tCur=totalDur;renderFrame(tCur);stopPlay();return;}
+  renderFrame(tCur); requestAnimationFrame(frameLoop);
+}
+function setPlayBtn(){
+  const b=document.getElementById('replay'); if(!b)return;
+  const done=tCur>=totalDur;
+  b.querySelector('.tri').innerHTML=playing?'&#10074;&#10074;':(done?'&#8635;':'&#9658;');
+  b.querySelector('.blab').textContent=playing?'Pause':(done?'Replay':'Play');
+}
+function startPlay(){if(tCur>=totalDur)tCur=0;playing=true;lastTs=performance.now();setPlayBtn();requestAnimationFrame(frameLoop);}
+function stopPlay(){playing=false;setPlayBtn();}
+function seek(frac){tCur=clamp(frac,0,1)*totalDur;renderFrame(tCur);setPlayBtn();}
+function setupTimelineDrag(){
+  const bar=document.getElementById('tlBar'),track=document.getElementById('tlTrack');if(!bar||!track)return;
+  const fx=cx=>{const r=track.getBoundingClientRect();return clamp((cx-r.left)/r.width,0,1);};
+  const move=e=>{if(!dragging)return;const x=e.touches?e.touches[0].clientX:e.clientX;seek(fx(x));};
+  const down=e=>{dragging=true;stopPlay();const x=e.touches?e.touches[0].clientX:e.clientX;seek(fx(x));e.preventDefault();};
+  const up=()=>{dragging=false;};
+  bar.addEventListener('mousedown',down);window.addEventListener('mousemove',move);window.addEventListener('mouseup',up);
+  bar.addEventListener('touchstart',down,{passive:false});window.addEventListener('touchmove',move,{passive:false});window.addEventListener('touchend',up);
+}
+
+buildLegend(); buildDefs();
+
+d3.json(GEO_URL).then(geo=>{
+  const l=document.getElementById('loading'); if(l) l.remove();
+  drawBase(geo); drawGraticule(); drawLeaders(); drawArcs(); drawNodes(); drawLabels();
+  buildSchedule(); buildTimeline(); setupTimelineDrag(); setupHover();
+  const rb=document.getElementById('replay');
+  if(reduceMotion||window.__static){ tCur=totalDur; renderFrame(totalDur); setPlayBtn(); if(rb) rb.addEventListener('click',()=>{playing?stopPlay():startPlay();}); }
+  else { renderFrame(0); if(rb) rb.addEventListener('click',()=>{playing?stopPlay():startPlay();}); startPlay(); }
+}).catch(err=>{
+  console.error('Map data failed to load:',err);
+  const l=document.getElementById('loading'); if(l) l.textContent='Could not load world map data (network).';
+});
+</script>
+</body>
+</html>

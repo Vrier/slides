@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Figure · The incremental theme — object→event homomorphism</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="./figure.css" />
+<style>
+  .ev-objR { fill: color-mix(in srgb, var(--c-exr) 70%, white); }
+  .ev-objE { fill: url(#ph); }
+  .ev-evtF { fill: var(--tcd-blue-10); stroke: var(--tcd-blue-25); stroke-width: 1.5; }
+  .ev-evtD { fill: var(--tcd-blue); }
+  .ev-lab  { font-family: var(--sans); font-size: 21px; font-weight: 700; fill: var(--tcd-ink); }
+  .ev-lab.blue { fill: var(--tcd-blue); }
+  .ev-it   { font-family: var(--serif); font-style: italic; font-size: 20px; fill: var(--tcd-grey-100); }
+  .ev-guide{ stroke: #e3e7ea; stroke-width: 2; stroke-dasharray: 3 7; }
+  .ev-gtxt { font-family: var(--mono); font-size: 18px; fill: #9aa0a5; text-anchor: middle; }
+  .ev-mu   { stroke: var(--lens-for); stroke-width: 3; }
+  .ev-mut  { font-family: var(--mono); font-size: 22px; font-weight: 600; fill: var(--lens-for); text-anchor: middle; }
+  .ev-ph   { stroke: var(--lens-for); stroke-width: 3; }
+  .ev-star { font-size: 40px; fill: var(--c-key); text-anchor: middle; }
+</style>
+</head>
+<body class="pal-a">
+<div class="fig lens-formal" id="fig">
+  <div class="fig-head">
+    <span class="fig-kick"><span class="dot"></span>Incremental theme</span>
+    <div class="fig-htext">
+      <h1 class="fig-title">The object measures out the event</h1>
+      <p class="fig-sub"><span class="sent">Mary ate the apple</span> — eat <b>half</b> the apple, do <b>half</b> the eating</p>
+    </div>
+    <div class="fig-src">Krifka 1989/1998 · Dowty 1991<br>μ : theme → event (homomorphism)</div>
+  </div>
+
+  <div class="fig-stage">
+    <svg id="svg" viewBox="0 0 1060 470" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <pattern id="ph" width="14" height="14" patternTransform="rotate(135)" patternUnits="userSpaceOnUse">
+          <rect width="14" height="14" fill="#d9dce0"/>
+          <line x1="0" y1="0" x2="0" y2="14" stroke="#c4c8cc" stroke-width="7"/>
+        </pattern>
+      </defs>
+      <g id="guides"></g>
+      <rect id="objR" class="ev-objR" rx="8"></rect>
+      <rect id="objE" class="ev-objE" rx="8"></rect>
+      <rect id="evtF" class="ev-evtF" rx="8"></rect>
+      <rect id="evtD" class="ev-evtD" rx="8"></rect>
+      <text id="lO"  class="ev-lab">THE APPLE  ·  theme</text>
+      <text id="lE"  class="ev-lab blue">EATING EVENT  ·  e</text>
+      <text id="lOr" class="ev-it" text-anchor="end">uneaten ⟶ eaten</text>
+      <text id="lEr" class="ev-it" text-anchor="end" style="fill:var(--tcd-grey-75)">done ⟶ to-come</text>
+      <line id="mu" class="ev-mu"></line>
+      <text id="mut" class="ev-mut">μ</text>
+      <line id="phl" class="ev-ph"></line>
+      <text id="star" class="ev-star" opacity="0">★</text>
+    </svg>
+  </div>
+
+  <div class="fig-cap">
+    The <b>incremental theme</b> sets up a structure-preserving map <span class="chip">μ</span> from the parts of the apple to the parts of the eating-event:
+    each portion of apple consumed corresponds to exactly that much event. When the apple is <b>gone</b>, the event <b>culminates</b> — its telic endpoint.
+  </div>
+
+  <div class="fig-controls">
+    <button class="fig-btn" id="play">▶ Play</button>
+    <div class="fig-slider">
+      <span class="lab">apple eaten</span>
+      <input type="range" id="theta" min="0" max="100" value="0" />
+      <span class="val" id="tval">0%</span>
+    </div>
+    <span class="fig-readout" id="out">apple intact · event not begun</span>
+  </div>
+</div>
+
+<script>
+const SVG="http://www.w3.org/2000/svg";
+const X0=90, X1=980, W=X1-X0, yO=120, yE=300, BH=86;
+const $=id=>document.getElementById(id);
+
+// guides
+const g=$('guides');
+[0,.25,.5,.75,1].forEach(f=>{
+  const x=X0+f*W;
+  const l=document.createElementNS(SVG,'line');
+  l.setAttribute('x1',x);l.setAttribute('y1',yO-16);l.setAttribute('x2',x);l.setAttribute('y2',yE+BH+16);
+  l.setAttribute('class','ev-guide'); g.appendChild(l);
+  const t=document.createElementNS(SVG,'text');
+  t.setAttribute('x',x);t.setAttribute('y',yE+BH+44);t.setAttribute('class','ev-gtxt');
+  t.textContent = f===0?'0':f===1?'1':String(f); g.appendChild(t);
+});
+// fixed geometry
+$('objR').setAttribute('y',yO);$('objR').setAttribute('height',BH);
+$('objE').setAttribute('x',X0);$('objE').setAttribute('y',yO);$('objE').setAttribute('height',BH);
+$('evtF').setAttribute('x',X0);$('evtF').setAttribute('y',yE);$('evtF').setAttribute('width',W);$('evtF').setAttribute('height',BH);
+$('evtD').setAttribute('x',X0);$('evtD').setAttribute('y',yE);$('evtD').setAttribute('height',BH);
+$('lO').setAttribute('x',X0+8);$('lO').setAttribute('y',yO-22);
+$('lE').setAttribute('x',X0+8);$('lE').setAttribute('y',yE-22);
+$('lOr').setAttribute('x',X1);$('lOr').setAttribute('y',yO-22);
+$('lEr').setAttribute('x',X1);$('lEr').setAttribute('y',yE-22);
+$('star').setAttribute('x',X1);$('star').setAttribute('y',yE+BH/2+12);
+$('phl').setAttribute('y1',yO-12);$('phl').setAttribute('y2',yE+BH+12);
+$('mu').setAttribute('y1',yO+BH+6);$('mu').setAttribute('y2',yE-6);
+
+const theta=$('theta'), tval=$('tval'), out=$('out');
+function render(){
+  const f=theta.value/100, cut=X0+f*W;
+  $('objE').setAttribute('width', f*W);
+  $('objR').setAttribute('x', cut); $('objR').setAttribute('width', (1-f)*W);
+  $('evtD').setAttribute('width', f*W);
+  $('phl').setAttribute('x1',cut); $('phl').setAttribute('x2',cut);
+  $('mu').setAttribute('x1',cut); $('mu').setAttribute('x2',cut);
+  $('mut').setAttribute('x',cut+18); $('mut').setAttribute('y',(yO+BH+yE)/2+8);
+  $('star').setAttribute('opacity', f>=0.999?1:0);
+  tval.textContent=Math.round(f*100)+'%';
+  if(f<=0){ out.className='fig-readout'; out.innerHTML='apple intact · event not begun'; }
+  else if(f>=0.999){ out.className='fig-readout ok'; out.innerHTML='✓ apple consumed → <b>event culminates</b> (telic endpoint reached)'; }
+  else { out.className='fig-readout'; out.innerHTML='μ : '+Math.round(f*100)+'% of the apple &nbsp;⟷&nbsp; '+Math.round(f*100)+'% of the event'; }
+}
+theta.addEventListener('input',()=>{stop();render();});
+let raf=null;
+function step(){ let v=+theta.value; if(v>=100){stop();return;} theta.value=Math.min(100,v+0.8); render(); raf=requestAnimationFrame(step); }
+function stop(){ if(raf){cancelAnimationFrame(raf);raf=null;} $('play').textContent='▶ Play'; }
+$('play').addEventListener('click',()=>{
+  if(raf){stop();return;}
+  if(+theta.value>=100) theta.value=0;
+  $('play').textContent='❚❚ Pause'; step();
+});
+render();
+</script>
+</body>
+</html>

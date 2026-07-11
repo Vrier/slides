@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Figure · Space, events &amp; time — parallel part structures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="./figure.css" />
+<style>
+  .ts-wrap { display:flex; flex-direction:column; gap:4px; width:100%; height:100%; justify-content:center; }
+  .ts-row  { display:grid; grid-template-columns:230px 1fr; align-items:center; gap:24px; }
+  .ts-lab  { text-align:right; }
+  .ts-lab .nm { font-family:var(--sans); font-size:20px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+  .ts-lab .sub{ font-family:var(--serif); font-style:italic; font-size:18px; color:var(--tcd-grey-75); margin-top:1px; }
+  .ts-rail { position:relative; height:64px; border-radius:12px; overflow:hidden; }
+  .ts-rail .parts { position:absolute; inset:0; display:flex; }
+  .ts-rail .parts i { flex:1 1 0; }
+  .ts-rail .parts i + i { box-shadow:inset 1px 0 0 rgba(255,255,255,.55); }
+  .ts-hi { position:absolute; top:0; bottom:0; border-left:3px solid #fff; border-right:3px solid #fff;
+           background:rgba(255,255,255,.34); transition:left .12s ease, width .12s ease; }
+  .ts-hi::after { content:""; position:absolute; inset:0; box-shadow:inset 0 0 0 3px rgba(0,0,0,.18); }
+  .ts-obj  { background:color-mix(in srgb,var(--c-exr) 62%,white); }
+  .ts-evt  { background:var(--tcd-blue); }
+  .ts-time { background:var(--tcd-ink); }
+  .ts-rail .endcap { position:absolute; right:8px; top:50%; transform:translateY(-50%); font-family:var(--mono); font-size:15px; color:rgba(255,255,255,.7); }
+
+  .ts-map { grid-column:2; display:flex; align-items:center; gap:12px; padding:0; }
+  .ts-map .arrow { font-family:var(--mono); font-size:22px; color:var(--lens-for); }
+  .ts-map .mname { font-family:var(--mono); font-size:21px; font-weight:600; color:var(--lens-for); }
+  .ts-map .mdesc { font-family:var(--serif); font-style:italic; font-size:19px; color:var(--tcd-grey-100); }
+</style>
+</head>
+<body class="pal-a">
+<div class="fig lens-formal" id="fig">
+  <div class="fig-head">
+    <span class="fig-kick"><span class="dot"></span>Space · Event · Time</span>
+    <div class="fig-htext">
+      <h1 class="fig-title">One structure, three domains</h1>
+      <p class="fig-sub">A subpart of the object maps to a subevent, and on to a sub-interval of time</p>
+    </div>
+    <div class="fig-src">Krifka 1998 · Link 1987<br>μ : theme→event &nbsp; τ : event→time</div>
+  </div>
+
+  <div class="fig-stage">
+    <div class="ts-wrap">
+      <div class="ts-row">
+        <div class="ts-lab"><div class="nm" style="color:var(--c-exr)">Object · space</div><div class="sub">the apple (matter)</div></div>
+        <div class="ts-rail ts-obj" id="railO"><div class="parts" id="partsO"></div><div class="ts-hi" id="hiO"></div></div>
+      </div>
+      <div class="ts-row"><div></div><div class="ts-map"><span class="arrow">↓</span><span class="mname">μ</span><span class="mdesc">incremental theme — object part ↦ event part</span></div></div>
+      <div class="ts-row">
+        <div class="ts-lab"><div class="nm" style="color:var(--tcd-blue)">Event</div><div class="sub">the eating <span class="sent">e</span></div></div>
+        <div class="ts-rail ts-evt" id="railE"><div class="parts" id="partsE"></div><div class="ts-hi" id="hiE"></div></div>
+      </div>
+      <div class="ts-row"><div></div><div class="ts-map"><span class="arrow">↓</span><span class="mname">τ</span><span class="mdesc">run time — event part ↦ time interval</span></div></div>
+      <div class="ts-row">
+        <div class="ts-lab"><div class="nm" style="color:var(--tcd-ink)">Time</div><div class="sub">the interval <span class="sent">τ(e)</span></div></div>
+        <div class="ts-rail ts-time" id="railT"><div class="parts" id="partsT"></div><div class="ts-hi" id="hiT"></div><span class="endcap">→ later</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fig-cap" id="cap">
+    Individuals (matter in <b>space</b>) and times are both <b>mereological</b> — they have parts. The incremental theme <span class="chip">μ</span>
+    and the run-time map <span class="chip">τ</span> are <b>homomorphisms</b>: they carry parts to parts. Select a portion of the apple and watch its image travel through the event into time.
+  </div>
+
+  <div class="fig-controls">
+    <div class="fig-slider"><span class="lab">part start</span><input type="range" id="a" min="0" max="100" value="20"><span class="val" id="av">0.20</span></div>
+    <div class="fig-slider"><span class="lab">part end</span><input type="range" id="b" min="0" max="100" value="60"><span class="val" id="bv">0.60</span></div>
+    <span class="fig-readout" id="out"></span>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+['partsO','partsE','partsT'].forEach(id=>{ const p=$(id); for(let i=0;i<8;i++) p.appendChild(document.createElement('i')); });
+const a=$('a'), b=$('b');
+function render(){
+  let lo=Math.min(+a.value,+b.value), hi=Math.max(+a.value,+b.value);
+  if(hi-lo<6){ hi=Math.min(100,lo+6); }
+  ['hiO','hiE','hiT'].forEach(id=>{ const h=$(id); h.style.left=lo+'%'; h.style.width=(hi-lo)+'%'; });
+  $('av').textContent=(lo/100).toFixed(2); $('bv').textContent=(hi/100).toFixed(2);
+  $('out').className='fig-readout';
+  $('out').innerHTML='apple-portion [<b>'+(lo/100).toFixed(2)+', '+(hi/100).toFixed(2)+'</b>] &nbsp;↦<sub>μ</sub>&nbsp; same subevent &nbsp;↦<sub>τ</sub>&nbsp; same sub-interval';
+}
+a.addEventListener('input',render); b.addEventListener('input',render);
+render();
+</script>
+</body>
+</html>

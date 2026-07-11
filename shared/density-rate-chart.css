@@ -1,0 +1,71 @@
+/* ============================================================
+   density-rate-chart.css — styling for density-rate-chart.js
+   Reads deck tokens (fonts, greys). Re-theme by overriding these
+   classes or the CSS vars in tokens.css / a module theme file.
+   ============================================================ */
+
+.drc { width: 100%; }
+.drc-svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* faint grid */
+.drc-grid line { stroke: var(--tcd-grey-25); stroke-width: 1; opacity: 0.55; }
+
+/* axes — left + bottom only */
+.drc-axis line { stroke: var(--tcd-grey-75); stroke-width: 1.6; }
+
+/* tick numerals */
+.drc-ticklab text {
+  font-family: var(--mono); font-size: 20px; fill: var(--tcd-grey-75);
+}
+
+/* axis titles */
+.drc-axistitle text {
+  font-family: var(--sans); font-size: 24px; font-weight: 600;
+  fill: var(--tcd-grey-100); letter-spacing: 0.01em;
+}
+
+/* iso information-rate curves */
+.drc-iso {
+  fill: none; stroke: var(--tcd-grey-50); stroke-width: 1.6;
+  stroke-dasharray: 3 7; stroke-linecap: round; opacity: 0.85;
+}
+.drc-iso40 { fill: none; stroke-width: 3.4; stroke-linecap: round; }
+.drc-iso-lab {
+  font-family: var(--mono); font-size: 20px; fill: var(--tcd-grey-75);
+}
+.drc-iso40-lab {
+  font-family: var(--sans); font-size: 23px; font-weight: 700;
+}
+
+/* points */
+.drc-pt { stroke: #fff; stroke-width: 1.4; }
+
+/* direct point labels (cloud corners) */
+.drc-ptlab-t {
+  font-family: var(--serif); font-style: italic; font-size: 24px;
+  fill: var(--tcd-black);
+}
+
+/* legend */
+.drc-legend-t {
+  font-family: var(--sans); font-size: 21px; fill: var(--tcd-grey-100);
+}
+
+/* callout */
+.drc-leader { stroke-width: 1.8; stroke-dasharray: 2 5; }
+.drc-callout-t1, .drc-callout-t2 {
+  font-family: var(--sans); font-weight: 700;
+}
+.drc-callout-t1 { font-size: 23px; fill: var(--tcd-grey-100); }
+.drc-callout-t2 { font-size: 23px; fill: var(--tcd-grey-100); }
+
+/* stat strip beneath chart */
+.drc-strip {
+  display: flex; align-items: center; justify-content: center; gap: 26px;
+  margin-top: 18px; padding: 16px 26px;
+  background: var(--tcd-blue-10); border-radius: 12px;
+  font-family: var(--sans); font-size: 25px; color: var(--tcd-grey-100);
+}
+.drc-strip b { font-weight: 700; color: var(--tcd-ink); }
+.drc-strip-sep { width: 1px; height: 26px; background: var(--tcd-grey-25); }
+.drc-strip-hi b { color: var(--tcd-blue); }

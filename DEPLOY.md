@@ -1,31 +1,27 @@
 # DEPLOY.md — one-time setup for slides.tstephen.com
 
-Standard **static-project recipe** (files served directly; deploy = `git
-pull`; nothing to build or restart) — same as www and teaching. Not the
-COMPOSE variant (no backend, no reverse_proxy, no restarts here).
+This is the standard **static-project recipe** (files served directly; deploy =
+`git pull`; nothing to build or restart) — the same one used for www.tstephen.com.
+Do **not** copy the COMPOSE variant (PocketBase backend behind `reverse_proxy`, a
+build step, and a systemd restart in its deploy script) — this repo has no
+server-side state.
 
-## 1. DNS (Porkbun) — BEFORE the Caddy block
+## 0. The secret
 
-Add an A record: `slides` → `167.233.233.109`.
-Caddy issues the TLS cert on first load of the site block; if DNS isn't live
-yet, **certificate issuance fails**.
+Use the `DEPLOY_SSH_KEY` value from the **slides** repo (the `gha-slides`
+key, provisioned & proven 2026-07-11) — not any older copy.
 
-## 2. GitHub repo
+## 1. DNS (Porkbun) — do this BEFORE the Caddy block
 
-Create `github.com/Vrier/slides` (empty — no README/license), then:
+Add an A record: `teaching` → `167.233.233.109`.
 
-- **Settings → Deploy keys → Add**: the contents of `.deploy-key.pub` from
-  this repo, **WITH write access** (this is how Cowork pushes). Deploy keys
-  are unique per repo — never reuse across repos.
-- **Settings → Secrets and variables → Actions**: secret `DEPLOY_SSH_KEY` =
-  the same base64-encoded value as in the compose/teaching repos (the VPS
-  credential — shareable). The workflow base64-decodes it, falling back to
-  raw.
+Caddy issues the TLS certificate on first load of the site block; if the DNS record
+isn't live yet, **certificate issuance fails**.
 
-## 3. VPS (as root, after the repo has its first push)
+## 2. VPS (as root)
 
 ```sh
-git clone https://github.com/Vrier/slides /srv/slides
+git clone <repo-url> /srv/slides
 chown -R compose:compose /srv/slides
 ```
 
@@ -45,19 +41,37 @@ Then:
 systemctl reload caddy
 ```
 
-## 4. Verify
+## 3. GitHub repo settings
 
-Push a trivial change to `main`, watch the run under **Actions**, then:
+- **Deploy key with write access** — so Cowork can push to the repo.
+- **Actions secret `DEPLOY_SSH_KEY`** — the base64-encoded private key for
+  `compose@167.233.233.109`. Use the **same base64 value as the compose repo's
+  secret**: it's a *server* credential, not a repo credential, so sharing it across
+  repos is fine.
+
+Why base64? PowerShell mangles multi-line secrets when pasting ("error in
+libcrypto"), so the workflow stores the key base64-encoded and decodes it at run
+time.
+
+## 4. The workflow
+
+`.github/workflows/deploy.yml` in this repo is a template written from the working
+recipe. **It is the battle-tested version from the slides repo** (base64-decode with
+raw fallback), already in place.
+
+On every push to `main` it SSHes in as `compose@167.233.233.109` and runs:
 
 ```sh
-curl -sI https://slides.tstephen.com/
-curl -sI https://slides.tstephen.com/2026/demo/
+git -C /srv/slides fetch origin main && git -C /srv/slides reset --hard origin/main
 ```
 
-Both should return `200` with the fresh content.
+## 5. Verify
 
-## Ongoing
+Push a trivial change to `main`, watch the run under the repo's **Actions** tab,
+then hard-refresh https://slides.tstephen.com.
 
-Edit in Cowork / Claude Code → `npm test` → commit → push `main` → Actions
-deploys. Site stale? Check the latest Actions run first (a red run almost
-always means the `DEPLOY_SSH_KEY` secret).
+## Ongoing workflow
+
+Edit locally in Cowork / Claude Code → commit → push to `main` → Actions deploys.
+No restarts, no build. If the site looks stale: check the latest Actions run first
+(a red run almost always means the `DEPLOY_SSH_KEY` secret).

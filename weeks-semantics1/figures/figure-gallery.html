@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lattices &amp; Events — Figure Gallery · LI7869 / LIU11011</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<style>
+  html,body{margin:0;padding:0;height:100%;background:#f0eee9;}
+  .fig-iframe{width:100%;height:100%;border:0;display:block;background:#fff;border-radius:6px;}
+  .intro{font-family:var(--sans);}
+  .intro h1{font-family:var(--serif);color:var(--tcd-ink);}
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="design-canvas.jsx"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { DesignCanvas, DCSection, DCArtboard, DCPostIt } = window;
+const W = 1060;
+
+function Fig({ src }) {
+  return <iframe className="fig-iframe" src={src} title={src}></iframe>;
+}
+
+function App() {
+  return (
+    <DesignCanvas>
+      <DCSection id="intro" title="Lattices, atoms & events" subtitle="Mereological figures for Semantics I · Describing Meaning — Link · Bach · Krifka">
+        <DCArtboard id="readme" label="Read me" width={760} height={520}>
+          <div className="intro" style={{height:'100%',background:'#fff',borderRadius:6,padding:'52px 56px',boxSizing:'border-box',color:'#11151a'}}>
+            <h1 style={{fontSize:40,margin:'0 0 14px',lineHeight:1.05}}>The algebra of objects &amp; events</h1>
+            <p style={{fontSize:21,lineHeight:1.45,color:'#50555a',margin:'0 0 22px'}}>
+              Eight self-contained, animated figures on the part–whole structure shared by <b>matter, pluralities, and events</b> —
+              the through-line from Link’s lattices to Krifka’s incremental themes.
+            </p>
+            <ul style={{fontSize:19,lineHeight:1.7,color:'#11151a',paddingLeft:22,margin:0}}>
+              <li><b>Open any figure full-screen</b> with the ⤢ button on its frame (←/→ to step, Esc to exit).</li>
+              <li>Each is a single HTML file in <code style={{fontFamily:'var(--mono)',fontSize:16}}>weeks-semantics1/figures/</code> — drop into a slide via <code style={{fontFamily:'var(--mono)',fontSize:16}}>&lt;iframe&gt;</code>.</li>
+              <li>Styled to match the deck system (STIX serif · TCD blue · lens colours).</li>
+            </ul>
+          </div>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="w4" title="Week 4 · Stuff and Things" subtitle="Mass, count & plurals — the join semilattice and the reference properties">
+        <DCArtboard id="semilattice" label="1 · Join semilattice of plurals  ·  the ∗ operator" width={W} height={820}>
+          <Fig src="fig-semilattice.html" />
+        </DCArtboard>
+        <DCArtboard id="mass-count" label="2 · Mass vs count  ·  atomicity & divisive reference" width={W} height={820}>
+          <Fig src="fig-mass-count.html" />
+        </DCArtboard>
+        <DCArtboard id="quantized" label="3 · Cumulative vs quantized reference  ·  Krifka" width={W} height={820}>
+          <Fig src="fig-quantized.html" />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="w8" title="Week 8 · Verbs and Events" subtitle="Bach’s parallel and the structure that links objects, events and time">
+        <DCArtboard id="bach" label="4 · Bach’s parallel  ·  objects ↔ events" width={W} height={880}>
+          <Fig src="fig-bach-parallel.html" />
+        </DCArtboard>
+        <DCArtboard id="time-space" label="7 · Space · event · time  ·  μ and τ homomorphisms" width={W} height={880}>
+          <Fig src="fig-time-space.html" />
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="w10" title="Week 10 · Aktionsart and Time" subtitle="Incremental themes, telicity, and the Vendler feature space">
+        <DCArtboard id="incremental" label="5 · Incremental theme  ·  object→event homomorphism" width={W} height={820}>
+          <Fig src="fig-incremental.html" />
+        </DCArtboard>
+        <DCArtboard id="telicity" label="6 · Telicity  ·  where the finish line comes from" width={W} height={820}>
+          <Fig src="fig-telicity.html" />
+        </DCArtboard>
+        <DCArtboard id="aktionsart" label="8 · Aktionsart  ·  the Vendler classes" width={W} height={880}>
+          <Fig src="fig-aktionsart.html" />
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#07284a"/>
+    <g fill="none" stroke="#82b4dc" stroke-width="2">
+      <line x1="50" y1="26" x2="32" y2="50"/><line x1="50" y1="26" x2="50" y2="50"/><line x1="50" y1="26" x2="68" y2="50"/>
+      <line x1="32" y1="50" x2="40" y2="74"/><line x1="50" y1="50" x2="50" y2="74"/><line x1="68" y1="50" x2="60" y2="74"/>
+    </g>
+    <g fill="#c1daee">
+      <circle cx="50" cy="26" r="5"/><circle cx="32" cy="50" r="4"/><circle cx="50" cy="50" r="4"/><circle cx="68" cy="50" r="4"/>
+      <circle cx="40" cy="74" r="3.5"/><circle cx="50" cy="74" r="3.5"/><circle cx="60" cy="74" r="3.5"/>
+    </g>
+  </svg>
+</template>
+</body>
+</html>

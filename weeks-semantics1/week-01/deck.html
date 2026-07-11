@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 1, What is Meaning? · Lecture Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+  /* big "What does this mean?" question */
+  .bigask{ display:flex; align-items:center; gap:18px; font-family:var(--serif); font-style:italic;
+    font-size:64px; font-weight:600; color:var(--tcd-ink); letter-spacing:-.01em; margin:0 0 26px; line-height:1.03; }
+  .bigask .ik{ width:44px; height:44px; flex:0 0 44px; color:var(--lens); }
+  .bigask .ik svg{ width:100%; height:100%; }
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+  /* three-column fields (What do we study) */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  /* syntactic trees on the ambiguity slide */
+  .creadrow{ display:flex; gap:22px; align-items:center; margin-top:10px; }
+  .stree{ flex:0 0 auto; }
+  /* interlinear gloss (Leipzig style) */
+  .igloss{ margin:10px 0 4px; }
+  .igloss .il{ display:flex; flex-wrap:wrap; gap:12px 28px; }
+  .igloss .iw{ display:flex; flex-direction:column; gap:5px; }
+  .igloss .iw .s1{ font-family:var(--serif); font-style:italic; font-size:32px; color:var(--tcd-ink); }
+  .igloss .iw .s2{ font-family:var(--mono); font-size:15px; color:var(--tcd-grey-75); text-transform:uppercase; letter-spacing:.03em; }
+  .igloss .free{ margin-top:18px; font-family:var(--serif); font-style:italic; font-size:28px; color:var(--tcd-ink); line-height:1.3; }
+  .igloss .free .lbl{ font-family:var(--mono); font-style:normal; font-size:13px; text-transform:uppercase; letter-spacing:.09em; color:var(--tcd-grey-75); margin-right:14px; vertical-align:middle; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); line-height:1.04; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow:first-of-type{ }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .dB .q{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); font-size:26px; line-height:1.34; }
+  .dB .q .src{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-75); margin-top:9px; }
+  /* amber marker, emphasis colour deliberately unlike any strand hue */
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+  .kw{ color:#9a5a08; font-weight:700; }
+
+  /* ============ figure portraits ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+
+  /* ============ lineage / tradition map ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ limits list ============ */
+  .plist{ list-style:none; margin:0; padding:0; }
+  .plist li{ display:grid; grid-template-columns:190px 1fr 1fr; gap:0 26px; align-items:baseline;
+    padding:15px 0; font-size:var(--type-small); line-height:1.34; color:var(--tcd-black); border-top:1px solid var(--tcd-grey-25); }
+  .plist li:first-child{ border-top:none; }
+  .plist .tag{ font-family:var(--mono); font-size:15px; color:var(--tcd-blue); text-transform:uppercase; letter-spacing:.05em; }
+  .plist em{ font-style:italic; }
+  .plist .why{ font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.35; }
+  .plist .why b{ color:var(--tcd-ink); font-weight:600; }
+
+  /* ============ housekeeping / week grids ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  /* ============ situation-sorting diagram (truth conditions) ============ */
+  .sits{ display:flex; align-items:center; gap:16px; padding:4px 0 2px; }
+  .sits .sit{ width:104px; border-radius:10px; padding:12px 10px 10px; text-align:center; background:#fff; border:1px solid var(--tcd-grey-25); }
+  .sits .sit .sn{ font-family:var(--mono); font-size:14px; color:var(--tcd-grey-75); display:block; margin-bottom:4px; }
+  .sits .sit .v{ font-family:var(--serif); font-size:30px; line-height:1; }
+  .sits .sit.t .v{ color:oklch(0.47 0.11 158); } .sits .sit.f .v{ color:oklch(0.53 0.15 28); }
+  .sits .sit.t{ background:color-mix(in srgb, var(--c-ex) 10%, #fff); border-color:color-mix(in srgb, var(--c-ex) 30%, #fff); }
+  .sits .sit.f{ background:color-mix(in srgb, var(--c-exr) 8%, #fff); border-color:color-mix(in srgb, var(--c-exr) 26%, #fff); }
+  .sits .sit.act{ outline:2.5px solid var(--lens); outline-offset:2px; position:relative; }
+  .sits .sit.act .aw{ position:absolute; left:50%; transform:translateX(-50%); bottom:-26px; white-space:nowrap;
+    font-family:var(--sans); font-size:13px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--lens); }
+  .sits .dots{ font-family:var(--serif); font-size:26px; color:var(--tcd-grey-50); }
+  .sits .sread{ margin-left:18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.45; }
+  .sits .sread b{ color:var(--tcd-ink); font-weight:600; }
+
+  /* ============ summary recap (strand-tinted editorial rows) ============ */
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* ============ Bilbo speech breakdown (ported dual-grid) ============ */
+  .bgwrap{ margin-top:10px; }
+  .bgcols{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .bg-panel{ padding:18px 22px; background:var(--tcd-blue-10); border:1px solid var(--tcd-blue-25); border-radius:12px; }
+  .bg-clause{ font-family:var(--serif); font-style:italic; font-size:21px; color:var(--tcd-ink); margin-bottom:14px; line-height:1.35; }
+  .bg-row{ display:flex; gap:22px; align-items:flex-start; }
+  .bg-gwrap{ position:relative; width:250px; flex:0 0 250px; }
+  .bg-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:4px; width:250px; }
+  .bg-dot{ aspect-ratio:1; border-radius:50%; }
+  .bg-halfline{ position:absolute; left:-6px; right:-6px; top:50%; transform:translateY(-50%); border-top:2px dashed var(--tcd-grey-50); pointer-events:none; }
+  .bg-leg{ flex:1 1 0; min-width:0; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); line-height:1.32; }
+  .bg-leg > div{ margin-bottom:9px; }
+  .bg-leg em{ font-style:italic; color:var(--tcd-ink); }
+  .bg-sw{ display:inline-block; width:13px; height:13px; border-radius:4px; margin-right:9px; vertical-align:middle; }
+  .bg-scale{ margin-top:14px; }
+  .bg-track{ position:relative; height:9px; background:var(--tcd-grey-10); border:1px solid var(--tcd-grey-25); border-radius:5px; }
+  .bg-tick{ position:absolute; left:50%; top:-5px; bottom:-5px; border-left:2px dashed var(--tcd-grey-50); }
+  .bg-slabels{ display:flex; justify-content:space-between; font-size:13px; color:var(--tcd-grey-75); margin-top:7px; font-family:var(--sans); }
+  .bg-cap{ font-size:13px; color:var(--tcd-grey-75); margin-top:9px; font-family:var(--sans); font-style:italic; }
+
+  /* ============ Stoic five indemonstrables ============ */
+  .indem{ display:flex; flex-direction:column; margin-top:4px; }
+  .indem .ir{ display:grid; grid-template-columns:30px 306px 1fr; gap:0 20px; align-items:baseline; padding:7px 0; border-top:1px solid color-mix(in srgb, var(--lens) 15%, #fff); }
+  .indem .ir:first-child{ border-top:none; }
+  .indem .n{ font-family:var(--mono); font-size:15px; color:var(--lens); font-weight:700; }
+  .indem .sch{ font-family:var(--mono); font-size:16px; color:var(--tcd-ink); }
+  .indem .sch b{ color:var(--lens); }
+  .indem .ex{ font-family:var(--serif); font-style:italic; font-size:18px; color:var(--tcd-grey-100); }
+  /* ============ figure name-plate (portrait-sized) ============ */
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:86px; font-weight:600; letter-spacing:.02em; }
+  /* ============ three modes of supposition ============ */
+  .modes{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-top:6px; }
+  .modes .mode{ background:#fff; border:1px solid color-mix(in srgb, var(--lens) 24%, #fff); border-left:4px solid var(--lens); border-radius:9px; padding:14px 18px; }
+  .modes .mt{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); margin-bottom:9px; }
+  .modes .ms{ font-family:var(--serif); font-style:italic; font-size:22px; color:var(--tcd-ink); line-height:1.24; margin-bottom:9px; }
+  .modes .ms b{ font-style:normal; color:var(--lens); }
+  .modes .md{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); line-height:1.32; }
+
+  /* ============ figure biographies + syllogism set ============ */
+  .portrait .bio{ font-family:var(--sans); font-size:13.5px; color:var(--tcd-grey-100); line-height:1.36; margin-top:8px; }
+  .portrait.bioc img{ height:222px; }
+  .figthree .portrait.bioc img{ height:230px; }
+  .sylset{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:22px; margin-top:6px; }
+  .sylset .sname{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lens); margin-bottom:8px; }
+  .fbio{ font-family:var(--sans); font-size:16.5px; color:var(--tcd-grey-100); line-height:1.4; margin:2px 0 15px; }
+  .fbio em{ font-style:italic; } .fbio b{ color:var(--tcd-ink); font-weight:600; }
+  .figbody .fbio{ margin-top:0; }
+  .tribio{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:30px; margin:4px 0 14px; }
+  .tribio .fbio{ font-size:15px; line-height:1.38; margin:0; }
+
+  /* ============ numbered example panel (standout examples) ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:46px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .eg .ex .rel{ font-family:var(--mono); font-style:normal; font-weight:700; color:var(--lens, var(--tcd-blue)); padding:0 .2em; }
+  .eg .vd{ font-style:normal; font-family:var(--sans); font-weight:700; font-size:19px; white-space:nowrap; }
+  .eg .vd.y{ color:oklch(0.50 0.11 158); } .eg .vd.n{ color:oklch(0.55 0.15 28); }
+
+  /* ============ “What does this mean?” question + answer slides ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+  .aline{ font-family:var(--serif); font-size:38px; color:var(--tcd-ink); line-height:1.22; margin:22px 0 2px; }
+
+  /* ============ empirical diagrams ============ */
+  .cset{ display:flex; flex-direction:column; gap:18px; margin:14px 0 4px; }
+  .cread{ display:flex; align-items:center; gap:24px; }
+  .cread .rlab{ flex:0 0 118px; font-family:var(--sans); font-size:15px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .cread .cgl{ font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); }
+  .cx{ position:relative; border:1.5px solid var(--tcd-grey-25); border-radius:10px; padding:20px 14px 12px; display:inline-flex; align-items:center; gap:11px; }
+  .cx > .lab{ position:absolute; top:-11px; left:13px; background:#fff; padding:0 7px; font-family:var(--mono); font-size:12.5px; font-weight:600; color:var(--tcd-grey-75); letter-spacing:.06em; }
+  .cw{ font-family:var(--serif); font-size:25px; color:var(--tcd-ink); }
+  .cx.pp{ border-color:color-mix(in srgb, var(--lens) 55%, #fff); background:color-mix(in srgb, var(--lens) 9%, #fff); }
+  .cx.pp > .lab{ color:var(--lens); background:color-mix(in srgb, var(--lens) 9%, #fff); }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  .gloss{ display:flex; flex-wrap:wrap; gap:12px 30px; margin:16px 0 4px; }
+  .gw{ display:flex; flex-direction:column; gap:4px; }
+  .gw .ga{ font-family:var(--serif); font-style:italic; font-size:31px; color:var(--tcd-ink); }
+  .gw .gb{ font-family:var(--mono); font-size:15px; color:var(--tcd-grey-75); text-transform:uppercase; letter-spacing:.04em; }
+  .gt{ margin-top:16px; font-family:var(--serif); font-size:27px; font-style:italic; color:var(--tcd-ink); }
+
+  /* ============ historical diagrams ============ */
+  .arg{ display:inline-flex; flex-direction:column; align-items:flex-start; gap:3px; padding:2px 0 0; }
+  .arg .pr{ font-family:var(--serif); font-size:25px; color:var(--tcd-ink); }
+  .arg .pr .an{ font-family:var(--sans); font-size:14px; color:var(--tcd-grey-75); margin-left:12px; letter-spacing:.04em; }
+  .arg .bar{ align-self:stretch; border-top:2px solid var(--tcd-ink); margin:9px 0 6px; }
+  .arg .cc{ font-family:var(--serif); font-size:26px; font-weight:600; color:var(--tcd-ink); }
+  .conn{ margin-top:14px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); }
+  .conn .cc2{ font-family:var(--mono); font-size:17px; background:#fff; border:1px solid color-mix(in srgb, var(--lens) 26%, #fff); border-radius:6px; padding:3px 9px; margin-right:6px; color:var(--tcd-ink); white-space:nowrap; }
+  .supp{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; padding:4px 0; }
+  .supp .term{ font-family:var(--serif); font-style:italic; font-size:32px; color:var(--tcd-ink); background:#fff; border:1.5px solid color-mix(in srgb, var(--lens) 45%, #fff); border-radius:9px; padding:10px 20px; }
+  .supp .ar{ font-family:var(--sans); font-size:16px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--lens); }
+  .supp .brace{ font-family:var(--serif); font-size:46px; color:var(--tcd-grey-50); line-height:1; }
+  .supp .ind{ font-family:var(--serif); font-size:22px; color:var(--tcd-ink); background:color-mix(in srgb, var(--lens) 10%, #fff); border:1px solid color-mix(in srgb, var(--lens) 26%, #fff); border-radius:20px; padding:6px 15px; }
+  .compose{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding:4px 0; }
+  .cnode{ display:flex; flex-direction:column; align-items:center; gap:7px; }
+  .cnode .bx{ font-family:var(--serif); font-size:23px; color:var(--tcd-ink); background:#fff; border:1.5px solid var(--tcd-grey-25); border-radius:9px; padding:10px 16px; white-space:nowrap; }
+  .cnode .bx.fn{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 8%, #fff); }
+  .cnode .cl{ font-family:var(--sans); font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--tcd-grey-75); }
+  .compose .op{ font-family:var(--mono); font-size:26px; color:var(--tcd-grey-50); }
+  .compose .op.eq{ color:var(--lens); font-weight:700; }
+
+  /* ============ formal diagrams ============ */
+  .notn{ display:flex; align-items:center; gap:30px; flex-wrap:wrap; padding:6px 0 2px; }
+  .notn .bscard{ background:#fff; border:1px solid var(--tcd-grey-25); border-radius:10px; padding:18px 26px; text-align:center; }
+  .notn .bscard img{ height:104px; width:auto; display:block; margin:0 auto; }
+  .notn .bscard svg.bsfig{ width:340px; height:auto; display:block; margin:2px auto 0; color:var(--tcd-ink); }
+  .notn .bscard .cap{ font-family:var(--sans); font-size:14px; color:var(--tcd-grey-75); margin-top:12px; max-width:360px; line-height:1.3; }
+  .notn .to{ font-family:var(--mono); font-size:34px; color:var(--lens); }
+  .notn .folcard{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 26%, #fff); border-radius:10px; padding:20px 34px; text-align:center; }
+  .notn .folcard .f1{ font-size:40px; color:var(--tcd-ink); }
+  .notn .folcard .cap{ font-family:var(--sans); font-size:15px; color:var(--tcd-grey-75); margin-top:10px; }
+
+  .entwrap{ display:flex; align-items:center; gap:38px; padding:6px 4px; }
+  .incl{ flex:0 0 auto; display:flex; align-items:center; gap:22px; }
+  .venn{ position:relative; width:262px; height:168px; flex:0 0 262px; }
+  .venn .ell{ position:absolute; border-radius:50%; }
+  .venn .b{ inset:0; border:2.5px solid color-mix(in srgb, var(--lens) 55%, #fff); background:color-mix(in srgb, var(--lens) 6%, #fff); }
+  .venn .a{ width:146px; height:100px; left:26px; top:52px; border:2.5px solid var(--lens); background:color-mix(in srgb, var(--lens) 18%, #fff); }
+  .venn .lb{ position:absolute; font-family:var(--sans); font-size:15px; font-weight:700; color:var(--tcd-ink); }
+  .venn .lbb{ top:9px; right:16px; color:var(--lens); }
+  .venn .lba{ left:56px; top:90px; }
+  .incl .note{ font-family:var(--serif); font-size:27px; color:var(--tcd-ink); }
+  .incl .note .sub2{ display:block; font-family:var(--sans); font-size:14px; color:var(--tcd-grey-75); margin-top:5px; }
+  .entex{ flex:1 1 0; min-width:0; }
+
+  .tcc{ display:flex; flex-direction:column; gap:12px; margin:12px 0 4px; }
+  .tccr{ display:flex; align-items:center; gap:18px; }
+  .tccr .rl{ flex:0 0 150px; font-family:var(--sans); font-size:15px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--lens); }
+  .tccr .cells{ display:flex; gap:7px; }
+  .cell2{ width:42px; height:42px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:22px; }
+  .cell2.t{ background:color-mix(in srgb, var(--c-ex) 16%, #fff); color:oklch(0.47 0.11 158); border:1px solid color-mix(in srgb, var(--c-ex) 34%, #fff); }
+  .cell2.f{ background:color-mix(in srgb, var(--c-exr) 13%, #fff); color:oklch(0.53 0.15 28); border:1px solid color-mix(in srgb, var(--c-exr) 30%, #fff); }
+  .tccr .cap{ font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+
+  /* ============ typological diagram ============ */
+  .metadiag{ display:flex; align-items:center; gap:28px; padding:8px 4px 2px; }
+  .olcol{ display:flex; flex-direction:column; gap:8px; }
+  .olchip{ background:#fff; border:1px solid var(--tcd-grey-25); border-left:4px solid var(--lens); border-radius:8px; padding:6px 14px; font-family:var(--serif); font-size:19px; color:var(--tcd-ink); }
+  .olchip .fl{ font-family:var(--sans); font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--tcd-grey-75); display:block; margin-bottom:1px; }
+  .mfan{ font-family:var(--mono); font-size:30px; color:var(--lens); flex:0 0 auto; }
+  .metanode{ background:color-mix(in srgb, var(--lens) 8%, #fff); border:1.5px solid color-mix(in srgb, var(--lens) 30%, #fff); border-radius:12px; padding:18px 30px; text-align:center; }
+  .metanode .mt2{ font-family:var(--sans); font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); margin-bottom:9px; }
+  .metanode .mf{ font-size:32px; color:var(--tcd-ink); }
+  .metanode .mc{ font-family:var(--sans); font-size:14px; color:var(--tcd-grey-75); margin-top:9px; max-width:260px; line-height:1.3; }
+
+  .snowfig{ flex:0 0 auto; width:200px; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:10px; padding:9px; box-shadow:0 8px 22px rgba(7,40,74,.14); }
+  .snowfig img{ width:100%; height:140px; object-fit:cover; border-radius:6px; display:block; }
+  .snowfig .cap{ font-family:var(--sans); font-size:13px; color:var(--tcd-grey-75); text-align:center; margin-top:7px; line-height:1.3; }
+
+  .lens-kick .ct{ display:none; }
+</style>
+</head>
+<body class="pal-a" data-week="1">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark">⟦⟧</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7869 · Formal Semantics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 1</h1>
+      <div class="a-course-sub">What is Meaning?</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 2 · 2026</div></div>
+  </div>
+</section>
+
+<!-- 02 · Framing hook -->
+<section class="slide" data-label="How do we know?" data-screen-label="02">
+  <div class="b-slide pal-a" data-sec="how">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">The question behind the module</div>
+      <h2 class="b-h">How do we know what a sentence means?</h2>
+      <div class="lead">Meaning is surprisingly difficult to study <mk>scientifically</mk>.</div>
+      <div class="accrule"></div>
+      <div class="erow"><div class="lb">The problem</div><div class="tx">We understand sentences we have never heard, judge some as <strong>odd</strong>, and feel that one sentence <strong>follows</strong> from another, but what is the knowledge behind those judgements?</div></div>
+      <div class="erow"><div class="lb">Our goal</div><div class="tx">Develop <strong>explicit, formal tools</strong> to describe and analyse meaning, precise enough to make predictions and to say clearly when we are wrong.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 · Roadmap -->
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="b-kick">Through four strands</div>
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Hegel: opacity</li><li>Bilbo: paraphrase</li><li>Ambiguity</li><li>Speaker meaning</li><li>Translation</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>The tradition</li><li>Aristotle</li><li>The Stoics</li><li>The Medievals</li><li>Frege</li><li>The modern turn</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Truth conditions</li><li>Entailment</li><li>Tautology &amp; contradiction</li><li>Validity</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>Object &amp; meta-language</li><li>The limits</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · Empirical divider -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LI7869 · Week 1</div><h2>Meaning Judgements</h2><div class="ask">What do we understand when we understand the meaning of a sentence? What does it mean to ask what something means?</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+<!-- 05 · Empirical, Hegel · question -->
+<section class="slide" data-label="What does this mean?, Hegel" data-screen-label="05 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="hegel">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="bigask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What does this mean?</div>
+      <div class="figrow" style="align-items:center;flex:1 1 0">
+        <div class="portrait anim" style="--d:.7s">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/1831%20Schlesinger%20Philosoph%20Georg%20Friedrich%20Wilhelm%20Hegel%20anagoria.JPG?width=700" alt="G. W. F. Hegel" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">G. W. F. Hegel</div><div class="dt">1770 – 1831</div></div>
+        </div>
+        <div class="qwrap">
+          <div class="bigq anim" style="font-size:33px;--d:.35s">“Everything turns on grasping and expressing <strong>the True</strong>, not only as <strong>Substance</strong>, but equally as <strong>Subject</strong>… The living Substance is being which is in truth Subject, or, what is the same, is in truth actual only in so far as it is the <strong>movement of positing itself</strong>, or is the mediation of its self-othering with itself.”</div>
+          <div class="qsrc anim" style="--d:.7s">G. W. F. Hegel, <em>Phenomenology of Spirit</em> (1807), Preface</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 · Empirical, Hegel · answer -->
+<section class="slide" data-label="Hegel, a consideration" data-screen-label="05 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="hegel">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Meaning that resists paraphrase</h2>
+      <div class="qref">“Everything turns on grasping and expressing the True, not only as Substance, but equally as Subject… The living Substance is being which is in truth Subject, or, what is the same, is in truth actual only in so far as it is the movement of positing itself, or is the mediation of its self-othering with itself.”<span class="src">G. W. F. Hegel, Phenomenology of Spirit (1807)</span></div>
+      <div class="aline" style="margin-top:24px">No idea.</div>
+      <div class="tx" style="font-family:var(--sans);font-size:26px;color:var(--tcd-grey-100);margin-top:16px;max-width:1220px">Maybe some philosophers know, but understanding this meaning is <strong>not a matter of understanding language</strong>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · Empirical, Bilbo · question -->
+<section class="slide" data-label="What does this mean?, Bilbo" data-screen-label="06 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="bilbo">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="bigask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What does this mean?</div>
+      <div class="figrow" style="align-items:center;flex:1 1 0">
+        <div class="portrait anim" style="--d:.7s">
+          <img src="images/bilbo.jpg" alt="Bilbo Baggins at his birthday party">
+          <div class="pc"><div class="nm">Bilbo Baggins</div><div class="dt">Eleventy-first birthday</div></div>
+        </div>
+        <div class="qwrap">
+          <div class="bigq anim" style="font-size:46px;--d:.35s">“I don't know half of you half as well as I should like; and I like less than half of you half as well as you deserve.”</div>
+          <div class="qsrc anim" style="--d:.7s">Bilbo Baggins, on his eleventy-first birthday</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · Empirical, Bilbo · answer -->
+<section class="slide" data-label="Bilbo, a consideration" data-screen-label="06 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="bilbo">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Half of you, half as well</h2>
+      <div class="qref">“I don't know half of you half as well as I should like; and I like less than half of you half as well as you deserve.”<span class="src">Bilbo Baggins, at his eleventy-first birthday · 144 guests (‘one gross’)</span></div>
+      <div class="bgwrap">
+        <div class="bgcols">
+          <div class="bg-panel">
+            <div class="bg-clause">“I don't know half of you half as well as I should like.”</div>
+            <div class="bg-row">
+              <div class="bg-gwrap"><div class="bg-grid" id="bgrid1"></div><div class="bg-halfline"></div></div>
+              <div class="bg-leg">
+                <div><span class="bg-sw" style="background:#378ADD"></span>72 — he <em>does</em> know at least half as well as he'd like</div>
+                <div><span class="bg-sw" style="background:#639922"></span>72 — he does <em>not</em> know half as well as he'd like</div>
+                <div class="bg-scale">
+                  <div class="bg-track"><div style="position:absolute;left:0;top:0;bottom:0;width:50%;background:#63992233;border-radius:4px 0 0 4px"></div><div style="position:absolute;right:0;top:0;bottom:0;width:50%;background:#378ADD33;border-radius:0 4px 4px 0"></div><div class="bg-tick"></div></div>
+                  <div class="bg-slabels"><span>doesn't know them</span><span>half as well</span><span>as he'd like</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-panel">
+            <div class="bg-clause">“…and I like less than half of you half as well as you deserve.”</div>
+            <div class="bg-row">
+              <div class="bg-gwrap"><div class="bg-grid" id="bgrid2"></div><div class="bg-halfline"></div></div>
+              <div class="bg-leg">
+                <div><span class="bg-sw" style="background:#E24B4A"></span>up to 71 — he likes these <em>less than</em> half as much as they deserve</div>
+                <div><span class="bg-sw" style="background:#EF9F27"></span>73+ — he likes these at least as much as they deserve</div>
+                <div class="bg-scale">
+                  <div class="bg-track"><div style="position:absolute;left:0;top:0;bottom:0;width:50%;background:#E24B4A33;border-radius:4px 0 0 4px"></div><div style="position:absolute;right:0;top:0;bottom:0;width:50%;background:#EF9F2733;border-radius:0 4px 4px 0"></div><div class="bg-tick"></div></div>
+                  <div class="bg-slabels"><span>likes them little</span><span>half as well</span><span>as they deserve</span></div>
+                  <div class="bg-cap">“Less than half” is vague: anywhere from 1 to 71.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · Empirical, Ambiguity · question -->
+<section class="slide" data-label="What does this mean?, telescope" data-screen-label="07 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="amb">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What does this mean?</div>
+        <div class="bigq" style="font-size:74px">She saw the man with a telescope.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Empirical, Ambiguity · answer -->
+<section class="slide" data-label="Telescope, two readings" data-screen-label="07 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="amb">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Structural ambiguity</h2>
+      <div class="qref">She saw the man with a telescope.</div>
+      <div class="cset">
+        <div class="cread">
+          <div class="rlab">Instrument</div>
+          <div class="creadrow">
+            <svg class="stree" viewBox="0 0 240 168" width="206" fill="none">
+              <g stroke="#07284a" stroke-width="1.5"><line x1="120" y1="32" x2="48" y2="66"/><line x1="120" y1="32" x2="120" y2="66"/><line x1="120" y1="32" x2="196" y2="66"/><line x1="196" y1="88" x2="196" y2="112"/></g>
+              <g fill="#07284a" font-size="15" font-weight="700" text-anchor="middle" font-family="var(--sans)"><text x="120" y="24">VP</text><text x="48" y="80">V</text><text x="120" y="80">NP</text><text x="196" y="80">PP</text></g>
+              <g fill="#50555a" font-size="13" font-style="italic" text-anchor="middle" font-family="var(--serif)"><text x="48" y="102">saw</text><text x="120" y="102">the man</text><text x="196" y="128">with a</text><text x="196" y="144">telescope</text></g>
+            </svg>
+            <div>
+              <div class="cx"><span class="lab">VP</span><span class="cw">saw</span><span class="cx"><span class="lab">NP</span><span class="cw">the man</span></span><span class="cx pp"><span class="lab">PP</span><span class="cw">with a telescope</span></span></div>
+              <div class="cgl">she used a telescope <strong>to see</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="cread">
+          <div class="rlab">Modifier</div>
+          <div class="creadrow">
+            <svg class="stree" viewBox="0 0 240 196" width="206" fill="none">
+              <g stroke="#07284a" stroke-width="1.5"><line x1="96" y1="32" x2="52" y2="66"/><line x1="96" y1="32" x2="150" y2="66"/><line x1="150" y1="88" x2="112" y2="122"/><line x1="150" y1="88" x2="196" y2="122"/></g>
+              <g fill="#07284a" font-size="15" font-weight="700" text-anchor="middle" font-family="var(--sans)"><text x="96" y="24">VP</text><text x="52" y="80">V</text><text x="150" y="80">NP</text><text x="112" y="136">NP</text><text x="196" y="136">PP</text></g>
+              <g fill="#50555a" font-size="13" font-style="italic" text-anchor="middle" font-family="var(--serif)"><text x="52" y="102">saw</text><text x="112" y="158">the man</text><text x="196" y="158">with a</text><text x="196" y="174">telescope</text></g>
+            </svg>
+            <div>
+              <div class="cx"><span class="lab">VP</span><span class="cw">saw</span><span class="cx"><span class="lab">NP</span><span class="cw">the man</span><span class="cx pp"><span class="lab">PP</span><span class="cw">with a telescope</span></span></span></div>
+              <div class="cgl">the man <strong>had</strong> the telescope</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · Empirical, Speaker meaning · question -->
+<section class="slide" data-label="What does this mean?, salt" data-screen-label="08 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="speak">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What does this mean?</div>
+        <div class="bigq" style="font-size:76px">Can you pass me the salt?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Empirical, Speaker meaning · answer -->
+<section class="slide" data-label="Salt, literal vs. speaker" data-screen-label="08 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="speak">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Literal vs. Speaker meaning</h2>
+      <div class="qref">Can you pass me the salt?</div>
+      <div class="brn">
+        <div class="split"><span>What the words literally ask…</span><span>…what the speaker actually does</span></div>
+        <div class="arms">
+          <div class="arm"><div class="h">Literal · Semantic Meaning</div><div class="t">A <strong>question</strong> about your ability to pass the salt.</div></div>
+          <div class="arm meant"><div class="h">Speaker · Pragmatic Meaning</div><div class="t">A polite <strong>request</strong>: please pass it.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · Empirical, Translation · question -->
+<section class="slide" data-label="What does this mean?, Pearse" data-screen-label="09 Q">
+  <div class="b-slide pal-a lens-empirical" data-sec="trans">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="bigask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What does this mean?</div>
+      <div class="figrow" style="align-items:center;flex:1 1 0">
+        <div class="portrait anim" style="--d:.7s">
+          <img src="images/pearse.jpg" alt="Patrick Pearse">
+          <div class="pc"><div class="nm">Patrick Pearse</div><div class="dt">1879 – 1916</div></div>
+        </div>
+        <div class="qwrap">
+          <div class="bigq anim" style="font-size:64px;--d:.35s">Tír gan teanga, tír gan anam.</div>
+          <div class="qsrc anim" style="--d:.7s">Patrick Pearse</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 · Empirical, Translation · answer -->
+<section class="slide" data-label="Pearse, a translation" data-screen-label="09 A">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="trans">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Meaning across languages</h2>
+      <div class="qref">Tír gan teanga, tír gan anam.<span class="src">Patrick Pearse</span></div>
+      <div class="igloss">
+        <div class="il">
+          <div class="iw"><span class="s1">Tír</span><span class="s2">land</span></div>
+          <div class="iw"><span class="s1">gan</span><span class="s2">without</span></div>
+          <div class="iw"><span class="s1">teanga,</span><span class="s2">language</span></div>
+          <div class="iw"><span class="s1">tír</span><span class="s2">land</span></div>
+          <div class="iw"><span class="s1">gan</span><span class="s2">without</span></div>
+          <div class="iw"><span class="s1">anam.</span><span class="s2">soul</span></div>
+        </div>
+        <div class="free"><span class="lbl">Lit.</span>‘A land without a language, a land without a soul.’</div>
+        <div class="free"><span class="lbl">Free</span>‘A country without a language is a country without a soul.’</div>
+      </div>
+      <div class="erow"><div class="lb">But note</div><div class="tx">To state the meaning we reached for <strong>English</strong>. Why English, could a neutral language do better?</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 · Pivot, what do we study -->
+<section class="slide" data-label="What we study" data-screen-label="07">
+  <div class="b-slide pal-a" data-sec="study">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">What do we study in semantics?</h2>
+      <div class="lead">Our focus this term: <mk>truth-conditional semantics</mk>.</div>
+      <div class="accrule"></div>
+      <div class="erow"><div class="lb">Formal semantics<br>· this course</div><div class="tx">Sentence meaning analysed <strong>systematically</strong>, using explicit, often formal tools.</div></div>
+      <div class="cols3">
+        <div><div class="ch">Lexical semantics</div><ul><li>The meanings of words</li><li>Sense relations</li><li>Polysemy &amp; ambiguity</li></ul></div>
+        <div><div class="ch">Cognitive semantics</div><ul><li>Meaning &amp; conceptual structure</li><li>Metaphor &amp; construal</li><li>Categories &amp; prototypes</li></ul></div>
+        <div><div class="ch">Pragmatics</div><ul><li>Meaning in use</li><li>Implicature</li><li>Speech acts</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 · Historical divider -->
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">STRAND 02 / 04 · LI7869 · Week 1</div><h2>How meaning was made precise</h2><div class="ask">Two thousand years of asking what words stand for, and how one truth follows from another, from Aristotle to the modern truth-conditional turn.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+<!-- 09 · Historical, lineage map -->
+<section class="slide" data-label="Historical, The tradition" data-screen-label="09">
+  <div class="b-slide pal-a lens-historical" data-sec="map">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">A map of the tradition</h2>
+      <div class="lineage">
+        <div class="ln"><div class="dot"></div><div class="era">c. 350 BCE</div><div class="nm">Aristotle</div><div class="ds">Logic of <em>terms</em>: subjects, predicates, the syllogism, contradiction.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">c. 250 BCE</div><div class="nm">The Stoics</div><div class="ds">Logic of <em>propositions</em>: connectives and truth-bearing sentences.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">12–14th c.</div><div class="nm">The Medievals</div><div class="ds">How terms “stand for” things, reference and truth conditions.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">1879 →</div><div class="nm">Frege</div><div class="ds">Predicate logic and the principle of compositionality.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">1933 →</div><div class="nm">Tarski · Davidson · Montague</div><div class="ds">Truth defined formally, then applied to natural language.</div></div>
+      </div>
+      <div class="roots"><b>Two ancient roots:</b> Aristotle's logic of <em>terms</em> and the Stoics' logic of <em>propositions</em>, which finally fuse in Frege's predicate logic.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Historical, Aristotle -->
+<section class="slide" data-label="Historical, Aristotle" data-screen-label="10">
+  <div class="b-slide pal-a lens-historical" data-sec="ari">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Aristotle: the first formal logic</h2>
+      <div class="figrow">
+        <div class="portrait">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aristotle%20Altemps%20Inv8575.jpg?width=700" alt="Bust of Aristotle" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">Aristotle</div><div class="dt">384 – 322 BCE · Athens</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio">Student of Plato and tutor to Alexander the Great, Aristotle founded the Lyceum in Athens. His <em>Organon</em> set out the first formal system of logic, built on the categorical syllogism, and it dominated the study of reasoning for two thousand years.</div>
+          <div class="erow"><div class="lb">Terms &amp; propositions</div><div class="tx tight">Only complete <strong>propositions</strong> are true or false, a bare word like <em>Socrates</em> asserts nothing. A proposition joins a <strong>subject</strong> and a <strong>predicate</strong>.</div></div>
+          <div class="erow"><div class="lb">Inference &amp; contradiction</div><div class="tx tight">The <em>Prior Analytics</em> is the first formal study of <mk>valid inference</mk>. And of any contradictory pair, exactly one is true, the seed of today's <em>tautology / contradiction</em>.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">Three classic syllogistic moods</div>
+        <div class="sylset">
+          <div class="syl"><div class="sname">Barbara</div><div class="arg"><div class="pr">All men are mortal.</div><div class="pr">All Greeks are men.</div><div class="bar"></div><div class="cc">∴ All Greeks are mortal.</div></div></div>
+          <div class="syl"><div class="sname">Celarent</div><div class="arg"><div class="pr">No reptile has fur.</div><div class="pr">All snakes are reptiles.</div><div class="bar"></div><div class="cc">∴ No snake has fur.</div></div></div>
+          <div class="syl"><div class="sname">Darii</div><div class="arg"><div class="pr">All cats are predators.</div><div class="pr">Some pets are cats.</div><div class="bar"></div><div class="cc">∴ Some pets are predators.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · Historical, The Stoics -->
+<section class="slide" data-label="Historical, The Stoics" data-screen-label="11">
+  <div class="b-slide pal-a lens-historical" data-sec="sto">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">The Stoics: a logic of propositions</h2>
+      <div class="figrow">
+        <div class="portrait">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chrysippos%20BM%201846.jpg?width=700" alt="Bust of Chrysippus" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">Chrysippus</div><div class="dt">c. 279 – 206 BCE · Soli</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio">The third head of the Stoic school and its greatest logician, Chrysippus reputedly wrote over 700 works. He built the first systematic propositional logic, taking five indemonstrable arguments as its axioms. Ancient writers said that but for him, there would have been no Stoa.</div>
+          <div class="erow"><div class="lb">The other root</div><div class="tx tight">Where Aristotle analysed <em>terms</em>, the Stoics analysed whole <strong>propositions</strong> and how they combine, the first system of <mk>propositional logic</mk>.</div></div>
+          <div class="erow"><div class="lb">Connectives</div><div class="tx tight">They gave truth conditions for <em>and</em>, <em>or</em>, and <em>if… then</em>, the direct ancestor of <strong>Week 2: Sentences &amp; Connectives</strong>, and the idea that sentences bear truth.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">The five “indemonstrables” — the axioms of Stoic logic</div>
+        <div class="indem">
+          <div class="ir"><span class="n">1</span><span class="sch">If <b>p</b> then <b>q</b>; <b>p</b> ∴ <b>q</b></span><span class="ex">If day then light; it is day ∴ it is light</span></div>
+          <div class="ir"><span class="n">2</span><span class="sch">If <b>p</b> then <b>q</b>; not <b>q</b> ∴ not <b>p</b></span><span class="ex">If day then light; not light ∴ not day</span></div>
+          <div class="ir"><span class="n">3</span><span class="sch">Not both <b>p</b> and <b>q</b>; <b>p</b> ∴ not <b>q</b></span><span class="ex">Not both day and night; it is day ∴ not night</span></div>
+          <div class="ir"><span class="n">4</span><span class="sch">Either <b>p</b> or <b>q</b>; <b>p</b> ∴ not <b>q</b></span><span class="ex">Either day or night; it is day ∴ not night</span></div>
+          <div class="ir"><span class="n">5</span><span class="sch">Either <b>p</b> or <b>q</b>; not <b>q</b> ∴ <b>p</b></span><span class="ex">Either day or night; not night ∴ it is day</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Historical, The Medievals -->
+<section class="slide" data-label="Historical, The Medievals" data-screen-label="12">
+  <div class="b-slide pal-a lens-historical" data-sec="med">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">The Medievals: words that stand for things</h2>
+      <div class="figtwo">
+        <div class="portrait">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/William%20of%20Ockham.png?width=500" alt="William of Ockham" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">William of Ockham</div><div class="dt">c. 1287 – 1347</div></div>
+        </div>
+        <div class="portrait">
+          <img src="images/buridan.jpg" alt="Jean Buridan, medieval manuscript" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">Jean Buridan</div><div class="dt">c. 1301 – 1360</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio"><b>Ockham.</b> An English Franciscan friar and leading nominalist; he held that only individuals exist, and recast <em>simple</em> supposition as reference to a concept, not a universal. He gives his name to Ockham's Razor.</div>
+          <div class="fbio"><b>Buridan.</b> A master of arts in Paris who wrote influential commentaries on Aristotle, advanced supposition theory, and tackled paradoxes such as the Liar. ‘Buridan's Ass’ is named after him.</div>
+          <div class="erow"><div class="lb">Supposition</div><div class="tx tight">A theory of how a term <strong>“stands for”</strong> things: reference, plurality and tense within Aristotle's logic. The picture behind <strong>Week 3: Predicates &amp; Sets</strong>.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">Three modes of supposition — one word <em>man</em>, referring three ways</div>
+        <div class="modes">
+          <div class="mode"><div class="mt">Personal</div><div class="ms">A <b>man</b> is running.</div><div class="md">stands for individuals — Socrates, Plato, …</div></div>
+          <div class="mode"><div class="mt">Simple</div><div class="ms"><b>Man</b> is a species.</div><div class="md">stands for the concept / universal</div></div>
+          <div class="mode"><div class="mt">Material</div><div class="ms">‘<b>Man</b>’ is a three-letter word.</div><div class="md">stands for the word itself</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · Historical, Frege -->
+<section class="slide" data-label="Historical, Frege" data-screen-label="13">
+  <div class="b-slide pal-a lens-historical" data-sec="fre">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Frege: predicate logic &amp; compositionality</h2>
+      <div class="figrow">
+        <div class="portrait">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Young%20frege.jpg?width=700" alt="Gottlob Frege" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">Gottlob Frege</div><div class="dt">1848 – 1925 · Jena</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio">A German mathematician at Jena, Gottlob Frege is regarded as the father of modern logic. His 1879 <em>Begriffsschrift</em> introduced quantifiers and predicate logic and first stated the principle of compositionality. His work was little read until Russell and Wittgenstein took it up.</div>
+          <div class="erow"><div class="lb">The tools</div><div class="tx tight">Frege's <strong>predicate logic</strong> (1879) subsumes both ancient roots, terms <em>and</em> propositions, and gives us the machinery of quantifiers we build on all term.</div></div>
+          <div class="erow"><div class="lb">Compositionality</div><div class="tx tight">The meaning of a whole is determined by the meanings of its <strong>parts</strong> and how they <strong>combine</strong>.</div></div>
+          <div class="erow"><div class="lb">Where this<br>course sits</div><div class="tx tight">This term we learn to <mk>break sentences apart</mk> on this principle. Putting them back together, the full compositional system, is <strong>Semantics II</strong>.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">A harder example: Frege's quantifier over a nested conditional → modern FOL</div>
+        <div class="notn">
+          <div class="bscard">
+            <svg class="bsfig" viewBox="6 74 508 152" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+              <line x1="42" y1="90" x2="42" y2="130"/>
+              <line x1="42" y1="110" x2="96" y2="110"/>
+              <path d="M96 110 Q115 136 134 110"/>
+              <line x1="134" y1="110" x2="398" y2="110"/>
+              <line x1="250" y1="110" x2="250" y2="190"/>
+              <line x1="250" y1="190" x2="398" y2="190"/>
+              <text x="115" y="152" font-size="25" fill="currentColor" stroke="none" text-anchor="middle" font-family="'STIX Two Text', serif" font-style="italic">a</text>
+              <text x="408" y="120" font-size="30" fill="currentColor" stroke="none" font-family="'STIX Two Text', serif"><tspan font-style="italic">G</tspan>(<tspan font-style="italic">a</tspan>)</text>
+              <text x="408" y="200" font-size="30" fill="currentColor" stroke="none" font-family="'STIX Two Text', serif"><tspan font-style="italic">F</tspan>(<tspan font-style="italic">a</tspan>)</text>
+            </svg>
+            <div class="cap">The concavity binds the variable; the conditional stroke sets <em>F(a)</em> as antecedent (below) and <em>G(a)</em> as consequent (above). Frege used a Gothic letter for the bound variable.</div>
+          </div>
+          <span class="to">→</span>
+          <div class="folcard">
+            <div class="f1">\(\forall x\,\bigl(F(x)\rightarrow G(x)\bigr)\)</div>
+            <div class="cap">‘every <em>F</em> is a <em>G</em>’</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 · Historical, The modern turn -->
+<section class="slide" data-label="Historical, The modern turn" data-screen-label="14">
+  <div class="b-slide pal-a lens-historical" data-sec="mod">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">The modern turn: truth, formalised</h2>
+      <div class="figthree">
+        <div class="portrait">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Alfred%20Tarski.jpeg?width=700" alt="Alfred Tarski" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">Alfred Tarski</div><div class="dt">1901 – 1983</div></div>
+        </div>
+        <div class="portrait">
+          <img src="images/davidson.jpg" alt="Donald Davidson">
+          <div class="pc"><div class="nm">Donald Davidson</div><div class="dt">1917 – 2003</div></div>
+        </div>
+        <div class="portrait">
+          <img src="images/montague.jpg" alt="Richard Montague">
+          <div class="pc"><div class="nm">Richard Montague</div><div class="dt">1930 – 1971</div></div>
+        </div>
+      </div>
+      <div class="tribio">
+        <div class="fbio">A Polish logician who moved to the United States in 1939 and settled at Berkeley. He gave the first rigorous definition of truth for a formal language, separating object language from metalanguage.</div>
+        <div class="fbio">An American philosopher at Berkeley who proposed that a theory of meaning could take the form of a Tarskian theory of truth. His essays reshaped the philosophy of language and mind.</div>
+        <div class="fbio">An American logician and student of Tarski who argued natural language can be described as precisely as symbolic logic. His ‘Montague grammar’ founded formal semantics.</div>
+      </div>
+      <div class="erow"><div class="lb">The move</div><div class="tx tight">Tarski defined truth rigorously by splitting the <strong>object language</strong> (what we describe) from the <strong>meta-language</strong> (what we describe it in).</div></div>
+      <div class="erow"><div class="lb">Then, natural language</div><div class="tx tight">Davidson built a theory of <strong>meaning</strong> out of a theory of truth; Montague treated language itself as <mk>formal</mk>. We pick this up in the Typological strand.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 · Formal divider -->
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">STRAND 03 / 04 · LI7869 · Week 1</div><h2>The vocabulary of truth</h2><div class="ask">Truth conditions, entailment, tautology, validity: defined today, used in every handout from now on.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<!-- 16 · Formal, truth conditions -->
+<section class="slide" data-label="Formal, Truth conditions" data-screen-label="16">
+  <div class="b-slide pal-a lens-formal" data-sec="tru">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Truth values vs. truth conditions</h2>
+      <div class="lead">To know a declarative sentence's meaning is to know its <mk>truth conditions</mk>, even when we can't know its truth <em>value</em>.</div>
+      <div class="accrule"></div>
+      <div class="erow"><div class="lb">Truth value</div><div class="tx">Whether the sentence is <strong>actually</strong> true or false. This depends on how the world is.</div></div>
+      <div class="erow"><div class="lb">Truth conditions</div><div class="tx">What the world would <strong>have to be like</strong> for it to be true.</div></div>
+      <div class="egpanel">
+        <div class="eghead">A sentence sorts every possible situation · <em>It was raining in Dublin at 14:09 on 27 October 1994.</em></div>
+        <div class="sits" style="padding-bottom:26px">
+          <div class="sit t"><span class="sn">s₁</span><span class="v">✓</span></div>
+          <div class="sit f"><span class="sn">s₂</span><span class="v">✗</span></div>
+          <div class="sit t act"><span class="sn">s₃</span><span class="v">✓</span><span class="aw">actual world?</span></div>
+          <div class="sit f"><span class="sn">s₄</span><span class="v">✗</span></div>
+          <span class="dots">…</span>
+          <div class="sread"><b>Truth conditions</b> = how the sentence sorts the situations.<br><b>Truth value</b> = which side the actual world lands on. We know the first without knowing the second.</div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">Clear conditions, unknown truth value</div>
+        <div class="eg"><div class="no">(1)</div><div class="ex">There are exactly 456 books in this building.</div></div>
+        <div class="eg"><div class="no">(2)</div><div class="ex">Every galaxy has at least one habitable planet.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 · Formal, entailment -->
+<section class="slide" data-label="Formal, Entailment" data-screen-label="17">
+  <div class="b-slide pal-a lens-formal" data-sec="ent">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Entailment</h2>
+      <div class="lead">One sentence can <strong>guarantee</strong> another, the backbone of every judgement we make this term.</div>
+      <div class="accrule"></div>
+      <div class="erow"><div class="lb">Definition</div><div class="tx">\(A \models B\) iff in <strong>every</strong> situation where \(A\) is true, \(B\) is also true; there is no situation with \(A\) true and \(B\) false.</div></div>
+      <div class="egpanel">
+        <div class="entwrap">
+          <div class="incl">
+            <div class="venn"><div class="ell b"></div><div class="ell a"></div><span class="lb lbb">B true</span><span class="lb lba">A true</span></div>
+            <div class="note">\(A \models B\)<span class="sub2">every A-situation is a B-situation</span></div>
+          </div>
+          <div class="entex">
+            <div class="eghead" style="padding-top:0">Does the first guarantee the second?</div>
+            <div class="eg"><div class="no">(1)</div><div class="ex">John is tall and Mary is short. <span class="rel">⊨</span> John is tall. &nbsp;<span class="vd y">✓ holds</span></div></div>
+            <div class="eg"><div class="no">(2)</div><div class="ex">John is tall. <span class="rel">⊭</span> Mary is short. &nbsp;<span class="vd n">✗ fails</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="erow"><div class="lb">In the handout</div><div class="tx tight">Exercise A · decide the direction: <em>a dog / an animal</em>; <em>a bachelor / an unmarried man</em>; <em>some / all students</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 · Formal, taut / contra / contingent -->
+<section class="slide" data-label="Formal, Tautology / Contradiction" data-screen-label="18">
+  <div class="b-slide pal-a lens-formal" data-sec="tau">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Tautology · Contradiction · Contingency</h2>
+      <div class="lead">Some sentences settle their own truth <mk>whatever</mk> the world is like.</div>
+      <div class="accrule"></div>
+      <div class="tcc">
+        <div class="tccr"><div class="rl">Tautology</div><div class="cells"><span class="cell2 t">✓</span><span class="cell2 t">✓</span><span class="cell2 t">✓</span><span class="cell2 t">✓</span></div><div class="cap">true in <strong>every</strong> situation</div></div>
+        <div class="tccr"><div class="rl">Contradiction</div><div class="cells"><span class="cell2 f">✗</span><span class="cell2 f">✗</span><span class="cell2 f">✗</span><span class="cell2 f">✗</span></div><div class="cap">false in <strong>every</strong> situation</div></div>
+        <div class="tccr"><div class="rl">Contingent</div><div class="cells"><span class="cell2 t">✓</span><span class="cell2 f">✗</span><span class="cell2 t">✓</span><span class="cell2 f">✗</span></div><div class="cap">true in <strong>some</strong>, false in others</div></div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">In the handout · Exercise B: classify each</div>
+        <div class="eg"><div class="no">(1)</div><div class="ex">Either it is raining or it is not raining. <span class="gl">→ <span class="mk">tautology</span></span></div></div>
+        <div class="eg"><div class="no">(2)</div><div class="ex">It is raining and it is not raining. <span class="gl">→ <span class="mk">contradiction</span></span></div></div>
+        <div class="eg"><div class="no">(3)</div><div class="ex">Some dogs have tails. <span class="gl">→ <span class="mk">contingent</span></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 · Formal, validity -->
+<section class="slide" data-label="Formal, Validity" data-screen-label="19">
+  <div class="b-slide pal-a lens-formal" data-sec="val">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Validity: proof and truth</h2>
+      <div class="figrow">
+        <div class="portrait">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Young%20Kurt%20G%C3%B6del%20as%20a%20student%20in%201925.jpg?width=700" alt="Kurt Gödel" referrerpolicy="no-referrer">
+          <div class="pc"><div class="nm">Kurt Gödel</div><div class="dt">1906 – 1978</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio">An Austrian logician, later at Princeton alongside Einstein, Kurt Gödel proved the completeness of first-order logic and the celebrated incompleteness of arithmetic. His theorems showed that proof and truth can come apart.</div>
+          <div class="erow"><div class="lb">Definition</div><div class="tx tight">An argument is <strong>valid</strong> if its conclusion is <strong>provable</strong> from its premises. Entailment is about <strong>truth</strong>; validity about <strong>proof</strong>.</div></div>
+          <div class="erow"><div class="lb">Where they part</div><div class="tx tight">Usually they coincide, but not always. The most famous results here are due to <mk>Kurt Gödel</mk>.</div></div>
+          <div class="egpanel">
+            <div class="eghead">In the handout · Exercise C: is it valid?</div>
+            <div class="eg"><div class="no">(1)</div><div class="ex">Every student passed. <span class="rel">∴</span> Aoife passed. &nbsp;<span class="vd y">✓ valid</span></div></div>
+            <div class="eg"><div class="no">(2)</div><div class="ex">Some students passed. <span class="rel">∴</span> Some students did not pass. &nbsp;<span class="vd n">✗ invalid</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 20 · Typological divider -->
+<section class="slide" data-label="§ Typological" data-screen-label="§ Typological">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
+    <div class="r"><div class="lab">Typological</div><div class="ct">STRAND 04 / 04 · LI7869 · Week 1</div><h2>One theory, every language</h2><div class="ask">Why stating what a sentence means forces us toward a formal meta-language, one strong enough to reach across all languages, not just our own.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+<!-- 21 · Typological, object vs meta language / Davidson -->
+<section class="slide" data-label="Typological, Object &amp; meta-language" data-screen-label="21">
+  <div class="b-slide pal-a lens-typological" data-sec="meta">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Why not just use English?</h2>
+      <div class="lead">A theory of meaning pairs each sentence with a <strong>truth condition</strong>: a biconditional of the form <em>“S” is true iff …</em></div>
+      <div class="egpanel">
+        <div class="eghead">The T-schema: object language on the left, meta-language on the right</div>
+        <div class="eg"><div class="no">(1)</div><div class="ex">“Snow is white” is true <span class="rel">iff</span> snow is white.<span class="gl">Looks <strong>empty</strong>: object and meta-language coincide.</span></div></div>
+        <div class="eg"><div class="no">(2)</div><div class="ex">“Tír gan teanga, tír gan anam” is true <span class="rel">iff</span> a country without a language is a country without a soul.<span class="gl">Now the right-hand side does <strong>real work</strong>, but why privilege <strong>English</strong> to state it?</span></div></div>
+      </div>
+      <div class="metadiag">
+        <div class="olcol">
+          <div class="olchip"><span class="fl">English</span>Snow is white.</div>
+          <div class="olchip"><span class="fl">Irish</span>Tá an sneachta bán.</div>
+          <div class="olchip"><span class="fl">French</span>La neige est blanche.</div>
+          <div class="olchip"><span class="fl">Japanese</span>雪は白い。</div>
+        </div>
+        <span class="mfan">⟶</span>
+        <div class="metanode"><div class="mt2">Formal meta-language</div><div class="mf">\(\mathbf{white}(\mathbf{snow})\)</div><div class="mc">one truth condition, stated language-neutrally</div></div>
+        <span class="mfan">⟶</span>
+        <div class="snowfig"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fresh%20snow.JPG?width=500" alt="Fresh white snow" referrerpolicy="no-referrer"><div class="cap">the condition the world must meet</div></div>
+      </div>
+      <div class="erow"><div class="lb">Why formal, not English</div><div class="tx tight">This motivates a <mk>formal meta-language</mk> (logic and set theory), neutral between languages and strong enough to express truth conditions for <strong>any</strong> language, not only our own.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 22 · The limits -->
+<section class="slide" data-label="The limits" data-screen-label="22">
+  <div class="b-slide pal-a" data-sec="lim">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="b-kick">A closing caution</div>
+      <h2 class="b-h">The limits of truth-conditional semantics</h2>
+      <div class="lead">Truth conditions are powerful, but not everything meaningful is straightforwardly true or false. Which of these have <mk>truth conditions</mk> at all?</div>
+      <div class="accrule"></div>
+      <ul class="plist">
+        <li><span class="tag">imperative</span> <em>Close the door.</em> <span class="why">Doesn't describe the world, it tries to <b>change</b> it. Obeyed or ignored, not true or false.</span></li>
+        <li><span class="tag">question</span> <em>Who closed the door?</em> <span class="why">Requests information. Its <b>answers</b> have truth conditions; the question itself doesn't.</span></li>
+        <li><span class="tag">presupposition</span> <em>The present king of France is bald.</em> <span class="why">There is no such king. True? False? It seems to <b>presuppose</b> rather than assert.</span></li>
+        <li><span class="tag">fiction</span> <em>Sherlock Holmes lives at 221B Baker Street.</em> <span class="why">False of the actual world, yet clearly <b>“right”</b> in the story. Truth in fiction.</span></li>
+        <li><span class="tag">nonsense</span> <em>’Twas brillig, and the slithy toves did gyre and gimble in the wabe.</em> <span class="why">Perfect grammar, invented words: <b>no conditions</b> to state at all.</span></li>
+      </ul>
+      <div class="erow" style="margin-top:20px"><div class="lb">Where next</div><div class="tx tight">These push us toward <strong>pragmatics</strong>, <strong>presupposition</strong>, and the semantics of <strong>questions</strong>, later in this course and beyond.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 23 · Housekeeping, logistics & assessment -->
+<section class="slide" data-label="Housekeeping" data-screen-label="23">
+  <div class="b-slide pal-a" data-sec="mod2">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="b-kick">Housekeeping</div>
+      <h2 class="b-h">How the module works</h2>
+      <div class="facts">
+        <div class="fact"><div class="fh">Lectures</div><div class="fb">Thursdays, 16:00 – 18:00</div></div>
+        <div class="fact"><div class="fh">Office hours</div><div class="fb">Thursdays, 14:00 – 15:00<small>Phoenix House, Room 113</small></div></div>
+        <div class="fact"><div class="fh">Problem Set 1 · 40%</div><div class="fb">Due 9 March</div></div>
+        <div class="fact"><div class="fh">Problem Set 2 · 60%</div><div class="fb">Due 27 April</div></div>
+      </div>
+      <div class="hnote"><b>A typical week works through the four strands:</b> an <b>empirical</b> phenomenon → its place in the <b>historical</b> tradition → the <b>formal</b> tools to analyse it → and <b>cross-linguistic</b> data on what varies and what stays stable.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 24 · Housekeeping, week-by-week -->
+<section class="slide" data-label="Week by week" data-screen-label="24">
+  <div class="b-slide pal-a" data-sec="wk">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="b-kick">The term ahead</div>
+      <h2 class="b-h">Week by week</h2>
+      <div class="weeks">
+        <div>
+          <div class="wch">Meaning &amp; logic</div>
+          <div class="wkr now"><span class="n">01</span><span class="t">What is Meaning?</span></div>
+          <div class="wkr"><span class="n">02</span><span class="t">Sentences &amp; Connectives</span></div>
+          <div class="wkr"><span class="n">03</span><span class="t">Predicates &amp; Set Theory</span></div>
+          <div class="wkr"><span class="n">04</span><span class="t">Stuff &amp; Things</span></div>
+        </div>
+        <div>
+          <div class="wch">Quantification</div>
+          <div class="wkr"><span class="n">05</span><span class="t">Quantifiers &amp; Scope</span></div>
+          <div class="wkr"><span class="n">06</span><span class="t">Generalised Quantifiers</span></div>
+          <div class="wkr rw"><span class="n">07</span><span class="t">Reading Week</span></div>
+        </div>
+        <div>
+          <div class="wch">Events, time &amp; modality</div>
+          <div class="wkr"><span class="n">08</span><span class="t">Verbs &amp; Events</span></div>
+          <div class="wkr"><span class="n">09</span><span class="t">Thematic Roles &amp; Argument Selection</span></div>
+          <div class="wkr"><span class="n">10</span><span class="t">Aktionsart &amp; Time</span></div>
+          <div class="wkr"><span class="n">11</span><span class="t">Tense &amp; Aspect</span></div>
+          <div class="wkr"><span class="n">12</span><span class="t">Necessity &amp; Possibility</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 25 · Summary -->
+<section class="slide" data-label="Summary" data-screen-label="25">
+  <div class="b-slide pal-a" data-sec="sum">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="b-kick">Week 1 wrap-up</div>
+      <h2 class="b-h">Four strands, one picture</h2>
+      <div class="recap">
+        <div class="rr" style="--rc:var(--lens-emp)"><div class="rl">Empirical</div><div class="rt">Ambiguity, speaker-meaning, translation and entailment: the everyday facts a theory must explain.</div></div>
+        <div class="rr" style="--rc:var(--lens-his)"><div class="rl">Historical</div><div class="rt">From Aristotle's terms and the Stoics' propositions, through the medievals, to Frege and the modern turn.</div></div>
+        <div class="rr" style="--rc:var(--lens-for)"><div class="rl">Formal</div><div class="rt">Truth conditions, entailment, tautology and contradiction, and validity: the vocabulary we use all term.</div></div>
+        <div class="rr" style="--rc:var(--lens-typ)"><div class="rl">Metalanguage</div><div class="rt">A formal meta-language, not English, states truth conditions strong enough to reach across languages.</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next week:</strong> Sentences &amp; Connectives. The Stoic root made formal: propositional logic and the truth tables behind <em>and</em>, <em>or</em>, and <em>if</em>.</p>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/week-meta.js"></script>
+<script src="../../shared/deck-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   The expandable table of contents reflects THIS lecture's sections; the
+   active group expands to show its sub-sections. Strand groups carry their
+   strand colour; Introduction / limits / housekeeping are neutral blue. */
+(function () {
+  var TITLES = {
+    how:"How do we know?", road:"Roadmap", study:"What we study",
+    hegel:"Hegel, opacity", bilbo:"Bilbo, paraphrase", amb:"Ambiguity",
+    speak:"Speaker meaning", trans:"Translation",
+    map:"A map of the tradition", ari:"Aristotle", sto:"The Stoics",
+    med:"The Medievals", fre:"Frege", mod:"The modern turn",
+    tru:"Truth conditions", ent:"Entailment", tau:"Tautology & contradiction", val:"Validity",
+    meta:"Object & meta-language", lim:"The limits",
+    mod2:"How the module works", wk:"Week by week", sum:"Wrap-up"
+  };
+  var GROUPS = [
+    { t:"Introduction",               sc:null,         keys:["how","road"] },
+    { t:"What does this mean?",       sc:"--lens-emp", keys:["hegel","bilbo","amb","speak","trans","study"] },
+    { t:"A history of meaning",       sc:"--lens-his", keys:["map","ari","sto","med","fre","mod"] },
+    { t:"The formal toolkit",         sc:"--lens-for", keys:["tru","ent","tau","val"] },
+    { t:"Metalanguage",       sc:"--lens-typ", keys:["meta"] },
+    { t:"The limits",                 sc:null,         keys:["lim"] },
+    { t:"Housekeeping",               sc:null,         keys:["mod2","wk","sum"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "\u25be" : "\u25b8";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+
+  function init() {
+    // Map each section key to the 0-based index of the slide where it starts.
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LI7869<br>Week 1</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 1</div><div class="t2">What is Meaning?</div></div>';
+    });
+    // Sidebar entries are real hyperlinks (#<slide>); drive deck-stage on click.
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+<script>
+(function(){
+  function fill(id,n,a,b,cut){var el=document.getElementById(id);if(!el)return;var h='';for(var i=0;i<n;i++){h+='<div class="bg-dot" style="background:'+(i<cut?a:b)+'"></div>';}el.innerHTML=h;}
+  function go(){ fill('bgrid1',144,'#378ADD','#639922',72); fill('bgrid2',144,'#E24B4A','#EF9F27',71); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", go); else go();
+})();
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#07284a"/>
+    <rect x="8" y="10" width="84" height="3" rx="1.5" fill="#c1daee" opacity=".6"/>
+    <rect x="8" y="20" width="84" height="22" rx="3" fill="#0a3564"/>
+    <rect x="8" y="48" width="84" height="44" rx="3" fill="#0a3564" opacity=".7"/>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#82b4dc" text-anchor="middle">LI7869 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>

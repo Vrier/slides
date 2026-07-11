@@ -1,0 +1,132 @@
+/* ============================================================
+   readings.css — Describing Meaning / Linguistic Pragmatics
+   Per-week READING LIST — a section distinct from deck/handout/homework.
+   Linked AFTER tokens.css + lens.css + handout.css; reuses the A4 page,
+   header, footer. Accent = scholarly violet (--c-note), to read apart
+   from the blue deck/handout and the coral homework.
+   ============================================================ */
+
+:root { --rd: var(--c-note); }
+
+.rd .h-header { border-bottom-color: var(--rd); }
+.rd .h-week  { color: var(--rd); }
+.rd .h-meta .code { color: var(--rd); }
+
+/* ── Reading-list banner ── */
+.rd-band {
+  display: flex; align-items: center; gap: 9pt; flex-wrap: wrap;
+  margin: 0 0 12pt; padding: 7pt 11pt;
+  background: color-mix(in srgb, var(--rd) 8%, white);
+  border: 1pt solid color-mix(in srgb, var(--rd) 26%, white);
+  border-left: 4pt solid var(--rd); border-radius: 5pt;
+}
+.rd-band .tag {
+  font-family: var(--sans); font-size: 7.5pt; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+  background: var(--rd); padding: 2pt 8pt; border-radius: 999pt;
+}
+.rd-band .figs { font-family: var(--serif); font-size: 9pt; font-style: italic; color: var(--tcd-grey-100); }
+.rd-band .figs b { font-style: normal; font-weight: 600; color: var(--tcd-ink); }
+
+.rd-intro { font-family: var(--serif); font-size: 9.5pt; line-height: 1.5; color: var(--tcd-black); margin: 0 0 13pt; }
+
+/* ── Section heads ── */
+.rd-sechead {
+  display: flex; align-items: baseline; gap: 9pt;
+  font-family: var(--sans); font-size: 8pt; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--rd); margin: 14pt 0 7pt;
+  padding-bottom: 4pt; border-bottom: 1pt solid color-mix(in srgb, var(--rd) 28%, white);
+}
+.rd-sechead .hint { margin-left: auto; font-family: var(--serif); font-size: 8.5pt; font-weight: 400; font-style: italic; letter-spacing: 0; text-transform: none; color: var(--tcd-grey-75); }
+
+/* ── Entry list ── */
+.rd-list { list-style: none; margin: 0; padding: 0; counter-reset: rd; }
+.rd { break-inside: avoid; padding: 7pt 0 7pt 26pt; position: relative; }
+.rd + .rd { border-top: 0.5pt solid var(--tcd-grey-10); }
+.rd::before {
+  counter-increment: rd; content: counter(rd);
+  position: absolute; left: 0; top: 7pt;
+  font-family: var(--mono); font-size: 8.5pt; font-weight: 600; color: var(--rd);
+}
+.rd-cite { font-family: var(--serif); font-size: 9.5pt; line-height: 1.4; color: var(--tcd-black); }
+.rd-cite .au { font-weight: 600; }
+.rd-cite .ti.book { font-style: italic; }
+.rd-cite .ti.art::before { content: "\201C"; }
+.rd-cite .ti.art::after  { content: "\201D"; }
+.rd-note { font-family: var(--sans); font-size: 8.5pt; font-style: italic; color: var(--tcd-grey-100); margin-top: 2pt; }
+.rd-pip {
+  display: inline-block; font-family: var(--sans); font-size: 6.5pt; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--lens);
+  border: 0.75pt solid color-mix(in srgb, var(--lens) 40%, white);
+  border-radius: 3pt; padding: 0.5pt 4pt; margin-top: 3pt;
+}
+
+/* type tag — Classical / Contemporary / Textbook (the per-week triad) */
+.rd-type {
+  display: inline-block; font-family: var(--sans); font-size: 6.5pt; font-weight: 700;
+  letter-spacing: 0.11em; text-transform: uppercase; color: #fff;
+  border-radius: 3pt; padding: 1pt 5pt; margin-right: 7pt; vertical-align: 1.5pt;
+}
+.t-classical    { background: var(--tcd-ink); }
+.t-contemporary { background: var(--tcd-blue); }
+.t-textbook     { background: var(--rd); }
+.rd-lens { font-family: var(--sans); font-size: 6.5pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lens); margin-left: 7pt; }
+
+/* APA citation bits */
+.rd-cite .j, .rd-cite .bk, .rd-cite .vol { font-style: italic; }
+.rd-cite .doi { font-family: var(--mono); font-size: 8pt; color: var(--tcd-grey-100); word-break: break-all; }
+.rd-links { margin-top: 4pt; display: flex; gap: 6pt; flex-wrap: wrap; }
+.rd-link {
+  display: inline-flex; align-items: center; gap: 4pt; text-decoration: none;
+  font-family: var(--sans); font-size: 7.5pt; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--rd);
+  border: 0.75pt solid color-mix(in srgb, var(--rd) 38%, white); border-radius: 3pt; padding: 1.5pt 7pt;
+}
+.rd-link svg { width: 9pt; height: 9pt; }
+
+/* access chip — Open access / Library login / Purchase */
+.rd-access {
+  display: inline-flex; align-items: center; gap: 4pt; text-decoration: none;
+  font-family: var(--sans); font-size: 7.5pt; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; border-radius: 3pt; padding: 1.5pt 7pt; white-space: nowrap;
+}
+.rd-access::before { content: ""; width: 5pt; height: 5pt; border-radius: 999pt; background: currentColor; flex-shrink: 0; }
+.rd-access.open     { color: #1f7a4d; background: #e7f3ec; }
+.rd-access.library  { color: #9a6200; background: #fbeed2; }
+.rd-access.purchase { color: #6b5563; background: #efe7ec; }
+
+/* course-text highlight (recurring set text) */
+.rd.is-text { background: color-mix(in srgb, var(--rd) 5%, white); border-radius: 4pt; padding-left: 30pt; padding-right: 9pt; }
+.rd.is-text::before { left: 9pt; }
+.rd .flag {
+  display: inline-block; font-family: var(--sans); font-size: 6.5pt; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; color: #fff; background: var(--rd);
+  border-radius: 3pt; padding: 0.5pt 5pt; margin-left: 6pt; vertical-align: 1.5pt;
+}
+
+/* ── External resource link ── */
+.rd-resource {
+  display: flex; align-items: center; gap: 9pt; margin: 11pt 0 0;
+  padding: 8pt 11pt; border: 1pt solid color-mix(in srgb, var(--rd) 28%, white);
+  border-radius: 5pt; background: color-mix(in srgb, var(--rd) 5%, white);
+}
+.rd-resource .ic { width: 15pt; height: 15pt; color: var(--rd); flex-shrink: 0; }
+.rd-resource .ic svg { width: 100%; height: 100%; }
+.rd-resource .lab { font-family: var(--sans); font-size: 9pt; font-weight: 600; color: var(--tcd-ink); }
+.rd-resource .url { font-family: var(--mono); font-size: 7.5pt; color: var(--rd); word-break: break-all; display: block; margin-top: 1pt; font-weight: 400; }
+.rd-resource a { color: inherit; text-decoration: none; }
+
+/* scaffold note */
+.rd-todo {
+  border: 1pt dashed var(--tcd-grey-50); border-radius: 5pt; padding: 9pt 11pt;
+  background: repeating-linear-gradient(45deg,#fafafa,#fafafa 9px,#f4f4f4 9px,#f4f4f4 18px);
+  font-family: var(--serif); font-size: 9.5pt; color: var(--tcd-grey-100); margin: 8pt 0;
+}
+.rd-todo b { color: var(--tcd-ink); }
+
+@media print {
+  :root { --rd: #000; }
+  .rd-band, .rd.is-text, .rd-resource { background: #fff !important; border-left-color: #000 !important; border-color: #999 !important; }
+  .rd-band .tag, .rd .flag { background: transparent !important; color: #000 !important; border: 0.75pt solid #000; }
+  .rd-type { background: transparent !important; color: #000 !important; border: 0.75pt solid #000; }
+}

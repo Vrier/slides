@@ -1,4 +1,4 @@
-# repo-unique deploy key — NEVER commit (public half goes in GitHub → Deploy keys)
+# repo-unique deploy key — NEVER commit
 .deploy-key
 .deploy-key.pub
 

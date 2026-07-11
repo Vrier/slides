@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7869 · Week 4 — Stuff & Things · Homework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+<link rel="stylesheet" href="../../shared/exercises.css" />
+</head>
+<body class="pal-a">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<div class="handout-week hw" data-week="4"><div class="page">
+
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 4 · Homework</div>
+    <h1 class="h-title">Lattices, Plurals &amp; Mass Terms</h1>
+  </div>
+
+  <div class="hw-band">
+    <span class="tag">Homework</span>
+    <span class="due">Due <b>Friday, Week 5 · 17:00</b> · submit via Blackboard</span>
+    <span class="pts">30 marks</span>
+  </div>
+
+  <div class="hw-sub">
+    <div class="f"><span class="lab">Name</span><span class="ln"></span></div>
+    <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
+  </div>
+
+  <p class="hw-intro">Conventions: \(\le\) is an order, usually read as <b>part-of</b>; \(\sqcap\) = meet (greatest lower bound), \(\sqcup\) = join (least upper bound); \(+\) is sum of individuals (the join under part-of). Show your reasoning — a correct value with no justification earns half marks. Draw diagrams where asked.</p>
+
+  <div class="hw-legend">
+    <span class="lg lens-empirical"><i style="background:var(--lens)"></i>Empirical</span>
+    <span class="lg lens-historical"><i style="background:var(--lens)"></i>Historical</span>
+    <span class="lg lens-formal"><i style="background:var(--lens)"></i>Formal</span>
+    <span class="lg lens-typological"><i style="background:var(--lens)"></i>Typological</span>
+  </div>
+
+  <!-- Problem 1 -->
+  <div class="hw-prob lens-empirical">
+    <div class="hw-prob-head">
+      <span class="n">1</span>
+      <span class="q">Count, mass, plural diagnostics<span class="lens-pip">Empirical</span></span>
+      <span class="marks">5 marks</span>
+    </div>
+    <p class="lead">For each noun, mark whether it accepts each frame (✓/✗) and give its class.</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb"><em class="sent">marble</em> — in the frames <span class="chip">three ___</span>, <span class="chip">much ___</span>, <span class="chip">___s</span>. Note: <em>marble</em> has two readings. Identify both.<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb"><em class="sent">furniture</em>, <em class="sent">rice</em>, <em class="sent">committee</em> — class each, and say which is grammatically mass despite naming discrete objects.<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb">Give two quantifiers that combine with <em>both</em> plural count and mass nouns, and one that combines with only one class.<div class="answer-space" style="--lines:2"></div></span></div>
+    </div>
+  </div>
+
+  <!-- Problem 2 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head">
+      <span class="n">2</span>
+      <span class="q">Subsets ordered by \(\subseteq\)<span class="lens-pip">Formal</span></span>
+      <span class="marks">5 marks</span>
+    </div>
+    <p class="lead">Let \(S\) be the non-empty subsets of \(\{1,2,3\}\), ordered by \(\subseteq\).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">List all members of \(S\) and draw the Hasse diagram.<div class="answer-space" style="--lines:4"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Compute the joins \(\{1\}\sqcup\{2\}\), \(\{1\}\sqcup\{1,2\}\), \(\{2,3\}\sqcup\{3\}\) (if they exist in \(S\)).<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb">Give a pair whose meet fails to exist in \(S\), and explain why. What single element could you add so every pair has a meet? Is the result a lattice?<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <!-- Problem 3 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head">
+      <span class="n">3</span>
+      <span class="q">Divisibility lattice<span class="lens-pip">Formal</span></span>
+      <span class="marks">4 marks</span>
+    </div>
+    <p class="lead">Let \(S=\{1,2,3,4,6,12\}\) ordered by divisibility (\(x\le y\) iff \(x\mid y\)).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">Draw the Hasse diagram.<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Compute \(4\sqcap 6\), \(4\sqcup 6\), \(3\sqcap 4\), \(3\sqcup 4\), \(2\sqcap 12\), \(2\sqcup 12\) within \(S\).<div class="answer-space" style="--lines:2"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb">Which elements are minimal? Which is maximal? In one sentence, what do meet and join correspond to here?<div class="answer-space" style="--lines:2"></div></span></div>
+    </div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Homework</span>
+    <span>Week 4 · Lattices, Plurals &amp; Mass Terms</span>
+    <span>1</span>
+  </div>
+
+</div><!-- /page 1 -->
+
+<div class="page">
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7869 · Describing Meaning</div>
+      <div class="term">Week 4 · Homework</div>
+    </div>
+  </header>
+
+  <!-- Problem 4 -->
+  <div class="hw-prob lens-formal">
+    <div class="hw-prob-head">
+      <span class="n">4</span>
+      <span class="q">A plural lattice<span class="lens-pip">Formal</span></span>
+      <span class="marks">6 marks</span>
+    </div>
+    <p class="lead">Fix a world \(w\) with exactly four atomic hippos: \(\sem{\text{hippo}}_w=\{A,B,C,D\}\). Allow all sums; read \(x\le y\) as <em>x is part of y</em>.</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">Draw the part-of structure: four atoms plus all non-atomic sums. List the elements that <em>cover</em> \(A\) (its immediate supersums).<div class="answer-space" style="--lines:4"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Give denotations for \(\sem{\text{hippos}}_w\), \(\sem{\text{exactly two hippos}}_w\), \(\sem{\text{less than three hippos}}_w\), and \(\sem{\text{the hippos}}_w\) (definite = maximal sum).<div class="answer-space" style="--lines:4"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb">Compute \((A{+}B)\sqcap(B{+}C)\), \((A{+}B)\sqcup(B{+}C)\), and \((A{+}C)\sqcap(C{+}D)\). Is each result an atom, a sum, or neither?<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <!-- Problem 5 -->
+  <div class="hw-prob lens-empirical">
+    <div class="hw-prob-head">
+      <span class="n">5</span>
+      <span class="q">Cumulativity &amp; downward closure<span class="lens-pip">Empirical</span></span>
+      <span class="marks">5 marks</span>
+    </div>
+    <p class="lead">Let \(G\) be a portion of mud with proper parts \(G_1,G_2\) and \(G=G_1+G_2\). Assume downward closure: \(\text{mud}(x)\wedge y\le x \Rightarrow \text{mud}(y)\).</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">If \(\text{mud}(G)\), what follows about \(\text{mud}(G_1)\), \(\text{mud}(G_2)\)? If \(G_1=H_1+H_2\), what about \(H_1,H_2\)?<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Explain why downward closure conflicts with there being a linguistically privileged "one mud" atom.<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb">Compare <em class="sent">more gravel</em> and <em class="sent">more marbles</em>: what does each normally compare (volume/weight vs cardinality)? Give a context where <em>more marbles</em> is judged by weight.<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <!-- Problem 6 -->
+  <div class="hw-prob lens-typological">
+    <div class="hw-prob-head">
+      <span class="n">6</span>
+      <span class="q">Material, atoms &amp; unithood across languages<span class="lens-pip">Typological</span></span>
+      <span class="marks">5 marks</span>
+    </div>
+    <p class="lead">Let <em>statue</em> be count and <em>clay</em> mass, with a sum-preserving material map \(\mathit{mat}(x{+}y)=\mathit{mat}(x)+\mathit{mat}(y)\). Define \(\text{Atom}_P(x)\) as: \(P(x)\) and \(x\) has no proper \(P\)-parts.</p>
+    <div class="hw-parts">
+      <div class="hw-part"><span class="pl">(a)</span><span class="pb">Describe a scenario where two distinct statues \(S_1\ne S_2\) have the same material \(\mathit{mat}(S_1)=\mathit{mat}(S_2)\). Does sum-preservation rule it out? Propose one extra constraint on \(\mathit{mat}\) that would.<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(b)</span><span class="pb">Write a definition of \(\text{Atom}_P(x)\) using \(\le\) and \(P\). Which of <em>marble, furniture, rice, committee, sand</em> plausibly have semantic atoms?<div class="answer-space" style="--lines:3"></div></span></div>
+      <div class="hw-part"><span class="pl">(c)</span><span class="pb">Say 'three dogs' and 'three (glasses of) water' in a language you know; gloss both. Where is the counting unit realised — noun, classifier, plural morphology, or measure word?<div class="answer-space" style="--lines:3"></div></span></div>
+    </div>
+  </div>
+
+  <div class="hw-sechead">Optional · Challenge</div>
+  <div class="hw-prob">
+    <div class="hw-prob-head">
+      <span class="n">★</span>
+      <span class="q">A hard case</span>
+      <span class="marks">bonus</span>
+    </div>
+    <p class="lead">Pick one contested noun (e.g. <em class="sent">furniture</em>) and give two competing analyses — one treating it as atomic, one as non-atomic — each supported by a linguistic diagnostic.</p>
+    <div class="hw-work" style="--lines:5"></div>
+  </div>
+
+  <div class="h-footer">
+    <span class="left">LI7869 · Homework</span>
+    <span>Week 4 · Lattices, Plurals &amp; Mass Terms</span>
+    <span>2</span>
+  </div>
+</div><!-- /page 2 -->
+</div><!-- /handout-week 4 -->
+
+<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#fbeae3"/>
+    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#c0512c" stroke-width="2"/>
+    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">1</text>
+    <line x1="46" y1="31" x2="64" y2="31" stroke="#e0b3a3" stroke-width="2"/>
+    <line x1="38" y1="44" x2="64" y2="44" stroke="#e0b3a3" stroke-width="1.6"/>
+    <line x1="38" y1="52" x2="64" y2="52" stroke="#e0b3a3" stroke-width="1.6"/>
+    <text x="38" y="68" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">2</text>
+    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#c0512c" text-anchor="middle">LI7869 · HOMEWORK</text>
+  </svg>
+</template>
+</body>
+</html>

@@ -1,0 +1,127 @@
+/* ============================================================
+   exercises.css — Describing Meaning / Linguistic Pragmatics
+   HOMEWORK problem sets — a section distinct from the handout.
+   Linked AFTER tokens.css + lens.css + handout.css; it reuses the
+   handout's A4 page card, header, footer and answer-lines, and adds
+   only the homework-specific furniture (submission strip, problems).
+   Print/PDF-first: students open print → Save as PDF, or print.
+   ============================================================ */
+
+:root { --hw: var(--c-exr); }                 /* homework accent — coral */
+
+/* The page tints its top rule + week label coral so it reads as
+   "homework", not the blue handout. */
+.hw .h-header { border-bottom-color: var(--hw); }
+.hw .h-week  { color: var(--hw); }
+.hw .h-meta .code { color: var(--hw); }
+
+/* ── Homework banner (eyebrow under the title) ── */
+.hw-band {
+  display: flex; align-items: center; gap: 9pt; flex-wrap: wrap;
+  margin: 0 0 12pt; padding: 7pt 11pt;
+  background: color-mix(in srgb, var(--hw) 8%, white);
+  border: 1pt solid color-mix(in srgb, var(--hw) 28%, white);
+  border-left: 4pt solid var(--hw); border-radius: 5pt;
+}
+.hw-band .tag {
+  font-family: var(--sans); font-size: 7.5pt; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #fff;
+  background: var(--hw); padding: 2pt 8pt; border-radius: 999pt;
+}
+.hw-band .due { font-family: var(--sans); font-size: 9pt; color: var(--tcd-grey-100); }
+.hw-band .due b { font-weight: 700; color: var(--tcd-ink); font-family: var(--serif); }
+.hw-band .pts { margin-left: auto; font-family: var(--mono); font-size: 8.5pt; color: var(--hw); font-weight: 600; letter-spacing: 0.04em; }
+
+/* ── Submission strip (Name / Student # — fill-in) ── */
+.hw-sub {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 0 22pt;
+  margin: 0 0 13pt; padding-bottom: 11pt;
+  border-bottom: 1pt dashed var(--tcd-grey-25);
+}
+.hw-sub .f { display: flex; align-items: flex-end; gap: 7pt; }
+.hw-sub .f .lab { font-family: var(--sans); font-size: 8.5pt; font-weight: 600; color: var(--tcd-grey-100); white-space: nowrap; padding-bottom: 1pt; }
+.hw-sub .f .ln { flex: 1; border-bottom: 0.75pt solid var(--tcd-grey-50); height: 16pt; }
+
+/* ── Instructions ── */
+.hw-intro {
+  font-family: var(--serif); font-size: 10pt; line-height: 1.5;
+  color: var(--tcd-black); margin: 0 0 14pt;
+}
+.hw-intro b { color: var(--tcd-ink); }
+
+/* ── Problem ── */
+.hw-prob { break-inside: avoid; margin: 0 0 13pt; }
+.hw-prob-head { display: flex; align-items: baseline; gap: 9pt; margin-bottom: 5pt; }
+.hw-prob-head .n {
+  font-family: var(--serif); font-size: 14pt; font-weight: 700;
+  color: var(--hw); flex-shrink: 0; line-height: 1;
+  min-width: 22pt;
+}
+.hw-prob-head .q { font-family: var(--serif); font-size: 11.5pt; font-weight: 600; color: var(--tcd-ink); line-height: 1.18; flex: 1; }
+.hw-prob-head .marks {
+  font-family: var(--mono); font-size: 7.5pt; font-weight: 600; color: var(--tcd-grey-75);
+  white-space: nowrap; padding: 1.5pt 6pt; border: 0.75pt solid var(--tcd-grey-25);
+  border-radius: 999pt; flex-shrink: 0; align-self: center;
+}
+/* lens-tagged problems get a thin coloured spine on the number */
+.hw-prob[class*="lens-"] .hw-prob-head .n { color: var(--lens); }
+.hw-prob .lens-pip {
+  display: inline-block; font-family: var(--sans); font-size: 6.5pt; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--lens);
+  border: 0.75pt solid color-mix(in srgb, var(--lens) 40%, white);
+  border-radius: 3pt; padding: 0.5pt 4pt; vertical-align: middle; margin-left: 6pt;
+}
+
+/* problem body / lead-in text */
+.hw-prob .lead { font-size: 9.5pt; line-height: 1.5; margin: 0 0 5pt 31pt; }
+.hw-prob .lead em.sent { font-style: italic; font-family: var(--serif); }
+
+/* sub-parts (a)(b)(c) */
+.hw-parts { margin: 4pt 0 0 31pt; }
+.hw-part { display: grid; grid-template-columns: 22pt 1fr; gap: 0 6pt; padding: 5pt 0; }
+.hw-part + .hw-part { border-top: 0.5pt dashed var(--tcd-grey-10); }
+.hw-part .pl { font-family: var(--mono); font-size: 8.5pt; font-weight: 600; color: var(--hw); padding-top: 2pt; }
+.hw-part .pb { font-size: 9.5pt; line-height: 1.5; }
+
+/* answer-space override: indent to align with body, coral-neutral lines */
+.hw-prob .answer-space, .hw-part .answer-space { margin-top: 6pt; }
+.hw-prob > .answer-space { margin-left: 31pt; }
+
+/* a "show your working" grid box for derivations */
+.hw-work {
+  margin: 6pt 0 0 31pt; height: calc(var(--lines, 6) * var(--line-h));
+  border: 0.75pt solid var(--tcd-grey-25); border-radius: 4pt;
+  background-image:
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--line-h) - 0.75pt), color-mix(in srgb, var(--tcd-grey-25) 60%, white) calc(var(--line-h) - 0.75pt), color-mix(in srgb, var(--tcd-grey-25) 60%, white) var(--line-h));
+  background-size: 100% var(--line-h);
+}
+
+/* small italic hint under a problem */
+.hw-hint { font-family: var(--serif); font-style: italic; font-size: 8.5pt; color: var(--tcd-grey-100); margin: 4pt 0 0 31pt; }
+
+/* lens legend chip row (top of sheet, optional) */
+.hw-legend { display: flex; gap: 7pt; flex-wrap: wrap; margin: 0 0 13pt; }
+.hw-legend .lg { display: inline-flex; align-items: center; gap: 5pt; font-family: var(--sans); font-size: 7.5pt; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tcd-grey-100); }
+.hw-legend .lg i { width: 9pt; height: 9pt; border-radius: 2pt; display: inline-block; }
+
+/* section break inside a sheet */
+.hw-sechead {
+  font-family: var(--sans); font-size: 8pt; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--hw); margin: 16pt 0 8pt;
+  padding-bottom: 4pt; border-bottom: 1pt solid color-mix(in srgb, var(--hw) 30%, white);
+}
+
+/* draft / scaffold note */
+.hw-todo {
+  border: 1pt dashed var(--tcd-grey-50); border-radius: 5pt; padding: 9pt 11pt;
+  background: repeating-linear-gradient(45deg,#fafafa,#fafafa 9px,#f4f4f4 9px,#f4f4f4 18px);
+  font-family: var(--serif); font-size: 9.5pt; color: var(--tcd-grey-100); margin: 8pt 0;
+}
+.hw-todo b { color: var(--tcd-ink); }
+
+@media print {
+  :root { --hw: #000; }
+  .hw-band { background: #fff !important; border-left-color: #000 !important; }
+  .hw-band .tag { background: transparent !important; color: #000 !important; border: 0.75pt solid #000; }
+  .hw-work, .hw-legend .lg i { border-color: #999 !important; }
+}
