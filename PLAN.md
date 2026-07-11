@@ -134,6 +134,15 @@ what the next session must know)*
 - **Shipped later same session:** W3 (Thomas: repo, deploy key, secret, DNS,
   VPS block) and W4 — first push deployed; hub, demo deck and shared assets
   verified live over HTTPS with curl (all 200).
+- **Deploy debugging (W4):** first deploys failed with Permission denied —
+  the DEPLOY_SSH_KEY value was never actually authorized for compose@VPS,
+  then a regenerated key's halves drifted (pubkey installed ≠ private key
+  in the secret). Fixed by generating the pair ON the VPS in one sitting
+  (`gha-slides`, SHA256:j7oTNRHf…) and pasting its base64 into the secret
+  immediately. Diagnosis trick worth keeping: temporarily have the workflow
+  push its `ssh -v` transcript to a ci-debug branch (Actions logs aren't
+  API-readable without auth). Debug scaffolding removed afterwards; the
+  secret was pasted through chat once — rotate at leisure.
 - **Next session must know:** site is live; clone from GitHub (repo is the
   source of truth). Next work item is W5 — first real deck, content from
   Thomas. Start green: npm test before touching anything.

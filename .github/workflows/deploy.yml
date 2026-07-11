@@ -9,9 +9,6 @@
 
 name: Deploy to VPS
 
-permissions:
-  contents: write
-
 on:
   push:
     branches: [main]
@@ -42,20 +39,5 @@ jobs:
 
       - name: Update served files
         run: |
-          set +e
-          ssh -v -o BatchMode=yes -i ~/.ssh/deploy_key compose@167.233.233.109 \
-            'git -C /srv/slides fetch origin main && git -C /srv/slides reset --hard origin/main' >/tmp/deploy.log 2>&1
-          rc=$?
-          tail -50 /tmp/deploy.log
-          if [ $rc -ne 0 ]; then
-            # TEMPORARY debug: publish the ssh transcript (no secrets in it) to a branch
-            git config user.name ci-debug
-            git config user.email ci-debug@localhost
-            git checkout --orphan ci-debug
-            git rm -rfq .
-            cp /tmp/deploy.log deploy-debug.log
-            git add deploy-debug.log
-            git commit -qm "ci debug transcript"
-            git push -f origin ci-debug
-          fi
-          exit $rc
+          ssh -o BatchMode=yes -i ~/.ssh/deploy_key compose@167.233.233.109 \
+            'git -C /srv/slides fetch origin main && git -C /srv/slides reset --hard origin/main'
