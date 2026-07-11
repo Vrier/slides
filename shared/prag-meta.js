@@ -43,7 +43,11 @@ window.LENSES = [
    week covers (drives historical framing + the workspace card). */
 window.WEEKS = [
   { no: 1, title: "Pragmatic Meaning", section: 0,
-    figures: ["Logical Positivism", "Wittgenstein"], lenses: blankLenses() },
+    figures: ["Logical Positivism", "Wittgenstein"], lenses: {
+      empirical:   { q: "What did they mean?", d: "Six intuitions, one per block of the term — speech acts, implicature, presupposition, common ground, information and politeness." },
+      historical:  { q: "Where does pragmatics come from?", d: "From Frege and the positivists through ordinary language philosophy to Grice — plus three outside threads: information, games, and the computational mind." },
+      formal:      { q: "Which machinery computes what's meant?", d: "Four live programmes — Neo-Gricean, Relevance Theory, RSA and Grammaticalism — previewing where the course ends (weeks 9–12)." },
+      typological: { q: "Where does it live in real use?", d: "Appropriateness, indeterminacy and reflexivity in the wild — and the term project that documents them in a chosen speech event." } } },
 
   { no: 2, title: "Speech Acts", section: 1,
     figures: ["Austin", "Searle"], lenses: {

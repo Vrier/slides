@@ -112,6 +112,19 @@ what the next session must know)*
   the viewport ≤840px — covers handouts, readings AND homework, print
   untouched; lens roadmap 4→2 cols, trees scroll horizontally) and made
   the hub's module filter bar wrap ≤560px.
+- **Pragmatics I week 1 deck shipped** (34 slides, style ported from the
+  sem1 wk1 bespoke deck: mrail TOC, Q/A pairs, lineage, facts/weeks/recap).
+  Content per Thomas: hook = Grundy ch.1 footpath exchange; Empirical =
+  six phenomenon intuitions keyed to this year's blocks (wks 2–8);
+  Historical = genealogy (positivism → OLP → Grice + three side threads),
+  with Thomas's diagram embedded (week-01/pragmatics-genealogy.svg);
+  Formal = the four programmes = wks 9–12 + 'one datum four ways';
+  Applied = in-the-wild + project. prag-meta wk1 lenses filled; hub deck
+  status ready; exercises.html semester fixed to 1 (LI7862 = Sem 1;
+  undergrad sister LIU22012 = Sem 2, content to be copied over later).
+  Housekeeping details carried from last year's L1 — CONFIRM with Thomas
+  (times, office hours, due date left as 'see Learn'). Handout still
+  pending for wk1 (deliberately out of scope this pass).
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.
