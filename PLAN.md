@@ -149,6 +149,10 @@ what the next session must know)*
   card. Horn & Levinson photos NOT found online (MPI/Yale pages are
   JS-rendered) — still plates; Thomas has photos, needs to send as FILE
   attachments (pasted-inline images never reach disk).
+- **Horn + Levinson portraits found** (Yale ling profile asset directly;
+  MPI portrait via Wayback Machine — double-encode %20 as %2520 in the
+  nested URL to stop web.archive.org 400s; useful trick). Every figure
+  card in the wk1 deck now has a real photo except Chierchia (plate).
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.
