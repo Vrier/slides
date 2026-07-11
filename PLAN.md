@@ -125,6 +125,17 @@ what the next session must know)*
   Housekeeping details carried from last year's L1 — CONFIRM with Thomas
   (times, office hours, due date left as 'see Learn'). Handout still
   pending for wk1 (deliberately out of scope this pass).
+- **Wk1 deck expanded to 41 slides:** Historical gains foundations
+  (Frege·Russell·early-Wittgenstein, Commons photos), a Tractatus slide,
+  and a Vienna Circle slide (Schlick·Neurath photos, Ayer plate); Formal
+  gains one slide per programme (NG, RT, RSA incl. Bayes formula,
+  Grammaticalism). Thomas pasted portraits for Carnap/Grice/Strawson/
+  Austin as INLINE chat images — not saved as files, so those figures
+  remain name-plates; if he re-attaches them as file uploads, drop into
+  weeks-pragmatics/week-01/images/ and swap the .npf plates for <img>
+  portraits (pattern: sem1 wk1 images/pearse.jpg). Commons has no usable
+  photos for Horn/Levinson/Sperber/Wilson/Frank/Goodman/Chierchia/Fox
+  ("Danny Fox.jpg" is a footballer).
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.
