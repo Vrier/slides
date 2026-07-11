@@ -205,5 +205,24 @@ em.sent { font-style: italic; font-family: var(--serif); }
   .lens-sec-head::before { background: #000; }
   .compose-root { background: white !important; border-color: #bbb !important; box-shadow: none !important; }
 }
+
+/* ── Mobile: reflow the A4 card to the viewport ──────────────────────
+   Screen-only — print/PDF output is untouched. Applies to handouts,
+   readings and homework alike (they all share .page from this file). */
+@media screen and (max-width: 840px) {
+  body { padding: 0 0 40px; font-size: 11pt; }
+  .page {
+    width: auto; min-height: 0; margin: 0;
+    padding: 20px 16px 32px; box-shadow: none;
+  }
+  .h-header { flex-wrap: wrap; row-gap: 8pt; }
+  .lens-roadmap { grid-template-columns: 1fr 1fr; }
+  .lr-item:nth-child(-n+2) { border-bottom: 1pt solid var(--tcd-grey-25); }
+  .lr-item:nth-child(2) { border-right: none; }
+  .page img { max-width: 100%; height: auto; }
+  .tree-frame { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+  .print-note { display: none; }
+}
+
 @media print { .print-note { display: none; } }
 .print-note { text-align: center; font-size: 9pt; color: #888; font-family: var(--sans); margin: 18pt auto 0; max-width: 210mm; }

@@ -106,6 +106,12 @@ what the next session must know)*
   talks scaffold is recoverable from git history. The separate `Vrier/
   teaching` repo prepared earlier this session was never created on GitHub —
   abandoned, local copy deleted.
+- **Mobile pass:** decks were already touch-ready (deck-stage: tap-to-
+  advance, auto-scale, rail hidden <640px). Added a screen-only mobile
+  block to `shared/handout.css` (the fixed 210mm A4 card now reflows to
+  the viewport ≤840px — covers handouts, readings AND homework, print
+  untouched; lens roadmap 4→2 cols, trees scroll horizontally) and made
+  the hub's module filter bar wrap ≤560px.
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.
