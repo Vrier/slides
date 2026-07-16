@@ -153,6 +153,11 @@ what the next session must know)*
   MPI portrait via Wayback Machine — double-encode %20 as %2520 in the
   nested URL to stop web.archive.org 400s; useful trick). Every figure
   card in the wk1 deck now has a real photo except Chierchia (plate).
+- **Style rule (Thomas, applies to ALL future decks):** no numeral-slogan
+  headings ('Four strands, one field', 'One datum, four ways') — rule now
+  codified in CLAUDE.md §Conventions. Wk1 headings rewritten; each
+  programme slide gained a typeset core formula panel (Horn-scale schema,
+  Relevance ratio, RSA listener/speaker pair, EXH operator).
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.

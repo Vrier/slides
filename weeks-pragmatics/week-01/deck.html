@@ -129,6 +129,9 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
   .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
   .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
 
   /* ============ conversations (Grundy exchange, Q/A dialogues) ============ */
   .convo{ margin:6px 0; }
@@ -199,7 +202,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .prog .ps{ font-family:var(--serif); font-style:italic; font-size:20px; color:var(--tcd-ink); margin-top:9px; }
   .prog .ps b{ font-style:normal; color:var(--pc); }
 
-  /* one datum, four ways */
+  /* shared test-case rows */
   .fourways{ margin-top:8px; }
   .fourways .fw{ display:grid; grid-template-columns:260px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
   .fourways .fw:first-child{ border-top:none; }
@@ -327,7 +330,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lxr3">
         <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Speech acts</li><li>Implicature</li><li>Presupposition</li><li>Common ground</li><li>Information</li><li>Politeness</li></ul></div>
         <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Frege · Russell · Wittgenstein</li><li>Positivism &amp; Vienna</li><li>Ordinary language</li><li>Grice</li><li>Three side threads</li><li>The genealogy map</li></ul></div>
-        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Neo-Gricean</li><li>Relevance Theory</li><li>Rational Speech Acts</li><li>Grammaticalism</li><li>One datum, four ways</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Neo-Gricean</li><li>Relevance Theory</li><li>Rational Speech Acts</li><li>Grammaticalism</li><li>A shared test case</li></ul></div>
         <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Pragmatics in the wild</li><li>Your project</li></ul></div>
       </div>
     </div>
@@ -714,7 +717,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">Four programmes, one question</h2>
+      <h2 class="b-h">The four contemporary programmes</h2>
       <div class="progs">
         <div class="prog" style="--pc:var(--lens-emp)"><div class="pw">Week 9</div><div class="pn">Neo-Gricean</div><div class="pf">Horn · Levinson</div><div class="pd">Grice's maxims sharpened into scales and heuristics — <em>some</em> competes with <em>all</em>, and the hearer reasons over the scale.</div><div class="ps"><b>&ldquo;It's pragmatic reasoning.&rdquo;</b></div></div>
         <div class="prog" style="--pc:var(--lens-typ)"><div class="pw">Week 10</div><div class="pn">Relevance Theory</div><div class="pf">Sperber &amp; Wilson · Carston</div><div class="pd">A cognition-first pragmatics: comprehension maximises cognitive effect for processing effort, in a fast, dedicated inference system.</div><div class="ps"><b>&ldquo;It's how minds work.&rdquo;</b></div></div>
@@ -738,6 +741,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="figbody">
           <div class="erow" style="border-top:none"><div class="lb">The bet</div><div class="tx tight">Grice was right — he just needs <strong>sharpening</strong>. Compress the maxims into principles, and organise words into <strong>scales</strong>: &lang;some, all&rang;, &lang;or, and&rang;, &lang;warm, hot&rang;.</div></div>
           <div class="erow"><div class="lb">The machinery</div><div class="tx tight">Choosing the weaker term of a scale implicates the stronger one is false — a <strong>generalised</strong> implicature: default, fast, but still cancellable.</div></div>
+          <div class="egpanel"><div class="eghead">Core schema</div><div class="fx">\[ \bigl\langle\, \textit{some},\ \textit{all} \,\bigr\rangle \text{ a Horn scale:}\qquad \textsf{Assert}(\textit{some}) \;\leadsto\; \neg\,\textit{all} \]</div><div class="fxnote">assert the weaker scale-mate and you implicate the negation of its stronger alternatives</div></div>
         </div>
       </div>
     </div>
@@ -757,6 +761,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="figbody">
           <div class="erow" style="border-top:none"><div class="lb">The bet</div><div class="tx tight">Drop the maxims; keep one principle. Utterances raise expectations of <strong>relevance</strong>: maximal cognitive <strong>effect</strong> for minimal processing <strong>effort</strong>.</div></div>
           <div class="erow"><div class="lb">The machinery</div><div class="tx tight">A fast, dedicated <strong>inference module</strong>: follow the least-effort path, enrich as needed, stop when expectations are met. Pragmatics as cognitive science.</div></div>
+          <div class="egpanel"><div class="eghead">Core measure</div><div class="fx">\[ \mathrm{Relevance}(u) \;\propto\; \frac{\text{cognitive effects}}{\text{processing effort}} \]</div><div class="fxnote">comprehension follows the least-effort path to an interpretation with adequate effects</div></div>
         </div>
       </div>
     </div>
@@ -775,7 +780,8 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="portrait"><img src="images/goodman.jpg" alt="Noah Goodman" style="object-position:50% 20%"><div class="pc"><div class="nm">Noah Goodman</div><div class="dt">Stanford</div><div class="rl">Probabilistic models of cognition; language understanding as social reasoning.</div></div></div>
         <div class="figbody">
           <div class="erow" style="border-top:none"><div class="lb">The bet</div><div class="tx tight">Gricean reasoning can be <strong>implemented</strong>: speakers and listeners recursively model each other as approximately rational agents.</div></div>
-          <div class="erow"><div class="lb">The machinery</div><div class="tx tight">A literal listener, a speaker who chooses informatively, and a listener who inverts the speaker by <strong>Bayes' rule</strong>: \( P_{L}(m \mid u) \propto P_{S}(u \mid m)\,P(m) \). Graded, testable predictions.</div></div>
+          <div class="erow"><div class="lb">The machinery</div><div class="tx tight">A literal listener, a speaker who chooses informatively, and a listener who inverts the speaker by <strong>Bayes' rule</strong> — graded, testable predictions.</div></div>
+          <div class="egpanel"><div class="eghead">Core model</div><div class="fx">\[ P_{L_1}\!\left(m \mid u\right) \;\propto\; P_{S_1}\!\left(u \mid m\right)\,P(m), \qquad P_{S_1}\!\left(u \mid m\right) \;\propto\; \exp\!\bigl(\alpha \log P_{L_0}(m \mid u)\bigr) \]</div><div class="fxnote">a pragmatic listener inverts a soft-max informative speaker, who reasons about a literal listener</div></div>
         </div>
       </div>
     </div>
@@ -795,19 +801,20 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="figbody">
           <div class="erow" style="border-top:none"><div class="lb">The bet</div><div class="tx tight">These &ldquo;implicatures&rdquo; aren't post-hoc reasoning at all: they're computed <strong>inside the grammar</strong>, by a silent operator <span style="font-family:var(--mono)">EXH</span> &asymp; <em>only</em>.</div></div>
           <div class="erow"><div class="lb">The evidence</div><div class="tx tight">Implicature-like meanings appear <strong>embedded</strong> — <em>Every student read some of the papers</em> — where global Gricean reasoning shouldn't reach. Weeks 9–12 stage this fight.</div></div>
+          <div class="egpanel"><div class="eghead">Core operator</div><div class="fx">\[ \textsf{EXH}(\phi) \;=\; \phi \;\wedge \bigwedge_{\psi \,\in\, \mathrm{Excl}(\phi)} \neg\,\psi \]</div><div class="fxnote">a silent <em>only</em>: assert &phi; and negate its innocently excludable alternatives Excl(&phi;)</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 28 · Formal · one datum four ways -->
-<section class="slide" data-label="Formal, one datum four ways" data-screen-label="18">
+<!-- 28 · Formal · a shared test case -->
+<section class="slide" data-label="Formal, a shared test case" data-screen-label="18">
   <div class="b-slide pal-a lens-formal dB" data-sec="shared">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">One datum, four ways</h2>
+      <h2 class="b-h">A shared test case</h2>
       <div class="qref">Some of the students passed. <span class="src">&hellip;and everyone hears: <em>not all of them did</em></span></div>
       <div class="fourways">
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Neo-Gricean<small>scales &amp; maxims</small></div><div class="ft2"><em>Some</em> sits on a scale below <em>all</em>. A cooperative speaker who knew <em>all</em> would have said it — so <b>not all</b>.</div></div>
@@ -815,7 +822,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">RSA<small>Bayesian listeners</small></div><div class="ft2">A listener who models a rational speaker choosing between <em>some</em> and <em>all</em> assigns low probability to the all-worlds.</div></div>
         <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Grammaticalism<small>exhaustification</small></div><div class="ft2">A silent operator (&asymp; <em>only</em>) applies to <em>some</em> in the syntax — the &ldquo;inference&rdquo; is computed by the grammar itself.</div></div>
       </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">The stakes</div><div class="tx tight">Same datum, four architectures of mind and grammar. Deciding between them is what weeks 9–12 are for.</div></div>
+      <div class="erow" style="margin-top:6px"><div class="lb">The stakes</div><div class="tx tight">Each programme derives the inference with a different architecture of mind and grammar — deciding between them is the business of weeks 9–12.</div></div>
     </div>
   </div>
 </section>
@@ -918,7 +925,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="b-kick">Week 1 wrap-up</div>
-      <h2 class="b-h">Four strands, one field</h2>
+      <h2 class="b-h">What to take away</h2>
       <div class="recap">
         <div class="rr" style="--rc:var(--lens-emp)"><div class="rl">Empirical</div><div class="rt">Six intuitions — acts, implicature, presupposition, common ground, information, politeness — one per block of the term.</div></div>
         <div class="rr" style="--rc:var(--lens-his)"><div class="rl">Historical</div><div class="rt">From the ideal-language dream through ordinary language to Grice — with three outside threads converging on the present.</div></div>
@@ -948,7 +955,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     pos:"Positivism", vc:"The Vienna Circle", olp:"Ordinary language",
     gri:"Grice", thr:"Three threads", diag:"The map",
     prog:"Four programmes", ng:"Neo-Gricean", rt:"Relevance Theory",
-    rsa:"Rational Speech Acts", gr:"Grammaticalism", shared:"One datum, four ways",
+    rsa:"Rational Speech Acts", gr:"Grammaticalism", shared:"A shared test case",
     wild:"In the wild", proj:"Your project",
     mod2:"How the module works", wk:"Week by week", sum:"Wrap-up"
   };

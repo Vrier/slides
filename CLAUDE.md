@@ -180,6 +180,9 @@ to build or restart. Hard-refresh https://slides.tstephen.com to confirm.
 ---
 
 ## Conventions / gotchas
+- **Slide-title style:** avoid numeral-slogan headings of the form "N X, one Y" /
+  "one X, N Y" ("Four strands, one field", "One datum, four ways") — Thomas has
+  vetoed the pattern across all modules. Use plain descriptive titles.
 - **Module = folder + catalogue + rail + theme.** Get all four right (table above). The most common mistake is wiring a week to the wrong `*-meta.js`/`*-rail.js`/theme.
 - **`<body data-week="N">` on every deck** — the rail reads it. Skeletons already set it.
 - **Keep the hub in sync.** Any status/title change must land in both the `*-meta.js` and `index.html`'s `WEEKS` array.
