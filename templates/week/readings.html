@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{CODE}} · Week {{WEEK_NO}} — {{TITLE}} · Readings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+<link rel="stylesheet" href="../../shared/readings.css" />
+{{THEME_LINK}}
+</head>
+<body class="pal-a">
+
+<div class="handout-week rd" data-week="{{WEEK_NO}}"><div class="page">
+
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">{{CODE_LINE_PRINT}}</div>
+      <div class="term">{{LECTURER}} · {{TERM_PRINT}}</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week {{WEEK_NO}} · Readings</div>
+    <h1 class="h-title">{{TITLE}}</h1>
+  </div>
+
+  <div class="rd-band">
+    <span class="tag">Reading list</span>
+    {{FIGS_SPAN}}
+  </div>
+
+  <p class="rd-intro"><b>Intro to add.</b> One paragraph on what the sources are and the order to read them. Canonical per-week sources live in <b>shared/_readings-data.md</b>.</p>
+
+  <div class="rd-sechead">Reading list <span class="hint">to be confirmed</span></div>
+  <ol class="rd-list">
+      <li class="rd">
+        <div class="rd-cite"><span class="rd-type t-textbook">Textbook</span>Citation to add (APA).</div>
+        <div class="rd-note">One-line note on why this reading and what to focus on.</div>
+        <div class="rd-links">
+          <span class="rd-access library">Library login</span>
+        </div>
+      </li>
+  </ol>
+
+  <div class="h-footer">
+    <span class="left">{{CODE}} · Readings</span>
+    <span>Week {{WEEK_NO}} · {{TITLE}}</span>
+    <span>1</span>
+  </div>
+
+</div></div>
+
+<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="{{PTHUMB_BG}}"/>
+    <path d="M22 28h26v44H22z" fill="#fff" stroke="{{PTHUMB_ACCENT}}" stroke-width="2"/>
+    <path d="M52 28h26v44H52z" fill="#fff" stroke="{{PTHUMB_ACCENT}}" stroke-width="2"/>
+    <path d="M48 26v48M52 26v48" stroke="{{PTHUMB_ACCENT}}" stroke-width="2"/>
+    <line x1="28" y1="40" x2="44" y2="40" stroke="{{PTHUMB_LINE}}" stroke-width="2"/>
+    <line x1="28" y1="48" x2="44" y2="48" stroke="{{PTHUMB_LINE}}" stroke-width="2"/>
+    <line x1="56" y1="40" x2="72" y2="40" stroke="{{PTHUMB_LINE}}" stroke-width="2"/>
+    <line x1="56" y1="48" x2="72" y2="48" stroke="{{PTHUMB_LINE}}" stroke-width="2"/>
+    <text x="50" y="92" font-family="serif" font-size="6.5" fill="{{PTHUMB_ACCENT}}" text-anchor="middle">{{CODE}} · READINGS</text>
+  </svg>
+</template>
+</body>
+</html>

@@ -47,7 +47,7 @@ organising spine**:
 | Module (default identity) | Code(s) | Folder | Catalogue | Rail | Theme override | Accent | Spine |
 |---|---|---|---|---|---|---|---|
 | Semantics I / Describing Meaning | LIU11011 / **LI7869** | `weeks-semantics1/` | `week-meta.js` | `deck-rail.js` | none (base TCD blue) | `#0569b9` | Four lenses |
-| Semantics II | LIU33008 | `weeks-semantics2/` *(readings only)* | `sem2-meta.js` | *(needs `sem2-rail.js`)* | *(teal-green, no file yet)* | `#136f5c` | Four lenses |
+| Semantics II | LIU33008 | `weeks-semantics2/` | `sem2-meta.js` | `sem2-rail.js` | `theme-teal.css` | `#136f5c` | Four lenses |
 | Semantics III | LIU44010 | `weeks-semantics3/` | `sem3-meta.js` | `sem3-rail.js` | `theme-indigo.css` | `#4b3c9a` | Two arcs |
 | Pragmatics I / Linguistic Pragmatics | LIU22012 / **LI7862** | `weeks-pragmatics/` | `prag-meta.js` | `prag-rail.js` | `theme-burgundy.css` | `#8a2f4a` | Four lenses (4th = *Applied*) |
 | Pragmatics II | LIU44008 | `weeks-pragmatics2/` | `prag2-meta.js` | `prag2-rail.js` | `theme-rust.css` | `#b23a1e` | Three approaches |
@@ -57,9 +57,9 @@ under an undergraduate code (default identity) **and** an MPhil code. The weeks 
 shared — only the identity label and the per-identity overview/assessment docs differ.
 The split lives in each catalogue's `MODULE.identities[]` and the hub's `IDENTITIES`.
 
-**Not yet built:** Semantics II deck/handout/homework weeks (`weeks-semantics2/` has
-readings only; `sem2-rail.js` doesn't exist). Scaffold from the Semantics I reference
-when asked.
+**Not yet built:** Semantics II deck/handout/homework content (readings are done for
+every week; week 1 has generated scaffolds). To scaffold any missing week, run
+`npm run new -- <module> <week>` (see "How to build a week" step 0).
 
 ---
 
@@ -86,6 +86,12 @@ The two **final-year modules use a different spine** (still the same catalogue A
 
 ```
 index.html                      THE HUB — catalogue of all modules/weeks (see above)
+templates/week/                 token-based skeletons ({{TOKEN}}s) for the four artifacts
+                                (deck-lenses / deck-spine / handout / readings / exercises)
+scripts/new-week.mjs            scaffold generator — `npm run new -- <module> <week>`
+scripts/check.mjs               THE test suite — `npm test` (see PLAN.md §Checks)
+pattern-library/                deck.html + print.html — canonical copy of every shared
+                                pattern (see Reference weeks below; not linked from the hub)
 weeks-semantics1/               Semantics I / Describing Meaning (12 wks; wk 7 reading)
   figures/                      interactive lattice/event figures + figure-gallery.html
 weeks-semantics2/               Semantics II (readings only so far)
@@ -104,7 +110,7 @@ shared/                         ← all CSS/JS, referenced as ../../shared/… f
   handout.css                   A4 handout styles (callouts, exercise blocks, answer lines)
                                 + print scaffold patterns (h-band›tag, todo-box, reads-plain)
   readings.css  exercises.css   readings list + downloadable homework sheet styles
-  theme-burgundy.css  theme-indigo.css  theme-rust.css   per-module accent overrides
+  theme-burgundy.css  theme-indigo.css  theme-rust.css  theme-teal.css   per-module accent overrides
   deck-stage.js                 the slide-deck shell (arrow keys, full-screen, print-to-PDF)
   *-meta.js                     THE WEEK CATALOGUES (one per module — see table)
   *-rail.js                     fill the deck progress rail + steppers at runtime
@@ -119,6 +125,7 @@ uploads/  pdfs/                 source material (last year's PDFs, handbooks) �
 ```
 
 **Reference weeks (copy their patterns):**
+- **`pattern-library/`** — START HERE: `deck.html` (one canonical slide per shared deck pattern, rendered by the real runtime) + `print.html` (every handout/homework/readings block as three A4 cards). Copy sections straight from their source — but note the library sits one level deep (`../shared/…`), weeks two (`../../shared/…`). Opened directly; not linked from the hub.
 - **`weeks-semantics1/week-03`** (Predicates & Set Theory) — the fully-worked lens-based reference. Read its `deck.html` + `handout.html` before building any lens-based week.
 - **`weeks-semantics3/week-01`** and **`weeks-pragmatics2/week-01`** — references for the arc / approach spines and their themes.
 
@@ -133,6 +140,11 @@ shared runtime dependency is the module's `*-meta.js` → its `*-rail.js` (modul
 ### 0. Confirm the brief
 - **Identify the module** → folder, `*-meta.js`, `*-rail.js`, theme (table above).
 - Check the week's entry in that module's `*-meta.js` (title + `section` index into `MODULE_SECTIONS`, plus `figures`/`arc`/`approach` where used). Update it if wrong — this drives the rail. Mirror any status change into `index.html`'s `WEEKS`.
+- **If the week's files don't exist yet, scaffold them:** `npm run new -- <module> <week>`
+  (modules: `sem` `sem2` `sem3` `prag` `prag2`). It wires the right catalogue/rail/theme,
+  pre-fills the roadmap and dividers from the meta's lens `q`/`d` (or the arc/approach
+  cards), skips files that already exist, and flips the hub statuses `none`→`draft`.
+  Fill the lens `q`/`d` in the meta FIRST — the scaffold inherits them.
 - Ask the user for content if not given. Sort it into the four lenses (or the module's arc/approach). Ask which formal tool(s) the week introduces and which language data / historical figures to feature.
 
 ### 1. The deck — `weeks-<module>/week-NN/deck.html`

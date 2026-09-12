@@ -1,0 +1,42 @@
+/* ============================================================
+   theme-teal.css — LIU33008 Semantics II
+   A teal-green re-skin of the deck/handout system. Shares ALL
+   structure/layout/components — only re-points the brand colour
+   variables and the hard-coded ink fills. Accent #136f5c (see
+   the module table in CLAUDE.md).
+
+   LOAD ORDER: link this LAST, after
+     deck   : tokens · dir-a · dir-b · dir-c · lens · deck-slides
+     handout: tokens · lens · handout (· readings / exercises)
+   ============================================================ */
+
+:root {
+  --tcd-blue:    #136f5c;   /* teal green (primary) */
+  --tcd-blue-75: #4e9385;
+  --tcd-blue-50: #89b7ae;
+  --tcd-blue-25: #c4dbd6;
+  --tcd-blue-10: #e8f1ef;
+
+  --tcd-ink:   #0f352d;     /* teal ink */
+  --tcd-ink-2: #14483d;
+
+  --c-def: #136f5c;
+
+  /* Lens palette re-tuned so Empirical no longer sits on the
+     brand's green (lens.css default is sage). */
+  --lens-emp: oklch(0.53 0.085 232);   /* steel blue */
+  --lens-his: oklch(0.50 0.075 64);    /* bronze/archive */
+  --lens-for: oklch(0.46 0.130 290);   /* violet */
+  --lens-typ: oklch(0.50 0.090 18);    /* muted red */
+}
+
+.pal-a {
+  --lens-emp: oklch(0.53 0.085 232);
+  --lens-his: oklch(0.50 0.075 64);
+  --lens-for: oklch(0.46 0.130 290);
+  --lens-typ: oklch(0.50 0.090 18);
+}
+
+.lxd2-foot { background: rgba(15, 53, 45, 0.82); }
+.wk-nav { background: rgba(15, 53, 45, 0.92); }
+.wk-nav select option { background: #0f352d; }

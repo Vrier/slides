@@ -190,4 +190,36 @@ what the next session must know)*
   either. **Commits + npm test left for Thomas / a healthy session.**
 - `.deploy-key` is absent from this clone (gitignored ⇒ not in fresh clones) —
   restore it, or mint a new write-access deploy key, if Cowork should push.
-- **Next:** run `npm test`, commit, push, verify live; then piece 3.
+- **Shipped (3):** `templates/week/` (deck-lenses · deck-spine · handout ·
+  readings · exercises — {{TOKEN}} skeletons, placed two dirs deep so their
+  `../../shared/` links resolve) + `scripts/new-week.mjs` (`npm run new --
+  <module> <week>`): resolves the module table, reads the week from its
+  `*-meta.js` via node:vm, pre-fills roadmap/dividers from lens q/d (or
+  arc/approach spine-cards), skips existing files (--force overrides),
+  flips hub artifact statuses 'none'→'draft' (split/join, single line),
+  refuses reading/presentation weeks. New `shared/sem2-rail.js` (twin of
+  deck-rail.js) + `shared/theme-teal.css` (#136f5c ramp; lens palette
+  re-tuned — Empirical moved off sage onto steel blue to clear the brand
+  green). check.mjs: check 6 (no unreplaced {{TOKEN}}s outside templates/)
+  + link check skips {{…}} URLs. package.json gains "new". CLAUDE.md:
+  module table row for sem2 completed, scaffold step added to §0, file
+  structure updated.
+- **Workout:** sem2 week-01 deck/handout/exercises scaffolded (hand-applied
+  from the templates — the shell VM was down, so new-week.mjs itself has
+  NOT yet executed; its first real run should be `npm run new -- sem2 2`
+  and diff-eyeballed against week-01). Hub sem2 wk1 statuses → draft.
+- **Shipped (4):** `pattern-library/` — `deck.html` (a real deck-stage deck:
+  one canonical slide per shared pattern — title, roadmap, divider, callouts,
+  worked steps, the piece-2 scaffold patterns, summary — plus a field-guide
+  slide signposting the prag-wk1 bespoke vocabulary, which stays deliberately
+  un-promoted for now) + `print.html` (three A4 cards: handout blocks incl. a
+  live COMPOSE tree, homework blocks, readings blocks). Chrome divs are left
+  empty by design (no rail JS loaded — the library shows what you TYPE);
+  `.pl-*` classes are library-only annotations. Both files sit ONE level deep
+  (`../shared/…`) — copying into a week needs `../../shared/…`; flagged in
+  both file headers and CLAUDE.md. Docs updated (reference-weeks: "start
+  here"; file structure).
+- **Next:** npm test + first `npm run new -- sem2 2` + commit + push (shell
+  VM permitting — see Environment surprise above), verify live. All four
+  template-streamlining pieces are now written; everything is uncommitted
+  and desk-verified only.

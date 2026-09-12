@@ -8,6 +8,7 @@
    4. every deck.html loads deck-stage.js and has ≥1 slide section
    5. the hub's WEEKS/IDENTITIES mirror the shared/*-meta.js
       catalogues (title · section · reading/present · identities)
+   6. no unreplaced {{TOKEN}}s outside templates/ (scaffold guard)
    Add a check for every feature you ship.
    ============================================================ */
 import fs from "node:fs";
@@ -40,6 +41,7 @@ for (const f of htmlFiles) {
   const html = fs.readFileSync(f, "utf8").replace(/<script[\s\S]*?<\/script>/g, "<script></script>");
   for (const [, url] of html.matchAll(LINK_RE)) {
     if (/^(https?:|\/\/|mailto:|data:|javascript:|#)/.test(url)) continue;
+    if (url.includes("{{")) continue; // template token (templates/week/*) — filled by new-week.mjs
     const clean = decodeURIComponent(url.split("#")[0].split("?")[0]);
     if (!clean) continue;
     const target = path.resolve(path.dirname(f), clean);
@@ -163,6 +165,15 @@ function extractHubConst(html, name, closer) {
     const hubIds = (((hubIdent || {})[m]) || []).map((i) => `${i.code} ${i.name}`).join(" | ");
     if (metaIds !== hubIds) fail(`hub↔${file}: identities differ (hub: "${hubIds}" vs meta: "${metaIds}")`);
   }
+}
+
+// ---- 6: no unreplaced template tokens outside templates/ ------------------------
+// templates/week/*.html legitimately contain {{TOKEN}}s; anywhere else one appears,
+// a new-week.mjs substitution failed or a template was copied by hand unfilled.
+for (const f of htmlFiles) {
+  if (rel(f).startsWith("templates/")) continue;
+  const hits = fs.readFileSync(f, "utf8").match(/\{\{[A-Z0-9_]+\}\}/g);
+  if (hits) fail(`${rel(f)}: unreplaced template token(s) ${[...new Set(hits)].join(", ")}`);
 }
 
 // ---- report ---------------------------------------------------------------------

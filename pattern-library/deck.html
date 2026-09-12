@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pattern Library · Deck Slides — Trinity Teaching Workspace</title>
+<!-- ============================================================
+     pattern-library/deck.html — THE CANONICAL COPY of every
+     shared deck slide pattern, rendered by the real deck runtime.
+     A lecturer's working aid (like figure-gallery.html): open it
+     directly; it is not linked from the hub.
+
+     HOW TO USE: step through with arrow keys, find the pattern
+     you need, then copy its <section class="slide"> from THIS
+     FILE'S SOURCE into your week's deck.html.
+
+     TWO THINGS TO ADJUST WHEN COPYING INTO A WEEK:
+     · this file sits ONE level deep, so asset paths here are
+       ../shared/… — a week file is TWO deep: use ../../shared/…
+     · the chrome (.b-rail, .lens-progress, .lxd2-foot) is left
+       EMPTY here, exactly as you should type it — the module's
+       *-rail.js fills it at runtime from <body data-week="N">.
+
+     ADDING A PATTERN: promote its CSS to shared/ first
+     (deck-slides.css), then add one canonical slide here.
+     The .pl-* classes below are library-only annotations —
+     never copy them into a week.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/tokens.css" />
+<link rel="stylesheet" href="../shared/dir-a.css" />
+<link rel="stylesheet" href="../shared/dir-b.css" />
+<link rel="stylesheet" href="../shared/dir-c.css" />
+<link rel="stylesheet" href="../shared/lens.css" />
+<link rel="stylesheet" href="../shared/deck-slides.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .b-main > .lens-progress { margin-top: auto; }
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  /* library-only annotation chrome — never copy .pl-* into a week */
+  .pl-file{font-family:var(--mono);font-size:19px;color:var(--tcd-grey-75);margin-top:18px}
+  .pl-file b{color:var(--tcd-ink)}
+</style>
+</head>
+<body class="pal-a">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ════ 00 · How to use this library (library-only slide) ════ -->
+<section class="slide" data-label="How to use">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Pattern library · deck slides</div>
+      <h2 class="b-h">One canonical copy of every shared pattern</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">How to use</span></div>
+          <div class="c-box-body">Arrow through the patterns, then <strong>copy the matching <em>&lt;section&gt;</em> from this file's source</strong> into your week's deck. Slide text is directly editable HTML.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Two adjustments</span></div>
+          <div class="c-box-body">This file sits one level deep — asset paths here are <em>../shared/…</em>, but week files use <em>../../shared/…</em>. And the chrome (<em>.b-rail</em>, steppers) is left empty by design: the module's <em>*-rail.js</em> fills it from <em>&lt;body data-week="N"&gt;</em>, which is why the rail column renders blank in this library.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Theming</span></div>
+          <div class="c-box-body">Everything here is in base TCD blue. Add the module's theme link (<em>theme-teal / -indigo / -burgundy / -rust</em>) and the same markup recolours itself — no class changes.</div>
+        </div>
+      </div>
+      <div class="pl-file"><b>Adding a pattern?</b> Promote its CSS to shared/deck-slides.css first, then add one canonical slide here.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 01 · Title slide ════
+     Canonical source: any built week. Remember ../../shared/ paths in a week. -->
+<section class="slide" data-label="Pattern · Title">
+  <div class="a-watermark">⟦⟧</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">CODE · Module Name</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week N</h1>
+      <div class="a-course-sub">Week Title</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester · Term</div></div>
+  </div>
+</section>
+
+<!-- ════ 02 · Lens roadmap (lxr3) ════
+     One .stop per lens; q/d come from the week's entry in the module meta. -->
+<section class="slide" data-label="Pattern · Roadmap">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Today's four lenses</div>
+      <h2 class="b-h">Week Title</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><div class="q">Section question for this lens</div><div class="d">One-line gloss of what this lens covers this week.</div></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><div class="q">Section question for this lens</div><div class="d">One-line gloss of what this lens covers this week.</div></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><div class="q">Section question for this lens</div><div class="d">One-line gloss of what this lens covers this week.</div></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><div class="q">Section question for this lens</div><div class="d">One-line gloss of what this lens covers this week.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 03 · Lens divider (lxd2) ════
+     Change the lens-* class, roman numeral, glyph and data-lens together.
+     The lxd2-foot stays EMPTY — the rail filler populates the stepper. -->
+<section class="slide" data-label="Pattern · Divider">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · CODE · Week N</div><h2>Section question for this lens</h2><div class="ask">One-line gloss of what this lens covers this week.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<!-- ════ 04 · Content + callouts (.c-box) — THE WORKHORSE ════
+     Lens class on .b-slide colours the chrome; data-lens on the section
+     highlights the stepper. Badge accents: --c-def / --c-ex / --c-key / --c-note. -->
+<section class="slide" data-lens="formal" data-label="Pattern · Callouts">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Content slide with callout boxes</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Definition</span></div>
+          <div class="c-box-body">Accent <em>--c-def</em>. \(\sem{\text{giggles}} = \{\,x : x \text{ giggles}\,\}\) — MathJax works in any box: \( \langle e,t\rangle \), \(\lambda x.\,P(x)\).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Example</span></div>
+          <div class="c-box-body">Accent <em>--c-ex</em>. Object language in italics: <em>Neil giggles</em> is true iff \(n \in \sem{\text{giggles}}\).</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Key idea</span></div>
+          <div class="c-box-body">Accent <em>--c-key</em>. The one thing students must leave the slide with.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Note</span></div>
+          <div class="c-box-body">Accent <em>--c-note</em>. Caveats, historical asides, pointers forward.</div>
+        </div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 05 · Worked example (.b-steps) ════
+     Add class "step-future" to dim steps for incremental reveal. -->
+<section class="slide" data-lens="formal" data-label="Pattern · Worked steps">
+  <div class="b-slide pal-a lens-formal">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal<span class="ct">LENS 03 / 04</span></div>
+      <h2 class="b-h">Worked: <em>Neil giggles</em></h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">Sentence</div><div class="b-step-math">\(\text{Neil giggles.}\)</div></div>
+        <div class="b-step"><div class="b-step-lab">Name denotation</div><div class="b-step-math">\(\sem{\text{Neil}} = n\)</div></div>
+        <div class="b-step"><div class="b-step-lab">Predicate denotation</div><div class="b-step-math">\(\sem{\text{giggles}} = \{\,x : x \text{ giggles}\,\}\)</div></div>
+        <div class="b-step"><div class="b-step-lab">Truth condition</div><div class="b-step-math">\(n \in \sem{\text{giggles}}\)</div></div>
+        <div class="b-step step-future"><div class="b-step-lab">General rule (dimmed: step-future)</div><div class="b-step-math">\(\sem{\alpha\;\beta} = 1 \text{ iff } \sem{\alpha} \in \sem{\beta}\)</div></div>
+      </div>
+      <div class="lens-progress" data-lens="formal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 06 · Scaffold patterns I · q-banner + spine-cards + chip-row ════
+     Shared in deck-slides.css since 2026-09. Default cards are 3-up;
+     mark this week's corner with .on. -->
+<section class="slide" data-label="Pattern · Spine cards">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Scaffold patterns · overview slides</div>
+      <h2 class="b-h">q-banner · spine-cards · chip-row</h2>
+      <div class="q-banner">The framing question of the week, in italic serif — <em>.q-banner</em>.</div>
+      <div class="spine-cards">
+        <div class="spine-card"><div class="ci">Approach 1</div><h3>First corner</h3><p>Gloss of the first arc/approach.</p></div>
+        <div class="spine-card on"><div class="ci">Approach 2</div><h3>This week's corner</h3><p>Mark the active one with <b>.on</b>.</p></div>
+        <div class="spine-card"><div class="ci">Approach 3</div><h3>Third corner</h3><p>Gloss of the third arc/approach.</p></div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">Diagnostic · Scalar implicature</span>
+        <span class="chip">Diagnostic · Presupposition</span>
+        <span class="chip">Thread · The interface</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 07 · Scaffold patterns II · two-arc sizing + figs-line + reads-box ════
+     Add "cols-2 compact" for the Semantics III two-arc sizing. -->
+<section class="slide" data-label="Pattern · Arcs + reads">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Scaffold patterns · two-arc variant</div>
+      <h2 class="b-h">spine-cards cols-2 compact · figs-line · reads-box</h2>
+      <div class="spine-cards cols-2 compact">
+        <div class="spine-card on"><div class="ci">Arc I</div><h3>Formal Tools</h3><p>The compact sizing used by the Semantics III two-arc spine.</p></div>
+        <div class="spine-card"><div class="ci">Arc II</div><h3>Empirical Phenomena</h3><p>Same markup, smaller type — <b>.cols-2 .compact</b> on the wrapper.</p></div>
+      </div>
+      <div class="figs-line"><b>Figures:</b> Frege · Tarski · Montague — <em>.figs-line</em></div>
+      <div class="reads-box" style="margin-top:20px">
+        <div class="h">Set readings — .reads-box</div>
+        <ul>
+          <li>Author, A. (Year). Article title. — one-line note.</li>
+          <li>Author, B. (Year). <span class="bk">Book Title</span>, ch. N. — italics via <em>.bk</em>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 08 · Scaffold placeholders · todo-box + park-grid ════ -->
+<section class="slide" data-label="Pattern · Placeholders">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Scaffold patterns · placeholders</div>
+      <h2 class="b-h">todo-box · park-grid</h2>
+      <div class="todo-box"><b>Content to add.</b> The hatched placeholder every scaffold ships with — <em>.todo-box</em> (print twins: <em>.todo-box</em> in handout.css, <em>.hw-todo</em> in exercises.css).</div>
+      <div class="park-grid" style="margin-top:20px">
+        <div class="park-card"><h4>Parked topic</h4><p>A topic kept warm for a future year — <em>.park-card</em>.</p><div class="r">Author 1990 · Author 2007</div></div>
+        <div class="park-card"><h4>Another parked topic</h4><p>Blurb plus a mono references line in <em>.r</em>.</p><div class="r">Author 2003 · Author 2020</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 09 · Summary ════ -->
+<section class="slide" data-label="Pattern · Summary">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Week N — wrap-up</div>
+      <h2 class="b-h">Week Title: the week in review</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--lens-emp)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-emp)">Empirical</span></div><div class="c-box-body">One-line recap of the empirical lens.</div></div>
+        <div class="c-box" style="--acc:var(--lens-his)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-his)">Historical</span></div><div class="c-box-body">One-line recap of the historical lens.</div></div>
+        <div class="c-box" style="--acc:var(--lens-for)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-for)">Formal</span></div><div class="c-box-body">One-line recap of the formal lens.</div></div>
+        <div class="c-box" style="--acc:var(--lens-typ)"><div class="c-box-head"><span class="c-box-badge" style="background:var(--lens-typ)">Typological</span></div><div class="c-box-body">One-line recap of the typological lens.</div></div>
+      </div>
+      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next:</strong> one line trailing the following week.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 10 · Field guide to bespoke vocabulary (library-only slide) ════ -->
+<section class="slide" data-label="Field guide">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Not yet shared — where the richer patterns live</div>
+      <h2 class="b-h">Field guide to bespoke slide vocabulary</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">weeks-pragmatics/week-01/deck.html</span></div>
+          <div class="c-box-body">The richest deck: big-question slides (<em>.bigask/.bigq</em>), three-column layouts (<em>.cols3</em>), mini-rail TOC (<em>.mrail</em>), conversation panels (<em>.convo</em>, <em>.egpanel</em>), portrait rows (<em>.figrow/.portrait/.fbio</em>), genealogy diagram (<em>.lineage/.roots</em>), programme cards (<em>.progs</em>), facts strip (<em>.facts</em>), recap (<em>.recap</em>). Defined in that deck's own <em>&lt;style&gt;</em> — copy slide + styles together, or promote to shared first.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Interactive figures</span></div>
+          <div class="c-box-body"><em>weeks-semantics1/figures/</em> (lattices, events, telicity — see <em>figure-gallery.html</em> for iframe embedding) · the week-02 pragmatics maps · <em>shared/density-rate-chart.js</em> for the info-density scatter used by both pragmatics modules.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Print patterns</span></div>
+          <div class="c-box-body">Handout, homework and readings blocks have their own library: <em>pattern-library/print.html</em>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../shared/deck-stage.js"></script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#07284a"/>
+    <rect x="8" y="12" width="38" height="34" rx="3" fill="#0a3564"/>
+    <rect x="54" y="12" width="38" height="34" rx="3" fill="#0a3564" opacity=".7"/>
+    <rect x="8" y="54" width="38" height="34" rx="3" fill="#0a3564" opacity=".7"/>
+    <rect x="54" y="54" width="38" height="34" rx="3" fill="#0a3564"/>
+    <text x="50" y="97" font-family="serif" font-size="7" fill="#82b4dc" text-anchor="middle">PATTERN LIBRARY</text>
+  </svg>
+</template>
+</body>
+</html>
