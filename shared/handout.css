@@ -226,3 +226,16 @@ em.sent { font-style: italic; font-family: var(--serif); }
 
 @media print { .print-note { display: none; } }
 .print-note { text-align: center; font-size: 9pt; color: #888; font-family: var(--sans); margin: 18pt auto 0; max-width: 210mm; }
+
+/* ── Scaffold patterns (print) ───────────────────────────────────────
+   Promoted from the sem3/prag2 handout scaffolds (were per-file
+   .p3-band/.p3-tag, .p3-todo, .p3-reads-h and .p2-* twins).
+   Use these — never re-define per file. */
+.h-band { display: flex; gap: 7pt; flex-wrap: wrap; margin: 6pt 0 4pt; }
+.h-band .tag { font-family: var(--sans); font-size: 8pt; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3pt 9pt; border-radius: 999px; background: var(--tcd-blue-10); color: var(--tcd-ink); }
+.todo-box { border: 1.5pt dashed var(--tcd-grey-50); border-radius: 6pt; padding: 9pt 11pt; color: var(--tcd-grey-75); font-style: italic; background: #fafafa; font-size: 9.5pt; line-height: 1.4; }
+.todo-box b { color: var(--tcd-grey-100); font-style: normal; }
+.reads-plain { list-style: none; padding-left: 0; margin: 3pt 0 0; }
+.reads-plain li { font-size: 9pt; margin: 2pt 0; line-height: 1.35; }
+.reads-plain .bk { font-style: italic; }
+@media print { .h-band .tag { background: transparent !important; color: #000 !important; border: 0.75pt solid #000; } }

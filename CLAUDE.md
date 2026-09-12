@@ -28,6 +28,9 @@ lecturer's working view — students only receive direct links to week pages.
 > files) plus an `IDENTITIES`/`DIR` map. When you change a week's status or title, or
 > add/scaffold files, update **both** the module's `shared/*-meta.js` **and** the
 > `WEEKS` array in `index.html`. The `DIR` map there resolves module → folder.
+> `npm test` now enforces this (check 5 in `scripts/check.mjs`): drift in week
+> set, title, section, reading/present flags, or identity codes fails CI — and CI
+> gates deploys. Per-artifact status and `fig` strings still live only in the hub.
 
 Artifact status in the hub: `ready` (built) · `draft` (scaffold exists) · `none`
 (no file). Readings default to `ready` for every teaching week.
@@ -96,7 +99,10 @@ shared/                         ← all CSS/JS, referenced as ../../shared/… f
   dir-a.css dir-b.css dir-c.css deck visual directions (title / chrome / callouts)
   lens.css                      the four-lens palette + divider/roadmap/stepper styles
   deck-slides.css               deck content-slide extensions (lens kick, steppers, rail)
+                                + shared scaffold/overview patterns (q-banner, spine-cards,
+                                chip-row, todo-box, figs-line, reads-box, park-grid)
   handout.css                   A4 handout styles (callouts, exercise blocks, answer lines)
+                                + print scaffold patterns (h-band›tag, todo-box, reads-plain)
   readings.css  exercises.css   readings list + downloadable homework sheet styles
   theme-burgundy.css  theme-indigo.css  theme-rust.css   per-module accent overrides
   deck-stage.js                 the slide-deck shell (arrow keys, full-screen, print-to-PDF)
@@ -140,6 +146,15 @@ Copy a content slide from the reference week and edit it. Key slide types (all i
 - **Content + callouts** — `.b-slide` › `.lens-kick` + `.b-h` + `.f-box-wrap` of `.c-box` (badges: Definition / Example / Key idea / Note). The workhorse.
 - **Worked example** — `.b-steps` of `.b-step` (add `step-future` to dim a step for incremental reveal).
 - **Diagram** — e.g. the Venn/membership figure (`.a-venn`).
+
+Scaffold/overview patterns are **shared in `deck-slides.css`** — never re-define them
+in a deck's `<style>` block (the old per-deck `.p2-*`/`.p3-*` copies are retired):
+- **`.q-banner`** — italic serif framing question.
+- **`.spine-cards`** › `.spine-card` (+`.on` for this week's corner; `.ci`/`h3`/`p` inside) — the module's arcs/approaches as a card row. Default 3-up; add `cols-2 compact` for the sem3 two-arc sizing.
+- **`.chip-row`** › `.chip` — diagnostic/thread pills.
+- **`.todo-box`** — hatched "content to add" placeholder (print twins: `.todo-box` in `handout.css`, `.hw-todo` in `exercises.css`).
+- **`.figs-line`**, **`.reads-box`** (`.h`/`li`/`.bk`), **`.park-grid`** › `.park-card` (`h4`/`p`/`.r`).
+Handout scaffolds likewise use `handout.css`'s `.h-band` › `.tag`, `.todo-box`, `.reads-plain`.
 
 Rules:
 - The content slide's coloured chrome comes from a lens class on `.b-slide`: `lens-empirical` / `lens-historical` / `lens-formal` / `lens-typological`.

@@ -39,7 +39,10 @@ when a home for research talks is decided (still open — see W-open below).
 HTML file resolves; no NUL bytes / empty text files (host-tool truncation
 guard); `<div>` balance (legacy imbalances frozen in `DIV_BASELINE` — new
 files must balance, changes to legacy counts fail); every `deck.html` loads
-`deck-stage.js` and has ≥1 slide. Add a check for every feature you ship.
+`deck-stage.js` and has ≥1 slide; the hub's `WEEKS`/`IDENTITIES` mirror the
+five `shared/*-meta.js` catalogues (week set · title · section name ·
+reading/present flags · identity codes+names — the CLAUDE.md double-entry
+gotcha, now CI-enforced). Add a check for every feature you ship.
 
 ## Work items
 
@@ -161,3 +164,30 @@ what the next session must know)*
 - **Next session must know:** this is now the teaching repo — follow
   CLAUDE.md for authoring. Clone from GitHub; `npm test` before touching
   anything.
+
+### 2026-09-12 — templates groundwork: sync check + shared scaffold patterns
+
+- **Plan of record (agreed with Thomas):** four streamlining pieces, in order:
+  (1) hub↔catalogue CI check → (2) shared scaffold CSS + retrofit →
+  (3) templates/ + scripts/new-week.mjs generator (incl. sem2-rail.js + teal
+  theme) → (4) slide pattern library page. Retrofit-as-we-go approved.
+- **Shipped (1):** check 5 in `scripts/check.mjs` — the hub's `WEEKS`/
+  `IDENTITIES` must mirror the five `shared/*-meta.js` catalogues (week set ·
+  title · section name · reading/present flags · identity codes+names).
+  CLAUDE.md gotcha block + this file's §Checks updated.
+- **Shipped (2):** per-deck `.p3-*`/`.p2-*` scaffold styles promoted to shared —
+  `deck-slides.css` gains q-banner, spine-cards (+`.cols-2 .compact`),
+  chip-row›chip, todo-box, figs-line, reads-box, park-grid/park-card;
+  `handout.css` gains print twins h-band›tag, todo-box, reads-plain; homework
+  scaffolds reuse the existing `.hw-todo`. All 42 sem3+prag2 scaffold files
+  retrofitted (two parallel subagents); grep-verified zero `p2-`/`p3-` remain.
+  Deliberate deltas: deck todo-box unified to 26px; homework todo adopts the
+  `.hw-todo` look. CLAUDE.md §1 recipe now lists the shared patterns.
+- **Environment surprise:** the session's sandbox shell never mounted its
+  shares ("no Plan9 drive shares mounted") — npm test and git could not run
+  from Cowork. All edits made via host file tools, verified by grep +
+  desk-check. Chrome extension refuses file:// URLs, so no browser check
+  either. **Commits + npm test left for Thomas / a healthy session.**
+- `.deploy-key` is absent from this clone (gitignored ⇒ not in fresh clones) —
+  restore it, or mint a new write-access deploy key, if Cowork should push.
+- **Next:** run `npm test`, commit, push, verify live; then piece 3.

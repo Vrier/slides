@@ -20,17 +20,6 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 <style>
   html,body{margin:0;padding:0;background:#11151a;}
   deck-stage:not(:defined){visibility:hidden}
-  .p2-corners{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
-  .p2-corner{border:2px solid var(--tcd-grey-25);border-radius:16px;padding:30px 28px;background:#fff}
-  .p2-corner.on{border-color:var(--tcd-blue);box-shadow:0 10px 34px rgba(0,0,0,.09)}
-  .p2-corner .ci{font-family:var(--mono);font-size:20px;letter-spacing:.12em;text-transform:uppercase;color:var(--tcd-grey-75)}
-  .p2-corner h3{font-family:var(--serif);font-size:44px;margin:8px 0 12px;color:var(--tcd-ink)}
-  .p2-corner.on h3{color:var(--tcd-blue)}
-  .p2-corner p{font-size:25px;color:var(--tcd-grey-100);margin:0;line-height:1.32}
-  .p2-diag{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
-  .p2-chip{font-family:var(--sans);font-size:25px;font-weight:600;padding:9px 20px;border-radius:999px;background:var(--tcd-blue-10);color:var(--tcd-ink)}
-  .p2-todo{border:2px dashed var(--tcd-grey-50);border-radius:14px;padding:30px;color:var(--tcd-grey-75);font-style:italic;font-size:27px;line-height:1.4;background:repeating-linear-gradient(45deg,#fafafa,#fafafa 11px,#f4f4f4 11px,#f4f4f4 22px)}
-  .p2-todo b{color:var(--tcd-grey-100);font-style:normal}
 </style>
 </head>
 <body class="pal-a" data-week="2">
@@ -69,15 +58,15 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="b-main">
       <div class="b-kick">Inference · where we are</div>
       <h2 class="b-h">Intention and Relevance</h2>
-      <div class="p2-corners">
-        <div class="p2-corner on"><div class="ci">Approach 1</div><h3>Inference</h3><p>Meaning from speaker intentions.</p></div>
-        <div class="p2-corner "><div class="ci">Approach 2</div><h3>Grammar</h3><p>Meaning encoded &amp; computed by the system.</p></div>
-        <div class="p2-corner "><div class="ci">Approach 3</div><h3>Information</h3><p>Meaning in the signal — probability, surprisal, LLMs.</p></div>
+      <div class="spine-cards">
+        <div class="spine-card on"><div class="ci">Approach 1</div><h3>Inference</h3><p>Meaning from speaker intentions.</p></div>
+        <div class="spine-card "><div class="ci">Approach 2</div><h3>Grammar</h3><p>Meaning encoded &amp; computed by the system.</p></div>
+        <div class="spine-card "><div class="ci">Approach 3</div><h3>Information</h3><p>Meaning in the signal — probability, surprisal, LLMs.</p></div>
       </div>
-      <div class="p2-diag">
-        <span class="p2-chip">Diagnostic · Scalar implicature</span>
-        <span class="p2-chip">Diagnostic · Presupposition</span>
-        <span class="p2-chip">Thread · Semantics / pragmatics interface</span>
+      <div class="chip-row">
+        <span class="chip">Diagnostic · Scalar implicature</span>
+        <span class="chip">Diagnostic · Presupposition</span>
+        <span class="chip">Thread · Semantics / pragmatics interface</span>
       </div>
     </div>
   </div>
@@ -89,7 +78,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="b-main">
       <div class="b-kick">Session 1</div>
       <h2 class="b-h">Grice's intention-based meaning; reflexive intentions; common ground and joint action (Stalnaker, Clark).</h2>
-      <div class="p2-todo"><b>Content to add.</b> Build out this session — mirror the worked deck in <b>weeks-pragmatics/week-02/deck.html</b> for callout cards (<b>.c-box</b>), worked examples and diagrams.</div>
+      <div class="todo-box"><b>Content to add.</b> Build out this session — mirror the worked deck in <b>weeks-pragmatics/week-02/deck.html</b> for callout cards (<b>.c-box</b>), worked examples and diagrams.</div>
     </div>
   </div>
 </section>
@@ -100,7 +89,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="b-main">
       <div class="b-kick">Session 2</div>
       <h2 class="b-h">Relevance Theory — ostensive-inferential communication; cognitive effects vs processing effort; explicature vs implicature.</h2>
-      <div class="p2-todo"><b>Content to add.</b> Build out this session's slides.</div>
+      <div class="todo-box"><b>Content to add.</b> Build out this session's slides.</div>
     </div>
   </div>
 </section>
@@ -111,7 +100,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="b-main">
       <div class="b-kick">Week 2 — wrap-up</div>
       <h2 class="b-h">Where this sits</h2>
-      <div class="p2-todo"><b>Summary to add.</b> Restate the week through the three approaches and the two diagnostics, and flag the interface question. Next: Inference applied to the two diagnostics.</div>
+      <div class="todo-box"><b>Summary to add.</b> Restate the week through the three approaches and the two diagnostics, and flag the interface question. Next: Inference applied to the two diagnostics.</div>
     </div>
   </div>
 </section>

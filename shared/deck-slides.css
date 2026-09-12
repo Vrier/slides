@@ -97,3 +97,56 @@
 .slide-skeleton .sk-n { font-family: var(--serif); font-size: 80px; font-weight: 600; opacity: 0.15; color: var(--tcd-ink); line-height: 1; }
 .slide-skeleton .sk-m { font-size: var(--type-body); font-weight: 600; }
 .slide-skeleton .sk-h { font-size: var(--type-small); opacity: 0.7; max-width: 860px; text-align: center; line-height: 1.4; }
+
+/* ============================================================
+   SCAFFOLD / OVERVIEW SLIDE PATTERNS
+   Promoted from the sem3 & prag2 week scaffolds (were per-deck
+   .p3-* / .p2-* styles). Use these — never re-define per deck.
+   All take the module accent via the theme's --tcd-blue overrides.
+   ============================================================ */
+
+/* Italic serif question banner (was .p3-q) */
+.q-banner { font-family: var(--serif); font-style: italic; font-size: 33px; color: var(--tcd-ink); background: var(--tcd-blue-10); border-left: 6px solid var(--tcd-blue); border-radius: 0 10px 10px 0; padding: 18px 26px; margin: 6px 0 24px; }
+
+/* Spine cards — the module's arcs/approaches as a card row (was .p3-arcs / .p2-corners).
+   Default 3-up (approaches); .cols-2 for two arcs; .compact = smaller type (sem3 sizing).
+   Mark the week's own corner with .on. Children: .ci kicker, h3, p. */
+.spine-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 10px; }
+.spine-cards.cols-2 { grid-template-columns: 1fr 1fr; }
+.spine-card { border: 2px solid var(--tcd-grey-25); border-radius: 16px; padding: 30px 28px; background: #fff; }
+.spine-card.on { border-color: var(--tcd-blue); box-shadow: 0 10px 34px rgba(0,0,0,.09); }
+.spine-card .ci { font-family: var(--mono); font-size: 20px; letter-spacing: .12em; text-transform: uppercase; color: var(--tcd-grey-75); }
+.spine-card h3 { font-family: var(--serif); font-size: 44px; margin: 8px 0 12px; color: var(--tcd-ink); }
+.spine-card.on h3 { color: var(--tcd-blue); }
+.spine-card p { font-size: 25px; color: var(--tcd-grey-100); margin: 0; line-height: 1.32; }
+.spine-cards.compact { margin-top: 0; }
+.spine-cards.compact .spine-card { padding: 24px 28px; }
+.spine-cards.compact .spine-card .ci { font-size: 19px; letter-spacing: .1em; }
+.spine-cards.compact .spine-card h3 { font-size: 34px; margin: 8px 0 10px; }
+.spine-cards.compact .spine-card p { font-size: 23px; line-height: 1.3; }
+
+/* Chip row — diagnostics / threads / topic pills (was .p2-diag / .p2-chip) */
+.chip-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.chip-row .chip { font-family: var(--sans); font-size: 25px; font-weight: 600; padding: 9px 20px; border-radius: 999px; background: var(--tcd-blue-10); color: var(--tcd-ink); }
+
+/* Hatched "content to add" placeholder (was .p3-todo / .p2-todo) */
+.todo-box { border: 2px dashed var(--tcd-grey-50); border-radius: 14px; padding: 26px 30px; color: var(--tcd-grey-75); font-style: italic; font-size: 26px; line-height: 1.4; background: repeating-linear-gradient(45deg, #fafafa, #fafafa 11px, #f4f4f4 11px, #f4f4f4 22px); }
+.todo-box b { color: var(--tcd-grey-100); font-style: normal; }
+
+/* One-line "Figures: X · Y · Z" note (was .p3-figs) */
+.figs-line { margin-top: 24px; font-family: var(--sans); font-size: 24px; color: var(--tcd-grey-100); }
+.figs-line b { color: var(--tcd-ink); }
+
+/* Set-readings box (was .p3-reads). Children: .h heading, li, .bk book title. */
+.reads-box { border: 1px solid var(--tcd-grey-25); border-radius: 12px; padding: 18px 24px; background: #fff; }
+.reads-box .h { font-family: var(--mono); font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: var(--tcd-blue); margin-bottom: 8px; }
+.reads-box ul { margin: 0; padding-left: 24px; }
+.reads-box li { font-size: 23px; color: var(--tcd-grey-100); line-height: 1.45; margin: 4px 0; }
+.reads-box .bk { font-style: italic; }
+
+/* Parked-topics grid (was .p3-park / .p3-pk). Children: h4, p, .r refs line. */
+.park-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.park-card { border: 1px dashed var(--tcd-blue-50); border-radius: 12px; padding: 16px 22px; background: var(--tcd-blue-10); }
+.park-card h4 { font-family: var(--serif); font-size: 27px; margin: 0 0 6px; color: var(--tcd-ink); }
+.park-card p { font-size: 20px; color: var(--tcd-grey-100); margin: 0 0 8px; line-height: 1.3; }
+.park-card .r { font-family: var(--mono); font-size: 16px; color: var(--tcd-blue-75); }
