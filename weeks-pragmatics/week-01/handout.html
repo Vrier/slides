@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 1 — Pragmatic Meaning · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/handout.css" />
+<link rel="stylesheet" href="../../shared/theme-burgundy.css" />
+<style>
+  /* compact reference table for the four contemporary programmes */
+  .pg-ref { width: 100%; border-collapse: separate; border-spacing: 0; margin: 5pt 0 2pt; font-family: var(--sans); }
+  .pg-ref th { background: var(--tcd-ink); color: #fff; font-family: var(--serif); font-weight: 600; font-size: 8.5pt; text-align: left; padding: 4pt 7pt; }
+  .pg-ref td { font-size: 8.5pt; padding: 4pt 7pt; border-bottom: 0.5pt solid var(--tcd-grey-25); vertical-align: top; }
+  .pg-ref tr:last-child td { border-bottom: none; }
+  .pg-ref .cat { font-family: var(--serif); font-weight: 600; color: var(--tcd-ink); }
+  .pg-ref .sc { font-family: var(--serif); font-style: italic; font-size: 8pt; color: var(--tcd-grey-100); }
+
+  /* small transcript block for the footpath exchange */
+  .hx-convo { margin: 4pt 0 2pt; padding: 6pt 10pt 7pt; background: var(--tcd-blue-10); border-left: 2pt solid var(--tcd-blue); }
+  .hx-convo .t { display: flex; gap: 8pt; padding: 1.5pt 0; font-size: 9pt; }
+  .hx-convo .w { flex: 0 0 62pt; font-family: var(--mono); font-size: 7.5pt; text-transform: uppercase; letter-spacing: .04em; color: var(--tcd-grey-100); padding-top: 1.5pt; }
+  .hx-convo .s { font-family: var(--serif); font-style: italic; color: var(--tcd-ink); }
+  .hx-convo .src { margin-top: 3pt; font-family: var(--sans); font-size: 7.5pt; color: var(--tcd-grey-100); }
+
+  /* keep handout mono on print despite the burgundy override layer */
+  @media print {
+    :root {
+      --tcd-blue: #000; --tcd-blue-75: #555; --tcd-blue-50: #888;
+      --tcd-blue-25: #bbb; --tcd-blue-10: #f2f2f2;
+      --tcd-ink: #000; --c-def: #000;
+      --lens-emp: #000; --lens-his: #000; --lens-for: #000; --lens-typ: #000;
+    }
+  }
+</style>
+</head>
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+<div class="handout-week" data-week="1"><div class="page">
+
+  <!-- Header -->
+  <header class="h-header">
+    <div class="h-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
+      <div class="h-vr"></div>
+      <div class="h-names">
+        <div class="en">Trinity College Dublin</div>
+        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+        <div class="uni">The University of Dublin</div>
+      </div>
+    </div>
+    <div class="h-meta">
+      <div class="code">LI7862 · Linguistic Pragmatics</div>
+      <div class="term">Dr. Thomas Stephen · Semester 1, 2026</div>
+    </div>
+  </header>
+
+  <div class="h-title-row">
+    <div class="h-week">Week 1</div>
+    <h1 class="h-title">Pragmatic Meaning</h1>
+  </div>
+
+  <!-- Lens roadmap bar -->
+  <div class="lens-roadmap">
+    <div class="lr-item lens-empirical">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div>
+      <div class="lr-lab">Empirical</div>
+      <div class="lr-q">What did they mean?</div>
+    </div>
+    <div class="lr-item lens-historical">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div>
+      <div class="lr-lab">Historical</div>
+      <div class="lr-q">Where does pragmatics come from?</div>
+    </div>
+    <div class="lr-item lens-formal">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div>
+      <div class="lr-lab">Formal</div>
+      <div class="lr-q">Which machinery computes what's meant?</div>
+    </div>
+    <div class="lr-item lens-typological">
+      <div class="lr-glyph"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div>
+      <div class="lr-lab">Applied</div>
+      <div class="lr-q">Where does it live in real use?</div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       EMPIRICAL — What did they mean?
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-empirical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>
+      <span class="lsh-lab">Empirical</span>
+      <span class="lsh-q">The gap between what is said and what is meant</span>
+    </div>
+
+    <div class="callout callout-ex">
+      <span class="badge">Data</span>
+      <p>An unexceptional exchange — and yet almost nothing said in it was what was meant:</p>
+      <div class="hx-convo">
+        <div class="t"><span class="w">Small boy</span><span class="s">Man</span></div>
+        <div class="t"><span class="w">Passer-by</span><span class="s">Is that your brother?</span></div>
+        <div class="t"><span class="w">Small girl</span><span class="s">Yes</span></div>
+        <div class="t"><span class="w">Passer-by</span><span class="s">It takes all sorts</span></div>
+        <div class="t"><span class="w">Mother</span><span class="s">It certainly does</span></div>
+        <div class="src">Grundy, <em>Doing Pragmatics</em>, ch. 1 — overheard on a footpath</div>
+      </div>
+      <p>Pragmatics is the study of how hearers get from what is <strong>said</strong> to what is <strong>meant</strong> — systematically, not by magic.</p>
+    </div>
+
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">Said vs meant</div>
+        <p>The working distinction of the whole module. For every datum, ask three questions: what was literally <strong>said</strong>? what was <strong>meant</strong>? and by what route did the hearer get from one to the other? The grammar alone underdetermines what an utterance <em>does</em>.</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">The exchange, turn by turn · what was said, what was meant, how did they know?</div>
+        <div class="ex-task">
+          <span class="tn">1</span>
+          <span class="tb"><em class="sent">Man</em> — one noun, no sentence, and yet a successful move. What is the small boy doing?
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">2</span>
+          <span class="tb"><em class="sent">Is that your brother?</em> — formally a question about kinship. What is it really doing, and what work does <em>your</em> (rather than <em>her</em>) perform?
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">3</span>
+          <span class="tb"><em class="sent">It takes all sorts</em> — <em class="sent">It certainly does</em>. Literally a platitude and an agreement. What do the two turns jointly accomplish?
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-block">
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Diagnose the gap · what arrives beyond the literal content — and can it be taken back?</div>
+        <div class="ex-task">
+          <span class="tn">1</span>
+          <span class="tb"><em class="sent">I now pronounce you husband and wife.</em> Is &ldquo;true or false?&rdquo; even the right question here? What is the right question instead? (Previews Week 2 · Speech Acts.)
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">2</span>
+          <span class="tb">A: <em class="sent">Are you coming to the party?</em> &nbsp;B: <em class="sent">I have marking to do.</em> What does B convey beyond the marking — and what does the continuation <em class="sent">&hellip;but I'm coming anyway</em> show about how that meaning arrived? (Previews Week 3 · Implicature.)
+          <div class="answer-space" style="--lines:3"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">3</span>
+          <span class="tb">Q: <em class="sent">Who ate the beans?</em> &nbsp;A1: <em class="sent"><span style="font-variant:small-caps;font-style:normal">John</span> ate the beans.</em> &nbsp;A2: <em class="sent">#John ate the <span style="font-variant:small-caps;font-style:normal">beans</span>.</em> Both answers assert the same proposition. Why does A2 fail as an answer? (Previews Week 6 · Information.)
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       HISTORICAL — Where does pragmatics come from?
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-historical">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>
+      <span class="lsh-lab">Historical</span>
+      <span class="lsh-q">From the ideal-language dream to language in use</span>
+    </div>
+
+    <div class="callout callout-note">
+      <span class="badge">Background</span>
+      <p><strong>The spine.</strong> Frege (<em>Begriffsschrift</em>, 1879; sense vs reference — <em>Hesperus</em> and <em>Phosphorus</em> name one planet yet differ in meaning), Russell (<em>On Denoting</em>, 1905; grammatical form misleads — logical form is where meaning lives) and the early Wittgenstein (<em>Tractatus</em>, 1921; a sentence <em>pictures</em> a possible fact) make meaning a matter of <strong>reference, truth and logical form</strong> — pushing speakers, hearers and contexts out of the picture.</p>
+      <p><strong>Positivism</strong> radicalises this: for the Vienna Circle (Schlick, Neurath, Carnap) and Ayer (<em>Language, Truth and Logic</em>, 1936), a sentence's meaning is its <em>method of verification</em>, and what cannot be verified is strictly meaningless. <strong>Ordinary language philosophy</strong> strikes back: the late Wittgenstein (&ldquo;the meaning of a word is its <em>use</em> in the language&rdquo;, PI §43), Austin (performatives — felicitous or misfired, not true or false) and Strawson (presupposition, against Russell) find <strong>orderly use</strong> where positivism saw defective logic. <strong>Grice</strong> then bridges the camps: speaker meaning as intention recognition, cooperation and implicature — language <em>is</em> logical, <em>and</em> use goes beyond logic, systematically.</p>
+    </div>
+
+    <div class="callout callout-def">
+      <span class="badge">Showpiece</span>
+      <p>Russell 1905 — <em class="sent">The king of France is bald</em>, made logical:</p>
+      <p>\[ \exists x\,\bigl(F(x) \;\land\; \forall y\,(F(y)\rightarrow y=x) \;\land\; G(x)\bigr) \]</p>
+      <p>Existence, uniqueness, predication — no mysterious reference to a non-existent king. The showpiece of the ideal-language method: messy natural language replaced by pure logic.</p>
+    </div>
+
+    <div class="ex-instrn">
+      <div class="ex-instrn-head">Reflect</div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">1</span><span class="it-instr">The positivist verdict:</span></div>
+        <p class="it-task">On the verification doctrine, most everyday talk — evaluation, ritual, indirectness, small talk on footpaths — comes out strictly meaningless. Explain how the doctrine delivers that verdict, and why the footpath exchange is a problem for it.</p>
+        <div class="answer-space" style="--lines:4"></div>
+      </div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">2</span><span class="it-instr">Strawson against Russell:</span></div>
+        <p class="it-task">For Russell, <em class="sent">The king of France is bald</em> is simply false. What does Strawson say the sentence does instead, and which everyday intuition about &ldquo;taking for granted&rdquo; does that capture?</p>
+        <div class="answer-space" style="--lines:4"></div>
+      </div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">3</span><span class="it-instr">The two Wittgensteins:</span></div>
+        <p class="it-task">The early Wittgenstein inspires the positivists' ideal language; the late Wittgenstein helps found the rebellion against it. Give the one-line doctrine of each.</p>
+        <div class="answer-space" style="--lines:3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       FORMAL — Which machinery computes what's meant?
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-formal">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>
+      <span class="lsh-lab">Formal</span>
+      <span class="lsh-q">Semantics, pragmatics, and four contemporary programmes</span>
+    </div>
+
+    <div class="callout callout-def">
+      <span class="badge">Definition</span>
+      <p><strong>Semantics</strong> — meaning contributed by <em>linguistic expressions</em>: what the words and their combination encode. <strong>Pragmatics</strong> — meaning contributed by <em>use and inference in context</em>: what is taken for granted, what the speaker is trying to achieve, what counts as a relevant move.</p>
+      <p>The <strong>boundary</strong> between them is a live research question — some &ldquo;pragmatic&rdquo; phenomena now have strong semantic analyses, and the border shifts as theories improve. It is where this course ends.</p>
+    </div>
+
+    <table class="pg-ref">
+      <thead><tr><th style="width:19%">Programme</th><th style="width:20%">Figures</th><th style="width:35%">The bet</th><th style="width:18%">Slogan</th><th style="width:8%">Week</th></tr></thead>
+      <tbody>
+        <tr><td class="cat">Neo-Gricean</td><td>Horn · Levinson</td><td>Grice's maxims sharpened into scales and default heuristics</td><td class="sc">&ldquo;It's pragmatic reasoning.&rdquo;</td><td>9</td></tr>
+        <tr><td class="cat">Relevance Theory</td><td>Sperber &amp; Wilson · Carston</td><td>one principle — maximal cognitive effect for processing effort, in a fast, dedicated inference module</td><td class="sc">&ldquo;It's how minds work.&rdquo;</td><td>10</td></tr>
+        <tr><td class="cat">Rational Speech Acts</td><td>Frank &amp; Goodman</td><td>speakers and listeners model each other probabilistically — Gricean reasoning as Bayesian inference</td><td class="sc">&ldquo;It's probabilistic inference.&rdquo;</td><td>11</td></tr>
+        <tr><td class="cat">Grammaticalism</td><td>Chierchia · Fox · Spector</td><td>a silent exhaustification operator (EXH &asymp; <em>only</em>) computes the inference inside the grammar</td><td class="sc">&ldquo;It's syntax&ndash;semantics.&rdquo;</td><td>12</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ex-block">
+      <div class="ex-tool-intro">
+        <div class="tl-label">New tool</div>
+        <div class="tl-name">The shared test case</div>
+        <p><em class="sent">Some of the students passed</em> — and everyone hears: <em>not all of them did</em>. Each programme derives this same inference with a different architecture of mind and grammar; deciding between them is the business of weeks 9–12.</p>
+      </div>
+      <div class="ex-tasks">
+        <div class="ex-tasks-head">Derive the inference · sketch each programme's route from <em>some</em> to <em>not all</em></div>
+        <div class="ex-task">
+          <span class="tn">1</span>
+          <span class="tb">Neo-Gricean: using the scale &lang;<em>some</em>, <em>all</em>&rang;, spell out the hearer's reasoning — what would a cooperative speaker who knew <em>all</em> have done?
+          <div class="answer-space" style="--lines:3"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">2</span>
+          <span class="tb">Rational Speech Acts: a listener models a rational speaker choosing between <em>some</em> and <em>all</em>. Why do the all-worlds lose probability?
+          <div class="answer-space" style="--lines:2"></div></span>
+        </div>
+        <div class="ex-task">
+          <span class="tn">3</span>
+          <span class="tb">Grammaticalism: what does the silent operator EXH (&asymp; <em>only</em>) contribute — and what does the embedded case <em class="sent">Every student read some of the papers</em> show that global reasoning shouldn't reach?
+          <div class="answer-space" style="--lines:3"></div></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-instrn">
+      <div class="ex-instrn-head">Semantic or pragmatic?</div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">1</span><span class="it-instr">Classify, and name the deciding fact:</span></div>
+        <p class="it-task"><em class="sent">It takes all sorts</em>, used to close the footpath encounter kindly. Is that closing force semantic or pragmatic — and what about it decides?</p>
+        <div class="answer-space" style="--lines:2"></div>
+      </div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">2</span><span class="it-instr">Classify, and name the deciding fact:</span></div>
+        <p class="it-task">B's <em class="sent">I have marking to do</em> conveying that B is (probably) not coming. Semantic or pragmatic — and which property of the inference decides?</p>
+        <div class="answer-space" style="--lines:2"></div>
+      </div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">3</span><span class="it-instr">Classify — carefully:</span></div>
+        <p class="it-task"><em class="sent">Some</em> conveying <em>not all</em>. Why is this one contested rather than settled — and which programmes put it on which side of the boundary?</p>
+        <div class="answer-space" style="--lines:3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ──────────────────────────────────────────────────────────
+       APPLIED — Where does it live in real use?
+       ────────────────────────────────────────────────────────── -->
+  <div class="lens-sec">
+    <div class="lens-sec-head lens-typological">
+      <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>
+      <span class="lsh-lab">Applied</span>
+      <span class="lsh-q">Appropriateness, indeterminacy, reflexivity — and the project</span>
+    </div>
+
+    <div class="callout callout-note">
+      <span class="badge">Overview</span>
+      <p>Three observations from the footpath. <strong>Appropriateness</strong>: every utterance is fitted to its moment — to who may speak, to whom, about what — and that fit, not just truth, is what speakers are judged on. <strong>Indeterminacy</strong>: what an utterance means is often negotiated after the fact — the mother's <em class="sent">It certainly does</em> settles what the platitude was doing. <strong>Reflexivity</strong>: language comments on its own use constantly — hedges, echoes, scare quotes.</p>
+      <p><strong>The term project</strong> documents these in the wild: choose a <em>phenomenon</em> and a <em>setting</em> where it lives, collect a small dataset of real use (transcripts, excerpts, a mini-corpus — not invented examples), analyse week by week as the tools arrive, and write it up research-paper style.</p>
+    </div>
+
+    <div class="ex-instrn">
+      <div class="ex-instrn-head">Toward the project</div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">1</span><span class="it-instr">Project seed:</span></div>
+        <p class="it-task">Choose a candidate phenomenon (implicature, presupposition, politeness&hellip;) and a speech event or interaction type where it lives. One sentence each for <strong>Choose / Collect / Analyse</strong>: what phenomenon, what setting, what data you could gather.</p>
+        <div class="answer-space" style="--lines:5"></div>
+      </div>
+      <div class="ex-it">
+        <div class="it-lead"><span class="it-n">2</span><span class="it-instr">The footpath revisited:</span></div>
+        <p class="it-task">Point to one moment in the exchange where meaning is settled only after the fact, and one where the wording is fitted to who may speak, to whom, about what.</p>
+        <div class="answer-space" style="--lines:4"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="h-footer">
+    <span class="left">LI7862 · Linguistic Pragmatics</span>
+    <span>Week 1 · Pragmatic Meaning</span>
+    <span>1</span>
+  </div>
+
+</div><!-- /page -->
+</div><!-- /handout-week 1 -->
+
+<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f4e7e9"/>
+    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#6e1423" stroke-width="2"/>
+    <line x1="36" y1="32" x2="64" y2="32" stroke="#6e1423" stroke-width="2.5"/>
+    <line x1="36" y1="42" x2="58" y2="42" stroke="#ddbdc1" stroke-width="2"/>
+    <line x1="36" y1="50" x2="62" y2="50" stroke="#ddbdc1" stroke-width="2"/>
+    <line x1="36" y1="58" x2="54" y2="58" stroke="#ddbdc1" stroke-width="2"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#6e1423" text-anchor="middle">LI7862 · HANDOUT</text>
+  </svg>
+</template>
+</body>
+</html>

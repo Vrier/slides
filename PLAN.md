@@ -223,3 +223,53 @@ what the next session must know)*
   VM permitting — see Environment surprise above), verify live. All four
   template-streamlining pieces are now written; everything is uncommitted
   and desk-verified only.
+
+### 2026-09-12 (later) — Pragmatics I week 1: handout + homework authored
+
+- **Scope (agreed with Thomas):** the wk-1 deck (~40 slides) and readings were
+  already ready and untouched; the missing artifacts were the handout (no file)
+  and the homework (scaffold only). Content derived strictly from the deck's own
+  material; homework is formative (not assessed), default due line kept.
+- **Authored then WITHDRAWN:** `weeks-pragmatics/week-01/handout.html` — a full
+  wk-02-modelled handout was written, then Thomas decided a handout is not
+  appropriate for week 1. The file is still on disk (shell VM down — Cowork
+  could not delete it): **delete it before committing**, or keep it aside if
+  wanted later. Hub handout status reverted to 'none'.
+- **Shipped:** wk-01 `exercises.html` — four `.hw-todo` placeholders replaced
+  with real lens problems (presupposition/accommodation/indirectness data ·
+  Grice + three threads · semantics/pragmatics boundary + slogan matching ·
+  field-collection task doubling as a project datum). Band now reads
+  "formative · not assessed"; per-problem marks are "—".
+- **Hub:** prag wk 1 ex draft→ready; handout stays 'none' (see withdrawal
+  above). Statuses live only in the hub; meta title/section untouched, so
+  check 5 unaffected. Deck assets desk-verified: pragmatics-genealogy.svg +
+  images/ portraits present (Chierchia is a deliberate no-photo block).
+- **Shipped (same session, later):** `weeks-pragmatics/overview-li7862.html` —
+  the LI7862 module overview (HTML, print-clean via handout.css + mono print
+  override; ONE level deep ⇒ `../shared/…`). Sections: description + two-arc
+  narrative, 5 learning outcomes (DRAFTED from repo content — Thomas to review
+  before deploy), 12-week schedule table (topics link to each week's
+  readings.html — wk 3/8/12 existence spot-checked), assessment (project
+  write-up = the 3,500–4,000-word assignment, 100%, **due Monday 14 December
+  2026**, Blackboard; weekly exercises formative), logistics (Mon 10:00–12:00
+  · PX113; OH Thu 14:00–15:00; tmurrays@tcd.ie; Grundy 3rd ed.), policies
+  pointer to the CLCS handbook. Wiring: meta `MODULE.identities` li7862
+  overview status none→ready; hub `modToolsHTML` now renders a live Overview
+  link when an identity has `ov:'ready'` (new `a.mt-ov.ready` CSS; li7862 got
+  the flag) — check 5 only compares identity code+name, so the extra field is
+  safe. NOTE for wk-12 row: figures shown as Chierchia · Fox · Spector (from
+  the wk-1 deck; meta has none). Redrafted same session per Thomas: clipped
+  fragment style throughout, and NO set textbook — "selected readings from
+  across the literature" replaces Grundy. NB the wk-1 deck's housekeeping
+  slide still names Grundy as the textbook — deck untouched per instructions;
+  Thomas may want to align it.
+- **Also:** week-1 readings PDF hunt — `readings/_MANIFEST.md` (repo root, keep
+  out of git or move if unwanted publicly): Ayer ch. 1 (LSE course PDF) and
+  Horn & Ward intro (publisher sample) verified with download commands;
+  Levinson 1983 ch. 1 has no verified open copy (candidate UPF scan noted,
+  unverifiable — VM down + site unreachable from browser).
+- **Environment:** shell VM down again all session ("VM service not running") —
+  npm test NOT run; everything desk-verified by grep (div balance, no leftover
+  todos/placeholders, links against shared/). **Commits + npm test + live
+  verify left for Thomas / a healthy session**, on top of the still-uncommitted
+  template-streamlining work above.
