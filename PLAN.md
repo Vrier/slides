@@ -275,6 +275,16 @@ what the next session must know)*
   `weeks-pragmatics/week-01/images/chierchia.jpg` BEFORE `npm test`
   (check 1 fails on the missing src until then). Edits desk-verified
   div-balanced.
+- **Correction (Thomas):** the wk-1 RSA slides wrongly featured Michael C.
+  Frank (Stanford); the module's figure is Michael FRANKE (Universität
+  Tübingen — affiliation verified via uni-tuebingen.de; meta wk 11 already
+  said Franke). Deck slide 17c card is now Franke (`images/franke.jpg`, from
+  his homepage's wald.JPG — Thomas downloads it, command supplied) and the
+  four-programmes slide says "Franke & Goodman". `images/frank.jpg` is now
+  ORPHANED (harmless to checks; delete at will). Environment notes: his
+  machine lacks npm/Node — CI (deploy.yml runs npm test before SSH) is the
+  test gate for now; also the chat-uploads dir is session-virtual, so binary
+  images must reach the repo via user download/copy, not Cowork file tools.
 - **Also:** week-1 readings PDF hunt — `readings/_MANIFEST.md` (repo root, keep
   out of git or move if unwanted publicly): Ayer ch. 1 (LSE course PDF) and
   Horn & Ward intro (publisher sample) verified with download commands;
