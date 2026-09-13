@@ -37,6 +37,13 @@
   .ov-fact .fb { font-family: var(--sans); font-size: 9pt; color: var(--tcd-ink); }
   .ov-fact .fb small { display: block; font-size: 7.5pt; color: var(--tcd-grey-100); margin-top: 1.5pt; }
 
+  /* plain callouts: neutralise the coloured def/key/note accents for this page */
+  .callout, .callout-def, .callout-ex, .callout-key, .callout-note {
+    --c-def: var(--tcd-grey-100); --c-ex: var(--tcd-grey-100);
+    --c-key: var(--tcd-grey-100); --c-note: var(--tcd-grey-100);
+    --acc: var(--tcd-grey-100);
+  }
+
   /* outcomes list */
   .ov-outcomes { margin: 4pt 0 2pt; padding: 0 0 0 14pt; }
   .ov-outcomes li { font-family: var(--sans); font-size: 9pt; color: var(--tcd-ink); line-height: 1.45; padding: 1.5pt 0; }
@@ -139,8 +146,8 @@
 
   <div class="callout callout-key">
     <span class="badge">Research project · 100%</span>
-    <p>One assessment. A <strong>research project</strong>, written up at
-    <strong>3,500 to 4,000 words</strong>, in research paper style. Built across the term,
+    <p>One assessment. A <strong>research project</strong>, written up with a limit of
+    <strong>3,500 words</strong>, in research paper style. Built across the term,
     week by week.</p>
     <p><strong>Choose</strong>: a phenomenon (implicature, presupposition, politeness&hellip;) and a
     setting, a speech event where it lives. <strong>Collect</strong>: a small dataset of real

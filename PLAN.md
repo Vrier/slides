@@ -292,6 +292,36 @@ what the next session must know)*
   already has an open PDF link in readings.html, Carston 2008 is
   library-access). mrail Housekeeping keys now
   mod2·assess·outc·reads·wk·sum.
+- **Deck restyle (Thomas's direction, applied to wk-1 deck):** (1) Grundy
+  footpath hook DELETED (both "An exchange" slides; data-sec `how` gone) and
+  the Tractatus slide DELETED (`tlp` gone) — mrail TITLES/GROUPS updated;
+  screen-labels now have gaps (cosmetic). (2) "What is pragmatic meaning?"
+  slide: new lead ("…literal *semantic* content…"); "The boundary" row
+  replaced by four interface rows (Grammar/Cognition/Society/Politics —
+  content from the module's own material; matches the original brief's
+  applied line). (3) Titles now plain school/topic names: Logical
+  Positivism, Ordinary Language Philosophy, The Vienna Circle, Grice, The
+  historical spine, The genealogy map, and the six empirical answers are
+  Speech Acts/Implicature/Presupposition/Common Ground/Information/
+  Politeness with bare week wktags; Applied pair now "Pragmatics in everyday
+  talk" + "The term project". (4) ALL em-dashes stripped from visible text
+  (colons/parens/commas; en-dash dates kept per Thomas); interrogatives
+  rephrased as statements/imperatives except the slide title "What is
+  pragmatic meaning?" (kept as framing) and object-language questions in
+  data. (5) Dangling refs fixed: mother's echo → hearer's reply; "small talk
+  on footpaths" → "small talk"; Strawson's "(4)" → prose. STYLE RULES NOW
+  STANDING for this module's prose: no em-dashes, no "not X but Y",
+  fragments over flow, plain title names.
+- **Overview polish:** callout accent colours (purple def / yellow key /
+  note) neutralised to greys via file-local custom-property overrides — the
+  page now runs ink/grey + the burgundy section rules only. Assessment word
+  count changed everywhere from "3,500–4,000" to a **limit of 3,500 words**
+  (overview · deck 21a fact · prag-meta words field · hub identity
+  assessment title — the last pair not check-5-compared but kept in sync).
+- **Known style drift left for later:** exercises.html still has the
+  em-dash car datum + question leads; readings.html notes have em-dashes;
+  prag-meta wk-1 lens q/d strings are questions with em-dashes (feed hub);
+  deck head has now-unused .bigask/.qsrc CSS.
 - **Also:** week-1 readings PDF hunt — `readings/_MANIFEST.md` (repo root, keep
   out of git or move if unwanted publicly): Ayer ch. 1 (LSE course PDF) and
   Horn & Ward intro (publisher sample) verified with download commands;
