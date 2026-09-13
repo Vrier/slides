@@ -318,6 +318,13 @@ what the next session must know)*
   count changed everywhere from "3,500–4,000" to a **limit of 3,500 words**
   (overview · deck 21a fact · prag-meta words field · hub identity
   assessment title — the last pair not check-5-compared but kept in sync).
+- **Docs:** CLAUDE.md now codifies the session's style decisions as
+  "§Conventions › House style for slide & document prose" (titles name
+  things · no em-dashes · no contrastive not-framings · fragments ·
+  statements over questions · no hooks · real portraits, verified · plain
+  callouts on print docs · LI7862 module facts incl. 3,500-word limit,
+  Blackboard, PX113). prag wk-1 deck + overview added to Reference weeks as
+  the prose-style reference; deck-building Rules point at the block.
 - **Known style drift left for later:** exercises.html still has the
   em-dash car datum + question leads; readings.html notes have em-dashes;
   prag-meta wk-1 lens q/d strings are questions with em-dashes (feed hub);

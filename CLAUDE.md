@@ -128,6 +128,7 @@ uploads/  pdfs/                 source material (last year's PDFs, handbooks) �
 - **`pattern-library/`** — START HERE: `deck.html` (one canonical slide per shared deck pattern, rendered by the real runtime) + `print.html` (every handout/homework/readings block as three A4 cards). Copy sections straight from their source — but note the library sits one level deep (`../shared/…`), weeks two (`../../shared/…`). Opened directly; not linked from the hub.
 - **`weeks-semantics1/week-03`** (Predicates & Set Theory) — the fully-worked lens-based reference. Read its `deck.html` + `handout.html` before building any lens-based week.
 - **`weeks-semantics3/week-01`** and **`weeks-pragmatics2/week-01`** — references for the arc / approach spines and their themes.
+- **`weeks-pragmatics/week-01`** — the PROSE STYLE reference (with `overview-li7862.html`): plain titles, fragments, no em-dashes, statements over questions. The rules live in §Conventions › House style.
 
 Each week file is **self-contained** (its slide text lives in its own HTML). The only
 shared runtime dependency is the module's `*-meta.js` → its `*-rail.js` (module section
@@ -169,6 +170,7 @@ in a deck's `<style>` block (the old per-deck `.p2-*`/`.p3-*` copies are retired
 Handout scaffolds likewise use `handout.css`'s `.h-band` › `.tag`, `.todo-box`, `.reads-plain`.
 
 Rules:
+- **Slide TEXT follows §Conventions › House style** (plain titles, fragments, no em-dashes, statements over questions) — the wk-1 pragmatics deck is the worked example.
 - The content slide's coloured chrome comes from a lens class on `.b-slide`: `lens-empirical` / `lens-historical` / `lens-formal` / `lens-typological`.
 - Put `<div class="lens-progress" data-lens="LENS"></div>` at the end of `.b-main` so the 4-step tracker shows position. The rail filler fills it.
 - Leave `<div class="b-rail"></div>` **empty** — the rail filler fills it from `<body data-week="N">`. Never hand-write the rail.
@@ -207,9 +209,56 @@ to build or restart. Hard-refresh https://slides.tstephen.com to confirm.
 ---
 
 ## Conventions / gotchas
-- **Slide-title style:** avoid numeral-slogan headings of the form "N X, one Y" /
-  "one X, N Y" ("Four strands, one field", "One datum, four ways") — Thomas has
-  vetoed the pattern across all modules. Use plain descriptive titles.
+
+### House style for slide & document prose (Thomas's standing rules, est. 2026-09 on prag wk 1)
+
+Apply to ALL new slide, handout, homework and overview text, every module. The
+worked example of every rule is **`weeks-pragmatics/week-01/deck.html` +
+`weeks-pragmatics/overview-li7862.html`** (post-restyle) — read them before
+writing slide prose.
+
+- **Titles name things.** Plain school/topic/thing names: "Logical Positivism",
+  "Ordinary Language Philosophy", "The term project", "Speech Acts" with a bare
+  week `wktag`. No slogans ("Ordinary language strikes back", "Saying is
+  doing") and no numeral-slogan forms "N X, one Y" / "one X, N Y" ("Four
+  strands, one field") — the long-standing veto.
+- **No em-dashes in visible text.** Use colons, semicolons, commas or
+  parentheses. En-dash date/week ranges ("1848 – 1925", "Weeks 9–12") may stay.
+  Avoid prose hyphens where a rewording exists; lexical/technical hyphens
+  (Neo-Gricean, non-natural) stay.
+- **No contrastive "X, not Y" / "not X but Y" framings.** Assert the positive
+  directly ("Context is a shared, constantly updated object", never "not a
+  backdrop but…").
+- **Fragments over flow.** Short sentences. Clipped. "Semantics: what the words
+  encode. Pragmatics: what use and context add." Cut connective filler and
+  LLM-ish cadence.
+- **Prefer statements and imperatives to questions.** "Decide: true or false",
+  "Find what both versions convey". Questions survive only inside
+  object-language data ("Are you coming to the party?") and, sparingly, as a
+  module-framing title ("What is pragmatic meaning?"). NB the meta lens `q`
+  fields are framing questions by design and stay as they are.
+- **No long scene-setting hooks.** Open near the content (the wk-1 Grundy
+  footpath opener was cut on this rule). When a hook is cut, sweep the deck for
+  dangling references to it.
+- **Portraits: real photos when legitimately available** (personal or
+  university pages; note the source); the `.npf` text block is the fallback.
+  Verify the figure is the right person (wk 1 briefly shipped Michael C. Frank,
+  Stanford, for Michael Franke, Tübingen).
+- **Housekeeping block of a week-1-style deck:** How the module works → The
+  assessment → Learning outcomes → This week's readings (shared `.reads-box`)
+  → Week by week → Wrap-up, all registered in the deck's rail/TOC.
+- **Print documents (overviews, handouts):** keep callouts plain — neutralise
+  the coloured def/key/note accents with file-local custom-property overrides
+  (see `overview-li7862.html`); ink/grey plus the module accent only.
+- **LI7862 module facts** (hard-coded in several files — keep consistent):
+  selected readings from across the literature, no set textbook; the platform
+  is **Blackboard** (never "Learn"); assessment is one research project,
+  **limit 3,500 words**, due **Monday 14 December 2026**, submitted via
+  Blackboard; weekly exercises are formative, carry no marks, model answers
+  follow; lectures Mondays 10:00 to 12:00 in PX113; office hours Thursdays
+  14:00 to 15:00; contact tmurrays@tcd.ie.
+
+### Wiring gotchas
 - **Module = folder + catalogue + rail + theme.** Get all four right (table above). The most common mistake is wiring a week to the wrong `*-meta.js`/`*-rail.js`/theme.
 - **`<body data-week="N">` on every deck** — the rail reads it. Skeletons already set it.
 - **Keep the hub in sync.** Any status/title change must land in both the `*-meta.js` and `index.html`'s `WEEKS` array.
