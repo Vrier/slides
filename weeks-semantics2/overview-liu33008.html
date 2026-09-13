@@ -17,6 +17,12 @@
   .ov-h .n { font-family: var(--mono); font-size: 9pt; font-weight: 600; color: var(--tcd-blue); }
   .ov-h h2 { font-family: var(--serif); font-size: 13.5pt; font-weight: 700; color: var(--tcd-ink); margin: 0; }
 
+  /* plain callouts: neutralise the coloured def/key/note accents for this page */
+  .callout, .callout-def, .callout-ex, .callout-key, .callout-note {
+    --c-def: var(--tcd-grey-100); --c-ex: var(--tcd-grey-100);
+    --c-key: var(--tcd-grey-100); --c-note: var(--tcd-grey-100);
+  }
+
   /* 12-week schedule table */
   .ov-sched { width: 100%; border-collapse: separate; border-spacing: 0; margin: 5pt 0 2pt; font-family: var(--sans); }
   .ov-sched th { background: var(--tcd-ink); color: #fff; font-family: var(--serif); font-weight: 600; font-size: 8.5pt; text-align: left; padding: 4pt 7pt; }
@@ -84,31 +90,30 @@
   <p style="font-family:var(--sans);font-size:9.5pt;line-height:1.5;color:var(--tcd-ink);margin:4pt 0">
     Semantics I built a theory of truth in one world: a model, denotations, predicate logic,
     λ and events. This module is about everything that theory cannot see. <em>The Morning
-    Star is the Evening Star</em> was news, not a triviality; <em>Sue thinks Harry is
-    single</em> is not settled by Harry's love life; <em>Emma is seeking a unicorn</em> is
-    true with no unicorns anywhere. Semantics II rebuilds meaning across <strong>possible
-    worlds</strong> — extension gives way to <strong>intension</strong> — and re-derives the
-    operators that live above the verb: negation, modality, attitudes, conditionals, aspect,
-    evidentiality.
+    Star is the Evening Star</em> was news. <em>Sue thinks Harry is single</em> is true or
+    false whatever Harry's love life. <em>Emma is seeking a unicorn</em> is true with no
+    unicorns anywhere. Semantics II rebuilds meaning across <strong>possible worlds</strong>:
+    extension gives way to <strong>intension</strong>, and the operators above the verb are
+    re-derived one by one: negation, modality, attitudes, conditionals, aspect, evidentiality.
   </p>
   <p style="font-family:var(--sans);font-size:9.5pt;line-height:1.5;color:var(--tcd-ink);margin:4pt 0">
-    The machinery is built early: worlds and modal logic in week 3, Kratzer's system in
-    week 4; attitude reports, conditionals, aspect and evidentiality then reuse it rather
-    than reinvent it, converging on the modals-and-tense capstone. Every teaching week runs
-    four lenses: <strong>empirical</strong> → <strong>historical</strong> →
-    <strong>formal</strong> → <strong>typological</strong>. Prerequisite: the Semantics I
-    toolkit, recapped at speed in week 1.
+    The machinery is built early. Worlds and modal logic in week 3; Kratzer's system in
+    week 4. Attitude reports, conditionals, aspect and evidentiality then reuse it,
+    converging on the modals-and-tense capstone. Every teaching week runs four lenses:
+    <strong>empirical</strong> &rarr; <strong>historical</strong> &rarr;
+    <strong>formal</strong> &rarr; <strong>typological</strong>. Prerequisite: the
+    Semantics I toolkit, recapped at speed in week 1.
   </p>
 
   <div class="callout callout-def">
     <span class="badge">Learning outcomes</span>
     <p>On successful completion of this module, students will be able to:</p>
     <ol class="ov-outcomes">
-      <li>run the substitutivity diagnostic and identify opaque environments — attitudes, modals, epistemic adverbs, intensional transitives — in real language data;</li>
-      <li>define and compute with the core intensional notions: extension vs intension, propositions as sets of worlds, world-relative interpretation, accessibility;</li>
+      <li>diagnose opaque environments (attitudes, modals, epistemic adverbs, intensional transitives) with the substitutivity test, in real language data;</li>
+      <li>compute with the core intensional notions: extension vs intension, propositions as sets of worlds, world-relative interpretation, accessibility;</li>
       <li>analyse modal sentences in the Kripke and Kratzer frameworks (force, flavour, modal base, ordering source) and attitude reports in Hintikka's;</li>
       <li>apply the restrictor analysis of conditionals, the topic-time analysis of aspect, and the competing analyses of evidentials to new data;</li>
-      <li>evaluate cross-linguistic evidence — variable-force modals, indexical shift, evidential systems — bearing on whether the intensional type inventory is universal.</li>
+      <li>evaluate cross-linguistic evidence (variable-force modals, indexical shift, evidential systems) bearing on the universality of the type inventory.</li>
     </ol>
   </div>
 
@@ -124,7 +129,7 @@
       <tr><td class="wk">04</td><td class="tp"><a href="week-04/readings.html">The Kratzer System</a></td><td class="sec">Modality</td><td class="fg">Kratzer</td></tr>
       <tr><td class="wk">05</td><td class="tp"><a href="week-05/readings.html">Attitude Reports</a></td><td class="sec">Attitudes &amp; Embedding</td><td class="fg">Frege · Hintikka · Quine</td></tr>
       <tr><td class="wk">06</td><td class="tp"><a href="week-06/readings.html">Factivity, Selection &amp; Neg-Raising</a></td><td class="sec">Attitudes &amp; Embedding</td><td class="fg">Kiparsky &amp; Kiparsky · Karttunen</td></tr>
-      <tr class="rw"><td class="wk">07</td><td class="tp">Reading Week</td><td class="sec">·</td><td class="fg">no teaching, 26 – 30 October. Catch up on readings; Assessment 1 feedback returned</td></tr>
+      <tr class="rw"><td class="wk">07</td><td class="tp">Reading Week</td><td class="sec">·</td><td class="fg">no teaching, 26 – 30 October. Catch up on readings; Assessment 1 feedback returns</td></tr>
       <tr><td class="wk">08</td><td class="tp"><a href="week-08/readings.html">Indicatives &amp; the Restrictor Analysis</a></td><td class="sec">Conditionals</td><td class="fg">Kratzer · Lewis · Stalnaker</td></tr>
       <tr><td class="wk">09</td><td class="tp"><a href="week-09/readings.html">Counterfactuals &amp; Similarity</a></td><td class="sec">Conditionals</td><td class="fg">Stalnaker · Lewis · Iatridou</td></tr>
       <tr><td class="wk">10</td><td class="tp"><a href="week-10/readings.html">Aspect &amp; the Perfect</a></td><td class="sec">Time &amp; Aspect</td><td class="fg">Klein · Dowty · Vendler</td></tr>
@@ -134,8 +139,8 @@
   </table>
   <p style="font-family:var(--sans);font-size:8pt;color:var(--tcd-grey-100);margin:3pt 0 0">
     Topics link to the week's reading list. Decks and handouts: released week by week.
-    Typological thread: St'át'imcets, Amharic, Cuzco Quechua, Slavic aspect, Hindi
-    correlatives — one language per week that carves the space of worlds differently.
+    The typological thread visits one language per week that carves the space of worlds
+    differently: St'át'imcets, Amharic, Cuzco Quechua, Slavic aspect, Hindi correlatives.
   </p>
 
   <!-- ── 3 · Assessment ───────────────────────────────────────── -->
@@ -143,15 +148,15 @@
 
   <div class="callout callout-key">
     <span class="badge">Three components · 10% + 30% + 60%</span>
-    <p><strong>Assessment 1 · 10%</strong> — covers weeks 1 to 4: the extensional recap, the
-    substitutivity diagnostics, worlds and modal logic, the Kratzer system. An early
-    health-check, with feedback returned over the study week.
+    <p><strong>Assessment 1 · 10%</strong>: covers weeks 1 to 4 (the extensional recap, the
+    substitutivity diagnostics, worlds and modal logic, the Kratzer system). An early
+    health-check; feedback returns over the study week.
     <strong>Due Friday 16 October 2026</strong> (week 5).</p>
-    <p><strong>Assessment 2 · 30%</strong> — covers weeks 5 to 8: attitude reports, factivity
-    and embedding, the restrictor analysis of conditionals.
+    <p><strong>Assessment 2 · 30%</strong>: covers weeks 5 to 8 (attitude reports, factivity
+    and embedding, the restrictor analysis of conditionals).
     <strong>Due Friday 13 November 2026</strong> (week 9).</p>
-    <p><strong>Assessment 3 · 60%</strong> — the capstone component, covering the term with
-    emphasis on weeks 8 to 12: conditionals, aspect, evidentiality, modals &amp; tense.
+    <p><strong>Assessment 3 · 60%</strong>: the capstone component, covering the term with
+    emphasis on weeks 8 to 12 (conditionals, aspect, evidentiality, modals &amp; tense).
     <strong>Due Monday 14 December 2026.</strong></p>
     <p>All three submitted via Blackboard. Titles, formats and briefs: released on
     Blackboard in advance of each deadline.</p>

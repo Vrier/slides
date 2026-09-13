@@ -47,10 +47,10 @@ window.LENSES = [
 window.WEEKS = [
   { no: 1, title: "Recap & the Intensional Turn", section: 0,
     figures: ["Frege", "Carnap", "Montague"], lenses: {
-      empirical:   { q: "Where extensional meaning runs out", d: "Substitution failures, modal and attitude contexts, non-referential readings — the data a truth-in-a-model theory cannot capture." },
-      historical:  { q: "Frege's puzzle to Montague", d: "Frege on the morning/evening star, Carnap's intension/extension, and Montague's step from an extensional to an intensional fragment." },
-      formal:      { q: "From models to intensions", d: "Recap of domains, ⟦·⟧, predicate logic, λ and events; then the core new idea — an intension as a function from possible worlds (and times) to extensions." },
-      typological: { q: "Is the type inventory universal?", d: "Whether every language encodes the same intensional distinctions — the cross-linguistic thread the term keeps returning to." },
+      empirical:   { q: "Where extensional meaning runs out", d: "Substitution failures, modal and attitude contexts, non-referential readings: the data a truth-in-a-model theory cannot capture." },
+      historical:  { q: "Frege's puzzle to Montague", d: "Frege on the morning and evening star, Carnap's intension and extension, and Montague's step from an extensional to an intensional fragment." },
+      formal:      { q: "From models to intensions", d: "Recap of domains, ⟦·⟧, predicate logic, λ and events; then the core new idea: an intension as a function from possible worlds (and times) to extensions." },
+      typological: { q: "Is the type inventory universal?", d: "Whether every language encodes the same intensional distinctions: the cross-linguistic thread the term keeps returning to." },
   }},
 
   { no: 2, title: "Negation", section: 1,

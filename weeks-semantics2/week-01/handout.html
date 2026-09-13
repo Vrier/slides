@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU33008 · Week 1 — Recap &amp; the Intensional Turn · Handout</title>
+<title>LIU33008 · Week 1, Recap &amp; the Intensional Turn · Handout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -19,6 +19,11 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 <script src="../../shared/compose-kit/compose-engine.js"></script>
 <script src="../../shared/compose-kit/compose-kit.js"></script>
 <style>
+  /* plain callouts: neutralise the coloured def/ex/key/note accents for this page */
+  .callout, .callout-def, .callout-ex, .callout-key, .callout-note {
+    --c-def: var(--tcd-grey-100); --c-ex: var(--tcd-grey-100);
+    --c-key: var(--tcd-grey-100); --c-note: var(--tcd-grey-100);
+  }
   @media print { :root { --tcd-blue:#000; --tcd-blue-75:#555; --tcd-blue-50:#888; --tcd-blue-25:#bbb; --tcd-blue-10:#f2f2f2; --tcd-ink:#000; --c-def:#000; } }
 </style>
 </head>
@@ -62,15 +67,15 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 
   <div class="callout callout-note">
     <span class="badge">This week</span>
-    <p>Semantics I built a theory of truth in one world: a model, ⟦·⟧, predicate logic, λ and events. This sheet first puts that system back in your hands, then walks it off the cliff — substitution failures, opaque environments, empty predicates — and rebuilds meaning as <em>intension</em>: a function from possible worlds to extensions.</p>
+    <p>Semantics I built a theory of truth in one world: a model, ⟦·⟧, predicate logic, λ and events. This sheet puts that system back in your hands, then runs it into the data it cannot handle: substitution failures, opaque environments, empty predicates. The repair is <em>intension</em>: a function from possible worlds to extensions.</p>
   </div>
 
   <div class="callout callout-def">
     <span class="badge">Set readings</span>
     <ul class="reads-plain">
-      <li>von Fintel &amp; Heim (2011), <span class="bk">Intensional Semantics</span>, ch. 1 — read first; the spine text for the term.</li>
-      <li>Frege (1892/1948), "On sense and reference" — the puzzle that motivates everything below.</li>
-      <li>Montague (1973), PTQ — skim for the shape of the project, not every rule.</li>
+      <li>von Fintel &amp; Heim (2011), <span class="bk">Intensional Semantics</span>, ch. 1: read first; the spine text for the term.</li>
+      <li>Frege (1892/1948), "On sense and reference": the puzzle that motivates everything below.</li>
+      <li>Montague (1973), PTQ: read for the shape of the project.</li>
     </ul>
   </div>
 
@@ -133,7 +138,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         </div>
         <div class="ex-task">
           <span class="tn">3</span>
-          <span class="tb">Is \(\sem{\exists x.\,\textit{single}(x) \wedge \textit{tall}(x)}^{M,g} = T\)? Name the assignment variant(s) \(g[x \mapsto k]\) that verify — or fail to verify — the scope.
+          <span class="tb">Decide whether \(\sem{\exists x.\,\textit{single}(x) \wedge \textit{tall}(x)}^{M,g} = T\). Name the assignment variant(s) \(g[x \mapsto k]\) that verify, or fail to verify, the scope.
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
         <div class="ex-task">
@@ -152,15 +157,15 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <div class="ex-prog-instruction">For each sentence: assign types to every word, apply Function Application node by node, and state the resulting truth condition. Each example adds a wrinkle.</div>
       <div class="prog-item">
         <span class="pi-lab">(a)</span>
-        <div class="pi-body"><p><em class="sent">Dara is tall.</em> — subject–predicate warm-up.</p><div class="answer-space" style="--lines:2"></div></div>
+        <div class="pi-body"><p><em class="sent">Dara is tall.</em> Subject–predicate warm-up.</p><div class="answer-space" style="--lines:2"></div></div>
       </div>
       <div class="prog-item">
         <span class="pi-lab">(b)</span>
-        <div class="pi-body"><p><em class="sent">Aoife admires Dara.</em> — transitive: write \(\sem{\textit{admires}}\) as a λ-term first, then reduce twice.</p><div class="answer-space" style="--lines:3"></div></div>
+        <div class="pi-body"><p><em class="sent">Aoife admires Dara.</em> Transitive: write \(\sem{\textit{admires}}\) as a λ-term first, then reduce twice.</p><div class="answer-space" style="--lines:3"></div></div>
       </div>
       <div class="prog-item">
         <span class="pi-lab">(c)</span>
-        <div class="pi-body"><p><em class="sent">Neil giggled loudly.</em> — Davidsonian: quantify over events, treat <em class="sent">loudly</em> as a predicate of the event, and show the entailment to <em class="sent">Neil giggled</em>.</p><div class="answer-space" style="--lines:4"></div></div>
+        <div class="pi-body"><p><em class="sent">Neil giggled loudly.</em> Davidsonian: quantify over events, treat <em class="sent">loudly</em> as a predicate of the event, and show the entailment to <em class="sent">Neil giggled</em>.</p><div class="answer-space" style="--lines:4"></div></div>
       </div>
     </div>
   </div>
@@ -179,13 +184,13 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <div class="ex-tool-intro">
         <div class="tl-label">New tool</div>
         <div class="tl-name">Substitutivity as a diagnostic</div>
-        <p>Assume <em class="sent">the Morning Star = the Evening Star</em> (both Venus). Substituting co-referring expressions preserves truth in <strong>extensional</strong> (transparent) environments but can fail in <strong>intensional</strong> (opaque) ones. To diagnose an environment: swap co-referents and ask whether truth could flip.</p>
+        <p>Assume <em class="sent">the Morning Star = the Evening Star</em> (both Venus). Substituting co-referring expressions preserves truth in <strong>extensional</strong> (transparent) environments but can fail in <strong>intensional</strong> (opaque) ones. To diagnose an environment: swap co-referents and check whether truth could flip.</p>
       </div>
       <div class="ex-tasks">
         <div class="ex-tasks-head">Classify · 5 tasks</div>
         <div class="ex-task">
           <span class="tn">1</span>
-          <span class="tb"><em class="sent">The Morning Star is a planet</em> → <em class="sent">The Evening Star is a planet</em>. Transparent or opaque? Explain why the Semantics I system gets this one right.
+          <span class="tb"><em class="sent">The Morning Star is a planet</em> → <em class="sent">The Evening Star is a planet</em>. Classify the environment as transparent or opaque. Explain why the Semantics I system gets this one right.
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
         <div class="ex-task">
@@ -195,17 +200,17 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         </div>
         <div class="ex-task">
           <span class="tn">3</span>
-          <span class="tb"><em class="sent">The Empire State Building might be the tallest building in New York</em> vs <em class="sent">The Empire State Building might be One World Trade Center</em>. What does the contrast show about <em class="sent">might</em>?
+          <span class="tb"><em class="sent">The Empire State Building might be the tallest building in New York</em> vs <em class="sent">The Empire State Building might be One World Trade Center</em>. Say what the contrast shows about <em class="sent">might</em>.
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
         <div class="ex-task">
           <span class="tn">4</span>
-          <span class="tb"><em class="sent">Little Emma thinks her house is the tallest building in New York.</em> Can we conclude <em class="sent">Little Emma thinks her house is One World Trade Center</em>? Whose perspective fixes the reference of the description?
+          <span class="tb"><em class="sent">Little Emma thinks her house is the tallest building in New York.</em> Decide whether <em class="sent">Little Emma thinks her house is One World Trade Center</em> follows. Say whose perspective fixes the reference of the description.
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
         <div class="ex-task">
           <span class="tn">5</span>
-          <span class="tb">Stretch: is negation opaque? Test with <em class="sent">The Morning Star is not visible tonight</em>. What does your verdict tell us about which operators need worlds and which don't?
+          <span class="tb">Stretch: test whether negation is opaque, using <em class="sent">The Morning Star is not visible tonight</em>. Say what your verdict shows about which operators need worlds.
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
       </div>
@@ -220,7 +225,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <div class="ex-instrn-head">Empty predicates</div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">1</span><span class="it-instr">Diagnose:</span></div>
-        <p class="it-task">In an extensional semantics, \(\sem{\textit{jackalope}} = \emptyset = \sem{\textit{unicorn}}\). Explain precisely why this makes <em class="sent">Sue believes jackalopes are fierce</em> and <em class="sent">Sue believes unicorns are fierce</em> indistinguishable — and construct a scenario showing they must be distinguished.</p>
+        <p class="it-task">In an extensional semantics, \(\sem{\textit{jackalope}} = \emptyset = \sem{\textit{unicorn}}\). Explain precisely why this makes <em class="sent">Sue believes jackalopes are fierce</em> and <em class="sent">Sue believes unicorns are fierce</em> indistinguishable, and construct a scenario showing they must be distinguished.</p>
         <div class="answer-space" style="--lines:4"></div>
       </div>
     </div>
@@ -234,12 +239,12 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <div class="ex-instrn-head">De re and de dicto</div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">1</span><span class="it-instr">Judge:</span></div>
-        <p class="it-task">Are (a) <em class="sent">Ralph believes that the man in the alley is a spy</em> and (b) <em class="sent">Ralph believes that the man on the beach is not a spy</em> both true in the scenario? What about (c) <em class="sent">Ralph believes that Ortcutt is a spy</em> and (d) <em class="sent">Ralph believes that Ortcutt is not a spy</em>? Say on which reading.</p>
+        <p class="it-task">Judge each of these in the scenario, saying on which reading each verdict holds: (a) <em class="sent">Ralph believes that the man in the alley is a spy</em>; (b) <em class="sent">Ralph believes that the man on the beach is not a spy</em>; (c) <em class="sent">Ralph believes that Ortcutt is a spy</em>; (d) <em class="sent">Ralph believes that Ortcutt is not a spy</em>.</p>
         <div class="answer-space" style="--lines:4"></div>
       </div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">2</span><span class="it-instr">Define, then apply:</span></div>
-        <p class="it-task">Distinguish the <em>de dicto</em> and <em>de re</em> readings in your own words, then classify: (a) <em class="sent">Ralph believes that there is a spy in the building</em>; (b) <em class="sent">Ralph believes of Ortcutt that he is a spy</em>. Which construction forces which reading?</p>
+        <p class="it-task">Distinguish the <em>de dicto</em> and <em>de re</em> readings in your own words, then classify (a) <em class="sent">Ralph believes that there is a spy in the building</em> and (b) <em class="sent">Ralph believes of Ortcutt that he is a spy</em>. Say which construction forces which reading.</p>
         <div class="answer-space" style="--lines:4"></div>
       </div>
     </div>
@@ -248,18 +253,18 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <div class="ex-tool-intro">
         <div class="tl-label">New tool</div>
         <div class="tl-name">Modal flavour and strength</div>
-        <p><strong>Flavour</strong>: which alternatives matter — epistemic (evidence), deontic (rules), circumstantial (facts and abilities), bouletic (desires), teleological (goals). <strong>Strength</strong>: necessity (<em class="sent">must</em>) vs possibility (<em class="sent">might</em>, <em class="sent">can</em>).</p>
+        <p><strong>Flavour</strong>: which alternatives matter. Epistemic (evidence), deontic (rules), circumstantial (facts and abilities), bouletic (desires), teleological (goals). <strong>Strength</strong>: necessity (<em class="sent">must</em>) vs possibility (<em class="sent">might</em>, <em class="sent">can</em>).</p>
       </div>
       <div class="ex-tasks">
         <div class="ex-tasks-head">Sort · 4 tasks</div>
         <div class="ex-task">
           <span class="tn">1</span>
-          <span class="tb">Contrast <em class="sent">At crosswalks all pedestrians obey the "Don't Walk" signals</em> with <em class="sent">At crosswalks all pedestrians must obey the "Don't Walk" signals</em>. Which can be true while the other is false, and why?
+          <span class="tb">Contrast <em class="sent">At crosswalks all pedestrians obey the "Don't Walk" signals</em> with <em class="sent">At crosswalks all pedestrians must obey the "Don't Walk" signals</em>. Say which can be true while the other is false, and why.
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
         <div class="ex-task">
           <span class="tn">2</span>
-          <span class="tb">Classify by flavour and strength: <em class="sent">Daniel might be a secret agent</em>; <em class="sent">It is possible that Daniel is a secret agent</em>; <em class="sent">Maybe Daniel is a secret agent</em>; <em class="sent">Harry thinks that Daniel is a secret agent</em>. Which of the four is not a modal at all — and what is it instead?
+          <span class="tb">Classify by flavour and strength: <em class="sent">Daniel might be a secret agent</em>; <em class="sent">It is possible that Daniel is a secret agent</em>; <em class="sent">Maybe Daniel is a secret agent</em>; <em class="sent">Harry thinks that Daniel is a secret agent</em>. One of the four is no modal at all: identify it, and say what it is instead.
           <div class="answer-space" style="--lines:4"></div></span>
         </div>
         <div class="ex-task">
@@ -283,29 +288,29 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="lens-sec-head lens-historical">
       <span class="lsh-glyph"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>
       <span class="lsh-lab">Historical</span>
-      <span class="lsh-q">Frege's puzzle to Montague — and its long prehistory</span>
+      <span class="lsh-q">Frege's puzzle to Montague, and its long prehistory</span>
     </div>
 
     <div class="callout callout-note">
       <span class="badge">Background</span>
-      <p>The lecture traced a long arc: Aristotle's sea battle and the Stoics' modal classifications; Abelard's <em>de dicto</em>/<em>de re</em>; Scotus on synchronic contingency; Leibniz's possible worlds; then <strong>Frege (1892)</strong> on Sinn and Bedeutung, <strong>Carnap (1947)</strong> on intensions as functions from state-descriptions to extensions, <strong>Quine's</strong> resistance, and <strong>Montague's</strong> intensional fragment.</p>
+      <p>The lecture traced a long arc: Aristotle's sea battle and the Stoics' modal classifications; Abelard's <em>de dicto</em> and <em>de re</em>; Scotus on synchronic contingency; Leibniz's possible worlds; then <strong>Frege (1892)</strong> on Sinn and Bedeutung, <strong>Carnap (1947)</strong> on intensions as functions from state-descriptions to extensions, <strong>Quine's</strong> resistance, and <strong>Montague's</strong> intensional fragment.</p>
     </div>
 
     <div class="ex-instrn">
       <div class="ex-instrn-head">Reflect</div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">1</span><span class="it-instr">The open future:</span></div>
-        <p class="it-task">Does <em class="sent">there will be a sea battle tomorrow</em> have a truth value tonight? Whatever you answer, spell out what it commits you to about bivalence and about tomorrow being "open".</p>
+        <p class="it-task">Decide whether <em class="sent">there will be a sea battle tomorrow</em> has a truth value tonight. Spell out what your answer commits you to about bivalence and about tomorrow being "open".</p>
         <div class="answer-space" style="--lines:4"></div>
       </div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">2</span><span class="it-instr">In your own words:</span></div>
-        <p class="it-task">Why is \(a = a\) trivial while \(a = b\) can be news? State Frege's answer, and show how the same notion of Sinn explains why substitution fails under <em class="sent">believe</em>.</p>
+        <p class="it-task">Explain why \(a = a\) is trivial while \(a = b\) can be news. State Frege's answer, and show how the same notion of Sinn explains substitution failure under <em class="sent">believe</em>.</p>
         <div class="answer-space" style="--lines:4"></div>
       </div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">3</span><span class="it-instr">Critical engagement:</span></div>
-        <p class="it-task">Quine accepted that opacity exists but resisted quantifying into opaque contexts. Using the Ortcutt case, say what is troubling about \(\exists x.\,\textit{Ralph believes that } x \textit{ is a spy}\) — and why Carnap's intensions did not immediately satisfy him.</p>
+        <p class="it-task">Quine accepted that opacity exists but resisted quantifying into opaque contexts. Using the Ortcutt case, say what is troubling about \(\exists x.\,\textit{Ralph believes that } x \textit{ is a spy}\), and why Carnap's intensions did not immediately satisfy him.</p>
         <div class="answer-space" style="--lines:5"></div>
       </div>
     </div>
@@ -323,30 +328,30 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 
     <div class="callout callout-def">
       <span class="badge">Definition</span>
-      <p><strong>Extension</strong>: what an expression picks out at the world of evaluation. <strong>Intension</strong>: a function from worlds to extensions — \(\lambda w.\sem{\alpha}^{w}\). For sentences: the <em>proposition</em> \(\sem{S} = \{\,w : S \text{ is true at } w\,\}\), type \(\langle s,t\rangle\); truth at \(w\) is membership.</p>
+      <p><strong>Extension</strong>: what an expression picks out at the world of evaluation. <strong>Intension</strong>: a function from worlds to extensions, \(\lambda w.\sem{\alpha}^{w}\). For sentences: the <em>proposition</em> \(\sem{S} = \{\,w : S \text{ is true at } w\,\}\), type \(\langle s,t\rangle\); truth at \(w\) is membership.</p>
     </div>
 
     <div class="ex-block">
       <div class="ex-tool-intro">
         <div class="tl-label">New tool</div>
         <div class="tl-name">Extension / intension / type</div>
-        <p>For each expression give three things: its extension (at the actual world), its intension (as a function), and the type of that intension — e.g. <em class="sent">the Taoiseach</em>: the current officeholder; the function from each \(w\) to whoever heads the government at \(w\); \(\langle s,e\rangle\).</p>
+        <p>For each expression give three things: its extension (at the actual world), its intension (as a function), and the type of that intension. E.g. <em class="sent">the Taoiseach</em>: the current officeholder; the function from each \(w\) to whoever heads the government at \(w\); \(\langle s,e\rangle\).</p>
       </div>
       <div class="ex-tasks">
         <div class="ex-tasks-head">Practice · 3 tasks</div>
         <div class="ex-task">
           <span class="tn">1</span>
-          <span class="tb"><em class="sent">the tallest building in New York</em> — extension, intension, type. Then use your answer to explain why swapping it for a co-referring name under <em class="sent">might</em> flipped truth.
+          <span class="tb"><em class="sent">the tallest building in New York</em>: extension, intension, type. Use your answer to explain why the swap under <em class="sent">might</em> flipped truth in the lecture.
           <div class="answer-space" style="--lines:4"></div></span>
         </div>
         <div class="ex-task">
           <span class="tn">2</span>
-          <span class="tb"><em class="sent">single</em> — extension, intension, type. (Careful: the extension is already a set.)
+          <span class="tb"><em class="sent">single</em>: extension, intension, type. (Careful: the extension is already a set.)
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
         <div class="ex-task">
           <span class="tn">3</span>
-          <span class="tb"><em class="sent">Carlingford is in Northern Ireland</em> — extension, intension, type. Why can you understand this sentence without knowing its extension?
+          <span class="tb"><em class="sent">Carlingford is in Northern Ireland</em>: extension, intension, type. Explain how you understand the sentence without knowing its extension.
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
       </div>
@@ -372,12 +377,12 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         </div>
         <div class="ex-task">
           <span class="tn">3</span>
-          <span class="tb">Entailment is subset: does \(p \cap q\) entail \(p\)? Does \(p\) entail \(q\)? Show both using \(\subseteq\).
+          <span class="tb">Entailment is subset. Decide whether \(p \cap q\) entails \(p\), and whether \(p\) entails \(q\). Show both using \(\subseteq\).
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
         <div class="ex-task">
           <span class="tn">4</span>
-          <span class="tb">Suppose \(\mathrm{DOX}(\textit{Sue}) = \{w_1, w_2\}\). Does Sue believe \(p\)? Does she believe \(q\)? Apply the rule <em>believe \(p\) iff \(\mathrm{DOX} \subseteq p\)</em>.
+          <span class="tb">Suppose \(\mathrm{DOX}(\textit{Sue}) = \{w_1, w_2\}\). Apply the rule <em>believe \(p\) iff \(\mathrm{DOX} \subseteq p\)</em>: decide whether Sue believes \(p\), and whether she believes \(q\).
           <div class="answer-space" style="--lines:3"></div></span>
         </div>
       </div>
@@ -387,7 +392,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <div class="ex-instrn-head">Stretch · thinking with DOX</div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">1</span><span class="it-instr">Limit cases:</span></div>
-        <p class="it-task">What would it mean for \(\mathrm{DOX}(\textit{Sue})\) to be (a) the singleton containing only the actual world, (b) the set of <em>all</em> possible worlds, (c) empty? Describe the believer in each case.</p>
+        <p class="it-task">Describe the believer in each case: (a) \(\mathrm{DOX}(\textit{Sue})\) is the singleton containing only the actual world; (b) it is the set of <em>all</em> possible worlds; (c) it is empty.</p>
         <div class="answer-space" style="--lines:5"></div>
       </div>
       <div class="ex-it">
@@ -410,19 +415,19 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 
     <div class="callout callout-note">
       <span class="badge">Overview</span>
-      <p>English modals fix their <em>strength</em> in the lexicon (<em class="sent">must</em> = necessity, <em class="sent">might</em> = possibility) and leave <em>flavour</em> to context. St'át'imcets (Lillooet Salish) modals do the reverse: flavour is lexically fixed, force appears variable. The space of worlds may be universal; what grammar makes of it is not obviously so.</p>
+      <p>English modals fix their <em>strength</em> in the lexicon (<em class="sent">must</em> = necessity, <em class="sent">might</em> = possibility) and leave <em>flavour</em> to context. St'át'imcets (Lillooet Salish) modals do the reverse: flavour is lexically fixed, force appears variable. The space of worlds may be universal; the grammar built over it varies.</p>
     </div>
 
     <div class="ex-instrn">
       <div class="ex-instrn-head">Cross-linguistic</div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">1</span><span class="it-instr">Your own data:</span></div>
-        <p class="it-task">Take a language you know. How does it express epistemic <em class="sent">must</em> (<em class="sent">It must have rained</em>) versus deontic <em class="sent">must</em> (<em class="sent">You must register</em>)? Same form, different forms, or a construction that is not a modal verb at all?</p>
+        <p class="it-task">Take a language you know. Describe how it expresses epistemic <em class="sent">must</em> (<em class="sent">It must have rained</em>) and deontic <em class="sent">must</em> (<em class="sent">You must register</em>): same form, different forms, or another construction entirely.</p>
         <div class="answer-space" style="--lines:5"></div>
       </div>
       <div class="ex-it">
         <div class="it-lead"><span class="it-n">2</span><span class="it-instr">Predict:</span></div>
-        <p class="it-task">If a language lexicalised flavour but not force, what substitution-style evidence would show that its "modals" still quantify over worlds? Sketch the test you would run — we run it for real in Week 4.</p>
+        <p class="it-task">Suppose a language lexicalises flavour and leaves force open. Sketch the substitution-style test that would show its modals still quantify over worlds. We run it for real in Week 4.</p>
         <div class="answer-space" style="--lines:4"></div>
       </div>
     </div>
