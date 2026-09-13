@@ -260,9 +260,21 @@ what the next session must know)*
   safe. NOTE for wk-12 row: figures shown as Chierchia · Fox · Spector (from
   the wk-1 deck; meta has none). Redrafted same session per Thomas: clipped
   fragment style throughout, and NO set textbook — "selected readings from
-  across the literature" replaces Grundy. NB the wk-1 deck's housekeeping
-  slide still names Grundy as the textbook — deck untouched per instructions;
-  Thomas may want to align it.
+  across the literature" replaces Grundy. Style rules now standing for
+  overview-adjacent prose: no em/en dashes, no hyphens, no "not X but Y".
+- **Deck additions (same session, Thomas's request):** wk-1 deck gains two
+  Housekeeping slides carrying the overview info — "The assessment" (21a,
+  data-sec `assess`: format/weight/deadline facts + choose·collect·analyse
+  hnote) and "Learning outcomes" (21b, data-sec `outc`: five erows). Bespoke
+  mrail TITLES/GROUPS extended (Housekeeping keys now mod2·assess·outc·wk·sum).
+  Housekeeping slide 21 aligned with the overview: PX113, tmurrays@tcd.ie,
+  Selected readings (Grundy line REMOVED), deadline Mon 14 Dec 2026,
+  Learn→Blackboard. Grammaticalism slide: `.npf` text block replaced by
+  `images/chierchia.jpg` — **the image file does NOT exist yet** (VM down, no
+  binary copy): Thomas must save his supplied photo to
+  `weeks-pragmatics/week-01/images/chierchia.jpg` BEFORE `npm test`
+  (check 1 fails on the missing src until then). Edits desk-verified
+  div-balanced.
 - **Also:** week-1 readings PDF hunt — `readings/_MANIFEST.md` (repo root, keep
   out of git or move if unwanted publicly): Ayer ch. 1 (LSE course PDF) and
   Horn & Ward intro (publisher sample) verified with download commands;
