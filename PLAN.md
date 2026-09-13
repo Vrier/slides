@@ -285,6 +285,13 @@ what the next session must know)*
   machine lacks npm/Node — CI (deploy.yml runs npm test before SSH) is the
   test gate for now; also the chat-uploads dir is session-virtual, so binary
   images must reach the repo via user download/copy, not Cowork file tools.
+- **Also added:** wk-1 deck slide 21c "This week's readings" (data-sec
+  `reads`, shared `.reads-box` pattern ×3: textbook/classical/contemporary)
+  — all five items and one-line notes taken from the week's readings.html
+  (NB the earlier PDF-harvest manifest covered only 3 of the 5; Grice 1957
+  already has an open PDF link in readings.html, Carston 2008 is
+  library-access). mrail Housekeeping keys now
+  mod2·assess·outc·reads·wk·sum.
 - **Also:** week-1 readings PDF hunt — `readings/_MANIFEST.md` (repo root, keep
   out of git or move if unwanted publicly): Ayer ch. 1 (LSE course PDF) and
   Horn & Ward intro (publisher sample) verified with download commands;
