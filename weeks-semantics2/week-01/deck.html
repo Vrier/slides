@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU33008 · Week 1, Recap &amp; the Intensional Turn · Lecture Deck</title>
+<title>LIU33008 · Week 1, Lecture 1 &mdash; The extensional system and its limits</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -244,640 +244,92 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="a-course-code">LIU33008 · Semantics II</div>
       <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 1</h1>
       <div class="a-course-sub">Recap &amp; the Intensional Turn</div>
+      <div class="a-course-sub" style="font-size:30px;opacity:.72;margin-top:6px">Lecture 1 &middot; The extensional system and its limits</div>
     </div>
     <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · Michaelmas</div></div>
   </div>
 </section>
 
-<!-- 02 · Frege's puzzle · question -->
-<section class="slide" data-label="Frege's puzzle, Q" data-screen-label="02 Q">
-  <div class="b-slide pal-a" data-sec="hook">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="qwrap">
-        <div class="qask anim" style="--d:0s;color:var(--tcd-blue)"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide: is (2) as trivial as (1)</div>
-        <div class="convo big">
-          <div class="cv anim" style="--d:.15s"><div class="who">(1)</div><div class="say">The Morning Star is the Morning Star.</div></div>
-          <div class="cv anim" style="--d:.35s"><div class="who">(2)</div><div class="say">The Morning Star is the Evening Star.</div></div>
-        </div>
-        <div class="qsrc anim" style="--d:.7s">Both name Venus. Both are true. (1) is a yawn; (2) was Babylonian astronomy.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- 03 · Frege's puzzle · answer -->
-<section class="slide" data-label="Frege's puzzle, A" data-screen-label="02 A">
-  <div class="b-slide pal-a dB" data-sec="hook">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="b-kick">The question behind the term</div>
-      <h2 class="b-h">Frege's Puzzle</h2>
-      <div class="erow" style="border-top:none"><div class="lb">The facts</div><div class="tx"><em>The Morning Star</em> and <em>the Evening Star</em> pick out <strong>one object</strong>. If meaning were reference, (1) and (2) would feel exactly alike.</div></div>
-      <div class="erow"><div class="lb">The asymmetry</div><div class="tx">They don't. \(a=a\) is trivial; \(a=b\) can be <strong>news</strong>. Meaning tracks the <strong>mode of presentation</strong> as well as the referent.</div></div>
-      <div class="erow"><div class="lb">Last year</div><div class="tx">Semantics I computes what expressions pick out in one world: <strong>extensions</strong>. A beautiful machine, and it cannot see this difference.</div></div>
-      <div class="erow"><div class="lb">This term</div><div class="tx tight">Semantics II rebuilds meaning across <strong>possible worlds</strong>. Extension gives way to intension: negation, modality, attitudes, conditionals, aspect, evidentiality, all the operators above the verb.</div></div>
-    </div>
-  </div>
-</section>
 
-<!-- 04 · Two acts -->
-<section class="slide" data-label="Two acts" data-screen-label="03">
+<!-- 04 · Two parts -->
+<section class="slide" data-label="Two parts" data-screen-label="02">
   <div class="b-slide pal-a" data-sec="turn">
     <aside class="mrail"></aside>
     <div class="b-main">
-      <div class="b-kick">The shape of the hour</div>
-      <h2 class="b-h">Two acts</h2>
+      <h2 class="b-h">Two parts</h2>
       <div class="q-banner">What can a theory of meaning built on truth-in-a-model <em>not</em> do?</div>
       <div class="spine-cards cols-2 compact">
-        <div class="spine-card on"><div class="ci">Act I</div><h3>The system we built</h3><p>Semantics I in twenty minutes: the model, ⟦·⟧, predicate logic, λ and events, ending in a full worked computation.</p></div>
-        <div class="spine-card"><div class="ci">Act II</div><h3>Where it runs out</h3><p>Substitution failures, opaque environments and the nesting problem; then the first look at worlds and intensions.</p></div>
+        <div class="spine-card on"><div class="ci">Part 1</div><h3>The system we built</h3><p>Semantics I in twenty minutes: the model, ⟦·⟧, predicate logic, λ and events, computation.</p></div>
+        <div class="spine-card"><div class="ci">Part 2</div><h3>Limits and problems</h3><p>Substitution failures, opaque environments and the nesting problem; then the first look at worlds and intensions.</p></div>
       </div>
+      <div class="erow"><div class="lb">Extensional semantics</div><div class="tx">Semantics I computes what expressions pick out in one world: <strong>extensions</strong>.</div></div>
+      <div class="erow"><div class="lb">This term</div><div class="tx tight">In Semantics II we&rsquo;ll look at phenomena which cannot be captured on this purely extensional model, and look at some more advanced topics that require an &lsquo;<strong>intensional</strong>&rsquo; treatment.</div></div>
       <div class="figs-line"><b>Figures:</b> Frege · Carnap · Montague &nbsp;·&nbsp; <b>Prehistory:</b> Aristotle · the medievals · Leibniz</div>
     </div>
   </div>
 </section>
 
+
+
 <!-- 05 · Roadmap -->
-<section class="slide" data-label="Roadmap" data-screen-label="04">
+<section class="slide" data-label="Roadmap" data-screen-label="03">
   <div class="b-slide pal-a" data-sec="road">
     <aside class="mrail"></aside>
     <div class="b-main">
-      <div class="b-kick">Through four lenses</div>
       <h2 class="b-h">Today</h2>
       <div class="lxr3">
         <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Leibniz's Law</li><li>Opacity</li><li>The opaque environments</li><li>Empty predicates</li><li>The nesting problem</li><li>De re and de dicto</li></ul></div>
         <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Aristotle's sea battle</li><li>The medievals and Leibniz</li><li>Sinn und Bedeutung</li><li>Carnap and Quine</li><li>Kripke · Hintikka · Montague</li></ul></div>
-        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Act I: the extensional toolkit</li><li>Extension vs intension</li><li>Propositions as world-sets</li><li><em>Believe</em>, re-typed</li><li>Hintikka</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Part 1: the extensional toolkit</li><li>Extension vs intension</li><li>Propositions as world-sets</li><li><em>Believe</em>, re-typed</li><li>Hintikka</li></ul></div>
         <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>The type inventory</li><li>Three signposts</li></ul></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 06 · Act I · the model -->
-<section class="slide" data-label="Act I ·The model" data-screen-label="05">
-  <div class="b-slide pal-a dB" data-sec="mod1">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="b-kick">Act I · The system we built</div>
-      <h2 class="b-h">The model</h2>
-      <div class="erow" style="border-top:none"><div class="lb">The model</div><div class="tx">\(M = \langle D, I\rangle\): a <strong>domain</strong> of individuals and an <strong>interpretation</strong>. Constants to members of \(D\); one-place predicates to subsets; two-place predicates to relations on \(D \times D\).</div></div>
-      <div class="erow"><div class="lb">Assignments</div><div class="tx">\(g\) values the variables: \(\sem{u}^{M,g} = g(u)\). Everything else is fixed by \(I\).</div></div>
-      <div class="erow"><div class="lb">The point</div><div class="tx tight">Denotation is always denotation <strong>in a model</strong>: a stand-in for the facts, one complete way for things to be. Hold that thought for Act II.</div></div>
-      <div class="egpanel">
-        <div class="eghead">Today's toy model</div>
-        <div class="fx">\[ D=\{n, a, d\} \qquad I(\textit{single})=\{n,a\} \qquad I(\textit{tall})=\{a,d\} \qquad I(\textit{admires})=\{\langle n,a\rangle, \langle a,d\rangle\} \]</div>
-        <div class="fxnote">Neil, Aoife and Dara: our domain for the hour</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- 07 · Act I · truth conditions -->
-<section class="slide" data-label="Act I ·Truth in the model" data-screen-label="06">
-  <div class="b-slide pal-a dB" data-sec="tru">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="b-kick">Act I · The system we built</div>
-      <h2 class="b-h">Truth in the model</h2>
-      <div class="erow" style="border-top:none"><div class="lb">At the bottom</div><div class="tx">Predication is <strong>membership</strong>: a sentence is true when the named things stand in the named set or relation.</div></div>
-      <div class="erow"><div class="lb">Going up</div><div class="tx tight">The connectives see only the parts' <strong>truth values</strong>. Nothing else about the parts survives. Remember that; the trouble starts exactly here.</div></div>
-      <div class="egpanel">
-        <div class="eghead">The recursive clauses</div>
-        <div class="fx">\[ \sem{\pi(\alpha_1,\dots,\alpha_n)}^{M,g} = T \;\text{ iff }\; \langle\sem{\alpha_1}^{M,g},\dots,\sem{\alpha_n}^{M,g}\rangle \in \sem{\pi}^{M,g} \]</div>
-        <div class="fx">\[ \sem{\neg\varphi} = T \text{ iff } \sem{\varphi} = F \qquad \sem{\varphi \wedge \psi} = T \text{ iff } \sem{\varphi} = T \text{ and } \sem{\psi} = T \]</div>
-        <div class="fxnote">in the toy model: ⟦Neil is single⟧ = T, since n ∈ I(single)</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 08 · Act I · quantifiers -->
-<section class="slide" data-label="Act I ·Quantifiers" data-screen-label="07">
-  <div class="b-slide pal-a dB" data-sec="qnt">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="b-kick">Act I · The system we built</div>
-      <h2 class="b-h">Quantifiers and assignments</h2>
-      <div class="erow" style="border-top:none"><div class="lb">The trick</div><div class="tx">An assignment variant \(g[u \mapsto k]\) is \(g\) with the variable \(u\) re-pointed at \(k\). Quantifiers <strong>survey the variants</strong>.</div></div>
-      <div class="erow"><div class="lb">No names needed</div><div class="tx tight">A quantified sentence names nobody. It claims that <strong>some</strong> (or <strong>every</strong>) way of valuing the variable verifies the scope. Everything still bottoms out in membership in \(D\).</div></div>
-      <div class="egpanel">
-        <div class="eghead">The two clauses</div>
-        <div class="fx">\[ \sem{\exists u.\varphi}^{M,g} = T \;\text{ iff for some } k \in D:\; \sem{\varphi}^{M,g[u\mapsto k]} = T \]</div>
-        <div class="fx">\[ \sem{\forall u.\varphi}^{M,g} = T \;\text{ iff for all } k \in D:\; \sem{\varphi}^{M,g[u\mapsto k]} = T \]</div>
-        <div class="fxnote">in the toy model: ∃x(single(x) ∧ tall(x)), verified by g[x ↦ a]</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 09 · Act I · types & λ -->
-<section class="slide" data-label="Act I ·Types and λ" data-screen-label="08">
-  <div class="b-slide pal-a dB" data-sec="lam">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="b-kick">Act I · The system we built</div>
-      <h2 class="b-h">Types, λ and Function Application</h2>
-      <div class="erow" style="border-top:none"><div class="lb">Types</div><div class="tx">Two basic types, \(e\) and \(t\), and functions \(\langle\sigma,\tau\rangle\) between them: predicates \(\langle e,t\rangle\), transitives \(\langle e,\langle e,t\rangle\rangle\), a sentence \(t\).</div></div>
-      <div class="erow"><div class="lb">One rule</div><div class="tx">Composition is <strong>Function Application</strong>. The types say which sister is the function; λ says what it does with its argument.</div></div>
-      <div class="egpanel">
-        <div class="eghead">The core schema</div>
-        <div class="fx">\[ \sem{\beta\;\gamma} = \sem{\beta}\left(\sem{\gamma}\right) \qquad\qquad \sem{\textit{admires}} = \lambda x.\lambda y.\,\textit{admires}(y,x) \]</div>
-        <div class="fxnote">from lexicon to truth condition, mechanically: compositionality at work</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10 · Act I · events & times -->
-<section class="slide" data-label="Act I ·Events and times" data-screen-label="09">
-  <div class="b-slide pal-a dB" data-sec="evt">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="b-kick">Act I · The system we built</div>
-      <h2 class="b-h">Events and times</h2>
-      <div class="erow" style="border-top:none"><div class="lb">Davidson</div><div class="tx">Verbs describe <strong>events</strong>; sentences quantify over them; adverbs are predicates of the event variable. Modification is conjunction.</div></div>
-      <div class="erow"><div class="lb">Tense</div><div class="tx tight">Times came last: tense locates the event relative to <em>now</em>. Events and times enlarged the <strong>ontology</strong>. Every claim was still checked against one world's facts.</div></div>
-      <div class="egpanel">
-        <div class="eghead">The Davidsonian move</div>
-        <div class="eg"><span class="no">(3)</span><span class="ex">Neil giggled loudly.<span class="gl">⇝ \(\exists e\,(\textit{giggle}(e,n) \wedge \textit{loud}(e) \wedge e \prec \textit{now})\); drop a conjunct and <em>Neil giggled</em> follows for free</span></span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 11 · Act I · worked example -->
-<section class="slide" data-label="Act I ·Worked example" data-screen-label="10">
-  <div class="b-slide pal-a" data-sec="wrk">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="b-kick">Act I · The system we built</div>
-      <h2 class="b-h">Worked: <em>Neil admires Aoife</em></h2>
-      <div class="b-steps">
-        <div class="b-step"><div class="b-step-lab">Lexicon</div><div class="b-step-math">\(\sem{\textit{Neil}} = n \qquad \sem{\textit{Aoife}} = a \qquad \sem{\textit{admires}} = \lambda x.\lambda y.\,\textit{admires}(y,x)\)</div></div>
-        <div class="b-step"><div class="b-step-lab">Types</div><div class="b-step-math">\(e \qquad e \qquad \langle e,\langle e,t\rangle\rangle\)</div></div>
-        <div class="b-step"><div class="b-step-lab">VP, by Function Application</div><div class="b-step-math">\(\sem{\textit{admires Aoife}} = \lambda y.\,\textit{admires}(y,a)\), type \(\langle e,t\rangle\)</div></div>
-        <div class="b-step"><div class="b-step-lab">S, by Function Application</div><div class="b-step-math">\(\sem{\textit{Neil admires Aoife}} = \textit{admires}(n,a)\), type \(t\)</div></div>
-        <div class="b-step step-future"><div class="b-step-lab">Evaluate in \(M\)</div><div class="b-step-math">\(T\) iff \(\langle n,a\rangle \in I(\textit{admires})\): true in our toy model</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 12 · Act I closes -->
-<section class="slide" data-label="Act I closes" data-screen-label="11 Q">
-  <div class="b-slide pal-a" data-sec="crk">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="qwrap">
-        <div class="qask anim" style="--d:0s;color:var(--tcd-blue)"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Act I closes</div>
-        <div class="bigq anim" style="--d:.15s;font-size:62px">Every value ⟦·⟧ handed us was a fact about <em>one world</em>: an individual, a set, a truth value.<span class="src">Extensions, all the way down. Now watch what ordinary English does to them.</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 13 · Empirical divider -->
-<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
-  <div class="lxd2 lens-empirical pal-a">
-    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
-    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LIU33008 · Week 1</div><h2>Where extensional meaning runs out</h2><div class="ask">Substitution failures, modal and attitude contexts, non-referential readings: the data a truth-in-a-model theory cannot capture.</div><div class="lx-rule"></div></div>
-    <div class="lxd2-foot" data-lens="empirical"></div>
-  </div>
-</section>
-
-<!-- 14 · Empirical · Leibniz's Law -->
-<section class="slide" data-label="Empirical ·Leibniz's Law" data-screen-label="12">
-  <div class="b-slide pal-a lens-empirical dB" data-sec="subw">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">Leibniz's Law</h2>
-      <div class="egpanel">
-        <div class="eghead">Swap co-referring terms</div>
-        <div class="eg"><span class="no">(4)</span><span class="ex">The Morning Star is a planet.<span class="gl">true</span></span></div>
-        <div class="eg"><span class="no">(5)</span><span class="ex">The Evening Star is a planet.<span class="gl">true; the same verdict is guaranteed, since the two terms co-refer</span></span></div>
-      </div>
-      <div class="erow"><div class="lb">The law</div><div class="tx">Substituting co-referring expressions preserves truth: <em>salva veritate</em>. Environments where this holds are <strong>extensional</strong>, or transparent.</div></div>
-      <div class="erow"><div class="lb">Act I's promise</div><div class="tx tight">A <strong>theorem</strong> of the Semantics I system. If all ⟦·⟧ tracks is extension, sentences differing in co-extensional parts cannot differ in truth value.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 15 · Empirical · opacity · question -->
-<section class="slide" data-label="Opacity, Q" data-screen-label="13 Q">
-  <div class="b-slide pal-a lens-empirical" data-sec="ann">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="qwrap">
-        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Anna failed astronomy. Run the same swap</div>
-        <div class="convo">
-          <div class="cv"><div class="who">(6)</div><div class="say">Anna believes that the Morning Star is visible at dawn.</div></div>
-          <div class="cv"><div class="who">(7)</div><div class="say">Anna believes that the Evening Star is visible at dawn.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 16 · Empirical · opacity · answer -->
-<section class="slide" data-label="Opacity, A" data-screen-label="13 A">
-  <div class="b-slide pal-a lens-empirical dB" data-sec="ann">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">Opacity</h2>
-      <div class="brn">
-        <div class="split"><span>(6), in Anna's scenario</span><span>(7), after the swap</span></div>
-        <div class="arms">
-          <div class="arm"><div class="h">True</div><div class="t">She watches it every morning and says so.</div></div>
-          <div class="arm meant"><div class="h">Can be false</div><div class="t">&ldquo;Evening Star&rdquo; means nothing to her; she would deny it outright.</div></div>
-        </div>
-      </div>
-      <div class="egpanel">
-        <div class="eghead">Modals misbehave the same way</div>
-        <div class="eg"><span class="no">(8)</span><span class="ex">The Empire State Building might be the tallest building in New York.<span class="gl">a sensible thing to wonder</span></span></div>
-        <div class="eg"><span class="no">(9)</span><span class="ex"><span style="color:var(--lens)">#</span>The Empire State Building might be One World Trade Center.<span class="gl">absurd, although the two descriptions co-refer if (8)'s guess is right</span></span></div>
-        <div class="eg"><span class="no">(10)</span><span class="ex">Little Emma thinks her house is the tallest building in New York.<span class="gl">⇏ <em>Little Emma thinks her house is One World Trade Center</em></span></span></div>
-      </div>
-      <div class="erow"><div class="lb">The diagnostic</div><div class="tx tight">Same extensions, different truth values: these environments are <strong>opaque</strong>. Substitutivity is the field's first test for intensionality. Run it on anything.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 17 · Empirical · the opaque environments -->
-<section class="slide" data-label="Empirical ·The opaque environments" data-screen-label="14">
-  <div class="b-slide pal-a lens-empirical dB" data-sec="cat">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">The opaque environments</h2>
-      <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Attitude verbs<small>alternatives: someone's beliefs</small></div><div class="ft2"><em>Harry is single</em>: checkable against the facts. <em>Sue thinks that Harry is single</em>: true or false <b>whatever Harry's love life</b>.</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Modals<small>alternatives: rules, facts, goals, evidence</small></div><div class="ft2"><em>Every car is registered</em> vs <em>every car <b>must</b> be registered</em>; the second can be true while the first is false. The form stays constant; the <b>flavour</b> (rules, evidence, goals) and the <b>force</b> (must vs might) vary. Weeks 3 and 4.</div></div>
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Epistemic adverbs<small>alternatives: what is known</small></div><div class="ft2"><em>Possibly, Hannah is in the library</em>. Where Hannah actually is does not settle it.</div></div>
-        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Intensional transitives<small>no actual-world witness needed</small></div><div class="ft2"><em>Emma is seeking a unicorn</em>: true this morning, unicorns or no unicorns.</div></div>
-      </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">One family</div><div class="tx tight">Each construction drags in <strong>alternatives</strong> to the actual facts: beliefs, obligations, knowledge states, goals. That word is about to become a technical term. Conditionals join the family in Week 8; the progressive in Week 10.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 18 · Empirical · empty predicates · question -->
-<section class="slide" data-label="Empty predicates, Q" data-screen-label="15 Q">
-  <div class="b-slide pal-a lens-empirical" data-sec="emp">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="qwrap">
-        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>True this morning. There are no unicorns</div>
-        <div class="bigq" style="font-size:76px">Emma is seeking a unicorn.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 19 · Empirical · empty predicates · answer -->
-<section class="slide" data-label="Empty predicates, A" data-screen-label="15 A">
-  <div class="b-slide pal-a lens-empirical dB" data-sec="emp">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">Empty predicates</h2>
-      <div class="egpanel">
-        <div class="eghead">Who is committed to what</div>
-        <div class="eg"><span class="no">(11)</span><span class="ex">Jackalopes are fierce.<span class="gl">commits <b>me</b> to jackalopes</span></span></div>
-        <div class="eg"><span class="no">(12)</span><span class="ex">Sue believes that jackalopes are fierce.<span class="gl">commits <b>Sue</b>; I am off the hook</span></span></div>
-        <div class="eg"><span class="no">(13)</span><span class="ex">Emma is seeking a unicorn.<span class="gl">commits <b>nobody</b> to unicorns</span></span></div>
-      </div>
-      <div class="erow"><div class="lb">The shift</div><div class="tx">Embedding moves existential commitment from the speaker to the <strong>attitude-holder</strong>. Referents inside the complement answer to the attitude.</div></div>
-      <div class="erow"><div class="lb">The killer fact</div><div class="tx tight">Extensionally, \(\sem{\textit{jackalope}} = \emptyset = \sem{\textit{unicorn}}\). Act I literally <strong>cannot distinguish</strong> believing in jackalopes from believing in unicorns.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 20 · Empirical · the nesting problem -->
-<section class="slide" data-label="Empirical ·The nesting problem" data-screen-label="16">
-  <div class="b-slide pal-a lens-empirical dB" data-sec="nst">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">The nesting problem</h2>
-      <div class="brn">
-        <div class="split"><span>What Act I gives the complement</span><span>What would follow</span></div>
-        <div class="arms">
-          <div class="arm"><div class="h">A truth value</div><div class="t">\(\sem{\textit{Harry is single}} = T\). The clause hands <em>thinks</em> the value <strong>T</strong>, and nothing else.</div></div>
-          <div class="arm meant"><div class="h">Disaster</div><div class="t">Any <strong>true</strong> complement becomes interchangeable; believing one truth means believing them all.</div></div>
-        </div>
-      </div>
-      <div class="egpanel">
-        <div class="eghead">The absurd inference</div>
-        <div class="eg"><span class="no">(14)</span><span class="ex">Sue thinks that Harry is single.<span class="gl">true, say</span></span></div>
-        <div class="eg"><span class="no">(15)</span><span class="ex"><span style="color:var(--lens)">#</span>Sue thinks that Dublin is in Ireland.<span class="gl">should follow on the type-\(t\) analysis; both complements denote T</span></span></div>
-      </div>
-      <div class="erow"><div class="lb">Upshot</div><div class="tx tight">The meaning of an embedded clause is <strong>richer than its truth value</strong>, so \(\langle t,\langle e,t\rangle\rangle\) for <em>thinks</em> is hopeless. The Formal lens repairs this today.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 21 · Empirical · de re and de dicto -->
-<section class="slide" data-label="Empirical ·De re and de dicto" data-screen-label="17">
-  <div class="b-slide pal-a lens-empirical dB" data-sec="der">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">De re and de dicto<span class="wktag">Week 5</span></h2>
-      <div class="qref">Ralph sees a man in a trench coat in an alley: that man is a spy. He sees a man on the beach: no spy, he. Both are Ortcutt. <span class="src">Quine (1956), &ldquo;Quantifiers and propositional attitudes&rdquo;</span></div>
-      <div class="egpanel">
-        <div class="eghead">Ortcutt under two descriptions</div>
-        <div class="eg"><span class="no">(16)</span><span class="ex">Ralph believes that the man in the alley is a spy.<span class="gl">true; Ralph assents on the spot</span></span></div>
-        <div class="eg"><span class="no">(17)</span><span class="ex">Ralph believes that Ortcutt is a spy.<span class="gl">true <b>de re</b> (of the man himself) · false <b>de dicto</b> (under Ralph's descriptions)</span></span></div>
-      </div>
-      <div class="erow"><div class="lb">The contrast</div><div class="tx tight"><strong>De dicto</strong>: the believer's mode of presentation matters. <strong>De re</strong>: the ascription targets the individual, however described. Abelard saw this in the 12th century. The handout works the paraphrases.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 22 · Historical divider -->
-<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
-  <div class="lxd2 lens-historical pal-a">
-    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
-    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LIU33008 · Week 1</div><h2>Frege's puzzle to Montague</h2><div class="ask">Frege on the morning and evening star, Carnap's intension and extension, and Montague's step to an intensional fragment, with a prehistory reaching back to Aristotle.</div><div class="lx-rule"></div></div>
-    <div class="lxd2-foot" data-lens="historical"></div>
-  </div>
-</section>
-
-<!-- 23 · Historical · the spine -->
-<section class="slide" data-label="Historical ·The spine" data-screen-label="18">
-  <div class="b-slide pal-a lens-historical" data-sec="spn">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">The historical spine</h2>
-      <div class="lineage">
-        <div class="ln"><div class="dot"></div><div class="era">4th c. BCE &rarr;</div><div class="nm">Aristotle &amp; the Stoics</div><div class="ds">Sea battles and future contingents; the first modal classifications of propositions.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">12th–14th c.</div><div class="nm">Abelard · Scotus</div><div class="ds">De dicto vs de re; possibility as non-contradiction; genuine alternatives.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">17th c.</div><div class="nm">Leibniz</div><div class="ds">Possible worlds as complete alternatives; necessity as truth in all of them.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">1892 – 1947</div><div class="nm">Frege · Carnap</div><div class="ds">Sense beyond reference; then intensions as functions from state-descriptions to extensions.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">1957 – 1973</div><div class="nm">Kripke · Hintikka · Montague</div><div class="ds">The semantics arrives: accessibility, attitudes as worlds, and the intensional fragment of English.</div></div>
-      </div>
-      <div class="roots"><b>Quine is the counter-melody</b>, pressing on opacity and quantifying-in until everyone sharpened their machinery. (Ruth Barcan Marcus won in the long run.)</div>
-    </div>
-  </div>
-</section>
-
-<!-- 24 · Historical · the sea battle -->
-<section class="slide" data-label="Historical ·The sea battle" data-screen-label="19">
-  <div class="b-slide pal-a lens-historical dB" data-sec="sea">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Aristotle's sea battle</h2>
-      <div class="qref">There will be a sea battle tomorrow. <span class="src"><em>De Interpretatione</em> 9</span></div>
-      <div class="figtwo">
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Aristotle_Altemps_Inv8575.jpg — public domain (photo: Jastrow); localise to images/aristotle.jpg when the shell is available -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Aristotle%20Altemps%20Inv8575.jpg?width=640" alt="Bust of Aristotle, Roman marble copy after a bronze by Lysippos, Palazzo Altemps" style="object-position:50% 12%"><div class="pc"><div class="nm">Aristotle</div><div class="dt">384 – 322 BCE · after Lysippos · public domain</div><div class="rl"><em>De Interpretatione</em> 9: the argument that made the future a problem for logic.</div></div></div>
-        <div class="figbody">
-          <div class="erow"><div class="lb">The bind</div><div class="tx tight">True now, and the battle seems fated; false now, and it is fated to fail. Either way the future closes. Bivalence collides with an <strong>open future</strong>.</div></div>
-          <div class="erow"><div class="lb">The Stoics</div><div class="tx tight">A propositional logic with a modal sorting: possible, necessary, impossible, contingent. Diodorus' Master Argument asks whether possibility <strong>collapses into actuality</strong>.</div></div>
-          <div class="erow"><div class="lb">The point</div><div class="tx tight">Modality has meant <strong>alternatives to how things actually are</strong> from the very beginning. Act II's data are the oldest problem in logic.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 25 · Historical · the medievals and Leibniz -->
-<section class="slide" data-label="Historical ·The medievals and Leibniz" data-screen-label="20">
-  <div class="b-slide pal-a lens-historical dB" data-sec="med">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">The medievals and Leibniz</h2>
-      <div class="figtwo">
-        <div class="portrait"><img src="../../uploads/Iohannes_Buridanus_(Paris_ca._1370,_Kraków_cod._BJ_1771,_fol._142v).jpg" alt="Jean Buridan lecturing, medieval manuscript illumination, Kraków, Biblioteka Jagiellońska cod. 1771, fol. 142v" style="object-fit:cover;object-position:50% 18%"><div class="pc"><div class="nm">The schoolmen</div><div class="dt">Iohannes Buridanus · Kraków, BJ cod. 1771</div><div class="rl">Modal syllogistics at its technical peak: <em>de dicto</em> vs <em>de re</em> read directly off scope.</div></div></div>
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Christoph_Bernhard_Francke_-_Bildnis_des_Philosophen_Leibniz_(ca._1695).jpg — public domain; localise to images/leibniz.jpg when the shell is available -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Christoph%20Bernhard%20Francke%20-%20Bildnis%20des%20Philosophen%20Leibniz%20(ca.%201695).jpg?width=640" alt="Gottfried Wilhelm Leibniz, portrait by Christoph Bernhard Francke, c. 1695" style="object-position:50% 22%"><div class="pc"><div class="nm">G. W. Leibniz</div><div class="dt">1646 – 1716 · Francke, c. 1695 · public domain</div><div class="rl">Possible worlds as complete alternatives, one actualised; necessity as truth in all of them. Week 3's vocabulary, assembled.</div></div></div>
-        <div class="figbody">
-          <div class="erow"><div class="lb">Abelard, 12th c.</div><div class="tx tight">First clear articulation of the <strong>de dicto / de re</strong> contrast in modal statements: the distinction Ralph and Ortcutt just needed.</div></div>
-          <div class="erow"><div class="lb">Scotus, 13th–14th c.</div><div class="tx tight">Possibility as <strong>non-contradiction</strong>; contingency as <em>could have been otherwise at the very moment of occurrence</em>. Genuine alternatives, synchronically.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 26 · Historical · Sinn und Bedeutung -->
-<section class="slide" data-label="Historical ·Sinn und Bedeutung" data-screen-label="21">
-  <div class="b-slide pal-a lens-historical dB" data-sec="frg">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Sinn und Bedeutung</h2>
-      <div class="figtwo">
-        <div class="portrait"><img src="../../weeks-pragmatics/week-01/images/frege.jpg" alt="Gottlob Frege"><div class="pc"><div class="nm">Gottlob Frege</div><div class="dt">1848 – 1925</div><div class="rl">&ldquo;Über Sinn und Bedeutung&rdquo; (1892), written to solve exactly our sentences (1) and (2).</div></div></div>
-        <div class="figbody">
-          <div class="erow"><div class="lb">The split</div><div class="tx tight">Every expression has a <strong>Bedeutung</strong> (its reference) and a <strong>Sinn</strong>: the <em>mode of presentation</em> of the referent. One Venus; two ways of being given Venus.</div></div>
-          <div class="erow"><div class="lb">The payoff</div><div class="tx tight">\(a=a\) trivial, \(a=b\) news: the senses differ. In attitude reports expressions refer <strong>indirectly</strong>, to their customary sense. That is why (6) and (7) come apart.</div></div>
-          <div class="erow"><div class="lb">The gap</div><div class="tx tight">A diagnosis awaiting a theory: Frege never says what senses <strong>are</strong>, mathematically. The gap stands open for fifty-five years.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 27 · Historical · Carnap and Quine -->
-<section class="slide" data-label="Historical ·Carnap and Quine" data-screen-label="22">
-  <div class="b-slide pal-a lens-historical dB" data-sec="crn">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Carnap and Quine</h2>
-      <div class="figtwo">
-        <div class="portrait"><img src="../../weeks-pragmatics/week-01/images/carnap.jpg" alt="Rudolf Carnap"><div class="pc"><div class="nm">Rudolf Carnap</div><div class="dt">1891 – 1970</div><div class="rl"><em>Meaning and Necessity</em> (1947): senses become mathematical objects at last.</div></div></div>
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Willard_Van_Orman_Quine_on_Bluenose_II_in_Halifax_NS_harbor_1980.jpg — CC BY 4.0; localise to images/quine.jpg + confirm attribution string when the shell is available -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Willard%20Van%20Orman%20Quine%20on%20Bluenose%20II%20in%20Halifax%20NS%20harbor%201980.jpg?width=640" alt="W. V. O. Quine aboard Bluenose II, Halifax harbour, 1980" style="object-position:50% 18%"><div class="pc"><div class="nm">W. V. O. Quine</div><div class="dt">1908 – 2000 · photo 1980 · CC BY 4.0</div><div class="rl">&ldquo;Quantifiers and propositional attitudes&rdquo; (1956): opacity's sternest examiner.</div></div></div>
-        <div class="figbody">
-          <div class="erow"><div class="lb">The construction</div><div class="tx tight"><strong>State-descriptions</strong>: complete alternative ways things could be. The <strong>intension</strong> of an expression is a function from state-descriptions to extensions; necessity is truth in all of them. Leibniz, formalised.</div></div>
-          <div class="erow"><div class="lb">The resistance</div><div class="tx tight">Opacity infects <strong>quantification</strong> as well as substitution: which \(x\) is such that Ralph believes \(x\) is a spy? Quine demanded an explicit semantics before conceding an inch.</div></div>
-          <div class="erow"><div class="lb">Still missing</div><div class="tx tight">Carnap built intensional syntax without a semantics for the modal operators themselves. The missing piece is <strong>accessibility between worlds</strong>: Kripke (1963), and Week 3.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 28 · Historical · Kripke, Hintikka, Montague -->
-<section class="slide" data-label="Historical ·Kripke, Hintikka, Montague" data-screen-label="23">
-  <div class="b-slide pal-a lens-historical dB" data-sec="rly">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Kripke, Hintikka, Montague</h2>
-      <div class="figthree">
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Jaakko_Hintikka.jpg — hosted on Commons (free by policy); confirm exact licence/attribution + localise to images/hintikka.jpg when the shell is available -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jaakko%20Hintikka.jpg?width=640" alt="Jaakko Hintikka" style="object-position:50% 20%"><div class="pc"><div class="nm">Jaakko Hintikka</div><div class="dt">1929 – 2015 · via Wikimedia Commons</div><div class="rl"><em>Knowledge and Belief</em> (1962): attitudes as quantification over an agent's epistemic alternatives. Week 5.</div></div></div>
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Saul_Kripke's_G%C3%B6del_lecture_at_UCSB.jpg — CC BY 2.0; localise to images/kripke.jpg + confirm attribution string when the shell is available -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Saul%20Kripke%27s%20G%C3%B6del%20lecture%20at%20UCSB.jpg?width=640" alt="Saul Kripke lecturing" style="object-position:50% 12%"><div class="pc"><div class="nm">Saul Kripke</div><div class="dt">1940 – 2022 · UCSB lecture · CC BY 2.0</div><div class="rl">&ldquo;Semantical considerations&rdquo; (1963): worlds plus <em>accessibility</em>; ◻ and ◇ as quantifiers at last. Week 3.</div></div></div>
-        <!-- No free photograph of Montague exists (d. 1971): name plate by design -->
-        <div class="portrait npf"><div class="npmono">RM</div><div class="pc"><div class="nm">Richard Montague</div><div class="dt">1930 – 1971 · no free photograph exists</div><div class="rl">&ldquo;English as a formal language&rdquo;: intensional types, modals, attitudes, scope, one compositional fragment. Home ground.</div></div></div>
-      </div>
-      <div class="erow" style="border-top:none"><div class="lb">Prior, 1957</div><div class="tx tight">Tense logic runs alongside: temporal operators quantify over <strong>times</strong> exactly as modals will over worlds. One template for both. Weeks 10 and 12.</div></div>
-      <div class="erow"><div class="lb">This module</div><div class="tx tight">Semantics I built the extensional half of Montague's fragment. This term builds the other half: Kripke's worlds in Week 3, Kratzer on their shoulders in Week 4, Hintikka's attitudes in Week 5.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 29 · Formal divider -->
-<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
-  <div class="lxd2 lens-formal pal-a">
-    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
-    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · LIU33008 · Week 1</div><h2>From models to intensions</h2><div class="ask">The core new idea: an intension as a function from possible worlds (and times) to extensions, and what it immediately buys.</div><div class="lx-rule"></div></div>
-    <div class="lxd2-foot" data-lens="formal"></div>
-  </div>
-</section>
-
-<!-- 30 · Formal · extension and intension -->
-<section class="slide" data-label="Formal ·Extension and intension" data-screen-label="24">
-  <div class="b-slide pal-a lens-formal dB" data-sec="ext">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">Extension and intension</h2>
-      <div class="lead">Carnap's functions, <span class="mk">promoted to the meaning itself</span>. The model quietly grows a set \(W\) of worlds.</div>
-      <div class="accrule"></div>
-      <div class="erow"><div class="lb">Extension</div><div class="tx">What an expression picks out <strong>at the world of evaluation</strong>: an individual, a set, a truth value. Everything Act I ever computed.</div></div>
-      <div class="erow"><div class="lb">Intension</div><div class="tx">A <strong>function from worlds to extensions</strong>: \(\lambda w.\sem{\alpha}^{w}\). <em>The Taoiseach</em>: extension, the current officeholder; intension, whoever heads the government at each \(w\). Two descriptions can share an extension while their intensions differ. Exactly what (6) to (10) demanded. Times enter as a second index; the Week 12 capstone returns to them.</div></div>
-      <div class="egpanel">
-        <div class="eghead">The intensional type inventory</div>
-        <div class="fx">\[ \textit{names}:\ \langle s,e\rangle \qquad \textit{predicates}:\ \langle s,\langle e,t\rangle\rangle \qquad \textit{sentences}:\ \langle s,t\rangle \]</div>
-        <div class="fxnote">the answer to &ldquo;what could a Sinn be, mathematically?&rdquo;, and the inventory the Typological lens interrogates</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 31 · Formal · propositions -->
-<section class="slide" data-label="Formal ·Propositions" data-screen-label="25">
-  <div class="b-slide pal-a lens-formal dB" data-sec="prp">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">Propositions as sets of worlds</h2>
-      <div class="egpanel">
-        <div class="eghead">The proposition a sentence expresses</div>
-        <div class="fx">\[ \sem{S} \;=\; \{\,w : S \text{ is true at } w\,\}, \quad\text{type } \langle s,t\rangle; \qquad S \text{ is true at } w \text{ iff } w \in \sem{S} \]</div>
-        <div class="eg"><span class="no">(18)</span><span class="ex">Carlingford is in Northern Ireland.<span class="gl">perfectly intelligible while its truth value is unknown to you; meaning is the <b>condition</b>. (Carlingford is in Louth.)</span></span></div>
-      </div>
-      <div class="erow"><div class="lb">The old toolkit lifts</div><div class="tx">Entailment is <strong>subset</strong>, negation is <strong>complement</strong>, conjunction is <strong>intersection</strong>: the set theory of Semantics I, run on worlds. Week 2 puts entailment straight to work: downward-entailing environments and NPI licensing.</div></div>
-      <div class="erow"><div class="lb">Why it matters</div><div class="tx tight">A sentence meaning is now an object rich enough to be <strong>embedded</strong>. The nesting problem can be repaired.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 32 · Formal · re-typing believe -->
-<section class="slide" data-label="Formal ·Re-typing believe" data-screen-label="26">
-  <div class="b-slide pal-a lens-formal" data-sec="fix">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">Re-typing <em>believe</em></h2>
-      <div class="b-steps">
-        <div class="b-step"><div class="b-step-lab">The complement denotes a proposition</div><div class="b-step-math">\(\sem{\textit{that Harry is single}} = \{\,w : \textit{Harry is single at } w\,\}\), type \(\langle s,t\rangle\)</div></div>
-        <div class="b-step"><div class="b-step-lab">Re-type the verb</div><div class="b-step-math">\(\sem{\textit{thinks}} : \langle\langle s,t\rangle,\langle e,t\rangle\rangle\); it takes a proposition</div></div>
-        <div class="b-step"><div class="b-step-lab">Function Application, as ever</div><div class="b-step-math">\(\sem{\textit{thinks that Harry is single}} = \sem{\textit{thinks}}\left(\sem{\textit{that Harry is single}}\right)\)</div></div>
-        <div class="b-step"><div class="b-step-lab">The bad inference dies</div><div class="b-step-math">\(\{w : \textit{Harry single at } w\} \neq \{w : \textit{Dublin in Ireland at } w\}\); (14) no longer drags in (15)</div></div>
-        <div class="b-step step-future"><div class="b-step-lab">One question remains</div><div class="b-step-math">\(\textit{Still open: the relation thinks names between Sue and that set of worlds.}\)</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 33 · Formal · Hintikka -->
-<section class="slide" data-label="Formal ·Hintikka" data-screen-label="27">
-  <div class="b-slide pal-a lens-formal dB" data-sec="hin">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">Hintikka<span class="wktag">Week 5</span></h2>
-      <div class="qref">An attribution of any propositional attitude involves a division of all the possible worlds into two classes: those in accordance with the attitude, and those incompatible with it. <span class="src">Hintikka, <em>Knowledge and Belief</em> (1962), lightly trimmed</span></div>
-      <div class="egpanel">
-        <div class="eghead">The move</div>
-        <div class="fx">\[ \mathrm{DOX}(x) = \{\,w : w \text{ is compatible with everything } x \text{ believes}\,\} \qquad \sem{\textit{believes}} = \lambda p_{\langle s,t\rangle}.\lambda x_e.\; \mathrm{DOX}(x) \subseteq p \]</div>
-        <div class="eg"><span class="no">(19)</span><span class="ex">Sue believes that it is raining in Dublin.<span class="gl">true iff it rains in Dublin throughout DOX(Sue); belief as truth throughout one's belief-worlds</span></span></div>
-      </div>
-      <div class="erow"><div class="lb">What it buys</div><div class="tx tight">Frege's puzzle: distinct propositions, distinct arguments. Empty predicates: Sue's belief-worlds may contain jackalopes. The debts (where \(\mathrm{DOX}\) comes from, logical omniscience) fall due in Weeks 3 to 5.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 34 · Typological divider -->
-<section class="slide" data-label="§ Typological" data-screen-label="§ Typological">
-  <div class="lxd2 lens-typological pal-a">
-    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
-    <div class="r"><div class="lab">Typological</div><div class="ct">LENS 04 / 04 · LIU33008 · Week 1</div><h2>Is the type inventory universal?</h2><div class="ask">Whether every language encodes the same intensional distinctions: the cross-linguistic thread the term keeps returning to.</div><div class="lx-rule"></div></div>
-    <div class="lxd2-foot" data-lens="typological"></div>
-  </div>
-</section>
-
-<!-- 35 · Typological · three signposts -->
-<section class="slide" data-label="Typological ·Three signposts" data-screen-label="28">
-  <div class="b-slide pal-a lens-typological dB" data-sec="typ">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
-      <h2 class="b-h">Three signposts</h2>
-      <div class="lead">If worlds and \(\langle s,t\rangle\) are the universal space, languages still differ in <span class="mk">which corners grammar must mention</span>.</div>
-      <div class="accrule"></div>
-      <div class="cols3">
-        <div><div class="ch">Variable force</div><ul><li>St'át'imcets modals fix <em>flavour</em> lexically; force stays open</li><li><em>k'a</em> epistemic, <em>ka</em> deontic; must-or-might from context</li><li>the mirror image of English</li></ul><div class="cfoot">Rullmann, Matthewson &amp; Davis 2008 &rarr; <b>Week 4</b></div></div>
-        <div><div class="ch">Shifted indexicals</div><ul><li>Amharic <em>I</em> under <em>say</em> can be the reported speaker</li><li>&ldquo;John says that I am a hero&rdquo; = John's <em>I</em></li><li>attitudes can shift the context itself</li></ul><div class="cfoot">Schlenker 2003 &rarr; <b>Week 5</b></div></div>
-        <div><div class="ch">Evidential source</div><ul><li>Cuzco Quechua marks how you know: <em>=mi</em> direct, <em>=si</em> reportative, <em>=chá</em> conjectural</li><li>epistemic modal, or speech-act operator</li></ul><div class="cfoot">Faller 2002 &rarr; <b>Week 11</b></div></div>
-      </div>
-      <div class="erow" style="margin-top:16px"><div class="lb">The question</div><div class="tx tight">Same space of worlds with different grammaticalised distinctions, or genuinely different <strong>inventories</strong>? Every typological section this term is one round of that argument.</div></div>
-    </div>
-  </div>
-</section>
 
 <!-- 36 · How the module works -->
-<section class="slide" data-label="How the module works" data-screen-label="29">
+<section class="slide" data-label="How the module works" data-screen-label="04">
   <div class="b-slide pal-a" data-sec="hk">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="b-kick">Housekeeping</div>
       <h2 class="b-h">How the module works</h2>
       <div class="facts">
-        <div class="fact"><div class="fh">Sessions</div><div class="fb">Mondays 12:00 to 13:00 · Thursdays 13:00 to 14:00<small>Monday: the lecture · Thursday: the handout, worked through together</small></div></div>
+        <div class="fact"><div class="fh">Sessions</div><div class="fb">Mondays 12:00 to 13:00 · Thursdays 13:00 to 14:00<small>Week 1 only: both sessions are lecture. From week 2 onwards, the Thursday sessions will be more practical and handout based</small></div></div>
         <div class="fact"><div class="fh">Office hours</div><div class="fb">Thursdays, 14:00 to 15:00 · PX113<small>straight after the Thursday session · or email tmurrays@tcd.ie for an alternative slot</small></div></div>
         <div class="fact"><div class="fh">Texts</div><div class="fb">Coppock &amp; Champollion · von Fintel &amp; Heim · Portner<small>plus one or two primary papers each week; see the weekly reading lists</small></div></div>
-        <div class="fact"><div class="fh">Study week</div><div class="fb">26 to 30 October<small>no teaching; Assessment 1 feedback returns</small></div></div>
+        <div class="fact"><div class="fh">Study week</div><div class="fb">26 to 30 October<small>no teaching</small></div></div>
       </div>
-      <div class="hnote"><b>A typical week works through the four lenses:</b> the <b>data</b> that motivate the tool &rarr; the <b>history</b> that produced it &rarr; the <b>machinery</b> itself &rarr; a <b>language that carves things differently</b>. Prerequisite: the Semantics I toolkit. Today's Act I is the health-check.</div>
     </div>
   </div>
 </section>
 
+
+
 <!-- 37 · The assessment -->
-<section class="slide" data-label="The assessment" data-screen-label="30">
+<section class="slide" data-label="The assessment" data-screen-label="05">
   <div class="b-slide pal-a" data-sec="assess">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="b-kick">Housekeeping</div>
       <h2 class="b-h">The assessment</h2>
       <div class="facts">
-        <div class="fact"><div class="fh">Assessment 1 · 10%</div><div class="fb">Friday 16 October · week 5<small>covers weeks 1 to 4: the recap, substitutivity, worlds and modal logic, Kratzer</small></div></div>
-        <div class="fact"><div class="fh">Assessment 2 · 30%</div><div class="fb">Friday 13 November · week 9<small>covers weeks 5 to 8: attitudes, embedding, the restrictor analysis</small></div></div>
-        <div class="fact"><div class="fh">Assessment 3 · 60%</div><div class="fb">Monday 14 December<small>the capstone component: the term, weighted to weeks 8 to 12</small></div></div>
+        <div class="fact"><div class="fh">Assessment 1 · 10%</div><div class="fb">Friday 16 October · week 5<small>covers weeks 1 to 3: the recap, substitutivity, worlds and modal logic, Kratzer</small></div></div>
+        <div class="fact"><div class="fh">Assessment 2 · 30%</div><div class="fb">Friday 13 November · week 9<small>covers weeks 4 to 8: attitudes, factivity, hyperintensionality, the restrictor analysis</small></div></div>
+        <div class="fact"><div class="fh">Assessment 3 · 60%</div><div class="fb">Monday 14 December<small>essay</small></div></div>
         <div class="fact"><div class="fh">Submission</div><div class="fb">Via Blackboard<small>briefs released in advance of each deadline</small></div></div>
       </div>
-      <div class="hnote"><b>Assessment 1 is a health-check</b>: small, early, and returned with feedback over the study week. Anyone shaky on the Semantics I toolkit finds out in time to fix it.</div>
-      <div class="todo-line"><b>To confirm:</b> assessment titles &amp; formats.</div>
     </div>
   </div>
 </section>
 
+
+
 <!-- 38 · Learning outcomes -->
-<section class="slide" data-label="Learning outcomes" data-screen-label="31">
+<section class="slide" data-label="Learning outcomes" data-screen-label="06">
   <div class="b-slide pal-a dB" data-sec="outc">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -894,99 +346,393 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   </div>
 </section>
 
+
+
 <!-- 39 · Readings · von Fintel & Heim -->
-<section class="slide" data-label="Readings ·von Fintel &amp; Heim" data-screen-label="32">
+<section class="slide" data-label="Readings ·von Fintel &amp; Heim" data-screen-label="07">
   <div class="b-slide pal-a dB" data-sec="rd1">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="b-kick">This week's readings · 1 of 3</div>
       <h2 class="b-h">von Fintel &amp; Heim, chapter 1</h2>
       <div class="qref">von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, ch. 1, &ldquo;Beginnings of intensional semantics.&rdquo; <span class="src">MIT lecture notes · open access · PDF linked on the reading list</span></div>
-      <div class="erow" style="border-top:none"><div class="lb">What it is</div><div class="tx">The term's <strong>spine text</strong>: worlds, attitudes, modality and conditionals, built near week-for-week with this module. Chapter 1 is today's lecture, done slowly and properly.</div></div>
-      <div class="erow"><div class="lb">Why now</div><div class="tx">It makes exactly today's move, from extensions to a <strong>world parameter</strong>. Its opening theme, <em>displacement</em>, is Act II in one word.</div></div>
-      <div class="erow"><div class="lb">How to read it</div><div class="tx tight">First, before Frege, with a pen. These are <strong>lecture notes</strong>: work the examples as they come, and bring what snags to Thursday's session.</div></div>
     </div>
   </div>
 </section>
 
-<!-- 40 · Readings · Frege -->
-<section class="slide" data-label="Readings ·Frege" data-screen-label="33">
-  <div class="b-slide pal-a dB" data-sec="rd2">
+
+
+<!-- 06 · Part 1 · the model -->
+<section class="slide" data-label="Part 1 ·The model" data-screen-label="08">
+  <div class="b-slide pal-a dB" data-sec="mod1">
     <aside class="mrail"></aside>
     <div class="b-main dB">
-      <div class="b-kick">This week's readings · 2 of 3</div>
-      <h2 class="b-h">Frege (1892)</h2>
-      <div class="qref">Frege (1948 [1892]), &ldquo;On sense and reference,&rdquo; <em>The Philosophical Review</em> 57(3), 209 – 230. <span class="src">Black's translation · JSTOR, library login</span></div>
-      <div class="erow" style="border-top:none"><div class="lb">What it is</div><div class="tx">The paper behind our sentences (1) and (2). <strong>Sinn and Bedeutung</strong> are born here, in the space of thirty pages.</div></div>
-      <div class="erow"><div class="lb">Why</div><div class="tx">It motivates the whole intensional turn. Watch him arrive, by the end, at <strong>indirect reference</strong> in attitude contexts: our opacity data, diagnosed in 1892.</div></div>
-      <div class="erow"><div class="lb">How to read it</div><div class="tx tight">The prose is stately; the argument is one thread. <strong>Track the Morning Star and Evening Star</strong> through the paper and everything else falls into place.</div></div>
+      <div class="b-kick">Part 1 · The system we built</div>
+      <h2 class="b-h">The model</h2>
+      <div class="erow" style="border-top:none"><div class="lb">The model</div><div class="tx">\(M = \langle D, I\rangle\): a <strong>domain</strong> of individuals and an <strong>interpretation</strong>. Constants to members of \(D\); one-place predicates to subsets; two-place predicates to relations on \(D \times D\).</div></div>
+      <div class="erow"><div class="lb">Assignments</div><div class="tx">\(g\) values the variables: \(\sem{u}^{M,g} = g(u)\). Everything else is fixed by \(I\).</div></div>
+      <div class="erow"><div class="lb">The point</div><div class="tx tight">Denotation is always denotation <strong>in a model</strong>: a stand-in for the facts, one complete way for things to be.</div></div>
+      <div class="egpanel">
+        <div class="eghead">A toy model</div>
+        <div class="fx">\[ D=\{n, a, d\} \qquad I(\textit{single})=\{n,a\} \qquad I(\textit{tall})=\{a,d\} \qquad I(\textit{admires})=\{\langle n,a\rangle, \langle a,d\rangle\} \]</div>
+        <div class="fxnote">Neil, Anna and Dara: our domain for the hour</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 41 · Readings · Montague -->
-<section class="slide" data-label="Readings ·Montague" data-screen-label="34">
-  <div class="b-slide pal-a dB" data-sec="rd3">
+
+
+<!-- 07 · Part 1 · truth conditions -->
+<section class="slide" data-label="Part 1 ·Truth in the model" data-screen-label="09">
+  <div class="b-slide pal-a dB" data-sec="tru">
     <aside class="mrail"></aside>
     <div class="b-main dB">
-      <div class="b-kick">This week's readings · 3 of 3</div>
-      <h2 class="b-h">Montague's PTQ</h2>
-      <div class="qref">Montague (1973), &ldquo;The proper treatment of quantification in ordinary English.&rdquo; <span class="src">&ldquo;PTQ&rdquo; · in Portner &amp; Partee (eds.), <em>Formal Semantics: The Essential Readings</em> · library login</span></div>
-      <div class="erow" style="border-top:none"><div class="lb">What it is</div><div class="tx">The <strong>intensional fragment</strong> itself: English treated with the precision of a formal language. Quantification, scope, intensional transitives, all of it compositional.</div></div>
-      <div class="erow"><div class="lb">Why</div><div class="tx">The historical hinge, and the programme this module lives inside. This week the aim is exposure; mastery waits for Week 5.</div></div>
-      <div class="erow"><div class="lb">How to read it</div><div class="tx tight">The notation is famously dense. <strong>Read for the shape of the project</strong>, section by section, and skip nothing except the rule-by-rule detail.</div></div>
+      <div class="b-kick">Part 1 · The system we built</div>
+      <h2 class="b-h">Truth in the model</h2>
+      <div class="erow" style="border-top:none"><div class="lb">At the bottom</div><div class="tx">Predication is <strong>membership</strong>: a sentence is true when the named things stand in the named set or relation.</div></div>
+      <div class="erow"><div class="lb">Going up</div><div class="tx tight">The connectives see only the parts' <strong>truth values</strong>. Nothing else about the parts survives.</div></div>
+      <div class="egpanel">
+        <div class="eghead">The recursive clauses</div>
+        <div class="fx">\[ \sem{\pi(\alpha_1,\dots,\alpha_n)}^{M,g} = T \;\text{ iff }\; \langle\sem{\alpha_1}^{M,g},\dots,\sem{\alpha_n}^{M,g}\rangle \in \sem{\pi}^{M,g} \]</div>
+        <div class="fx">\[ \sem{\neg\varphi} = T \text{ iff } \sem{\varphi} = F \qquad \sem{\varphi \wedge \psi} = T \text{ iff } \sem{\varphi} = T \text{ and } \sem{\psi} = T \]</div>
+        <div class="fxnote">in the toy model: ⟦Neil is single⟧ = T, since n ∈ I(single)</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- 42 · Week by week -->
-<section class="slide" data-label="Week by week" data-screen-label="35">
-  <div class="b-slide pal-a" data-sec="wby">
+
+
+<!-- 08 · Part 1 · quantifiers -->
+<section class="slide" data-label="Part 1 ·Quantifiers" data-screen-label="10">
+  <div class="b-slide pal-a dB" data-sec="qnt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">Part 1 · The system we built</div>
+      <h2 class="b-h">Quantifiers and assignments</h2>
+      <div class="erow" style="border-top:none"><div class="lb">The trick</div><div class="tx">An assignment variant \(g[u \mapsto k]\) is \(g\) with the variable \(u\) re-pointed at \(k\). Quantifiers <strong>survey the variants</strong>.</div></div>
+      <div class="egpanel">
+        <div class="eghead">The two clauses</div>
+        <div class="fx">\[ \sem{\exists u.\varphi}^{M,g} = T \;\text{ iff for some } k \in D:\; \sem{\varphi}^{M,g[u\mapsto k]} = T \]</div>
+        <div class="fx">\[ \sem{\forall u.\varphi}^{M,g} = T \;\text{ iff for all } k \in D:\; \sem{\varphi}^{M,g[u\mapsto k]} = T \]</div>
+        <div class="fxnote">in the toy model: ∃x(single(x) ∧ tall(x)), verified by g[x ↦ a]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 09 · Part 1 · types & λ -->
+<section class="slide" data-label="Part 1 ·Types and λ" data-screen-label="11">
+  <div class="b-slide pal-a dB" data-sec="lam">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">Part 1 · The system we built</div>
+      <h2 class="b-h">Types, λ and Function Application</h2>
+      <div class="erow" style="border-top:none"><div class="lb">Types</div><div class="tx">Two basic types, \(e\) and \(t\), and functions \(\langle\sigma,\tau\rangle\) between them: predicates \(\langle e,t\rangle\), transitives \(\langle e,\langle e,t\rangle\rangle\), a sentence \(t\).</div></div>
+      <div class="erow"><div class="lb">Two rules</div><div class="tx"><strong>Function Application</strong>, where the types say which sister is the function. <strong>Predicate Modification</strong>, where both sisters are \(\langle e,t\rangle\).</div></div>
+      <div class="egpanel">
+        <div class="eghead">The two rules</div>
+        <div class="fx">\[ \sem{\beta\;\gamma} = \sem{\beta}\left(\sem{\gamma}\right) \qquad\qquad \sem{\beta\;\gamma} = \lambda x.\,\sem{\beta}(x) \wedge \sem{\gamma}(x) \]</div>
+        <div class="fxnote">Function Application, and Predicate Modification for two \(\langle e,t\rangle\) sisters</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 10 · Part 1 · events & times -->
+<section class="slide" data-label="Part 1 ·Events and times" data-screen-label="12">
+  <div class="b-slide pal-a dB" data-sec="evt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">Part 1 · The system we built</div>
+      <h2 class="b-h">Events and times</h2>
+      <div class="erow" style="border-top:none"><div class="lb">Davidson</div><div class="tx">Verbs describe <strong>events</strong>; sentences quantify over them; adverbs are predicates of the event variable. Modification is conjunction.</div></div>
+      <div class="erow"><div class="lb">Tense</div><div class="tx tight">Times came last: tense locates the event relative to <em>now</em>. Events and times enlarged the <strong>ontology</strong>. Every claim was still checked against one world's facts.</div></div>
+      <div class="egpanel">
+        <div class="eghead">The Davidsonian move</div>
+        <div class="eg"><span class="no">(1)</span><span class="ex">Neil giggled loudly.<span class="gl">⇝ \(\exists e\,(\textit{giggle}(e,n) \wedge \textit{loud}(e) \wedge e \prec \textit{now})\); drop a conjunct and <em>Neil giggled</em> follows for free</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 11 · Part 1 · worked example -->
+<section class="slide" data-label="Part 1 ·Worked example" data-screen-label="13">
+  <div class="b-slide pal-a" data-sec="wrk">
     <aside class="mrail"></aside>
     <div class="b-main">
-      <div class="b-kick">The term ahead</div>
-      <h2 class="b-h">Week by week</h2>
-      <div class="weeks">
-        <div>
-          <div class="wch">Foundations &amp; modality</div>
-          <div class="wkr now"><span class="n">01</span><span class="t">Recap &amp; the Intensional Turn</span></div>
-          <div class="wkr"><span class="n">02</span><span class="t">Negation</span></div>
-          <div class="wkr"><span class="n">03</span><span class="t">Worlds, Intensions &amp; Modal Logic</span></div>
-          <div class="wkr"><span class="n">04</span><span class="t">The Kratzer System</span></div>
+      <div class="b-kick">Part 1 · The system we built</div>
+      <h2 class="b-h">Worked: <em>Neil admires Anna</em></h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">Lexicon</div><div class="b-step-math">\(\sem{\textit{Neil}} = n \qquad \sem{\textit{Anna}} = a \qquad \sem{\textit{admires}} = \lambda x.\lambda y.\,\textit{admires}(y,x)\)</div></div>
+        <div class="b-step"><div class="b-step-lab">Types</div><div class="b-step-math">\(e \qquad e \qquad \langle e,\langle e,t\rangle\rangle\)</div></div>
+        <div class="b-step"><div class="b-step-lab">VP, by Function Application</div><div class="b-step-math">\(\sem{\textit{admires Anna}} = \lambda y.\,\textit{admires}(y,a)\), type \(\langle e,t\rangle\)</div></div>
+        <div class="b-step"><div class="b-step-lab">S, by Function Application</div><div class="b-step-math">\(\sem{\textit{Neil admires Anna}} = \textit{admires}(n,a)\), type \(t\)</div></div>
+        <div class="b-step step-future"><div class="b-step-lab">Evaluate in \(M\)</div><div class="b-step-math">\(T\) iff \(\langle n,a\rangle \in I(\textit{admires})\): true in our toy model</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Part 1 · student exercise -->
+<section class="slide" data-label="Part 1 ·Your turn" data-screen-label="14">
+  <div class="b-slide pal-a" data-sec="ex1">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Same model. Your turn</div>
+        <div class="convo">
+          <div class="cv"><div class="who">a.</div><div class="say">Verify \(\exists x(\textit{single}(x) \wedge \textit{tall}(x))\) in \(M\).</div></div>
+          <div class="cv"><div class="who">b.</div><div class="say">Which assignment variant?</div></div>
+          <div class="cv"><div class="who">c.</div><div class="say">Now \(\forall x(\textit{single}(x) \rightarrow \textit{tall}(x))\).</div></div>
         </div>
-        <div>
-          <div class="wch">Attitudes &amp; conditionals</div>
-          <div class="wkr"><span class="n">05</span><span class="t">Attitude Reports</span></div>
-          <div class="wkr"><span class="n">06</span><span class="t">Factivity, Selection &amp; Neg-Raising</span></div>
-          <div class="wkr rw"><span class="n">07</span><span class="t">Reading Week</span></div>
-          <div class="wkr"><span class="n">08</span><span class="t">Indicatives &amp; the Restrictor Analysis</span></div>
-          <div class="wkr"><span class="n">09</span><span class="t">Counterfactuals &amp; Similarity</span></div>
+        <div class="qsrc">\(D=\{n, a, d\}\) &middot; \(I(\textit{single})=\{n,a\}\) &middot; \(I(\textit{tall})=\{a,d\}\)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · Part 1 closes -->
+<section class="slide" data-label="Part 1 closes" data-screen-label="15">
+  <div class="b-slide pal-a" data-sec="crk">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s;color:var(--tcd-blue)"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Part 1 closes</div>
+        <div class="bigq anim" style="--d:.15s;font-size:62px">Every value ⟦·⟧ handed us was a fact about <em>one world</em>: an individual, a set, a truth value.<span class="src">Extensions, all the way down. Now push the system one step further than Semantics I ever did.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 20 · Empirical · the nesting problem -->
+<section class="slide" data-label="Empirical ·The nesting problem" data-screen-label="16">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="nst">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The nesting problem</h2>
+      <div class="brn">
+        <div class="split"><span>What Part 1 gives the complement</span><span>What would follow</span></div>
+        <div class="arms">
+          <div class="arm"><div class="h">A truth value</div><div class="t">\(\sem{\textit{Harry is single}} = T\). The clause hands <em>thinks</em> the value <strong>T</strong>, and nothing else.</div></div>
+          <div class="arm meant"><div class="h">Disaster</div><div class="t">Any <strong>true</strong> complement becomes interchangeable; believing one truth means believing them all.</div></div>
         </div>
-        <div>
-          <div class="wch">Time, evidence, interactions</div>
-          <div class="wkr"><span class="n">10</span><span class="t">Aspect &amp; the Perfect</span></div>
-          <div class="wkr"><span class="n">11</span><span class="t">Evidentiality</span></div>
-          <div class="wkr"><span class="n">12</span><span class="t">Modals &amp; Tense</span></div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">The absurd inference</div>
+        <div class="eg"><span class="no">(2)</span><span class="ex">Sue thinks that Harry is single.<span class="gl">true, say</span></span></div>
+        <div class="eg"><span class="no">(3)</span><span class="ex"><span style="color:var(--lens)">#</span>Sue thinks that Dublin is in Ireland.<span class="gl">should follow on the type-\(t\) analysis; both complements denote T</span></span></div>
+      </div>
+      <div class="erow"><div class="lb">Upshot</div><div class="tx tight">The meaning of an embedded clause is <strong>richer than its truth value</strong>, so \(\langle t,\langle e,t\rangle\rangle\) for <em>thinks</em> is hopeless.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 13 · Empirical divider -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LIU33008 · Week 1</div><h2>Many more puzzles and problems</h2><div class="ask">Where the extensional analysis breaks down.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+
+
+<!-- 02 · Frege's puzzle · question -->
+<section class="slide" data-label="Frege's puzzle, Q" data-screen-label="17">
+  <div class="b-slide pal-a" data-sec="hook">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s;color:var(--tcd-blue)"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide: is (5) as trivial as (4)</div>
+        <div class="convo big">
+          <div class="cv anim" style="--d:.15s"><div class="who">(4)</div><div class="say">The Morning Star is the Morning Star.</div></div>
+          <div class="cv anim" style="--d:.35s"><div class="who">(5)</div><div class="say">The Morning Star is the Evening Star.</div></div>
+        </div>
+        <div class="qsrc anim" style="--d:.7s">Both name Venus.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 03 · Frege's puzzle · answer -->
+<section class="slide" data-label="Frege's puzzle, A" data-screen-label="18">
+  <div class="b-slide pal-a dB" data-sec="hook">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">Frege's Puzzle</h2>
+      <div class="erow" style="border-top:none"><div class="lb">The facts</div><div class="tx"><em>The Morning Star</em> and <em>the Evening Star</em> pick out <strong>one object</strong>. If meaning were reference, (4) and (5) would feel exactly alike.</div></div>
+      <div class="erow"><div class="lb">The asymmetry</div><div class="tx">They don't. \(a=a\) is trivial; \(a=b\) is <strong>informative</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 14 · Empirical · Leibniz's Law -->
+<section class="slide" data-label="Empirical ·Leibniz's Law" data-screen-label="19">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="subw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Leibniz's Law</h2>
+      <div class="egpanel">
+        <div class="eghead">Swap co-referring terms</div>
+        <div class="eg"><span class="no">(6)</span><span class="ex">The Morning Star is a planet.<span class="gl">true</span></span></div>
+        <div class="eg"><span class="no">(7)</span><span class="ex">The Evening Star is a planet.<span class="gl">true; the same verdict is guaranteed, since the two terms co-refer</span></span></div>
+      </div>
+      <div class="erow"><div class="lb">The law</div><div class="tx">Substituting co-referring expressions preserves truth: <em>salva veritate</em>. Environments where this holds are <strong>extensional</strong>, or transparent.</div></div>
+      <div class="erow"><div class="lb"></div><div class="tx tight">A <strong>theorem</strong> of the Semantics I system. If all ⟦·⟧ tracks is extension, sentences differing in co-extensional parts cannot differ in truth value.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 15 · Empirical · opacity · question -->
+<section class="slide" data-label="Opacity, Q" data-screen-label="20">
+  <div class="b-slide pal-a lens-empirical" data-sec="ann">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Anna failed astronomy. Run the same swap</div>
+        <div class="convo">
+          <div class="cv"><div class="who">(8)</div><div class="say">Anna believes that the Morning Star is visible at dawn.</div></div>
+          <div class="cv"><div class="who">(9)</div><div class="say">Anna believes that the Evening Star is visible at dawn.</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 43 · Wrap-up -->
-<section class="slide" data-label="Wrap-up" data-screen-label="36">
-  <div class="b-slide pal-a" data-sec="sum">
+
+
+<!-- 16 · Empirical · opacity · answer -->
+<section class="slide" data-label="Opacity, A" data-screen-label="21">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="ann">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Opacity</h2>
+      <div class="brn">
+        <div class="split"><span>(8), in Anna's scenario</span><span>(9), after the swap</span></div>
+        <div class="arms">
+          <div class="arm"><div class="h">True</div><div class="t">She watches it every morning and says so.</div></div>
+          <div class="arm meant"><div class="h">Can be false</div><div class="t">&ldquo;Evening Star&rdquo; means nothing to her; she would deny it outright.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">Modals misbehave the same way</div>
+        <div class="eg"><span class="no">(10)</span><span class="ex">The Empire State Building might be the tallest building in New York.<span class="gl">a sensible thing to wonder</span></span></div>
+        <div class="eg"><span class="no">(11)</span><span class="ex"><span style="color:var(--lens)">#</span>The Empire State Building might be One World Trade Center.<span class="gl">absurd, although the two descriptions co-refer if (10)'s guess is right</span></span></div>
+        <div class="eg"><span class="no">(12)</span><span class="ex">Little Emma thinks her house is the tallest building in New York.<span class="gl">⇏ <em>Little Emma thinks her house is One World Trade Center</em></span></span></div>
+      </div>
+      <div class="erow"><div class="lb">The diagnostic</div><div class="tx tight">Same extensions, different truth values: these environments are <strong>opaque</strong>. Substitutivity is the field's first test for intensionality.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 17 · Empirical · the opaque environments -->
+<section class="slide" data-label="Empirical ·The opaque environments" data-screen-label="22">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="cat">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The opaque environments</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Attitude verbs<small>alternatives: someone's beliefs</small></div><div class="ft2"><em>Harry is single</em>: checkable against the facts. <em>Sue thinks that Harry is single</em>: true or false <b>whatever Harry's love life</b>.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Modals<small>alternatives: rules, facts, goals, evidence</small></div><div class="ft2"><em>Every car is registered</em> vs <em>every car <b>must</b> be registered</em>; the second can be true while the first is false. The form stays constant; the <b>flavour</b> (rules, evidence, goals) and the <b>force</b> (must vs might) vary. Weeks 2 and 3.</div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Epistemic adverbs<small>alternatives: what is known</small></div><div class="ft2"><em>Possibly, Hannah is in the library</em>. Where Hannah actually is does not settle it.</div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Intensional transitives<small>no actual-world witness needed</small></div><div class="ft2"><em>Emma is seeking a unicorn</em>: true this morning, unicorns or no unicorns.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Empirical · intensional adjectives -->
+<section class="slide" data-label="Empirical ·Intensional adjectives" data-screen-label="23">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="adj">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Intensional adjectives</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">former<small>time</small></div><div class="ft2">A <em>former senator</em> is not a senator. Disjoint from the noun's extension.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">alleged<small>a claim</small></div><div class="ft2">An <em>alleged murderer</em> may have murdered nobody. Neither subset nor disjoint.</div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">fake<small>imitation</small></div><div class="ft2">A <em>fake gun</em> is not a gun. Disjoint.</div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">counterfeit<small>imitation</small></div><div class="ft2">A <em>counterfeit note</em> is not a note. Disjoint.</div></div>
+      </div>
+      <div class="erow" style="margin-top:6px"><div class="lb">The difference</div><div class="tx tight">Intensionality inside <strong>modification</strong>. No operator over a clause. Montague (1970).</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 · Empirical · empty predicates · question -->
+<section class="slide" data-label="Empty predicates, Q" data-screen-label="24">
+  <div class="b-slide pal-a lens-empirical" data-sec="emp">
     <aside class="mrail"></aside>
     <div class="b-main">
-      <div class="b-kick">Week 1</div>
-      <h2 class="b-h">Wrap-up</h2>
-      <div class="recap">
-        <div class="rr" style="--rc:var(--lens-emp)"><div class="rl">Empirical</div><div class="rt">Substitution fails, commitments shift, and complements refuse to be truth values. Opacity is everywhere English talks past the facts.</div></div>
-        <div class="rr" style="--rc:var(--lens-his)"><div class="rl">Historical</div><div class="rt">The sea battle to Leibniz's worlds; Frege's senses, Carnap's functions, and the Kripke, Hintikka and Montague relay.</div></div>
-        <div class="rr" style="--rc:var(--lens-for)"><div class="rl">Formal</div><div class="rt">Intension = λw.⟦·⟧ʷ; propositions are sets of worlds; <em>believe</em> re-typed to ⟨⟨s,t⟩,⟨e,t⟩⟩, with Hintikka's ⊆ waiting in Week 5.</div></div>
-        <div class="rr" style="--rc:var(--lens-typ)"><div class="rl">Typological</div><div class="rt">One space of worlds, carved differently: variable force, shifted indexicals, evidential source. The term's recurring test bench.</div></div>
+      <div class="qwrap">
+        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>True this morning. There are no unicorns</div>
+        <div class="bigq" style="font-size:76px">Emma is seeking a unicorn.</div>
       </div>
-      <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next week:</strong> Negation. Klima's tests, downward-entailing environments, and the licensing of <em>any</em>, <em>ever</em> and <em>lift a finger</em>.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 19 · Empirical · empty predicates · answer -->
+<section class="slide" data-label="Empty predicates, A" data-screen-label="25">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="emp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Empty predicates</h2>
+      <div class="egpanel">
+        <div class="eghead">Who is committed to what</div>
+        <div class="eg"><span class="no">(13)</span><span class="ex">Jackalopes are fierce.<span class="gl">commits <b>me</b> to jackalopes</span></span></div>
+        <div class="eg"><span class="no">(14)</span><span class="ex">Sue believes that jackalopes are fierce.<span class="gl">commits <b>Sue</b>; I am off the hook</span></span></div>
+        <div class="eg"><span class="no">(15)</span><span class="ex">Emma is seeking a unicorn.<span class="gl">commits <b>nobody</b> to unicorns</span></span></div>
+      </div>
+      <div class="erow"><div class="lb">The shift</div><div class="tx">Embedding moves existential commitment from the speaker to the <strong>attitude-holder</strong>. Referents inside the complement answer to the attitude.</div></div>
+      <div class="erow"><div class="lb"></div><div class="tx tight">Extensionally, \(\sem{\textit{jackalope}} = \emptyset = \sem{\textit{unicorn}}\). An extensional system <strong>cannot distinguish</strong> believing in jackalopes from believing in unicorns.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Lecture 1 closes -->
+<section class="slide" data-label="Lecture 1 closes" data-screen-label="26">
+  <div class="b-slide pal-a lens-empirical" data-sec="l1close">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s;color:var(--lens-emp)"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Lecture 1 closes</div>
+        <div class="bigq anim" style="--d:.15s;font-size:58px">On Thursday, some more puzzles, the historical overview and going towards a solution.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -1002,27 +748,20 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
    THIS lecture's sections; strand groups carry their lens colour. */
 (function () {
   var TITLES = {
-    hook:"Frege's puzzle", turn:"Two acts", road:"Roadmap",
-    mod1:"The model", tru:"Truth in the model", qnt:"Quantifiers", lam:"Types & λ",
-    evt:"Events & times", wrk:"Worked example", crk:"Act I closes",
-    subw:"Leibniz's Law", ann:"Opacity", cat:"The opaque environments",
-    emp:"Empty predicates", nst:"The nesting problem", der:"De re / de dicto",
-    spn:"The historical spine", sea:"The sea battle", med:"The medievals and Leibniz",
-    frg:"Sinn und Bedeutung", crn:"Carnap and Quine", rly:"Kripke · Hintikka · Montague",
-    ext:"Extension & intension", prp:"Propositions", fix:"Re-typing believe", hin:"Hintikka",
-    typ:"Three signposts",
+    turn:"Two parts", road:"Roadmap",
     hk:"How the module works", assess:"The assessment", outc:"Learning outcomes",
-    rd1:"von Fintel & Heim", rd2:"Frege 1892", rd3:"Montague's PTQ",
-    wby:"Week by week", sum:"Wrap-up"
+    mod1:"The model", tru:"Truth in the model", qnt:"Quantifiers", lam:"Types & λ",
+    evt:"Events & times", wrk:"Worked example", ex1:"Your turn", crk:"Part 1 closes",
+    nst:"The nesting problem",
+    hook:"Frege's puzzle", subw:"Leibniz's Law", ann:"Opacity",
+    cat:"The opaque environments", adj:"Intensional adjectives", emp:"Empty predicates",
+    rd1:"von Fintel & Heim", l1close:"Lecture 1 closes"
   };
   var GROUPS = [
-    { t:"Introduction",           sc:null,         keys:["hook","turn","road"] },
-    { t:"Act I · The system",     sc:null,         keys:["mod1","tru","qnt","lam","evt","wrk","crk"] },
-    { t:"Act II · The data",      sc:"--lens-emp", keys:["subw","ann","cat","emp","nst","der"] },
-    { t:"A long history",         sc:"--lens-his", keys:["spn","sea","med","frg","crn","rly"] },
-    { t:"Worlds & intensions",    sc:"--lens-for", keys:["ext","prp","fix","hin"] },
-    { t:"The type inventory",     sc:"--lens-typ", keys:["typ"] },
-    { t:"Housekeeping",           sc:null,         keys:["hk","assess","outc","rd1","rd2","rd3","wby","sum"] }
+    { t:"Introduction",            sc:null,         keys:["turn","road"] },
+    { t:"Housekeeping",            sc:null,         keys:["hk","assess","outc","rd1"] },
+    { t:"Part 1 · The system",     sc:null,         keys:["mod1","tru","qnt","lam","evt","wrk","ex1","crk","nst"] },
+    { t:"Part 2 · The data",       sc:"--lens-emp", keys:["hook","subw","ann","cat","adj","emp","l1close"] }
   ];
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
   var idxOf = {};
@@ -1059,7 +798,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       var rail = s.querySelector(".mrail");
       if (!rail) return;
       rail.innerHTML =
-        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LIU33008<br>Week 1</div></div>' +
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LIU33008<br>Week 1 &middot; L1</div></div>' +
         '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
         '<div class="mft"><div class="wk">Week 1</div><div class="t2">Recap &amp; the Intensional Turn</div></div>';
     });
