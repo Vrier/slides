@@ -339,3 +339,131 @@ what the next session must know)*
   todos/placeholders, links against shared/). **Commits + npm test + live
   verify left for Thomas / a healthy session**, on top of the still-uncommitted
   template-streamlining work above.
+
+### 2026-09-15 — Pragmatics II week 1 authored (deck · handout · homework · readings)
+
+- **Brief disambiguation (worth keeping):** the request opened "my Pragmatics II
+  slides for week 1" but the task line read "[Linguistic Pragmatics] week [1] —
+  [Pragmatics Meaning]", which is a different module (prag, LI7862) whose week 1
+  is already fully built and whose handout Thomas withdrew on 2026-09-12.
+  Confirmed with Thomas: **Pragmatics II / LIU44008**. The bracketed template in
+  the request appears to be stale from a prag session; the artifact bracket also
+  arrived unedited as the full slash-list. Both were resolved by asking.
+- **Content source:** the brief itself never arrived (nothing followed "Artifacts
+  wanted"). Agreed with Thomas: build from `docs/pragmatics-2-course-plan.md`
+  §Week 1 (S1 recap reframed; S2 three corners, two diagnostics, interface,
+  course question) plus the already-authored `weeks-pragmatics/week-01` deck for
+  the recap material, on the grounds that "the prior pragmatics course" is
+  literally Pragmatics I (the stated prereq). `uploads/`/`pdfs/` NOT touched.
+- **Shipped:** `weeks-pragmatics2/week-01/` deck 4 scaffold slides → **14
+  authored slides** (title · this week · recap · implicature · speech acts ·
+  presupposition · Grice reread · three approaches · two diagnostics · SI in each
+  corner · the interface · course question · readings · wrap); handout skeleton →
+  three approaches + two diagnostics callouts, an `.ex-tool-intro`/`.ex-tasks`
+  three-corner test, an `.ex-prog` deriving one datum three ways, and two
+  `.ex-instrn` tasks; `exercises.html` 2 placeholders → **4 real problems**;
+  `readings.html` 3 placeholder slots → Grice 1975 (classical) · Sperber &
+  Wilson 1995 ch. 1 (contemporary) · Levinson 1983 intro (textbook), per the
+  course plan, with per-item notes. No link blocks added (no open-access copies
+  verified this session).
+- **Housekeeping block deliberately SKIPPED** (Thomas's call). CLAUDE.md's house
+  style wants one on a week-1 deck, but the hard-coded module facts there are
+  **LI7862's, not LIU44008's** — room, time, office hours, platform, deadline and
+  learning outcomes are all unknown for this module, and course plan §6.3 flags
+  the 40/60 Presentation/Essay split as unconfirmed. A "This week's readings"
+  slide WAS included (content, not logistics). Add the rest once the facts land.
+- **Meta:** `prag2-meta.js` wk 1 needed **no change** — title, `section: 0`,
+  `approach: null` and figures were already correct. `approach: null` is right for
+  an introduction week: no `.spine-card` takes `.on`.
+- **Hub:** prag2 wk 1 deck/handout/ex/rd all `draft` → `ready`; `fig` string
+  gained Levinson to match the meta. Title/section untouched, so check 5 is
+  unaffected.
+- **Pattern discipline:** the prag2 deck does **not** load `lens.css`, and the
+  prag wk-1 bespoke vocabulary (`.mrail` `.convo` `.brn` `.egpanel` `.erow`
+  `.qwrap`) is deliberately un-promoted — so the recap was rebuilt in **shared**
+  vocabulary only (`.c-box`/`.f-box-wrap`, `.b-steps`, `.q-banner`,
+  `.spine-cards`, `.chip-row`, `.figs-line`, `.reads-box`). NB `.f-box-wrap` is
+  defined in no stylesheet at all; it is nonetheless the canonical wrapper (5 uses
+  in sem1 wk 3, plus the pattern library) and `.c-box + .c-box` does the spacing.
+- **House style fixes:** the generator's S1/S2 headings were long question-form
+  sentences with em-dashes — replaced with plain titles. One em-dash in the
+  Approach 3 spine-card fixed. Two **numeral-slogan** forms caught in this
+  session's own first draft and rewritten ("one datum, three derivations" →
+  "the same datum, derived three ways"; "Three architectures…, one datum" →
+  "Each derivation assumes a different architecture"). The week title "Three
+  Roads to Meaning" sits close to that veto but is Thomas's own, from the course
+  plan and meta, so it stands.
+- **Cleared since last session:** `weeks-pragmatics/week-01/images/chierchia.jpg`
+  **and** `franke.jpg` both now exist (the two check-1 blockers flagged on
+  09-12), and the withdrawn prag wk-1 `handout.html` is gone from disk. Nothing
+  outstanding there.
+- **Still unconfirmed for LIU44008:** `exercises.html` carries the generator's
+  band "Due Week 2 · 17:00 · submit via Blackboard" — Blackboard is documented as
+  the **LI7862** platform, not verified for this module; marks read "—". Check
+  before circulating. Scaffolded `<title>` tags carry template em-dashes across
+  every generated week (cosmetic, template-wide).
+- **Environment:** shell VM down for the **third consecutive session** ("no Plan9
+  drive shares mounted under /mnt/.virtiofs-root/shared"). `npm test` NOT run;
+  no browser step-through (extension refuses `file://`, and no local server
+  without the VM). Desk-verified instead: `<div>` balance exact in all four files
+  (deck 194/194, handout 46/46, ex 29/29, readings 21/21), 14 slides with
+  balanced `<section>`s, `deck-stage.js` + `prag2-meta.js` + `prag2-rail.js`
+  still loaded, file tails intact, zero leftover todo/placeholder strings, zero
+  unreplaced `{{TOKEN}}`s, no new local `href`/`src` introduced.
+- **Next session must know:** **commits + `npm test` + push + live verify are
+  still outstanding**, now covering three sessions of work (template
+  streamlining, prag wk-1 handout/homework/overview, and this week). Verify the
+  deck in a browser once a healthy environment exists: rail fills from
+  `data-week="1"`, `.spine-cards` render 3-up with none active, MathJax is loaded
+  but unused on these slides.
+
+- **REVISION, same session (Thomas's steer): the deck was rebuilt around the
+  course's actual arc.** The first pass treated LIU44008 as a topic-coverage
+  recap, which Thomas rejected ("you've missed the point of the course"). Two
+  corrective passes followed.
+  - **What the sweep established** (read across all of `weeks-pragmatics/`,
+    `weeks-pragmatics2/`, both course plans, and the live site): the live prag2
+    weeks 2–8 are byte-identical scaffolds to local, so nothing was published
+    that the clone lacks. Pragmatics I already teaches **Shannon, entropy, Zipf
+    and Huffman in its week 6**, and its weeks 9–12 ARE Neo-Gricean / RT / RSA /
+    Grammaticalism (readings only, no decks). Its **week 1 already runs the same
+    datum, *Some of the students passed*, four ways** across those programmes. So
+    prag2 wk 1 is a reprise, not an introduction. Thomas's call on prior depth:
+    **assume little** (cohort varies, gap can be ~18 months, wks 9–12 engagement
+    patchy).
+  - **THE ARC (Thomas, verbatim intent):** the course is not three co-equal
+    corners adjudicated against each other. The hook is **cognitive science
+    joined to Relevance Theory, Bayesian reasoning (RSA) and information
+    theory** — RT's effects-against-effort, RSA's Bayesian recursion and
+    surprisal \(-\log_2 p\) as three notations for **comprehension as inference
+    under resource limits**. **Grammar is the contrast case** the picture gets
+    tested against. LLMs enter as a **measuring instrument** (next-token
+    surprisal ↔ reading times) before they are a rival.
+  - **Deck rebuilt to 16 slides**, S1/S2 split kept as the course plan has it
+    (Thomas: keep the LLM material light in S1, hold the space and the course
+    question for S2 — an earlier draft wrongly pulled them forward). S1: two
+    specimens cold → scalar implicature (Grice derivation + cancellation) →
+    presupposition (negation test) → the asymmetry side by side → Grice reread →
+    speech acts in passing. S2: the space → **"Comprehension as inference under
+    resource limits"** (the arc slide) → **"Cognitive science as the connective
+    tissue"** (processing, prediction, models as instruments) → grammar as
+    contrast → interface thread → course question → readings → wrap.
+  - Presupposition is now framed as content that "was already probable", which
+    seeds the information-theoretic thread inside the week-1 recap.
+  - Course question restored to Thomas's **"and/or"** (an earlier draft wrote
+    "and", collapsing three possible answers to two).
+  - **DRIFT FLAGGED, NOT FIXED:** `docs/pragmatics-2-course-plan.md` and
+    `prag2-meta.js`'s `APPROACHES` glosses still describe three co-equal
+    approaches, and the **scaffolded S1/S2 headings for weeks 2–8 were generated
+    from that doc**. Week 1 now announces the convergence arc, so the eight weeks
+    behind it are inconsistent until the plan is rewritten. The plan's own §6.1
+    ("where cognition went" — redistributed, with a note on restoring it) and
+    §6.5 ("your own angle … experimental-pragmatics") are the two open decisions
+    Thomas has effectively closed. **Next session should offer to rewrite the
+    course plan doc to match, then regenerate/adjust weeks 2–8.**
+  - Handout, homework and readings were NOT revised to the new arc this pass and
+    still reflect the neutral three-corner framing. They need a second look.
+  - Verified after rebuild: `<div>` 226/226, 16 slides with balanced
+    `<section>`s, zero em-dashes in the file, scripts and tail intact, two
+    house-style slips caught in Claude's own prose and fixed ("three ways of
+    writing down one idea" and "Three outcomes, not two").

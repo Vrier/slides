@@ -53,19 +53,79 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 
   <div class="callout callout-note">
     <span class="badge">This week</span>
-    <p><strong>Session 1.</strong> Recap the prior pragmatics course — implicature, speech acts, presupposition — reframed: was Grice doing inference, or describing a code?</p>
-    <p><strong>Session 2.</strong> Lay out the three-cornered space, the two diagnostics, and the interface as the running theme. The course question: does mastering statistical structure deliver grammar and/or inference for free?</p>
+    <p><strong>Session 1.</strong> Recap of the prior pragmatics course: implicature, speech acts, presupposition. Reframed around one question: was Grice doing inference, or describing a code?</p>
+    <p><strong>Session 2.</strong> The three-cornered space, the two diagnostics, and the interface as the running theme. The course question: does mastering statistical structure deliver grammar and inference for free?</p>
+  </div>
+
+  <div class="callout callout-def">
+    <span class="badge">The three approaches</span>
+    <p><b>Inference.</b> Meaning reconstructed from speaker intentions. Grice, Relevance Theory, RSA.</p>
+    <p><b>Grammar.</b> Meaning encoded and computed by the linguistic system, through covert operators and conventionalisation. Chierchia, Potts, Levinson.</p>
+    <p><b>Information.</b> Meaning carried by the statistics of the signal: information, surprisal, efficiency, with large language models as the limit case. Shannon, Jaeger, Frank and Goodman.</p>
+  </div>
+
+  <div class="callout callout-key">
+    <span class="badge">The two diagnostics</span>
+    <p>Two specimens run through every corner of the course. <b>Scalar implicature:</b> <em class="sent">Some of the students passed</em>, heard as <em class="sent">not all of them did</em>. <b>Presupposition:</b> <em class="sent">Alex stopped smoking</em>, conveying that Alex used to smoke even under negation.</p>
+    <p>Every approach has to derive both. Where the derivations come apart, the approaches become testable against each other.</p>
   </div>
 
   <div class="ex-block">
     <div class="ex-tool-intro">
-      <div class="tl-label">Skeleton</div>
-      <div class="tl-name">Content to add</div>
-      <p>Build out this week's handout — mirror the worked sheet in <b>weeks-pragmatics/week-02/handout.html</b>: callouts (<b>.callout</b>), tool intros + tasks (<b>.ex-block</b>), progressive items (<b>.ex-prog</b>), and ruled <b>.answer-space</b>. Frame the tasks around the two diagnostics and the interface thread.</p>
+      <div class="tl-label">New tool</div>
+      <div class="tl-name">The three-corner test</div>
+      <p>Take any pragmatic inference and ask three questions of it. Does the hearer <b>reason</b> to it from what a cooperative speaker would have said? Does the <b>grammar</b> compute it through a silent operator? Does it fall out of the <b>statistics</b> of which forms get chosen? Each answer predicts something different about when the inference appears and how fast it arrives.</p>
+    </div>
+    <div class="ex-tasks">
+      <div class="ex-tasks-head">Practice · 3 tasks</div>
+      <div class="ex-task">
+        <span class="tn">1</span>
+        <span class="tb">State the scalar implicature of <em class="sent">Some of the students passed</em>, then show it is cancellable by writing a continuation that removes it without contradiction.
+        <div class="answer-space" style="--lines:3"></div></span>
+      </div>
+      <div class="ex-task">
+        <span class="tn">2</span>
+        <span class="tb">Apply the negation test to <em class="sent">Alex stopped smoking</em>. Give the negated sentence, say what each version asserts, and identify the content that survives.
+        <div class="answer-space" style="--lines:4"></div></span>
+      </div>
+      <div class="ex-task">
+        <span class="tn">3</span>
+        <span class="tb">Cancellability separates the two diagnostics. Attempt the same cancellation move on the presupposition in task 2 and record what goes wrong.
+        <div class="answer-space" style="--lines:3"></div></span>
+      </div>
     </div>
   </div>
 
-  <div class="todo-box"><b>Exercises to add.</b></div>
+  <div class="ex-prog">
+    <div class="ex-prog-head">Progression · deriving one inference three ways</div>
+    <div class="ex-prog-instruction">The same datum throughout: <em class="sent">Some of the students passed.</em> Sketch the derivation each corner would give. Two or three sentences each.</div>
+    <div class="prog-item">
+      <span class="pi-lab">(a)</span>
+      <div class="pi-body"><p>Inference. Use the scale and what a cooperative speaker who knew more would have chosen.</p><div class="answer-space" style="--lines:3"></div></div>
+    </div>
+    <div class="prog-item">
+      <span class="pi-lab">(b)</span>
+      <div class="pi-body"><p>Grammar. Use a silent operator roughly equivalent to <em class="sent">only</em>, applying in the syntax.</p><div class="answer-space" style="--lines:3"></div></div>
+    </div>
+    <div class="prog-item">
+      <span class="pi-lab">(c)</span>
+      <div class="pi-body"><p>Information. Use a listener who models a speaker choosing between <em class="sent">some</em> and <em class="sent">all</em>, and reasons about which was more likely to be uttered.</p><div class="answer-space" style="--lines:3"></div></div>
+    </div>
+  </div>
+
+  <div class="ex-instrn">
+    <div class="ex-instrn-head">Standalone tasks</div>
+    <div class="ex-it">
+      <div class="it-lead"><span class="it-n">1</span><span class="it-instr">In your own words:</span></div>
+      <p class="it-task">Explain what would have to be true for Grice to count as describing a code rather than a pattern of reasoning.</p>
+      <div class="answer-space" style="--lines:4"></div>
+    </div>
+    <div class="ex-it">
+      <div class="it-lead"><span class="it-n">2</span><span class="it-instr">Take a position:</span></div>
+      <p class="it-task">The course question asks whether mastering statistical structure delivers grammar and inference for free. Name one piece of evidence that would push you towards yes, and one that would push you towards no.</p>
+      <div class="answer-space" style="--lines:4"></div>
+    </div>
+  </div>
 
   <div class="h-footer">
     <span class="left">LIU44008 · Pragmatics II</span>

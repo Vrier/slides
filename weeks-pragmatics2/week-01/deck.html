@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU44008 · Week 1 — Three Roads to Meaning · Lecture Deck</title>
+<title>LIU44008 · Week 1 · Three Roads to Meaning · Lecture Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -59,37 +59,337 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <div class="b-kick">Introduction · where we are</div>
       <h2 class="b-h">Three Roads to Meaning</h2>
       <div class="spine-cards">
-        <div class="spine-card "><div class="ci">Approach 1</div><h3>Inference</h3><p>Meaning from speaker intentions.</p></div>
-        <div class="spine-card "><div class="ci">Approach 2</div><h3>Grammar</h3><p>Meaning encoded &amp; computed by the system.</p></div>
-        <div class="spine-card "><div class="ci">Approach 3</div><h3>Information</h3><p>Meaning in the signal — probability, surprisal, LLMs.</p></div>
+        <div class="spine-card"><div class="ci">Approach 1</div><h3>Inference</h3><p>Meaning reconstructed from speaker intentions. Grice, Relevance Theory, RSA.</p></div>
+        <div class="spine-card"><div class="ci">Approach 2</div><h3>Grammar</h3><p>Meaning encoded and computed by the system. Chierchia, Potts, Levinson.</p></div>
+        <div class="spine-card"><div class="ci">Approach 3</div><h3>Information</h3><p>Meaning in the signal: probability, surprisal, efficiency.</p></div>
       </div>
       <div class="chip-row">
         <span class="chip">Diagnostic · Scalar implicature</span>
         <span class="chip">Diagnostic · Presupposition</span>
-        <span class="chip">Thread · Semantics / pragmatics interface</span>
+        <span class="chip">Thread · Comprehension under resource limits</span>
+        <span class="chip">Thread · The semantics and pragmatics interface</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-label="Session 1">
+<!-- ════ SESSION 1 · the two specimens ════ -->
+
+<section class="slide" data-label="Two sentences">
   <div class="b-slide pal-a">
     <div class="b-rail"></div>
     <div class="b-main">
-      <div class="b-kick">Session 1</div>
-      <h2 class="b-h">Recap the prior pragmatics course — implicature, speech acts, presupposition — reframed: was Grice doing inference, or describing a code?</h2>
-      <div class="todo-box"><b>Content to add.</b> Build out this session — mirror the worked deck in <b>weeks-pragmatics/week-02/deck.html</b> for callout cards (<b>.c-box</b>), worked examples and diagrams.</div>
+      <div class="b-kick">Session 1 · start here</div>
+      <h2 class="b-h">Two sentences</h2>
+      <div class="q-banner"><em>Some of the students passed.</em><br><em>Alex stopped smoking.</em></div>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">What the room reports</span></div>
+          <div class="c-box-body">The first conveys that not all of them passed. The second conveys that Alex used to smoke. Neither sentence says either thing.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Two properties worth noticing</span></div>
+          <div class="c-box-body">Nobody had to be told. Nobody had to work at it. Both inferences arrived fast and cost almost nothing.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">These two run the term</span></div>
+          <div class="c-box-body">Scalar implicature and presupposition are the standing specimens of this course. Every account you meet has to handle both.</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-label="Session 2">
+<section class="slide" data-label="Implicature">
   <div class="b-slide pal-a">
     <div class="b-rail"></div>
     <div class="b-main">
-      <div class="b-kick">Session 2</div>
-      <h2 class="b-h">Lay out the three-cornered space, the two diagnostics, and the interface as the running theme. The course question: does mastering statistical structure deliver grammar and/or inference for free?</h2>
-      <div class="todo-box"><b>Content to add.</b> Build out this session's slides.</div>
+      <div class="b-kick">Session 1 · specimen one</div>
+      <h2 class="b-h">Scalar implicature</h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">Uttered</div><div class="b-step-math"><em>Some of the students passed.</em></div></div>
+        <div class="b-step"><div class="b-step-lab">Alternative available</div><div class="b-step-math"><em>All of the students passed.</em></div></div>
+        <div class="b-step"><div class="b-step-lab">Reasoning</div><div class="b-step-math">A speaker who knew <em>all</em> would have said <em>all</em>.</div></div>
+        <div class="b-step"><div class="b-step-lab">Inferred</div><div class="b-step-math">Not all of them passed.</div></div>
+      </div>
+      <div class="f-box-wrap" style="margin-top:18px">
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Cancellable</span></div>
+          <div class="c-box-body"><em>Some of the students passed. In fact I have no idea how many.</em> No contradiction. The inference can be withdrawn; what was said cannot.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Presupposition">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 1 · specimen two</div>
+      <h2 class="b-h">Presupposition</h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">Positive</div><div class="b-step-math"><em>Alex stopped smoking.</em></div></div>
+        <div class="b-step"><div class="b-step-lab">Asserts</div><div class="b-step-math">Alex does not smoke now.</div></div>
+        <div class="b-step"><div class="b-step-lab">Negated</div><div class="b-step-math"><em>Alex didn't stop smoking.</em></div></div>
+        <div class="b-step"><div class="b-step-lab">Survives</div><div class="b-step-math">Alex used to smoke.</div></div>
+      </div>
+      <div class="f-box-wrap" style="margin-top:18px">
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Try the cancellation move</span></div>
+          <div class="c-box-body"><em>Alex didn't stop smoking. In fact Alex never smoked.</em> Something has gone wrong that did not go wrong a slide ago.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Side by side">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 1 · the asymmetry</div>
+      <h2 class="b-h">The two specimens behave differently</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Under negation</span></div>
+          <div class="c-box-body">The implicature disappears. The presupposition survives.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Under cancellation</span></div>
+          <div class="c-box-body">The implicature goes quietly. The presupposition resists.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">In the discourse</span></div>
+          <div class="c-box-body">The implicature is computed and added. The presupposition is taken for granted before the sentence starts, which is to say it was already probable.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Why this matters</span></div>
+          <div class="c-box-body">Both count as meaning conveyed without being said, and they come apart under every test. Any account that explains one has to earn the other.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The hinge">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 1 · the reframing</div>
+      <h2 class="b-h">Grice reread</h2>
+      <div class="q-banner">Was Grice doing inference, or describing a code?</div>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">As reasoning</span></div>
+          <div class="c-box-body">The hearer computes it live, about this speaker, on this occasion. The derivation on the earlier slide is a description of something the mind does.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">As a regularity</span></div>
+          <div class="c-box-body">The pattern is stable enough to be stored and looked up. The derivation is a rational reconstruction of something that no longer needs computing.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">The question is decidable</span></div>
+          <div class="c-box-body">The readings predict different things: how fast the inference arrives, whether it survives embedding, how much it costs the hearer. Those are measurable.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Grice's text supports both</span></div>
+          <div class="c-box-body">He was never asked to choose. You will be.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Speech acts">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 1 · in passing</div>
+      <h2 class="b-h">Speech Acts</h2>
+      <div class="q-banner"><em>I now pronounce you husband and wife.</em></div>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">The Pragmatics I treatment</span></div>
+          <div class="c-box-body">Said by the right person in the right setting, the utterance performs the marriage. Felicity conditions replace truth conditions.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Why it is not a diagnostic here</span></div>
+          <div class="c-box-body">It yields no single inference that rival accounts can derive in competing ways, so it cannot referee between them. It returns later as a presentation topic: whether a system can assert, promise, or be held to what it says.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SESSION 2 · the space, and the arc through it ════ -->
+
+<section class="slide" data-label="Shape of the term">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 2 · the space</div>
+      <h2 class="b-h">Three approaches to the same two specimens</h2>
+      <div class="spine-cards">
+        <div class="spine-card"><div class="ci">Weeks 2 and 3</div><h3>Inference</h3><p>Meaning reconstructed from speaker intentions. Grice, Relevance Theory, RSA.</p></div>
+        <div class="spine-card"><div class="ci">Weeks 4 and 5</div><h3>Grammar</h3><p>Meaning encoded and computed by the linguistic system, through covert operators and conventionalisation.</p></div>
+        <div class="spine-card"><div class="ci">Weeks 6 and 8</div><h3>Information</h3><p>Meaning carried by the statistics of the signal: information, surprisal, efficiency.</p></div>
+      </div>
+      <div class="figs-line">Each approach gets a general week, then a week applying it to scalar implicature and presupposition.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The arc">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 2 · the argument of the course</div>
+      <h2 class="b-h">Comprehension as inference under resource limits</h2>
+      <div class="q-banner">Three of the frameworks in this course are saying something close to the same thing, in different notation.</div>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Relevance Theory · week 2</span></div>
+          <div class="c-box-body">Comprehension maximises cognitive effects against processing effort. Interpretation stops when the return no longer justifies the cost.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Rational Speech Acts · week 8</span></div>
+          <div class="c-box-body">The listener inverts a model of a speaker choosing rationally among alternatives. Bayes' rule turns the speaker model into a posterior over meanings.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Information theory · week 6</span></div>
+          <div class="c-box-body">Surprisal, \(-\log_2 p\), measures how unexpected a signal is. Cost in bits, and speakers smooth that cost across an utterance.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">The claim underneath</span></div>
+          <div class="c-box-body">Effort, probability and surprisal are different notations for the same thought: understanding is inference performed by a mind with limited resources, and the limit is measurable.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Cognitive science">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 2 · where the evidence comes from</div>
+      <h2 class="b-h">Cognitive science as the connective tissue</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">Processing</span></div>
+          <div class="c-box-body">Reading times and response latencies put numbers on effort. If an inference is computed live it should cost time; if it is stored it should not.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Prediction</span></div>
+          <div class="c-box-body">Comprehenders anticipate what comes next. Surprisal predicts how long they dwell when the signal defeats the prediction.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">Language models as instruments</span></div>
+          <div class="c-box-body">Next-token prediction yields a surprisal estimate for any text. That makes a model a measuring device for the theory, before it is ever a rival to it.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">This is the hook of the course</span></div>
+          <div class="c-box-body">The cognitive story, the Bayesian machinery and the information-theoretic measure arrive together. Holding them together is what the term is for.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Grammar as contrast">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 2 · the rival</div>
+      <h2 class="b-h">Grammar as the contrast case</h2>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">The alternative</span></div>
+          <div class="c-box-body">A silent operator, roughly <em>only</em>, applies in the syntax. The strengthened reading is computed by the grammar, with no reasoning about speakers at all.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Why it is a serious rival</span></div>
+          <div class="c-box-body">Implicatures appear embedded under quantifiers and attitude verbs, where reasoning about the whole utterance should not reach. Weeks 4 and 5.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">What it does for us</span></div>
+          <div class="c-box-body">It keeps the probabilistic story honest. A picture that explains everything explains nothing, so the grammatical account is the thing we test against.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The interface">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 2 · the running thread</div>
+      <h2 class="b-h">The semantics and pragmatics interface</h2>
+      <div class="q-banner">How much inference intrudes into truth-conditional content?</div>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">A thread, never a week</span></div>
+          <div class="c-box-body">Flagged wherever a derivation forces the question. It gets no session of its own.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Where it bites</span></div>
+          <div class="c-box-body">Embedded implicatures, presupposition projection, and the status of enriched content.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">A moving border</span></div>
+          <div class="c-box-body">The boundary shifts as theories improve. Several phenomena once filed under pragmatics now have strong semantic analyses.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Course question">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Session 2 · the question behind the term</div>
+      <h2 class="b-h">The course question</h2>
+      <div class="q-banner">Does mastering statistical structure deliver grammar and/or inference for free?</div>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">The and/or is doing work</span></div>
+          <div class="c-box-body">The question has three possible answers. Statistics might deliver both, or either one on its own, and each result says something different about what pragmatics needs as a primitive.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">Why it is live now</span></div>
+          <div class="c-box-body">Next-token prediction is a statistical code at scale. Systems trained on nothing else handle a good deal of what this course studies.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">What would count as an answer</span></div>
+          <div class="c-box-body">Evidence about whether such a system handles both specimens the way people do, at the same cost, with the same failures.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-note)">
+          <div class="c-box-head"><span class="c-box-badge">Where you come in</span></div>
+          <div class="c-box-body">Weeks 9–12 are your presentations, drawn from a pool that extends exactly these questions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Readings">
+  <div class="b-slide pal-a">
+    <div class="b-rail"></div>
+    <div class="b-main">
+      <div class="b-kick">Week 1</div>
+      <h2 class="b-h">This week's readings</h2>
+      <div class="reads-box">
+        <div class="h">Set readings</div>
+        <ul>
+          <li>Grice, H. P. (1975). Logic and Conversation. Revisited: the source of the inferential picture.</li>
+          <li>Sperber, D. &amp; Wilson, D. (1986/95). <span class="bk">Relevance: Communication and Cognition</span>, ch. 1. The cognitive reframing of Grice, and the start of this term's arc.</li>
+          <li>Levinson, S. C. (1983). <span class="bk">Pragmatics</span>, introduction. A light recap of the shape of the field.</li>
+        </ul>
+      </div>
+      <div class="figs-line">Primary-reading-led. Tight excerpting is expected for the harder primary texts.</div>
     </div>
   </div>
 </section>
@@ -98,9 +398,26 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
   <div class="b-slide pal-a">
     <div class="b-rail"></div>
     <div class="b-main">
-      <div class="b-kick">Week 1 — wrap-up</div>
+      <div class="b-kick">Week 1 · wrap-up</div>
       <h2 class="b-h">Where this sits</h2>
-      <div class="todo-box"><b>Summary to add.</b> Restate the week through the three approaches and the two diagnostics, and flag the interface question. Next: Approach 1 — Inference.</div>
+      <div class="f-box-wrap">
+        <div class="c-box" style="--acc:var(--c-def)">
+          <div class="c-box-head"><span class="c-box-badge">The specimens</span></div>
+          <div class="c-box-body">Scalar implicature and presupposition, behaving differently under every test, carried through every week.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-ex)">
+          <div class="c-box-head"><span class="c-box-badge">The arc</span></div>
+          <div class="c-box-body">Relevance Theory, Bayesian pragmatics and information theory converging on comprehension as inference under resource limits.</div>
+        </div>
+        <div class="c-box" style="--acc:var(--c-key)">
+          <div class="c-box-head"><span class="c-box-badge">The test</span></div>
+          <div class="c-box-body">The grammatical account, which explains the same data without any of that machinery.</div>
+        </div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">Next · Inference, the general week</span>
+        <span class="chip">Intention, common ground, Relevance Theory</span>
+      </div>
     </div>
   </div>
 </section>
