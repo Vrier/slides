@@ -467,3 +467,104 @@ what the next session must know)*
     `<section>`s, zero em-dashes in the file, scripts and tail intact, two
     house-style slips caught in Claude's own prose and fixed ("three ways of
     writing down one idea" and "Three outcomes, not two").
+
+- **SECOND REVISION, same session: LIU44008 REDESIGNED as a modelling and
+  methods course.** Thomas's brief, verbatim in intent: "build up theories in
+  RSA, information theory, game theory, and cognitive science so that students
+  can propose their own analyses of phenomena in terms of them and can design
+  studies of data". This supersedes both the original three-approaches plan and
+  the convergence-arc revision earlier in this session. **Game theory is new**
+  as a named pillar; **adjudication between camps is no longer the point**;
+  capability is.
+  - **Design:** four frameworks as four aspects of ONE object (a speaker and
+    listener choosing under uncertainty with limited resources). Game theory =
+    strategic structure; information theory = the currency; RSA = the composed
+    implementation; cognitive science = the resource bound and the link to data.
+    Built in dependency order, because game theory needs no probability,
+    information theory supplies the utility, probability supplies the priors,
+    RSA composes all three, cognition bounds and tests it. The two diagnostics
+    survive as worked examples and now have a *reason*: scalar implicature
+    probes **alternatives**, presupposition probes **priors**, which are the two
+    halves of a Bayesian model.
+  - **New week structure** (7 taught): 1 From Logic to Probability · 2 Game
+    Theory and Signalling · 3 Information Theory · 4 Probability, Priors and
+    Common Ground · 5 Rational Speech Act Models · 6 Cognitive Science and
+    Resource Limits · 7 Reading Week · 8 Models, Data and Language Models.
+    New `MODULE_SECTIONS`: Introduction · Frameworks · The Model · Cognition ·
+    Reading Week · Application · Presentations.
+  - **Files changed:** `docs/pragmatics-2-course-plan.md` rewritten whole (design,
+    6 learning outcomes, week-by-week with per-week readings and a methods
+    component, the cumulative methods spine, re-tagged 10-topic presentation
+    pool, open decisions, probLang mapping table, and a §9 list of citations
+    needing verification). `shared/prag2-meta.js` rewritten: new
+    MODULE_SECTIONS, new week titles/sections/figures, `window.APPROACHES`
+    repopulated with the FOUR frameworks (**name deliberately kept** because
+    `scripts/new-week.mjs` reads `cat.APPROACHES`), new `window.DIAGNOSTICS`.
+    `index.html` WEEKS array synced (check 5 verified by hand: week set, titles,
+    section names, reading/present flags all mirror the meta).
+  - **Week-01 files retitled** "Three Roads to Meaning" → "From Logic to
+    Probability" across deck/handout/readings/exercises, and `<title>` em-dashes
+    normalised to middle dots. **Hub statuses regressed deck/handout/ex from
+    'ready' to 'draft'** — honest, because the bodies were written for the
+    three-corner design. Readings stays 'ready': Grice 1975 / Sperber & Wilson
+    1995 ch.1 / Levinson 1983 are unchanged for week 1 under the new plan.
+  - **Weeks 02–08 retitled by subagent** (24 files, 78 substitutions, verified
+    zero old titles remain, div counts unchanged). Section tags remapped too.
+  - **RESEARCH DONE THIS PASS (three parallel agents, ~580k subagent tokens).**
+    Findings worth keeping: (a) **relevance has been formalised repeatedly but
+    never by relevance theorists** — decision-theoretic (van Rooy 2001),
+    information-theoretic (entropy reduction, Lindley 1956), argumentative
+    (Merin 1999), with **Bernardo 1979** proving entropy-reduction relevance is
+    a special case of decision-theoretic relevance under log utility. That is a
+    SECOND containment result structurally identical to probLang App 2's
+    flat-prior one. (b) **Nobody has formalised processing effort in RT's
+    sense** — every formalisation captures effects. That asymmetry is the state
+    of the art. (c) **The two literatures barely cite each other**: Degen 2023
+    cites Sperber & Wilson once, Franke & Jäger 2016 mention RT once, no
+    relevance theorist has published a substantial critique of RSA, and **no
+    experiment has been designed to adjudicate satisficing against
+    optimising**. Unger & Buschmeier 2025 (arXiv) is the only bridging attempt.
+    Recorded in the plan as presentation topic 11. (d) RT and RSA sit at
+    different Marr levels; Griffiths, Lieder & Goodman 2015's "rational process
+    models" is the level where they reconcile. (e) Best single teaching hook
+    found: **Oh & Schuler 2023** — larger, lower-perplexity LMs fit reading
+    times WORSE, driven by excessive accuracy on rare words.
+  - **Two overclaims by Claude corrected by the research:** gradedness is well
+    evidenced for presupposition **projection** (Tonhauser, Beaver & Degen 2018;
+    Degen & Tonhauser 2021) but the **accommodation** record is contradictory
+    (Tiemann et al. 2015 find none and propose "minimize accommodation";
+    Domaneschi & Di Paola 2018 find it immediate and costly; Singh et al. 2016
+    find it plausibility-gated). And "projection falls out because negation
+    leaves the prior untouched" is a first approximation only: Schwarz & Tiemann
+    2017 find projection cognitively effortful; Degen & Tonhauser 2025 say no
+    analysis on the market captures their data. Both corrections are written
+    into the plan as teaching notes.
+  - **Bad citations caught and recorded in plan §9** (do not let these back in):
+    there is **no** Chemla paper "Presupposition projection from quantified
+    sentences: strengthened meanings and tacit variables" (conflation of Chemla
+    2009 *NLS* 17:299–340 with Sudo, Romoli, Hackl & Fox 2012); there is **no**
+    Ryskin & Gibson noisy-channel *Annual Review*; Lieder & Griffiths 2020 is
+    **not** a language paper (credit Hahn et al. 2022, Futrell et al. 2020,
+    Zaslavsky, Hu & Levy 2021); Kristina Liefke has nothing on relevance.
+  - **KNOWN INCONSISTENCIES LEFT (next session's job).** (1) Every prag2 deck
+    still renders the OLD three-approach `spine-cards` (Inference / Grammar /
+    Information) — a real content mismatch with the four-framework meta, and it
+    needs an editorial decision, not a rename. Four cards want
+    `.spine-cards cols-2`, not the default 3-up. (2) Weeks 02–08 scaffold
+    BODIES still carry S1/S2 headings generated from the OLD course plan; they
+    want regenerating with `npm run new -- prag2 N --force` once the VM is up.
+    (3) Week-01's deck body is still the convergence-arc version and needs
+    rebuilding to the new week 1 (logical inheritance → the four cracks → the
+    move → what a model is). (4) todo-box prose in wks 02–04 decks points at
+    retitled weeks. (5) `b-kick` wrap-up lines across prag2 retain em-dashes.
+  - **Three consequences Thomas has accepted or must confirm:** the grammatical
+    account **loses its dedicated week** (exhaustification survives as a named
+    rival in wk 5 and as a presentation topic; the post-2016 hybrid position of
+    Potts et al. 2016 and Franke & Bergen 2020 will not get taught properly);
+    **WebPPL becomes compulsory** rather than optional, with no lab time in the
+    2×1hr format (plan §7.2 lists three mitigations); and **probability is a
+    real prerequisite by week 3**.
+  - **Environment:** shell VM still down (third session). `npm test` NOT run.
+    Desk-verified: `<div>` balance across all of `weeks-pragmatics2/` is
+    964/964 and every file matches its own count; meta↔hub check 5 fields
+    compared by hand and agree; zero stale title strings remain.
