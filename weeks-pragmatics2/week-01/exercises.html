@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
 <link rel="stylesheet" href="../../shared/tokens.css" />
@@ -16,11 +16,8 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 <link rel="stylesheet" href="../../shared/handout.css" />
 <link rel="stylesheet" href="../../shared/exercises.css" />
 <link rel="stylesheet" href="../../shared/theme-rust.css" />
-<style>
-  @media print { :root { --tcd-blue:#000; --tcd-blue-10:#f2f2f2; --tcd-ink:#000; --c-def:#000; } }
-</style>
 </head>
-<body class="pal-a">
+<body>
 
 <div class="handout-week hw" data-week="1"><div class="page">
 
@@ -47,8 +44,8 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 
   <div class="hw-band">
     <span class="tag">Homework</span>
-    <span class="due">Due <b>Week 2 · 17:00</b> · submit via Blackboard</span>
-    <span class="pts">— marks</span>
+    <span class="due">Formative · bring to Week 2</span>
+    <span class="pts">not assessed</span>
   </div>
 
   <div class="hw-sub">
@@ -56,48 +53,39 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
   </div>
 
-  <p class="hw-intro">Problem set for Week 1. Week 1 sits in no single corner, so these problems set up the two diagnostics you will carry through the whole term and ask you to state, in advance, what each approach owes you. Short answers throughout.</p>
+  <p class="hw-intro">Three short problems. They set up the two specimens you will carry through the whole term, and they ask you to notice the strain in the classical machinery before we start replacing it. Short answers throughout; none of this is marked.</p>
 
   <div class="hw-prob" style="--lens:var(--tcd-blue)">
     <div class="hw-prob-head">
       <span class="n">1</span>
-      <span class="q">Scalar implicature</span>
-      <span class="marks">— marks</span>
+      <span class="q">The derivation, taken apart</span>
+      <span class="marks"></span>
     </div>
-    <p class="lead">Take <em>Some of the students passed</em>, heard as <em>not all of them did</em>.</p>
-    <p class="lead">(a) State the inference precisely. (b) Write a continuation that cancels it without contradiction. (c) In two sentences, say what the cancellability shows about where the inference comes from.</p>
-    <div class="answer-space" style="--lines:6"></div>
-  </div>
-
-  <div class="hw-prob" style="--lens:var(--tcd-blue)">
-    <div class="hw-prob-head">
-      <span class="n">2</span>
-      <span class="q">Presupposition</span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">Take <em>Alex stopped smoking</em>.</p>
-    <p class="lead">(a) Give the negated version and state what each version asserts. (b) Identify the content common to both. (c) Try the cancellation move from problem 1 on that content and record what goes wrong.</p>
-    <div class="answer-space" style="--lines:6"></div>
-  </div>
-
-  <div class="hw-prob" style="--lens:var(--tcd-blue)">
-    <div class="hw-prob-head">
-      <span class="n">3</span>
-      <span class="q">Three corners, in advance</span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">Each approach has to derive the scalar inference in problem 1. Sketch, in two or three sentences each, how Inference, Grammar and Information would go about it. Accuracy matters less here than making the three derivations genuinely different from one another.</p>
+    <p class="lead">Write out the route from <em>Some of the students passed</em> to <em>not all of them passed</em> as a numbered argument, with every premise stated separately.</p>
+    <p class="lead">Then: (a) identify the premise concerning what the speaker knows, (b) say what the argument yields if you delete it, and (c) say where that premise came from.</p>
     <div class="answer-space" style="--lines:7"></div>
   </div>
 
   <div class="hw-prob" style="--lens:var(--tcd-blue)">
     <div class="hw-prob-head">
-      <span class="n">4</span>
-      <span class="q">The course question</span>
-      <span class="marks">— marks</span>
+      <span class="n">2</span>
+      <span class="q">A diagnostics table</span>
+      <span class="marks"></span>
     </div>
-    <p class="lead">Does mastering statistical structure deliver grammar and inference for free? Name one finding that would push you towards yes and one that would push you towards no. Keep both concrete enough that someone could go and look for them.</p>
-    <div class="answer-space" style="--lines:5"></div>
+    <p class="lead">Build a small table. Rows: the scalar inference from <em>some</em>, and the inference from <em>Alex stopped smoking</em> that Alex used to smoke. Columns: survives negation, survives questioning, cancels without contradiction.</p>
+    <p class="lead">Fill it in with examples rather than ticks, then say in one sentence what the pattern shows.</p>
+    <div class="answer-space" style="--lines:7"></div>
+  </div>
+
+  <div class="hw-prob" style="--lens:var(--tcd-blue)">
+    <div class="hw-prob-head">
+      <span class="n">3</span>
+      <span class="q">The problem to bring to Week 2</span>
+      <span class="marks"></span>
+    </div>
+    <p class="lead">The derivation in problem 1 was presented as valid. Its conclusion cancels. In a short paragraph, set out why those two facts sit badly together, and sketch one way out that does not involve giving up on the derivation altogether.</p>
+    <p class="lead">Any answer is fine here. The point is to have a position before the next session argues for one.</p>
+    <div class="answer-space" style="--lines:6"></div>
   </div>
 
   <div class="h-footer">
@@ -113,12 +101,12 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
 <template id="__bundler_thumbnail">
   <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
     <rect width="100" height="100" fill="#faeae2"/>
-    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#b23a1e" stroke-width="2"/>
-    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#b23a1e">1</text>
-    <line x1="46" y1="31" x2="64" y2="31" stroke="#efcab9" stroke-width="2"/>
-    <line x1="38" y1="44" x2="64" y2="44" stroke="#efcab9" stroke-width="1.6"/>
-    <line x1="38" y1="52" x2="64" y2="52" stroke="#efcab9" stroke-width="1.6"/>
-    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#b23a1e" text-anchor="middle">LIU44008 · HOMEWORK</text>
+    <rect x="26" y="16" width="48" height="64" rx="3" fill="#fff" stroke="#b23a1e" stroke-width="2"/>
+    <line x1="32" y1="30" x2="68" y2="30" stroke="#b23a1e" stroke-width="2.5"/>
+    <line x1="32" y1="42" x2="60" y2="42" stroke="#efcab9" stroke-width="2"/>
+    <line x1="32" y1="52" x2="64" y2="52" stroke="#efcab9" stroke-width="2"/>
+    <line x1="32" y1="62" x2="56" y2="62" stroke="#efcab9" stroke-width="2"/>
+    <text x="50" y="92" font-family="serif" font-size="7" fill="#b23a1e" text-anchor="middle">LIU44008 · HOMEWORK</text>
   </svg>
 </template>
 </body>

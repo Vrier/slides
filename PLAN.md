@@ -568,3 +568,125 @@ what the next session must know)*
     Desk-verified: `<div>` balance across all of `weeks-pragmatics2/` is
     964/964 and every file matches its own count; meta↔hub check 5 fields
     compared by hand and agree; zero stale title strings remain.
+
+- **THIRD REVISION, same session: week 1 rebuilt from Thomas's own handoff note.**
+  Thomas worked independently on week 1 and supplied
+  `prag2-week1-and-structure-handoff.md` (a beat sheet with timings, a
+  slide-level keep/revise/cut inventory, a house shape for taught weeks, and a
+  closed assessment decision). Its audit was checked and is accurate: its
+  slide inventory maps exactly onto the 16-slide deck, with correct numbering.
+  - **Adopted from the note, and worth keeping:** **politeness replaces speech
+    acts** in week 1 as "the reserved case". The argument is that it names the
+    **third model component**: implicature probes alternatives, presupposition
+    probes priors, **politeness probes utilities**. Brown & Levinson's
+    \(W_x = D(S,H) + P(H,S) + R_x\) is taught as "an additive formula over three
+    quantities inside a theory with no way to run it", which makes the
+    logic-to-probability thesis concrete in a third register. Yoon, Tessler,
+    Goodman & Frank (2020), *Open Mind*, is the runnable counterpart
+    (**verified by search**: real, three competing goals — informational,
+    social, self-presentational; and note it is Michael C. **Frank**, Stanford,
+    not Franke, Tübingen — the trap that has already cost this repo a round).
+  - Also adopted: S1 stays **monochrome** (no probability, RSA or WebPPL; the
+    turn only lands if S2 owns the move); Strawson-against-Russell BEFORE the
+    negation test, so the origin reads as a truth-value gap; the derivation
+    shown as a **numbered argument with the competence premise visible** in S1
+    and cashed as Geurts's standard recipe in S2; and the S1 close on "you
+    cannot cancel the conclusion of a valid argument", which S2 opens on.
+  - **Deck rebuilt: 16 → 20 slides**, split S1 (10) / S2 (10). S1: title ·
+    four-framework spine cards · orientation and assessment · two sentences ·
+    scalar implicature · presupposition · the asymmetry · the logical
+    inheritance · politeness · close. S2: where it strains · the standard
+    recipe · degrees of belief · what a model is · your first model (WebPPL) ·
+    the shape of the term · the interface thread · the assessment · readings ·
+    wrap. **Spine cards are now the FOUR frameworks in `cols-2 compact`**, which
+    was the fix flagged last pass.
+  - **Handout and homework rebuilt to match** (they still carried the retired
+    three-corner test and "inference or code"). Homework band changed to
+    "Formative · bring to Week 2 · not assessed", dropping the generator's
+    unverified "submit via Blackboard" claim, which is an **LI7862** fact and
+    was never confirmed for LIU44008.
+  - Hub statuses for prag2 wk 1 deck/handout/ex back to 'ready'.
+  - **ASSESSMENT DECISION CLOSED by Thomas:** 40% presentation (weeks 9–12) +
+    60% essay, **2,500 words**, end of term, deadline TBA. This is now on deck
+    slides 3 and 18. **NOT YET in the catalogue:** `prag2-meta.js`'s
+    `MODULE.identities[0].assessments` needs a `words: "2500"` field (the
+    LI7862 identity has one; keep the two apart, LI7862 is 3,500) and the hub's
+    identity block kept in sync.
+  - **Open points raised by the note, not yet resolved.** (1) It assumes **five**
+    learning outcomes; the rewritten plan has **six**. The shared rubric depends
+    on which. (2) It retires the convergence slide to "week 6"; the plan puts
+    probLang App 2's identities in **week 5 S2**, with week 6 being
+    relevance-and-resource-rationality. The slide blended both, so it was cut
+    from week 1 and needs splitting across 5 and 6 rather than moving whole.
+    (3) Its week 6 S2 is listed as carrying both the Bott & Noveck standoff AND
+    a whole-hour study-design workshop, which breaks the house shape the same
+    note sets (30 strain / 25 methods / 5 close). (4) **Topic sign-up should
+    move to week 5 or 6** so reading week is usable; currently implied at week 8,
+    one week before presentations. Deck slide 18 says week 5, so the plan doc
+    and the topic pool need to follow.
+  - **Natural deduction block added to week 1 (Thomas's request, same session).**
+    S1 now teaches a propositional ND system explicitly before the contrast is
+    drawn. Five slides between the asymmetry and politeness: **Deductive
+    reasoning** (\(\Gamma \vdash A\); validity; what the guarantee ignores) ·
+    **A natural deduction system** (\(\wedge\)I/E, \(\rightarrow\)I/E,
+    \(\neg\)I, with assumption-and-discharge called out as what makes it
+    natural) · **A proof** (five lines, two applications of \(\rightarrow\)E) ·
+    **Monotonicity** (\(\Gamma \vdash A \Rightarrow \Gamma \cup \{B\} \vdash A\),
+    flagged as the property the hour breaks) · **The derivation fails both
+    tests** (validity fails: cooperative speaker, partial access, premises true
+    and conclusion false; monotonicity fails: add "the speaker has no idea how
+    many" and the conclusion goes; the repair costs the competence premise;
+    Grice's own calculability-plus-cancellability pair says the inference is
+    reasoning and is not deduction). Deck now **24 slides**, S1 14 / S2 10.
+  - S1 close rewritten: it previously posed the cancellable-valid-argument
+    puzzle, which the ND block now demonstrates, so it states the two halves to
+    keep (it is reasoning; it is not deduction) and hands the "what kind of
+    reasoning, then" question to S2. S2's defeasibility box sharpened to name
+    non-monotonic and default logics as the attempt to repair pragmatics by
+    dropping the monotonicity rule students have just been taught.
+  - Handout gained a matching ND block (rules restated, two proofs to complete,
+    one monotonicity check) and the progression now runs the validity and
+    monotonicity tests explicitly on Grice's derivation.
+  - **Franke & Jäger incorporated into week 1** (Thomas supplied the PDF; read in
+    full). Three things taken, all of which replace assertions with material:
+    (1) **"Levels of explanation"**, a new S2 slide built from their Figure 1:
+    constraints (Hurford) · principles (strongest meaning) · maxims (Quantity) ·
+    reasons (optimal language use) · processes, each with its what/why/how
+    question. It tells students where the course operates (the level of reasons)
+    and why that does not displace the structural approaches ("one task, many
+    tools"). Carries Anderson's line that rational analysis "does not imply any
+    actual logical deduction in choosing optimal behavior, only that the
+    behavior will be optimized", which is Thomas's week-1 thesis in the words of
+    the person who founded the framework. (2) **"Gradience, measured"**, a new S2
+    slide: the ten-circles demo (people answer four or five; two feels less
+    likely than six), the categorical account's flat prediction against the
+    observed peaked-then-falling ratings for *Some of the As are Bs* (van Tiel;
+    Degen & Tanenhaus), and **scalar diversity** (*some*/*all* and
+    *sometimes*/*always* readily, *big*/*enormous* and *attractive*/*stunning*
+    much less, which entailment alone cannot explain). This is the empirical
+    crux and it was previously one thin assertion. (3) **Grice's own words** on
+    the S1 close: "talking as a special case or variety of purposive, indeed
+    rational, behaviour", and conversational practice as "something that it is
+    *reasonable* for us to follow". Rational, purposive, reasonable; validity
+    never enters. Textual support for "reasoning but not deduction".
+  - Handout gained a third ex-block on gradience: the ten-circles judgement, a
+    two-curve sketch (categorical prediction against your own ratings), and a
+    scalar-diversity ranking with the entailment account asked to explain it.
+  - Deck now **26 slides**, S1 14 / S2 12.
+  - Paper added to the course plan: optional week-1 framing read (§§1–3, §5) and
+    a set week-5 reading (§4 reference-game model with fitted likelihood, §6
+    indirect speech acts via game theory, which also back-fills week 2).
+    **Citation flag recorded in the plan:** the copy in hand is the Tübingen
+    preprint filed as 2015; the published version is *Zeitschrift für
+    Sprachwissenschaft* 35(1), 3–44, 2016, and the section numbers cited are the
+    preprint's.
+  - **Not yet used, worth mining later:** their §6 indirect-speech-act material
+    (the veiled bribe from *Fargo*, Stalnaker's John Snow dollar example, the
+    mobster's veiled threat, and the fully worked carpet-sale signalling game
+    with payoff trees and posterior tables) is close to ideal for **week 2**, and
+    the Cleo-marbles case with the wonky-worlds joint inference belongs in
+    **week 4** with the priors material.
+  - **Still outstanding:** weeks 02–08 deck BODIES (stale S1/S2 stubs and
+    three-approach spine cards); weeks 09–12 have no pages at all and
+    `new-week.mjs` **refuses presentation weeks**, so they need hand-building;
+    `overview-liu44008.html` and both assessment pages are 404.

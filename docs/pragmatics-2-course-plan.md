@@ -113,6 +113,9 @@ wrong. The shape of the term.
 
 *Readings:* Grice (1975), "Logic and conversation," revisited. Sperber & Wilson (1995),
 *Relevance*, ch. 1. Levinson (1983), *Pragmatics*, introduction.
+*Optional, and a good frame for the whole module:* Franke & Jäger, "Probabilistic
+pragmatics, or why Bayes' rule is probably important for pragmatics," §§1–3 and §5.
+Week 1 draws its levels-of-explanation table and its gradience data from this paper.
 
 ---
 
@@ -210,7 +213,15 @@ promise discharged.
 
 *Readings:* probLang ch. 1–2 and Appendix 2. Frank & Goodman (2012), *Science* 336, 998.
 Goodman & Frank (2016), *TiCS* 20(11), 818–829. Degen (2023), "The Rational Speech Act
-framework," *Annual Review of Linguistics* 9, 519–540.
+framework," *Annual Review of Linguistics* 9, 519–540. Franke & Jäger, "Probabilistic
+pragmatics," §4 (the reference-game model worked through with real data, soft-max and
+\(\lambda\), and a fitted likelihood) and §6 (indirect speech acts via game theory, which
+also back-fills week 2).
+
+> **Citation note.** The copy in hand is the Tübingen preprint, filed as 2015. The
+> published version is *Zeitschrift für Sprachwissenschaft* 35(1), 3–44, dated 2016.
+> Check which one you want on a student-facing list; the section numbering referred to
+> above is the preprint's.
 
 ---
 
