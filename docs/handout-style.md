@@ -8,6 +8,11 @@ week 1 handout (`uploads/SemII_H1.pdf`).
 writing a new handout. This file explains *why* it looks the way it does, so
 that the next handout can be written without another round of trimming.
 
+**Starting one:** `npm run new -- <module> <week>` scaffolds it. The handout it
+writes is this sheet — `templates/week/handout-classic.html`, with a worked
+block 0 showing every component and the rules repeated as comments. Styling is
+`shared/handout-classic.css`; do not re-declare it in the week file.
+
 This is the printed-sheet style. It sits alongside the deck prose rules in
 `CLAUDE.md` § Conventions › House style, which still apply to every word here:
 plain titles that name things, no em-dashes, no "N X, one Y" slogans, no
@@ -232,9 +237,9 @@ not for judging layout. Strip blank pages before sending anything out.
 
 ## Open items
 
-- The classic CSS lives in the week 1 file, not in `shared/`. If a second
-  module adopts the sheet, lift it to `shared/handout-classic.css` rather than
-  copying it. `handout.css` remains the styling for the lens-based handouts.
+- `handout.css` remains the styling for the older lens-based handouts, and
+  `templates/week/handout.html` is still that sheet — swap the template name in
+  `scripts/new-week.mjs` to scaffold one.
 - One margin gloss survives against the rule in §4: block 1 still reads
   *Grice 1975. On flouting: the maxim is violated at the level of what is said,
   and observed at the level of what is meant.* Flouting is now a definition row

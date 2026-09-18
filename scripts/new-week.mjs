@@ -185,7 +185,10 @@ function render(templateFile, tokens) {
 
 const PLAN = [
   { out: "deck.html", template: deckTemplate, tokens: deckTokens, hubKey: "deck" },
-  { out: "handout.html", template: "handout.html", tokens: printTokens, hubKey: "handout" },
+  /* The classic sheet is the house pattern for handouts — see docs/handout-style.md.
+     templates/week/handout.html is the older lens-based sheet, kept for the
+     Semantics I weeks; swap the template name here to scaffold one of those. */
+  { out: "handout.html", template: "handout-classic.html", tokens: printTokens, hubKey: "handout" },
   { out: "readings.html", template: "readings.html", tokens: printTokens, hubKey: "rd" },
   { out: "exercises.html", template: "exercises.html", tokens: printTokens, hubKey: "ex" },
 ];

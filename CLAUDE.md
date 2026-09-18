@@ -87,7 +87,9 @@ The two **final-year modules use a different spine** (still the same catalogue A
 ```
 index.html                      THE HUB — catalogue of all modules/weeks (see above)
 templates/week/                 token-based skeletons ({{TOKEN}}s) for the four artifacts
-                                (deck-lenses / deck-spine / handout / readings / exercises)
+                                (deck-lenses / deck-spine / handout-classic / handout /
+                                readings / exercises). handout-classic = the house sheet
+                                and what the scaffold writes; handout = the older lens one
 scripts/new-week.mjs            scaffold generator — `npm run new -- <module> <week>`
 scripts/check.mjs               THE test suite — `npm test` (see PLAN.md §Checks)
 pattern-library/                deck.html + print.html — canonical copy of every shared
@@ -107,8 +109,11 @@ shared/                         ← all CSS/JS, referenced as ../../shared/… f
   deck-slides.css               deck content-slide extensions (lens kick, steppers, rail)
                                 + shared scaffold/overview patterns (q-banner, spine-cards,
                                 chip-row, todo-box, figs-line, reads-box, park-grid)
-  handout.css                   A4 handout styles (callouts, exercise blocks, answer lines)
-                                + print scaffold patterns (h-band›tag, todo-box, reads-plain)
+  handout.css                   A4 handout styles for the LENS-based sheet (callouts,
+                                exercise blocks, answer lines, h-band›tag, todo-box)
+  handout-classic.css           THE CLASSIC SHEET — house pattern for printed handouts
+                                (sec›num/body/note, defs, proc, exs, tasks, lines, rec).
+                                Rules for what a sheet may contain: docs/handout-style.md
   readings.css  exercises.css   readings list + downloadable homework sheet styles
   theme-burgundy.css  theme-indigo.css  theme-rust.css  theme-teal.css   per-module accent overrides
   deck-stage.js                 the slide-deck shell (arrow keys, full-screen, print-to-PDF)
@@ -180,9 +185,12 @@ Rules:
 
 > **Two handout patterns exist.** The **classic sheet** (numbered blocks, a
 > definitions strip, a bare-citation margin, one block per page) is the house
-> pattern going forward — **read `docs/handout-style.md` before writing one**,
-> with `weeks-pragmatics2/week-01/handout.html` as the worked reference. The
-> lens-based pattern below is the older one, still used by the Semantics I weeks.
+> pattern, and what `npm run new` scaffolds — **read `docs/handout-style.md`
+> before writing one**, with `weeks-pragmatics2/week-01/handout.html` as the
+> worked reference, `shared/handout-classic.css` for styling and
+> `templates/week/handout-classic.html` for the skeleton. The lens-based pattern
+> below is the older one, still used by the Semantics I weeks; its template is
+> `templates/week/handout.html` and its styling `shared/handout.css`.
 
 Exercise-first: introduces tools and gets students using them. Each lens gets a
 `.lens-sec`. Mix these blocks (defined in `handout.css`, all shown in the reference week):

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--
+  CLASSIC HANDOUT SHEET — the house pattern for printed handouts.
+
+  READ docs/handout-style.md BEFORE FILLING THIS IN. In short:
+    · one numbered block per page, numbered from 0
+    · examples numbered continuously across the whole sheet, (1)…(N)
+    · every block opens with a DEFINITIONS strip; use Thomas's own wording
+      from the earlier version of the course wherever it exists
+    · the margin column takes BARE CITATIONS ONLY — no commentary, no
+      teaching voice, no forward-pointing to later weeks
+    · a Context line is the exception, not the default
+    · exercises run a procedure on data; cut anything that asks the student
+      to comment on how the account is put together
+    · recap only what this week needs; let later weeks build their own material
+    · plain names for titles; no em-dashes; Unicode not MathJax for inline notation
+
+  Worked reference: weeks-pragmatics2/week-01/handout.html
+  Styling lives in shared/handout-classic.css — do not re-declare it here.
+  The older lens-based sheet is templates/week/handout-lenses.html.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{CODE}} · Week {{WEEK_NO}}, {{TITLE}} · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">{{CODE_LINE_PRINT}}</div>
+      <div>{{LECTURER}}</div>
+      <div>{{TERM_PRINT}}</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week {{WEEK_NO}} · Handout</div>
+  <h1 class="doc-title">{{TITLE}}</h1>
+
+  <!-- ══ 0 ══ ─────────────────────────────────────────────────────────────
+       Block 0 below shows every component the sheet has. Delete what this
+       week does not use; a block of bare data with no instruction and no
+       answer lines is a legitimate block.
+  ────────────────────────────────────────────────────────────────────────── -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Block title, a plain name</h2>
+
+      <!-- Context line: leave it out unless it does work the definitions
+           cannot. Never use it to restate a definition row. -->
+      <p><span class="runin">Context.</span> One or two sentences, only if needed.</p>
+
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Term</span><span class="g">One line. Thomas's own wording where it exists.</span></div>
+        <div class="d"><span class="t">Term</span><span class="g">Prefer entailment-based glosses to informal ones.</span></div>
+      </div>
+
+      <!-- A procedure, or a named set: diagnostics, a derivation template,
+           the environments, the tests. -->
+      <div class="proc">
+        <div class="sc proc-head">Procedure name</div>
+        <ol class="steps">
+          <li><b>Step.</b> What to do.</li>
+          <li><b>Step.</b> What to do.</li>
+        </ol>
+      </div>
+
+      <!-- Object-language data. .s is the sentence (italic); .ctx is a
+           bracketed context or a roman type label. Numbering runs on
+           across the whole sheet; do not restart it per block. -->
+      <ol class="exs">
+        <li><span>(1)</span><span class="s">A sentence.</span></li>
+        <li><span>(2)</span><span><span class="ctx">[a context]</span> &nbsp; <span class="s">A sentence.</span></span></li>
+      </ol>
+
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Run a procedure on the data. Three lines is the usual answer space.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Judge, classify, or derive. Never: comment on how the account is put together.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+
+    <!-- BARE CITATIONS ONLY. Author, year, title, and where relevant
+         journal, volume and pages. An empty margin is fine. -->
+    <div class="note">
+      <p><b>Author Year.</b> Title. <i>Journal</i> 00: 000–000.</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Block title</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Term</span><span class="g">Gloss.</span></div>
+      </div>
+      <p>Content to add.</p>
+    </div>
+    <div class="note"></div>
+  </div>
+
+</div>
+
+<template id="__bundler_thumbnail"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="{{PTHUMB_BG}}"/><rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="{{PTHUMB_ACCENT}}" stroke-width="2"/><line x1="36" y1="32" x2="64" y2="32" stroke="{{PTHUMB_ACCENT}}" stroke-width="2.5"/><line x1="36" y1="42" x2="58" y2="42" stroke="{{PTHUMB_LINE}}" stroke-width="2"/><line x1="36" y1="50" x2="62" y2="50" stroke="{{PTHUMB_LINE}}" stroke-width="2"/><text x="50" y="92" font-family="serif" font-size="7" fill="{{PTHUMB_ACCENT}}" text-anchor="middle">{{CODE}}</text></svg></template>
+</body>
+</html>

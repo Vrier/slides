@@ -11,69 +11,7 @@
 window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<style>
-  :root { --serif: 'STIX Two Text', 'EB Garamond', Georgia, 'Times New Roman', serif; --rule: #000; }
-  @page { size: A4; margin: 16mm 15mm 15mm 15mm; }
-  html, body { margin:0; padding:0; background:#f4f4f2; }
-  body { font-family: var(--serif); color:#000; font-size:10.5pt; line-height:1.44; }
-  .sheet { width:210mm; min-height:297mm; margin:0 auto; background:#fff; padding:16mm 15mm; box-sizing:border-box; }
-  .sc { text-transform:uppercase; letter-spacing:.14em; font-size:7.6pt; font-weight:600; }
-  .mast { display:flex; justify-content:space-between; align-items:flex-start; gap:20pt; }
-  .mast .inst { font-weight:700; font-size:12pt; line-height:1.2; }
-  .mast .ga { font-style:italic; font-size:9pt; }
-  .mast .uni { margin-top:2pt; }
-  .mast .right { text-align:right; font-size:10pt; line-height:1.35; }
-  .mast-rule { border-top:1.2pt solid var(--rule); margin:9pt 0 14pt; }
-  .doc-kicker { margin-bottom:3pt; }
-  .doc-title { font-size:23pt; font-weight:700; line-height:1.12; margin:0 0 4pt; letter-spacing:-.005em; }
-  .sec { display:grid; grid-template-columns:30pt 1fr 128pt; column-gap:16pt;
-         border-top:1.2pt solid var(--rule); padding-top:7pt; margin-top:20pt; }
-  .sec > .num { font-size:21pt; font-weight:700; line-height:.96; }
-  .sec > .body { min-width:0; }
-  .sec > .note { font-size:8.2pt; line-height:1.36; }
-  .sec > .note p { margin:0 0 5pt; }
-  .sec h2 { font-size:13pt; font-weight:700; margin:0 0 5pt; line-height:1.2; }
-  .sec p { margin:0 0 6pt; }
-  .runin { font-weight:700; }
-  ol.exs { list-style:none; margin:7pt 0 8pt; padding:0; }
-  ol.exs li { display:grid; grid-template-columns:26pt 1fr; margin:0 0 3pt; }
-  ol.exs .s { font-style:italic; }
-  ol.exs .ctx { font-style:normal; font-size:9pt; }
-  .proc { margin:8pt 0 7pt; }
-  .proc-head { margin-bottom:3pt; }
-  ol.steps { margin:0; padding-left:16pt; }
-  ol.steps li { margin:0 0 2pt; }
-  .tasks { margin-top:5pt; }
-  .task { display:grid; grid-template-columns:22pt 1fr; margin:0 0 3pt; }
-  .lines { margin:7pt 0 12pt 22pt; }
-  .lines span { display:block; border-bottom:.8pt solid var(--rule); height:19pt; }
-  table.rec { width:100%; border-collapse:collapse; margin:6pt 0 4pt; }
-  table.rec th { text-align:left; font-weight:600; text-transform:uppercase; letter-spacing:.12em;
-                 font-size:7.4pt; padding:3pt 8pt 3pt 0; border-top:.9pt solid var(--rule); border-bottom:.9pt solid var(--rule); }
-  table.rec td { padding:3.5pt 8pt 3.5pt 0; vertical-align:top; font-size:10pt; }
-  table.rec tr:last-child td { border-bottom:.9pt solid var(--rule); }
-  table.rec .it { font-style:italic; }
-  .defs { border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);
-          padding:5pt 0 4.5pt; margin:7pt 0 9pt; }
-  .defs > .sc { margin-bottom:3.5pt; }
-  .defs > div.d { display:grid; grid-template-columns:118pt 1fr; column-gap:10pt; margin:0 0 2.5pt; }
-  .defs > div.d:last-child { margin-bottom:0; }
-  .defs .t { font-weight:700; }
-  .defs .g { font-size:10pt; }
-  .rules { margin:6pt 0 8pt; }
-  .rules div { display:grid; grid-template-columns:96pt 1fr; margin:0 0 3pt; }
-  @media print {
-    html, body { background:#fff; }
-    .sheet { width:auto; min-height:0; margin:0; padding:0; }
-    .sec + .sec { break-before:page; page-break-before:always; }
-    /* Sections are taller than a page once the definitions are in, so avoid
-       breaking the small units instead of the whole section. */
-    .defs, .proc, .task, .lines, table.rec, ol.exs li { break-inside:avoid; page-break-inside:avoid; }
-    .sec h2 { break-after:avoid; page-break-after:avoid; }
-    .task { break-after:avoid; page-break-after:avoid; }
-    .sec > .note { break-inside:auto; }
-  }
-</style>
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
 </head>
 <body>
 
