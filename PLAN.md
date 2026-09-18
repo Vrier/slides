@@ -690,3 +690,47 @@ what the next session must know)*
     three-approach spine cards); weeks 09–12 have no pages at all and
     `new-week.mjs` **refuses presentation weeks**, so they need hand-building;
     `overview-liu44008.html` and both assessment pages are 404.
+
+### 2026-09-18 — Semantics II week 2 deck drafted; deck conventions codified
+
+- **Shipped:** `weeks-semantics2/week-02/deck.html` (new, 38 slides: 28 content,
+  4 dividers, 4 question slides, title, close) for **Worlds, Intensions & Modal
+  Logic**, and `docs/deck-style.md` (new), the deck counterpart of
+  `docs/handout-style.md`.
+- **Where the conventions came from:** a diff of the week 1 deck between
+  `c49a186` (Claude's restyle, 43 slides) and `d1980b3` (Thomas's own edit, 27
+  slides). His version is the rule: one deck per lecture, "Part" for "Act", no
+  forward teasers or commentary on the lecture, no dramatic callout labels or
+  synthesis paragraphs, title-only overview slides, one citation-only readings
+  slide, hook moved inside the Empirical lens, examples numbered continuously,
+  plain "Lecture closes" ending. The table is in `docs/deck-style.md` §1.
+- **Brief (Thomas, in chat):** nothing presumed from Semantics I; enough of the
+  philosophy of possible worlds, with a light touch on fictionalism; Scots and
+  Irish English as the typological cases alongside Nez Perce; history and
+  applications carried by the lecture, content by the handout.
+- **Build:** head, local `<style>` block and `.mrail` script copied from week 1;
+  `TITLES`/`GROUPS` rewritten (six groups, "What a world is" as a sub-block in the
+  Historical colour). Additions at the end of the style block: `.qsrc` (copied
+  from prag wk 1; week 1 uses the class but never defined it), `.kfig` for the
+  inline-SVG Kripke model, `.fl .fm` for a formula under a `.fourways` label.
+- **NUMBERING GOTCHA:** the renumbering that drops Negation has **not landed on
+  `main`**. `sem2-meta.js` and the hub still say week 2 = Negation, and
+  `week-02/readings.html` is still the Negation list. The deck hard-codes its own
+  week title in the sidebar, so it renders correctly either way; only the lens
+  steppers read the catalogue. **Hub status deliberately NOT flipped** (the sem2
+  wk 2 row is still the Negation row). When the renumber is applied, it must keep
+  `week-02/deck.html` in place while `week-03/readings.html` moves down to join
+  it, then flip deck `none` → `draft`.
+- **Open TODOs (HTML comments in the deck):** glossed *-o'qa* example from Deal
+  2011; authors of the 2024 *ELL* double-modals paper for (20); check (19)
+  against Brown & Miller 1975: 174; Lakoff attribution of the Bardot sentence;
+  page reference for Kripke's dice. Four portraits hotlink Wikimedia Commons
+  (licences on the slides): localise to `week-02/images/`. Commons' "David Lewis
+  1968.jpg" is not verified as the philosopher; the 1962 photo is used.
+- **Length:** about ten slides over week 1's count. First cuts: "Two frames from
+  games", "Uses of the semantics", the *can't seem to* row.
+- **Not yet built for week 2:** handout, homework, revised readings list (plan
+  agreed in chat; stale chapter references to fix: vF&H §2.3–2.4.1 in the current
+  build, Coppock & Champollion ch. 12, Portner ch. 2).
+- `npm test` green (165 files).
+

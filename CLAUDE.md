@@ -175,6 +175,7 @@ in a deck's `<style>` block (the old per-deck `.p2-*`/`.p3-*` copies are retired
 Handout scaffolds likewise use `handout.css`'s `.h-band` › `.tag`, `.todo-box`, `.reads-plain`.
 
 Rules:
+- **Semantics II decks: read `docs/deck-style.md` first** (the week 1 deck as Thomas edited it, codified; `weeks-semantics2/week-02/deck.html` is the second worked example).
 - **Slide TEXT follows §Conventions › House style** (plain titles, fragments, no em-dashes, statements over questions) — the wk-1 pragmatics deck is the worked example.
 - The content slide's coloured chrome comes from a lens class on `.b-slide`: `lens-empirical` / `lens-historical` / `lens-formal` / `lens-typological`.
 - Put `<div class="lens-progress" data-lens="LENS"></div>` at the end of `.b-main` so the 4-step tracker shows position. The rail filler fills it.

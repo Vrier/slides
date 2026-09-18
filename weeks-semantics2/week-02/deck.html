@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 2 &mdash; Worlds, Intensions &amp; Modal Logic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-teal.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* three-column fields */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  .cols3 .cfoot{ margin-top:12px; font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .cols3 .cfoot b{ color:var(--tcd-blue); font-weight:600; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--tcd-ink); line-height:1.08; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ question / answer slide furniture ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
+
+  /* ============ conversations (paired sentences, Q/A dialogues) ============ */
+  .convo{ margin:6px 0; }
+  .convo .cv{ display:grid; grid-template-columns:190px 1fr; gap:0 26px; padding:11px 0; align-items:baseline; }
+  .convo .cv + .cv{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 12%, #fff); }
+  .convo .who{ font-family:var(--mono); font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .convo .say{ font-family:var(--serif); font-style:italic; font-size:33px; color:var(--tcd-ink); line-height:1.25; }
+  .convo.big .say{ font-size:42px; }
+  .convo.big .cv{ padding:14px 0; }
+
+  /* week-tag chip on answer slides */
+  .wktag{ display:inline-block; font-family:var(--mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 8%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 26%, #fff); border-radius:999px;
+    padding:5px 16px; margin-left:20px; vertical-align:middle; transform:translateY(-6px); }
+
+  /* ============ figure portraits & name plates ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:64px; font-weight:600; letter-spacing:.02em; }
+  .figthree .npf .npmono{ height:300px; }
+
+  /* ============ lineage / genealogy strip ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* shared test-case rows */
+  .fourways{ margin-top:8px; }
+  .fourways .fw{ display:grid; grid-template-columns:280px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .fourways .fw:first-child{ border-top:none; }
+  .fourways .fw .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fc); }
+  .fourways .fw .fl small{ display:block; font-family:var(--mono); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--tcd-grey-75); margin-top:3px; text-transform:none; }
+  .fourways .fw .ft2{ font-family:var(--sans); font-size:23px; color:var(--tcd-black); line-height:1.35; }
+  .fourways .fw .ft2 em{ font-style:italic; } .fourways .fw .ft2 b{ color:var(--tcd-ink); }
+
+  /* ============ housekeeping / week grids / recap ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* hatched to-confirm box (print twin of the scaffold todo-box) */
+  .todo-line{ margin-top:18px; border:1.5px dashed var(--tcd-blue-50); border-radius:9px; background:var(--tcd-blue-10);
+    padding:13px 20px; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+  .todo-line b{ color:var(--tcd-blue); }
+
+  /* question-slide footnote line (as weeks-pragmatics/week-01) */
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+
+  /* Kripke-model figure (week 2): worlds as nodes, R as arrows */
+  .kfig{ width:100%; height:auto; display:block; margin:8px 0 0; }
+  .kfig .nd{ fill:#fff; stroke:var(--lens, var(--tcd-blue)); stroke-width:3; }
+  .kfig .ar{ stroke:var(--tcd-ink); stroke-width:3; fill:none; }
+  .kfig .wl{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .kfig .vl{ font-family:var(--sans); font-size:23px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .fourways .fw .fl .fm{ display:block; font-family:var(--serif); font-weight:400; font-size:21px; letter-spacing:0; text-transform:none; color:var(--tcd-grey-100); margin-top:4px; }
+</style>
+</head>
+<body class="pal-a" data-week="2">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark">◇◻</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LIU33008 · Semantics II</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 2</h1>
+      <div class="a-course-sub">Worlds, Intensions &amp; Modal Logic</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · Michaelmas</div></div>
+  </div>
+</section>
+
+
+
+<!-- 02 · This week -->
+<section class="slide" data-label="This week" data-screen-label="02">
+  <div class="b-slide pal-a dB" data-sec="wk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">This week</h2>
+      <div class="q-banner">What do <em>must</em> and <em>might</em> quantify over?</div>
+      <div class="erow" style="border-top:none"><div class="lb">Last week</div><div class="tx">An <strong>intension</strong>: a function from possible worlds to extensions. A <strong>proposition</strong>: a set of worlds.</div></div>
+      <div class="erow"><div class="lb">This week</div><div class="tx">The worlds themselves, and the logic of \(\Box\) and \(\Diamond\) over them.</div></div>
+      <div class="figs-line"><b>Figures:</b> C. I. Lewis · von Wright · Meredith &amp; Prior · Kripke &nbsp;·&nbsp; <b>On worlds:</b> D. Lewis · Stalnaker · Rosen</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 03 · Roadmap -->
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li><em>Must</em> and <em>might</em></li><li>Duality</li><li>Scope</li><li>Flavours</li><li>Flavours and inference</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>C. I. Lewis</li><li>von Wright</li><li>Dublin, 1956</li><li>Kripke</li><li>Uses of the semantics</li><li>What a world is</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Frames and models</li><li>Truth at a world</li><li>Validity and frame conditions</li><li><em>Must</em> and <em>may</em></li><li>Limits</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>Scots and Ulster</li><li>Irish English</li><li>Nez Perce</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 04 · Readings -->
+<section class="slide" data-label="Readings" data-screen-label="04">
+  <div class="b-slide pal-a dB" data-sec="rd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week's readings</div>
+      <h2 class="b-h">von Fintel &amp; Heim; Menzel</h2>
+      <div class="qref">von Fintel &amp; Heim, <em>Intensional Semantics</em>, §2.3 &ldquo;Modals&rdquo; and §2.4.1 &ldquo;Accessibility relations.&rdquo; <span class="src">MIT lecture notes, current edition · open access · PDF linked on the reading list</span></div>
+      <div class="qref" style="margin-top:22px">Menzel, &ldquo;Possible worlds&rdquo;, <em>Stanford Encyclopedia of Philosophy</em>, §§1 to 2. <span class="src">open access · linked on the reading list</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Empirical -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LIU33008 · Week 2</div><h2><em>Must</em> and <em>might</em></h2><div class="ask">Modal words as quantifiers over possibilities.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+
+
+<!-- 05 · The word game · question -->
+<section class="slide" data-label="Must and might, Q" data-screen-label="05">
+  <div class="b-slide pal-a lens-empirical" data-sec="game">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>A five-letter word game. Decide: true or false</div>
+        <div class="convo">
+          <div class="cv anim" style="--d:.15s"><div class="who">(1)</div><div class="say">It must end in E.</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(2)</div><div class="say">It might start with C.</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(3)</div><div class="say">It must contain a T.</div></div>
+          <div class="cv anim" style="--d:.6s"><div class="who">(4)</div><div class="say">It might be CRIME.</div></div>
+        </div>
+        <div class="qsrc anim" style="--d:.85s">Five candidates left: CRANE · CRATE · GRAPE · TRACE · BRACE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 06 · The word game · answer -->
+<section class="slide" data-label="Must and might, A" data-screen-label="06">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="game">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h"><em>Must</em> and <em>might</em></h2>
+      <div class="brn">
+        <div class="split"><span><em>must</em></span><span><em>might</em></span></div>
+        <div class="arms">
+          <div class="arm"><div class="h">All candidates</div><div class="t">(1) true: every candidate ends in E. (3) false: GRAPE has no T.</div></div>
+          <div class="arm meant"><div class="h">Some candidate</div><div class="t">(2) true: CRANE, CRATE. (4) false: CRIME is off the list.</div></div>
+        </div>
+      </div>
+      <div class="erow"><div class="lb">The domain</div><div class="tx">The candidates: the possibilities compatible with <strong>what is known</strong>.</div></div>
+      <div class="erow"><div class="lb">Worlds</div><div class="tx">A possibility that settles every question: a <strong>possible world</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 07 · Duality -->
+<section class="slide" data-label="Empirical ·Duality" data-screen-label="07">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="dual">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Duality</h2>
+      <div class="egpanel">
+        <div class="eghead"><em>Every</em> and <em>some</em></div>
+        <div class="eg"><span class="no">(5)</span><span class="ex">Not every student passed.<span class="gl">= Some student did not pass. \(\;\neg\forall \equiv \exists\neg\)</span></span></div>
+        <div class="eg"><span class="no">(6)</span><span class="ex">No student passed.<span class="gl">= Every student failed to pass. \(\;\neg\exists \equiv \forall\neg\)</span></span></div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead"><em>Must</em> and <em>may</em></div>
+        <div class="eg"><span class="no">(7)</span><span class="ex">You needn't come.<span class="gl">= You may stay away. \(\;\neg\Box \equiv \Diamond\neg\)</span></span></div>
+        <div class="eg"><span class="no">(8)</span><span class="ex">You mustn't smoke.<span class="gl">= Smoking is not permitted. \(\;\Box\neg \equiv \neg\Diamond\)</span></span></div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">Notation</div><div class="tx tight">\(\Box\): necessity, <strong>all</strong>. \(\Diamond\): possibility, <strong>some</strong>. \(\;\Box p \equiv \neg\Diamond\neg p\).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 08 · Scope · question -->
+<section class="slide" data-label="Scope, Q" data-screen-label="08">
+  <div class="b-slide pal-a lens-empirical" data-sec="scope">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide: what the negation applies to</div>
+        <div class="convo big">
+          <div class="cv anim" style="--d:.15s"><div class="who">(9)</div><div class="say">You may not leave.</div></div>
+          <div class="cv anim" style="--d:.35s"><div class="who">(10)</div><div class="say">She may not be home.</div></div>
+        </div>
+        <div class="qsrc anim" style="--d:.7s">The same string: <em>may not</em>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 09 · Scope · answer -->
+<section class="slide" data-label="Scope, A" data-screen-label="09">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="scope">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Scope</h2>
+      <div class="brn">
+        <div class="split"><span>(9), about the rules</span><span>(10), about the evidence</span></div>
+        <div class="arms">
+          <div class="arm"><div class="h">\(\neg\Diamond\)</div><div class="t">It is not permitted that you leave.</div></div>
+          <div class="arm meant"><div class="h">\(\Diamond\neg\)</div><div class="t">It is possible that she is not home.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">Against the surface order</div>
+        <div class="eg"><span class="no">(11)</span><span class="ex">I can't seem to find my keys.<span class="gl"><em>seem</em> over <em>not</em> over <em>can</em></span></span></div>
+      </div>
+      <div class="erow"><div class="lb">The pattern</div><div class="tx tight">Modals take <strong>scope</strong> relative to negation and to each other, as <em>every</em> and <em>some</em> do.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 10 · Flavours -->
+<section class="slide" data-label="Empirical ·Flavours" data-screen-label="10">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="flav">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Flavours</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Epistemic<small>in view of what is known</small></div><div class="ft2"><em>The lights are on. Anna <b>must</b> be home.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Deontic<small>in view of the rules</small></div><div class="ft2"><em>Visitors <b>must</b> sign in.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Circumstantial<small>in view of the circumstances</small></div><div class="ft2"><em>I <b>must</b> sneeze.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Teleological<small>in view of a goal</small></div><div class="ft2"><em>To reach Howth, you <b>must</b> take the DART.</em></div></div>
+      </div>
+      <div class="erow" style="margin-top:6px"><div class="lb">Constant and variable</div><div class="tx tight">The <strong>force</strong> stays: all. The <strong>domain</strong> varies with the <em>in view of</em> phrase. Kratzer (1977).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 11 · Flavours and inference · question -->
+<section class="slide" data-label="Flavours and inference, Q" data-screen-label="11">
+  <div class="b-slide pal-a lens-empirical" data-sec="tq">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide: does the plain sentence follow</div>
+        <div class="convo">
+          <div class="cv anim" style="--d:.15s"><div class="who">(12)</div><div class="say">Sue knows that it is raining.</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(13)</div><div class="say">Visitors must sign in.</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(14)</div><div class="say">Anna must be home.</div></div>
+        </div>
+        <div class="qsrc anim" style="--d:.75s"><em>It is raining</em> · <em>Visitors sign in</em> · <em>Anna is home</em></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 12 · Flavours and inference · answer -->
+<section class="slide" data-label="Flavours and inference, A" data-screen-label="12">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="tq">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Flavours and inference</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>(12): follows</small></div><div class="ft2"><span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>(13): does not follow</small></div><div class="ft2"><em>Visitors must sign in, and some never do.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Epistemic <em>must</em><small>(14): disputed</small></div><div class="ft2">Fine on seeing wet umbrellas. Odd while watching the rain fall. Karttunen (1972); von Fintel &amp; Gillies (2010).</div></div>
+      </div>
+      <div class="erow" style="margin-top:6px"><div class="lb">Upshot</div><div class="tx tight">The same quantifier over different domains licenses <strong>different inferences</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Historical -->
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LIU33008 · Week 2</div><h2>C. I. Lewis to Kripke</h2><div class="ask">Modal logic from 1912 to 1963; then the question of what a possible world is.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+
+
+<!-- 13 · The historical spine -->
+<section class="slide" data-label="Historical ·The spine" data-screen-label="13">
+  <div class="b-slide pal-a lens-historical" data-sec="spine">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">The historical spine</h2>
+      <div class="lineage">
+        <div class="ln"><div class="dot"></div><div class="era">1912 – 1932</div><div class="nm">C. I. Lewis</div><div class="ds">Strict implication; the axiom systems S1 to S5.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">1933 – 1947</div><div class="nm">Gödel · Carnap</div><div class="ds">\(\Box\) as provability; necessity as truth in every state-description.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">1951</div><div class="nm">von Wright</div><div class="ds">One logic for necessity, knowledge and obligation.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">1954 – 1957</div><div class="nm">Prior · Meredith · Kanger · Hintikka</div><div class="ds">A binary relation between worlds, found several times over.</div></div>
+        <div class="ln"><div class="dot"></div><div class="era">1959 – 1963</div><div class="nm">Kripke</div><div class="ds">Frames and models; each system a condition on the relation.</div></div>
+      </div>
+      <div class="roots"><b>Afterwards:</b> D. Lewis, Stalnaker and Rosen on what worlds are; Kratzer on modals in natural language.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 14 · C. I. Lewis -->
+<section class="slide" data-label="Historical ·C. I. Lewis" data-screen-label="14">
+  <div class="b-slide pal-a lens-historical dB" data-sec="cil">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">C. I. Lewis</h2>
+      <div class="erow" style="border-top:none"><div class="lb">The material conditional</div><div class="tx tight">\(p \rightarrow q\) is false in one case only: \(p\) true, \(q\) false. True whenever \(p\) is false. True whenever \(q\) is true.</div></div>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">Both true</div>
+        <div class="eg"><span class="no">(15)</span><span class="ex">If the moon is made of cheese, then 2 + 2 = 5.<span class="gl">false antecedent</span></span></div>
+        <div class="eg"><span class="no">(16)</span><span class="ex">If it is raining in Dublin, then 2 + 2 = 4.<span class="gl">true consequent</span></span></div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">Strict implication</div><div class="tx tight">Lewis (1912, 1918): implication as a <strong>necessary</strong> connection. \(p\) strictly implies \(q\): \(\;\Box(p \rightarrow q)\).</div></div>
+      <div class="erow"><div class="lb">The gap</div><div class="tx tight">Lewis &amp; Langford (1932): five axiom systems, S1 to S5, and <strong>no semantics</strong>. No way to settle whether \(\Box p \rightarrow \Box\Box p\) holds.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 15 · von Wright -->
+<section class="slide" data-label="Historical ·von Wright" data-screen-label="15">
+  <div class="b-slide pal-a lens-historical dB" data-sec="vw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">von Wright's analogies</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Alethic<small>truth</small></div><div class="ft2">necessary · possible · impossible</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Epistemic<small>knowledge</small></div><div class="ft2">verified · undecided · falsified</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Deontic<small>norms</small></div><div class="ft2">obligatory · permitted · forbidden</div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Existential<small>quantity</small></div><div class="ft2">universal · existing · empty</div></div>
+      </div>
+      <div class="erow" style="margin-top:6px"><div class="lb">1951</div><div class="tx tight"><em>An Essay in Modal Logic</em>; &ldquo;Deontic logic&rdquo; in <em>Mind</em>. The flavours of natural language, as a <strong>family of logics</strong> with one shape.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 16 · Dublin, 1956 -->
+<section class="slide" data-label="Historical ·Dublin, 1956" data-screen-label="16">
+  <div class="b-slide pal-a lens-historical dB" data-sec="dub">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Dublin, 1956</h2>
+      <div class="figthree">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Jan_Łukasiewicz.jpg — public domain (1935, anonymous); localise to images/lukasiewicz.jpg -->
+        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20%C5%81ukasiewicz.jpg?width=640" alt="Jan Łukasiewicz, 1935" style="object-position:50% 15%"><div class="pc"><div class="nm">Jan Łukasiewicz</div><div class="dt">1878 – 1956 · photo 1935 · public domain</div><div class="rl">Warsaw logician. In Dublin from 1946, at the Royal Irish Academy.</div></div></div>
+        <!-- No free photograph of C. A. Meredith found: name plate. TCD archives may hold one. -->
+        <div class="portrait npf"><div class="npmono">CAM</div><div class="pc"><div class="nm">Carew Meredith</div><div class="dt">1904 – 1976 · no free photograph found</div><div class="rl">Lecturer in mathematics, Trinity College Dublin, 1943 to 1964.</div></div></div>
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Arthur_Prior_in_Wakefield_1959_from_son_Martin_Prior.png — CC BY-SA 4.0, Martin Prior; localise to images/prior.png -->
+        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arthur%20Prior%20in%20Wakefield%201959%20from%20son%20Martin%20Prior.png?width=640" alt="Arthur Prior in Wakefield, 1959" style="object-position:50% 12%"><div class="pc"><div class="nm">Arthur Prior</div><div class="dt">1914 – 1969 · photo 1959 · CC BY-SA 4.0, Martin Prior</div><div class="rl">Christchurch, then Manchester and Oxford. Tense logic; <em>Time and Modality</em> (1957).</div></div></div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">August 1956</div><div class="tx tight">Meredith and Prior's <strong>property calculus</strong>: worlds, and a binary relation \(U\) between them.</div></div>
+      <div class="erow"><div class="lb">The result</div><div class="tx tight">\(U\) reflexive: the system T. Add transitive: S4. Add symmetric: S5. Copeland (2002, 2006).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 17 · Kripke -->
+<section class="slide" data-label="Historical ·Kripke" data-screen-label="17">
+  <div class="b-slide pal-a lens-historical dB" data-sec="kri">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Kripke</h2>
+      <div class="figrow">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Saul_Kripke's_Gödel_lecture_at_UCSB.jpg — CC BY 2.0, David Calhoun; localise to images/kripke.jpg -->
+        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Saul%20Kripke%27s%20G%C3%B6del%20lecture%20at%20UCSB.jpg?width=640" alt="Saul Kripke lecturing at UCSB, 2006" style="object-position:50% 12%"><div class="pc"><div class="nm">Saul Kripke</div><div class="dt">1940 – 2022 · photo 2006 · CC BY 2.0, David Calhoun</div><div class="rl">Omaha, Harvard, Rockefeller, Princeton, CUNY.</div></div></div>
+        <div class="figbody">
+          <div class="erow"><div class="lb">1959</div><div class="tx tight">&ldquo;A completeness theorem in modal logic&rdquo;, written at <strong>seventeen</strong>.</div></div>
+          <div class="erow"><div class="lb">1963</div><div class="tx tight">&ldquo;Semantical considerations on modal logic&rdquo;: a set of worlds, a relation \(R\), a valuation.</div></div>
+          <div class="erow"><div class="lb">The advance</div><div class="tx tight">Each axiom system matches a <strong>condition on \(R\)</strong>. The systems become comparable.</div></div>
+          <div class="erow"><div class="lb">The story</div><div class="tx tight">Invited to apply to Harvard on the strength of the paper. The reply, as told: his mother wanted him to finish school first.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 18 · Uses of the semantics -->
+<section class="slide" data-label="Historical ·Uses of the semantics" data-screen-label="18">
+  <div class="b-slide pal-a lens-historical dB" data-sec="uses">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Uses of the semantics</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Time<small>Prior 1957</small></div><div class="ft2">\(\Box\) as <em>always</em>, \(\Diamond\) as <em>sometimes</em>. Pnueli (1977) applies it to programs: Turing Award 1996. Model checking: Turing Award 2007. Chips and protocols are verified on <b>Kripke structures</b>.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>Hintikka 1962</small></div><div class="ft2">One relation per agent. Cheryl's Birthday (2015): ten dates, ten worlds; each announcement removes worlds.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>von Wright 1951</small></div><div class="ft2">Internet standards define the force of <b>MUST</b>, <b>SHOULD</b> and <b>MAY</b> (RFC 2119).</div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Proof<small>Gödel 1933</small></div><div class="ft2">\(\Box\) as <em>provable</em>. Gödel's ontological argument runs in S5; machine-checked in 2013.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 19 · Lewis's realism -->
+<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="19">
+  <div class="b-slide pal-a lens-historical dB" data-sec="dlw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
+      <h2 class="b-h">Lewis's realism</h2>
+      <div class="figrow">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:David_Lewis_(1962)_(cropped).webp — public domain per Commons; described there as the philosopher (1941–2001). NB "David Lewis 1968.jpg" on Commons looks like the Canadian politician: do not use. Localise to images/dlewis.webp -->
+        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/David%20Lewis%20(1962)%20(cropped).webp?width=640" alt="David Lewis, 1962" style="object-position:50% 15%"><div class="pc"><div class="nm">David Lewis</div><div class="dt">1941 – 2001 · photo 1962 · public domain</div><div class="rl"><em>Counterfactuals</em> (1973); <em>On the Plurality of Worlds</em> (1986).</div></div></div>
+        <div class="figbody">
+          <div class="erow"><div class="lb">The argument</div><div class="tx tight">Things could have been otherwise in many ways. Ways things could have been <strong>exist</strong>. Call them worlds.</div></div>
+          <div class="erow"><div class="lb">What worlds are</div><div class="tx tight">Concrete, of a kind with ours. <em>Actual</em> works like <em>here</em>: an indexical.</div></div>
+          <div class="erow"><div class="lb">The reply</div><div class="tx tight">The incredulous stare. His answer: worlds earn their place by use, as sets do in mathematics.</div></div>
+          <!-- TODO verify attribution of the Bardot sentence (Lakoff 1972, "Linguistics and natural logic"; sometimes credited to McCawley) -->
+          <div class="erow"><div class="lb">Counterparts</div><div class="tx tight">Nothing exists in two worlds. <em>I dreamt that I was Brigitte Bardot and that I kissed me</em> (Lakoff).</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 20 · Ersatz worlds; Kripke's dice -->
+<section class="slide" data-label="Worlds ·Ersatz worlds and Kripke's dice" data-screen-label="20">
+  <div class="b-slide pal-a lens-historical dB" data-sec="ers">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
+      <h2 class="b-h">Ersatz worlds; Kripke's dice</h2>
+      <div class="erow" style="border-top:none"><div class="lb">Ersatzism</div><div class="tx">A world as a maximal consistent <strong>story</strong>: a complete set of propositions. Adams, Plantinga, Stalnaker (1976).</div></div>
+      <div class="erow"><div class="lb">The cost for semantics</div><div class="tx">Last week: a proposition is a set of worlds. A world as a set of propositions closes a <strong>circle</strong>. And <em>consistent</em> is itself modal.</div></div>
+      <!-- TODO confirm page reference: Naming and Necessity (1980), preface, the two-dice passage (c. pp. 16–18) -->
+      <div class="erow"><div class="lb">Kripke</div><div class="tx">Worlds are <strong>stipulated</strong>. Two dice: thirty-six possible states, thirty-six small worlds. <em>Naming and Necessity</em> (1980).</div></div>
+      <div class="erow"><div class="lb">Grain</div><div class="tx">As fine as the question requires. The word game needed five.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 21 · Fictionalism -->
+<section class="slide" data-label="Worlds ·Fictionalism" data-screen-label="21">
+  <div class="b-slide pal-a lens-historical dB" data-sec="fic">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
+      <h2 class="b-h">Fictionalism</h2>
+      <div class="erow" style="border-top:none"><div class="lb">Rosen (1990)</div><div class="tx tight">Talk of worlds as talk within a <strong>fiction</strong>, on a par with Holmes at 221B Baker Street. \(\Diamond p\) iff, according to the fiction of possible worlds, \(p\) holds at some world.</div></div>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">According to the fiction</div>
+        <div class="eg"><span class="no">(17)</span><span class="ex">In the Holmes stories, a detective lives at 221B Baker Street.<span class="gl">true</span></span></div>
+        <div class="eg"><span class="no">(18)</span><span class="ex">In the Holmes stories, Holmes has blood type O.<span class="gl">neither true nor false: the stories leave it open</span></span></div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">The operator</div><div class="tx tight"><em>According to the fiction</em> is an <strong>intensional operator</strong>. Lewis (1978) analyses it with possible worlds.</div></div>
+      <div class="erow"><div class="lb">A working position</div><div class="tx tight">Worlds as points in a model. Each settles every sentence; a relation holds among them.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Formal -->
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · LIU33008 · Week 2</div><h2>Frames, models, validity</h2><div class="ask">\(\Box\) and \(\Diamond\) as quantifiers over accessible worlds.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+
+
+<!-- 22 · Frames and models -->
+<section class="slide" data-label="Formal ·Frames and models" data-screen-label="22">
+  <div class="b-slide pal-a lens-formal dB" data-sec="frm">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Frames and models</h2>
+      <div class="erow" style="border-top:none"><div class="lb">Language</div><div class="tx tight">Propositional logic, plus \(\Box\varphi\) and \(\Diamond\varphi\).</div></div>
+      <div class="erow"><div class="lb">Frame</div><div class="tx tight">\(\langle W, R\rangle\): a set of worlds and an <strong>accessibility relation</strong> \(R \subseteq W \times W\). \(wRw'\): \(w\) sees \(w'\).</div></div>
+      <div class="erow"><div class="lb">Model</div><div class="tx tight">A frame plus a <strong>valuation</strong>: \(V(p)\), the set of worlds where \(p\) is true.</div></div>
+      <div class="egpanel">
+        <div class="eghead">A model</div>
+        <svg class="kfig" viewBox="0 0 1300 196" role="img" aria-label="Four worlds in a row. w1 sees itself and w2; w2 sees w3; w3 sees w4; w4 sees nothing. p is true at w1 and w2; q is true at w1 and w3.">
+          <defs><marker id="kah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--tcd-ink)"/></marker></defs>
+          <path class="ar" d="M148 66 C 96 -6, 244 -6, 192 66" marker-end="url(#kah)"/>
+          <line class="ar" x1="218" y1="106" x2="440" y2="106" marker-end="url(#kah)"/>
+          <line class="ar" x1="538" y1="106" x2="760" y2="106" marker-end="url(#kah)"/>
+          <line class="ar" x1="858" y1="106" x2="1080" y2="106" marker-end="url(#kah)"/>
+          <circle class="nd" cx="170" cy="106" r="46"/><text class="wl" x="170" y="117">w₁</text><text class="vl" x="170" y="188">p, q</text>
+          <circle class="nd" cx="490" cy="106" r="46"/><text class="wl" x="490" y="117">w₂</text><text class="vl" x="490" y="188">p, ¬q</text>
+          <circle class="nd" cx="810" cy="106" r="46"/><text class="wl" x="810" y="117">w₃</text><text class="vl" x="810" y="188">¬p, q</text>
+          <circle class="nd" cx="1130" cy="106" r="46"/><text class="wl" x="1130" y="117">w₄</text><text class="vl" x="1130" y="188">¬p, ¬q</text>
+        </svg>
+        <div class="fxnote" style="padding-top:12px">Last week's four worlds. \(p\): it is raining in Dublin. \(q\): Harry is single. Arrows: \(R\).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 23 · Truth at a world -->
+<section class="slide" data-label="Formal ·Truth at a world" data-screen-label="23">
+  <div class="b-slide pal-a lens-formal dB" data-sec="tru">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Truth at a world</h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">The two clauses</div>
+        <div class="fx">\[ M,w \models \Box\varphi \;\text{ iff for every } w' \text{ such that } wRw':\; M,w' \models \varphi \]
+        \[ M,w \models \Diamond\varphi \;\text{ iff for some } w' \text{ such that } wRw':\; M,w' \models \varphi \]</div>
+        <div class="fxnote">the connectives keep their usual clauses, checked at \(w\)</div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">As sets</div><div class="tx tight">\(R(w)\): the worlds \(w\) sees. \(\Box\varphi\) at \(w\): \(R(w) \subseteq \sem{\varphi}\). \(\Diamond\varphi\) at \(w\): \(R(w) \cap \sem{\varphi} \neq \emptyset\).</div></div>
+      <div class="erow"><div class="lb">Last week</div><div class="tx tight"><em>Sue believes p</em> iff \(\mathrm{DOX} \subseteq p\). The same clause, with <strong>belief</strong> as the relation.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 24 · Worked example -->
+<section class="slide" data-label="Formal ·Worked example" data-screen-label="24">
+  <div class="b-slide pal-a lens-formal" data-sec="wrk">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Worked: the model at \(w_1\)</h2>
+      <div class="b-steps">
+        <div class="b-step"><div class="b-step-lab">What \(w_1\) sees</div><div class="b-step-math">\(R(w_1) = \{w_1, w_2\}\)</div></div>
+        <div class="b-step"><div class="b-step-lab">\(\Box p\) at \(w_1\)</div><div class="b-step-math">\(\{w_1, w_2\} \subseteq V(p)\): true</div></div>
+        <div class="b-step"><div class="b-step-lab">\(\Diamond q\) at \(w_1\)</div><div class="b-step-math">\(\{w_1, w_2\} \cap V(q) = \{w_1\}\): true</div></div>
+        <div class="b-step"><div class="b-step-lab">\(\Box q\) at \(w_1\)</div><div class="b-step-math">\(w_2 \notin V(q)\): false</div></div>
+        <div class="b-step step-future"><div class="b-step-lab">A dead end: \(w_4\)</div><div class="b-step-math">\(R(w_4) = \emptyset\): \(\Box p\) true, \(\Diamond p\) false</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 25 · Your turn -->
+<section class="slide" data-label="Formal ·Your turn" data-screen-label="25">
+  <div class="b-slide pal-a lens-formal" data-sec="ex">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Same model. Your turn</div>
+        <div class="convo">
+          <div class="cv"><div class="who">a.</div><div class="say">\(\Box q\) at \(w_2\).</div></div>
+          <div class="cv"><div class="who">b.</div><div class="say">\(q\) at \(w_2\).</div></div>
+          <div class="cv"><div class="who">c.</div><div class="say">\(\Diamond p\) at \(w_3\).</div></div>
+          <div class="cv"><div class="who">d.</div><div class="say">\(\Box\Diamond q\) at \(w_1\).</div></div>
+        </div>
+        <div class="qsrc">\(R = \{\langle w_1,w_1\rangle, \langle w_1,w_2\rangle, \langle w_2,w_3\rangle, \langle w_3,w_4\rangle\}\) &middot; \(V(p)=\{w_1,w_2\}\) &middot; \(V(q)=\{w_1,w_3\}\)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 26 · Validity and frame conditions -->
+<section class="slide" data-label="Formal ·Validity and frame conditions" data-screen-label="26">
+  <div class="b-slide pal-a lens-formal dB" data-sec="val">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Validity and frame conditions</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">T<span class="fm">\(\Box p \rightarrow p\)</span></div><div class="ft2"><b>Reflexive</b>: every world sees itself. Fails at \(w_2\) in the model: \(\Box q\) true, \(q\) false.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">D<span class="fm">\(\Box p \rightarrow \Diamond p\)</span></div><div class="ft2"><b>Serial</b>: every world sees some world. Fails at the dead end \(w_4\).</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">4<span class="fm">\(\Box p \rightarrow \Box\Box p\)</span></div><div class="ft2"><b>Transitive</b>: whatever a seen world sees is seen.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">B<span class="fm">\(p \rightarrow \Box\Diamond p\)</span></div><div class="ft2"><b>Symmetric</b>: seeing is mutual.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">5<span class="fm">\(\Diamond p \rightarrow \Box\Diamond p\)</span></div><div class="ft2"><b>Euclidean</b>: worlds seen from one world see each other.</div></div>
+      </div>
+      <div class="erow" style="margin-top:4px"><div class="lb">Validity</div><div class="tx tight"><strong>Valid on a frame</strong>: true at every world, under every valuation.</div></div>
+      <div class="erow"><div class="lb">Systems</div><div class="tx tight">K: no condition. S4: T + 4. S5: T + 4 + B, with \(R\) an equivalence relation.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 27 · Two frames from games -->
+<section class="slide" data-label="Formal ·Two frames from games" data-screen-label="27">
+  <div class="b-slide pal-a lens-formal dB" data-sec="gms">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Two frames from games</h2>
+      <div class="brn">
+        <div class="split"><span>Chess: positions reachable by legal moves</span><span>Rubik's cube: states reachable by turns</span></div>
+        <div class="arms">
+          <div class="arm"><div class="h">S4</div><div class="t">Pawns never retreat; captures are permanent. Reflexive and transitive. Symmetry fails.</div></div>
+          <div class="arm meant"><div class="h">S5</div><div class="t">Every turn can be undone. Reflexive, transitive and symmetric: every state sees every state.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">Alternating quantifiers</div>
+        <div class="fx">\[ \Diamond\,\Box\,\Diamond\;\textit{checkmate} \]</div>
+        <div class="fxnote">mate in two, with \(R\) as a single move: some move of mine, every reply, some move of mine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 28 · Which frame for which flavour -->
+<section class="slide" data-label="Formal ·Frames and flavours" data-screen-label="28">
+  <div class="b-slide pal-a lens-formal dB" data-sec="flf">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Frames and flavours</h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>reflexive</small></div><div class="ft2"><span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em> T holds.</div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Belief<small>serial</small></div><div class="ft2"><em>Sue believes that it is raining, but it isn't.</em> T fails. D holds: beliefs taken as consistent.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>serial</small></div><div class="ft2"><em>Visitors must sign in, and some never do.</em> T fails. D holds: <em>must</em> gives <em>may</em>.</div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Introspection<small>transitive</small></div><div class="ft2">4 for knowledge: knowing that one knows. Disputed: Williamson (2000).</div></div>
+      </div>
+      <div class="erow" style="margin-top:6px"><div class="lb">The move</div><div class="tx tight">A flavour is a choice of \(R\). Its logic follows from the <strong>properties of \(R\)</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 29 · must and may -->
+<section class="slide" data-label="Formal ·Must and may" data-screen-label="29">
+  <div class="b-slide pal-a lens-formal dB" data-sec="lex">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h"><em>Must</em> and <em>may</em></h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">Lexical entries</div>
+        <div class="fx">\[ \sem{\textit{must}}^{w} = \lambda R.\,\lambda p.\;\forall w'\,[\,R(w)(w') \rightarrow p(w')\,] \]
+        \[ \sem{\textit{may}}^{w} = \lambda R.\,\lambda p.\;\exists w'\,[\,R(w)(w') \wedge p(w')\,] \]</div>
+        <div class="fxnote">after von Fintel &amp; Heim, chapter 2</div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">In words</div><div class="tx tight"><em>Must</em> takes a relation from the context and a proposition. True at \(w\) iff the proposition holds at <strong>every</strong> world accessible from \(w\).</div></div>
+      <div class="erow"><div class="lb">Types</div><div class="tx tight">\(R\): \(\langle s,\langle s,t\rangle\rangle\). \(p\): \(\langle s,t\rangle\).</div></div>
+      <div class="erow"><div class="lb">Division of labour</div><div class="tx tight"><strong>Force</strong> in the lexicon. <strong>Flavour</strong> from the context, as \(R\).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 30 · Limits of the simple system -->
+<section class="slide" data-label="Formal ·Limits" data-screen-label="30">
+  <div class="b-slide pal-a lens-formal dB" data-sec="lim">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Limits of the simple system <span class="wktag">Week 3</span></h2>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">The source of R<small>context</small></div><div class="ft2"><em>In view of the rules, …</em> The phrase names the domain. The entry leaves \(R\) a bare variable.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Conflicting rules<small>empty R(w)</small></div><div class="ft2">Two rules that cannot both be kept: no accessible world. Every <em>must</em> true; every <em>may</em> false. Asimov's Three Laws: a rulebook with <b>priorities</b>.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation after violation<small>von Fintel 2006</small></div><div class="ft2">Double parking is forbidden; offenders pay a fine. No lawful world contains the offence. <em>Robin must pay a fine</em> comes out false.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Grades<small>ought, likely</small></div><div class="ft2"><em>You ought to, but you don't have to.</em> <em>Rain is more likely than snow.</em> <b>All</b> and <b>some</b> leave no room.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Typological -->
+<section class="slide" data-label="§ Typological" data-screen-label="§ Typological">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
+    <div class="r"><div class="lab">Typological</div><div class="ct">LENS 04 / 04 · LIU33008 · Week 2</div><h2>Modal systems across varieties and languages</h2><div class="ask">Scots and Ulster, Irish English, Nez Perce.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+
+
+<!-- 31 · Scots: double modals -->
+<section class="slide" data-label="Typological ·Scots and Ulster" data-screen-label="31">
+  <div class="b-slide pal-a lens-typological dB" data-sec="sco">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Scots and Ulster: double modals</h2>
+      <!-- Data as quoted in the MultiMo database (multimodal.library.sc.edu, Commentary page) and in "A social turn for Construction Grammar: double modals on British Twitter", English Language & Linguistics (2024). TODO: check (19) against Brown & Miller 1975: 174 and add the ELL authors for (20). -->
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">Two modals, one clause</div>
+        <div class="eg"><span class="no">(19)</span><span class="ex">He'll no can come this week.<span class="gl">Edinburgh · Brown &amp; Miller (1975)</span></span></div>
+        <div class="eg"><span class="no">(20)</span><span class="ex">might can no dae it<span class="gl">Hawick · geolocated tweet, <em>English Language &amp; Linguistics</em> (2024)</span></span></div>
+        <div class="eg"><span class="no">(21)</span><span class="ex">I'll not can reply to this letter today.<span class="gl">Ulster · McMordie (1897): <em>will can</em> reported only with negation</span></span></div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">The inventory</div><div class="tx tight"><em>might</em>, <em>will</em>, <em>used to</em> first; <em>can</em>, <em>could</em> second. Brown (1991).</div></div>
+      <div class="erow"><div class="lb">As operators</div><div class="tx tight">Two modals, <strong>two relations</strong>. <em>might can</em>: \(\Diamond_{\textit{epistemic}}\,\Diamond_{\textit{circumstantial}}\;p\). Elsewhere: <em>might be able to</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 32 · Irish English: epistemic mustn't -->
+<section class="slide" data-label="Typological ·Irish English" data-screen-label="32">
+  <div class="b-slide pal-a lens-typological dB" data-sec="ire">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Irish English: epistemic <em>mustn't</em></h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">The same claim, two forms</div>
+        <div class="eg"><span class="no">(22)</span><span class="ex">He mustn't be Scottish.<span class="gl">Irish English · it must be that he is not Scottish · \(\Box\neg p\) · Hickey (2007)</span></span></div>
+        <div class="eg"><span class="no">(23)</span><span class="ex">He can't be Scottish.<span class="gl">southern British English · \(\neg\Diamond p\)</span></span></div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">Duality</div><div class="tx tight">\(\Box\neg p \equiv \neg\Diamond p\): two forms, <strong>one truth condition</strong>.</div></div>
+      <div class="erow"><div class="lb">Hickey</div><div class="tx tight"><em>Must</em> regularised across positive and negative. Also Scottish, Australian and New Zealand English.</div></div>
+      <div class="erow"><div class="lb">Show of hands</div><div class="tx tight">(22) or (23): the form you would use.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 33 · Nez Perce -->
+<section class="slide" data-label="Typological ·Nez Perce" data-screen-label="33">
+  <div class="b-slide pal-a lens-typological dB" data-sec="nez">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Nez Perce: a modal without a dual</h2>
+      <!-- TODO: add one glossed example of -o'qa from Deal (2011), Language 87(3), with page reference. Not reproduced here: the open-access copy could not be fetched while drafting. -->
+      <div class="erow" style="border-top:none"><div class="lb"><em>-o'qa</em></div><div class="tx">One modal suffix. Translated <em>can</em>, <em>could</em>, <em>may</em>, <em>should</em>, <em>must</em>.</div></div>
+      <div class="erow"><div class="lb">Deal (2011)</div><div class="tx">A <strong>possibility</strong> modal. No necessity modal competes with it, so no scalar implicature. It appears where English uses <em>must</em>.</div></div>
+      <div class="erow"><div class="lb">Under negation</div><div class="tx">Only the possibility reading: the pattern of \(\neg\Diamond\).</div></div>
+      <div class="erow"><div class="lb">Consequence</div><div class="tx">A language may lexicalise \(\Diamond\) alone. Simple necessity is paraphrased.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 34 · Lecture closes -->
+<section class="slide" data-label="Lecture closes" data-screen-label="34">
+  <div class="b-slide pal-a lens-typological" data-sec="close">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s;color:var(--lens-typ)"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Lecture closes</div>
+        <div class="bigq anim" style="--d:.15s;font-size:58px">On Thursday, the handout: models, countermodels and frame conditions, by hand.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/sem2-meta.js"></script>
+<script src="../../shared/sem2-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-pragmatics/week-01 — the expandable TOC reflects
+   THIS lecture's sections; strand groups carry their lens colour. */
+(function () {
+  var TITLES = {
+    wk:"This week", road:"Roadmap", rd:"Readings",
+    game:"Must and might", dual:"Duality", scope:"Scope", flav:"Flavours", tq:"Flavours and inference",
+    spine:"The historical spine", cil:"C. I. Lewis", vw:"von Wright", dub:"Dublin, 1956", kri:"Kripke", uses:"Uses of the semantics",
+    dlw:"Lewis's realism", ers:"Ersatz worlds; Kripke's dice", fic:"Fictionalism",
+    frm:"Frames and models", tru:"Truth at a world", wrk:"Worked example", ex:"Your turn",
+    val:"Validity and frame conditions", gms:"Two frames from games", flf:"Frames and flavours",
+    lex:"Must and may", lim:"Limits",
+    sco:"Scots and Ulster", ire:"Irish English", nez:"Nez Perce", close:"Lecture closes"
+  };
+  var GROUPS = [
+    { t:"Introduction",       sc:null,         keys:["wk","road","rd"] },
+    { t:"Empirical",          sc:"--lens-emp", keys:["game","dual","scope","flav","tq"] },
+    { t:"Historical",         sc:"--lens-his", keys:["spine","cil","vw","dub","kri","uses"] },
+    { t:"What a world is",    sc:"--lens-his", keys:["dlw","ers","fic"] },
+    { t:"Formal",             sc:"--lens-for", keys:["frm","tru","wrk","ex","val","gms","flf","lex","lim"] },
+    { t:"Typological",        sc:"--lens-typ", keys:["sco","ire","nez","close"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "▾" : "▸";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LIU33008<br>Week 2</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 2</div><div class="t2">Worlds, Intensions &amp; Modal Logic</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0f352d"/>
+    <rect x="8" y="10" width="84" height="3" rx="1.5" fill="#c4dbd6" opacity=".6"/>
+    <rect x="8" y="20" width="84" height="22" rx="3" fill="#14483d"/>
+    <rect x="8" y="48" width="84" height="44" rx="3" fill="#14483d" opacity=".7"/>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#89b7ae" text-anchor="middle">LIU33008 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>
