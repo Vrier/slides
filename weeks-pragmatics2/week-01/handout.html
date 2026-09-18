@@ -46,20 +46,32 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
   .tasks { margin-top:5pt; }
   .task { display:grid; grid-template-columns:22pt 1fr; margin:0 0 3pt; }
   .lines { margin:7pt 0 12pt 22pt; }
-  .lines span { display:block; border-bottom:.8pt solid var(--rule); height:21pt; }
+  .lines span { display:block; border-bottom:.8pt solid var(--rule); height:19pt; }
   table.rec { width:100%; border-collapse:collapse; margin:6pt 0 4pt; }
   table.rec th { text-align:left; font-weight:600; text-transform:uppercase; letter-spacing:.12em;
                  font-size:7.4pt; padding:3pt 8pt 3pt 0; border-top:.9pt solid var(--rule); border-bottom:.9pt solid var(--rule); }
   table.rec td { padding:3.5pt 8pt 3.5pt 0; vertical-align:top; font-size:10pt; }
   table.rec tr:last-child td { border-bottom:.9pt solid var(--rule); }
   table.rec .it { font-style:italic; }
+  .defs { border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);
+          padding:5pt 0 4.5pt; margin:7pt 0 9pt; }
+  .defs > .sc { margin-bottom:3.5pt; }
+  .defs > div.d { display:grid; grid-template-columns:118pt 1fr; column-gap:10pt; margin:0 0 2.5pt; }
+  .defs > div.d:last-child { margin-bottom:0; }
+  .defs .t { font-weight:700; }
+  .defs .g { font-size:10pt; }
   .rules { margin:6pt 0 8pt; }
   .rules div { display:grid; grid-template-columns:96pt 1fr; margin:0 0 3pt; }
   @media print {
     html, body { background:#fff; }
     .sheet { width:auto; min-height:0; margin:0; padding:0; }
     .sec + .sec { break-before:page; page-break-before:always; }
-    .sec { break-inside:avoid; }
+    /* Sections are taller than a page once the definitions are in, so avoid
+       breaking the small units instead of the whole section. */
+    .defs, .proc, .task, .lines, table.rec, ol.exs li { break-inside:avoid; page-break-inside:avoid; }
+    .sec h2 { break-after:avoid; page-break-after:avoid; }
+    .task { break-after:avoid; page-break-after:avoid; }
+    .sec > .note { break-inside:auto; }
   }
 </style>
 </head>
@@ -90,16 +102,20 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Speaker meaning and the Cooperative Principle</h2>
       <p><span class="runin">Context.</span> Pragmatics is meaning in context, derived by inference. Two distinctions organise the field.</p>
-      <p><b>Sentence meaning</b> is the conventional contribution of the expressions. <b>Speaker meaning</b> is what the speaker communicates by choosing them here. <b>What is said</b> is the contextually fixed content expressed. <b>What is implicated</b> is additional inferred content.</p>
-      <div class="proc">
-        <div class="sc proc-head">The Cooperative Principle</div>
-        <ol class="steps">
-          <li>Assume participants are making appropriate contributions to the purpose of the exchange.</li>
-          <li><b>Quality.</b> Try to make your contribution true.</li>
-          <li><b>Quantity.</b> Be as informative as required.</li>
-          <li><b>Relation.</b> Be relevant.</li>
-          <li><b>Manner.</b> Be perspicuous.</li>
-        </ol>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Pragmatics</span><span class="g">Meaning in context, derived by inference.</span></div>
+        <div class="d"><span class="t">Sentence meaning</span><span class="g">The conventional contribution of the expressions.</span></div>
+        <div class="d"><span class="t">Speaker meaning</span><span class="g">What the speaker communicates by choosing them here.</span></div>
+        <div class="d"><span class="t">What is said</span><span class="g">The contextually fixed content expressed.</span></div>
+        <div class="d"><span class="t">What is implicated</span><span class="g">Additional inferred content.</span></div>
+        <div class="d"><span class="t">Conversational implicature</span><span class="g">What is communicated beyond what is said, derived from assumptions about rational, cooperative interaction.</span></div>
+        <div class="d"><span class="t">Entailment</span><span class="g"><i>A</i> entails <i>B</i> when <i>B</i> holds in every situation in which <i>A</i> holds. Entailments cannot be cancelled.</span></div>
+        <div class="d"><span class="t">Cooperative Principle</span><span class="g">Assume participants are making appropriate contributions to the purpose of the exchange.</span></div>
+        <div class="d"><span class="t">Quality</span><span class="g">Try to make your contribution true.</span></div>
+        <div class="d"><span class="t">Quantity</span><span class="g">Be as informative as required.</span></div>
+        <div class="d"><span class="t">Relation</span><span class="g">Be relevant.</span></div>
+        <div class="d"><span class="t">Manner</span><span class="g">Be perspicuous.</span></div>
       </div>
       <ol class="exs">
         <li><span>(1)</span><span class="s">A: Are you coming to the meeting? &nbsp; B: I have marking to do.</span></li>
@@ -124,6 +140,12 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Implicature by maxim</h2>
       <p><span class="runin">Context.</span> Each maxim generates a characteristic kind of inference. Quality implicatures often involve apparent falsity treated as purposeful. Quantity implicatures arise when a weaker statement is used in place of a stronger one. Relation implicatures arise when relevance has to be reconstructed. Manner implicatures arise when a speaker is unexpectedly indirect, long, or opaque.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Flouting</span><span class="g">A maxim is violated at the level of what is said and observed at the level of what is meant.</span></div>
+        <div class="d"><span class="t">Generalised implicature</span><span class="g">Carried by the form itself, absent a special context.</span></div>
+        <div class="d"><span class="t">Particularised implicature</span><span class="g">Carried only in a particular context, as in (1).</span></div>
+      </div>
       <ol class="exs">
         <li><span>(2)</span><span><span class="ctx">[someone arrives drenched]</span> &nbsp; <span class="s">Lovely weather.</span></span></li>
         <li><span>(3)</span><span><span class="ctx">[a colleague submits a clearly unfinished draft]</span> &nbsp; <span class="s">This is extremely polished.</span></span></li>
@@ -134,7 +156,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>For each of (2) to (6), state the implicature and name the maxim at work.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>In (2) to (4) the speaker says something they believe false. Say why this does not make them uncooperative.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(c)</span><span>Rewrite (6) in the obvious short way. Say what is lost, and what that shows about Manner.</span></div>
@@ -152,6 +174,11 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Three diagnostics</h2>
       <p><span class="runin">Context.</span> Implicature is distinguished from entailment and from conventional meaning by how it behaves under three tests.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Conventional implicature</span><span class="g">Non-truth-conditional content attached to a lexical item. Not calculable from the maxims, and not cancellable: the contrast in <i>but</i>.</span></div>
+        <div class="d"><span class="t">Defeasibility</span><span class="g">The general property the first diagnostic tests. An inference is defeasible when later material can withdraw it.</span></div>
+      </div>
       <div class="proc">
         <div class="sc proc-head">Diagnostics</div>
         <ol class="steps">
@@ -172,7 +199,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         <div class="task"><span>(b)</span><span>(8) is not redundant. Say what follows about whether <span style="font-style:italic">not all</span> is part of what is said.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(c)</span><span>Run all three diagnostics on the implicature of (5). Report any that fail.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
@@ -186,6 +213,14 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Scalar implicature and strengthening</h2>
       <p><span class="runin">Context.</span> Scalar implicature is a Quantity-style inference driven by alternatives, and it is a <b>strengthening</b> phenomenon: what is communicated is logically stronger than what is said. A speaker uses a weaker term on a scale; the hearer considers stronger alternatives; the strengthened interpretation excludes at least some of them.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Scale</span><span class="g">An ordered set of alternative expressions, strongest first.</span></div>
+        <div class="d"><span class="t">Alternative</span><span class="g">An expression the speaker could have used in place of the one uttered.</span></div>
+        <div class="d"><span class="t">Strengthening</span><span class="g">What is communicated is logically stronger than what is said.</span></div>
+        <div class="d"><span class="t">Epistemic step</span><span class="g">The move from <i>the speaker does not know the stronger alternative holds</i> to <i>the speaker knows it does not hold</i>.</span></div>
+        <div class="d"><span class="t">Competence assumption</span><span class="g">The premise that licenses the epistemic step: the speaker is taken to be informed about the stronger alternative.</span></div>
+      </div>
       <table class="rec">
         <tr><th>Domain</th><th>Scale, strongest first</th></tr>
         <tr><td>Quantifiers</td><td class="it">all &gt; most &gt; many &gt; some</td></tr>
@@ -208,7 +243,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Run the template on one item from each row of the table. Give the utterance, the alternative, and the strengthening.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Step 5 delivers something weaker than step 6. State the gap, and name the extra assumption that closes it.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
       </div>
@@ -259,6 +294,12 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Two pressure points</h2>
       <p><span class="runin">Context.</span> A purely pragmatic account treats implicature as a global inference from an utterance, computed after composition. Two patterns strain that picture.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Embedded implicature</span><span class="g">A strengthened reading computed below the level of the whole utterance.</span></div>
+        <div class="d"><span class="t">Symmetry problem</span><span class="g">Alternatives that can be excluded in either direction, so that excluding all of them contradicts the utterance.</span></div>
+        <div class="d"><span class="t">Prejacent</span><span class="g">The plain, unstrengthened proposition that the exclusion operates on.</span></div>
+      </div>
       <p><b>Embedding.</b> Strengthened meanings can arise in embedded positions, interacting with other operators.</p>
       <ol class="exs">
         <li><span>(12)</span><span class="s">Everyone who solved some of the problems passed.</span></li>
@@ -273,7 +314,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         <div class="task"><span>(a)</span><span>Give the embedded reading of (12). Say why a global account has trouble producing it.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Negate each alternative to (13) in turn. Show that negating all of them contradicts the utterance.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(c)</span><span>State the constraint a working account needs in order to exclude some alternatives and not others.</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
@@ -290,6 +331,12 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Exhaustification</h2>
       <p><span class="runin">Context.</span> A different idea: treat at least some scalar implicatures as the output of a grammatical operator. An exhaustivity operator <b>EXH</b> applies to a proposition and strengthens it relative to alternatives, and it can apply locally inside larger structures.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Exhaustification</span><span class="g">Strengthening a proposition by excluding alternatives to it.</span></div>
+        <div class="d"><span class="t">Overt exhaustifier</span><span class="g">An expression that does this in the syntax: <i>only</i>.</span></div>
+        <div class="d"><span class="t">Focus alternatives</span><span class="g">The alternative set made available by prosodic prominence.</span></div>
+      </div>
       <div class="proc">
         <div class="sc proc-head">EXH in one line</div>
         <ol class="steps">
@@ -308,7 +355,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         <div class="task"><span>(a)</span><span>Give what (14) conveys, and write it in the EXH schema.</span></div>
         <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Take the question <i>Who came?</i> and the answer <i>Mary.</i> Model the exhaustive interpretation: give <i>p</i>, give Alt(<i>p</i>), apply EXH.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(c)</span><span>Show how EXH applying locally delivers the embedded reading of (12).</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(d)</span><span>Scalar enrichment is now part of compositional meaning. Say what is gained and what is given up.</span></div>
@@ -327,6 +374,16 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Presupposition: asserted and presupposed content</h2>
       <p><span class="runin">Context.</span> Some content is asserted; some is required as background for the utterance to be appropriate at all.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Presupposition</span><span class="g">Content the utterance requires to be already in place, rather than content it puts forward.</span></div>
+        <div class="d"><span class="t">Assertion</span><span class="g">The content the speaker puts forward as a contribution to the conversation.</span></div>
+        <div class="d"><span class="t">Presupposed content</span><span class="g">Content treated as background, and preserved where asserted content is reversed or destroyed.</span></div>
+        <div class="d"><span class="t">Projection</span><span class="g">A presupposition survives embedding under an operator that removes the assertion.</span></div>
+        <div class="d"><span class="t">Trigger</span><span class="g">A lexical item or construction that introduces a presupposition.</span></div>
+        <div class="d"><span class="t">Common ground</span><span class="g">The propositions interlocutors treat as mutually accepted for current purposes.</span></div>
+        <div class="d"><span class="t">Accommodation</span><span class="g">The hearer’s silent repair of the context so that the utterance becomes acceptable.</span></div>
+      </div>
       <ol class="exs">
         <li><span>(16)</span><span class="s">The prime minister of Switzerland is visiting Dublin.</span></li>
       </ol>
@@ -376,7 +433,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         <li><span>(26)</span><span><span class="ctx">Names.</span> <span class="s">The author is Julius Seidensticker.</span></span></li>
         <li><span>(27)</span><span><span class="ctx">Intonation and focus.</span> <span class="s">HE set me free.</span></span></li>
       </ol>
-      <div class="lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </div>
     <div class="note">
       <p>Kiparsky &amp; Kiparsky 1970 (factives) · Simons 2001, Abusch 2002 (aspectual) · Beaver &amp; Condoravdi 2003 (temporal) · Abbott 2000 (manner) · Thomason 1972 (sortal) · Delin 1995, Prince 1986 (clefts) · Roberts 1995, Cooper 1983 (quantifiers) · Strawson 1950 (definites) · van der Sandt 1992 (names) · Jackendoff 1972, Geurts &amp; van der Sandt 2004 (focus).</p>
@@ -389,6 +446,11 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Holes, plugs and filters</h2>
       <p><span class="runin">Context.</span> Embedding environments differ in what they do to a presupposition.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">The projection problem</span><span class="g">How the presuppositions of a complex sentence are determined by those of its parts and by the environments embedding them.</span></div>
+        <div class="d"><span class="t">Local support</span><span class="g">Earlier material in the sentence already entails the presupposition, so nothing needs to project.</span></div>
+      </div>
       <div class="proc">
         <div class="sc proc-head">Three environments</div>
         <ol class="steps">
@@ -407,7 +469,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         <li><span>(33)</span><span class="s">Either the prime minister of Switzerland is visiting Dublin, or the meeting will be cancelled.</span></li>
         <li><span>(34)</span><span class="s">Alex thinks that China has stopped stockpiling metals.</span></li>
       </ol>
-      <div class="lines"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="lines"><span></span><span></span><span></span><span></span><span></span></div>
       <p><span class="runin">Filtering practice.</span> For each pair, decide whether the presupposition projects from the whole sentence, and justify. Order matters.</p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span><i>Switzerland has a prime minister, and the prime minister of Switzerland is visiting Dublin.</i> &nbsp;/&nbsp; <i>The prime minister of Switzerland is visiting Dublin, and Switzerland has a prime minister.</i></span></div>
@@ -428,6 +490,11 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
     <div class="body">
       <h2>Gradedness</h2>
       <p><span class="runin">Context.</span> Blocks 7 to 9 treat projection as categorical: content projects or it does not, and an environment is a hole or it is not. The experimental record does not support that.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">At-issue content</span><span class="g">Content that addresses the question currently under discussion.</span></div>
+        <div class="d"><span class="t">Projectivity</span><span class="g">The degree to which content survives embedding, measured rather than assumed.</span></div>
+      </div>
       <div class="proc">
         <div class="sc proc-head">Two findings</div>
         <ol class="steps">
@@ -441,7 +508,7 @@ window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]]
         <div class="task"><span>(a)</span><span>Take (18), (19) and (29). Rank the three by how strongly the presupposition survives. Say what your ranking tracks.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Construct two versions of <i>Alex discovered that the test was hard</i>: one where the complement is independently plausible, one where it is not. Judge projection in each.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(c)</span><span>A categorical hole-plug-filter account predicts no difference in (b). State what a theory would need in order to predict one.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
       </div>
