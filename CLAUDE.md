@@ -177,6 +177,13 @@ Rules:
 - Dividers already have `<div class="lxd2-foot" data-lens="LENS"></div>` — also auto-filled.
 
 ### 2. The handout — `week-NN/handout.html`
+
+> **Two handout patterns exist.** The **classic sheet** (numbered blocks, a
+> definitions strip, a bare-citation margin, one block per page) is the house
+> pattern going forward — **read `docs/handout-style.md` before writing one**,
+> with `weeks-pragmatics2/week-01/handout.html` as the worked reference. The
+> lens-based pattern below is the older one, still used by the Semantics I weeks.
+
 Exercise-first: introduces tools and gets students using them. Each lens gets a
 `.lens-sec`. Mix these blocks (defined in `handout.css`, all shown in the reference week):
 - **`.callout`** (`callout-def/-ex/-key/-note`) — content/explanation.
@@ -216,6 +223,12 @@ Apply to ALL new slide, handout, homework and overview text, every module. The
 worked example of every rule is **`weeks-pragmatics/week-01/deck.html` +
 `weeks-pragmatics/overview-li7862.html`** (post-restyle) — read them before
 writing slide prose.
+
+For printed handouts these rules are joined by a second set covering what a
+sheet may contain at all — definitions strip, bare-citation margin, no
+theory-architecture exercises, no previewing later weeks. Those live in
+**`docs/handout-style.md`** (est. 2026-09 on prag2 wk 1), worked example
+`weeks-pragmatics2/week-01/handout.html`.
 
 - **Titles name things.** Plain school/topic/thing names: "Logical Positivism",
   "Ordinary Language Philosophy", "The term project", "Speech Acts" with a bare
@@ -262,8 +275,4 @@ writing slide prose.
 - **Module = folder + catalogue + rail + theme.** Get all four right (table above). The most common mistake is wiring a week to the wrong `*-meta.js`/`*-rail.js`/theme.
 - **`<body data-week="N">` on every deck** — the rail reads it. Skeletons already set it.
 - **Keep the hub in sync.** Any status/title change must land in both the `*-meta.js` and `index.html`'s `WEEKS` array.
-- **Crest is a static `<img src="../../shared/tcd-crest.webp">`.** To change the crest everywhere, replace that one file.
-- **Lecturer / term / coordinator details** are hard-coded per file and per catalogue (`MODULE.identities[]`) — update if they change. (Pragmatics I's undergrad identity is coordinated by Dr Conor Pyle, not Dr Stephen.)
-- **New files must be lowercase kebab-case** — they become public URLs; no spaces.
-- Slide text is **directly editable HTML** — close every tag, quote every attribute.
-- The interactive figures (`weeks-semantics1/figures/`) and the week-02 pragmatics maps are standalone lecture aids — opened directly, not linked from the hub. `figure-gallery.html` and each week's `figures.md` document how to embed them in slides via `<iframe>`.
+- **Crest is a static `<img src="../../sh
