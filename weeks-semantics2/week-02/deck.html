@@ -228,6 +228,34 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .kfig .wl{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
   .kfig .vl{ font-family:var(--sans); font-size:23px; fill:var(--tcd-grey-100); text-anchor:middle; }
   .fourways .fw .fl .fm{ display:block; font-family:var(--serif); font-weight:400; font-size:21px; letter-spacing:0; text-transform:none; color:var(--tcd-grey-100); margin-top:4px; }
+
+  /* world diagrams (week 2): logical space, propositions as regions, accessibility */
+  .wfig{ width:100%; height:auto; display:block; margin:4px 0 6px; }
+  .wfig .sp{ fill:#fff; stroke:var(--tcd-grey-50); stroke-width:2; }
+  .wfig .pr{ fill:color-mix(in srgb, var(--lens) 13%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .qr{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .acc{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .ar{ stroke:var(--tcd-ink); stroke-width:2.5; fill:none; }
+  .wfig .wd{ fill:#fff; stroke:var(--tcd-ink); stroke-width:2.5; }
+  .wfig .wd.dim{ stroke:var(--tcd-grey-50); }
+  .wfig .w0{ fill:var(--tcd-ink); }
+  .wfig .wl{ font-family:var(--serif); font-style:italic; font-size:29px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .wl.inv{ fill:#fff; } .wfig .wl.dim{ fill:var(--tcd-grey-75); }
+  .wfig .ws{ font-family:var(--sans); font-size:20px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .wfig .lp{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--lens); }
+  .wfig .lps{ font-family:var(--serif); font-size:24px; fill:var(--lens); }
+  .wfig .lq{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--tcd-ink); }
+  .wfig .lqs{ font-family:var(--serif); font-size:24px; fill:var(--tcd-ink); }
+  .wfig .la{ font-family:var(--sans); font-size:21px; font-weight:600; fill:var(--tcd-ink); }
+  .wfig .lw{ font-family:var(--mono); font-size:16px; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .sd{ fill:color-mix(in srgb, var(--lens) 8%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .sdt{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .rl{ stroke:var(--tcd-grey-25); stroke-width:1.5; }
+  .wfig .rs{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); }
+  .wfig .tv{ font-family:var(--mono); font-size:28px; font-weight:600; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .tv.off{ fill:var(--tcd-grey-50); }
+  .wfig .rn{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .rn.on{ fill:var(--lens); }
 </style>
 </head>
 <body class="pal-a" data-week="2">
@@ -286,9 +314,9 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main">
       <h2 class="b-h">Today</h2>
       <div class="lxr3">
-        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li><em>Must</em> and <em>might</em></li><li>Duality</li><li>Scope</li><li>Flavours</li><li>Flavours and inference</li></ul></div>
-        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>C. I. Lewis</li><li>von Wright</li><li>Dublin, 1956</li><li>Kripke</li><li>Uses of the semantics</li><li>What a world is</li></ul></div>
-        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Frames and models</li><li>Truth at a world</li><li>Validity and frame conditions</li><li><em>Must</em> and <em>may</em></li><li>Limits</li></ul></div>
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li><em>Must</em> and <em>might</em></li><li>Possible worlds</li><li>Duality</li><li>Scope</li><li>Flavours</li><li>Flavours and inference</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>C. I. Lewis</li><li>Carnap</li><li>von Wright</li><li>Dublin, 1956</li><li>Kripke</li><li>Uses of the semantics</li><li>What a world is</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Necessity and possibility</li><li>Frames and models</li><li>Truth at a world</li><li>Validity and frame conditions</li><li><em>Must</em> and <em>may</em></li><li>Limits</li></ul></div>
         <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>Scots and Ulster</li><li>Irish English</li><li>Nez Perce</li></ul></div>
       </div>
     </div>
@@ -302,10 +330,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   <div class="b-slide pal-a dB" data-sec="rd">
     <aside class="mrail"></aside>
     <div class="b-main dB">
-      <div class="b-kick">This week's readings</div>
-      <h2 class="b-h">von Fintel &amp; Heim; Menzel</h2>
-      <div class="qref">von Fintel &amp; Heim, <em>Intensional Semantics</em>, §2.3 &ldquo;Modals&rdquo; and §2.4.1 &ldquo;Accessibility relations.&rdquo; <span class="src">MIT lecture notes, current edition · open access · PDF linked on the reading list</span></div>
-      <div class="qref" style="margin-top:22px">Menzel, &ldquo;Possible worlds&rdquo;, <em>Stanford Encyclopedia of Philosophy</em>, §§1 to 2. <span class="src">open access · linked on the reading list</span></div>
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Readings</h2>
+      <div class="qref" style="font-size:27px">von Fintel &amp; Heim, <em>Intensional Semantics</em>, §2.3 &ldquo;Modals&rdquo; and §2.4.1 &ldquo;Accessibility relations.&rdquo; <span class="src">Textbook · MIT lecture notes, current edition · open access</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Carnap (1947), <em>Meaning and Necessity</em>, §2 &ldquo;L-concepts&rdquo; and §39, on the modalities. <span class="src">Historical · library scan</span></div>
+      <!-- Contemporary slot: Deal 2011 proposed, not yet confirmed by Thomas. Zamorano-Mansilla 2023 is held for week 3. -->
+      <div class="qref" style="font-size:27px;margin-top:18px">Deal (2011), &ldquo;Modals without scales&rdquo;, <em>Language</em> 87(3), §§1 to 3. <span class="src">Contemporary · open access · linked on the reading list</span></div>
     </div>
   </div>
 </section>
@@ -366,8 +396,37 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
+<!-- Possible worlds · logical space diagram -->
+<section class="slide" data-label="Empirical ·Possible worlds" data-screen-label="07">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="lsp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Possible worlds</h2>
+      <svg class="wfig" viewBox="0 0 1400 430" role="img" aria-label="Logical space as a two by two grid of four worlds. The left column, w1 and w2, is the proposition that it is raining in Dublin. The top row, w1 and w3, is the proposition that Harry is single.">
+        <rect class="sp" x="330" y="24" width="760" height="382" rx="16"/>
+        <rect class="pr" x="344" y="38" width="358" height="354" rx="12"/>
+        <rect class="qr" x="358" y="52" width="718" height="160" rx="12"/>
+        <circle class="wd" cx="523" cy="118" r="40"/><text class="wl" x="523" y="128">w₁</text><text class="ws" x="523" y="188">rain · Harry single</text>
+        <circle class="wd" cx="523" cy="296" r="40"/><text class="wl" x="523" y="306">w₂</text><text class="ws" x="523" y="366">rain · Harry married</text>
+        <circle class="wd" cx="897" cy="118" r="40"/><text class="wl" x="897" y="128">w₃</text><text class="ws" x="897" y="188">dry · Harry single</text>
+        <circle class="wd" cx="897" cy="296" r="40"/><text class="wl" x="897" y="306">w₄</text><text class="ws" x="897" y="366">dry · Harry married</text>
+        <text class="lp" x="306" y="286" text-anchor="end">it is raining in Dublin</text>
+        <text class="lps" x="306" y="318" text-anchor="end">{w₁, w₂}</text>
+        <text class="lq" x="1114" y="122">Harry is single</text>
+        <text class="lqs" x="1114" y="154">{w₁, w₃}</text>
+        <text class="lw" x="1114" y="392">W: logical space</text>
+      </svg>
+      <div class="erow" style="border-top:none"><div class="lb">A world</div><div class="tx tight">One complete way things could be. Every sentence settled, true or false.</div></div>
+      <div class="erow"><div class="lb">A proposition</div><div class="tx tight">The set of worlds where it is true: a <strong>region</strong> of the space.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- 07 · Duality -->
-<section class="slide" data-label="Empirical ·Duality" data-screen-label="07">
+<section class="slide" data-label="Empirical ·Duality" data-screen-label="08">
   <div class="b-slide pal-a lens-empirical dB" data-sec="dual">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -391,7 +450,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 08 · Scope · question -->
-<section class="slide" data-label="Scope, Q" data-screen-label="08">
+<section class="slide" data-label="Scope, Q" data-screen-label="09">
   <div class="b-slide pal-a lens-empirical" data-sec="scope">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -410,7 +469,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 09 · Scope · answer -->
-<section class="slide" data-label="Scope, A" data-screen-label="09">
+<section class="slide" data-label="Scope, A" data-screen-label="10">
   <div class="b-slide pal-a lens-empirical dB" data-sec="scope">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -435,7 +494,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 10 · Flavours -->
-<section class="slide" data-label="Empirical ·Flavours" data-screen-label="10">
+<section class="slide" data-label="Empirical ·Flavours" data-screen-label="11">
   <div class="b-slide pal-a lens-empirical dB" data-sec="flav">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -455,7 +514,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 11 · Flavours and inference · question -->
-<section class="slide" data-label="Flavours and inference, Q" data-screen-label="11">
+<section class="slide" data-label="Flavours and inference, Q" data-screen-label="12">
   <div class="b-slide pal-a lens-empirical" data-sec="tq">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -475,7 +534,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 12 · Flavours and inference · answer -->
-<section class="slide" data-label="Flavours and inference, A" data-screen-label="12">
+<section class="slide" data-label="Flavours and inference, A" data-screen-label="13">
   <div class="b-slide pal-a lens-empirical dB" data-sec="tq">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -505,7 +564,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 13 · The historical spine -->
-<section class="slide" data-label="Historical ·The spine" data-screen-label="13">
+<section class="slide" data-label="Historical ·The spine" data-screen-label="14">
   <div class="b-slide pal-a lens-historical" data-sec="spine">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -526,7 +585,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 14 · C. I. Lewis -->
-<section class="slide" data-label="Historical ·C. I. Lewis" data-screen-label="14">
+<section class="slide" data-label="Historical ·C. I. Lewis" data-screen-label="15">
   <div class="b-slide pal-a lens-historical dB" data-sec="cil">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -546,8 +605,59 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
+<!-- Carnap · state-descriptions -->
+<section class="slide" data-label="Historical ·Carnap, state-descriptions" data-screen-label="16">
+  <div class="b-slide pal-a lens-historical dB" data-sec="car">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Carnap: state-descriptions</h2>
+      <div class="figrow">
+        <div class="portrait"><img src="../../weeks-pragmatics/week-01/images/carnap.jpg" alt="Rudolf Carnap"><div class="pc"><div class="nm">Rudolf Carnap</div><div class="dt">1891 – 1970</div><div class="rl"><em>Meaning and Necessity</em> (1947), §2 and §39.</div></div></div>
+        <div class="figbody">
+          <div class="erow"><div class="lb">State-description</div><div class="tx tight">A class of sentences: for every atomic sentence, either it or its negation. A <strong>complete description</strong> of a possible state of the universe.</div></div>
+          <!-- TODO check wording and page: MN §2 (p. 9 in the 1956 edition), where Carnap relates state-descriptions to Leibniz's possible worlds and Wittgenstein's possible states of affairs -->
+          <div class="erow"><div class="lb">His gloss</div><div class="tx tight">State-descriptions stand for Leibniz's <strong>possible worlds</strong>.</div></div>
+          <div class="erow"><div class="lb">What it supplies</div><div class="tx tight">A detailed semantics for a modal operator. Lewis's systems had axioms only.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Carnap · necessity -->
+<section class="slide" data-label="Historical ·Carnap, necessity" data-screen-label="17">
+  <div class="b-slide pal-a lens-historical dB" data-sec="carn">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Carnap: necessity</h2>
+      <svg class="wfig" viewBox="0 0 1400 300" role="img" aria-label="Four state-descriptions for two atomic sentences p and q. The sentence p or not p is true in all four, so it is necessary. The sentence p is true in two, so it is not necessary.">
+        <rect class="sd" x="330" y="16" width="200" height="92" rx="12"/><text class="sdt" x="430" y="72">{ p, q }</text>
+        <rect class="sd" x="570" y="16" width="200" height="92" rx="12"/><text class="sdt" x="670" y="72">{ p, ¬q }</text>
+        <rect class="sd" x="810" y="16" width="200" height="92" rx="12"/><text class="sdt" x="910" y="72">{ ¬p, q }</text>
+        <rect class="sd" x="1050" y="16" width="200" height="92" rx="12"/><text class="sdt" x="1150" y="72">{ ¬p, ¬q }</text>
+        <line class="rl" x1="40" y1="140" x2="1380" y2="140"/>
+        <text class="rs" x="40" y="192">p ∨ ¬p</text>
+        <text class="tv" x="430" y="192">T</text><text class="tv" x="670" y="192">T</text><text class="tv" x="910" y="192">T</text><text class="tv" x="1150" y="192">T</text>
+        <text class="rn on" x="1380" y="192" text-anchor="end">N: true</text>
+        <line class="rl" x1="40" y1="222" x2="1380" y2="222"/>
+        <text class="rs" x="40" y="274">p</text>
+        <text class="tv" x="430" y="274">T</text><text class="tv" x="670" y="274">T</text><text class="tv off" x="910" y="274">F</text><text class="tv off" x="1150" y="274">F</text>
+        <text class="rn" x="1380" y="274" text-anchor="end">N: false</text>
+      </svg>
+      <div class="erow" style="border-top:none;margin-top:10px"><div class="lb">Necessity</div><div class="tx tight">\(N(S)\) is true iff \(S\) holds in <strong>every</strong> state-description.</div></div>
+      <div class="erow"><div class="lb">No relation</div><div class="tx tight">Every state-description counts, from every state-description. One logic results: S5.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- 15 · von Wright -->
-<section class="slide" data-label="Historical ·von Wright" data-screen-label="15">
+<section class="slide" data-label="Historical ·von Wright" data-screen-label="18">
   <div class="b-slide pal-a lens-historical dB" data-sec="vw">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -567,7 +677,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 16 · Dublin, 1956 -->
-<section class="slide" data-label="Historical ·Dublin, 1956" data-screen-label="16">
+<section class="slide" data-label="Historical ·Dublin, 1956" data-screen-label="19">
   <div class="b-slide pal-a lens-historical dB" data-sec="dub">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -590,7 +700,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 17 · Kripke -->
-<section class="slide" data-label="Historical ·Kripke" data-screen-label="17">
+<section class="slide" data-label="Historical ·Kripke" data-screen-label="20">
   <div class="b-slide pal-a lens-historical dB" data-sec="kri">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -613,7 +723,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 18 · Uses of the semantics -->
-<section class="slide" data-label="Historical ·Uses of the semantics" data-screen-label="18">
+<section class="slide" data-label="Historical ·Uses of the semantics" data-screen-label="21">
   <div class="b-slide pal-a lens-historical dB" data-sec="uses">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -632,7 +742,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 19 · Lewis's realism -->
-<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="19">
+<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="22">
   <div class="b-slide pal-a lens-historical dB" data-sec="dlw">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -656,7 +766,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 20 · Ersatz worlds; Kripke's dice -->
-<section class="slide" data-label="Worlds ·Ersatz worlds and Kripke's dice" data-screen-label="20">
+<section class="slide" data-label="Worlds ·Ersatz worlds and Kripke's dice" data-screen-label="23">
   <div class="b-slide pal-a lens-historical dB" data-sec="ers">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -674,7 +784,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 21 · Fictionalism -->
-<section class="slide" data-label="Worlds ·Fictionalism" data-screen-label="21">
+<section class="slide" data-label="Worlds ·Fictionalism" data-screen-label="24">
   <div class="b-slide pal-a lens-historical dB" data-sec="fic">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -705,8 +815,74 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
+<!-- Necessity · diagram -->
+<section class="slide" data-label="Formal ·Necessity" data-screen-label="25">
+  <div class="b-slide pal-a lens-formal dB" data-sec="nec">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Necessity</h2>
+      <svg class="wfig" viewBox="0 0 1400 420" role="img" aria-label="An evaluation world w0 with arrows to three accessible worlds. All three lie inside the region of worlds where visitors sign in. w0 itself lies outside that region.">
+        <defs><marker id="wah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--tcd-ink)"/></marker></defs>
+        <rect class="sp" x="20" y="14" width="1360" height="392" rx="16"/>
+        <rect class="pr" x="560" y="40" width="790" height="340" rx="14"/>
+        <ellipse class="acc" cx="860" cy="200" rx="240" ry="130"/>
+        <line class="ar" x1="232" y1="204" x2="742" y2="135" marker-end="url(#wah)"/>
+        <line class="ar" x1="232" y1="216" x2="742" y2="265" marker-end="url(#wah)"/>
+        <line class="ar" x1="232" y1="210" x2="942" y2="200" marker-end="url(#wah)"/>
+        <circle class="w0" cx="190" cy="210" r="42"/><text class="wl inv" x="190" y="220">w₀</text>
+        <circle class="wd" cx="780" cy="130" r="38"/><text class="wl" x="780" y="140">w₁</text>
+        <circle class="wd" cx="980" cy="200" r="38"/><text class="wl" x="980" y="210">w₂</text>
+        <circle class="wd" cx="780" cy="270" r="38"/><text class="wl" x="780" y="280">w₃</text>
+        <circle class="wd dim" cx="1250" cy="300" r="38"/><text class="wl dim" x="1250" y="310">w₄</text>
+        <circle class="wd dim" cx="400" cy="330" r="38"/><text class="wl dim" x="400" y="340">w₅</text>
+        <text class="lp" x="1326" y="78" text-anchor="end">p: visitors sign in</text>
+        <text class="la" x="860" y="364" text-anchor="middle">R(w₀): the worlds where the rules are kept</text>
+        <text class="lw" x="190" y="290" text-anchor="middle">evaluation world</text>
+      </svg>
+      <div class="erow" style="border-top:none"><div class="lb">\(\Box p\) at \(w_0\)</div><div class="tx tight"><strong>Every</strong> world \(w_0\) sees lies inside \(p\). (13) <em>Visitors must sign in</em>: true.</div></div>
+      <div class="erow"><div class="lb">And \(w_0\) itself</div><div class="tx tight">Outside \(p\). Some visitors never sign in. \(\Box p\) true, \(p\) false.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Possibility · diagram -->
+<section class="slide" data-label="Formal ·Possibility" data-screen-label="26">
+  <div class="b-slide pal-a lens-formal dB" data-sec="pos">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Possibility</h2>
+      <svg class="wfig" viewBox="0 0 1400 420" role="img" aria-label="The same worlds and the same accessible set. A different region, the worlds where visitors use the lift, contains one accessible world, w1, and leaves w2 and w3 outside.">
+        <defs><marker id="wah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--tcd-ink)"/></marker></defs>
+        <rect class="sp" x="20" y="14" width="1360" height="392" rx="16"/>
+        <rect class="pr" x="330" y="40" width="560" height="140" rx="14"/>
+        <ellipse class="acc" cx="860" cy="200" rx="240" ry="130"/>
+        <line class="ar" x1="232" y1="204" x2="742" y2="135" marker-end="url(#wah2)"/>
+        <line class="ar" x1="232" y1="216" x2="742" y2="265" marker-end="url(#wah2)"/>
+        <line class="ar" x1="232" y1="210" x2="942" y2="200" marker-end="url(#wah2)"/>
+        <circle class="w0" cx="190" cy="210" r="42"/><text class="wl inv" x="190" y="220">w₀</text>
+        <circle class="wd" cx="780" cy="130" r="38"/><text class="wl" x="780" y="140">w₁</text>
+        <circle class="wd" cx="980" cy="200" r="38"/><text class="wl" x="980" y="210">w₂</text>
+        <circle class="wd" cx="780" cy="270" r="38"/><text class="wl" x="780" y="280">w₃</text>
+        <circle class="wd dim" cx="1250" cy="300" r="38"/><text class="wl dim" x="1250" y="310">w₄</text>
+        <circle class="wd dim" cx="400" cy="330" r="38"/><text class="wl dim" x="400" y="340">w₅</text>
+        <text class="lp" x="354" y="76">q: visitors use the lift</text>
+        <text class="la" x="860" y="364" text-anchor="middle">R(w₀): the worlds where the rules are kept</text>
+        <text class="lw" x="190" y="290" text-anchor="middle">evaluation world</text>
+      </svg>
+      <div class="erow" style="border-top:none"><div class="lb">\(\Diamond q\) at \(w_0\)</div><div class="tx tight"><strong>Some</strong> world \(w_0\) sees lies inside \(q\): \(w_1\). <em>Visitors may use the lift</em>: true.</div></div>
+      <div class="erow"><div class="lb">Duality, pictured</div><div class="tx tight">\(w_2\) and \(w_3\) lie outside \(q\), so \(\Box q\) fails at \(w_0\). \(\neg\Box q \equiv \Diamond\neg q\).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- 22 · Frames and models -->
-<section class="slide" data-label="Formal ·Frames and models" data-screen-label="22">
+<section class="slide" data-label="Formal ·Frames and models" data-screen-label="27">
   <div class="b-slide pal-a lens-formal dB" data-sec="frm">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -737,7 +913,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 23 · Truth at a world -->
-<section class="slide" data-label="Formal ·Truth at a world" data-screen-label="23">
+<section class="slide" data-label="Formal ·Truth at a world" data-screen-label="28">
   <div class="b-slide pal-a lens-formal dB" data-sec="tru">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -758,7 +934,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 24 · Worked example -->
-<section class="slide" data-label="Formal ·Worked example" data-screen-label="24">
+<section class="slide" data-label="Formal ·Worked example" data-screen-label="29">
   <div class="b-slide pal-a lens-formal" data-sec="wrk">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -778,7 +954,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 25 · Your turn -->
-<section class="slide" data-label="Formal ·Your turn" data-screen-label="25">
+<section class="slide" data-label="Formal ·Your turn" data-screen-label="30">
   <div class="b-slide pal-a lens-formal" data-sec="ex">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -799,7 +975,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 26 · Validity and frame conditions -->
-<section class="slide" data-label="Formal ·Validity and frame conditions" data-screen-label="26">
+<section class="slide" data-label="Formal ·Validity and frame conditions" data-screen-label="31">
   <div class="b-slide pal-a lens-formal dB" data-sec="val">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -821,7 +997,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 27 · Two frames from games -->
-<section class="slide" data-label="Formal ·Two frames from games" data-screen-label="27">
+<section class="slide" data-label="Formal ·Two frames from games" data-screen-label="32">
   <div class="b-slide pal-a lens-formal dB" data-sec="gms">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -846,7 +1022,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 28 · Which frame for which flavour -->
-<section class="slide" data-label="Formal ·Frames and flavours" data-screen-label="28">
+<section class="slide" data-label="Formal ·Frames and flavours" data-screen-label="33">
   <div class="b-slide pal-a lens-formal dB" data-sec="flf">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -866,7 +1042,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 29 · must and may -->
-<section class="slide" data-label="Formal ·Must and may" data-screen-label="29">
+<section class="slide" data-label="Formal ·Must and may" data-screen-label="34">
   <div class="b-slide pal-a lens-formal dB" data-sec="lex">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -888,7 +1064,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 30 · Limits of the simple system -->
-<section class="slide" data-label="Formal ·Limits" data-screen-label="30">
+<section class="slide" data-label="Formal ·Limits" data-screen-label="35">
   <div class="b-slide pal-a lens-formal dB" data-sec="lim">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -918,7 +1094,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 31 · Scots: double modals -->
-<section class="slide" data-label="Typological ·Scots and Ulster" data-screen-label="31">
+<section class="slide" data-label="Typological ·Scots and Ulster" data-screen-label="36">
   <div class="b-slide pal-a lens-typological dB" data-sec="sco">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -940,7 +1116,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 32 · Irish English: epistemic mustn't -->
-<section class="slide" data-label="Typological ·Irish English" data-screen-label="32">
+<section class="slide" data-label="Typological ·Irish English" data-screen-label="37">
   <div class="b-slide pal-a lens-typological dB" data-sec="ire">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -961,7 +1137,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 33 · Nez Perce -->
-<section class="slide" data-label="Typological ·Nez Perce" data-screen-label="33">
+<section class="slide" data-label="Typological ·Nez Perce" data-screen-label="38">
   <div class="b-slide pal-a lens-typological dB" data-sec="nez">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -979,7 +1155,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 34 · Lecture closes -->
-<section class="slide" data-label="Lecture closes" data-screen-label="34">
+<section class="slide" data-label="Lecture closes" data-screen-label="39">
   <div class="b-slide pal-a lens-typological" data-sec="close">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1003,20 +1179,20 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 (function () {
   var TITLES = {
     wk:"This week", road:"Roadmap", rd:"Readings",
-    game:"Must and might", dual:"Duality", scope:"Scope", flav:"Flavours", tq:"Flavours and inference",
-    spine:"The historical spine", cil:"C. I. Lewis", vw:"von Wright", dub:"Dublin, 1956", kri:"Kripke", uses:"Uses of the semantics",
+    game:"Must and might", lsp:"Possible worlds", dual:"Duality", scope:"Scope", flav:"Flavours", tq:"Flavours and inference",
+    spine:"The historical spine", cil:"C. I. Lewis", car:"Carnap: state-descriptions", carn:"Carnap: necessity", vw:"von Wright", dub:"Dublin, 1956", kri:"Kripke", uses:"Uses of the semantics",
     dlw:"Lewis's realism", ers:"Ersatz worlds; Kripke's dice", fic:"Fictionalism",
-    frm:"Frames and models", tru:"Truth at a world", wrk:"Worked example", ex:"Your turn",
+    nec:"Necessity", pos:"Possibility", frm:"Frames and models", tru:"Truth at a world", wrk:"Worked example", ex:"Your turn",
     val:"Validity and frame conditions", gms:"Two frames from games", flf:"Frames and flavours",
     lex:"Must and may", lim:"Limits",
     sco:"Scots and Ulster", ire:"Irish English", nez:"Nez Perce", close:"Lecture closes"
   };
   var GROUPS = [
     { t:"Introduction",       sc:null,         keys:["wk","road","rd"] },
-    { t:"Empirical",          sc:"--lens-emp", keys:["game","dual","scope","flav","tq"] },
-    { t:"Historical",         sc:"--lens-his", keys:["spine","cil","vw","dub","kri","uses"] },
+    { t:"Empirical",          sc:"--lens-emp", keys:["game","lsp","dual","scope","flav","tq"] },
+    { t:"Historical",         sc:"--lens-his", keys:["spine","cil","car","carn","vw","dub","kri","uses"] },
     { t:"What a world is",    sc:"--lens-his", keys:["dlw","ers","fic"] },
-    { t:"Formal",             sc:"--lens-for", keys:["frm","tru","wrk","ex","val","gms","flf","lex","lim"] },
+    { t:"Formal",             sc:"--lens-for", keys:["nec","pos","frm","tru","wrk","ex","val","gms","flf","lex","lim"] },
     { t:"Typological",        sc:"--lens-typ", keys:["sco","ire","nez","close"] }
   ];
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }

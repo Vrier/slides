@@ -732,5 +732,14 @@ what the next session must know)*
 - **Not yet built for week 2:** handout, homework, revised readings list (plan
   agreed in chat; stale chapter references to fix: vF&H §2.3–2.4.1 in the current
   build, Coppock & Champollion ch. 12, Portner ch. 2).
+- **Same day, second pass (Thomas's notes):** material conditional slide kept;
+  two Carnap slides added (state-descriptions; necessity as truth in every
+  state-description, drawn as four cards with a truth table under them); three
+  diagram slides added, all inline SVG under a new `.wfig` block in the deck's
+  style block: logical space as a 2×2 grid with propositions as regions
+  (Empirical), then Necessity and Possibility on one shared frame (Formal, before
+  "Frames and models"). Readings slide now lists three: vF&H §2.3/§2.4.1, Carnap
+  1947 §2 and §39, Deal 2011 §§1–3 (Deal not yet confirmed). Deck now 43 slides.
+  Zamorano-Mansilla 2023 (epistemic *mustn't*) is held for week 3 at his request.
 - `npm test` green (165 files).
 
