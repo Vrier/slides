@@ -765,5 +765,20 @@ what the next session must know)*
   item in docs/handout-style.md), with three additions: `.draw`, `table.rec.fill`,
   `.mfig`. The Pragmatics II week 1 handout still carries its inline copy; repoint it
   when that file is next touched.
+- **2026-09-19, fourth pass (Thomas's notes):** typological data lives in the slides
+  only, so handout block 8 (Scots, Ulster, Irish English, Nez Perce) is cut; the
+  sheet is now nine blocks, 0 to 8, examples (1) to (25), nine A4 pages. Deck set up
+  against the sheet block by block: the validity slide is split into **Validity**
+  (model vs frame, a countermodel at w2) and **Frame conditions**; "Frames and
+  flavours" renamed **Axioms and flavours**; new **Substitution under necessity**
+  slide (Quine's number of planets, rigid designators) ahead of handout block 7; the
+  Cresswell formula is off the Limits slide because block 6 asks students to write
+  it; closing slide lists Thursday's skills. Deck 45 slides, examples (1) to (27).
+  **Type:** `shared/font-latex.css` + `shared/fonts/newcm/` (New Computer Modern Book,
+  GUST licence, unmodified WOFF2 re-wraps, about 3 MB). Opt-in per file; week 2 deck
+  and handout link it. Rolling it out elsewhere is one `<link>` per file, or an
+  `@import` in tokens.css for every deck at once. Unicode subscripts replaced by
+  `<sub>`/`<tspan>` because no NewCM face has them. Slide text sizes raised
+  (docs/deck-style.md §7); every slide re-measured headlessly, none overflows.
 - `npm test` green (166 files).
 

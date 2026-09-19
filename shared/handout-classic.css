@@ -86,3 +86,4 @@
   .mfig .wl { font-family:var(--serif); font-style:italic; font-size:13px; text-anchor:middle; }
   .mfig .vl { font-family:var(--serif); font-size:11px; text-anchor:middle; }
   @media print { .draw, .mfig, table.rec.fill { break-inside:avoid; page-break-inside:avoid; } }
+  sub, sup { font-size:72%; line-height:0; }

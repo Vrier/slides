@@ -1,0 +1,30 @@
+/* ============================================================
+   shared/font-latex.css
+   Opt-in type override: sets the three font tokens to New
+   Computer Modern (the LaTeX typeface, Book weight), self-hosted
+   in shared/fonts/newcm/. Link it AFTER tokens.css (decks) or
+   after handout-classic.css (sheets); both read --serif.
+   MathJax already sets maths in Computer Modern, so text and
+   formulas now match.
+   The text faces lack the logic symbols (□ ◇ ∀ ⊨ ⟨ ⟩ …): the
+   'NewCM Math' face supplies them through unicode-range, and is
+   only downloaded on pages that use one.
+   NB no face has subscript digits ₁–₉: write w<sub>1</sub> in
+   HTML and a <tspan> in SVG, never the Unicode subscripts.
+   ============================================================ */
+@font-face{ font-family:'NewCM'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/newcm/NewCM10-Book.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM'; font-style:italic; font-weight:400; font-display:swap; src:url('fonts/newcm/NewCM10-BookItalic.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/newcm/NewCM10-Bold.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM'; font-style:italic; font-weight:700; font-display:swap; src:url('fonts/newcm/NewCM10-BoldItalic.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM Sans'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/newcm/NewCMSans10-Book.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM Sans'; font-style:italic; font-weight:400; font-display:swap; src:url('fonts/newcm/NewCMSans10-BookOblique.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM Sans'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/newcm/NewCMSans10-Bold.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/newcm/NewCMMono10-Book.woff2') format('woff2'); }
+@font-face{ font-family:'NewCM Math'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/newcm/NewCMMath-Book.woff2') format('woff2');
+  unicode-range: U+2032-2037, U+2190-21FF, U+2200-22FF, U+2300-23FF, U+25A0-25FF, U+2713-2717, U+27C0-27EF, U+2980-29FF; }
+
+:root{
+  --serif: 'NewCM', 'NewCM Math', 'STIX Two Text', Georgia, 'Times New Roman', serif;
+  --sans:  'NewCM Sans', 'NewCM Math', 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  --mono:  'NewCM Mono', 'IBM Plex Mono', ui-monospace, monospace;
+}

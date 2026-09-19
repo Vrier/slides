@@ -102,7 +102,29 @@ object-language words. Roughly one `<strong>` per row.
 
 ---
 
-## 6. Before it ships
+## 7. Type (from week 2)
+
+Thomas's call, September 2026: set the materials in the LaTeX typeface and make
+slide text clearer and larger, keeping the week 1 patterns.
+
+- Link `shared/font-latex.css` after the theme. It points `--serif`, `--sans` and
+  `--mono` at **New Computer Modern, Book weight**, self-hosted in
+  `shared/fonts/newcm/`. MathJax already sets formulas in Computer Modern, so text
+  and maths now match. Handouts link the same file after `handout-classic.css`.
+- The text faces have no logic symbols; a maths face supplies them by
+  `unicode-range`. **No face has subscript digits**: write `w<sub>1</sub>` in HTML
+  and a `<tspan>` in SVG, never `w₁`.
+- Computer Modern runs small on the body. Week 2 sizes, set at the end of the
+  deck's style block: `.erow .tx` 31px (tight 29), `.eg .ex` 31, `.gl` 22,
+  `.fourways .ft2` 27 with a 300px label column, arms 28, portrait captions 19,
+  lineage notes 19.5, `.qsrc` 25. **Nothing on a slide below 15px.**
+- A slide that sets up a handout block carries the block's title: week 2 has
+  Validity, Frame conditions, Axioms and flavours, Substitution under necessity on
+  both. The closing slide lists what Thursday's sheet practises.
+
+---
+
+## 8. Before it ships
 
 - [ ] Slide count fits the hour.
 - [ ] No sentence on any slide talks about the lecture, a later slide, or a later week beyond a bare week number.
