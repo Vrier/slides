@@ -741,5 +741,29 @@ what the next session must know)*
   "Frames and models"). Readings slide now lists three: vF&H §2.3/§2.4.1, Carnap
   1947 §2 and §39, Deal 2011 §§1–3 (Deal not yet confirmed). Deck now 43 slides.
   Zamorano-Mansilla 2023 (epistemic *mustn't*) is held for week 3 at his request.
-- `npm test` green (165 files).
+- **2026-09-19, third pass: last year's modality materials folded in** (Thomas's
+  Semantics III handout 3 "Propositional Modal Logic", Portner 2009 ch. 2, Coppock &
+  Champollion "Toward a theory of modality", Oct 2025 draft where it is §13.3; the
+  Sept 2026 draft numbers the chapter 12, so cite by section title).
+  **Deck** (still 43 slides): "Two frames from games" out, "Portner's ants" in before
+  the axiom table (examples renumbered, now (1) to (25)); "Frames and flavours" rows
+  now define epistemic and deontic R after Portner and carry the H3 system names
+  (S5, KD45, KD) plus a future-time row; validity slide labels T "also M" and
+  separates validity in a model from validity on a frame; "Limits" rebuilt from this
+  week's sources (whose knowledge and when; must/should and "most worlds"; Cresswell's
+  rich/poor sentence; Catch-22 and seriality), with Robin's fine and graded modality
+  held for week 3; may/can gap added to "Flavours"; world-variable row on "Must and
+  may"; textbook reading is now Portner ch. 2 §§2.1 to 2.2.3.
+  **Handout** (new, `week-02/handout.html`, classic sheet, ten blocks, ten A4 pages in
+  Chrome): 0 The modal language · 1 Kripke semantics · 2 Validity · 3 Frame conditions ·
+  4 Axioms and flavours · 5 Accessibility relations · 6 World variables · 7 Substitution
+  under necessity · 8 Scots, Ulster, Irish English, Nez Perce · 9 What you need to know.
+  Definitions in blocks 0, 1, 3 and 4 keep the H3 wording. H3's "further
+  correspondences" (functional, shift-reflexive, dense, convergent) are left for
+  Semantics III week 2.
+  **CSS:** the classic-sheet styles are lifted to `shared/handout-classic.css` (open
+  item in docs/handout-style.md), with three additions: `.draw`, `table.rec.fill`,
+  `.mfig`. The Pragmatics II week 1 handout still carries its inline copy; repoint it
+  when that file is next touched.
+- `npm test` green (166 files).
 

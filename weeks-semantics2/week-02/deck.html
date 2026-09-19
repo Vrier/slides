@@ -332,7 +332,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main dB">
       <div class="b-kick">This week</div>
       <h2 class="b-h">Readings</h2>
-      <div class="qref" style="font-size:27px">von Fintel &amp; Heim, <em>Intensional Semantics</em>, §2.3 &ldquo;Modals&rdquo; and §2.4.1 &ldquo;Accessibility relations.&rdquo; <span class="src">Textbook · MIT lecture notes, current edition · open access</span></div>
+      <div class="qref" style="font-size:27px">Portner (2009), <em>Modality</em>, ch. 2 &ldquo;Modal logic&rdquo;, §§2.1 to 2.2.3. <span class="src">Textbook · library scan · shorter alternative: Coppock &amp; Champollion, &ldquo;Toward a theory of modality&rdquo;</span></div>
       <div class="qref" style="font-size:27px;margin-top:18px">Carnap (1947), <em>Meaning and Necessity</em>, §2 &ldquo;L-concepts&rdquo; and §39, on the modalities. <span class="src">Historical · library scan</span></div>
       <!-- Contemporary slot: Deal 2011 proposed, not yet confirmed by Thomas. Zamorano-Mansilla 2023 is held for week 3. -->
       <div class="qref" style="font-size:27px;margin-top:18px">Deal (2011), &ldquo;Modals without scales&rdquo;, <em>Language</em> 87(3), §§1 to 3. <span class="src">Contemporary · open access · linked on the reading list</span></div>
@@ -505,6 +505,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Deontic<small>in view of the rules</small></div><div class="ft2"><em>Visitors <b>must</b> sign in.</em></div></div>
         <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Circumstantial<small>in view of the circumstances</small></div><div class="ft2"><em>I <b>must</b> sneeze.</em></div></div>
         <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Teleological<small>in view of a goal</small></div><div class="ft2"><em>To reach Howth, you <b>must</b> take the DART.</em></div></div>
+        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">Gaps<small>Portner 2009</small></div><div class="ft2"><em>It may be raining.</em> <span style="color:var(--lens)">#</span><em>It can be raining.</em> <em>It can't be raining.</em> Epistemic <em>can</em> needs negation.</div></div>
       </div>
       <div class="erow" style="margin-top:6px"><div class="lb">Constant and variable</div><div class="tx tight">The <strong>force</strong> stays: all. The <strong>domain</strong> varies with the <em>in view of</em> phrase. Kratzer (1977).</div></div>
     </div>
@@ -974,50 +975,55 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
+<!-- Portner's ants -->
+<section class="slide" data-label="Formal ·Portner's ants" data-screen-label="31">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ants">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Portner's ants</h2>
+      <div class="brn">
+        <div class="split"><span>Smell</span><span>Sight</span></div>
+        <div class="arms">
+          <div class="arm"><div class="h">Reflexive</div><div class="t">In the nest every ant smells the ants around it, itself included.</div></div>
+          <div class="arm meant"><div class="h">Symmetric</div><div class="t">Compound eyes: if ant 1 sees ant 2, ant 2 sees ant 1. No ant sees its own back.</div></div>
+        </div>
+      </div>
+      <div class="egpanel">
+        <div class="eghead">What every ant can be sure of</div>
+        <div class="eg"><span class="no">(19)</span><span class="ex">If every ant I smell is female, then I am female.<span class="gl">holds for smell, whatever the facts: the shape of \(\Box p \rightarrow p\)</span></span></div>
+        <div class="eg"><span class="no">(20)</span><span class="ex">If I have a white spot, then every ant I see sees an ant with a white spot.<span class="gl">holds for sight: the shape of \(p \rightarrow \Box\Diamond p\)</span></span></div>
+      </div>
+      <div class="erow"><div class="lb">The point</div><div class="tx tight">\(W\) can hold anything. What is valid follows from the <strong>shape of \(R\)</strong>. Portner (2009: 11–13).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- 26 · Validity and frame conditions -->
-<section class="slide" data-label="Formal ·Validity and frame conditions" data-screen-label="31">
+<section class="slide" data-label="Formal ·Validity and frame conditions" data-screen-label="32">
   <div class="b-slide pal-a lens-formal dB" data-sec="val">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Validity and frame conditions</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">T<span class="fm">\(\Box p \rightarrow p\)</span></div><div class="ft2"><b>Reflexive</b>: every world sees itself. Fails at \(w_2\) in the model: \(\Box q\) true, \(q\) false.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">T, also M<span class="fm">\(\Box p \rightarrow p\)</span></div><div class="ft2"><b>Reflexive</b>: every world sees itself. Fails at \(w_2\) in the model: \(\Box q\) true, \(q\) false.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">D<span class="fm">\(\Box p \rightarrow \Diamond p\)</span></div><div class="ft2"><b>Serial</b>: every world sees some world. Fails at the dead end \(w_4\).</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">4<span class="fm">\(\Box p \rightarrow \Box\Box p\)</span></div><div class="ft2"><b>Transitive</b>: whatever a seen world sees is seen.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">B<span class="fm">\(p \rightarrow \Box\Diamond p\)</span></div><div class="ft2"><b>Symmetric</b>: seeing is mutual.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">5<span class="fm">\(\Diamond p \rightarrow \Box\Diamond p\)</span></div><div class="ft2"><b>Euclidean</b>: worlds seen from one world see each other.</div></div>
       </div>
-      <div class="erow" style="margin-top:4px"><div class="lb">Validity</div><div class="tx tight"><strong>Valid on a frame</strong>: true at every world, under every valuation.</div></div>
-      <div class="erow"><div class="lb">Systems</div><div class="tx tight">K: no condition. S4: T + 4. S5: T + 4 + B, with \(R\) an equivalence relation.</div></div>
+      <div class="erow" style="margin-top:4px"><div class="lb">Validity</div><div class="tx tight"><strong>In a model</strong>: true at every world. <strong>On a frame</strong>: valid in every model on it. Change the \(p\)s and \(q\)s; keep the arrows.</div></div>
+      <div class="erow"><div class="lb">Systems</div><div class="tx tight">K: no condition. KD: D. S4: T + 4. S5: T + 5, with \(R\) an equivalence relation. KD45: D + 4 + 5.</div></div>
     </div>
   </div>
 </section>
 
 
 
-<!-- 27 · Two frames from games -->
-<section class="slide" data-label="Formal ·Two frames from games" data-screen-label="32">
-  <div class="b-slide pal-a lens-formal dB" data-sec="gms">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">Two frames from games</h2>
-      <div class="brn">
-        <div class="split"><span>Chess: positions reachable by legal moves</span><span>Rubik's cube: states reachable by turns</span></div>
-        <div class="arms">
-          <div class="arm"><div class="h">S4</div><div class="t">Pawns never retreat; captures are permanent. Reflexive and transitive. Symmetry fails.</div></div>
-          <div class="arm meant"><div class="h">S5</div><div class="t">Every turn can be undone. Reflexive, transitive and symmetric: every state sees every state.</div></div>
-        </div>
-      </div>
-      <div class="egpanel">
-        <div class="eghead">Alternating quantifiers</div>
-        <div class="fx">\[ \Diamond\,\Box\,\Diamond\;\textit{checkmate} \]</div>
-        <div class="fxnote">mate in two, with \(R\) as a single move: some move of mine, every reply, some move of mine</div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 
 
@@ -1029,12 +1035,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Frames and flavours</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>reflexive</small></div><div class="ft2"><span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em> T holds.</div></div>
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Belief<small>serial</small></div><div class="ft2"><em>Sue believes that it is raining, but it isn't.</em> T fails. D holds: beliefs taken as consistent.</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>serial</small></div><div class="ft2"><em>Visitors must sign in, and some never do.</em> T fails. D holds: <em>must</em> gives <em>may</em>.</div></div>
-        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Introspection<small>transitive</small></div><div class="ft2">4 for knowledge: knowing that one knows. Disputed: Williamson (2000).</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>T · idealised: S5</small></div><div class="ft2">\(wRw'\) iff everything \(i\) knows in \(w\) is true in \(w'\). <b>Reflexive</b>. <span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Belief<small>KD45</small></div><div class="ft2">The same, with <em>believes</em>. Serial; reflexivity fails. <em>Sue believes that it is raining, but it isn't.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>KD</small></div><div class="ft2">\(wRw'\) iff all the rules of \(w\) are followed in \(w'\). Serial; reflexivity fails. <em>If Mary must tell the truth, then she <b>will</b></em>: no. <em>…then she <b>may</b></em>: yes.</div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Future time<small>transitive, serial</small></div><div class="ft2">\(\Box\) as <em>always</em>: (4) holds. Earlier and later are never mutual: (B) fails.</div></div>
       </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">The move</div><div class="tx tight">A flavour is a choice of \(R\). Its logic follows from the <strong>properties of \(R\)</strong>.</div></div>
+      <div class="erow" style="margin-top:6px"><div class="lb">The move</div><div class="tx tight">A flavour is a choice of \(R\). Its logic follows from the <strong>properties of \(R\)</strong>. Portner (2009: 20–23).</div></div>
     </div>
   </div>
 </section>
@@ -1052,10 +1058,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="eghead">Lexical entries</div>
         <div class="fx">\[ \sem{\textit{must}}^{w} = \lambda R.\,\lambda p.\;\forall w'\,[\,R(w)(w') \rightarrow p(w')\,] \]
         \[ \sem{\textit{may}}^{w} = \lambda R.\,\lambda p.\;\exists w'\,[\,R(w)(w') \wedge p(w')\,] \]</div>
-        <div class="fxnote">after von Fintel &amp; Heim, chapter 2</div>
+        <div class="fxnote">\(R\): \(\langle s,\langle s,t\rangle\rangle\) &middot; \(p\): \(\langle s,t\rangle\) &middot; after von Fintel &amp; Heim, chapter 2</div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">In words</div><div class="tx tight"><em>Must</em> takes a relation from the context and a proposition. True at \(w\) iff the proposition holds at <strong>every</strong> world accessible from \(w\).</div></div>
-      <div class="erow"><div class="lb">Types</div><div class="tx tight">\(R\): \(\langle s,\langle s,t\rangle\rangle\). \(p\): \(\langle s,t\rangle\).</div></div>
+      <div class="erow"><div class="lb">With world variables</div><div class="tx tight">\(\Box p\) spelled out in predicate logic: \(\forall w[\textit{acc}(\dot{w})(w) \rightarrow p(w)]\). Coppock &amp; Champollion.</div></div>
       <div class="erow"><div class="lb">Division of labour</div><div class="tx tight"><strong>Force</strong> in the lexicon. <strong>Flavour</strong> from the context, as \(R\).</div></div>
     </div>
   </div>
@@ -1071,10 +1077,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Limits of the simple system <span class="wktag">Week 3</span></h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">The source of R<small>context</small></div><div class="ft2"><em>In view of the rules, …</em> The phrase names the domain. The entry leaves \(R\) a bare variable.</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Conflicting rules<small>empty R(w)</small></div><div class="ft2">Two rules that cannot both be kept: no accessible world. Every <em>must</em> true; every <em>may</em> false. Asimov's Three Laws: a rulebook with <b>priorities</b>.</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation after violation<small>von Fintel 2006</small></div><div class="ft2">Double parking is forbidden; offenders pay a fine. No lawful world contains the offence. <em>Robin must pay a fine</em> comes out false.</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Grades<small>ought, likely</small></div><div class="ft2"><em>You ought to, but you don't have to.</em> <em>Rain is more likely than snow.</em> <b>All</b> and <b>some</b> leave no room.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Whose knowledge, and when<small>Portner 2009</small></div><div class="ft2">John says <em>Mary must be lost</em>: his knowledge, at the time of speaking. The theory equally allows Joan's, or last Friday's. \(R\) has to come from the <b>context</b>.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl"><em>Must</em> and <em>should</em><small>weak necessity</small></div><div class="ft2"><em>Most</em> accessible worlds: both sets are infinite, so no ratio. A patch: <em>should</em> counts more rules, so it sees fewer worlds, and <em>must p</em> entails <em>should p</em>.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Boxes and diamonds<small>Cresswell; Coppock &amp; Champollion</small></div><div class="ft2"><em>It might have been that everyone rich was poor.</em> The sensible reading needs the actual world inside \(\Diamond\): \(\exists w\,\forall x[\textit{rich}_{@}(x) \rightarrow \textit{poor}_{w}(x)]\).</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Conflicting rules<small>seriality</small></div><div class="ft2">A Catch-22: no world keeps every rule. \(R(w)\) is empty: every <em>must</em> true, every <em>may</em> false.</div></div>
       </div>
     </div>
   </div>
@@ -1100,12 +1106,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
       <h2 class="b-h">Scots and Ulster: double modals</h2>
-      <!-- Data as quoted in the MultiMo database (multimodal.library.sc.edu, Commentary page) and in "A social turn for Construction Grammar: double modals on British Twitter", English Language & Linguistics (2024). TODO: check (19) against Brown & Miller 1975: 174 and add the ELL authors for (20). -->
+      <!-- Data as quoted in the MultiMo database (multimodal.library.sc.edu, Commentary page) and in "A social turn for Construction Grammar: double modals on British Twitter", English Language & Linguistics (2024). TODO: check (21) against Brown & Miller 1975: 174 and add the ELL authors for (22). -->
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">Two modals, one clause</div>
-        <div class="eg"><span class="no">(19)</span><span class="ex">He'll no can come this week.<span class="gl">Edinburgh · Brown &amp; Miller (1975)</span></span></div>
-        <div class="eg"><span class="no">(20)</span><span class="ex">might can no dae it<span class="gl">Hawick · geolocated tweet, <em>English Language &amp; Linguistics</em> (2024)</span></span></div>
-        <div class="eg"><span class="no">(21)</span><span class="ex">I'll not can reply to this letter today.<span class="gl">Ulster · McMordie (1897): <em>will can</em> reported only with negation</span></span></div>
+        <div class="eg"><span class="no">(21)</span><span class="ex">He'll no can come this week.<span class="gl">Edinburgh · Brown &amp; Miller (1975)</span></span></div>
+        <div class="eg"><span class="no">(22)</span><span class="ex">might can no dae it<span class="gl">Hawick · geolocated tweet, <em>English Language &amp; Linguistics</em> (2024)</span></span></div>
+        <div class="eg"><span class="no">(23)</span><span class="ex">I'll not can reply to this letter today.<span class="gl">Ulster · McMordie (1897): <em>will can</em> reported only with negation</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">The inventory</div><div class="tx tight"><em>might</em>, <em>will</em>, <em>used to</em> first; <em>can</em>, <em>could</em> second. Brown (1991).</div></div>
       <div class="erow"><div class="lb">As operators</div><div class="tx tight">Two modals, <strong>two relations</strong>. <em>might can</em>: \(\Diamond_{\textit{epistemic}}\,\Diamond_{\textit{circumstantial}}\;p\). Elsewhere: <em>might be able to</em>.</div></div>
@@ -1124,12 +1130,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <h2 class="b-h">Irish English: epistemic <em>mustn't</em></h2>
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">The same claim, two forms</div>
-        <div class="eg"><span class="no">(22)</span><span class="ex">He mustn't be Scottish.<span class="gl">Irish English · it must be that he is not Scottish · \(\Box\neg p\) · Hickey (2007)</span></span></div>
-        <div class="eg"><span class="no">(23)</span><span class="ex">He can't be Scottish.<span class="gl">southern British English · \(\neg\Diamond p\)</span></span></div>
+        <div class="eg"><span class="no">(24)</span><span class="ex">He mustn't be Scottish.<span class="gl">Irish English · it must be that he is not Scottish · \(\Box\neg p\) · Hickey (2007)</span></span></div>
+        <div class="eg"><span class="no">(25)</span><span class="ex">He can't be Scottish.<span class="gl">southern British English · \(\neg\Diamond p\)</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">Duality</div><div class="tx tight">\(\Box\neg p \equiv \neg\Diamond p\): two forms, <strong>one truth condition</strong>.</div></div>
       <div class="erow"><div class="lb">Hickey</div><div class="tx tight"><em>Must</em> regularised across positive and negative. Also Scottish, Australian and New Zealand English.</div></div>
-      <div class="erow"><div class="lb">Show of hands</div><div class="tx tight">(22) or (23): the form you would use.</div></div>
+      <div class="erow"><div class="lb">Show of hands</div><div class="tx tight">(24) or (25): the form you would use.</div></div>
     </div>
   </div>
 </section>
@@ -1183,7 +1189,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     spine:"The historical spine", cil:"C. I. Lewis", car:"Carnap: state-descriptions", carn:"Carnap: necessity", vw:"von Wright", dub:"Dublin, 1956", kri:"Kripke", uses:"Uses of the semantics",
     dlw:"Lewis's realism", ers:"Ersatz worlds; Kripke's dice", fic:"Fictionalism",
     nec:"Necessity", pos:"Possibility", frm:"Frames and models", tru:"Truth at a world", wrk:"Worked example", ex:"Your turn",
-    val:"Validity and frame conditions", gms:"Two frames from games", flf:"Frames and flavours",
+    ants:"Portner's ants", val:"Validity and frame conditions", flf:"Frames and flavours",
     lex:"Must and may", lim:"Limits",
     sco:"Scots and Ulster", ire:"Irish English", nez:"Nez Perce", close:"Lecture closes"
   };
@@ -1192,7 +1198,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     { t:"Empirical",          sc:"--lens-emp", keys:["game","lsp","dual","scope","flav","tq"] },
     { t:"Historical",         sc:"--lens-his", keys:["spine","cil","car","carn","vw","dub","kri","uses"] },
     { t:"What a world is",    sc:"--lens-his", keys:["dlw","ers","fic"] },
-    { t:"Formal",             sc:"--lens-for", keys:["nec","pos","frm","tru","wrk","ex","val","gms","flf","lex","lim"] },
+    { t:"Formal",             sc:"--lens-for", keys:["nec","pos","frm","tru","wrk","ex","ants","val","flf","lex","lim"] },
     { t:"Typological",        sc:"--lens-typ", keys:["sco","ire","nez","close"] }
   ];
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }

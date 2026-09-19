@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 2, Worlds, Intensions &amp; Modal Logic · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 2 · Handout</div>
+  <h1 class="doc-title">Propositional Modal Logic</h1>
+
+  <!-- Sources: definitions in blocks 0, 1, 3 and 4 keep the wording of Thomas's Semantics III handout 3 (2025–26).
+       Block 1 model M₁ and task (a): Coppock & Champollion, "Toward a theory of modality" (Exercise 4).
+       Block 2 ant model: Portner 2009, (15) and (18). Blocks 4 and 5 data: Portner 2009, (26), (28), (38)–(39), (48), (50).
+       Blocks 6 and 7: Coppock & Champollion, "Explicit reference to worlds" and "Back to substitution failures". -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>The modal language</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Atomic propositions</span><span class="g"><i>p</i>, <i>q</i>, <i>r</i>, …</span></div>
+        <div class="d"><span class="t">Formulas</span><span class="g">φ ::= <i>p</i> | ¬φ | (φ ∧ ψ) | (φ ∨ ψ) | (φ → ψ) | □φ | ◇φ</span></div>
+        <div class="d"><span class="t">□<i>A</i></span><span class="g">Necessarily / must / always / knows that <i>A</i>.</span></div>
+        <div class="d"><span class="t">◇<i>A</i></span><span class="g">Possibly / might / sometimes / it is compatible that <i>A</i>.</span></div>
+        <div class="d"><span class="t">Material conditional</span><span class="g">(φ → ψ) is false when φ is true and ψ is false, and true otherwise.</span></div>
+        <div class="d"><span class="t">Duality</span><span class="g">The two modal operators are interdefinable: ◇<i>A</i> ≡ ¬□¬<i>A</i> and □<i>A</i> ≡ ¬◇¬<i>A</i>.</span></div>
+        <div class="d"><span class="t">Parallel with ∀ and ∃</span><span class="g">□ and ◇ behave like quantifiers over accessible worlds: ¬∀ ≡ ∃¬ and ¬∃ ≡ ∀¬.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(1)</span><span class="s">You needn't come.</span></li>
+        <li><span>(2)</span><span class="s">You mustn't smoke.</span></li>
+        <li><span>(3)</span><span class="s">You may not leave.</span></li>
+        <li><span>(4)</span><span class="s">She may not be home.</span></li>
+      </ol>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Choose an atomic proposition for each of (1) to (4) and translate the sentence with □, ◇ and ¬. (3) and (4) contain the same string <i>may not</i>: state the scope of ¬ in each.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Use duality to give an equivalent formula for each translation, and an English sentence that expresses it.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Portner 2009.</b> <i>Modality.</i> Oxford University Press. Ch. 2.</p>
+      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> “Toward a theory of modality.”</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Kripke semantics</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Frame</span><span class="g">⟨<i>W</i>, <i>R</i>⟩ with a non-empty set <i>W</i> of worlds and an accessibility relation <i>R</i> ⊆ <i>W</i> × <i>W</i>.</span></div>
+        <div class="d"><span class="t">Model</span><span class="g">⟨<i>W</i>, <i>R</i>, <i>V</i>⟩ where <i>V</i> is a valuation assigning each atomic proposition <i>p</i> a set <i>V</i>(<i>p</i>) ⊆ <i>W</i>.</span></div>
+        <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ □φ</span><span class="g">iff ∀<i>w</i>′ ∈ <i>W</i> (<i>wRw</i>′ ⇒ <i>M</i>, <i>w</i>′ ⊨ φ)</span></div>
+        <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ ◇φ</span><span class="g">iff ∃<i>w</i>′ ∈ <i>W</i> (<i>wRw</i>′ ∧ <i>M</i>, <i>w</i>′ ⊨ φ)</span></div>
+        <div class="d"><span class="t"><i>R</i>(<i>w</i>)</span><span class="g">The set of worlds accessible from <i>w</i>. □φ at <i>w</i>: <i>R</i>(<i>w</i>) ⊆ <i>V</i>(φ). ◇φ at <i>w</i>: <i>R</i>(<i>w</i>) ∩ <i>V</i>(φ) ≠ ∅.</span></div>
+        <div class="d"><span class="t">Notation</span><span class="g">Portner writes ⟦α⟧<sup><i>w</i>,<i>M</i></sup> = 1 for <i>M</i>, <i>w</i> ⊨ α.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Checking a modal formula</div>
+        <ol class="steps">
+          <li>To check <i>M</i>, <i>w</i> ⊨ □<i>A</i>: look at all <i>R</i>-accessible worlds from <i>w</i> and see whether <i>A</i> holds there.</li>
+          <li>To check <i>M</i>, <i>w</i> ⊨ ◇<i>A</i>: look for some accessible world where <i>A</i> holds.</li>
+        </ol>
+      </div>
+      <p><span class="runin">Model <i>M</i>₁.</span> <i>W</i> = {<i>w</i>₀, <i>w</i>₁, <i>w</i>₂, <i>w</i>₃}. <i>V</i>(<i>p</i>) = {<i>w</i>₀, <i>w</i>₁}. Every world is accessible from every world.</p>
+      <table class="rec fill">
+        <tr><th>World</th><th><i>p</i></th><th>□<i>p</i></th><th>◇<i>p</i></th></tr>
+        <tr><td><i>w</i>₀</td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i>₁</td><td></td><td></td><td></td></tr>
+        <tr><td><i>w</i>₂</td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i>₃</td><td></td><td></td><td></td></tr>
+      </table>
+      <p><span class="runin">Model <i>M</i>₂.</span> The model from the lecture. <i>V</i>(<i>p</i>) = {<i>w</i>₁, <i>w</i>₂}. <i>V</i>(<i>q</i>) = {<i>w</i>₁, <i>w</i>₃}. Arrows show <i>R</i>.</p>
+      <svg class="mfig" viewBox="0 0 520 74" role="img" aria-label="Four worlds in a row. w1 sees itself and w2; w2 sees w3; w3 sees w4; w4 sees nothing.">
+        <defs><marker id="hah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
+        <path class="ar" d="M52 26 C 34 -4, 86 -4, 68 26" marker-end="url(#hah)"/>
+        <line class="ar" x1="78" y1="40" x2="172" y2="40" marker-end="url(#hah)"/>
+        <line class="ar" x1="208" y1="40" x2="302" y2="40" marker-end="url(#hah)"/>
+        <line class="ar" x1="338" y1="40" x2="432" y2="40" marker-end="url(#hah)"/>
+        <circle class="nd" cx="60" cy="40" r="17"/><text class="wl" x="60" y="44">w₁</text><text class="vl" x="60" y="71">p, q</text>
+        <circle class="nd" cx="190" cy="40" r="17"/><text class="wl" x="190" y="44">w₂</text><text class="vl" x="190" y="71">p</text>
+        <circle class="nd" cx="320" cy="40" r="17"/><text class="wl" x="320" y="44">w₃</text><text class="vl" x="320" y="71">q</text>
+        <circle class="nd" cx="450" cy="40" r="17"/><text class="wl" x="450" y="44">w₄</text>
+      </svg>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Complete the rows for <i>w</i>₁ and <i>w</i>₃ in the table for <i>M</i>₁.</span></div>
+        <div class="task"><span>(b)</span><span>In <i>M</i>₂, write out <i>R</i>(<i>w</i>) for each world. Then evaluate ◇□<i>q</i> at <i>w</i>₁, □(<i>p</i> → <i>q</i>) at <i>w</i>₁, and □<i>p</i> and ◇<i>p</i> at <i>w</i>₄. Show the sets you compared.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Kripke 1963.</b> Semantical considerations on modal logic. <i>Acta Philosophica Fennica</i> 16: 83–94.</p>
+      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> Exercise 4.</p>
+    </div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Validity</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Valid in a model</span><span class="g">True at every world of the model.</span></div>
+        <div class="d"><span class="t">Valid on a frame</span><span class="g">Valid in every model on that frame: true at every world, under every valuation.</span></div>
+        <div class="d"><span class="t">Countermodel</span><span class="g">A model and a world at which the formula is false.</span></div>
+      </div>
+      <p><span class="runin">The ant model.</span> <i>W</i> = {ant 1, ant 2, ant 3}. <i>R</i> is <i>smells</i>: ant 1 smells itself, ant 2 and ant 3; ant 2 smells itself and ant 1; ant 3 smells itself. <i>p</i>: this ant is female. <i>q</i>: this ant has a white spot. <i>V</i>(<i>p</i>) = {ant 1, ant 2}. <i>V</i>(<i>q</i>) = {ant 1}.</p>
+      <ol class="exs">
+        <li><span>(5)</span><span class="s">If every ant I smell is female, then I am female.</span></li>
+        <li><span>(6)</span><span class="s">If I have a white spot, then every ant I smell smells an ant with a white spot.</span></li>
+      </ol>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Draw the ant model: nodes, arrows, and the atomic propositions true at each node.</span></div>
+        <div class="draw"></div>
+        <div class="task"><span>(b)</span><span>Translate (5) and (6) into the modal language. Evaluate each at every ant.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Keep the arrows and change <i>V</i>. Try to make your formula for (5) false at some ant. Then make your formula for (6) true at every ant. State what each attempt shows about validity on the frame.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Portner 2009.</b> <i>Modality.</i> §§2.2.1 to 2.2.2.</p>
+      <p><b>Hughes &amp; Cresswell 1996.</b> <i>A New Introduction to Modal Logic.</i> Routledge.</p>
+    </div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Frame conditions</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">K</span><span class="g">The minimal normal modal logic: valid on all frames.</span></div>
+        <div class="d"><span class="t">T, also M</span><span class="g">Adds □<i>A</i> → <i>A</i>. Reflexive frames.</span></div>
+        <div class="d"><span class="t">S4, also M4</span><span class="g">Reflexive and transitive frames.</span></div>
+        <div class="d"><span class="t">S5</span><span class="g">Equivalence frames: reflexive, symmetric and transitive.</span></div>
+        <div class="d"><span class="t">KD</span><span class="g">Serial frames. Importantly, without (T).</span></div>
+        <div class="d"><span class="t">KD45</span><span class="g">Serial, transitive and Euclidean frames.</span></div>
+      </div>
+      <table class="rec">
+        <tr><th>Axiom</th><th>Formula</th><th>Frame condition</th></tr>
+        <tr><td>(D)</td><td>□<i>A</i> → ◇<i>A</i></td><td>Serial: ∀<i>w</i> ∃<i>u</i> (<i>wRu</i>)</td></tr>
+        <tr><td>(M), also (T)</td><td>□<i>A</i> → <i>A</i></td><td>Reflexive: ∀<i>w</i> (<i>wRw</i>)</td></tr>
+        <tr><td>(4)</td><td>□<i>A</i> → □□<i>A</i></td><td>Transitive: <i>wRv</i> ∧ <i>vRu</i> ⇒ <i>wRu</i></td></tr>
+        <tr><td>(B)</td><td><i>A</i> → □◇<i>A</i></td><td>Symmetric: <i>wRv</i> ⇒ <i>vRw</i></td></tr>
+        <tr><td>(5), Portner's (E)</td><td>◇<i>A</i> → □◇<i>A</i></td><td>Euclidean: <i>wRv</i> ∧ <i>wRu</i> ⇒ <i>vRu</i></td></tr>
+      </table>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Say which of the five conditions hold of <i>R</i> in <i>M</i>₂ from block 1. For each that fails, name the worlds that show it.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Draw a frame with two or three worlds on which (4) fails. Give the valuation and the world at which □<i>p</i> → □□<i>p</i> is false.</span></div>
+        <div class="draw"></div>
+        <div class="task"><span>(c)</span><span>Let <i>wRw</i>′ hold when chess position <i>w</i>′ can be reached from <i>w</i> in zero or more legal moves. Say which conditions hold and name the system. Do the same for the states of a Rubik's cube and its turns.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Portner 2009.</b> <i>Modality.</i> §2.2.4.</p>
+      <p><b>Hughes &amp; Cresswell 1996.</b> <i>A New Introduction to Modal Logic.</i> Routledge.</p>
+    </div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Axioms and flavours</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Epistemic</span><span class="g"><i>Must</i> / <i>might</i> relative to an information state; knowledge and belief.</span></div>
+        <div class="d"><span class="t">Deontic</span><span class="g"><i>Must</i> / <i>should</i> / <i>may</i> relative to rules or norms: obligation and permission.</span></div>
+        <div class="d"><span class="t">Temporal</span><span class="g"><i>Always</i> / <i>sometimes</i> in the future or past.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(7)</span><span class="s">If it must be raining, then it is raining.</span></li>
+        <li><span>(8)</span><span class="s">If Mary must tell the truth, then she will tell the truth.</span></li>
+        <li><span>(9)</span><span class="s">If it must be raining, then it might be raining.</span></li>
+        <li><span>(10)</span><span class="s">If Mary must tell the truth, then she may tell the truth.</span></li>
+        <li><span>(11)</span><span><span class="ctx">#</span><span class="s">Sue knows that it is raining, but it isn't.</span></span></li>
+        <li><span>(12)</span><span class="s">Sue believes that it is raining, but it isn't.</span></li>
+      </ol>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>For each of (7) to (10), name the axiom whose form it has, give the flavour of its modals, and judge whether it has to be true.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Fill in the table: ✓ where the axiom is plausible for that reading of □, ✗ where it is not. Be ready to give the English judgement behind each mark.</span></div>
+      </div>
+      <table class="rec fill">
+        <tr><th>□ read as</th><th>(M)</th><th>(D)</th><th>(4)</th><th>(B)</th></tr>
+        <tr><td><i>x</i> knows that</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>x</i> believes that</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>it is obligatory that</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>always in the future</td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="proc">
+        <div class="sc proc-head">Standard choices</div>
+        <ol class="steps">
+          <li>(M): plausible for knowledge, which is factive. Implausible for belief and for deontic <i>ought</i>.</li>
+          <li>(D): if <i>A</i> is obligatory, then <i>A</i> is permitted. Often assumed for belief. Temporal: each time has an accessible future.</li>
+          <li>(4): temporal <i>always</i>; with (5), the introspection ideals for knowledge and belief. (B) fails for tense: earlier and later are never symmetric.</li>
+          <li>S5: an idealised logic of knowledge. KD: a standard deontic baseline. KD45: a standard logic of belief.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Portner 2009.</b> <i>Modality.</i> §2.2.3.</p>
+      <p><b>Hintikka 1962.</b> <i>Knowledge and Belief.</i> Cornell University Press.</p>
+      <p><b>von Wright 1951.</b> Deontic logic. <i>Mind</i> 60: 1–15.</p>
+    </div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Accessibility relations</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Epistemic <i>R</i></span><span class="g"><i>wRw</i>′ iff everything individual <i>i</i> knows in <i>w</i> is true in <i>w</i>′.</span></div>
+        <div class="d"><span class="t">Deontic <i>R</i></span><span class="g"><i>wRw</i>′ iff all the rules in force in <i>w</i> are followed in <i>w</i>′.</span></div>
+        <div class="d"><span class="t">Bouletic <i>R</i></span><span class="g"><i>wRw</i>′ iff all of <i>i</i>'s desires in <i>w</i> are satisfied in <i>w</i>′.</span></div>
+        <div class="d"><span class="t">Force</span><span class="g">Necessity modals (□): <i>must</i>, <i>should</i>, <i>would</i>. Possibility modals (◇): <i>may</i>, <i>might</i>, <i>can</i>, <i>could</i>.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(13)</span><span><span class="s">Fish can breathe water.</span> <span class="ctx">ability</span></span></li>
+        <li><span>(14)</span><span><span class="s">To get to my house, you must take a ferry.</span> <span class="ctx">goal</span></span></li>
+        <li><span>(15)</span><span class="s">Dogs may stay in this hotel.</span></li>
+        <li><span>(16)</span><span class="s">Dogs can stay in this hotel.</span></li>
+        <li><span>(17)</span><span class="s">It may be raining.</span></li>
+        <li><span>(18)</span><span><span class="ctx">#</span><span class="s">It can be raining.</span></span></li>
+        <li><span>(19)</span><span class="s">It can't be raining.</span></li>
+      </ol>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>On the pattern of the definitions, write an accessibility relation for (13) and one for (14). Then state the truth conditions of (14) using yours.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>From (15) to (19), state which flavours <i>may</i> allows and which <i>can</i> allows, and what (19) adds.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Suppose <i>must</i> uses the rules in a set <i>M</i> and <i>should</i> uses the rules in a larger set <i>S</i>, so <i>M</i> ⊆ <i>S</i>. Show that <i>R</i><sub>should</sub>(<i>w</i>) ⊆ <i>R</i><sub>must</sub>(<i>w</i>). Then show that <i>must p</i> entails <i>should p</i>.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Portner 2009.</b> <i>Modality.</i> §§2.2.3, 2.3.1 to 2.3.3.</p>
+      <p><b>Kratzer 1977.</b> What ‘must’ and ‘can’ must and can mean. <i>Linguistics and Philosophy</i> 1: 337–355.</p>
+    </div>
+  </div>
+
+  <!-- ══ 6 ══ -->
+  <div class="sec">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>World variables</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Evaluation world</span><span class="g">The world relative to which truth is evaluated, written ẇ.</span></div>
+        <div class="d"><span class="t">Ty2</span><span class="g">A logic with two basic types besides <i>t</i>: <i>e</i> for individuals and <i>s</i> for possible worlds.</span></div>
+        <div class="d"><span class="t">Proposition</span><span class="g">Type ⟨<i>s</i>,<i>t</i>⟩: a function from possible worlds to truth values.</span></div>
+        <div class="d"><span class="t">□<i>p</i>, spelled out</span><span class="g">∀<i>w</i>[acc(ẇ)(<i>w</i>) → <i>p</i>(<i>w</i>)]</span></div>
+        <div class="d"><span class="t">◇<i>p</i>, spelled out</span><span class="g">∃<i>w</i>[acc(ẇ)(<i>w</i>) ∧ <i>p</i>(<i>w</i>)]</span></div>
+        <div class="d"><span class="t">@</span><span class="g">A constant for the actual world.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(20)</span><span class="s">It's not necessary for Alex to take out the trash.</span></li>
+        <li><span>(21)</span><span class="s">It's possible for Alex not to take out the trash.</span></li>
+        <li><span>(22)</span><span class="s">It might have been that everyone rich was poor.</span></li>
+      </ol>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Translate (20) and (21) with world variables, using <i>q</i> for <i>Alex takes out the trash</i>. Show the two are equivalent.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Give two translations of (22) with ◇, ∀ and →, one with ◇ widest and one with ∀ widest. Paraphrase each.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>(22) has a sensible reading that neither captures: the people who are in fact rich are all poor together. Write it with world variables and @.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Gallin 1975.</b> <i>Intensional and Higher-Order Modal Logic.</i> North-Holland.</p>
+      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> “Explicit reference to worlds.”</p>
+    </div>
+  </div>
+
+  <!-- ══ 7 ══ -->
+  <div class="sec">
+    <div class="num">7</div>
+    <div class="body">
+      <h2>Substitution under necessity</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Substitutivity</span><span class="g">Substituting co-referring expressions preserves truth in extensional (transparent) environments but can fail in intensional (opaque) ones.</span></div>
+        <div class="d"><span class="t">Rigid designator</span><span class="g">An expression that picks out the same individual relative to every world.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(23)</span><span class="s">Ruth Bader Ginsburg is necessarily Ruth Bader Ginsburg.</span></li>
+        <li><span>(24)</span><span class="s">Ruth Bader Ginsburg was necessarily the first person to serve on both the Harvard and the Columbia law reviews.</span></li>
+        <li><span>(25)</span><span class="s">Miss America is necessarily Miss America.</span></li>
+      </ol>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>In the actual world, Ginsburg was the first person to serve on both reviews. Run the substitution test on (23) and (24), give the truth value of each, and state what the result shows about <i>necessarily</i>.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span><i>Miss America</i> picks out different people in different worlds. Say why (25) is true all the same, referring to the worlds that <i>necessarily</i> quantifies over.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Kripke 1980.</b> <i>Naming and Necessity.</i> Harvard University Press.</p>
+      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> “Back to substitution failures.”</p>
+    </div>
+  </div>
+
+  <!-- ══ 8 ══ -->
+  <div class="sec">
+    <div class="num">8</div>
+    <div class="body">
+      <h2>Scots, Ulster, Irish English, Nez Perce</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Double modal</span><span class="g">Two modal auxiliaries in one clause. In Scots, <i>might</i>, <i>will</i> and <i>used to</i> come first; <i>can</i> and <i>could</i> come second.</span></div>
+        <div class="d"><span class="t">Dual</span><span class="g">The operator got by negating inside and outside: ◇ is the dual of □, and □ of ◇.</span></div>
+      </div>
+      <!-- TODO: check (26) against Brown & Miller 1975: 174; add the authors of the 2024 ELL paper for (27); add one glossed -o'qa example from Deal 2011 before task (c). -->
+      <ol class="exs">
+        <li><span>(26)</span><span><span class="s">He'll no can come this week.</span> <span class="ctx">Edinburgh</span></span></li>
+        <li><span>(27)</span><span><span class="s">might can no dae it</span> <span class="ctx">Hawick</span></span></li>
+        <li><span>(28)</span><span><span class="s">I'll not can reply to this letter today.</span> <span class="ctx">Ulster</span></span></li>
+        <li><span>(29)</span><span><span class="s">He mustn't be Scottish.</span> <span class="ctx">Irish English: it must be that he is not Scottish</span></span></li>
+        <li><span>(30)</span><span><span class="s">He can't be Scottish.</span> <span class="ctx">southern British English</span></span></li>
+      </ol>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Write a formula for (27) with one operator for each modal and one ¬. Label each operator with the flavour of its accessibility relation.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Write a formula for (29) and one for (30). Show by duality that they are equivalent.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Nez Perce has one modal suffix, <i>-o'qa</i>. It is a possibility modal, and the language has no necessity modal alongside it. Give the formula you predict for a negated <i>-o'qa</i> sentence, and the formula it should never express.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Brown &amp; Miller 1975.</b></p>
+      <p><b>Brown 1991.</b> Double modals in Hawick Scots. In Trudgill &amp; Chambers (eds.), <i>Dialects of English.</i> Longman.</p>
+      <p><b>McMordie 1897.</b> <i>Our Ulster Accent and Ulster Provincialisms.</i> Belfast.</p>
+      <p><b>Hickey 2007.</b> <i>Irish English.</i> Cambridge University Press.</p>
+      <p><b>Deal 2011.</b> Modals without scales. <i>Language</i> 87(3): 559–585.</p>
+    </div>
+  </div>
+
+  <!-- ══ 9 ══ -->
+  <div class="sec">
+    <div class="num">9</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="proc">
+        <div class="sc proc-head">After this week you can</div>
+        <ol class="steps">
+          <li>Translate English modal sentences into □, ◇ and ¬, and convert between them by duality.</li>
+          <li>Evaluate □φ and ◇φ at a world of a given model, including nested formulas and dead ends.</li>
+          <li>Tell validity in a model from validity on a frame, and build a countermodel.</li>
+          <li>Match (D), (M), (4), (B) and (5) to the frame conditions, and name K, T, S4, S5, KD and KD45.</li>
+          <li>Argue from English judgements which conditions the accessibility relation of a flavour has.</li>
+          <li>Write an accessibility relation for a given flavour.</li>
+          <li>Move between □ / ◇ and explicit quantification over worlds, and say what the second can express that the first cannot.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="note"></div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -240,6 +240,8 @@ not for judging layout. Strip blank pages before sending anything out.
 - `handout.css` remains the styling for the older lens-based handouts, and
   `templates/week/handout.html` is still that sheet — swap the template name in
   `scripts/new-week.mjs` to scaffold one.
+- `shared/handout-classic.css` also carries the figure and filled-table rules
+  (`.draw`, `.mfig`, `table.rec.fill`) added for Semantics II week 2.
 - One margin gloss survives against the rule in §4: block 1 still reads
   *Grice 1975. On flouting: the maxim is violated at the level of what is said,
   and observed at the level of what is meant.* Flouting is now a definition row
