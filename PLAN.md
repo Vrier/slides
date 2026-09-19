@@ -780,5 +780,23 @@ what the next session must know)*
   `@import` in tokens.css for every deck at once. Unicode subscripts replaced by
   `<sub>`/`<tspan>` because no NewCM face has them. Slide text sizes raised
   (docs/deck-style.md §7); every slide re-measured headlessly, none overflows.
+- **2026-09-19, fifth pass: Menzel's SEP "Possible worlds" read and applied.** It had
+  been cited from memory as a reading and never actually read; two things in the
+  philosophy block were wrong. "Ersatz worlds; Kripke's dice" is replaced by **Three
+  answers**: concretism (Lewis), abstractionism (Adams's consistent total sets of
+  propositions; Plantinga's maximal possible states of affairs), combinatorialism
+  (Armstrong, the Tractatus; Carnap's state-descriptions are its linguistic version,
+  Lewis's "linguistic ersatzism"). Corrections: "ersatzism" is Lewis's label, not the
+  field's neutral one; Plantinga works with states of affairs, not sets of
+  propositions; the objection to abstractionism is not circularity but that the
+  definitions are irreducibly modal, which loses the extensionality that motivated
+  possible-world semantics. Lewis slide gains Menzel's two framing questions (what a
+  world is; what it is to exist in one), the maximal-connected-object definition, and
+  no-overlap giving worldboundedness and counterparts. Fictionalism slide notes
+  Armstrong's parallel as-if move. Substitution slide and handout block 7 gain
+  Menzel's §1.1 predicate case (John's dogs and pets under necessity), which is a
+  cleaner failure of classical substitutivity than the Ginsburg pair alone. Menzel §2
+  added to the readings slide as optional. Deck 45 slides, examples (1) to (28);
+  handout examples (1) to (28), still nine pages.
 - `npm test` green (166 files).
 
