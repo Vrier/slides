@@ -798,5 +798,32 @@ what the next session must know)*
   cleaner failure of classical substitutivity than the Ginsburg pair alone. Menzel §2
   added to the readings slide as optional. Deck 45 slides, examples (1) to (28);
   handout examples (1) to (28), still nine pages.
+- **2026-09-20, sixth pass (Thomas's review notes).** Flavours and *Must and may* stay
+  in Monday's lecture and now come **early** in the Formal lens, straight after the
+  worked model: order is Necessity, Possibility, Frames and models, Truth at a world,
+  Worked, Your turn, **Must and may**, **Other notations**, Portner's ants, Validity,
+  Frame conditions, Axioms and flavours, Substitution, Limits. The epistemic and
+  deontic definitions of R moved onto *Must and may* so the intuitive account is
+  complete before the frame-condition material. Historical cuts as agreed: the spine
+  and *Uses of the semantics* are gone, the two Carnap slides are one, Armstrong's row
+  is off *Fictionalism*. **One notation** (docs/deck-style.md §8): `wRw′`, `R(w)`,
+  `M,w ⊨ φ`, `V(p)`, T/5; the lexical entries now read `∀w′[wRw′ → w′ ∈ p]`; a new
+  **Other notations** slide and a table on the sheet's last page carry the variants.
+  *Axioms and flavours* now says outright that the simple theory makes epistemic
+  *must p* entail *p*, and that (14) is a problem for it. `#` on (22) kept at
+  Thomas's say-so. Verified tonight and corrected: the Bardot sentence is McCawley's,
+  in Lakoff 1968; Carnap's Leibniz gloss is MN p. 9; Łukasiewicz was RIA Professor of
+  Mathematical Logic from autumn 1946 (honorary TCD doctorate 1955); Kripke's dice
+  are N&N preface pp. 15 to 17; the Hawick tweet is from Morin, Desagulier & Grieve
+  2024. Still open: Brown & Miller 1975 full reference; a glossed Deal example.
+  **Portraits localised** to `week-02/images/` (four files, licences on the slides).
+  **Aesthetic pass:** every slide screenshotted and measured headlessly; type scale
+  raised in four rounds to a 40px body with `dense` and `snug` fallbacks
+  (docs/deck-style.md §7); logical-space figure redrawn larger; a merge bug that put
+  the lens icon where Carnap's figure belonged was caught on the contact sheet.
+  **Handout:** C&C's M1 dropped for the lecture's single model with a C&C-style
+  fill-in table; block 6 rewritten without Ty2/acc; (T) for (M) throughout; print
+  type up half a point for Computer Modern (rules live in font-latex.css under
+  `.sheet`); nine blocks, nine pages. Deck 43 slides, examples (1) to (28).
 - `npm test` green (166 files).
 

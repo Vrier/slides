@@ -114,17 +114,36 @@ slide text clearer and larger, keeping the week 1 patterns.
 - The text faces have no logic symbols; a maths face supplies them by
   `unicode-range`. **No face has subscript digits**: write `w<sub>1</sub>` in HTML
   and a `<tspan>` in SVG, never `w₁`.
-- Computer Modern runs small on the body. Week 2 sizes, set at the end of the
-  deck's style block: `.erow .tx` 31px (tight 29), `.eg .ex` 31, `.gl` 22,
-  `.fourways .ft2` 27 with a 300px label column, arms 28, portrait captions 19,
-  lineage notes 19.5, `.qsrc` 25. **Nothing on a slide below 15px.**
+- **Type scale (1920 canvas), settled on the week 2 aesthetic pass.** Week 1's
+  29px body is about 14pt on a 13.3in slide and left the lower third of most slides
+  empty. Week 2 defaults: `.erow .tx` 40px (tight 37), examples 40 with 28px
+  glosses, `.fourways .ft2` 35, arms 35, display maths 40, question lines 44 (big
+  56), uppercase labels 21 to 23, credits 17, sidebar 13 to 16. Floors: running
+  text 30, glosses and notes 24, labels 19.
+- **Two fallbacks, set as a class on `.b-main`:** `dense` (about 32px body; for a
+  slide with a portrait column, a panel plus rows, or five table rows) and `snug`
+  (default sizes, tighter row padding). Reach for them only after trimming words.
+  Measure, do not eyeball: content must end above y = 960 of 1080.
+- SVG figure text follows the same floor: world labels 32, captions 28.
 - A slide that sets up a handout block carries the block's title: week 2 has
   Validity, Frame conditions, Axioms and flavours, Substitution under necessity on
   both. The closing slide lists what Thursday's sheet practises.
 
 ---
 
-## 8. Before it ships
+## 8. One notation
+
+Thomas's rule, September 2026: **pick one notation and stick to it** across deck and
+handout; give the alternatives one slide ("Other notations") and one table on the
+sheet. For modal logic the module's notation is: `wRw′` ("w sees w′"), `R(w)` for
+the set of worlds w sees, `M, w ⊨ φ`, `V(p)` as a set of worlds, `⟦φ⟧` for the set
+of worlds where φ is true, axioms T, D, 4, B, 5. Everything else (`R(w,w′)`,
+`R(w)(w′)`, `acc`, `⟦φ⟧^{w,M} = 1`, M for T, E for 5) appears only on the
+alternatives slide and in the sheet's notation table.
+
+---
+
+## 9. Before it ships
 
 - [ ] Slide count fits the hour.
 - [ ] No sentence on any slide talks about the lecture, a later slide, or a later week beyond a bare week number.

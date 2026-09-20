@@ -279,6 +279,93 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .lxr3 .rmb li{ font-size:20px; }
   .mrail a.si2{ font-size:15px; } .mrail .ghd, .mrail .ghd .gt{ font-size:12px; }
   .wktag{ font-size:16px; }
+
+  /* notation table (week 2) */
+  .ntab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ntab .nh{ display:grid; grid-template-columns:370px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:18px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .ntab .nr{ display:grid; grid-template-columns:370px 1fr; gap:34px; align-items:baseline; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ntab .no1{ font-family:var(--serif); font-size:32px; color:var(--tcd-ink); }
+  .ntab .no1 small{ display:block; font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); margin-top:2px; }
+  .ntab .no2{ font-family:var(--serif); font-size:27px; line-height:1.4; color:var(--tcd-ink); }
+  .ntab .no2 i{ font-family:var(--sans); font-style:normal; font-size:21px; color:var(--tcd-grey-100); }
+
+  /* ============ week 2 type pass, second round: projector floor ============
+     Floors on the 1920 canvas: running text 27px, glosses and notes 22px,
+     uppercase labels 19px, credits 17px, sidebar 13px. */
+  .dB .erow .lb{ font-size:20px; } .dB .erow{ grid-template-columns:250px 1fr; }
+  .eghead{ font-size:19px; } .eg .ex .gl{ font-size:24px; } .eg .no{ font-size:23px; }
+  .egpanel .fxnote{ font-size:22px; }
+  .brn .split span{ font-size:19px; } .brn .arm .h{ font-size:19px; }
+  .fourways .fw .fl{ font-size:20px; } .fourways .fw .fl small{ font-size:19px; }
+  .fourways .fw .ft2{ font-size:28px; }
+  .portrait .pc .dt{ font-size:17px; line-height:1.35; } .portrait .pc .rl{ font-size:21px; }
+  .wktag{ font-size:18px; }
+  .qask{ font-size:24px; } .convo .who{ font-size:21px; } .qsrc{ font-size:27px; }
+  .qref .src{ font-size:22px; }
+  .lxr3 .stop .head .lab{ font-size:20px; } .lxr3 .rmb li{ font-size:22px; }
+  .lxd2 .r .ct{ font-size:20px; }
+  .ntab .nh{ font-size:19px; } .ntab .no1 small{ font-size:21px; } .ntab .no2 i{ font-size:22px; }
+  .tcd-names .uni{ font-size:18px; }
+  .mrail a.si2{ font-size:16px; } .mrail .ghd .gt{ font-size:13px; } .mrail .ghd .gcar{ font-size:11px; }
+  .mrail .mhd .tt{ font-size:14px; } .mrail .mft .wk{ font-size:14px; }
+  .kfig .vl{ font-size:26px; }
+  .wfig .ws{ font-size:24px; } .wfig .lp, .wfig .lq{ font-size:26px; } .wfig .lps, .wfig .lqs{ font-size:26px; }
+  .wfig .la{ font-size:25px; } .wfig .lw{ font-size:20px; } .wfig .rn{ font-size:24px; }
+
+  /* ============ week 2 type pass, third round: fill the slide ============
+     Week 1's patterns leave the lower third of most slides empty. Default sizes
+     go up again; a slide that would overflow takes class "dense" on .b-main and
+     keeps the second-round sizes. */
+  .dB .erow .tx{ font-size:36px; line-height:1.32; } .dB .erow .tx.tight{ font-size:33px; }
+  .dB .erow{ grid-template-columns:270px 1fr; padding:20px 0; } .dB .erow .lb{ font-size:21px; padding-top:9px; }
+  .eg .ex{ font-size:36px; } .eg .ex .gl{ font-size:26px; } .eg .no{ font-size:25px; }
+  .eghead{ font-size:20px; } .egpanel .fx{ font-size:36px; } .egpanel .fxnote{ font-size:24px; }
+  .fourways .fw{ grid-template-columns:330px 1fr; padding:18px 0; }
+  .fourways .fw .fl{ font-size:22px; } .fourways .fw .fl small{ font-size:20px; } .fourways .fw .fl .fm{ font-size:27px; }
+  .fourways .fw .ft2{ font-size:32px; }
+  .brn .arm .t{ font-size:32px; } .brn .arm .h{ font-size:20px; } .brn .split span{ font-size:20px; }
+  .convo .say{ font-size:40px; } .convo.big .say{ font-size:50px; } .qask{ font-size:26px; } .qsrc{ font-size:29px; }
+  .qref{ font-size:32px !important; } .qref .src{ font-size:23px; }
+  .ntab .no1{ font-size:36px; } .ntab .no2{ font-size:30px; } .ntab .no2 i{ font-size:24px; } .ntab .no1 small{ font-size:22px; }
+  .lxr3 .rmb li{ font-size:24px; } .figs-line{ font-size:25px; } .q-banner{ font-size:34px; }
+  .b-step-lab{ font-size:24px; } .b-step-math{ font-size:44px; }
+  /* dense slides keep the second-round sizes */
+  .b-main.dense .erow .tx{ font-size:31px; } .b-main.dense .erow .tx.tight{ font-size:29px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; }
+  .b-main.dense .eg .ex{ font-size:31px; } .b-main.dense .eg .ex .gl{ font-size:24px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:28px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:32px; }
+  .b-main.dense .ntab .no1{ font-size:32px; } .b-main.dense .ntab .no2{ font-size:27px; } .b-main.dense .ntab .nr{ padding:12px 0; }
+
+  /* ============ fourth round: body text at 40px (about 20pt on a 13.3in slide) ============ */
+  .dB .erow .tx{ font-size:40px; line-height:1.3; } .dB .erow .tx.tight{ font-size:37px; }
+  .dB .erow{ grid-template-columns:280px 1fr; padding:22px 0; } .dB .erow .lb{ font-size:22px; padding-top:12px; }
+  .eg .ex{ font-size:40px; } .eg .ex .gl{ font-size:28px; } .eg .no{ font-size:27px; } .eg{ padding:13px 0; }
+  .egpanel .fx{ font-size:40px; } .egpanel .fxnote{ font-size:25px; } .eghead{ font-size:21px; }
+  .fourways .fw{ grid-template-columns:340px 1fr; padding:20px 0; }
+  .fourways .fw .fl{ font-size:23px; } .fourways .fw .fl small{ font-size:21px; } .fourways .fw .fl .fm{ font-size:29px; }
+  .fourways .fw .ft2{ font-size:35px; line-height:1.3; }
+  .brn .arm .t{ font-size:35px; } .brn .arm .h{ font-size:21px; } .brn .split span{ font-size:21px; }
+  .convo .say{ font-size:44px; } .convo.big .say{ font-size:56px; } .convo .who{ font-size:23px; } .qask{ font-size:28px; } .qsrc{ font-size:31px; }
+  .qref{ font-size:35px !important; } .qref .src{ font-size:24px; }
+  .ntab .no1{ font-size:38px; } .ntab .no2{ font-size:32px; } .ntab .no2 i{ font-size:25px; }
+  .lxr3 .rmb li{ font-size:26px; line-height:1.35; } .lxr3 .stop .head .lab{ font-size:22px; }
+  .figs-line{ font-size:27px; } .q-banner{ font-size:38px; }
+  .b-step-lab{ font-size:26px; } .b-step-math{ font-size:46px; }
+  .portrait .pc .nm{ font-size:30px; }
+  .wfig .ws{ font-size:28px; } .wfig .lp, .wfig .lq{ font-size:30px; } .wfig .lps, .wfig .lqs{ font-size:29px; }
+  .wfig .la{ font-size:28px; } .wfig .lw{ font-size:22px; } .wfig .wl{ font-size:32px; }
+  .kfig .vl{ font-size:30px; } .kfig .wl{ font-size:36px; }
+  /* dense fallback, restated after the defaults so it still wins */
+  .b-main.dense .erow .tx{ font-size:32px; } .b-main.dense .erow .tx.tight{ font-size:30px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; } .b-main.dense .erow .lb{ font-size:20px; padding-top:7px; }
+  .b-main.dense .eg .ex{ font-size:33px; } .b-main.dense .eg .ex .gl{ font-size:25px; } .b-main.dense .eg{ padding:9px 0; }
+  .b-main.dense .fourways .fw .ft2{ font-size:30px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:34px; }
+  .b-main.dense .brn .arm .t{ font-size:30px; }
+  .b-main.dense .ntab .no1{ font-size:33px; } .b-main.dense .ntab .no2{ font-size:28px; } .b-main.dense .ntab .nr{ padding:11px 0; }
+
+  /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
+  .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
+  .b-main.snug .fourways .fw .ft2{ font-size:33px; }
 </style>
 </head>
 <body class="pal-a" data-week="2">
@@ -338,8 +425,8 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <h2 class="b-h">Today</h2>
       <div class="lxr3">
         <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li><em>Must</em> and <em>might</em></li><li>Possible worlds</li><li>Duality</li><li>Scope</li><li>Flavours</li><li>Flavours and inference</li></ul></div>
-        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>C. I. Lewis</li><li>Carnap</li><li>von Wright</li><li>Dublin, 1956</li><li>Kripke</li><li>Uses of the semantics</li><li>What a world is</li></ul></div>
-        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Necessity and possibility</li><li>Frames and models</li><li>Truth at a world</li><li>Validity</li><li>Frame conditions</li><li>Axioms and flavours</li><li><em>Must</em> and <em>may</em></li><li>Substitution under necessity</li><li>Limits</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>C. I. Lewis</li><li>Carnap</li><li>von Wright</li><li>Dublin, 1956</li><li>Kripke</li><li>What a world is</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Necessity and possibility</li><li>Frames and models</li><li>Truth at a world</li><li><em>Must</em> and <em>may</em></li><li>Other notations</li><li>Validity</li><li>Frame conditions</li><li>Axioms and flavours</li><li>Substitution under necessity</li><li>Limits</li></ul></div>
         <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>Scots and Ulster</li><li>Irish English</li><li>Nez Perce</li></ul></div>
       </div>
     </div>
@@ -424,22 +511,21 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="Empirical ·Possible worlds" data-screen-label="07">
   <div class="b-slide pal-a lens-empirical dB" data-sec="lsp">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB snug">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Possible worlds</h2>
-      <svg class="wfig" viewBox="0 0 1400 430" role="img" aria-label="Logical space as a two by two grid of four worlds. The left column, w1 and w2, is the proposition that it is raining in Dublin. The top row, w1 and w3, is the proposition that Harry is single.">
-        <rect class="sp" x="330" y="24" width="760" height="382" rx="16"/>
-        <rect class="pr" x="344" y="38" width="358" height="354" rx="12"/>
-        <rect class="qr" x="358" y="52" width="718" height="160" rx="12"/>
-        <circle class="wd" cx="523" cy="118" r="40"/><text class="wl" x="523" y="128">w<tspan dy="7" font-size="68%">1</tspan></text><text class="ws" x="523" y="188">rain · Harry single</text>
-        <circle class="wd" cx="523" cy="296" r="40"/><text class="wl" x="523" y="306">w<tspan dy="7" font-size="68%">2</tspan></text><text class="ws" x="523" y="366">rain · Harry married</text>
-        <circle class="wd" cx="897" cy="118" r="40"/><text class="wl" x="897" y="128">w<tspan dy="7" font-size="68%">3</tspan></text><text class="ws" x="897" y="188">dry · Harry single</text>
-        <circle class="wd" cx="897" cy="296" r="40"/><text class="wl" x="897" y="306">w<tspan dy="7" font-size="68%">4</tspan></text><text class="ws" x="897" y="366">dry · Harry married</text>
-        <text class="lp" x="306" y="286" text-anchor="end">it is raining in Dublin</text>
-        <text class="lps" x="306" y="318" text-anchor="end">{w<tspan dy="7" font-size="68%">1</tspan><tspan dy="-7"></tspan>, w<tspan dy="7" font-size="68%">2</tspan><tspan dy="-7">}</tspan></text>
-        <text class="lq" x="1114" y="122">Harry is single</text>
-        <text class="lqs" x="1114" y="154">{w<tspan dy="7" font-size="68%">1</tspan><tspan dy="-7"></tspan>, w<tspan dy="7" font-size="68%">3</tspan><tspan dy="-7">}</tspan></text>
-        <text class="lw" x="1114" y="392">W: logical space</text>
+      <svg class="wfig" viewBox="0 0 1400 520" role="img" aria-label="Logical space as a two by two grid of four worlds. The left column, w1 and w2, is the proposition that it is raining in Dublin. The top row, w1 and w3, is the proposition that Harry is single.">
+        <text class="lp" x="380" y="40" text-anchor="middle">it is raining in Dublin: {w<tspan dy="6" font-size="68%">1</tspan><tspan dy="-6">, w</tspan><tspan dy="6" font-size="68%">2</tspan><tspan dy="-6">}</tspan></text>
+        <rect class="sp" x="60" y="60" width="1280" height="412" rx="16"/>
+        <rect class="pr" x="74" y="74" width="612" height="384" rx="12"/>
+        <rect class="qr" x="88" y="88" width="1238" height="176" rx="12"/>
+        <circle class="wd" cx="380" cy="152" r="46"/><text class="wl" x="380" y="163">w<tspan dy="7" font-size="68%">1</tspan></text><text class="ws" x="380" y="238">rain · Harry single</text>
+        <circle class="wd" cx="1020" cy="152" r="46"/><text class="wl" x="1020" y="163">w<tspan dy="7" font-size="68%">3</tspan></text><text class="ws" x="1020" y="238">dry · Harry single</text>
+        <circle class="wd" cx="380" cy="352" r="46"/><text class="wl" x="380" y="363">w<tspan dy="7" font-size="68%">2</tspan></text><text class="ws" x="380" y="438">rain · Harry married</text>
+        <circle class="wd" cx="1020" cy="352" r="46"/><text class="wl" x="1020" y="363">w<tspan dy="7" font-size="68%">4</tspan></text><text class="ws" x="1020" y="438">dry · Harry married</text>
+        <text class="lq" x="840" y="150" text-anchor="middle">Harry is single:</text>
+        <text class="lqs" x="840" y="188" text-anchor="middle">{w<tspan dy="6" font-size="68%">1</tspan><tspan dy="-6">, w</tspan><tspan dy="6" font-size="68%">3</tspan><tspan dy="-6">}</tspan></text>
+        <text class="lw" x="1340" y="506" text-anchor="end">W: logical space</text>
       </svg>
       <div class="erow" style="border-top:none"><div class="lb">A world</div><div class="tx tight">One complete way things could be. Every sentence settled, true or false.</div></div>
       <div class="erow"><div class="lb">A proposition</div><div class="tx tight">The set of worlds where it is true: a <strong>region</strong> of the space.</div></div>
@@ -453,7 +539,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="Empirical ·Duality" data-screen-label="08">
   <div class="b-slide pal-a lens-empirical dB" data-sec="dual">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Duality</h2>
       <div class="egpanel">
@@ -502,8 +588,8 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="brn">
         <div class="split"><span>(9), about the rules</span><span>(10), about the evidence</span></div>
         <div class="arms">
-          <div class="arm"><div class="h">\(\neg\Diamond\)</div><div class="t">It is not permitted that you leave.</div></div>
-          <div class="arm meant"><div class="h">\(\Diamond\neg\)</div><div class="t">It is possible that she is not home.</div></div>
+          <div class="arm"><div class="h" style="font-size:38px;letter-spacing:0">\(\neg\Diamond\)</div><div class="t">It is not permitted that you leave.</div></div>
+          <div class="arm meant"><div class="h" style="font-size:38px;letter-spacing:0">\(\Diamond\neg\)</div><div class="t">It is possible that she is not home.</div></div>
         </div>
       </div>
       <div class="egpanel">
@@ -521,7 +607,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="Empirical ·Flavours" data-screen-label="11">
   <div class="b-slide pal-a lens-empirical dB" data-sec="flav">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Flavours</h2>
       <div class="fourways">
@@ -588,32 +674,15 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- 13 · The historical spine -->
-<section class="slide" data-label="Historical ·The spine" data-screen-label="14">
-  <div class="b-slide pal-a lens-historical" data-sec="spine">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">The historical spine</h2>
-      <div class="lineage">
-        <div class="ln"><div class="dot"></div><div class="era">1912 – 1932</div><div class="nm">C. I. Lewis</div><div class="ds">Strict implication; the axiom systems S1 to S5.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">1933 – 1947</div><div class="nm">Gödel · Carnap</div><div class="ds">\(\Box\) as provability; necessity as truth in every state-description.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">1951</div><div class="nm">von Wright</div><div class="ds">One logic for necessity, knowledge and obligation.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">1954 – 1957</div><div class="nm">Prior · Meredith · Kanger · Hintikka</div><div class="ds">A binary relation between worlds, found several times over.</div></div>
-        <div class="ln"><div class="dot"></div><div class="era">1959 – 1963</div><div class="nm">Kripke</div><div class="ds">Frames and models; each system a condition on the relation.</div></div>
-      </div>
-      <div class="roots"><b>Afterwards:</b> D. Lewis, Stalnaker and Rosen on what worlds are; Kratzer on modals in natural language.</div>
-    </div>
-  </div>
-</section>
+
 
 
 
 <!-- 14 · C. I. Lewis -->
-<section class="slide" data-label="Historical ·C. I. Lewis" data-screen-label="15">
+<section class="slide" data-label="Historical ·C. I. Lewis" data-screen-label="14">
   <div class="b-slide pal-a lens-historical dB" data-sec="cil">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
       <h2 class="b-h">C. I. Lewis</h2>
       <div class="erow" style="border-top:none"><div class="lb">The material conditional</div><div class="tx tight">\(p \rightarrow q\) is false in one case only: \(p\) true, \(q\) false. True whenever \(p\) is false. True whenever \(q\) is true.</div></div>
@@ -622,7 +691,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="eg"><span class="no">(15)</span><span class="ex">If the moon is made of cheese, then 2 + 2 = 5.<span class="gl">false antecedent</span></span></div>
         <div class="eg"><span class="no">(16)</span><span class="ex">If it is raining in Dublin, then 2 + 2 = 4.<span class="gl">true consequent</span></span></div>
       </div>
-      <div class="erow" style="border-top:none"><div class="lb">Strict implication</div><div class="tx tight">Lewis (1912, 1918): implication as a <strong>necessary</strong> connection. \(p\) strictly implies \(q\): \(\;\Box(p \rightarrow q)\).</div></div>
+      <div class="erow" style="border-top:none"><div class="lb">Strict implication</div><div class="tx tight">Lewis (1912, 1918): implication as a <strong>necessary</strong> connection, \(\Box(p \rightarrow q)\).</div></div>
       <div class="erow"><div class="lb">The gap</div><div class="tx tight">Lewis &amp; Langford (1932): five axiom systems, S1 to S5, and <strong>no semantics</strong>. No way to settle whether \(\Box p \rightarrow \Box\Box p\) holds.</div></div>
     </div>
   </div>
@@ -630,35 +699,15 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- Carnap · state-descriptions -->
-<section class="slide" data-label="Historical ·Carnap, state-descriptions" data-screen-label="16">
+<!-- Carnap -->
+<section class="slide" data-label="Historical ·Carnap" data-screen-label="15">
   <div class="b-slide pal-a lens-historical dB" data-sec="car">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
       <h2 class="b-h">Carnap: state-descriptions</h2>
-      <div class="figrow">
-        <div class="portrait"><img src="../../weeks-pragmatics/week-01/images/carnap.jpg" alt="Rudolf Carnap"><div class="pc"><div class="nm">Rudolf Carnap</div><div class="dt">1891 – 1970</div><div class="rl"><em>Meaning and Necessity</em> (1947), §2 and §39.</div></div></div>
-        <div class="figbody">
-          <div class="erow"><div class="lb">State-description</div><div class="tx tight">A class of sentences: for every atomic sentence, either it or its negation. A <strong>complete description</strong> of a possible state of the universe.</div></div>
-          <!-- TODO check wording and page: MN §2 (p. 9 in the 1956 edition), where Carnap relates state-descriptions to Leibniz's possible worlds and Wittgenstein's possible states of affairs -->
-          <div class="erow"><div class="lb">His gloss</div><div class="tx tight">State-descriptions stand for Leibniz's <strong>possible worlds</strong>.</div></div>
-          <div class="erow"><div class="lb">What it supplies</div><div class="tx tight">A detailed semantics for a modal operator. Lewis's systems had axioms only.</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- Carnap · necessity -->
-<section class="slide" data-label="Historical ·Carnap, necessity" data-screen-label="17">
-  <div class="b-slide pal-a lens-historical dB" data-sec="carn">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Carnap: necessity</h2>
+      <!-- Meaning and Necessity (1947; 2nd ed. 1956), §2, p. 9: state-descriptions "represent Leibniz' possible worlds or Wittgenstein's possible states of affairs". §§39-41 for N. -->
+      <div class="erow" style="border-top:none"><div class="lb">State-description</div><div class="tx tight">For every atomic sentence, either it or its negation: a <strong>complete description</strong> of a possible state of the universe. His gloss: Leibniz's possible worlds. <em>Meaning and Necessity</em> (1947).</div></div>
       <svg class="wfig" viewBox="0 0 1400 300" role="img" aria-label="Four state-descriptions for two atomic sentences p and q. The sentence p or not p is true in all four, so it is necessary. The sentence p is true in two, so it is not necessary.">
         <rect class="sd" x="330" y="16" width="200" height="92" rx="12"/><text class="sdt" x="430" y="72">{ p, q }</text>
         <rect class="sd" x="570" y="16" width="200" height="92" rx="12"/><text class="sdt" x="670" y="72">{ p, ¬q }</text>
@@ -673,7 +722,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <text class="tv" x="430" y="274">T</text><text class="tv" x="670" y="274">T</text><text class="tv off" x="910" y="274">F</text><text class="tv off" x="1150" y="274">F</text>
         <text class="rn" x="1380" y="274" text-anchor="end">N: false</text>
       </svg>
-      <div class="erow" style="border-top:none;margin-top:10px"><div class="lb">Necessity</div><div class="tx tight">\(N(S)\) is true iff \(S\) holds in <strong>every</strong> state-description.</div></div>
+      <div class="erow" style="border-top:none;margin-top:8px"><div class="lb">Necessity</div><div class="tx tight">\(N(S)\) is true iff \(S\) holds in <strong>every</strong> state-description.</div></div>
       <div class="erow"><div class="lb">No relation</div><div class="tx tight">Every state-description counts, from every state-description. One logic results: S5.</div></div>
     </div>
   </div>
@@ -681,8 +730,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
+
+
+
+
 <!-- 15 · von Wright -->
-<section class="slide" data-label="Historical ·von Wright" data-screen-label="18">
+<section class="slide" data-label="Historical ·von Wright" data-screen-label="16">
   <div class="b-slide pal-a lens-historical dB" data-sec="vw">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -702,19 +755,19 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 16 · Dublin, 1956 -->
-<section class="slide" data-label="Historical ·Dublin, 1956" data-screen-label="19">
+<section class="slide" data-label="Historical ·Dublin, 1956" data-screen-label="17">
   <div class="b-slide pal-a lens-historical dB" data-sec="dub">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
       <h2 class="b-h">Dublin, 1956</h2>
       <div class="figthree">
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Jan_Łukasiewicz.jpg — public domain (1935, anonymous); localise to images/lukasiewicz.jpg -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20%C5%81ukasiewicz.jpg?width=640" alt="Jan Łukasiewicz, 1935" style="object-position:50% 15%"><div class="pc"><div class="nm">Jan Łukasiewicz</div><div class="dt">1878 – 1956 · photo 1935 · public domain</div><div class="rl">Warsaw logician. In Dublin from 1946, at the Royal Irish Academy.</div></div></div>
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Jan_Łukasiewicz.jpg — public domain (1935, anonymous); local copy in images/ -->
+        <div class="portrait"><img src="images/lukasiewicz.jpg" alt="Jan Łukasiewicz, 1935" style="object-position:50% 15%"><div class="pc"><div class="nm">Jan Łukasiewicz</div><div class="dt">1878 – 1956 · photo 1935 · public domain</div><div class="rl">Professor of Mathematical Logic at the Royal Irish Academy from 1946. Honorary doctorate from Trinity, 1955.</div></div></div>
         <!-- No free photograph of C. A. Meredith found: name plate. TCD archives may hold one. -->
         <div class="portrait npf"><div class="npmono">CAM</div><div class="pc"><div class="nm">Carew Meredith</div><div class="dt">1904 – 1976 · no free photograph found</div><div class="rl">Lecturer in mathematics, Trinity College Dublin, 1943 to 1964.</div></div></div>
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Arthur_Prior_in_Wakefield_1959_from_son_Martin_Prior.png — CC BY-SA 4.0, Martin Prior; localise to images/prior.png -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Arthur%20Prior%20in%20Wakefield%201959%20from%20son%20Martin%20Prior.png?width=640" alt="Arthur Prior in Wakefield, 1959" style="object-position:50% 12%"><div class="pc"><div class="nm">Arthur Prior</div><div class="dt">1914 – 1969 · photo 1959 · CC BY-SA 4.0, Martin Prior</div><div class="rl">Christchurch, then Manchester and Oxford. Tense logic; <em>Time and Modality</em> (1957).</div></div></div>
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Arthur_Prior_in_Wakefield_1959_from_son_Martin_Prior.png — CC BY-SA 4.0, Martin Prior; local copy in images/ -->
+        <div class="portrait"><img src="images/prior.jpg" alt="Arthur Prior in Wakefield, 1959" style="object-position:50% 12%"><div class="pc"><div class="nm">Arthur Prior</div><div class="dt">1914 – 1969 · photo 1959 · CC BY-SA 4.0, Martin Prior</div><div class="rl">Christchurch, then Manchester and Oxford. Tense logic; <em>Time and Modality</em> (1957).</div></div></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">August 1956</div><div class="tx tight">Meredith and Prior's <strong>property calculus</strong>: worlds, and a binary relation \(U\) between them.</div></div>
       <div class="erow"><div class="lb">The result</div><div class="tx tight">\(U\) reflexive: the system T. Add transitive: S4. Add symmetric: S5. Copeland (2002, 2006).</div></div>
@@ -725,15 +778,15 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 17 · Kripke -->
-<section class="slide" data-label="Historical ·Kripke" data-screen-label="20">
+<section class="slide" data-label="Historical ·Kripke" data-screen-label="18">
   <div class="b-slide pal-a lens-historical dB" data-sec="kri">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
       <h2 class="b-h">Kripke</h2>
       <div class="figrow">
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Saul_Kripke's_Gödel_lecture_at_UCSB.jpg — CC BY 2.0, David Calhoun; localise to images/kripke.jpg -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Saul%20Kripke%27s%20G%C3%B6del%20lecture%20at%20UCSB.jpg?width=640" alt="Saul Kripke lecturing at UCSB, 2006" style="object-position:50% 12%"><div class="pc"><div class="nm">Saul Kripke</div><div class="dt">1940 – 2022 · photo 2006 · CC BY 2.0, David Calhoun</div><div class="rl">Omaha, Harvard, Rockefeller, Princeton, CUNY.</div></div></div>
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Saul_Kripke's_Gödel_lecture_at_UCSB.jpg — CC BY 2.0, David Calhoun; local copy in images/ -->
+        <div class="portrait"><img src="images/kripke.jpg" alt="Saul Kripke lecturing at UCSB, 2006" style="object-position:50% 12%"><div class="pc"><div class="nm">Saul Kripke</div><div class="dt">1940 – 2022 · photo 2006 · CC BY 2.0, David Calhoun</div><div class="rl">Omaha, Harvard, Rockefeller, Princeton, CUNY.</div></div></div>
         <div class="figbody">
           <div class="erow"><div class="lb">1959</div><div class="tx tight">&ldquo;A completeness theorem in modal logic&rdquo;, written at <strong>seventeen</strong>.</div></div>
           <div class="erow"><div class="lb">1963</div><div class="tx tight">&ldquo;Semantical considerations on modal logic&rdquo;: a set of worlds, a relation \(R\), a valuation.</div></div>
@@ -747,42 +800,26 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- 18 · Uses of the semantics -->
-<section class="slide" data-label="Historical ·Uses of the semantics" data-screen-label="21">
-  <div class="b-slide pal-a lens-historical dB" data-sec="uses">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Uses of the semantics</h2>
-      <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Time<small>Prior 1957</small></div><div class="ft2">\(\Box\) as <em>always</em>, \(\Diamond\) as <em>sometimes</em>. Pnueli (1977) applies it to programs: Turing Award 1996. Model checking: Turing Award 2007. Chips and protocols are verified on <b>Kripke structures</b>.</div></div>
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>Hintikka 1962</small></div><div class="ft2">One relation per agent. Cheryl's Birthday (2015): ten dates, ten worlds; each announcement removes worlds.</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>von Wright 1951</small></div><div class="ft2">Internet standards define the force of <b>MUST</b>, <b>SHOULD</b> and <b>MAY</b> (RFC 2119).</div></div>
-        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Proof<small>Gödel 1933</small></div><div class="ft2">\(\Box\) as <em>provable</em>. Gödel's ontological argument runs in S5; machine-checked in 2013.</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 
 
 <!-- 19 · Lewis's realism -->
-<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="22">
+<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="19">
   <div class="b-slide pal-a lens-historical dB" data-sec="dlw">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
       <h2 class="b-h">Lewis's realism</h2>
       <div class="figrow">
-        <!-- Portrait: https://commons.wikimedia.org/wiki/File:David_Lewis_(1962)_(cropped).webp — public domain per Commons; described there as the philosopher (1941–2001). NB "David Lewis 1968.jpg" on Commons looks like the Canadian politician: do not use. Localise to images/dlewis.webp -->
-        <div class="portrait"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/David%20Lewis%20(1962)%20(cropped).webp?width=640" alt="David Lewis, 1962" style="object-position:50% 15%"><div class="pc"><div class="nm">David Lewis</div><div class="dt">1941 – 2001 · photo 1962 · public domain</div><div class="rl"><em>Counterfactuals</em> (1973); <em>On the Plurality of Worlds</em> (1986).</div></div></div>
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:David_Lewis_(1962)_(cropped).webp — public domain per Commons; described there as the philosopher (1941–2001). NB "David Lewis 1968.jpg" on Commons looks like the Canadian politician: do not use. Local copy in images/. -->
+        <div class="portrait"><img src="images/dlewis.jpg" alt="David Lewis, 1962" style="object-position:50% 15%"><div class="pc"><div class="nm">David Lewis</div><div class="dt">1941 – 2001 · photo 1962 · public domain</div><div class="rl"><em>Counterfactuals</em> (1973); <em>On the Plurality of Worlds</em> (1986).</div></div></div>
         <div class="figbody">
-          <div class="erow"><div class="lb">Two questions</div><div class="tx tight">What is a possible world. What is it for something to <strong>exist in</strong> one. Menzel (SEP).</div></div>
           <div class="erow"><div class="lb">The argument</div><div class="tx tight">Things could have been otherwise in many ways. Ways things could have been <strong>exist</strong>. Call them worlds.</div></div>
-          <div class="erow"><div class="lb">What worlds are</div><div class="tx tight">Concrete, of a kind with ours: a maximal spatiotemporally connected object. To exist in one is to be <strong>part of</strong> it. <em>Actual</em> works like <em>here</em>: an indexical.</div></div>
+          <div class="erow"><div class="lb">What worlds are</div><div class="tx tight">Concrete, of a kind with ours. To exist in one is to be <strong>part of</strong> it. <em>Actual</em> works like <em>here</em>: an indexical.</div></div>
           <div class="erow"><div class="lb">The reply</div><div class="tx tight">The incredulous stare. His answer: worlds earn their place by use, as sets do in mathematics.</div></div>
-          <!-- TODO verify attribution of the Bardot sentence (Lakoff 1972, "Linguistics and natural logic"; sometimes credited to McCawley) -->
-          <div class="erow"><div class="lb">Counterparts</div><div class="tx tight">Worlds do not overlap, so nothing exists in two of them and nothing in one causes anything in another. What Anna might have done is what her <strong>counterparts</strong> do. <em>I dreamt that I was Brigitte Bardot and that I kissed me</em> (Lakoff).</div></div>
+          <!-- The sentence is McCawley's, reported in Lakoff 1968 (so Anand, SALT; Maier 2026, L&P). -->
+          <div class="erow"><div class="lb">Counterparts</div><div class="tx tight">Worlds do not overlap, so nothing exists in two of them. What Anna might have done is what her <strong>counterparts</strong> do. <em>I dreamt that I was Brigitte Bardot and that I kissed me</em> (McCawley, in Lakoff 1968).</div></div>
         </div>
       </div>
     </div>
@@ -792,20 +829,20 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Three answers -->
-<section class="slide" data-label="Worlds ·Three answers" data-screen-label="23">
+<section class="slide" data-label="Worlds ·Three answers" data-screen-label="20">
   <div class="b-slide pal-a lens-historical dB" data-sec="ers">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
       <h2 class="b-h">Three answers</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Concretism<span class="fm">D. Lewis</span></div><div class="ft2">A world is a concrete universe. To exist in it is to be a part of it.</div></div>
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Abstractionism<span class="fm">Adams · Plantinga · Stalnaker</span></div><div class="ft2">A world is an abstract <b>total way things could be</b>: a set of propositions holding \(p\) or its negation for every \(p\) (Adams), or a maximal possible state of affairs (Plantinga). To exist in it is for it to include your existing.</div></div>
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Combinatorialism<span class="fm">Armstrong · the <em>Tractatus</em></span></div><div class="ft2">A world is a <b>recombination</b> of the actual world's simples. Carnap's state-descriptions are the version built from sentences.</div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Concretism<span class="fm">D. Lewis</span></div><div class="ft2">What is a world: a concrete universe. What is it to <b>exist in</b> one: to be a part of it.</div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Abstractionism<span class="fm">Adams · Plantinga · Stalnaker</span></div><div class="ft2">A world is an abstract <b>total way things could be</b>: a consistent set of propositions settling every \(p\) (Adams), or a maximal possible state of affairs (Plantinga). To exist in it: it includes your existing.</div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Combinatorialism<span class="fm">Armstrong · the <em>Tractatus</em></span></div><div class="ft2">A world is a <b>recombination</b> of what there actually is. Carnap's state-descriptions: the version built from sentences.</div></div>
       </div>
       <div class="erow" style="margin-top:4px"><div class="lb">The cost of the second</div><div class="tx tight">Possible and consistent are themselves <strong>modal</strong>, so the worlds are defined in the vocabulary they were meant to explain. The extensional semantics is lost.</div></div>
-      <!-- TODO confirm page reference: Naming and Necessity (1980), preface, the two-dice passage (c. pp. 16-18) -->
-      <div class="erow"><div class="lb">Kripke's advice</div><div class="tx tight">Worlds are <strong>stipulated</strong>. Two dice: thirty-six states, thirty-six small worlds. Grain as fine as the question needs; the word game needed five.</div></div>
+      <!-- Naming and Necessity (1980), preface, pp. 15-17: the thirty-six possibilities are abstract states of the dice. -->
+      <div class="erow"><div class="lb">Kripke's advice</div><div class="tx tight">Worlds are <strong>stipulated</strong>. Two dice: thirty-six states, thirty-six small worlds. The word game needed five.</div></div>
     </div>
   </div>
 </section>
@@ -813,10 +850,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 21 · Fictionalism -->
-<section class="slide" data-label="Worlds ·Fictionalism" data-screen-label="24">
+<section class="slide" data-label="Worlds ·Fictionalism" data-screen-label="21">
   <div class="b-slide pal-a lens-historical dB" data-sec="fic">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
       <h2 class="b-h">Fictionalism</h2>
       <div class="erow" style="border-top:none"><div class="lb">Rosen (1990)</div><div class="tx tight">Talk of worlds as talk within a <strong>fiction</strong>, on a par with Holmes at 221B Baker Street. \(\Diamond p\) iff, according to the fiction of possible worlds, \(p\) holds at some world.</div></div>
@@ -826,7 +863,6 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="eg"><span class="no">(18)</span><span class="ex">In the Holmes stories, Holmes has blood type O.<span class="gl">neither true nor false: the stories leave it open</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">The operator</div><div class="tx tight"><em>According to the fiction</em> is an <strong>intensional operator</strong>. Lewis (1978) analyses it with possible worlds.</div></div>
-      <div class="erow"><div class="lb">Also available to the third</div><div class="tx tight">Armstrong declines merely possible states of affairs any standing, and speaks <strong>as if</strong> they exist.</div></div>
       <div class="erow"><div class="lb">A working position</div><div class="tx tight">Worlds as points in a model. Each settles every sentence; a relation holds among them.</div></div>
     </div>
   </div>
@@ -845,8 +881,64 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- Necessity · diagram -->
-<section class="slide" data-label="Formal ·Necessity" data-screen-label="25">
+<section class="slide" data-label="Formal ·Necessity" data-screen-label="22">
   <div class="b-slide pal-a lens-formal dB" data-sec="nec">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -867,7 +959,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <circle class="wd dim" cx="1250" cy="300" r="38"/><text class="wl dim" x="1250" y="310">w<tspan dy="7" font-size="68%">4</tspan></text>
         <circle class="wd dim" cx="400" cy="330" r="38"/><text class="wl dim" x="400" y="340">w<tspan dy="7" font-size="68%">5</tspan></text>
         <text class="lp" x="1326" y="78" text-anchor="end">p: visitors sign in</text>
-        <text class="la" x="860" y="364" text-anchor="middle">R(w<tspan dy="7" font-size="68%">0</tspan><tspan dy="-7">): the worlds where the rules are kept</tspan></text>
+        <text class="la" x="860" y="364" text-anchor="middle">what w<tspan dy="7" font-size="68%">0</tspan><tspan dy="-7"> sees: the rule-abiding worlds</tspan></text>
         <text class="lw" x="190" y="290" text-anchor="middle">evaluation world</text>
       </svg>
       <div class="erow" style="border-top:none"><div class="lb">\(\Box p\) at \(w_0\)</div><div class="tx tight"><strong>Every</strong> world \(w_0\) sees lies inside \(p\). (13) <em>Visitors must sign in</em>: true.</div></div>
@@ -879,7 +971,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Possibility · diagram -->
-<section class="slide" data-label="Formal ·Possibility" data-screen-label="26">
+<section class="slide" data-label="Formal ·Possibility" data-screen-label="23">
   <div class="b-slide pal-a lens-formal dB" data-sec="pos">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -900,7 +992,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <circle class="wd dim" cx="1250" cy="300" r="38"/><text class="wl dim" x="1250" y="310">w<tspan dy="7" font-size="68%">4</tspan></text>
         <circle class="wd dim" cx="400" cy="330" r="38"/><text class="wl dim" x="400" y="340">w<tspan dy="7" font-size="68%">5</tspan></text>
         <text class="lp" x="354" y="76">q: visitors use the lift</text>
-        <text class="la" x="860" y="364" text-anchor="middle">R(w<tspan dy="7" font-size="68%">0</tspan><tspan dy="-7">): the worlds where the rules are kept</tspan></text>
+        <text class="la" x="860" y="364" text-anchor="middle">what w<tspan dy="7" font-size="68%">0</tspan><tspan dy="-7"> sees: the rule-abiding worlds</tspan></text>
         <text class="lw" x="190" y="290" text-anchor="middle">evaluation world</text>
       </svg>
       <div class="erow" style="border-top:none"><div class="lb">\(\Diamond q\) at \(w_0\)</div><div class="tx tight"><strong>Some</strong> world \(w_0\) sees lies inside \(q\): \(w_1\). <em>Visitors may use the lift</em>: true.</div></div>
@@ -912,14 +1004,14 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 22 · Frames and models -->
-<section class="slide" data-label="Formal ·Frames and models" data-screen-label="27">
+<section class="slide" data-label="Formal ·Frames and models" data-screen-label="24">
   <div class="b-slide pal-a lens-formal dB" data-sec="frm">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Frames and models</h2>
       <div class="erow" style="border-top:none"><div class="lb">Language</div><div class="tx tight">Propositional logic, plus \(\Box\varphi\) and \(\Diamond\varphi\).</div></div>
-      <div class="erow"><div class="lb">Frame</div><div class="tx tight">\(\langle W, R\rangle\): a set of worlds and an <strong>accessibility relation</strong> \(R \subseteq W \times W\). \(wRw'\): \(w\) sees \(w'\).</div></div>
+      <div class="erow"><div class="lb">Frame</div><div class="tx tight">\(\langle W, R\rangle\): a set of worlds and an <strong>accessibility relation</strong> \(R \subseteq W \times W\). \(wRw'\): \(w\) <strong>sees</strong> \(w'\). \(R(w)\): the set of worlds \(w\) sees.</div></div>
       <div class="erow"><div class="lb">Model</div><div class="tx tight">A frame plus a <strong>valuation</strong>: \(V(p)\), the set of worlds where \(p\) is true.</div></div>
       <div class="egpanel">
         <div class="eghead">A model</div>
@@ -943,7 +1035,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 23 · Truth at a world -->
-<section class="slide" data-label="Formal ·Truth at a world" data-screen-label="28">
+<section class="slide" data-label="Formal ·Truth at a world" data-screen-label="25">
   <div class="b-slide pal-a lens-formal dB" data-sec="tru">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -955,7 +1047,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         \[ M,w \models \Diamond\varphi \;\text{ iff for some } w' \text{ such that } wRw':\; M,w' \models \varphi \]</div>
         <div class="fxnote">the connectives keep their usual clauses, checked at \(w\)</div>
       </div>
-      <div class="erow" style="border-top:none"><div class="lb">As sets</div><div class="tx tight">\(R(w)\): the worlds \(w\) sees. \(\Box\varphi\) at \(w\): \(R(w) \subseteq \sem{\varphi}\). \(\Diamond\varphi\) at \(w\): \(R(w) \cap \sem{\varphi} \neq \emptyset\).</div></div>
+      <div class="erow" style="border-top:none"><div class="lb">As sets</div><div class="tx tight">\(\sem{\varphi}\): the set of worlds where \(\varphi\) is true. \(\Box\varphi\) at \(w\): \(R(w) \subseteq \sem{\varphi}\). \(\Diamond\varphi\) at \(w\): \(R(w) \cap \sem{\varphi} \neq \emptyset\).</div></div>
       <div class="erow"><div class="lb">Last week</div><div class="tx tight"><em>Sue believes p</em> iff \(\mathrm{DOX} \subseteq p\). The same clause, with <strong>belief</strong> as the relation.</div></div>
     </div>
   </div>
@@ -964,7 +1056,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 24 · Worked example -->
-<section class="slide" data-label="Formal ·Worked example" data-screen-label="29">
+<section class="slide" data-label="Formal ·Worked example" data-screen-label="26">
   <div class="b-slide pal-a lens-formal" data-sec="wrk">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -984,7 +1076,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 25 · Your turn -->
-<section class="slide" data-label="Formal ·Your turn" data-screen-label="30">
+<section class="slide" data-label="Formal ·Your turn" data-screen-label="27">
   <div class="b-slide pal-a lens-formal" data-sec="ex">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1004,8 +1096,52 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
+<!-- 29 · must and may -->
+<section class="slide" data-label="Formal ·Must and may" data-screen-label="28">
+  <div class="b-slide pal-a lens-formal dB" data-sec="lex">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h"><em>Must</em> and <em>may</em></h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">Lexical entries</div>
+        <div class="fx">\[ \sem{\textit{must}}^{w} = \lambda R.\,\lambda p.\;\forall w'\,[\,wRw' \rightarrow w' \in p\,] \]
+        \[ \sem{\textit{may}}^{w} = \lambda R.\,\lambda p.\;\exists w'\,[\,wRw' \wedge w' \in p\,] \]</div>
+        <div class="fxnote">\(R\): an accessibility relation &middot; \(p\): a proposition, a set of worlds &middot; after von Fintel &amp; Heim, chapter 2</div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">In words</div><div class="tx tight"><em>Must p</em> is true at \(w\) iff \(p\) holds at <strong>every</strong> world \(w\) sees. <em>May p</em>: at <strong>some</strong> world \(w\) sees.</div></div>
+      <div class="erow"><div class="lb">Flavour</div><div class="tx tight">\(R\) comes from the context. Epistemic: \(wRw'\) iff everything known in \(w\) is true in \(w'\). Deontic: \(wRw'\) iff the rules of \(w\) are all followed in \(w'\).</div></div>
+      <div class="erow"><div class="lb">Division of labour</div><div class="tx tight"><strong>Force</strong> in the lexicon. <strong>Flavour</strong> from the context, as \(R\).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Other notations -->
+<section class="slide" data-label="Formal ·Other notations" data-screen-label="29">
+  <div class="b-slide pal-a lens-formal dB" data-sec="nota">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Other notations</h2>
+      <div class="ntab">
+        <div class="nh"><span>In this module</span><span>In the readings and elsewhere</span></div>
+        <div class="nr"><div class="no1">\(\Box\varphi \quad \Diamond\varphi\)</div><div class="no2">\(L\varphi,\ M\varphi\) <i>Hughes &amp; Cresswell</i> &middot; \(N\varphi\) <i>Carnap</i> &middot; \(K_a\varphi,\ B_a\varphi\) <i>knows, believes</i> &middot; \(O\varphi,\ P\varphi\) <i>obligatory, permitted</i> &middot; \(G\varphi,\ F\varphi\) <i>always, at some time: Prior</i></div></div>
+        <div class="nr"><div class="no1">\(wRw'\)<small>w sees w′</small></div><div class="no2">\(R(w,w')\) <i>Portner</i> &middot; \(R(w)(w')\) <i>von Fintel &amp; Heim</i> &middot; \(\textit{acc}(w)(w')\) <i>Coppock &amp; Champollion</i> &middot; \(\langle w,w'\rangle \in R\) &middot; <i>w′ is accessible from w</i></div></div>
+        <div class="nr"><div class="no1">\(M, w \models \varphi\)</div><div class="no2">\(\sem{\varphi}^{w,M} = 1\) <i>Portner</i> &middot; \(\sem{\varphi}^{M,g,w} = \mathrm{T}\) <i>Coppock &amp; Champollion</i> &middot; \(w \Vdash \varphi\)</div></div>
+        <div class="nr"><div class="no1">\(V(p)\)<small>a set of worlds</small></div><div class="no2">\(V(w,p) = 1\) <i>Portner: a truth value for each world and atom</i></div></div>
+        <div class="nr"><div class="no1">T &nbsp;&middot;&nbsp; 5</div><div class="no2">M <i>for T</i> &middot; E <i>for 5: Portner</i> &middot; KT4 <i>for S4</i> &middot; KT5 <i>for S5</i></div></div>
+        <div class="nr"><div class="no1">world &middot; frame &middot; model</div><div class="no2"><i>index, point, state</i> &middot; <i>Kripke frame</i> &middot; <i>Kripke model; in computing, Kripke structure</i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- Portner's ants -->
-<section class="slide" data-label="Formal ·Portner's ants" data-screen-label="31">
+<section class="slide" data-label="Formal ·Portner's ants" data-screen-label="30">
   <div class="b-slide pal-a lens-formal dB" data-sec="ants">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1031,7 +1167,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Validity -->
-<section class="slide" data-label="Formal ·Validity" data-screen-label="32">
+<section class="slide" data-label="Formal ·Validity" data-screen-label="31">
   <div class="b-slide pal-a lens-formal dB" data-sec="val">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1052,42 +1188,38 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Frame conditions -->
-<section class="slide" data-label="Formal ·Frame conditions" data-screen-label="33">
+<section class="slide" data-label="Formal ·Frame conditions" data-screen-label="32">
   <div class="b-slide pal-a lens-formal dB" data-sec="fcs">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB snug">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Frame conditions</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">T, also M<span class="fm">\(\Box p \rightarrow p\)</span></div><div class="ft2"><b>Reflexive</b>: every world sees itself.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">T<span class="fm">\(\Box p \rightarrow p\)</span></div><div class="ft2"><b>Reflexive</b>: every world sees itself.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">D<span class="fm">\(\Box p \rightarrow \Diamond p\)</span></div><div class="ft2"><b>Serial</b>: every world sees some world.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">4<span class="fm">\(\Box p \rightarrow \Box\Box p\)</span></div><div class="ft2"><b>Transitive</b>: whatever a seen world sees is seen.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">B<span class="fm">\(p \rightarrow \Box\Diamond p\)</span></div><div class="ft2"><b>Symmetric</b>: seeing is mutual.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">5<span class="fm">\(\Diamond p \rightarrow \Box\Diamond p\)</span></div><div class="ft2"><b>Euclidean</b>: worlds seen from one world see each other.</div></div>
       </div>
-      <div class="erow" style="margin-top:4px"><div class="lb">Systems</div><div class="tx tight">K: no condition. KD: D. S4: T + 4. S5: T + 5, with \(R\) an equivalence relation. KD45: D + 4 + 5.</div></div>
+      <div class="erow" style="margin-top:4px"><div class="lb">Systems</div><div class="tx tight">K: none &middot; KD: D &middot; S4: T + 4 &middot; S5: T + 5 &middot; KD45: D + 4 + 5</div></div>
     </div>
   </div>
 </section>
 
 
 
-
-
-
-
 <!-- 28 · Which frame for which flavour -->
-<section class="slide" data-label="Formal ·Axioms and flavours" data-screen-label="34">
+<section class="slide" data-label="Formal ·Axioms and flavours" data-screen-label="33">
   <div class="b-slide pal-a lens-formal dB" data-sec="flf">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Axioms and flavours</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>T · idealised: S5</small></div><div class="ft2">\(wRw'\) iff everything \(i\) knows in \(w\) is true in \(w'\). <b>Reflexive</b>. <span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em></div></div>
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Belief<small>KD45</small></div><div class="ft2">The same, with <em>believes</em>. Serial; reflexivity fails. <em>Sue believes that it is raining, but it isn't.</em></div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>KD</small></div><div class="ft2">\(wRw'\) iff all the rules of \(w\) are followed in \(w'\). Serial; reflexivity fails. <em>If Mary must tell the truth, then she <b>will</b></em>: no. <em>…then she <b>may</b></em>: yes.</div></div>
-        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Future time<small>transitive, serial</small></div><div class="ft2">\(\Box\) as <em>always</em>: (4) holds. Earlier and later are never mutual: (B) fails.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>T · idealised: S5</small></div><div class="ft2">What is known is true, so \(R\) is <b>reflexive</b>. <span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Epistemic <em>must</em><small>the same R</small></div><div class="ft2">So <em>must p</em> entails <em>p</em>. The wet-umbrellas contrast in (14) is a <b>problem</b> for the simple theory.</div></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Belief<small>KD45</small></div><div class="ft2">Serial; reflexivity fails. <em>Sue believes that it is raining, but it isn't.</em></div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>KD</small></div><div class="ft2">Serial; reflexivity fails. From <em>Mary must tell the truth</em>: <em>she <b>will</b></em> does not follow; <em>she <b>may</b></em> does.</div></div>
       </div>
       <div class="erow" style="margin-top:6px"><div class="lb">The move</div><div class="tx tight">A flavour is a choice of \(R\). Its logic follows from the <strong>properties of \(R\)</strong>. Portner (2009: 20–23).</div></div>
     </div>
@@ -1096,33 +1228,11 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- 29 · must and may -->
-<section class="slide" data-label="Formal ·Must and may" data-screen-label="35">
-  <div class="b-slide pal-a lens-formal dB" data-sec="lex">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h"><em>Must</em> and <em>may</em></h2>
-      <div class="egpanel" style="margin-top:4px">
-        <div class="eghead">Lexical entries</div>
-        <div class="fx">\[ \sem{\textit{must}}^{w} = \lambda R.\,\lambda p.\;\forall w'\,[\,R(w)(w') \rightarrow p(w')\,] \]
-        \[ \sem{\textit{may}}^{w} = \lambda R.\,\lambda p.\;\exists w'\,[\,R(w)(w') \wedge p(w')\,] \]</div>
-        <div class="fxnote">\(R\): \(\langle s,\langle s,t\rangle\rangle\) &middot; \(p\): \(\langle s,t\rangle\) &middot; after von Fintel &amp; Heim, chapter 2</div>
-      </div>
-      <div class="erow" style="border-top:none"><div class="lb">In words</div><div class="tx tight"><em>Must</em> takes a relation from the context and a proposition. True at \(w\) iff the proposition holds at <strong>every</strong> world accessible from \(w\).</div></div>
-      <div class="erow"><div class="lb">With world variables</div><div class="tx tight">\(\Box p\) spelled out in predicate logic: \(\forall w[\textit{acc}(\dot{w})(w) \rightarrow p(w)]\). Coppock &amp; Champollion.</div></div>
-      <div class="erow"><div class="lb">Division of labour</div><div class="tx tight"><strong>Force</strong> in the lexicon. <strong>Flavour</strong> from the context, as \(R\).</div></div>
-    </div>
-  </div>
-</section>
-
-
-
 <!-- Substitution under necessity -->
-<section class="slide" data-label="Formal ·Substitution under necessity" data-screen-label="36">
+<section class="slide" data-label="Formal ·Substitution under necessity" data-screen-label="34">
   <div class="b-slide pal-a lens-formal dB" data-sec="subn">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Substitution under necessity</h2>
       <!-- After Quine 1953, "Reference and modality" (his numeral was nine). -->
@@ -1141,14 +1251,14 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 30 · Limits of the simple system -->
-<section class="slide" data-label="Formal ·Limits" data-screen-label="37">
+<section class="slide" data-label="Formal ·Limits" data-screen-label="35">
   <div class="b-slide pal-a lens-formal dB" data-sec="lim">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Limits of the simple system <span class="wktag">Week 3</span></h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Whose knowledge, and when<small>Portner 2009</small></div><div class="ft2">John says <em>Mary must be lost</em>: his knowledge, at the time of speaking. The theory equally allows Joan's, or last Friday's. \(R\) has to come from the <b>context</b>.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Whose knowledge, and when<small>Portner 2009</small></div><div class="ft2">John says <em>Mary must be lost</em>: his knowledge, now. The theory equally allows Joan's, or last Friday's. \(R\) has to come from the <b>context</b>.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl"><em>Must</em> and <em>should</em><small>weak necessity</small></div><div class="ft2"><em>Most</em> accessible worlds: both sets are infinite, so no ratio. A patch: <em>should</em> counts more rules, so it sees fewer worlds, and <em>must p</em> entails <em>should p</em>.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Boxes and diamonds<small>Cresswell; Coppock &amp; Champollion</small></div><div class="ft2"><em>It might have been that everyone rich was poor.</em> The sensible reading keeps <em>rich</em> at the actual world inside the scope of \(\Diamond\). No arrangement of boxes and diamonds says that.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Conflicting rules<small>seriality</small></div><div class="ft2">A Catch-22: no world keeps every rule. \(R(w)\) is empty: every <em>must</em> true, every <em>may</em> false.</div></div>
@@ -1171,7 +1281,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 31 · Scots: double modals -->
-<section class="slide" data-label="Typological ·Scots and Ulster" data-screen-label="38">
+<section class="slide" data-label="Typological ·Scots and Ulster" data-screen-label="36">
   <div class="b-slide pal-a lens-typological dB" data-sec="sco">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1181,11 +1291,11 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">Two modals, one clause</div>
         <div class="eg"><span class="no">(24)</span><span class="ex">He'll no can come this week.<span class="gl">Edinburgh · Brown &amp; Miller (1975)</span></span></div>
-        <div class="eg"><span class="no">(25)</span><span class="ex">might can no dae it<span class="gl">Hawick · geolocated tweet, <em>English Language &amp; Linguistics</em> (2024)</span></span></div>
+        <div class="eg"><span class="no">(25)</span><span class="ex">might can no dae it<span class="gl">Hawick · geolocated tweet · Morin, Desagulier &amp; Grieve (2024)</span></span></div>
         <div class="eg"><span class="no">(26)</span><span class="ex">I'll not can reply to this letter today.<span class="gl">Ulster · McMordie (1897): <em>will can</em> reported only with negation</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">The inventory</div><div class="tx tight"><em>might</em>, <em>will</em>, <em>used to</em> first; <em>can</em>, <em>could</em> second. Brown (1991).</div></div>
-      <div class="erow"><div class="lb">As operators</div><div class="tx tight">Two modals, <strong>two relations</strong>. <em>might can</em>: \(\Diamond_{\textit{epistemic}}\,\Diamond_{\textit{circumstantial}}\;p\). Elsewhere: <em>might be able to</em>.</div></div>
+      <div class="erow"><div class="lb">As operators</div><div class="tx tight">Two modals, <strong>two relations</strong>. <em>might can</em>: \(\Diamond\Diamond p\), epistemic over circumstantial. Elsewhere: <em>might be able to</em>.</div></div>
     </div>
   </div>
 </section>
@@ -1193,7 +1303,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 32 · Irish English: epistemic mustn't -->
-<section class="slide" data-label="Typological ·Irish English" data-screen-label="39">
+<section class="slide" data-label="Typological ·Irish English" data-screen-label="37">
   <div class="b-slide pal-a lens-typological dB" data-sec="ire">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1214,7 +1324,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 33 · Nez Perce -->
-<section class="slide" data-label="Typological ·Nez Perce" data-screen-label="40">
+<section class="slide" data-label="Typological ·Nez Perce" data-screen-label="38">
   <div class="b-slide pal-a lens-typological dB" data-sec="nez">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1232,7 +1342,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 34 · Lecture closes -->
-<section class="slide" data-label="Lecture closes" data-screen-label="41">
+<section class="slide" data-label="Lecture closes" data-screen-label="39">
   <div class="b-slide pal-a lens-typological" data-sec="close">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1257,20 +1367,20 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   var TITLES = {
     wk:"This week", road:"Roadmap", rd:"Readings",
     game:"Must and might", lsp:"Possible worlds", dual:"Duality", scope:"Scope", flav:"Flavours", tq:"Flavours and inference",
-    spine:"The historical spine", cil:"C. I. Lewis", car:"Carnap: state-descriptions", carn:"Carnap: necessity", vw:"von Wright", dub:"Dublin, 1956", kri:"Kripke", uses:"Uses of the semantics",
+    cil:"C. I. Lewis", car:"Carnap", vw:"von Wright", dub:"Dublin, 1956", kri:"Kripke",
     dlw:"Lewis's realism", ers:"Three answers", fic:"Fictionalism",
     nec:"Necessity", pos:"Possibility", frm:"Frames and models", tru:"Truth at a world", wrk:"Worked example", ex:"Your turn",
-    ants:"Portner's ants", val:"Validity", fcs:"Frame conditions", flf:"Axioms and flavours",
-    lex:"Must and may", subn:"Substitution under necessity", lim:"Limits",
+    lex:"Must and may", nota:"Other notations", ants:"Portner's ants", val:"Validity", fcs:"Frame conditions",
+    flf:"Axioms and flavours", subn:"Substitution under necessity", lim:"Limits",
     sco:"Scots and Ulster", ire:"Irish English", nez:"Nez Perce", close:"Lecture closes"
   };
   var GROUPS = [
-    { t:"Introduction",       sc:null,         keys:["wk","road","rd"] },
-    { t:"Empirical",          sc:"--lens-emp", keys:["game","lsp","dual","scope","flav","tq"] },
-    { t:"Historical",         sc:"--lens-his", keys:["spine","cil","car","carn","vw","dub","kri","uses"] },
-    { t:"What a world is",    sc:"--lens-his", keys:["dlw","ers","fic"] },
-    { t:"Formal",             sc:"--lens-for", keys:["nec","pos","frm","tru","wrk","ex","ants","val","fcs","flf","lex","subn","lim"] },
-    { t:"Typological",        sc:"--lens-typ", keys:["sco","ire","nez","close"] }
+    { t:"Introduction",    sc:null,         keys:["wk","road","rd"] },
+    { t:"Empirical",       sc:"--lens-emp", keys:["game","lsp","dual","scope","flav","tq"] },
+    { t:"Historical",      sc:"--lens-his", keys:["cil","car","vw","dub","kri"] },
+    { t:"What a world is", sc:"--lens-his", keys:["dlw","ers","fic"] },
+    { t:"Formal",          sc:"--lens-for", keys:["nec","pos","frm","tru","wrk","ex","lex","nota","ants","val","fcs","flf","subn","lim"] },
+    { t:"Typological",     sc:"--lens-typ", keys:["sco","ire","nez","close"] }
   ];
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
   var idxOf = {};

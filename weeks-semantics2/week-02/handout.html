@@ -43,8 +43,7 @@
       <h2>The modal language</h2>
       <div class="defs">
         <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Atomic propositions</span><span class="g"><i>p</i>, <i>q</i>, <i>r</i>, …</span></div>
-        <div class="d"><span class="t">Formulas</span><span class="g">φ ::= <i>p</i> | ¬φ | (φ ∧ ψ) | (φ ∨ ψ) | (φ → ψ) | □φ | ◇φ</span></div>
+        <div class="d"><span class="t">Formulas</span><span class="g">φ ::= <i>p</i> | ¬φ | (φ ∧ ψ) | (φ ∨ ψ) | (φ → ψ) | □φ | ◇φ, with <i>p</i>, <i>q</i>, <i>r</i>, … atomic.</span></div>
         <div class="d"><span class="t">□<i>A</i></span><span class="g">Necessarily / must / always / knows that <i>A</i>.</span></div>
         <div class="d"><span class="t">◇<i>A</i></span><span class="g">Possibly / might / sometimes / it is compatible that <i>A</i>.</span></div>
         <div class="d"><span class="t">Material conditional</span><span class="g">(φ → ψ) is false when φ is true and ψ is false, and true otherwise.</span></div>
@@ -60,9 +59,9 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Choose an atomic proposition for each of (1) to (4) and translate the sentence with □, ◇ and ¬. (3) and (4) contain the same string <i>may not</i>: state the scope of ¬ in each.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Use duality to give an equivalent formula for each translation, and an English sentence that expresses it.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
@@ -82,8 +81,8 @@
         <div class="d"><span class="t">Model</span><span class="g">⟨<i>W</i>, <i>R</i>, <i>V</i>⟩ where <i>V</i> is a valuation assigning each atomic proposition <i>p</i> a set <i>V</i>(<i>p</i>) ⊆ <i>W</i>.</span></div>
         <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ □φ</span><span class="g">iff ∀<i>w</i>′ ∈ <i>W</i> (<i>wRw</i>′ ⇒ <i>M</i>, <i>w</i>′ ⊨ φ)</span></div>
         <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ ◇φ</span><span class="g">iff ∃<i>w</i>′ ∈ <i>W</i> (<i>wRw</i>′ ∧ <i>M</i>, <i>w</i>′ ⊨ φ)</span></div>
-        <div class="d"><span class="t"><i>R</i>(<i>w</i>)</span><span class="g">The set of worlds accessible from <i>w</i>. □φ at <i>w</i>: <i>R</i>(<i>w</i>) ⊆ <i>V</i>(φ). ◇φ at <i>w</i>: <i>R</i>(<i>w</i>) ∩ <i>V</i>(φ) ≠ ∅.</span></div>
-        <div class="d"><span class="t">Notation</span><span class="g">Portner writes ⟦α⟧<sup><i>w</i>,<i>M</i></sup> = 1 for <i>M</i>, <i>w</i> ⊨ α.</span></div>
+        <div class="d"><span class="t"><i>R</i>(<i>w</i>)</span><span class="g">The set of worlds <i>w</i> sees: {<i>w</i>′ : <i>wRw</i>′}. □φ at <i>w</i>: <i>R</i>(<i>w</i>) ⊆ ⟦φ⟧. ◇φ at <i>w</i>: <i>R</i>(<i>w</i>) ∩ ⟦φ⟧ ≠ ∅.</span></div>
+        <div class="d"><span class="t">⟦φ⟧</span><span class="g">The set of worlds where φ is true.</span></div>
       </div>
       <div class="proc">
         <div class="sc proc-head">Checking a modal formula</div>
@@ -92,15 +91,7 @@
           <li>To check <i>M</i>, <i>w</i> ⊨ ◇<i>A</i>: look for some accessible world where <i>A</i> holds.</li>
         </ol>
       </div>
-      <p><span class="runin">Model <i>M</i><sub>1</sub>.</span> <i>W</i> = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. <i>V</i>(<i>p</i>) = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>}. Every world is accessible from every world.</p>
-      <table class="rec fill">
-        <tr><th>World</th><th><i>p</i></th><th>□<i>p</i></th><th>◇<i>p</i></th></tr>
-        <tr><td><i>w</i><sub>0</sub></td><td>T</td><td>F</td><td>T</td></tr>
-        <tr><td><i>w</i><sub>1</sub></td><td></td><td></td><td></td></tr>
-        <tr><td><i>w</i><sub>2</sub></td><td>F</td><td>F</td><td>T</td></tr>
-        <tr><td><i>w</i><sub>3</sub></td><td></td><td></td><td></td></tr>
-      </table>
-      <p><span class="runin">Model <i>M</i><sub>2</sub>.</span> The model from the lecture. <i>V</i>(<i>p</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. <i>V</i>(<i>q</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Arrows show <i>R</i>.</p>
+      <p><span class="runin">Model <i>M</i>.</span> The model from the lecture. <i>V</i>(<i>p</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. <i>V</i>(<i>q</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Arrows show <i>R</i>.</p>
       <svg class="mfig" viewBox="0 0 520 74" role="img" aria-label="Four worlds in a row. w1 sees itself and w2; w2 sees w3; w3 sees w4; w4 sees nothing.">
         <defs><marker id="hah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z"/></marker></defs>
         <path class="ar" d="M52 26 C 34 -4, 86 -4, 68 26" marker-end="url(#hah)"/>
@@ -112,16 +103,24 @@
         <circle class="nd" cx="320" cy="40" r="17"/><text class="wl" x="320" y="44">w<tspan dy="3" font-size="68%">3</tspan></text><text class="vl" x="320" y="71">q</text>
         <circle class="nd" cx="450" cy="40" r="17"/><text class="wl" x="450" y="44">w<tspan dy="3" font-size="68%">4</tspan></text>
       </svg>
+      <table class="rec fill">
+        <tr><th>World</th><th><i>p</i></th><th><i>q</i></th><th>□<i>p</i></th><th>◇<i>p</i></th><th>□<i>q</i></th><th>◇<i>q</i></th></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Complete the rows for <i>w</i><sub>1</sub> and <i>w</i><sub>3</sub> in the table for <i>M</i><sub>1</sub>.</span></div>
-        <div class="task"><span>(b)</span><span>In <i>M</i><sub>2</sub>, write out <i>R</i>(<i>w</i>) for each world. Then evaluate ◇□<i>q</i> at <i>w</i><sub>1</sub>, □(<i>p</i> → <i>q</i>) at <i>w</i><sub>1</sub>, and □<i>p</i> and ◇<i>p</i> at <i>w</i><sub>4</sub>. Show the sets you compared.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(a)</span><span>Write out <i>R</i>(<i>w</i>) for each world. Then complete the rows for <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub> and <i>w</i><sub>4</sub>.</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(b)</span><span>Evaluate ◇□<i>q</i> at <i>w</i><sub>1</sub> and □(<i>p</i> → <i>q</i>) at <i>w</i><sub>1</sub>. Show the sets you compared.</span></div>
+        <div class="lines"><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
       <p><b>Kripke 1963.</b> Semantical considerations on modal logic. <i>Acta Philosophica Fennica</i> 16: 83–94.</p>
-      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> Exercise 4.</p>
+      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> “Modal logic”, Exercise 4.</p>
     </div>
   </div>
 
@@ -165,8 +164,8 @@
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">K</span><span class="g">The minimal normal modal logic: valid on all frames.</span></div>
-        <div class="d"><span class="t">T, also M</span><span class="g">Adds □<i>A</i> → <i>A</i>. Reflexive frames.</span></div>
-        <div class="d"><span class="t">S4, also M4</span><span class="g">Reflexive and transitive frames.</span></div>
+        <div class="d"><span class="t">T</span><span class="g">Adds □<i>A</i> → <i>A</i>. Reflexive frames.</span></div>
+        <div class="d"><span class="t">S4</span><span class="g">Reflexive and transitive frames.</span></div>
         <div class="d"><span class="t">S5</span><span class="g">Equivalence frames: reflexive, symmetric and transitive.</span></div>
         <div class="d"><span class="t">KD</span><span class="g">Serial frames. Importantly, without (T).</span></div>
         <div class="d"><span class="t">KD45</span><span class="g">Serial, transitive and Euclidean frames.</span></div>
@@ -174,14 +173,14 @@
       <table class="rec">
         <tr><th>Axiom</th><th>Formula</th><th>Frame condition</th></tr>
         <tr><td>(D)</td><td>□<i>A</i> → ◇<i>A</i></td><td>Serial: ∀<i>w</i> ∃<i>u</i> (<i>wRu</i>)</td></tr>
-        <tr><td>(M), also (T)</td><td>□<i>A</i> → <i>A</i></td><td>Reflexive: ∀<i>w</i> (<i>wRw</i>)</td></tr>
+        <tr><td>(T)</td><td>□<i>A</i> → <i>A</i></td><td>Reflexive: ∀<i>w</i> (<i>wRw</i>)</td></tr>
         <tr><td>(4)</td><td>□<i>A</i> → □□<i>A</i></td><td>Transitive: <i>wRv</i> ∧ <i>vRu</i> ⇒ <i>wRu</i></td></tr>
         <tr><td>(B)</td><td><i>A</i> → □◇<i>A</i></td><td>Symmetric: <i>wRv</i> ⇒ <i>vRw</i></td></tr>
-        <tr><td>(5), Portner's (E)</td><td>◇<i>A</i> → □◇<i>A</i></td><td>Euclidean: <i>wRv</i> ∧ <i>wRu</i> ⇒ <i>vRu</i></td></tr>
+        <tr><td>(5)</td><td>◇<i>A</i> → □◇<i>A</i></td><td>Euclidean: <i>wRv</i> ∧ <i>wRu</i> ⇒ <i>vRu</i></td></tr>
       </table>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Say which of the five conditions hold of <i>R</i> in <i>M</i><sub>2</sub> from block 1. For each that fails, name the worlds that show it.</span></div>
+        <div class="task"><span>(a)</span><span>Say which of the five conditions hold of <i>R</i> in <i>M</i> from block 1. For each that fails, name the worlds that show it.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Draw a frame with two or three worlds on which (4) fails. Give the valuation and the world at which □<i>p</i> → □□<i>p</i> is false.</span></div>
         <div class="draw"></div>
@@ -221,7 +220,7 @@
         <div class="task"><span>(b)</span><span>Fill in the table: ✓ where the axiom is plausible for that reading of □, ✗ where it is not. Be ready to give the English judgement behind each mark.</span></div>
       </div>
       <table class="rec fill">
-        <tr><th>□ read as</th><th>(M)</th><th>(D)</th><th>(4)</th><th>(B)</th></tr>
+        <tr><th>□ read as</th><th>(T)</th><th>(D)</th><th>(4)</th><th>(B)</th></tr>
         <tr><td><i>x</i> knows that</td><td></td><td></td><td></td><td></td></tr>
         <tr><td><i>x</i> believes that</td><td></td><td></td><td></td><td></td></tr>
         <tr><td>it is obligatory that</td><td></td><td></td><td></td><td></td></tr>
@@ -230,10 +229,9 @@
       <div class="proc">
         <div class="sc proc-head">Standard choices</div>
         <ol class="steps">
-          <li>(M): plausible for knowledge, which is factive. Implausible for belief and for deontic <i>ought</i>.</li>
+          <li>(T): plausible for knowledge, which is factive. Implausible for belief and for deontic <i>ought</i>.</li>
           <li>(D): if <i>A</i> is obligatory, then <i>A</i> is permitted. Often assumed for belief. Temporal: each time has an accessible future.</li>
           <li>(4): temporal <i>always</i>; with (5), the introspection ideals for knowledge and belief. (B) fails for tense: earlier and later are never symmetric.</li>
-          <li>S5: an idealised logic of knowledge. KD: a standard deontic baseline. KD45: a standard logic of belief.</li>
         </ol>
       </div>
     </div>
@@ -288,12 +286,10 @@
       <h2>World variables</h2>
       <div class="defs">
         <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Evaluation world</span><span class="g">The world relative to which truth is evaluated, written ẇ.</span></div>
-        <div class="d"><span class="t">Ty2</span><span class="g">A logic with two basic types besides <i>t</i>: <i>e</i> for individuals and <i>s</i> for possible worlds.</span></div>
-        <div class="d"><span class="t">Proposition</span><span class="g">Type ⟨<i>s</i>,<i>t</i>⟩: a function from possible worlds to truth values.</span></div>
-        <div class="d"><span class="t">□<i>p</i>, spelled out</span><span class="g">∀<i>w</i>[acc(ẇ)(<i>w</i>) → <i>p</i>(<i>w</i>)]</span></div>
-        <div class="d"><span class="t">◇<i>p</i>, spelled out</span><span class="g">∃<i>w</i>[acc(ẇ)(<i>w</i>) ∧ <i>p</i>(<i>w</i>)]</span></div>
-        <div class="d"><span class="t">@</span><span class="g">A constant for the actual world.</span></div>
+        <div class="d"><span class="t">□<i>p</i> at <i>w</i>, spelled out</span><span class="g">∀<i>w</i>′[<i>wRw</i>′ → <i>w</i>′ ∈ <i>p</i>]</span></div>
+        <div class="d"><span class="t">◇<i>p</i> at <i>w</i>, spelled out</span><span class="g">∃<i>w</i>′[<i>wRw</i>′ ∧ <i>w</i>′ ∈ <i>p</i>]</span></div>
+        <div class="d"><span class="t">World subscript</span><span class="g">rich<sub><i>w</i></sub>(<i>x</i>): <i>x</i> is rich in world <i>w</i>.</span></div>
+        <div class="d"><span class="t">@</span><span class="g">The actual world.</span></div>
       </div>
       <ol class="exs">
         <li><span>(20)</span><span class="s">It's not necessary for Alex to take out the trash.</span></li>
@@ -302,16 +298,15 @@
       </ol>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Translate (20) and (21) with world variables, using <i>q</i> for <i>Alex takes out the trash</i>. Show the two are equivalent.</span></div>
+        <div class="task"><span>(a)</span><span>Spell out (20) and (21) with quantifiers over worlds, using <i>q</i> for <i>Alex takes out the trash</i> and a deontic <i>R</i>. Show the two are equivalent.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Give two translations of (22) with ◇, ∀ and →, one with ◇ widest and one with ∀ widest. Paraphrase each.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>(22) has a sensible reading that neither captures: the people who are in fact rich are all poor together. Write it with world variables and @.</span></div>
+        <div class="task"><span>(c)</span><span>(22) has a sensible reading that neither captures: the people who are in fact rich are all poor together. Write it with a quantifier over worlds, world subscripts on <i>rich</i> and <i>poor</i>, and @.</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
-      <p><b>Gallin 1975.</b> <i>Intensional and Higher-Order Modal Logic.</i> North-Holland.</p>
       <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> “Explicit reference to worlds.”</p>
     </div>
   </div>
@@ -363,12 +358,20 @@
           <li>Translate English modal sentences into □, ◇ and ¬, and convert between them by duality.</li>
           <li>Evaluate □φ and ◇φ at a world of a given model, including nested formulas and dead ends.</li>
           <li>Tell validity in a model from validity on a frame, and build a countermodel.</li>
-          <li>Match (D), (M), (4), (B) and (5) to the frame conditions, and name K, T, S4, S5, KD and KD45.</li>
+          <li>Match (D), (T), (4), (B) and (5) to the frame conditions, and name K, T, S4, S5, KD and KD45.</li>
           <li>Argue from English judgements which conditions the accessibility relation of a flavour has.</li>
           <li>Write an accessibility relation for a given flavour.</li>
           <li>Move between □ / ◇ and explicit quantification over worlds, and say what the second can express that the first cannot.</li>
         </ol>
       </div>
+      <p><span class="runin">Notation.</span> This sheet and the slides use one notation. The readings use others.</p>
+      <table class="rec">
+        <tr><th>On this sheet</th><th>In the readings</th></tr>
+        <tr><td><i>wRw</i>′</td><td><i>R</i>(<i>w</i>, <i>w</i>′) Portner · <i>R</i>(<i>w</i>)(<i>w</i>′) von Fintel &amp; Heim · acc(<i>w</i>)(<i>w</i>′) Coppock &amp; Champollion</td></tr>
+        <tr><td><i>M</i>, <i>w</i> ⊨ φ</td><td>⟦φ⟧<sup><i>w</i>,<i>M</i></sup> = 1 Portner · ⟦φ⟧<sup><i>M</i>,<i>g</i>,<i>w</i></sup> = T Coppock &amp; Champollion</td></tr>
+        <tr><td><i>V</i>(<i>p</i>), a set of worlds</td><td><i>V</i>(<i>w</i>, <i>p</i>) = 1 Portner</td></tr>
+        <tr><td>(T), (5)</td><td>(M) for (T); (E) for (5)</td></tr>
+      </table>
     </div>
     <div class="note"></div>
   </div>

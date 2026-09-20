@@ -28,3 +28,11 @@
   --sans:  'NewCM Sans', 'NewCM Math', 'Source Sans 3', system-ui, -apple-system, sans-serif;
   --mono:  'NewCM Mono', 'IBM Plex Mono', ui-monospace, monospace;
 }
+
+/* ---- printed sheets: Computer Modern has a small x-height, so the classic sheet goes up half a point ---- */
+.sheet{ font-size:11pt; }
+.sheet .defs .g, .sheet table.rec td{ font-size:10.6pt; }
+.sheet .sec > .note{ font-size:8.8pt; }
+.sheet .sc{ font-size:8pt; } .sheet table.rec th{ font-size:7.8pt; }
+.sheet ol.exs .ctx{ font-size:9.6pt; }
+.sheet .mfig .wl{ font-size:14px; } .sheet .mfig .vl{ font-size:12px; }
