@@ -825,5 +825,12 @@ what the next session must know)*
   fill-in table; block 6 rewritten without Ty2/acc; (T) for (M) throughout; print
   type up half a point for Computer Modern (rules live in font-latex.css under
   `.sheet`); nine blocks, nine pages. Deck 43 slides, examples (1) to (28).
+- **2026-09-20 (later): glossed Nez Perce examples added.** The Nez Perce slide now carries
+  two interlinear examples from Deal: the blankets sentence (*'inehne-no'qa 'ee kii lepit
+  cickan*, accepted as both "can" and "should") and the negated *# weet'u 'ee kiy-o'qa*,
+  which only means "you can't go". Text taken from the October 2010 draft on the Semantics
+  Archive (exx. 1 and 52); **numbers and orthography still to be checked against the
+  published Language version.** New `.igl` interlinear-gloss component in the deck's
+  style block. Deck examples now (1) to (30).
 - `npm test` green (166 files).
 

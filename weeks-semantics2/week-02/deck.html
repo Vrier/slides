@@ -366,6 +366,15 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
   .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
   .b-main.snug .fourways .fw .ft2{ font-size:33px; }
+
+  /* interlinear gloss (week 2): word over gloss, aligned by column */
+  .igl{ display:flex; flex-wrap:wrap; gap:4px 30px; margin:2px 0 6px; }
+  .igl .wd2{ display:flex; flex-direction:column; }
+  .igl .wd2 b{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:40px; color:var(--tcd-ink); line-height:1.15; }
+  .igl .wd2 i{ font-family:var(--sans); font-style:normal; font-size:25px; color:var(--tcd-grey-100); line-height:1.25; }
+  .igl .wd2 i .sc2{ font-variant:small-caps; letter-spacing:.04em; text-transform:lowercase; }
+  .eg .ex .ctx2{ display:block; font-family:var(--sans); font-style:normal; font-size:24px; color:var(--tcd-grey-100); margin-bottom:4px; }
+  .eg .ex .tr{ display:block; font-family:var(--serif); font-style:normal; font-size:32px; color:var(--tcd-ink); }
 </style>
 </head>
 <body class="pal-a" data-week="2">
@@ -1330,11 +1339,18 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
       <h2 class="b-h">Nez Perce: a modal without a dual</h2>
-      <!-- TODO: add one glossed example of -o'qa from Deal (2011), Language 87(3), with page reference. Not reproduced here: the open-access copy could not be fetched while drafting. -->
-      <div class="erow" style="border-top:none"><div class="lb"><em>-o'qa</em></div><div class="tx">One modal suffix. Translated <em>can</em>, <em>could</em>, <em>may</em>, <em>should</em>, <em>must</em>.</div></div>
-      <div class="erow"><div class="lb">Deal (2011)</div><div class="tx">A <strong>possibility</strong> modal. No necessity modal competes with it, so no scalar implicature. It appears where English uses <em>must</em>.</div></div>
-      <div class="erow"><div class="lb">Under negation</div><div class="tx">Only the possibility reading: the pattern of \(\neg\Diamond\).</div></div>
-      <div class="erow"><div class="lb">Consequence</div><div class="tx">A language may lexicalise \(\Diamond\) alone. Simple necessity is paraphrased.</div></div>
+      <!-- Both examples from Deal, "Modals without scales" (Language 87(3), 2011). Text and numbering checked against the October 2010 draft on the Semantics Archive, exx. (1) and (52): confirm numbers and orthography against the published version before citing a page. -->
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">The suffix <em>-o'qa</em> &middot; Deal (2011)</div>
+        <div class="eg"><span class="no">(29)</span><span class="ex" style="font-style:normal"><span class="ctx2">Handing a friend two blankets for a camping trip</span>
+          <span class="igl"><span class="wd2"><b>’inehne-no’qa</b><i>take-<span class="sc2">modal</span></i></span><span class="wd2"><b>’ee</b><i>you</i></span><span class="wd2"><b>kii</b><i><span class="sc2">dem</span></i></span><span class="wd2"><b>lepit</b><i>two</i></span><span class="wd2"><b>cickan</b><i>blanket</i></span></span>
+          <span class="tr">&lsquo;You <b>can</b> take these two blankets.&rsquo; &nbsp;Also accepted: &lsquo;You <b>should</b> take …&rsquo;</span></span></div>
+        <div class="eg"><span class="no">(30)</span><span class="ex" style="font-style:normal"><span class="ctx2">Telling someone that they are not required to leave</span>
+          <span class="igl"><span class="wd2"><b><span style="color:var(--lens);font-style:normal">#</span> weet’u</b><i>not</i></span><span class="wd2"><b>’ee</b><i>you</i></span><span class="wd2"><b>kiy-o’qa</b><i>go-<span class="sc2">modal</span></i></span></span>
+          <span class="tr">Only &lsquo;You <b>can&rsquo;t</b> go&rsquo;: \(\neg\Diamond\). Never &lsquo;You don&rsquo;t have to go&rsquo;: \(\neg\Box\).</span></span></div>
+      </div>
+      <div class="erow" style="border-top:none"><div class="lb">The analysis</div><div class="tx tight">A <strong>possibility</strong> modal with no necessity modal beside it: no scalar implicature, so it also covers <em>should</em> and <em>must</em>.</div></div>
+      <div class="erow"><div class="lb">Consequence</div><div class="tx tight">A language may lexicalise \(\Diamond\) alone. Simple necessity is paraphrased.</div></div>
     </div>
   </div>
 </section>
