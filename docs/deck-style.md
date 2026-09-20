@@ -36,7 +36,7 @@ The draft had 43 slides. The edit left 27. What went, and what that implies:
 | "One rule" corrected to "Two rules", Predicate Modification added | Accuracy over neatness |
 | Aoife became Anna in the toy model | Names on slides are his call; keep deck and handout consistent |
 | Added a "Same model. Your turn" slide and an "Intensional adjectives" slide | Interaction slides are wanted; so is extra data |
-| Wrap-up and "Week by week" slides removed; deck ends on "Lecture 1 closes" with one line about Thursday | **Close plainly.** No recap slide |
+| Wrap-up and "Week by week" slides removed; deck ends on one line about Thursday | **End plainly.** No recap slide. (Week 1 headed that slide "Lecture 1 closes"; Thomas has since ruled the word out, see §2.) |
 | Subtitle line added to the title slide: "Lecture 1 · The extensional system and its limits" | When a week has more than one lecture, the title slide names the lecture |
 
 Week pointers that survived the edit: a bare "Weeks 2 and 3" at the end of a
@@ -52,7 +52,7 @@ sentence about what is coming.
 3. **Today** — `.lxr3` roadmap, one `.stop` per lens, `.rmb` bullets naming the slides.
 4. **Housekeeping** (week 1 only) and **readings** (one slide).
 5. **Four lenses in the fixed order**: Empirical, Historical, Formal, Typological. Each opens with an `.lxd2` divider. Content may sit before a divider when it bridges from the previous part (week 1's nesting problem).
-6. **Lecture closes** — `.qask` + `.bigq`, one line.
+6. **Final slide** — `.qask` + `.bigq`, one line, headed for what comes next (week 2: "Thursday"). Never "closes", on any slide (Thomas, September 2026).
 
 Thursday is the handout session from week 2 onwards, so a week has one deck.
 

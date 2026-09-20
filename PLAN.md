@@ -832,5 +832,21 @@ what the next session must know)*
   Archive (exx. 1 and 52); **numbers and orthography still to be checked against the
   published Language version.** New `.igl` interlinear-gloss component in the deck's
   style block. Deck examples now (1) to (30).
+- **2026-09-20 (night): Thomas's corrections before Monday.** Week 1 covered only the
+  problems for an extensional semantics, so **intensions are defined this week**: new
+  *Intensions* slide (extension table over the four worlds; intension as a function from
+  worlds to extensions; proposition as a set of worlds), and every "last week" callback
+  to propositions or DOX is gone. Banner is now "What *can* and *must* must and can
+  mean". q is *I have an umbrella* throughout (Harry is gone). Flavours expanded with two
+  question/answer pairs: *He must be on stage now* and two more, each to be given an
+  evidence reading and a rules reading; then four sentences to label by finishing "in
+  view of …". Kripke slide now opens on the syntactic/semantic contrast and credits
+  Hintikka in parallel (kept consistent with the Carnap slide: his semantics fitted one
+  system only). **Never "closes":** final slide is headed "Thursday"; rule recorded in
+  docs/deck-style.md §2. Technical tail cut to two brief slides: *Conditions on R* (four
+  small Kripke frame diagrams with T, D, 4, B; one line on the ants) and *Flavours and
+  conditions*; *Portner's ants*, *Validity*, *Frame conditions* and *Axioms and flavours*
+  are out of the deck and live in the handout. Deck: 46 sections, 42 numbered slides,
+  examples (1) to (35). Handout block 7 gains an *Intension* definition.
 - `npm test` green (166 files).
 
