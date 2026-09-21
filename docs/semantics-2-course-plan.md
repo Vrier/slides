@@ -15,12 +15,13 @@ aspect, evidentiality — at an advanced, cross-linguistic, open-problems level.
 **Week 1 is a recap-and-pivot:** it reviews the Sem I formal system (model, ⟦·⟧, predicate
 logic, λ, events) and then points past it — flagging the substitution failures and modal/
 attitude contexts that motivate **possible worlds and intensions**. The machinery is then
-built up front through **modality (Weeks 3–4)**: classical modal logic first → Kratzer's
+built up front through **modality (Weeks 2–3)**: classical modal logic first → Kratzer's
 modal-base + ordering-source system second (per your call). Attitudes reuse it rather than
 motivate it.
 
-**Order:** recap → negation → worlds/modal logic → Kratzer → attitudes & embedding →
-[reading week] → conditionals → aspect → evidentiality → **Modals & Tense** capstone.
+**Order (September 2026 revision: Negation dropped as its own week):** recap → worlds/modal
+logic → Kratzer → attitudes & embedding → hyperintensionality → [reading week] →
+conditionals → aspect → evidentiality → **Modals & Tense** capstone.
 Modality precedes conditionals and evidentiality throughout.
 
 ---
@@ -30,11 +31,11 @@ Modality precedes conditionals and evidentiality throughout.
 | Wk | Section | Title | Formal tool added | Anchor(s) |
 |----|---------|-------|-------------------|-----------|
 | 1 | Foundations | **Recap & the Intensional Turn** *(intensions previewed)* | model recap; intension = world → extension | Frege; Carnap; Montague |
-| 2 | Polarity | **Negation** | DE environments, LF scope, Strawson entailment | Klima; Ladusaw; Horn |
-| 3 | Modality | **Worlds, Intensions & Modal Logic** *(worlds built)* | ◻/◇, accessibility, K/T/S4/S5 | Kripke; von Wright |
-| 4 | Modality | **The Kratzer System** | modal base + ordering source; doubly-relative modality | Kratzer |
-| 5 | Attitudes & Embedding | **Attitude Reports** | ∀ over worlds; de re/de dicto | Frege; Hintikka; Quine |
-| 6 | Attitudes & Embedding | **Factivity, Selection & Neg-Raising** | presupposition projection from complements; excluded-middle | Kiparsky²; Karttunen |
+| 2 | Modality | **Worlds, Intensions & Modal Logic** *(worlds built)* | ◻/◇, accessibility, K/T/S4/S5 | C. I. Lewis; Carnap; Kripke |
+| 3 | Modality | **The Kratzer System** | modal base + ordering source; doubly-relative modality | Kratzer |
+| 4 | Attitudes & Embedding | **Attitude Reports** | ∀ over worlds; de re/de dicto | Frege; Hintikka; Quine |
+| 5 | Attitudes & Embedding | **Factivity, Selection & Neg-Raising** | presupposition projection from complements; excluded-middle | Kiparsky²; Karttunen |
+| 6 | Attitudes & Embedding | **Hyperintensionality** | where sets of worlds are too coarse; structured meanings | Cresswell; Fine |
 | 7 | — | **Reading Week** | — | — |
 | 8 | Conditionals | **Indicatives & the Restrictor Analysis** | if-clause as restrictor; tripartite structure | Kratzer; Lewis; Stalnaker |
 | 9 | Conditionals | **Counterfactuals & Similarity** | similarity ordering / selection fn; variably-strict | Stalnaker; Lewis; Iatridou |
@@ -42,7 +43,7 @@ Modality precedes conditionals and evidentiality throughout.
 | 11 | Evidentiality | **Evidentiality** | not-at-issue content; modal vs illocutionary analyses | Aikhenvald; Faller; Matthewson |
 | 12 | Interactions | **Modals & Tense** *(capstone)* | temporal perspective vs orientation; aspect-over-modality | Condoravdi; Hacquard; Bhatt |
 
-Two-week units: **Modality ×2, Attitudes/Embedding ×2, Conditionals ×2.** The reading week
+Units: **Modality ×2, Attitudes/Embedding ×3, Conditionals ×2.** The reading week
 falls at the Attitudes → Conditionals section boundary.
 
 ---
@@ -55,35 +56,32 @@ falls at the Attitudes → Conditionals section boundary.
 - **Formal** — recap of the Sem I toolkit (domain, ⟦·⟧, predicate logic, λ, events, times); then the core new idea — an intension as a function from possible worlds (and times) to extensions, ⟦·⟧^{w,g}.
 - **Typological** — is the inventory of semantic types universal? whether every language encodes the same intensional distinctions — the cross-linguistic thread for the term.
 
-### Wk 2 — Negation
-- **Empirical** — neg/quantifier scope ("everyone didn't leave"), NPI licensing (*any, ever, lift a finger*), neg-raising, metalinguistic negation, split scope, negative concord.
-- **Historical** — Klima's negation tests (1964); Ladusaw on downward entailment & NPIs (1979); Horn, *A Natural History of Negation* (1989).
-- **Formal** — ¬ as propositional operator; downward-entailing environments; scope at LF; Strawson entailment as NPI licenser.
-- **Typological** — negative concord (Romance/Slavic) vs double-negation languages; Jespersen's Cycle; Miestamo's negation typology.
-
-### Wk 3 — Worlds, Intensions & Modal Logic *(worlds machinery built)*
+### Wk 2 — Worlds, Intensions & Modal Logic *(worlds machinery built)*
 - **Empirical** — must/may/can/should; epistemic vs deontic vs circumstantial/ability; one form, many flavours; intensional contexts where extensions don't suffice.
 - **Historical** — C.I. Lewis; Kripke (1963, accessibility semantics); von Wright (deontic logic).
 - **Formal** — ◻/◇; frames & accessibility; the systems K/T/S4/S5; quantification over accessible worlds.
 - **Typological** — modal concord; variable-force modals previewed; van der Auwera & Plungian's semantic map.
 
-### Wk 4 — The Kratzer System
+### Wk 3 — The Kratzer System
 - **Empirical** — graded modality (must vs should vs might); "in view of…" phrases; weak necessity; comparative possibility.
 - **Historical** — Kratzer (1977; 1981; collected in *Modals and Conditionals*, 2012).
 - **Formal** — conversational background; modal base + ordering source; doubly-relative modality; flavours from context, not the lexicon.
 - **Typological** — St'át'imcets variable-force modals (Rullmann, Matthewson & Davis 2008); Gitksan.
 
-### Wk 5 — Attitude Reports
+### Wk 4 — Attitude Reports
 - **Empirical** — believe/know/want complements; de re vs de dicto; substitution failure; logical omniscience.
 - **Historical** — Frege (Sinn/Bedeutung, oblique reference); Hintikka (1969); Quine, "Quantifiers and propositional attitudes" (1956).
 - **Formal** — attitude verb = ∀ over accessible worlds; doxastic/epistemic accessibility (reusing Wk 3's intensions).
 - **Typological** — complementiser systems; logophoricity; indexical shift (Amharic — Schlenker).
 
-### Wk 6 — Factivity, Selection & Neg-Raising
+### Wk 5 — Factivity, Selection & Neg-Raising
 - **Empirical** — factive presupposition (know/regret vs believe); responsive predicates (know whether); that/whether/Q selection; the neg-raising class.
 - **Historical** — Kiparsky & Kiparsky, "Fact" (1970); Karttunen on implicative & factive verbs (1971); Gajewski on neg-raising as excluded middle.
 - **Formal** — presupposition projection from complements; soft/hard triggers; excluded-middle presupposition deriving neg-raising.
 - **Typological** — factivity marking; finite vs nominalised complementation (Noonan).
+
+### Wk 6 — Hyperintensionality
+- Freed by dropping Negation (September 2026). Where sets of worlds are too coarse: logical omniscience, *woodchuck/groundhog*, structured meanings. Lenses to be worked when the week is authored.
 
 ### Wk 8 — Conditionals I: Indicatives & the Restrictor Analysis
 - **Empirical** — paradoxes of material implication; if + modal/Q-adverb; bare conditionals; the proportion problem.
