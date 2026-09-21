@@ -873,5 +873,15 @@ what the next session must know)*
   worlds*, with a Fictionalism row (Kripke, Rosen) replacing "The cost of the second" and
   "Kripke's advice". References to deleted examples rewritten in words; examples
   renumbered (1) to (32). Deck 43 sections, 39 numbered.
+- **2026-09-21: new opening for the Empirical lens.** The five-letter word game is gone
+  (Thomas: it does not work as a way in to modals). In its place, **displacement**, after
+  von Fintel & Heim §1.1 and von Fintel 2006: five versions of *it is raining*, said in
+  Dublin with the curtains closed (here and now; in Tokyo; at noon yesterday; *might*;
+  *must*), with the question "where would you look to check each one". Answer slide:
+  place, time, then possibility as the third dimension, with *might* as some and *must*
+  as all of the ways things could be given what is known; Hockett 1960 and Childe's bear;
+  hand-off to *Possible worlds*. It reuses the deck's running proposition and picks up
+  week 1's "events and times" as the point the extensional system reached. Examples now
+  (1) to (33).
 - `npm test` green (166 files).
 
