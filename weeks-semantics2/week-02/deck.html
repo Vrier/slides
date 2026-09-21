@@ -387,6 +387,14 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .fourways.exl .fw .fl small{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:27px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); margin-top:6px; line-height:1.22; }
   /* an unlabelled closing sentence under a panel */
   .plainline{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin:18px 0 0; }
+
+  /* week 2: displacement answer carries the sentence under its number */
+  .b-main .fourways.disp .fw{ grid-template-columns:470px 1fr; padding:11px 0; }
+  .fourways.disp .fw .fl .sent{ display:block; font-family:var(--serif); font-style:italic; font-weight:400; font-size:26px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); line-height:1.2; margin-top:3px; }
+  .fourways.disp .fw .fl small{ display:inline; margin-left:14px; }
+  /* week 2: intension table cells that are not truth values */
+  .wfig .ev{ font-family:var(--sans); font-size:24px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .es{ font-family:var(--serif); font-size:28px; fill:var(--tcd-ink); text-anchor:middle; }
 </style>
 </head>
 <body class="pal-a" data-week="2">
@@ -512,14 +520,14 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Displacement</h2>
-      <div class="fourways">
-        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">(1)<small>here and now</small></div><div class="ft2">Open the curtains.</div></div>
-        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">(2)<small>another place</small></div><div class="ft2">Look at Tokyo.</div></div>
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">(3)<small>another time</small></div><div class="ft2">Look at noon yesterday.</div></div>
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(4), (5)<small>another possibility</small></div><div class="ft2"><em>Might</em>: it is raining in <b>some</b> of the ways things could be, given what I know. <em>Must</em>: in <b>all</b> of them.</div></div>
+      <div class="fourways disp">
+        <div class="fw" data-step="1" style="--fc:var(--tcd-grey-75)"><div class="fl">(1)<small>here and now</small><span class="sent">It is raining.</span></div><div class="ft2" data-step="2">Open the curtains.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-typ)"><div class="fl">(2)<small>another place</small><span class="sent">It is raining in Tokyo.</span></div><div class="ft2" data-step="4">Look at Tokyo.</div></div>
+        <div class="fw" data-step="5" style="--fc:var(--lens-his)"><div class="fl">(3)<small>another time</small><span class="sent">It was raining at noon yesterday.</span></div><div class="ft2" data-step="6">Look at noon yesterday.</div></div>
+        <div class="fw" data-step="7" style="--fc:var(--lens-emp)"><div class="fl">(4), (5)<small>another possibility</small><span class="sent">It might be raining.</span><span class="sent">It must be raining.</span></div><div class="ft2" data-step="8"><em>Might</em>: it is raining in <b>some</b> of the ways things could be, given what I know. <em>Must</em>: in <b>all</b> of them.</div></div>
       </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">Hockett (1960)</div><div class="tx tight"><strong>Displacement</strong>: language is not tied to the actual here and now.</div></div>
-      <div class="erow"><div class="lb">Worlds</div><div class="tx tight">A general way to understand &lsquo;ways things could be&rsquo;: a <strong>possible world</strong>.</div></div>
+      <div class="erow" data-step="9" style="margin-top:6px"><div class="lb">Hockett (1960)</div><div class="tx tight"><strong>Displacement</strong>: language is not tied to the actual here and now.</div></div>
+      <div class="erow" data-step="10"><div class="lb">Worlds</div><div class="tx tight">A general way to understand &lsquo;ways things could be&rsquo;: a <strong>possible world</strong>.</div></div>
     </div>
   </div>
 </section>
@@ -534,20 +542,16 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Possible worlds</h2>
       <svg class="wfig" viewBox="0 0 1400 520" role="img" aria-label="Logical space as a two by two grid of four worlds. The left column, w1 and w2, is the proposition that it is raining in Dublin. The top row, w1 and w3, is the proposition that I have an umbrella.">
-        <text class="lp" x="380" y="40" text-anchor="middle">it is raining in Dublin: {w<tspan dy="6" font-size="68%">1</tspan><tspan dy="-6">, w</tspan><tspan dy="6" font-size="68%">2</tspan><tspan dy="-6">}</tspan></text>
-        <rect class="sp" x="60" y="60" width="1280" height="412" rx="16"/>
-        <rect class="pr" x="74" y="74" width="612" height="384" rx="12"/>
-        <rect class="qr" x="88" y="88" width="1238" height="176" rx="12"/>
-        <circle class="wd" cx="380" cy="152" r="46"/><text class="wl" x="380" y="163">w<tspan dy="7" font-size="68%">1</tspan></text><text class="ws" x="380" y="238">rain · umbrella</text>
-        <circle class="wd" cx="1020" cy="152" r="46"/><text class="wl" x="1020" y="163">w<tspan dy="7" font-size="68%">3</tspan></text><text class="ws" x="1020" y="238">dry · umbrella</text>
-        <circle class="wd" cx="380" cy="352" r="46"/><text class="wl" x="380" y="363">w<tspan dy="7" font-size="68%">2</tspan></text><text class="ws" x="380" y="438">rain · no umbrella</text>
-        <circle class="wd" cx="1020" cy="352" r="46"/><text class="wl" x="1020" y="363">w<tspan dy="7" font-size="68%">4</tspan></text><text class="ws" x="1020" y="438">dry · no umbrella</text>
-        <text class="lq" x="840" y="150" text-anchor="middle">I have an umbrella:</text>
-        <text class="lqs" x="840" y="188" text-anchor="middle">{w<tspan dy="6" font-size="68%">1</tspan><tspan dy="-6">, w</tspan><tspan dy="6" font-size="68%">3</tspan><tspan dy="-6">}</tspan></text>
-        <text class="lw" x="1340" y="506" text-anchor="end">W: logical space</text>
+        <g data-step="5"><rect class="sp" x="60" y="60" width="1280" height="412" rx="16"/><text class="lw" x="1340" y="506" text-anchor="end">W: logical space</text></g>
+        <g data-step="6"><rect class="pr" x="74" y="74" width="612" height="384" rx="12"/><text class="lp" x="380" y="40" text-anchor="middle">it is raining in Dublin: {w<tspan dy="6" font-size="68%">1</tspan><tspan dy="-6">, w</tspan><tspan dy="6" font-size="68%">2</tspan><tspan dy="-6">}</tspan></text></g>
+        <g data-step="7"><rect class="qr" x="88" y="88" width="1238" height="176" rx="12"/><text class="lq" x="840" y="150" text-anchor="middle">I have an umbrella:</text><text class="lqs" x="840" y="188" text-anchor="middle">{w<tspan dy="6" font-size="68%">1</tspan><tspan dy="-6">, w</tspan><tspan dy="6" font-size="68%">3</tspan><tspan dy="-6">}</tspan></text></g>
+        <g data-step="1"><circle class="wd" cx="380" cy="152" r="46"/><text class="wl" x="380" y="163">w<tspan dy="7" font-size="68%">1</tspan></text><text class="ws" x="380" y="238">rain · umbrella</text></g>
+        <g data-step="2"><circle class="wd" cx="380" cy="352" r="46"/><text class="wl" x="380" y="363">w<tspan dy="7" font-size="68%">2</tspan></text><text class="ws" x="380" y="438">rain · no umbrella</text></g>
+        <g data-step="3"><circle class="wd" cx="1020" cy="152" r="46"/><text class="wl" x="1020" y="163">w<tspan dy="7" font-size="68%">3</tspan></text><text class="ws" x="1020" y="238">dry · umbrella</text></g>
+        <g data-step="4"><circle class="wd" cx="1020" cy="352" r="46"/><text class="wl" x="1020" y="363">w<tspan dy="7" font-size="68%">4</tspan></text><text class="ws" x="1020" y="438">dry · no umbrella</text></g>
       </svg>
-      <div class="erow" style="border-top:none"><div class="lb">A world</div><div class="tx tight">One complete way things could be. Every sentence settled, true or false.</div></div>
-      <div class="erow"><div class="lb">A proposition</div><div class="tx tight">The set of worlds where it is true: a <strong>region</strong> of the space.</div></div>
+      <div class="erow" data-step="8" style="border-top:none"><div class="lb">A world</div><div class="tx tight">One complete way things could be. Every sentence settled, true or false.</div></div>
+      <div class="erow" data-step="9"><div class="lb">A proposition</div><div class="tx tight">The set of worlds where it is true: a <strong>region</strong> of the space.</div></div>
     </div>
   </div>
 </section>
@@ -561,16 +565,22 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main dB snug">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Intensions</h2>
-      <svg class="wfig" viewBox="0 0 1400 250" role="img" aria-label="A table of extensions at four worlds. It is raining in Dublin: true at w1 and w2, false at w3 and w4. I have an umbrella: true at w1 and w3, false at w2 and w4.">
-        <text class="hw" x="700" y="40">w<tspan dy="7" font-size="68%">1</tspan></text><text class="hw" x="880" y="40">w<tspan dy="7" font-size="68%">2</tspan></text><text class="hw" x="1060" y="40">w<tspan dy="7" font-size="68%">3</tspan></text><text class="hw" x="1240" y="40">w<tspan dy="7" font-size="68%">4</tspan></text>
+      <svg class="wfig" viewBox="0 0 1400 394" role="img" aria-label="A table of extensions at four worlds. It is raining in Dublin: true at w1 and w2, false at w3 and w4. I have an umbrella: true at w1 and w3. The tallest building in New York: the Empire State Building at w1, One World Trade Center at w2, the Chrysler Building at w3, the Woolworth Building at w4. Is happy: Anna and Sue at w1, Anna at w2, nobody at w3, Sue and Emma at w4.">
+        <text class="hw" x="640" y="40">w<tspan dy="7" font-size="68%">1</tspan></text><text class="hw" x="860" y="40">w<tspan dy="7" font-size="68%">2</tspan></text><text class="hw" x="1080" y="40">w<tspan dy="7" font-size="68%">3</tspan></text><text class="hw" x="1300" y="40">w<tspan dy="7" font-size="68%">4</tspan></text>
         <line class="rl" x1="40" y1="66" x2="1380" y2="66"/>
-        <text class="rs" x="40" y="122">it is raining in Dublin</text>
-        <text class="tv" x="700" y="122">T</text><text class="tv" x="880" y="122">T</text><text class="tv off" x="1060" y="122">F</text><text class="tv off" x="1240" y="122">F</text>
-        <line class="rl" x1="40" y1="154" x2="1380" y2="154"/>
-        <text class="rs" x="40" y="210">I have an umbrella</text>
-        <text class="tv" x="700" y="210">T</text><text class="tv off" x="880" y="210">F</text><text class="tv" x="1060" y="210">T</text><text class="tv off" x="1240" y="210">F</text>
+        <text class="rs" x="40" y="118">it is raining in Dublin</text>
+        <text class="tv" x="640" y="118">T</text><text class="tv" x="860" y="118">T</text><text class="tv off" x="1080" y="118">F</text><text class="tv off" x="1300" y="118">F</text>
+        <line class="rl" x1="40" y1="146" x2="1380" y2="146"/>
+        <text class="rs" x="40" y="198">I have an umbrella</text>
+        <text class="tv" x="640" y="198">T</text><text class="tv off" x="860" y="198">F</text><text class="tv" x="1080" y="198">T</text><text class="tv off" x="1300" y="198">F</text>
+        <line class="rl" x1="40" y1="226" x2="1380" y2="226"/>
+        <text class="rs" x="40" y="278">the tallest building in New York</text>
+        <text class="ev" x="640" y="278">Empire State</text><text class="ev" x="860" y="278">One WTC</text><text class="ev" x="1080" y="278">Chrysler</text><text class="ev" x="1300" y="278">Woolworth</text>
+        <line class="rl" x1="40" y1="306" x2="1380" y2="306"/>
+        <text class="rs" x="40" y="358">is happy</text>
+        <text class="es" x="640" y="358">{Anna, Sue}</text><text class="es" x="860" y="358">{Anna}</text><text class="es" x="1080" y="358">∅</text><text class="es" x="1300" y="358">{Sue, Emma}</text>
       </svg>
-      <div class="erow" style="border-top:none"><div class="lb">Extension</div><div class="tx tight">What an expression picks out <strong>at one world</strong>. For a sentence: a truth value. For <em>the tallest building in New York</em>: a building.</div></div>
+      <div class="erow" style="border-top:none"><div class="lb">Extension</div><div class="tx tight">What an expression picks out <strong>at one world</strong>. For a sentence: a truth value. For <em>the tallest building in New York</em>: a building. For <em>is happy</em>: a set.</div></div>
       <div class="erow"><div class="lb">Intension</div><div class="tx tight">A <strong>function from worlds to extensions</strong>: a row of the table. For a sentence, a <strong>proposition</strong>: the set of worlds where it is true.</div></div>
     </div>
   </div>
@@ -652,7 +662,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">(10) may not<small>the rules</small></div><div class="ft2">\(\neg\Diamond\): it is not permitted that you leave.</div></div>
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(11) may not<small>the evidence</small></div><div class="ft2">\(\Diamond\neg\): it is possible that she is not home.</div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">(12) cannot<small>the rules</small></div><div class="ft2">\(\neg\Diamond\): it is not permitted that you go in there.</div></div>
-        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">(13) don't think<small>week 5</small></div><div class="ft2">Surface: <em>not</em> over <em>think</em>. Understood: I think that the sun does <b>not</b> revolve around the Earth.</div></div>
+        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">(13) don't think<small>neg raising</small></div><div class="ft2">Surface: <em>not</em> over <em>think</em>. Understood: I think that the sun does <b>not</b> revolve around the Earth.</div></div>
       </div>
       <div class="egpanel">
         <div class="eghead">Against the surface order</div>
@@ -712,12 +722,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Flavours</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--tcd-ink)"><div class="fl">Alethic<small>in view of how things must be</small></div><div class="ft2"><em>Two and two <b>must</b> make four.</em></div></div>
+        <div class="fw" style="--fc:var(--tcd-ink)"><div class="fl">Alethic<small>in view of logic or necessity</small></div><div class="ft2"><em>Two and two <b>must</b> make four.</em></div></div>
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Epistemic<small>in view of what is known</small></div><div class="ft2"><em>The lights are on. Anna <b>must</b> be home.</em></div></div>
         <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Deontic<small>in view of the rules</small></div><div class="ft2"><em>Every car <b>must</b> be registered.</em></div></div>
         <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Circumstantial<small>in view of the circumstances</small></div><div class="ft2"><em>I <b>must</b> sneeze.</em></div></div>
         <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Teleological<small>in view of a goal</small></div><div class="ft2"><em>To reach Howth, you <b>must</b> take the DART.</em></div></div>
-        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">Gaps<small>Portner 2009</small></div><div class="ft2"><em>It may be raining.</em> <span style="color:var(--lens)">#</span><em>It can be raining.</em> <em>It can't be raining.</em> Epistemic <em>can</em> needs negation.</div></div>
+        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">Gaps<small>Portner 2009</small></div><div class="ft2"><em>It may be raining.</em> <span style="color:var(--lens)">#</span><em>It can be raining.</em> <em>It can't be raining.</em> Epistemic <em>can</em> needs negation. Epistemic <em>mustn't</em> in English.</div></div>
       </div>
     </div>
   </div>
@@ -896,13 +906,13 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- 19 · Lewis's realism -->
-<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="22">
+<!-- Modal Realism -->
+<section class="slide" data-label="Worlds ·Modal Realism" data-screen-label="22">
   <div class="b-slide pal-a lens-historical dB" data-sec="dlw">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
-      <h2 class="b-h">Lewis's realism</h2>
+      <h2 class="b-h">Modal Realism</h2>
       <div class="figrow">
         <!-- Portrait: https://commons.wikimedia.org/wiki/File:David_Lewis_(1962)_(cropped).webp — public domain per Commons; described there as the philosopher (1941–2001). NB "David Lewis 1968.jpg" on Commons looks like the Canadian politician: do not use. Local copy in images/. -->
         <div class="portrait"><img src="images/dlewis.jpg" alt="David Lewis, 1962" style="object-position:50% 15%"><div class="pc"><div class="nm">David Lewis</div><div class="dt">1941 – 2001</div><div class="rl"><em>Counterfactuals</em> (1973); <em>On the Plurality of Worlds</em> (1986).</div></div></div>
@@ -1345,7 +1355,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     game:"Displacement", lsp:"Possible worlds", intn:"Intensions", lastwk:"Problems for extensional semantics", dual:"Duality", scope:"Scope",
     tworead:"Two readings", flav:"Flavours", nameflav:"In view of",
     cil:"C. I. Lewis", car:"Carnap", dub:"Trinity College Dublin", kri:"Saul Kripke",
-    dlw:"Lewis's realism", ers:"Philosophy of possible worlds",
+    dlw:"Modal Realism", ers:"Philosophy of possible worlds",
     nec:"Necessity", pos:"Possibility", frm:"Frames and models", tru:"Truth at a world", 
     lex:"Must and may", nota:"Other notations", cond:"Conditions on R", flf:"Flavours and conditions",
     
