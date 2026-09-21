@@ -858,5 +858,20 @@ what the next session must know)*
   *Last week's swap, explained* and runs on week 1's Empire State Building pair in place
   of Quine's planets. Left for later weeks on purpose: intensional adjectives, *seeking a
   unicorn*, the commitment shift under *believes*. Deck 47 sections, 43 numbered.
+- **2026-09-21: Thomas's line edits.** Readings: Deal out, Coppock & Champollion §13.3
+  in (Deal stays only as the data source on the Nez Perce slide). *Last week's questions*
+  renamed *Problems for extensional semantics*; its examples are now bold italic serif
+  under the labels (`.fourways.exl`). Intensions loses "Last week's problem". Scope
+  question gains *You cannot go in there* and *I don't think the sun revolves around the
+  Earth*; the answer is a four-row table (the last flagged as neg-raising, week 5) and
+  its closing sentence has no label (`.plainline`). Cut: Flavours' "Constant and
+  variable", In view of's "The test", both *Flavours and inference* slides, von Wright's
+  slide, the Fictionalism slide, and "then the question of what a possible world is" on
+  the Historical divider. Kripke slide titled *Saul Kripke*, first row "Syntax and
+  semantics", "The advance" gone. Lewis slide: "The reply" replaced by a restricted-
+  quantifier row (the empty fridge). *Three answers* is now *Philosophy of possible
+  worlds*, with a Fictionalism row (Kripke, Rosen) replacing "The cost of the second" and
+  "Kripke's advice". References to deleted examples rewritten in words; examples
+  renumbered (1) to (32). Deck 43 sections, 39 numbered.
 - `npm test` green (166 files).
 

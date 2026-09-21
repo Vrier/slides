@@ -382,6 +382,11 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .wfig .fn{ font-family:var(--sans); font-weight:700; font-size:32px; fill:var(--lens); }
   .wfig .fa{ font-family:var(--serif); font-size:34px; fill:var(--tcd-ink); }
   .wfig .fg{ font-family:var(--sans); font-size:25px; fill:var(--tcd-grey-100); }
+
+  /* examples under the row labels (Problems for extensional semantics) */
+  .fourways.exl .fw .fl small{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:27px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); margin-top:6px; line-height:1.22; }
+  /* an unlabelled closing sentence under a panel */
+  .plainline{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin:18px 0 0; }
 </style>
 </head>
 <body class="pal-a" data-week="2">
@@ -426,7 +431,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="q-banner">What <em>can</em> and <em>must</em> must and can mean</div>
       <div class="erow" style="border-top:none"><div class="lb">Last week</div><div class="tx">Problems for an <strong>extensional</strong> semantics: substitution fails under <em>might</em> and <em>believe</em>.</div></div>
       <div class="erow"><div class="lb">This week</div><div class="tx">Possible worlds; <strong>intensions</strong>; the logic of \(\Box\) and \(\Diamond\) over worlds.</div></div>
-      <div class="figs-line"><b>Figures:</b> C. I. Lewis · von Wright · Meredith &amp; Prior · Kripke &nbsp;·&nbsp; <b>On worlds:</b> D. Lewis · Stalnaker · Rosen</div>
+      <div class="figs-line"><b>Figures:</b> C. I. Lewis · Carnap · Meredith &amp; Prior · Kripke &amp; Hintikka &nbsp;·&nbsp; <b>On worlds:</b> D. Lewis · Adams · Rosen</div>
     </div>
   </div>
 </section>
@@ -440,8 +445,8 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main">
       <h2 class="b-h">Today</h2>
       <div class="lxr3">
-        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li><em>Must</em> and <em>might</em></li><li>Possible worlds</li><li>Intensions</li><li>Last week's questions</li><li>Duality</li><li>Scope</li><li>Two readings</li><li>Flavours</li><li>Flavours and inference</li></ul></div>
-        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>C. I. Lewis</li><li>Carnap</li><li>von Wright</li><li>Dublin, 1956</li><li>Kripke</li><li>What a world is</li></ul></div>
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li><em>Must</em> and <em>might</em></li><li>Possible worlds</li><li>Intensions</li><li>Problems for extensional semantics</li><li>Duality</li><li>Scope</li><li>Two readings</li><li>Flavours</li><li>In view of</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>C. I. Lewis</li><li>Carnap</li><li>Dublin, 1956</li><li>Saul Kripke</li><li>What a world is</li></ul></div>
         <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Necessity and possibility</li><li>Frames and models</li><li>Truth at a world</li><li><em>Must</em> and <em>may</em></li><li>Other notations</li><li>Conditions on \(R\)</li><li>Last week's swap, explained</li><li>Limits</li></ul></div>
         <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>Scots and Ulster</li><li>Irish English</li><li>Nez Perce</li></ul></div>
       </div>
@@ -458,11 +463,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main dB">
       <div class="b-kick">This week</div>
       <h2 class="b-h">Readings</h2>
-      <div class="qref" style="font-size:27px">Portner (2009), <em>Modality</em>, ch. 2 &ldquo;Modal logic&rdquo;, §§2.1 to 2.2.3. <span class="src">Textbook · library scan · shorter alternative: Coppock &amp; Champollion, &ldquo;Toward a theory of modality&rdquo;</span></div>
+      <div class="qref" style="font-size:27px">Portner (2009), <em>Modality</em>, ch. 2 &ldquo;Modal logic&rdquo;, §§2.1 to 2.2.3. <span class="src">Textbook · library scan</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Coppock &amp; Champollion, <em>Invitation to Formal Semantics</em>, §13.3 &ldquo;Toward a theory of modality&rdquo;. <span class="src">Textbook · open access</span></div>
       <div class="qref" style="font-size:27px;margin-top:18px">Carnap (1947), <em>Meaning and Necessity</em>, §2 &ldquo;L-concepts&rdquo; and §39, on the modalities. <span class="src">Historical · library scan</span></div>
-      <!-- Contemporary slot: Deal 2011 proposed, not yet confirmed by Thomas. Zamorano-Mansilla 2023 is held for week 3. -->
       <div class="qref" style="font-size:27px;margin-top:18px">Menzel, &ldquo;Possible worlds&rdquo;, <em>Stanford Encyclopedia of Philosophy</em>, §2. <span class="src">Optional · on what a world is · open access</span></div>
-      <div class="qref" style="font-size:27px;margin-top:18px">Deal (2011), &ldquo;Modals without scales&rdquo;, <em>Language</em> 87(3), §§1 to 3. <span class="src">Contemporary · open access · linked on the reading list</span></div>
     </div>
   </div>
 </section>
@@ -569,26 +573,25 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       </svg>
       <div class="erow" style="border-top:none"><div class="lb">Extension</div><div class="tx tight">What an expression picks out <strong>at one world</strong>. For a sentence: a truth value. For <em>the tallest building in New York</em>: a building.</div></div>
       <div class="erow"><div class="lb">Intension</div><div class="tx tight">A <strong>function from worlds to extensions</strong>: a row of the table. For a sentence, a <strong>proposition</strong>: the set of worlds where it is true.</div></div>
-      <div class="erow"><div class="lb">Last week's problem</div><div class="tx tight">The same extension here, different extensions elsewhere. <em>Might</em> and <em>believe</em> look at the whole row.</div></div>
     </div>
   </div>
 </section>
 
 
 
-<!-- Last week's questions -->
-<section class="slide" data-label="Empirical ·Last week's questions" data-screen-label="09">
+<!-- Problems for extensional semantics -->
+<section class="slide" data-label="Empirical ·Problems for extensional semantics" data-screen-label="09">
   <div class="b-slide pal-a lens-empirical dB" data-sec="lastwk">
     <aside class="mrail"></aside>
-    <div class="b-main dB dense">
+    <div class="b-main dB snug">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">Last week's questions</h2>
-      <div class="fourways">
+      <h2 class="b-h">Problems for extensional semantics</h2>
+      <div class="fourways exl">
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Nesting<small>Sue thinks that …</small></div><div class="ft2"><em>Harry is single</em> and <em>Dublin is in Ireland</em>: both true here. Different sets of worlds, so different <b>propositions</b> for <em>thinks</em> to take.</div></div>
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Empty predicates<small>jackalope · unicorn</small></div><div class="ft2">Both empty here. Different extensions at other worlds, so different <b>intensions</b>.</div></div>
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Might<small>the tallest building in New York</small></div><div class="ft2">The description picks out different buildings at different worlds. <em>Might</em> looks at those worlds.</div></div>
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Must<small>every car must be registered</small></div><div class="ft2">True while <em>every car is registered</em> is false. Its truth here depends on <b>other worlds</b>.</div></div>
-        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">Still open<small>weeks 4 and 6</small></div><div class="ft2">The Morning Star and the Evening Star: one planet at every world. Worlds alone do not separate them.</div></div>
+        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">Still open<small>Morning Star · Evening Star</small></div><div class="ft2">One planet at every world, so worlds alone do not separate them. Weeks 4 and 6.</div></div>
       </div>
     </div>
   </div>
@@ -627,11 +630,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main">
       <div class="qwrap">
         <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide: what the negation applies to</div>
-        <div class="convo big">
+        <div class="convo">
           <div class="cv anim" style="--d:.15s"><div class="who">(9)</div><div class="say">You may not leave.</div></div>
-          <div class="cv anim" style="--d:.35s"><div class="who">(10)</div><div class="say">She may not be home.</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(10)</div><div class="say">She may not be home.</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(11)</div><div class="say">You cannot go in there.</div></div>
+          <div class="cv anim" style="--d:.6s"><div class="who">(12)</div><div class="say">I don't think the sun revolves around the Earth.</div></div>
         </div>
-        <div class="qsrc anim" style="--d:.7s">The same string: <em>may not</em>.</div>
       </div>
     </div>
   </div>
@@ -643,21 +647,20 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="Scope, A" data-screen-label="12">
   <div class="b-slide pal-a lens-empirical dB" data-sec="scope">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Scope</h2>
-      <div class="brn">
-        <div class="split"><span>(9), about the rules</span><span>(10), about the evidence</span></div>
-        <div class="arms">
-          <div class="arm"><div class="h" style="font-size:38px;letter-spacing:0">\(\neg\Diamond\)</div><div class="t">It is not permitted that you leave.</div></div>
-          <div class="arm meant"><div class="h" style="font-size:38px;letter-spacing:0">\(\Diamond\neg\)</div><div class="t">It is possible that she is not home.</div></div>
-        </div>
+      <div class="fourways">
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">(9) may not<small>the rules</small></div><div class="ft2">\(\neg\Diamond\): it is not permitted that you leave.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(10) may not<small>the evidence</small></div><div class="ft2">\(\Diamond\neg\): it is possible that she is not home.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">(11) cannot<small>the rules</small></div><div class="ft2">\(\neg\Diamond\): it is not permitted that you go in there.</div></div>
+        <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">(12) don't think<small>week 5</small></div><div class="ft2">Surface: <em>not</em> over <em>think</em>. Understood: I think that the sun does <b>not</b> revolve around the Earth.</div></div>
       </div>
       <div class="egpanel">
         <div class="eghead">Against the surface order</div>
-        <div class="eg"><span class="no">(11)</span><span class="ex">I can't seem to find my keys.<span class="gl"><em>seem</em> over <em>not</em> over <em>can</em></span></span></div>
+        <div class="eg"><span class="no">(13)</span><span class="ex">I can't seem to find my keys.<span class="gl"><em>seem</em> over <em>not</em> over <em>can</em></span></span></div>
       </div>
-      <div class="erow"><div class="lb">The pattern</div><div class="tx tight">Modals take <strong>scope</strong> relative to negation and to each other, as <em>every</em> and <em>some</em> do.</div></div>
+      <p class="plainline">Modals take <strong>scope</strong> relative to negation and to each other, as <em>every</em> and <em>some</em> do.</p>
     </div>
   </div>
 </section>
@@ -672,9 +675,9 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="qwrap">
         <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>For each: one reading about the evidence, one about the rules</div>
         <div class="convo">
-          <div class="cv anim" style="--d:.15s"><div class="who">(12)</div><div class="say">He must be on stage now.</div></div>
-          <div class="cv anim" style="--d:.3s"><div class="who">(13)</div><div class="say">Hannah may be in the library.</div></div>
-          <div class="cv anim" style="--d:.45s"><div class="who">(14)</div><div class="say">Anna should be home by six.</div></div>
+          <div class="cv anim" style="--d:.15s"><div class="who">(14)</div><div class="say">He must be on stage now.</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(15)</div><div class="say">Hannah may be in the library.</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(16)</div><div class="say">Anna should be home by six.</div></div>
         </div>
         <div class="qsrc anim" style="--d:.75s">Give a context for each reading.</div>
       </div>
@@ -692,11 +695,11 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">One sentence, two flavours</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(12) must<small>on stage</small></div><div class="ft2"><b>Evidence</b>: the band has started, so that is where he is. <b>Rules</b>: his contract says so; he is still in the bar.</div></div>
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(13) may<small>in the library</small></div><div class="ft2"><b>Evidence</b>: for all I know, she is there. <b>Rules</b>: she has a reader's card.</div></div>
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(14) should<small>home by six</small></div><div class="ft2"><b>Evidence</b>: the train gets in at half five. <b>Rules</b>: that is her curfew.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(14) must<small>on stage</small></div><div class="ft2"><b>Evidence</b>: the band has started, so that is where he is. <b>Rules</b>: his contract says so; he is still in the bar.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(15) may<small>in the library</small></div><div class="ft2"><b>Evidence</b>: for all I know, she is there. <b>Rules</b>: she has a reader's card.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(16) should<small>home by six</small></div><div class="ft2"><b>Evidence</b>: the train gets in at half five. <b>Rules</b>: that is her curfew.</div></div>
       </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">Names</div><div class="tx tight">About the evidence: <strong>epistemic</strong>. About the rules: <strong>deontic</strong>. The deontic reading of (12) can be true while he is elsewhere.</div></div>
+      <div class="erow" style="margin-top:6px"><div class="lb">Names</div><div class="tx tight">About the evidence: <strong>epistemic</strong>. About the rules: <strong>deontic</strong>. The deontic reading of (14) can be true while he is elsewhere.</div></div>
     </div>
   </div>
 </section>
@@ -717,7 +720,6 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Teleological<small>in view of a goal</small></div><div class="ft2"><em>To reach Howth, you <b>must</b> take the DART.</em></div></div>
         <div class="fw" style="--fc:var(--tcd-grey-75)"><div class="fl">Gaps<small>Portner 2009</small></div><div class="ft2"><em>It may be raining.</em> <span style="color:var(--lens)">#</span><em>It can be raining.</em> <em>It can't be raining.</em> Epistemic <em>can</em> needs negation.</div></div>
       </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">Constant and variable</div><div class="tx tight">The <strong>force</strong> stays: all. The <strong>domain</strong> varies with the <em>in view of</em> phrase. Kratzer (1977).</div></div>
     </div>
   </div>
 </section>
@@ -732,10 +734,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="qwrap">
         <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Name the flavour. Finish the phrase: in view of …</div>
         <div class="convo">
-          <div class="cv anim" style="--d:.15s"><div class="who">(15)</div><div class="say">I can't hear you.</div></div>
-          <div class="cv anim" style="--d:.3s"><div class="who">(16)</div><div class="say">You can't park here.</div></div>
-          <div class="cv anim" style="--d:.45s"><div class="who">(17)</div><div class="say">That can't be right.</div></div>
-          <div class="cv anim" style="--d:.6s"><div class="who">(18)</div><div class="say">To get a first, you have to read the papers.</div></div>
+          <div class="cv anim" style="--d:.15s"><div class="who">(17)</div><div class="say">I can't hear you.</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(18)</div><div class="say">You can't park here.</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(19)</div><div class="say">That can't be right.</div></div>
+          <div class="cv anim" style="--d:.6s"><div class="who">(20)</div><div class="say">To get a first, you have to read the papers.</div></div>
         </div>
       </div>
     </div>
@@ -752,31 +754,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">In view of</h2>
       <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">(15)<small>circumstantial</small></div><div class="ft2">In view of <b>the noise and my ears</b>, I can't hear you.</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">(16)<small>deontic</small></div><div class="ft2">In view of <b>the parking rules</b>, you can't park here.</div></div>
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(17)<small>epistemic</small></div><div class="ft2">In view of <b>what we know</b>, that can't be right.</div></div>
-        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">(18)<small>teleological</small></div><div class="ft2">In view of <b>your aim</b>, you have to read the papers.</div></div>
-      </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">The test</div><div class="tx tight">The <em>in view of</em> phrase that fits names the flavour. Kratzer (1977).</div></div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- 11 · Flavours and inference · question -->
-<section class="slide" data-label="Flavours and inference, Q" data-screen-label="18">
-  <div class="b-slide pal-a lens-empirical" data-sec="tq">
-    <aside class="mrail"></aside>
-    <div class="b-main">
-      <div class="qwrap">
-        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide: does the plain sentence follow</div>
-        <div class="convo">
-          <div class="cv anim" style="--d:.15s"><div class="who">(19)</div><div class="say">Sue knows that it is raining.</div></div>
-          <div class="cv anim" style="--d:.3s"><div class="who">(20)</div><div class="say">Every car must be registered.</div></div>
-          <div class="cv anim" style="--d:.45s"><div class="who">(21)</div><div class="say">Anna must be home.</div></div>
-        </div>
-        <div class="qsrc anim" style="--d:.75s"><em>It is raining</em> · <em>Every car is registered</em> · <em>Anna is home</em></div>
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">(17)<small>circumstantial</small></div><div class="ft2">In view of <b>the noise and my ears</b>, I can't hear you.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">(18)<small>deontic</small></div><div class="ft2">In view of <b>the parking rules</b>, you can't park here.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">(19)<small>epistemic</small></div><div class="ft2">In view of <b>what we know</b>, that can't be right.</div></div>
+        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">(20)<small>teleological</small></div><div class="ft2">In view of <b>your aim</b>, you have to read the papers.</div></div>
       </div>
     </div>
   </div>
@@ -784,22 +765,11 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- 12 · Flavours and inference · answer -->
-<section class="slide" data-label="Flavours and inference, A" data-screen-label="19">
-  <div class="b-slide pal-a lens-empirical dB" data-sec="tq">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">Flavours and inference</h2>
-      <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>(19): follows</small></div><div class="ft2"><span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em></div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>(20): does not follow</small></div><div class="ft2"><em>Every car must be registered, and some never are.</em></div></div>
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Epistemic <em>must</em><small>(21): disputed</small></div><div class="ft2">Fine on seeing wet umbrellas. Odd while watching the rain fall. Karttunen (1972); von Fintel &amp; Gillies (2010).</div></div>
-      </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">Upshot</div><div class="tx tight">The same quantifier over different domains licenses <strong>different inferences</strong>.</div></div>
-    </div>
-  </div>
-</section>
+
+
+
+
+
 
 
 
@@ -807,7 +777,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
   <div class="lxd2 lens-historical pal-a">
     <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
-    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LIU33008 · Week 2</div><h2>C. I. Lewis to Kripke</h2><div class="ask">Modal logic from 1912 to 1963; then the question of what a possible world is.</div><div class="lx-rule"></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LIU33008 · Week 2</div><h2>C. I. Lewis to Kripke</h2><div class="ask">Modal logic from 1912 to 1963.</div><div class="lx-rule"></div></div>
     <div class="lxd2-foot" data-lens="historical"></div>
   </div>
 </section>
@@ -819,7 +789,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 14 · C. I. Lewis -->
-<section class="slide" data-label="Historical ·C. I. Lewis" data-screen-label="20">
+<section class="slide" data-label="Historical ·C. I. Lewis" data-screen-label="18">
   <div class="b-slide pal-a lens-historical dB" data-sec="cil">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
@@ -828,8 +798,8 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="erow" style="border-top:none"><div class="lb">The material conditional</div><div class="tx tight">\(p \rightarrow q\) is false in one case only: \(p\) true, \(q\) false. True whenever \(p\) is false. True whenever \(q\) is true.</div></div>
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">Both true</div>
-        <div class="eg"><span class="no">(22)</span><span class="ex">If the moon is made of cheese, then 2 + 2 = 5.<span class="gl">false antecedent</span></span></div>
-        <div class="eg"><span class="no">(23)</span><span class="ex">If it is raining in Dublin, then 2 + 2 = 4.<span class="gl">true consequent</span></span></div>
+        <div class="eg"><span class="no">(21)</span><span class="ex">If the moon is made of cheese, then 2 + 2 = 5.<span class="gl">false antecedent</span></span></div>
+        <div class="eg"><span class="no">(22)</span><span class="ex">If it is raining in Dublin, then 2 + 2 = 4.<span class="gl">true consequent</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">Strict implication</div><div class="tx tight">Lewis (1912, 1918): implication as a <strong>necessary</strong> connection, \(\Box(p \rightarrow q)\).</div></div>
       <div class="erow"><div class="lb">The gap</div><div class="tx tight">Lewis &amp; Langford (1932): five axiom systems, S1 to S5, and <strong>no semantics</strong>. No way to settle whether \(\Box p \rightarrow \Box\Box p\) holds.</div></div>
@@ -840,7 +810,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Carnap -->
-<section class="slide" data-label="Historical ·Carnap" data-screen-label="21">
+<section class="slide" data-label="Historical ·Carnap" data-screen-label="19">
   <div class="b-slide pal-a lens-historical dB" data-sec="car">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
@@ -874,28 +844,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- 15 · von Wright -->
-<section class="slide" data-label="Historical ·von Wright" data-screen-label="22">
-  <div class="b-slide pal-a lens-historical dB" data-sec="vw">
-    <aside class="mrail"></aside>
-    <div class="b-main dB">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">von Wright's analogies</h2>
-      <div class="fourways">
-        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Alethic<small>truth</small></div><div class="ft2">necessary · possible · impossible</div></div>
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Epistemic<small>knowledge</small></div><div class="ft2">verified · undecided · falsified</div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Deontic<small>norms</small></div><div class="ft2">obligatory · permitted · forbidden</div></div>
-        <div class="fw" style="--fc:var(--lens-typ)"><div class="fl">Existential<small>quantity</small></div><div class="ft2">universal · existing · empty</div></div>
-      </div>
-      <div class="erow" style="margin-top:6px"><div class="lb">1951</div><div class="tx tight"><em>An Essay in Modal Logic</em>; &ldquo;Deontic logic&rdquo; in <em>Mind</em>. The flavours of natural language, as a <strong>family of logics</strong> with one shape.</div></div>
-    </div>
-  </div>
-</section>
+
 
 
 
 <!-- 16 · Dublin, 1956 -->
-<section class="slide" data-label="Historical ·Dublin, 1956" data-screen-label="23">
+<section class="slide" data-label="Historical ·Dublin, 1956" data-screen-label="20">
   <div class="b-slide pal-a lens-historical dB" data-sec="dub">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
@@ -918,20 +872,19 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 17 · Kripke -->
-<section class="slide" data-label="Historical ·Kripke" data-screen-label="24">
+<section class="slide" data-label="Historical ·Kripke" data-screen-label="21">
   <div class="b-slide pal-a lens-historical dB" data-sec="kri">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Kripke</h2>
+      <h2 class="b-h">Saul Kripke</h2>
       <div class="figrow">
         <!-- Portrait: https://commons.wikimedia.org/wiki/File:Saul_Kripke's_Gödel_lecture_at_UCSB.jpg — CC BY 2.0, David Calhoun; local copy in images/ -->
         <div class="portrait"><img src="images/kripke.jpg" alt="Saul Kripke lecturing at UCSB, 2006" style="object-position:50% 12%"><div class="pc"><div class="nm">Saul Kripke</div><div class="dt">1940 – 2022 · photo 2006 · CC BY 2.0, David Calhoun</div><div class="rl">Omaha, Harvard, Rockefeller, Princeton, CUNY.</div></div></div>
         <div class="figbody">
-          <div class="erow"><div class="lb">Before</div><div class="tx tight"><strong>Syntactic</strong> theories: axioms and proofs, and no way to say which system is right. Carnap's semantics fitted one system only.</div></div>
+          <div class="erow"><div class="lb">Syntax and semantics</div><div class="tx tight"><strong>Syntactic</strong> theories: axioms and proofs, and no way to say which system is right. Carnap's semantics fitted one system only.</div></div>
           <div class="erow"><div class="lb">1959 and 1963</div><div class="tx tight">A <strong>semantic</strong> theory in terms of worlds: a set of worlds, a relation \(R\), a valuation. The first paper written at <strong>seventeen</strong>.</div></div>
           <div class="erow"><div class="lb">With Hintikka</div><div class="tx tight">Hintikka (1957, 1961) reached a semantics of the same kind at the same time.</div></div>
-          <div class="erow"><div class="lb">The advance</div><div class="tx tight">Each axiom system matches a <strong>condition on \(R\)</strong>. The systems become comparable.</div></div>
         </div>
       </div>
     </div>
@@ -945,7 +898,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 19 · Lewis's realism -->
-<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="25">
+<section class="slide" data-label="Worlds ·Lewis's realism" data-screen-label="22">
   <div class="b-slide pal-a lens-historical dB" data-sec="dlw">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
@@ -957,7 +910,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="figbody">
           <div class="erow"><div class="lb">The argument</div><div class="tx tight">Things could have been otherwise in many ways. Ways things could have been <strong>exist</strong>. Call them worlds.</div></div>
           <div class="erow"><div class="lb">What worlds are</div><div class="tx tight">Concrete, of a kind with ours. To exist in one is to be <strong>part of</strong> it. <em>Actual</em> works like <em>here</em>: an indexical.</div></div>
-          <div class="erow"><div class="lb">The reply</div><div class="tx tight">The incredulous stare. His answer: worlds earn their place by use, as sets do in mathematics.</div></div>
+          <div class="erow"><div class="lb">Restricted quantifiers</div><div class="tx tight">Peering into the fridge, we say <em>there is no beer</em>: the quantifier is restricted to the fridge. Talk about what there is is restricted to our world in the same way.</div></div>
           <!-- The sentence is McCawley's, reported in Lakoff 1968 (so Anand, SALT; Maier 2026, L&P). -->
           <div class="erow"><div class="lb">Counterparts</div><div class="tx tight">Worlds do not overlap, so nothing exists in two of them. What Anna might have done is what her <strong>counterparts</strong> do. <em>I dreamt that I was Brigitte Bardot and that I kissed me</em> (McCawley, in Lakoff 1968).</div></div>
         </div>
@@ -968,45 +921,27 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 
-<!-- Three answers -->
-<section class="slide" data-label="Worlds ·Three answers" data-screen-label="26">
+<!-- Philosophy of possible worlds -->
+<section class="slide" data-label="Worlds ·Philosophy of possible worlds" data-screen-label="23">
   <div class="b-slide pal-a lens-historical dB" data-sec="ers">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
-      <h2 class="b-h">Three answers</h2>
+      <h2 class="b-h">Philosophy of possible worlds</h2>
       <div class="fourways">
         <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Concretism<span class="fm">D. Lewis</span></div><div class="ft2">What is a world: a concrete universe. What is it to <b>exist in</b> one: to be a part of it.</div></div>
         <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Abstractionism<span class="fm">Adams · Plantinga · Stalnaker</span></div><div class="ft2">A world is an abstract <b>total way things could be</b>: a consistent set of propositions settling every \(p\) (Adams), or a maximal possible state of affairs (Plantinga). To exist in it: it includes your existing.</div></div>
         <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Combinatorialism<span class="fm">Armstrong · the <em>Tractatus</em></span></div><div class="ft2">A world is a <b>recombination</b> of what there actually is. Carnap's state-descriptions: the version built from sentences.</div></div>
+        <!-- Kripke: Naming and Necessity (1980), preface, pp. 15-17 (worlds stipulated; the dice). Rosen 1990, "Modal fictionalism", Mind 99. -->
+        <div class="fw" style="--fc:var(--lens-his)"><div class="fl">Fictionalism<span class="fm">Kripke · Rosen</span></div><div class="ft2">Worlds are <b>stipulated fictions</b>, as with two dice and their thirty-six outcomes. <em>Possibly p</em>: according to the fiction of possible worlds, <em>p</em> holds at some world.</div></div>
       </div>
-      <div class="erow" style="margin-top:4px"><div class="lb">The cost of the second</div><div class="tx tight">Possible and consistent are themselves <strong>modal</strong>, so the worlds are defined in the vocabulary they were meant to explain. The extensional semantics is lost.</div></div>
-      <!-- Naming and Necessity (1980), preface, pp. 15-17: the thirty-six possibilities are abstract states of the dice. -->
-      <div class="erow"><div class="lb">Kripke's advice</div><div class="tx tight">Worlds are <strong>stipulated</strong>. Two dice: thirty-six states, thirty-six small worlds. The word game needed five.</div></div>
     </div>
   </div>
 </section>
 
 
 
-<!-- 21 · Fictionalism -->
-<section class="slide" data-label="Worlds ·Fictionalism" data-screen-label="27">
-  <div class="b-slide pal-a lens-historical dB" data-sec="fic">
-    <aside class="mrail"></aside>
-    <div class="b-main dB dense">
-      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical · What a world is</div>
-      <h2 class="b-h">Fictionalism</h2>
-      <div class="erow" style="border-top:none"><div class="lb">Rosen (1990)</div><div class="tx tight">Talk of worlds as talk within a <strong>fiction</strong>, on a par with Holmes at 221B Baker Street. \(\Diamond p\) iff, according to the fiction of possible worlds, \(p\) holds at some world.</div></div>
-      <div class="egpanel" style="margin-top:4px">
-        <div class="eghead">According to the fiction</div>
-        <div class="eg"><span class="no">(24)</span><span class="ex">In the Holmes stories, a detective lives at 221B Baker Street.<span class="gl">true</span></span></div>
-        <div class="eg"><span class="no">(25)</span><span class="ex">In the Holmes stories, Holmes has blood type O.<span class="gl">neither true nor false: the stories leave it open</span></span></div>
-      </div>
-      <div class="erow" style="border-top:none"><div class="lb">The operator</div><div class="tx tight"><em>According to the fiction</em> is an <strong>intensional operator</strong>. Lewis (1978) analyses it with possible worlds.</div></div>
-      <div class="erow"><div class="lb">A working position</div><div class="tx tight">Worlds as points in a model. Each settles every sentence; a relation holds among them.</div></div>
-    </div>
-  </div>
-</section>
+
 
 
 
@@ -1078,7 +1013,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Necessity · diagram -->
-<section class="slide" data-label="Formal ·Necessity" data-screen-label="28">
+<section class="slide" data-label="Formal ·Necessity" data-screen-label="24">
   <div class="b-slide pal-a lens-formal dB" data-sec="nec">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1102,7 +1037,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <text class="la" x="860" y="364" text-anchor="middle">what w<tspan dy="7" font-size="68%">0</tspan><tspan dy="-7"> sees: the rule-abiding worlds</tspan></text>
         <text class="lw" x="190" y="290" text-anchor="middle">evaluation world</text>
       </svg>
-      <div class="erow" style="border-top:none"><div class="lb">\(\Box p\) at \(w_0\)</div><div class="tx tight"><strong>Every</strong> world \(w_0\) sees lies inside \(p\). (20) <em>Every car must be registered</em>: true.</div></div>
+      <div class="erow" style="border-top:none"><div class="lb">\(\Box p\) at \(w_0\)</div><div class="tx tight"><strong>Every</strong> world \(w_0\) sees lies inside \(p\). <em>Every car must be registered</em>: true.</div></div>
       <div class="erow"><div class="lb">Last week's observation</div><div class="tx tight">\(w_0\) itself lies outside \(p\): some cars are unregistered. \(\Box p\) true, \(p\) false.</div></div>
     </div>
   </div>
@@ -1111,7 +1046,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Possibility · diagram -->
-<section class="slide" data-label="Formal ·Possibility" data-screen-label="29">
+<section class="slide" data-label="Formal ·Possibility" data-screen-label="25">
   <div class="b-slide pal-a lens-formal dB" data-sec="pos">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1144,7 +1079,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 22 · Frames and models -->
-<section class="slide" data-label="Formal ·Frames and models" data-screen-label="30">
+<section class="slide" data-label="Formal ·Frames and models" data-screen-label="26">
   <div class="b-slide pal-a lens-formal dB" data-sec="frm">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1175,7 +1110,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 23 · Truth at a world -->
-<section class="slide" data-label="Formal ·Truth at a world" data-screen-label="31">
+<section class="slide" data-label="Formal ·Truth at a world" data-screen-label="27">
   <div class="b-slide pal-a lens-formal dB" data-sec="tru">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1196,7 +1131,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 24 · Worked example -->
-<section class="slide" data-label="Formal ·Worked example" data-screen-label="32">
+<section class="slide" data-label="Formal ·Worked example" data-screen-label="28">
   <div class="b-slide pal-a lens-formal" data-sec="wrk">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1216,7 +1151,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 25 · Your turn -->
-<section class="slide" data-label="Formal ·Your turn" data-screen-label="33">
+<section class="slide" data-label="Formal ·Your turn" data-screen-label="29">
   <div class="b-slide pal-a lens-formal" data-sec="ex">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1237,7 +1172,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 29 · must and may -->
-<section class="slide" data-label="Formal ·Must and may" data-screen-label="34">
+<section class="slide" data-label="Formal ·Must and may" data-screen-label="30">
   <div class="b-slide pal-a lens-formal dB" data-sec="lex">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1259,7 +1194,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Other notations -->
-<section class="slide" data-label="Formal ·Other notations" data-screen-label="35">
+<section class="slide" data-label="Formal ·Other notations" data-screen-label="31">
   <div class="b-slide pal-a lens-formal dB" data-sec="nota">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1297,7 +1232,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Conditions on R -->
-<section class="slide" data-label="Formal ·Conditions on R" data-screen-label="36">
+<section class="slide" data-label="Formal ·Conditions on R" data-screen-label="32">
   <div class="b-slide pal-a lens-formal dB" data-sec="cond">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1313,7 +1248,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Flavours and conditions -->
-<section class="slide" data-label="Formal ·Flavours and conditions" data-screen-label="37">
+<section class="slide" data-label="Formal ·Flavours and conditions" data-screen-label="33">
   <div class="b-slide pal-a lens-formal dB" data-sec="flf">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1321,8 +1256,8 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <h2 class="b-h">Flavours and conditions</h2>
       <div class="fourways">
         <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Knowledge<small>reflexive</small></div><div class="ft2">What is known is true. <span style="color:var(--lens)">#</span><em>Sue knows that it is raining, but it isn't.</em></div></div>
-        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>serial</small></div><div class="ft2">Rules get broken, so no loops: (20) holds while some cars are unregistered. <em>Must</em> still gives <em>may</em>.</div></div>
-        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Epistemic <em>must</em><small>reflexive</small></div><div class="ft2">The theory predicts that <em>must p</em> entails <em>p</em>. The wet-umbrellas contrast in (21) is a <b>problem</b> for it.</div></div>
+        <div class="fw" style="--fc:var(--lens-for)"><div class="fl">Obligation<small>serial</small></div><div class="ft2">Rules get broken, so no loops: <em>every car must be registered</em> holds while some cars are unregistered. <em>Must</em> still gives <em>may</em>.</div></div>
+        <div class="fw" style="--fc:var(--lens-emp)"><div class="fl">Epistemic <em>must</em><small>reflexive</small></div><div class="ft2">The theory predicts that <em>must p</em> entails <em>p</em>. Yet <em>it must be raining</em> is odd while watching the rain fall: a <b>problem</b> for it.</div></div>
       </div>
       <div class="erow" style="margin-top:6px"><div class="lb">The move</div><div class="tx tight">A flavour is a choice of \(R\). Its logic follows from the <strong>shape of \(R\)</strong>.</div></div>
     </div>
@@ -1332,18 +1267,18 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Substitution under necessity -->
-<section class="slide" data-label="Formal ·Last week's swap" data-screen-label="38">
+<section class="slide" data-label="Formal ·Last week's swap" data-screen-label="34">
   <div class="b-slide pal-a lens-formal dB" data-sec="subn">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Last week's swap, explained</h2>
-      <!-- (26)-(27) are week 1's (10)-(11). (28): Menzel, SEP "Possible worlds", §1.1. -->
+      <!-- The first two examples are week 1's (10)-(11). The third: Menzel, SEP "Possible worlds", §1.1. -->
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">Substitution under a modal</div>
-        <div class="eg"><span class="no">(26)</span><span class="ex">The Empire State Building might be the tallest building in New York.<span class="gl">sensible: true iff at <b>some</b> world we see, the tallest building there is the Empire State Building</span></span></div>
-        <div class="eg"><span class="no">(27)</span><span class="ex"><span style="color:var(--lens)">#</span>The Empire State Building might be One World Trade Center.<span class="gl">two names, two buildings, at every world: false everywhere</span></span></div>
-        <div class="eg"><span class="no">(28)</span><span class="ex">Necessarily, all John's dogs are mammals.<span class="gl">true; swap the coextensional <em>John's pets</em> and it turns false · Menzel (SEP)</span></span></div>
+        <div class="eg"><span class="no">(23)</span><span class="ex">The Empire State Building might be the tallest building in New York.<span class="gl">sensible: true iff at <b>some</b> world we see, the tallest building there is the Empire State Building</span></span></div>
+        <div class="eg"><span class="no">(24)</span><span class="ex"><span style="color:var(--lens)">#</span>The Empire State Building might be One World Trade Center.<span class="gl">two names, two buildings, at every world: false everywhere</span></span></div>
+        <div class="eg"><span class="no">(25)</span><span class="ex">Necessarily, all John's dogs are mammals.<span class="gl">true; swap the coextensional <em>John's pets</em> and it turns false · Menzel (SEP)</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">Why the swap fails</div><div class="tx tight">Same extension here. The <strong>intension</strong> of the description varies from world to world, and the modal looks at other worlds.</div></div>
       <div class="erow"><div class="lb">Names</div><div class="tx tight">A name picks out the same thing at every world: a <strong>rigid designator</strong>. Kripke (1980).</div></div>
@@ -1354,7 +1289,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 30 · Limits of the simple system -->
-<section class="slide" data-label="Formal ·Limits" data-screen-label="39">
+<section class="slide" data-label="Formal ·Limits" data-screen-label="35">
   <div class="b-slide pal-a lens-formal dB" data-sec="lim">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1384,18 +1319,18 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 31 · Scots: double modals -->
-<section class="slide" data-label="Typological ·Scots and Ulster" data-screen-label="40">
+<section class="slide" data-label="Typological ·Scots and Ulster" data-screen-label="36">
   <div class="b-slide pal-a lens-typological dB" data-sec="sco">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
       <h2 class="b-h">Scots and Ulster: double modals</h2>
-      <!-- Data as quoted in the MultiMo database (multimodal.library.sc.edu, Commentary page) and in "A social turn for Construction Grammar: double modals on British Twitter", English Language & Linguistics (2024). TODO: check (29) against Brown & Miller 1975: 174. -->
+      <!-- Data as quoted in the MultiMo database (multimodal.library.sc.edu, Commentary page) and in "A social turn for Construction Grammar: double modals on British Twitter", English Language & Linguistics (2024). TODO: check the Edinburgh example against Brown & Miller 1975: 174. -->
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">Two modals, one clause</div>
-        <div class="eg"><span class="no">(29)</span><span class="ex">He'll no can come this week.<span class="gl">Edinburgh · Brown &amp; Miller (1975)</span></span></div>
-        <div class="eg"><span class="no">(30)</span><span class="ex">might can no dae it<span class="gl">Hawick · geolocated tweet · Morin, Desagulier &amp; Grieve (2024)</span></span></div>
-        <div class="eg"><span class="no">(31)</span><span class="ex">I'll not can reply to this letter today.<span class="gl">Ulster · McMordie (1897): <em>will can</em> reported only with negation</span></span></div>
+        <div class="eg"><span class="no">(26)</span><span class="ex">He'll no can come this week.<span class="gl">Edinburgh · Brown &amp; Miller (1975)</span></span></div>
+        <div class="eg"><span class="no">(27)</span><span class="ex">might can no dae it<span class="gl">Hawick · geolocated tweet · Morin, Desagulier &amp; Grieve (2024)</span></span></div>
+        <div class="eg"><span class="no">(28)</span><span class="ex">I'll not can reply to this letter today.<span class="gl">Ulster · McMordie (1897): <em>will can</em> reported only with negation</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">The inventory</div><div class="tx tight"><em>might</em>, <em>will</em>, <em>used to</em> first; <em>can</em>, <em>could</em> second. Brown (1991).</div></div>
       <div class="erow"><div class="lb">As operators</div><div class="tx tight">Two modals, <strong>two relations</strong>. <em>might can</em>: \(\Diamond\Diamond p\), epistemic over circumstantial. Elsewhere: <em>might be able to</em>.</div></div>
@@ -1406,7 +1341,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 32 · Irish English: epistemic mustn't -->
-<section class="slide" data-label="Typological ·Irish English" data-screen-label="41">
+<section class="slide" data-label="Typological ·Irish English" data-screen-label="37">
   <div class="b-slide pal-a lens-typological dB" data-sec="ire">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1414,12 +1349,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <h2 class="b-h">Irish English: epistemic <em>mustn't</em></h2>
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">The same claim, two forms</div>
-        <div class="eg"><span class="no">(32)</span><span class="ex">He mustn't be Scottish.<span class="gl">Irish English · it must be that he is not Scottish · \(\Box\neg p\) · Hickey (2007)</span></span></div>
-        <div class="eg"><span class="no">(33)</span><span class="ex">He can't be Scottish.<span class="gl">southern British English · \(\neg\Diamond p\)</span></span></div>
+        <div class="eg"><span class="no">(29)</span><span class="ex">He mustn't be Scottish.<span class="gl">Irish English · it must be that he is not Scottish · \(\Box\neg p\) · Hickey (2007)</span></span></div>
+        <div class="eg"><span class="no">(30)</span><span class="ex">He can't be Scottish.<span class="gl">southern British English · \(\neg\Diamond p\)</span></span></div>
       </div>
       <div class="erow" style="border-top:none"><div class="lb">Duality</div><div class="tx tight">\(\Box\neg p \equiv \neg\Diamond p\): two forms, <strong>one truth condition</strong>.</div></div>
       <div class="erow"><div class="lb">Hickey</div><div class="tx tight"><em>Must</em> regularised across positive and negative. Also Scottish, Australian and New Zealand English.</div></div>
-      <div class="erow"><div class="lb">Show of hands</div><div class="tx tight">(32) or (33): the form you would use.</div></div>
+      <div class="erow"><div class="lb">Show of hands</div><div class="tx tight">(29) or (30): the form you would use.</div></div>
     </div>
   </div>
 </section>
@@ -1427,7 +1362,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- 33 · Nez Perce -->
-<section class="slide" data-label="Typological ·Nez Perce" data-screen-label="42">
+<section class="slide" data-label="Typological ·Nez Perce" data-screen-label="38">
   <div class="b-slide pal-a lens-typological dB" data-sec="nez">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -1436,10 +1371,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <!-- Both examples from Deal, "Modals without scales" (Language 87(3), 2011). Text and numbering checked against the October 2010 draft on the Semantics Archive, exx. (1) and (52): confirm numbers and orthography against the published version before citing a page. -->
       <div class="egpanel" style="margin-top:4px">
         <div class="eghead">The suffix <em>-o'qa</em> &middot; Deal (2011)</div>
-        <div class="eg"><span class="no">(34)</span><span class="ex" style="font-style:normal"><span class="ctx2">Handing a friend two blankets for a camping trip</span>
+        <div class="eg"><span class="no">(31)</span><span class="ex" style="font-style:normal"><span class="ctx2">Handing a friend two blankets for a camping trip</span>
           <span class="igl"><span class="wd2"><b>’inehne-no’qa</b><i>take-<span class="sc2">modal</span></i></span><span class="wd2"><b>’ee</b><i>you</i></span><span class="wd2"><b>kii</b><i><span class="sc2">dem</span></i></span><span class="wd2"><b>lepit</b><i>two</i></span><span class="wd2"><b>cickan</b><i>blanket</i></span></span>
           <span class="tr">&lsquo;You <b>can</b> take these two blankets.&rsquo; &nbsp;Also accepted: &lsquo;You <b>should</b> take …&rsquo;</span></span></div>
-        <div class="eg"><span class="no">(35)</span><span class="ex" style="font-style:normal"><span class="ctx2">Telling someone that they are not required to leave</span>
+        <div class="eg"><span class="no">(32)</span><span class="ex" style="font-style:normal"><span class="ctx2">Telling someone that they are not required to leave</span>
           <span class="igl"><span class="wd2"><b><span style="color:var(--lens);font-style:normal">#</span> weet’u</b><i>not</i></span><span class="wd2"><b>’ee</b><i>you</i></span><span class="wd2"><b>kiy-o’qa</b><i>go-<span class="sc2">modal</span></i></span></span>
           <span class="tr">Only &lsquo;You <b>can&rsquo;t</b> go&rsquo;: \(\neg\Diamond\). Never &lsquo;You don&rsquo;t have to go&rsquo;: \(\neg\Box\).</span></span></div>
       </div>
@@ -1452,7 +1387,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Thursday -->
-<section class="slide" data-label="Thursday" data-screen-label="43">
+<section class="slide" data-label="Thursday" data-screen-label="39">
   <div class="b-slide pal-a lens-typological" data-sec="thu">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1476,10 +1411,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 (function () {
   var TITLES = {
     wk:"This week", road:"Roadmap", rd:"Readings",
-    game:"Must and might", lsp:"Possible worlds", intn:"Intensions", lastwk:"Last week's questions", dual:"Duality", scope:"Scope",
-    tworead:"Two readings", flav:"Flavours", nameflav:"In view of", tq:"Flavours and inference",
-    cil:"C. I. Lewis", car:"Carnap", vw:"von Wright", dub:"Dublin, 1956", kri:"Kripke",
-    dlw:"Lewis's realism", ers:"Three answers", fic:"Fictionalism",
+    game:"Must and might", lsp:"Possible worlds", intn:"Intensions", lastwk:"Problems for extensional semantics", dual:"Duality", scope:"Scope",
+    tworead:"Two readings", flav:"Flavours", nameflav:"In view of",
+    cil:"C. I. Lewis", car:"Carnap", dub:"Dublin, 1956", kri:"Saul Kripke",
+    dlw:"Lewis's realism", ers:"Philosophy of possible worlds",
     nec:"Necessity", pos:"Possibility", frm:"Frames and models", tru:"Truth at a world", wrk:"Worked example", ex:"Your turn",
     lex:"Must and may", nota:"Other notations", cond:"Conditions on R", flf:"Flavours and conditions",
     subn:"Last week's swap, explained", lim:"Limits",
@@ -1487,9 +1422,9 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   };
   var GROUPS = [
     { t:"Introduction",    sc:null,         keys:["wk","road","rd"] },
-    { t:"Empirical",       sc:"--lens-emp", keys:["game","lsp","intn","lastwk","dual","scope","tworead","flav","nameflav","tq"] },
-    { t:"Historical",      sc:"--lens-his", keys:["cil","car","vw","dub","kri"] },
-    { t:"What a world is", sc:"--lens-his", keys:["dlw","ers","fic"] },
+    { t:"Empirical",       sc:"--lens-emp", keys:["game","lsp","intn","lastwk","dual","scope","tworead","flav","nameflav"] },
+    { t:"Historical",      sc:"--lens-his", keys:["cil","car","dub","kri"] },
+    { t:"What a world is", sc:"--lens-his", keys:["dlw","ers"] },
     { t:"Formal",          sc:"--lens-for", keys:["nec","pos","frm","tru","wrk","ex","lex","nota","cond","flf","subn","lim"] },
     { t:"Typological",     sc:"--lens-typ", keys:["sco","ire","nez","thu"] }
   ];
