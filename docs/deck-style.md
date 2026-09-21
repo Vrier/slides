@@ -70,7 +70,7 @@ All are in the week 1 file; copy the markup from there.
 | Two arms | `.brn` › `.split`, `.arms` › `.arm` / `.arm.meant` | A contrast of two readings or two cases |
 | Four rows | `.fourways` › `.fw` › `.fl` (+`small`) + `.ft2`, `--fc` set to a lens colour | A small taxonomy: label, sub-label, one line of data |
 | Worked steps | `.b-steps` › `.b-step` (+`.step-future` for the last) | Derivations and evaluations |
-| Question | `.qwrap` › `.qask` (imperative: "Decide: …", "Same model. Your turn") + `.convo` rows + `.qsrc` | Always followed by an answer slide sharing its `data-sec` |
+| Question | `.qwrap` › `.qask` (a plain prompt, never prefixed "Decide:": "What the negation applies to", "Same model. Your turn") + `.convo` rows + `.qsrc` | Always followed by an answer slide sharing its `data-sec` |
 | Portraits | `.figrow` / `.figtwo` / `.figthree` › `.portrait` (`.npf` + `.npmono` when no free photo) | Real photos when legitimately available; source and licence in `.dt` and in an HTML comment; identity checked |
 | Lineage | `.lineage` › `.ln` › `.dot` `.era` `.nm` `.ds`, then `.roots` | The historical spine, five nodes |
 | Week tag | `.wktag` inside `h2` | A bare "Week N" |
