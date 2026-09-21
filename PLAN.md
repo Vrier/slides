@@ -848,5 +848,15 @@ what the next session must know)*
   conditions*; *Portner's ants*, *Validity*, *Frame conditions* and *Axioms and flavours*
   are out of the deck and live in the handout. Deck: 46 sections, 42 numbered slides,
   examples (1) to (35). Handout block 7 gains an *Intension* definition.
+- **2026-09-21 (morning): week 1's questions tied in.** New *Last week's questions*
+  slide after *Intensions* (nesting, empty predicates, *might* and the tallest building,
+  *every car must be registered*, and what stays open: Morning Star / Evening Star,
+  weeks 4 and 6). Week 1's own sentences are now the running examples: *Every car must
+  be registered* replaces *Visitors must sign in* everywhere (the Necessity figure now
+  draws week 1's observation that it can be true while *every car is registered* is
+  false); *Hannah may be in the library* is (13); the substitution slide is retitled
+  *Last week's swap, explained* and runs on week 1's Empire State Building pair in place
+  of Quine's planets. Left for later weeks on purpose: intensional adjectives, *seeking a
+  unicorn*, the commitment shift under *believes*. Deck 47 sections, 43 numbered.
 - `npm test` green (166 files).
 
