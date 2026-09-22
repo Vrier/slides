@@ -178,6 +178,8 @@
   .mt-chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
   .achip { display: inline-flex; align-items: baseline; gap: 5px; font-size: 12px; font-weight: 600; color: var(--tcd-grey-100); border: 1px dashed var(--tcd-grey-50); border-radius: 7px; padding: 4px 9px; background: #fafafa; }
   .achip .aw { font-family: var(--mono); font-size: 10.5px; color: var(--accent); font-weight: 700; }
+  a.achip.ready { border: 1px solid var(--tcd-grey-25); border-style: solid; background: #fff; color: var(--tcd-ink); text-decoration: none; cursor: pointer; }
+  a.achip.ready:hover { border-color: var(--accent); }
 
   footer { margin-top: 46px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--tcd-grey-75); display: flex; gap: 22px; flex-wrap: wrap; align-items: center; }
   footer .mono { font-family: var(--mono); font-size: 11.5px; }
@@ -363,7 +365,7 @@ const IDENTITIES = {
     { key:'liu22012', code:'LIU22012', name:'Pragmatics I',          term:'Semester 2 · Hilary', coord:'Dr Conor Pyle',
       assessments:[ {no:1,title:'Assessment 1',w:20}, {no:2,title:'Assessment 2',w:20}, {no:3,title:'Assessment 3',w:60} ] },
     { key:'li7862',   code:'LI7862',   name:'Linguistic Pragmatics', term:'Semester 1 · Michaelmas', coord:'Dr Thomas Stephen', ov:'ready',
-      assessments:[ {no:1,title:'Assignment · limit 3,500 words',w:100} ] },
+      assessments:[ {no:1,title:'Assignment · limit 3,500 words',w:100,st:'ready',guide:'li7862-a1-guidance.html'} ] },
   ],
   prag2: [
     { key:'liu44008', code:'LIU44008', name:'Pragmatics II', term:'Semester 1 · Michaelmas', coord:'Dr Thomas Stephen',
@@ -403,9 +405,15 @@ function modToolsHTML(g, id){
   const as = id.assessments || [];
   const sum = as.map(a=>a.w).join('/');
   const noun = as.length===1 ? 'assessment' : 'assessments';
-  const chips = as.map(a =>
-    `<span class="achip" title="${a.title} — ${dir}/assessments/${id.key}-a${a.no}.html (not created)"><span class="an">A${a.no}</span><span class="aw">${a.w}%</span></span>`
-  ).join('');
+  const chips = as.map(a => {
+    const main = a.st === 'ready'
+      ? `<a class="achip ready" href="${dir}/assessments/${id.key}-a${a.no}.html" title="${a.title}"><span class="an">A${a.no}</span><span class="aw">${a.w}%</span></a>`
+      : `<span class="achip" title="${a.title} — ${dir}/assessments/${id.key}-a${a.no}.html (not created)"><span class="an">A${a.no}</span><span class="aw">${a.w}%</span></span>`;
+    const guide = a.st === 'ready' && a.guide
+      ? `<a class="achip ready" href="${dir}/assessments/${a.guide}" title="Writing guidance for A${a.no}"><span class="an">A${a.no}</span><span class="aw">guide</span></a>`
+      : '';
+    return main + guide;
+  }).join('');
   const ovHref = `${dir}/overview-${id.key}.html`;
   const ov = id.ov === 'ready'
     ? `<a class="mt-ov ready" href="${ovHref}" title="${ovHref}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Overview</span><span class="badge ready">ready</span></a>`
@@ -416,7 +424,7 @@ function modToolsHTML(g, id){
       <span class="mt-lab">Assessments</span>
       <span class="mt-sum">${as.length} ${noun} · ${sum}</span>
       <span class="mt-chips">${chips}</span>
-      <span class="badge">not created</span>
+      ${as.length && as.every(a=>a.st==='ready') ? '<span class="badge ready">ready</span>' : '<span class="badge">not created</span>'}
     </div>
   </div>`;
 }

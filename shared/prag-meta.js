@@ -114,7 +114,7 @@ window.MODULE = {
     { key: "li7862", code: "LI7862", name: "Linguistic Pragmatics", term: "Semester 1 / Michaelmas", coordinator: "Dr Thomas Stephen",
       overview: { file: "overview-li7862.html", status: "ready" },
       assessments: [
-        { no: 1, title: "Assignment", weight: 100, words: "3500 limit", file: "assessments/li7862-a1.html", status: "none" },
+        { no: 1, title: "Assignment", weight: 100, words: "3500 limit", file: "assessments/li7862-a1.html", guidance: "assessments/li7862-a1-guidance.html", status: "ready" },
       ] },
   ],
 };
