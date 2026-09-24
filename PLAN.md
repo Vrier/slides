@@ -913,5 +913,14 @@ what the next session must know)*
   to model what?" with his judgements; the ✓/✗ exercise now asks about the flavours his
   list leaves open (circumstantial, teleological, bouletic); two pages. Ants-and-axioms
   task moved from block 5 to block 4 (d). 11 pages. (□M) written (□T) to keep T.
+- **2026-09-24: handout cut and reordered (Thomas).** No "Slides." lines in the margins. Block
+  0 keeps the definitions (short forms) and the table, no exercise. Block 1: Scope gains the
+  English glosses; the old six sentences and three tasks replaced by one graded translation
+  exercise, thirteen sentences from "It is necessary that she is home" to "It might be that
+  John doesn't know whether Mary is tall", with an answer column (`table.rec.trans`).
+  *Must and may* and *Substitution under necessity* removed. Order now: 0 Intensions, 1
+  Modal language, 2 Frame conditions, 3 Flavours, 4 What you need to know, 5 Frames,
+  models, truth at a world, 6 Validity (Thomas: models and validity at the very end).
+  Checklist loses the must/may and substitution items. Examples (1) to (22). 10 pages.
 - `npm test` green (166 files).
 

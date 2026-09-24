@@ -92,3 +92,12 @@
 .steps.ax > li { margin-bottom:3pt; }
 .steps.ax ul { margin:1pt 0 0 0; padding-left:12pt; list-style:'– '; }
 .steps.ax ul li { margin:0; }
+
+/* translation column (Semantics II week 2, block 1) */
+table.rec.trans { width:100%; }
+table.rec.trans td, table.rec.trans th { height:24pt; vertical-align:middle; text-align:left; }
+table.rec.trans th { height:auto; }
+table.rec.trans td:first-child, table.rec.trans th:first-child { width:24pt; white-space:nowrap; text-align:left; }
+table.rec.trans td:nth-child(2) { width:44%; font-style:italic; }
+table.rec.trans thead { display:table-header-group; }
+@media print { table.rec.trans { break-inside:auto; page-break-inside:auto; } table.rec.trans tr { break-inside:avoid; page-break-inside:avoid; } }
