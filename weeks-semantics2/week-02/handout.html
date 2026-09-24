@@ -32,7 +32,7 @@
   <h1 class="doc-title">Worlds, Intensions &amp; Modal Logic</h1>
 
   <!-- Companion to the Formal material in the week 2 deck; blocks follow the slides in order (block → slides in each margin note).
-       Definitions in blocks 1, 2, 4 and 5 keep the wording of Thomas's Semantics III handout 3 (2025–26).
+       Blocks 1, 2, 5 and 6 follow the wording and layout of Thomas's Semantics III handout 3, "Propositional Modal Logic" (2025-26): syntax and intended readings, duality and the parallel with quantifiers, Kripke semantics with Intuitively, correspondences and named systems, what modal logic is for, and which axioms are plausible for what.
        Block 2 model and task (b): Coppock & Champollion, "Toward a theory of modality" (Exercise 4); it is the model on the
        "Frames and models" slide. Block 4 ant model: Portner 2009, (15) and (18). Block 6 data: Portner 2009, (26), (28), (38)–(39).
        Block 3 (c): Coppock & Champollion, "Explicit reference to worlds". Block 7: Menzel, SEP "Possible worlds", §1.1;
@@ -75,12 +75,12 @@
     <div class="num">1</div>
     <div class="body">
       <h2>The modal language</h2>
+      <p>A set of atomic propositions <i>p</i>, <i>q</i>, <i>r</i>, …; formulas <span style="white-space:nowrap">φ ::= <i>p</i> | ¬φ | (φ ∧ ψ) | (φ ∨ ψ) | (φ → ψ) | □φ | ◇φ</span>.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Formulas</span><span class="g">φ ::= <i>p</i> | ¬φ | (φ ∧ ψ) | (φ ∨ ψ) | (φ → ψ) | □φ | ◇φ, with <i>p</i>, <i>q</i>, <i>r</i>, … atomic.</span></div>
-        <div class="d"><span class="t">□<i>A</i></span><span class="g">Necessarily / must / has to <i>A</i>. Like <i>every</i>.</span></div>
-        <div class="d"><span class="t">◇<i>A</i></span><span class="g">Possibly / may / might / can <i>A</i>. Like <i>some</i>.</span></div>
-        <div class="d"><span class="t">Duality</span><span class="g">◇<i>A</i> ≡ ¬□¬<i>A</i> and □<i>A</i> ≡ ¬◇¬<i>A</i>, as ¬∀ ≡ ∃¬ and ¬∃ ≡ ∀¬.</span></div>
+        <div class="d"><span class="t">Intended readings</span><span class="g">□<i>A</i> ‘necessarily / must / always / knows that <i>A</i>’. ◇<i>A</i> ‘possibly / might / sometimes / it is compatible that <i>A</i>’.</span></div>
+        <div class="d"><span class="t">Duality</span><span class="g">The two modal operators are interdefinable: ◇<i>A</i> ≡ ¬□¬<i>A</i> and □<i>A</i> ≡ ¬◇¬<i>A</i>.</span></div>
+        <div class="d"><span class="t">Parallel with ∀ and ∃</span><span class="g">On Kripke semantics, □ and ◇ behave like quantifiers over accessible worlds. □<i>A</i> is true at <i>w</i> iff <i>A</i> is true at <i>all</i> worlds accessible from <i>w</i> (like ∀); ◇<i>A</i> iff <i>A</i> is true at <i>some</i> accessible world (like ∃).</span></div>
         <div class="d"><span class="t">Scope</span><span class="g">¬◇<i>A</i>: negation above the modal. ◇¬<i>A</i>: negation below it.</span></div>
       </div>
       <ol class="exs">
@@ -94,11 +94,11 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Choose an atomic proposition for each of (1) to (5) and translate the sentence with □, ◇ and ¬. (3) and (4) contain the same string <i>may not</i>: state the scope of ¬ in each.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Use duality to give an equivalent formula for each translation, and an English sentence that expresses it.</span></div>
-        <div class="lines"><span></span><span></span></div>
+        <div class="lines"><span></span></div>
         <div class="task"><span>(c)</span><span>(6) has <i>not</i> above <i>think</i>, but is understood with it below. Say why this is not the same contrast as (3) against (4).</span></div>
-        <div class="lines"><span></span><span></span></div>
+        <div class="lines"><span></span></div>
       </div>
     </div>
     <div class="note">
@@ -115,10 +115,17 @@
       <h2>Frames, models, truth at a world</h2>
       <div class="defs">
         <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Frame</span><span class="g">⟨<i>W</i>, <i>R</i>⟩: a non-empty set <i>W</i> of worlds and an accessibility relation <i>R</i> ⊆ <i>W</i> × <i>W</i>. <i>wRw</i>′: <i>w</i> sees <i>w</i>′. <i>R</i>(<i>w</i>) = {<i>w</i>′ : <i>wRw</i>′}.</span></div>
-        <div class="d"><span class="t">Model</span><span class="g">⟨<i>W</i>, <i>R</i>, <i>V</i>⟩, where the valuation <i>V</i> gives each atomic <i>p</i> a set <i>V</i>(<i>p</i>) ⊆ <i>W</i>.</span></div>
-        <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ □φ</span><span class="g">iff ∀<i>w</i>′ (<i>wRw</i>′ ⇒ <i>M</i>, <i>w</i>′ ⊨ φ). As sets: <i>R</i>(<i>w</i>) ⊆ ⟦φ⟧.</span></div>
-        <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ ◇φ</span><span class="g">iff ∃<i>w</i>′ (<i>wRw</i>′ ∧ <i>M</i>, <i>w</i>′ ⊨ φ). As sets: <i>R</i>(<i>w</i>) ∩ ⟦φ⟧ ≠ ∅.</span></div>
+        <div class="d"><span class="t">Frame</span><span class="g">⟨<i>W</i>, <i>R</i>⟩ with a non-empty set <i>W</i> of worlds and an accessibility relation <i>R</i> ⊆ <i>W</i> × <i>W</i>. <i>R</i>(<i>w</i>) = {<i>w</i>′ : <i>wRw</i>′}, the worlds <i>w</i> sees.</span></div>
+        <div class="d"><span class="t">Model</span><span class="g">⟨<i>W</i>, <i>R</i>, <i>V</i>⟩ where <i>V</i> is a valuation assigning each atomic proposition <i>p</i> a set <i>V</i>(<i>p</i>) ⊆ <i>W</i>.</span></div>
+        <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ □φ</span><span class="g">iff ∀<i>w</i>′ ∈ <i>W</i> (<i>wRw</i>′ ⇒ <i>M</i>, <i>w</i>′ ⊨ φ). As sets: <i>R</i>(<i>w</i>) ⊆ ⟦φ⟧.</span></div>
+        <div class="d"><span class="t"><i>M</i>, <i>w</i> ⊨ ◇φ</span><span class="g">iff ∃<i>w</i>′ ∈ <i>W</i> (<i>wRw</i>′ ∧ <i>M</i>, <i>w</i>′ ⊨ φ). As sets: <i>R</i>(<i>w</i>) ∩ ⟦φ⟧ ≠ ∅.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Intuitively</div>
+        <ol class="steps">
+          <li>To check <i>M</i>, <i>w</i> ⊨ □<i>A</i>: look at all <i>R</i>-accessible worlds from <i>w</i> and see whether <i>A</i> holds there.</li>
+          <li>To check <i>M</i>, <i>w</i> ⊨ ◇<i>A</i>: look for some accessible world where <i>A</i> holds.</li>
+        </ol>
       </div>
       <p><span class="runin">Model <i>M</i>.</span> The model on the <i>Frames and models</i> slide. <i>V</i>(<i>p</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. <i>V</i>(<i>q</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Arrows show <i>R</i>.</p>
       <svg class="mfig" viewBox="0 0 520 74" role="img" aria-label="Four worlds in a row. w1 sees itself and w2; w2 sees w3; w3 sees w4; w4 sees nothing.">
@@ -132,12 +139,12 @@
         <circle class="nd" cx="320" cy="40" r="17"/><text class="wl" x="320" y="44">w<tspan dy="3" font-size="68%">3</tspan></text><text class="vl" x="320" y="71">q</text>
         <circle class="nd" cx="450" cy="40" r="17"/><text class="wl" x="450" y="44">w<tspan dy="3" font-size="68%">4</tspan></text>
       </svg>
-      <div class="proc">
+      <div class="proc" style="break-before:page;page-break-before:always">
         <div class="sc proc-head">Worked: the model at <i>w</i><sub>1</sub></div>
         <ol class="steps">
           <li><i>R</i>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. ⟦<i>p</i>⟧ = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}, so <i>R</i>(<i>w</i><sub>1</sub>) ⊆ ⟦<i>p</i>⟧: □<i>p</i> is true at <i>w</i><sub>1</sub>.</li>
           <li>⟦<i>q</i>⟧ = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. <i>R</i>(<i>w</i><sub>1</sub>) ∩ ⟦<i>q</i>⟧ = {<i>w</i><sub>1</sub>} ≠ ∅: ◇<i>q</i> is true. <i>w</i><sub>2</sub> ∉ ⟦<i>q</i>⟧: □<i>q</i> is false.</li>
-          <li>Nested: □◇<i>p</i> at <i>w</i><sub>1</sub> needs ◇<i>p</i> at <i>w</i><sub>1</sub> and at <i>w</i><sub>2</sub>. <i>R</i>(<i>w</i><sub>2</sub>) = {<i>w</i><sub>3</sub>}, and <i>p</i> is false there, so □◇<i>p</i> is false at <i>w</i><sub>1</sub>.</li>
+          <li>Nested: □◇<i>p</i> at <i>w</i><sub>1</sub> needs ◇<i>p</i> at <i>w</i><sub>1</sub> and <i>w</i><sub>2</sub>. <i>R</i>(<i>w</i><sub>2</sub>) = {<i>w</i><sub>3</sub>} and <i>p</i> is false there: □◇<i>p</i> is false.</li>
           <li>Dead end: <i>R</i>(<i>w</i><sub>4</sub>) = ∅. Every □φ is true at <i>w</i><sub>4</sub> (there is no world to check) and every ◇φ is false.</li>
         </ol>
       </div>
@@ -151,9 +158,9 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Write out <i>R</i>(<i>w</i>) for each world. Then complete the rows for <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub> and <i>w</i><sub>4</sub>.</span></div>
-        <div class="lines"><span></span></div>
+        <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Evaluate ◇□<i>q</i> and □(<i>p</i> → <i>q</i>) at <i>w</i><sub>1</sub>. Show the sets you compared.</span></div>
-        <div class="lines"><span></span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
@@ -222,7 +229,9 @@
         <div class="task"><span>(b)</span><span>Translate (11) and (12) into the modal language and evaluate each at every ant.</span></div>
         <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(c)</span><span>Keep the arrows and change <i>V</i>. Try to make your formula for (11) false at some ant. Then try to make your formula for (12) true at every ant. State what each attempt shows about validity on the frame.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Which axioms do (11) and (12) instantiate? Using block 5, say which frame conditions <i>smells</i> has, and whether that explains your results in (c).</span></div>
+        <div class="lines"><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
@@ -237,28 +246,33 @@
     <div class="num">5</div>
     <div class="body">
       <h2>Frame conditions</h2>
-      <div class="defs">
-        <div class="sc">Definitions</div>
-        <div class="d"><span class="t">K</span><span class="g">Valid on all frames: the minimal normal modal logic.</span></div>
-        <div class="d"><span class="t">T, S4, S5</span><span class="g">T: reflexive frames. S4: reflexive and transitive. S5: reflexive, symmetric and transitive.</span></div>
-        <div class="d"><span class="t">KD, KD45</span><span class="g">KD: serial frames, without (T). KD45: serial, transitive and Euclidean.</span></div>
-      </div>
+      <p>Normal modal logics start from K and add axioms. They can also be characterised by constraints on the accessibility relation <i>R</i>.</p>
       <table class="rec">
-        <tr><th>Axiom</th><th>Formula</th><th>Frame condition</th></tr>
-        <tr><td>(T)</td><td>□<i>A</i> → <i>A</i></td><td>Reflexive: ∀<i>w</i> (<i>wRw</i>)</td></tr>
-        <tr><td>(D)</td><td>□<i>A</i> → ◇<i>A</i></td><td>Serial: ∀<i>w</i> ∃<i>u</i> (<i>wRu</i>)</td></tr>
-        <tr><td>(4)</td><td>□<i>A</i> → □□<i>A</i></td><td>Transitive: <i>wRv</i> ∧ <i>vRu</i> ⇒ <i>wRu</i></td></tr>
-        <tr><td>(B)</td><td><i>A</i> → □◇<i>A</i></td><td>Symmetric: <i>wRv</i> ⇒ <i>vRw</i></td></tr>
-        <tr><td>(5)</td><td>◇<i>A</i> → □◇<i>A</i></td><td>Euclidean: <i>wRv</i> ∧ <i>wRu</i> ⇒ <i>vRu</i></td></tr>
+        <tr><th colspan="3">Core correspondences</th></tr>
+        <tr><td>(D)</td><td>□<i>A</i> → ◇<i>A</i></td><td>⇔ Serial: ∀<i>w</i> ∃<i>u</i> (<i>wRu</i>)</td></tr>
+        <tr><td>(T)</td><td>□<i>A</i> → <i>A</i></td><td>⇔ Reflexive: ∀<i>w</i> (<i>wRw</i>)</td></tr>
+        <tr><td>(4)</td><td>□<i>A</i> → □□<i>A</i></td><td>⇔ Transitive: <i>wRv</i> ∧ <i>vRu</i> ⇒ <i>wRu</i></td></tr>
+        <tr><td>(B)</td><td><i>A</i> → □◇<i>A</i></td><td>⇔ Symmetric: <i>wRv</i> ⇒ <i>vRw</i></td></tr>
+        <tr><td>(5)</td><td>◇<i>A</i> → □◇<i>A</i></td><td>⇔ Euclidean: <i>wRv</i> ∧ <i>wRu</i> ⇒ <i>vRu</i></td></tr>
+        <tr><th colspan="3">Further correspondences</th></tr>
+        <tr><td>(CD)</td><td>◇<i>A</i> → □<i>A</i></td><td>⇔ Functional: <i>wRv</i> ∧ <i>wRu</i> ⇒ <i>v</i> = <i>u</i></td></tr>
+        <tr><td>(□T)</td><td>□(□<i>A</i> → <i>A</i>)</td><td>⇔ Shift-reflexive: <i>wRv</i> ⇒ <i>vRv</i></td></tr>
+        <tr><td>(C4)</td><td>□□<i>A</i> → □<i>A</i></td><td>⇔ Dense: <i>wRv</i> ⇒ ∃<i>u</i>(<i>wRu</i> ∧ <i>uRv</i>)</td></tr>
+        <tr><td>(C)</td><td>◇□<i>A</i> → □◇<i>A</i></td><td>⇔ Convergent: <i>wRv</i> ∧ <i>wRx</i> ⇒ ∃<i>u</i>(<i>vRu</i> ∧ <i>xRu</i>)</td></tr>
       </table>
+      <div class="defs">
+        <div class="sc">Named systems that are useful to linguistics</div>
+        <div class="d"><span class="t">K</span><span class="g">The minimal normal modal logic; baseline principles for □ and ◇.</span></div>
+        <div class="d"><span class="t">T</span><span class="g">Adds □<i>A</i> → <i>A</i>. Often called M in the readings.</span></div>
+        <div class="d"><span class="t">S4</span><span class="g">Reflexive + transitive (M4 in the readings).</span></div>
+        <div class="d"><span class="t">S5</span><span class="g">Equivalence frames: reflexive + symmetric + transitive. Often used as an idealised logic of knowledge. The strongest normal logic.</span></div>
+        <div class="d"><span class="t">KD</span><span class="g">A standard deontic baseline: seriality, and importantly not T.</span></div>
+        <div class="d"><span class="t">KD45</span><span class="g">A standard doxastic logic (belief): serial + transitive + Euclidean.</span></div>
+      </div>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Which axioms do (11) and (12) instantiate? Say which conditions the ants' <i>smells</i> relation has, and whether that explains your results in block 4.</span></div>
-        <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(b)</span><span>Say which of the five conditions hold of <i>R</i> in <i>M</i> from block 2. For each that fails, name the worlds that show it.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>Draw a frame with two or three worlds on which (4) fails. Give a valuation and a world at which □<i>p</i> → □□<i>p</i> is false.</span></div>
-        <div class="draw"></div>
+        <div class="task"><span>(a)</span><span>Say which of the five conditions hold of <i>R</i> in <i>M</i> from block 2. For each that fails, name the worlds that show it.</span></div>
+        <div class="lines"><span></span></div>
       </div>
     </div>
     <div class="note">
@@ -273,13 +287,25 @@
     <div class="num">6</div>
     <div class="body">
       <h2>Flavours and their logics</h2>
+      <p>Modal logic studies operators that behave like necessity and possibility. In linguistic applications the same formal operators are used, with different accessibility relations, to model:</p>
       <div class="defs">
-        <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Alethic <i>R</i></span><span class="g"><i>wRw</i>′ iff <i>w</i>′ obeys logic.</span></div>
-        <div class="d"><span class="t">Epistemic <i>R</i></span><span class="g"><i>wRw</i>′ iff what is known in <i>w</i> holds in <i>w</i>′.</span></div>
-        <div class="d"><span class="t">Deontic <i>R</i></span><span class="g"><i>wRw</i>′ iff the rules of <i>w</i> are kept in <i>w</i>′.</span></div>
-        <div class="d"><span class="t">Circumstantial <i>R</i></span><span class="g"><i>wRw</i>′ iff the facts at issue in <i>w</i> hold in <i>w</i>′.</span></div>
-        <div class="d"><span class="t">Teleological <i>R</i></span><span class="g"><i>wRw</i>′ iff the goals of <i>w</i> are met in <i>w</i>′.</span></div>
+        <div class="sc">Flavours</div>
+        <div class="d"><span class="t">Alethic</span><span class="g">Metaphysical or logical necessity and possibility.</span></div>
+        <div class="d"><span class="t">Epistemic</span><span class="g"><i>Must</i> / <i>might</i> relative to an information state; knowledge and belief.</span></div>
+        <div class="d"><span class="t">Deontic</span><span class="g"><i>Must</i> / <i>should</i> / <i>may</i> relative to rules or norms: obligation and permission.</span></div>
+        <div class="d"><span class="t">Circumstantial</span><span class="g"><i>Can</i> / <i>have to</i> relative to the facts at issue: abilities, dispositions.</span></div>
+        <div class="d"><span class="t">Bouletic, teleological</span><span class="g">Relative to desires, goals, plans.</span></div>
+        <div class="d"><span class="t">Temporal</span><span class="g">‘Always’ / ‘sometimes’ in the future or past.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Which axioms are plausible to model what?</div>
+        <ol class="steps ax">
+          <li><b>(T)</b> □<i>A</i> → <i>A</i><ul><li>Plausible for knowledge, which is factive: if <i>x</i> knows <i>A</i>, then <i>A</i>.</li><li>Not plausible for belief: people can believe false things.</li><li>Not plausible for deontic <i>ought</i>: ‘you ought to <i>A</i>’ does not entail ‘<i>A</i>’.</li></ul></li>
+          <li><b>(D)</b> □<i>A</i> → ◇<i>A</i><ul><li>Deontic readings: if <i>A</i> is obligatory, then <i>A</i> is permitted.</li><li>Often assumed for belief: at least one world is compatible with what is believed.</li><li>Temporal: if there is always a future, each time has at least one accessible future. Not necessarily for the past.</li></ul></li>
+          <li><b>(4)</b> □<i>A</i> → □□<i>A</i><ul><li>Temporal ‘always’: if <i>A</i> holds at all future times, then at all future times it will still be true that <i>A</i> holds at all future times.</li><li>Epistemic and doxastic: positive introspection ideals (<i>KA</i> → <i>KKA</i>, <i>BA</i> → <i>BBA</i>).</li></ul></li>
+          <li><b>(5)</b> ◇<i>A</i> → □◇<i>A</i>, equivalently ¬□<i>A</i> → □¬□<i>A</i><ul><li>Epistemic and doxastic: negative introspection ideals.</li><li>Alethic: metaphysical and logical modality.</li></ul></li>
+          <li><b>(B)</b> <i>A</i> → □◇<i>A</i><ul><li>Indistinguishability-style epistemic accessibility.</li><li>Not for tense: ordinary earlier and later relations are not symmetric.</li></ul></li>
+        </ol>
       </div>
       <ol class="exs">
         <li><span>(13)</span><span class="s">If it must be raining, then it is raining.</span></li>
@@ -292,18 +318,17 @@
       </ol>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>For each of (13) to (16), name the axiom whose form it has, give the flavour of its modals, and judge whether it has to be true.</span></div>
+        <div class="task"><span>(a)</span><span>For each of (13) to (16), name the axiom whose form it has and the flavour of its modals, and say which judgement above predicts whether it has to be true. Do the same for (17) and (18).</span></div>
         <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(b)</span><span>Give the truth conditions of (19) with a teleological <i>R</i>. Then say why (T) is the wrong axiom for epistemic <i>must</i> if <i>it must be raining</i> sounds odd while you watch the rain fall.</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>Fill in the table: ✓ where the axiom is plausible for that reading of □, ✗ where it is not. Be ready to give the English judgement behind each mark, using (17) and (18).</span></div>
+        <div class="task"><span>(c)</span><span>The list above leaves the flavours in the table open. Mark ✓ where the axiom is plausible and ✗ where it is not, and give an English sentence behind one mark in each row.</span></div>
       </div>
       <table class="rec fill">
         <tr><th>□ read as</th><th>(T)</th><th>(D)</th><th>(4)</th><th>(B)</th></tr>
-        <tr><td>necessarily (alethic)</td><td></td><td></td><td></td><td></td></tr>
-        <tr><td><i>x</i> knows that</td><td></td><td></td><td></td><td></td></tr>
-        <tr><td><i>x</i> believes that</td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>it is obligatory that</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>circumstantial <i>have to</i></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>teleological <i>must</i></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>bouletic <i>want</i></td><td></td><td></td><td></td><td></td></tr>
       </table>
     </div>
     <div class="note">
@@ -377,7 +402,7 @@
         <tr><td><i>wRw</i>′</td><td><i>R</i>(<i>w</i>, <i>w</i>′) Portner · <i>R</i>(<i>w</i>)(<i>w</i>′) von Fintel &amp; Heim · acc(<i>w</i>)(<i>w</i>′) Coppock &amp; Champollion</td></tr>
         <tr><td><i>M</i>, <i>w</i> ⊨ φ</td><td>⟦φ⟧<sup><i>w</i>,<i>M</i></sup> = 1 Portner · ⟦φ⟧<sup><i>M</i>,<i>g</i>,<i>w</i></sup> = T Coppock &amp; Champollion · <i>w</i> ⊩ φ</td></tr>
         <tr><td><i>V</i>(<i>p</i>), a set of worlds</td><td><i>V</i>(<i>w</i>, <i>p</i>) = 1 Portner</td></tr>
-        <tr><td>(T), (5)</td><td>(M) for (T), (E) for (5) Portner · KT4 for S4, KT5 for S5</td></tr>
+        <tr><td>(T), (□T), (5)</td><td>(M), (□M), (E) Portner, Hughes &amp; Cresswell · M4 or KT4 for S4, KT5 for S5</td></tr>
         <tr><td>world, frame, model</td><td>index, point, state · Kripke frame · Kripke model</td></tr>
       </table>
     </div>

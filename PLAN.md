@@ -904,5 +904,14 @@ what the next session must know)*
   the Other notations slide. Examples (1) to (26). Dropped from the old sheet: world
   variables with *rich/poor* (week 4), Miss America, the may/can gap exercise, chess and
   Rubik's cube.
+- **2026-09-24: handout takes the wording and layout of Thomas's Semantics III H3.** Block 1:
+  syntax line, intended readings, duality, parallel with ∀ and ∃ (his text). Block 2: his
+  frame/model/clause wording plus his "Intuitively" box; block runs to two pages with a
+  clean break before the worked example. Block 5: his intro sentence, core and further
+  correspondences (⇔), named systems useful to linguistics. Block 6: his "what modal logic
+  is for" list (plus circumstantial, to match the slide) and "Which axioms are plausible
+  to model what?" with his judgements; the ✓/✗ exercise now asks about the flavours his
+  list leaves open (circumstantial, teleological, bouletic); two pages. Ants-and-axioms
+  task moved from block 5 to block 4 (d). 11 pages. (□M) written (□T) to keep T.
 - `npm test` green (166 files).
 
