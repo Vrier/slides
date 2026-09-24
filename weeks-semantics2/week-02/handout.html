@@ -9,6 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../shared/handout-classic.css" />
 <link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Week 2: blocks run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+</style>
 </head>
 <body>
 
@@ -126,11 +136,6 @@
         <div class="d"><span class="t">S5</span><span class="g">Equivalence frames: reflexive + symmetric + transitive. Often used as an idealised logic of knowledge. The strongest normal logic.</span></div>
         <div class="d"><span class="t">KD</span><span class="g">A standard deontic baseline: seriality, and importantly not T.</span></div>
         <div class="d"><span class="t">KD45</span><span class="g">A standard doxastic logic (belief): serial + transitive + Euclidean.</span></div>
-      </div>
-      <p><span class="runin">Exercise.</span></p>
-      <div class="tasks">
-        <div class="task"><span>(a)</span><span>Say which of the five conditions hold of <i>R</i> in <i>M</i> from block 5. For each that fails, name the worlds that show it.</span></div>
-        <div class="lines"><span></span></div>
       </div>
     </div>
     <div class="note">
@@ -256,7 +261,7 @@
         <circle class="nd" cx="320" cy="40" r="17"/><text class="wl" x="320" y="44">w<tspan dy="3" font-size="68%">3</tspan></text><text class="vl" x="320" y="71">q</text>
         <circle class="nd" cx="450" cy="40" r="17"/><text class="wl" x="450" y="44">w<tspan dy="3" font-size="68%">4</tspan></text>
       </svg>
-      <div class="proc" style="break-before:page;page-break-before:always">
+      <div class="proc">
         <div class="sc proc-head">Worked: the model at <i>w</i><sub>1</sub></div>
         <ol class="steps">
           <li><i>R</i>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. ⟦<i>p</i>⟧ = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}, so <i>R</i>(<i>w</i><sub>1</sub>) ⊆ ⟦<i>p</i>⟧: □<i>p</i> is true at <i>w</i><sub>1</sub>.</li>

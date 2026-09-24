@@ -922,5 +922,10 @@ what the next session must know)*
   Modal language, 2 Frame conditions, 3 Flavours, 4 What you need to know, 5 Frames,
   models, truth at a world, 6 Validity (Thomas: models and validity at the very end).
   Checklist loses the must/may and substitution items. Examples (1) to (22). 10 pages.
+- **2026-09-24: handout flows continuously (Thomas: less blank space, no new page per
+  section).** Week 2 handout overrides the classic sheet's page-per-block rule in its own
+  <style>: blocks run on with 14pt between them; definition and procedure boxes may split
+  between entries; headings and intro sentences stay with what follows; orphans/widows 3.
+  Frame-conditions exercise removed. 8 pages. Other classic handouts keep page-per-block.
 - `npm test` green (166 files).
 
