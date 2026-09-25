@@ -3,90 +3,222 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU44008 · Week 2 · Game Theory and Signalling · Handout</title>
+<title>LIU44008 · Week 2, Game Theory &amp; Signalling · Handout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="../../shared/tokens.css" />
-<link rel="stylesheet" href="../../shared/lens.css" />
-<link rel="stylesheet" href="../../shared/handout.css" />
-<link rel="stylesheet" href="../../shared/theme-rust.css" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
 <style>
-  @media print { :root { --tcd-blue:#000; --tcd-blue-75:#555; --tcd-blue-50:#888; --tcd-blue-25:#bbb; --tcd-blue-10:#f2f2f2; --tcd-ink:#000; --c-def:#000; } }
+  /* Week 2: blocks run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:10pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  table.pay { margin:5pt 0 7pt 22pt; border-collapse:collapse; break-inside:avoid; page-break-inside:avoid; }
+  .body > p:has(+ table.pay) { break-after:avoid; page-break-after:avoid; }
+  table.pay th, table.pay td { border:.6pt solid var(--rule); padding:2pt 10pt; text-align:center; }
+  table.pay th { border-top:none; border-left:none; border-right:none; border-bottom:none; font-weight:600; font-size:9.2pt; }
+  table.pay td.rl { border:none; font-weight:600; font-size:9.2pt; text-align:right; padding-right:8pt; }
+  table.pay.fill td:not(.rl) { min-width:32pt; height:13pt; }
+  svg.icon { width:9pt; height:9pt; vertical-align:-1pt; }
+  .dens { margin:2pt 0 6pt 22pt; }
+  .dens span { display:inline-block; margin-right:16pt; white-space:nowrap; }
 </style>
 </head>
 <body>
 
-<div class="handout-week" data-week="2"><div class="page">
+<div class="sheet">
 
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU44008 · Pragmatics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 2 · Handout</div>
+  <h1 class="doc-title">Signalling and Reference Games</h1>
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Games and equilibrium</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Normal-form game</span><span class="g">Players; for each a set of actions; for each a utility function from action profiles to numbers.</span></div>
+        <div class="d"><span class="t">Best response</span><span class="g">A strategy not beaten by any other strategy.</span></div>
+        <div class="d"><span class="t">Nash equilibrium</span><span class="g">Every choice of every player is a best response to the others such that nobody can gain by deviating alone. Strict iff every lone deviation is strictly worse.</span></div>
+        <div class="d"><span class="t">Pareto dominance</span><span class="g"><i>o</i>′ dominates <i>o</i>: at least one player better off, nobody worse.</span></div>
+        <div class="d"><span class="t">Pareto optimal</span><span class="g">Dominated by nothing.</span></div>
+        <div class="d"><span class="t">Zero-sum game</span><span class="g">Payoffs sum to zero in every cell, such that any player can only gain by someone else losing.</span></div>
+        <div class="d"><span class="t">Solution concept</span><span class="g">A rule selecting behaviour from a game model. Nash equilibrium is one; iterated best response, below, is another.</span></div>
+      </div>
+      <p><span class="runin">Stag hunt.</span> If both hunters cooperate to hunt a stag they will succeed, but it is possible to catch a rabbit alone.</p>
+      <table class="pay">
+        <tr><th></th><th>Stag</th><th>Hare</th></tr>
+        <tr><td class="rl">Stag</td><td>4, 4</td><td>0, 3</td></tr>
+        <tr><td class="rl">Hare</td><td>3, 0</td><td>3, 3</td></tr>
+      </table>
+      <p><span class="runin">Prisoner's dilemma.</span></p>
+      <table class="pay">
+        <tr><th></th><th>Quiet</th><th>Confess</th></tr>
+        <tr><td class="rl">Quiet</td><td>3, 3</td><td>0, 5</td></tr>
+        <tr><td class="rl">Confess</td><td>5, 0</td><td>1, 1</td></tr>
+      </table>
+      <p><span class="runin">Matching pennies.</span> Players choose heads or tails. Player 1 wants the faces to match, player 2 wants them to differ.</p>
+      <table class="pay">
+        <tr><th></th><th>Heads</th><th>Tails</th></tr>
+        <tr><td class="rl">Heads</td><td>1, −1</td><td>−1, 1</td></tr>
+        <tr><td class="rl">Tails</td><td>−1, 1</td><td>1, −1</td></tr>
+      </table>
+    </div>
+    <div class="note">
+      <p><b>Franke 2013.</b> Game theoretic pragmatics. <i>Philosophy Compass</i> 8.</p>
+      <p><b>Lewis 1969.</b> <i>Convention.</i> Harvard University Press. Ch. I.</p>
+      <p><b>Schelling 1960.</b> <i>The Strategy of Conflict.</i> Harvard University Press.</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Convention as equilibrium</h2>
+      <p>A semantic convention: arbitrary, stable, no founding agreement. A self-sustaining solution to a coordination problem, found here by enumeration.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Signalling game</span><span class="g">⟨<i>S</i>, <i>M</i>, <i>A</i>, <i>u</i>⟩. Nature picks a state, either may come up; the sender sees it and sends a message; the receiver sees only the message and acts; both get <i>u</i>(<i>s</i>, <i>a</i>).</span></div>
+        <div class="d"><span class="t">Pure strategies</span><span class="g">σ: states → messages. ρ: messages → acts.</span></div>
+        <div class="d"><span class="t">Success score</span><span class="g">Sc(σ, ρ) = |{<i>s</i> : ρ(σ(<i>s</i>)) fits <i>s</i>}|: 0, 1 or 2.</span></div>
       </div>
     </div>
-    <div class="h-meta">
-      <div class="code">LIU44008 · Pragmatics II</div>
-      <div class="term">Thomas Stephen · Semester 1, Michaelmas</div>
-    </div>
-  </header>
-
-  <div class="h-title-row">
-    <div class="h-week">Week 2</div>
-    <h1 class="h-title">Game Theory and Signalling</h1>
-  </div>
-
-  <div class="h-band">
-    <span class="tag">Frameworks</span>
-    <span class="tag">Scalar implicature</span>
-    <span class="tag">Presupposition</span>
-    <span class="tag">Interface</span>
-  </div>
-
-  <div class="callout callout-note">
-    <span class="badge">This week</span>
-    <p><strong>Session 1.</strong> Grice's intention-based meaning; reflexive intentions; common ground and joint action (Stalnaker, Clark).</p>
-    <p><strong>Session 2.</strong> Relevance Theory — ostensive-inferential communication; cognitive effects vs processing effort; explicature vs implicature.</p>
-  </div>
-
-  <div class="ex-block">
-    <div class="ex-tool-intro">
-      <div class="tl-label">Skeleton</div>
-      <div class="tl-name">Content to add</div>
-      <p>Build out this week's handout — mirror the worked sheet in <b>weeks-pragmatics/week-02/handout.html</b>: callouts (<b>.callout</b>), tool intros + tasks (<b>.ex-block</b>), progressive items (<b>.ex-prog</b>), and ruled <b>.answer-space</b>. Frame the tasks around the two diagnostics and the interface thread.</p>
+    <div class="note">
+      <p><b>Lewis 1969.</b> <i>Convention.</i> Harvard University Press. Ch. IV.</p>
     </div>
   </div>
 
-  <div class="todo-box"><b>Exercises to add.</b></div>
-
-  <div class="h-footer">
-    <span class="left">LIU44008 · Pragmatics II</span>
-    <span>Week 2 · Game Theory and Signalling</span>
-    <span>1</span>
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>The reference game</h2>
+      <p>Three referents on the table: <svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg> <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg> <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg>. The sender sees which one is meant and picks a signal; the receiver picks a referent. Signals and denotations:</p>
+      <p class="dens"><span>⟦blue⟧ = {<svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg>, <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>}</span><span>⟦green⟧ = {<svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg>}</span><span>⟦square⟧ = {<svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg>}</span><span>⟦circle⟧ = {<svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>, <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg>}</span><span>⟦blue circle⟧ = {<svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>}</span><span>⟦blue square⟧ = {<svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg>}</span><span>⟦green circle⟧ = {<svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg>}</span><span>⟦green square⟧ = ∅</span></p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Payoffs</span><span class="g">+2 if the receiver gets the right referent; +1 for a one-word signal; −5 if she gets it wrong or lacks the information to choose.</span></div>
+        <div class="d"><span class="t">Iterated best response</span><span class="g">Level-0: salient, unstrategic behaviour. Level-(<i>k</i>+1): a best response to level-<i>k</i>. Fixed points are Nash equilibria, so the ladder reaches equilibrium by reasoning.</span></div>
+        <div class="d"><span class="t">Literal hearer</span><span class="g">Applies the dictionary: picks the referent if the signal's denotation is a singleton; otherwise stuck.</span></div>
+        <div class="d"><span class="t">Literal speaker</span><span class="g">Truthful; picks her best signal against the literal hearer.</span></div>
+        <div class="d"><span class="t">Pragmatic hearer</span><span class="g">Rules out referents whose speaker had a strictly better signal.</span></div>
+        <div class="d"><span class="t">Pragmatic speaker</span><span class="g">Truthful; picks her best signal against the pragmatic hearer.</span></div>
+      </div>
+      <p><span class="runin">The literal speaker.</span> Her payoff for each signal against each referent, facing the literal hearer:</p>
+      <table class="pay">
+        <tr><th></th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></th></tr>
+        <tr><td class="rl">Blue</td><td>−4</td><td>−4</td><td>−4</td></tr>
+        <tr><td class="rl">Green</td><td>−4</td><td>−4</td><td>3</td></tr>
+        <tr><td class="rl">Circle</td><td>−4</td><td>−4</td><td>−4</td></tr>
+        <tr><td class="rl">Square</td><td>3</td><td>−4</td><td>−4</td></tr>
+        <tr><td class="rl">Blue circle</td><td>−5</td><td>2</td><td>−5</td></tr>
+        <tr><td class="rl">Blue square</td><td>2</td><td>−5</td><td>−5</td></tr>
+        <tr><td class="rl">Green circle</td><td>−5</td><td>−5</td><td>2</td></tr>
+        <tr><td class="rl">Green square</td><td>−5</td><td>−5</td><td>−5</td></tr>
+      </table>
+      <p><i>Square</i> strictly dominates <i>blue square</i>: unambiguous either way, and shorter. <i>Green</i> strictly dominates <i>green circle</i>; <i>green square</i> is dominated by everything. Best per column: <i>square</i> for <svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg> at 3, <i>green</i> for <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg> at 3, but <i>blue circle</i> for <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>.</p>
+      <p><span class="runin">The level 1 pragmatic hearer.</span> Hearing a signal, rule out referents whose speaker had a strictly better option:</p>
+      <table class="pay">
+        <tr><th></th><th>could be</th><th>ruled out</th><th>guess</th></tr>
+        <tr><td class="rl">Blue</td><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg> <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></td><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg>: her speaker had <i>square</i></td><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></td></tr>
+        <tr><td class="rl">Circle</td><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg> <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></td><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg>: her speaker had <i>green</i></td><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></td></tr>
+        <tr><td class="rl">Green</td><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></td><td></td><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></td></tr>
+        <tr><td class="rl">Square</td><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></td><td></td><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></td></tr>
+      </table>
+      <p><span class="runin">The level 1 pragmatic speaker.</span></p>
+      <table class="pay">
+        <tr><th></th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></th></tr>
+        <tr><td class="rl">Blue</td><td>−4</td><td><b>3</b></td><td>−4</td></tr>
+        <tr><td class="rl">Circle</td><td>−4</td><td><b>3</b></td><td>−4</td></tr>
+        <tr><td class="rl">Blue circle</td><td>−5</td><td>2</td><td>−5</td></tr>
+      </table>
+      <p>Now either <i>circle</i> or <i>blue</i> are better solutions to communicate <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>.</p>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Add <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#c53030"/></svg> a red circle to the referents and <i>red</i> to the lexicon. Run through the logic again: the literal speaker, the level 1 pragmatic hearer, the level 1 pragmatic speaker.</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Frank &amp; Goodman 2012.</b> Predicting pragmatic reasoning in language games. <i>Science</i> 336.</p>
+    </div>
   </div>
 
-</div></div>
 
-<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Scalar implicatures</h2>
+      <p>States: none passed (<i>n</i>), some but not all (<i>s</i><sub><i>na</i></sub>), all passed (<i>s</i><sub><i>a</i></sub>). Signals and denotations:</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Message cost</span><span class="g">Longer, less lexicalised forms cost more to produce; a play's payoff is docked by its message's cost.</span></div>
+        <div class="d"><span class="t">No wasted costs</span><span class="g">A speaker pays more only for compensation: a costly surprise message signals the cheap one would have misled.</span></div>
+      </div>
 
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#faeae2"/>
-    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#b23a1e" stroke-width="2"/>
-    <line x1="36" y1="32" x2="64" y2="32" stroke="#b23a1e" stroke-width="2.5"/>
-    <line x1="36" y1="42" x2="58" y2="42" stroke="#efcab9" stroke-width="2"/>
-    <line x1="36" y1="50" x2="62" y2="50" stroke="#efcab9" stroke-width="2"/>
-    <line x1="36" y1="58" x2="54" y2="58" stroke="#efcab9" stroke-width="2"/>
-    <text x="50" y="92" font-family="serif" font-size="7" fill="#b23a1e" text-anchor="middle">LIU44008 · HANDOUT</text>
-  </svg>
-</template>
+      <p class="dens"><span>⟦none⟧ = {<i>n</i>}</span><span>⟦some⟧ = {<i>s</i><sub><i>na</i></sub>, <i>s</i><sub><i>a</i></sub>}</span><span>⟦all⟧ = {<i>s</i><sub><i>a</i></sub>}</span><span>⟦some but not all⟧ = {<i>s</i><sub><i>na</i></sub>}</span></p>
+      <p><span class="runin">The literal speaker.</span></p>
+      <table class="pay">
+        <tr><th></th><th><i>n</i></th><th><i>s</i><sub><i>na</i></sub></th><th><i>s</i><sub><i>a</i></sub></th></tr>
+        <tr><td class="rl">None</td><td>3</td><td>−4</td><td>−4</td></tr>
+        <tr><td class="rl">Some</td><td>−4</td><td>−4</td><td>−4</td></tr>
+        <tr><td class="rl">All</td><td>−4</td><td>−4</td><td>3</td></tr>
+        <tr><td class="rl">Some but not all</td><td>−5</td><td>2</td><td>−5</td></tr>
+      </table>
+      <p><span class="runin">The level 1 pragmatic hearer.</span> Her payoff for each guess on hearing each signal. Hearing <i>some</i>, guessing <i>s</i><sub><i>a</i></sub> scores −5: that state’s speaker had <i>all</i>.</p>
+      <table class="pay">
+        <tr><th></th><th><i>n</i></th><th><i>s</i><sub><i>na</i></sub></th><th><i>s</i><sub><i>a</i></sub></th></tr>
+        <tr><td class="rl">None</td><td><b>2</b></td><td>−5</td><td>−5</td></tr>
+        <tr><td class="rl">Some</td><td>−5</td><td><b>2</b></td><td>−5</td></tr>
+        <tr><td class="rl">All</td><td>−5</td><td>−5</td><td><b>2</b></td></tr>
+        <tr><td class="rl">Some but not all</td><td>−5</td><td><b>2</b></td><td>−5</td></tr>
+      </table>
+      <p><span class="runin">The level 1 pragmatic speaker.</span></p>
+      <table class="pay">
+        <tr><th></th><th><i>n</i></th><th><i>s</i><sub><i>na</i></sub></th><th><i>s</i><sub><i>a</i></sub></th></tr>
+        <tr><td class="rl">Some</td><td>−4</td><td><b>3</b></td><td>−4</td></tr>
+        <tr><td class="rl">Some but not all</td><td>−5</td><td>2</td><td>−5</td></tr>
+      </table>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Would the logic still work if we added <i>many</i> to the lexicon?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Does it derive the scalar implicature for <i>and</i> against <i>or</i>?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>And for contextual scales like ⟨Belfast, Dublin, Cork⟩, as in <i>I made it to Dublin</i>? What features of the framework allow it to derive, or stop it deriving, each of these?</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span><i>Black Bart killed the sheriff</i> and <i>Black Bart caused the sheriff to die</i> share their literal content, yet the marked long form conveys a strange death. Set up the game. Is it possible to derive this inference from only level 1 pragmatic speakers and hearers?</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Franke 2013.</b> Game theoretic pragmatics. <i>Philosophy Compass</i> 8.</p>
+    </div>
+  </div>
+
+</div>
+
 </body>
 </html>
