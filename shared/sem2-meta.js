@@ -61,7 +61,7 @@ window.WEEKS = [
   }},
 
   { no: 3, title: "The Kratzer System", section: 1,
-    figures: ["Kratzer"], lenses: blankLenses() },
+    figures: ["Lewis", "Kratzer"], lenses: blankLenses() },
 
   { no: 4, title: "Attitude Reports", section: 2,
     figures: ["Frege", "Hintikka", "Quine"], lenses: blankLenses() },
