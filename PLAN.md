@@ -974,3 +974,14 @@ what the next session must know)*
   "Two forces are too few", "Smaller subset, weaker claim", "one level down", "Keep T. Put the
   evidence into the meaning", emphatic mid-sentence bold. Contrastive "consistent, not realistic"
   reworded. Content unchanged.
+- **2026-09-27: Semantics II week 3 handout (classic sheet, continuous flow as week 2).** Six
+  blocks, examples (1) to (15), 8 pages: 0 Conversational backgrounds (Thomas's Sem III
+  "Kratzerian Modals" wording; properties of f table; H3 Exercise 7 plus realistic/consistent
+  table and an inconsistent-rules task); 1 Ordering semantics (≤, <, Best, must/might, limit
+  assumption; Logan; H3 Exercise 6 with a new (d) where must ¬p holds at a p-world); 2 Modal
+  bases and ordering sources (split as Portner (106); H3 Exercise 5 plus the flu example, as a
+  fill table); 3 Graded modality (Portner (98)–(104), Kratzer 1991 table; four-world model to
+  classify p, q, r and show weak necessity); 4 Deontic paradoxes (Åqvist's Samaritan, Kratzer's
+  solution, three-world model, Chisholm by modal base); 5 What you need to know + notation
+  table. Deck and sheet notation row now "Semantics III notes" for ≤ with subscript g,w.
+  Hub: handout draft.
