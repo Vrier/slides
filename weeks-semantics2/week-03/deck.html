@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 3 &mdash; The Kratzer System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-teal.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* three-column fields */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  .cols3 .cfoot{ margin-top:12px; font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .cols3 .cfoot b{ color:var(--tcd-blue); font-weight:600; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--tcd-ink); line-height:1.08; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ question / answer slide furniture ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
+
+  /* ============ conversations (paired sentences, Q/A dialogues) ============ */
+  .convo{ margin:6px 0; }
+  .convo .cv{ display:grid; grid-template-columns:190px 1fr; gap:0 26px; padding:11px 0; align-items:baseline; }
+  .convo .cv + .cv{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 12%, #fff); }
+  .convo .who{ font-family:var(--mono); font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .convo .say{ font-family:var(--serif); font-style:italic; font-size:33px; color:var(--tcd-ink); line-height:1.25; }
+  .convo.big .say{ font-size:42px; }
+  .convo.big .cv{ padding:14px 0; }
+
+  /* week-tag chip on answer slides */
+  .wktag{ display:inline-block; font-family:var(--mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 8%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 26%, #fff); border-radius:999px;
+    padding:5px 16px; margin-left:20px; vertical-align:middle; transform:translateY(-6px); }
+
+  /* ============ figure portraits & name plates ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:64px; font-weight:600; letter-spacing:.02em; }
+  .figthree .npf .npmono{ height:300px; }
+
+  /* ============ lineage / genealogy strip ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* shared test-case rows */
+  .fourways{ margin-top:8px; }
+  .fourways .fw{ display:grid; grid-template-columns:280px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .fourways .fw:first-child{ border-top:none; }
+  .fourways .fw .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fc); }
+  .fourways .fw .fl small{ display:block; font-family:var(--mono); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--tcd-grey-75); margin-top:3px; text-transform:none; }
+  .fourways .fw .ft2{ font-family:var(--sans); font-size:23px; color:var(--tcd-black); line-height:1.35; }
+  .fourways .fw .ft2 em{ font-style:italic; } .fourways .fw .ft2 b{ color:var(--tcd-ink); }
+
+  /* ============ housekeeping / week grids / recap ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* hatched to-confirm box (print twin of the scaffold todo-box) */
+  .todo-line{ margin-top:18px; border:1.5px dashed var(--tcd-blue-50); border-radius:9px; background:var(--tcd-blue-10);
+    padding:13px 20px; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+  .todo-line b{ color:var(--tcd-blue); }
+
+  /* question-slide footnote line (as weeks-pragmatics/week-01) */
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+
+  /* Kripke-model figure (week 2): worlds as nodes, R as arrows */
+  .kfig{ width:100%; height:auto; display:block; margin:8px 0 0; }
+  .kfig .nd{ fill:#fff; stroke:var(--lens, var(--tcd-blue)); stroke-width:3; }
+  .kfig .ar{ stroke:var(--tcd-ink); stroke-width:3; fill:none; }
+  .kfig .wl{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .kfig .vl{ font-family:var(--sans); font-size:23px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .fourways .fw .fl .fm{ display:block; font-family:var(--serif); font-weight:400; font-size:21px; letter-spacing:0; text-transform:none; color:var(--tcd-grey-100); margin-top:4px; }
+
+  /* world diagrams (week 2): logical space, propositions as regions, accessibility */
+  .wfig{ width:100%; height:auto; display:block; margin:4px 0 6px; }
+  .wfig .sp{ fill:#fff; stroke:var(--tcd-grey-50); stroke-width:2; }
+  .wfig .pr{ fill:color-mix(in srgb, var(--lens) 13%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .qr{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .acc{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .ar{ stroke:var(--tcd-ink); stroke-width:2.5; fill:none; }
+  .wfig .wd{ fill:#fff; stroke:var(--tcd-ink); stroke-width:2.5; }
+  .wfig .wd.dim{ stroke:var(--tcd-grey-50); }
+  .wfig .w0{ fill:var(--tcd-ink); }
+  .wfig .wl{ font-family:var(--serif); font-style:italic; font-size:29px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .wl.inv{ fill:#fff; } .wfig .wl.dim{ fill:var(--tcd-grey-75); }
+  .wfig .ws{ font-family:var(--sans); font-size:20px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .wfig .lp{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--lens); }
+  .wfig .lps{ font-family:var(--serif); font-size:24px; fill:var(--lens); }
+  .wfig .lq{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--tcd-ink); }
+  .wfig .lqs{ font-family:var(--serif); font-size:24px; fill:var(--tcd-ink); }
+  .wfig .la{ font-family:var(--sans); font-size:21px; font-weight:600; fill:var(--tcd-ink); }
+  .wfig .lw{ font-family:var(--mono); font-size:16px; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .sd{ fill:color-mix(in srgb, var(--lens) 8%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .sdt{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .rl{ stroke:var(--tcd-grey-25); stroke-width:1.5; }
+  .wfig .rs{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); }
+  .wfig .tv{ font-family:var(--mono); font-size:28px; font-weight:600; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .tv.off{ fill:var(--tcd-grey-50); }
+  .wfig .rn{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .rn.on{ fill:var(--lens); }
+
+  /* ============ week 2 type pass: New Computer Modern + larger small text ============
+     Same patterns as week 1. Computer Modern runs small on the body, so running
+     text goes up a step, and nothing on a slide is set below 15px. */
+  .dB .erow .tx{ font-size:31px; line-height:1.34; } .dB .erow .tx.tight{ font-size:29px; }
+  .dB .erow .lb{ font-size:17px; }
+  .dB .lead{ font-size:38px; }
+  .eg .ex{ font-size:31px; } .eg .ex .gl{ font-size:22px; line-height:1.32; } .eg .no{ font-size:21px; }
+  .eghead{ font-size:16px; } .egpanel .fxnote{ font-size:20px; }
+  .fourways .fw{ grid-template-columns:300px 1fr; }
+  .fourways .fw .fl{ font-size:18px; } .fourways .fw .fl small{ font-size:16.5px; margin-top:4px; }
+  .fourways .fw .fl .fm{ font-size:24px; }
+  .fourways .fw .ft2{ font-size:27px; line-height:1.34; }
+  .brn .split span{ font-size:16px; } .brn .arm .h{ font-size:16px; } .brn .arm .t{ font-size:28px; }
+  .convo .who{ font-size:18px; } .qsrc{ font-size:25px; } .qask{ font-size:21px; }
+  .qref .src{ font-size:20px; } .bigq .src{ font-size:24px; }
+  .portrait .pc .dt{ font-size:15px; } .portrait .pc .rl{ font-size:19px; line-height:1.32; }
+  .lineage .ln .era{ font-size:16px; } .lineage .ln .ds{ font-size:19.5px; } .lineage .ln .nm{ font-size:26px; }
+  .roots{ font-size:27px; }
+  .lxr3 .rmb li{ font-size:20px; }
+  .mrail a.si2{ font-size:15px; } .mrail .ghd, .mrail .ghd .gt{ font-size:12px; }
+  .wktag{ font-size:16px; }
+
+  /* notation table (week 2) */
+  .ntab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ntab .nh{ display:grid; grid-template-columns:370px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:18px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .ntab .nr{ display:grid; grid-template-columns:370px 1fr; gap:34px; align-items:baseline; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ntab .no1{ font-family:var(--serif); font-size:32px; color:var(--tcd-ink); }
+  .ntab .no1 small{ display:block; font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); margin-top:2px; }
+  .ntab .no2{ font-family:var(--serif); font-size:27px; line-height:1.4; color:var(--tcd-ink); }
+  .ntab .no2 i{ font-family:var(--sans); font-style:normal; font-size:21px; color:var(--tcd-grey-100); }
+
+  /* ============ week 2 type pass, second round: projector floor ============
+     Floors on the 1920 canvas: running text 27px, glosses and notes 22px,
+     uppercase labels 19px, credits 17px, sidebar 13px. */
+  .dB .erow .lb{ font-size:20px; } .dB .erow{ grid-template-columns:250px 1fr; }
+  .eghead{ font-size:19px; } .eg .ex .gl{ font-size:24px; } .eg .no{ font-size:23px; }
+  .egpanel .fxnote{ font-size:22px; }
+  .brn .split span{ font-size:19px; } .brn .arm .h{ font-size:19px; }
+  .fourways .fw .fl{ font-size:20px; } .fourways .fw .fl small{ font-size:19px; }
+  .fourways .fw .ft2{ font-size:28px; }
+  .portrait .pc .dt{ font-size:17px; line-height:1.35; } .portrait .pc .rl{ font-size:21px; }
+  .wktag{ font-size:18px; }
+  .qask{ font-size:24px; } .convo .who{ font-size:21px; } .qsrc{ font-size:27px; }
+  .qref .src{ font-size:22px; }
+  .lxr3 .stop .head .lab{ font-size:20px; } .lxr3 .rmb li{ font-size:22px; }
+  .lxd2 .r .ct{ font-size:20px; }
+  .ntab .nh{ font-size:19px; } .ntab .no1 small{ font-size:21px; } .ntab .no2 i{ font-size:22px; }
+  .tcd-names .uni{ font-size:18px; }
+  .mrail a.si2{ font-size:16px; } .mrail .ghd .gt{ font-size:13px; } .mrail .ghd .gcar{ font-size:11px; }
+  .mrail .mhd .tt{ font-size:14px; } .mrail .mft .wk{ font-size:14px; }
+  .kfig .vl{ font-size:26px; }
+  .wfig .ws{ font-size:24px; } .wfig .lp, .wfig .lq{ font-size:26px; } .wfig .lps, .wfig .lqs{ font-size:26px; }
+  .wfig .la{ font-size:25px; } .wfig .lw{ font-size:20px; } .wfig .rn{ font-size:24px; }
+
+  /* ============ week 2 type pass, third round: fill the slide ============
+     Week 1's patterns leave the lower third of most slides empty. Default sizes
+     go up again; a slide that would overflow takes class "dense" on .b-main and
+     keeps the second-round sizes. */
+  .dB .erow .tx{ font-size:36px; line-height:1.32; } .dB .erow .tx.tight{ font-size:33px; }
+  .dB .erow{ grid-template-columns:270px 1fr; padding:20px 0; } .dB .erow .lb{ font-size:21px; padding-top:9px; }
+  .eg .ex{ font-size:36px; } .eg .ex .gl{ font-size:26px; } .eg .no{ font-size:25px; }
+  .eghead{ font-size:20px; } .egpanel .fx{ font-size:36px; } .egpanel .fxnote{ font-size:24px; }
+  .fourways .fw{ grid-template-columns:330px 1fr; padding:18px 0; }
+  .fourways .fw .fl{ font-size:22px; } .fourways .fw .fl small{ font-size:20px; } .fourways .fw .fl .fm{ font-size:27px; }
+  .fourways .fw .ft2{ font-size:32px; }
+  .brn .arm .t{ font-size:32px; } .brn .arm .h{ font-size:20px; } .brn .split span{ font-size:20px; }
+  .convo .say{ font-size:40px; } .convo.big .say{ font-size:50px; } .qask{ font-size:26px; } .qsrc{ font-size:29px; }
+  .qref{ font-size:32px !important; } .qref .src{ font-size:23px; }
+  .ntab .no1{ font-size:36px; } .ntab .no2{ font-size:30px; } .ntab .no2 i{ font-size:24px; } .ntab .no1 small{ font-size:22px; }
+  .lxr3 .rmb li{ font-size:24px; } .figs-line{ font-size:25px; } .q-banner{ font-size:34px; }
+  .b-step-lab{ font-size:24px; } .b-step-math{ font-size:44px; }
+  /* dense slides keep the second-round sizes */
+  .b-main.dense .erow .tx{ font-size:31px; } .b-main.dense .erow .tx.tight{ font-size:29px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; }
+  .b-main.dense .eg .ex{ font-size:31px; } .b-main.dense .eg .ex .gl{ font-size:24px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:28px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:32px; }
+  .b-main.dense .ntab .no1{ font-size:32px; } .b-main.dense .ntab .no2{ font-size:27px; } .b-main.dense .ntab .nr{ padding:12px 0; }
+
+  /* ============ fourth round: body text at 40px (about 20pt on a 13.3in slide) ============ */
+  .dB .erow .tx{ font-size:40px; line-height:1.3; } .dB .erow .tx.tight{ font-size:37px; }
+  .dB .erow{ grid-template-columns:280px 1fr; padding:22px 0; } .dB .erow .lb{ font-size:22px; padding-top:12px; }
+  .eg .ex{ font-size:40px; } .eg .ex .gl{ font-size:28px; } .eg .no{ font-size:27px; } .eg{ padding:13px 0; }
+  .egpanel .fx{ font-size:40px; } .egpanel .fxnote{ font-size:25px; } .eghead{ font-size:21px; }
+  .fourways .fw{ grid-template-columns:340px 1fr; padding:20px 0; }
+  .fourways .fw .fl{ font-size:23px; } .fourways .fw .fl small{ font-size:21px; } .fourways .fw .fl .fm{ font-size:29px; }
+  .fourways .fw .ft2{ font-size:35px; line-height:1.3; }
+  .brn .arm .t{ font-size:35px; } .brn .arm .h{ font-size:21px; } .brn .split span{ font-size:21px; }
+  .convo .say{ font-size:44px; } .convo.big .say{ font-size:56px; } .convo .who{ font-size:23px; } .qask{ font-size:28px; } .qsrc{ font-size:31px; }
+  .qref{ font-size:35px !important; } .qref .src{ font-size:24px; }
+  .ntab .no1{ font-size:38px; } .ntab .no2{ font-size:32px; } .ntab .no2 i{ font-size:25px; }
+  .lxr3 .rmb li{ font-size:26px; line-height:1.35; } .lxr3 .stop .head .lab{ font-size:22px; }
+  .figs-line{ font-size:27px; } .q-banner{ font-size:38px; }
+  .b-step-lab{ font-size:26px; } .b-step-math{ font-size:46px; }
+  .portrait .pc .nm{ font-size:30px; }
+  .wfig .ws{ font-size:28px; } .wfig .lp, .wfig .lq{ font-size:30px; } .wfig .lps, .wfig .lqs{ font-size:29px; }
+  .wfig .la{ font-size:28px; } .wfig .lw{ font-size:22px; } .wfig .wl{ font-size:32px; }
+  .kfig .vl{ font-size:30px; } .kfig .wl{ font-size:36px; }
+  /* dense fallback, restated after the defaults so it still wins */
+  .b-main.dense .erow .tx{ font-size:32px; } .b-main.dense .erow .tx.tight{ font-size:30px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; } .b-main.dense .erow .lb{ font-size:20px; padding-top:7px; }
+  .b-main.dense .eg .ex{ font-size:33px; } .b-main.dense .eg .ex .gl{ font-size:25px; } .b-main.dense .eg{ padding:9px 0; }
+  .b-main.dense .fourways .fw .ft2{ font-size:30px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:34px; }
+  .b-main.dense .brn .arm .t{ font-size:30px; }
+  .b-main.dense .ntab .no1{ font-size:33px; } .b-main.dense .ntab .no2{ font-size:28px; } .b-main.dense .ntab .nr{ padding:11px 0; }
+
+  /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
+  .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
+  .b-main.snug .fourways .fw .ft2{ font-size:33px; }
+
+  /* interlinear gloss (week 2): word over gloss, aligned by column */
+  .igl{ display:flex; flex-wrap:wrap; gap:4px 30px; margin:2px 0 6px; }
+  .igl .wd2{ display:flex; flex-direction:column; }
+  .igl .wd2 b{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:40px; color:var(--tcd-ink); line-height:1.15; }
+  .igl .wd2 i{ font-family:var(--sans); font-style:normal; font-size:25px; color:var(--tcd-grey-100); line-height:1.25; }
+  .igl .wd2 i .sc2{ font-variant:small-caps; letter-spacing:.04em; text-transform:lowercase; }
+  .eg .ex .ctx2{ display:block; font-family:var(--sans); font-style:normal; font-size:24px; color:var(--tcd-grey-100); margin-bottom:4px; }
+  .eg .ex .tr{ display:block; font-family:var(--serif); font-style:normal; font-size:32px; color:var(--tcd-ink); }
+
+  /* week 2: extension table header, small frame figures */
+  .wfig .hw{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .nd2{ fill:#fff; stroke:var(--lens, var(--tcd-blue)); stroke-width:3; }
+  .wfig .fn{ font-family:var(--sans); font-weight:700; font-size:32px; fill:var(--lens); }
+  .wfig .fa{ font-family:var(--serif); font-size:34px; fill:var(--tcd-ink); }
+  .wfig .fg{ font-family:var(--sans); font-size:25px; fill:var(--tcd-grey-100); }
+
+  /* examples under the row labels (Problems for extensional semantics) */
+  .fourways.exl .fw .fl small{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:27px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); margin-top:6px; line-height:1.22; }
+  /* an unlabelled closing sentence under a panel */
+  .plainline{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin:18px 0 0; }
+
+  /* week 2: displacement answer carries the sentence under its number */
+  .b-main .fourways.disp .fw{ grid-template-columns:470px 1fr; padding:11px 0; }
+  .fourways.disp .fw .fl .sent{ display:block; font-family:var(--serif); font-style:italic; font-weight:400; font-size:26px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); line-height:1.2; margin-top:3px; }
+  .fourways.disp .fw .fl small{ display:inline; margin-left:14px; }
+  /* week 2: intension table cells that are not truth values */
+  .wfig .ev{ font-family:var(--sans); font-size:24px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .es{ font-family:var(--serif); font-size:28px; fill:var(--tcd-ink); text-anchor:middle; }
+
+  /* ============ week 3 additions ============ */
+  /* label columns retired (Sept 2026 rule, as in Pragmatics II week 2): full-width rows, bold lead */
+  .dB .erow.nolb{ grid-template-columns:1fr; gap:0; padding:22px 0; }
+  .dB .erow.nolb .tx{ font-size:40px; line-height:1.34; }
+  .dB .erow.nolb .tx.tight{ font-size:36px; line-height:1.34; }
+  .b-main.dense .erow.nolb{ padding:15px 0; } .b-main.dense .erow.nolb .tx{ font-size:34px; } .b-main.dense .erow.nolb .tx.tight{ font-size:32px; }
+  .b-main.snug .erow.nolb{ padding:14px 0; }
+  /* recap colour: the module accent */
+  .lens-recap{ --lens: var(--tcd-blue); --lens-name:"Recap"; }
+  /* grid table (Read the box, Readings and their logics, Properties of f) */
+  .gtab{ width:100%; border-collapse:collapse; margin-top:4px; }
+  .gtab th{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lens);
+    text-align:left; padding:8px 16px 12px; border-bottom:2px solid var(--lens); white-space:nowrap; }
+  .gtab th.c, .gtab td.c{ text-align:center; }
+  .gtab td{ font-family:var(--serif); font-size:36px; color:var(--tcd-ink); padding:15px 16px; border-bottom:1px solid var(--tcd-grey-25); vertical-align:baseline; line-height:1.24; }
+  .gtab td.rh{ font-family:var(--sans); font-size:24px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-100); white-space:nowrap; }
+  .gtab td.ok{ color:var(--lens); font-weight:700; } .gtab td.no{ color:var(--tcd-grey-75); } .gtab td.qm{ color:var(--tcd-grey-100); }
+  .gtab td.sys{ font-family:var(--sans); font-size:30px; font-weight:600; }
+  .gtab td small{ font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); }
+  .gtab.sm td{ font-size:32px; padding:11px 16px; } .gtab.sm td.rh{ font-size:22px; }
+  /* four formulas side by side (Chisholm) */
+  .fgrid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:0 18px; padding:10px 0 16px; }
+  .fgrid .fc{ text-align:center; } .fgrid .fc .no{ display:block; font-family:var(--mono); font-size:25px; color:var(--tcd-grey-75); margin-bottom:6px; }
+  .fgrid .fc .fm{ font-size:38px; }
+  /* text beside a figure */
+  .twocol{ display:grid; grid-template-columns:1fr 600px; gap:0 44px; align-items:start; }
+  .twocol .erow.nolb:first-child{ border-top:none; padding-top:4px; }
+  /* ordering figure */
+  .ofig{ width:100%; height:auto; display:block; }
+  .ofig .on{ fill:#fff; stroke:var(--lens); stroke-width:3; }
+  .ofig .on.top{ fill:color-mix(in srgb, var(--lens) 16%, #fff); }
+  .ofig .ot{ font-family:var(--serif); font-style:italic; font-size:36px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ofig .oa{ stroke:var(--tcd-ink); stroke-width:2.5; fill:none; }
+  .ofig .ol{ font-family:var(--sans); font-size:26px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  /* conversational background figure */
+  .wfig .pc3{ fill:none; stroke:var(--lens); stroke-width:3; }
+  .wfig .int{ fill:color-mix(in srgb, var(--lens) 30%, #fff); }
+  .wfig .pl{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); }
+  .wfig .il{ font-family:var(--sans); font-weight:700; font-size:32px; fill:var(--lens); }
+  /* example lines in a language other than English */
+  .eg .ex .ol2{ display:block; font-family:var(--serif); font-style:italic; font-size:38px; color:var(--tcd-ink); line-height:1.25; }
+  .eg .ex .ol2 b{ color:var(--lens); }
+  .eg .ex .fr{ float:right; font-style:normal; font-size:38px; color:var(--lens); margin-left:24px; }
+  /* question slides with six lines */
+  .convo.six .say{ font-size:40px; } .convo.six .cv{ padding:8px 0; }
+
+  /* week 3 fill pass: larger defaults, the frame filled */
+  .dB .erow.nolb .tx{ font-size:44px; } .dB .erow.nolb .tx.tight{ font-size:41px; }
+  .b-main.dense .erow.nolb .tx{ font-size:37px; } .b-main.dense .erow.nolb .tx.tight{ font-size:36px; }
+  .fourways .fw .ft2{ font-size:41px; line-height:1.3; } .fourways .fw{ padding:24px 0; }
+  .fourways .fw .fl{ font-size:27px; } .fourways .fw .fl small{ font-size:23px; }
+  .b-main.snug .fourways .fw{ padding:14px 0; } .b-main.snug .fourways .fw .ft2{ font-size:38px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:35px; } .b-main.dense .fourways .fw{ padding:12px 0; }
+  .gtab td{ font-size:42px; padding:20px 16px; } .gtab td.rh{ font-size:27px; } .gtab th{ font-size:25px; }
+  .gtab.sm td{ font-size:38px; padding:15px 16px; } .gtab.sm td.rh{ font-size:25px; } .gtab td.sys{ font-size:34px; }
+  .gtab td.rh small{ display:block; font-family:var(--sans); font-weight:400; letter-spacing:0; text-transform:none; font-size:22px; color:var(--tcd-grey-75); margin-top:2px; }
+  .egpanel .fx{ font-size:46px; } .eg .ex{ font-size:44px; } .eg .ex .ctx2{ font-size:28px; } .eg .no{ font-size:28px; }
+  .eg .ex .ol2{ font-size:44px; } .eg .ex .tr{ font-size:38px; } .eg .ex .fr{ font-size:44px; }
+  .fgrid .fc .fm{ font-size:50px; } .fgrid .fc .no{ font-size:28px; }
+  .convo .say{ font-size:48px; } .convo .who{ font-size:26px; } .qask{ font-size:30px; } .qsrc{ font-size:31px; }
+  .convo.six .say{ font-size:43px; } .convo.six .who{ font-size:24px; }
+  .lxr3 .rmb li{ font-size:28px; } .q-banner{ font-size:44px; }
+  .figs-line{ font-size:29px; }
+  .gtab td.nw{ white-space:nowrap; } .gtab td.lt{ font-size:36px; }
+  .b-main.dense .gtab.sm td{ padding:9px 16px; } .b-main.dense .gtab.sm td.rh small{ font-size:20px; }
+  .ntab .no1{ font-size:42px; } .ntab .no2{ font-size:34px; } .ntab .no2 i{ font-size:27px; } .ntab .nr{ padding:20px 0; } .ntab .nh{ font-size:21px; }
+  .ntab .no1 small{ font-size:24px; }
+</style>
+</head>
+<body class="pal-a" data-week="3">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+    <symbol id="g-rec" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="8" width="8" height="8"/><path d="M17 4.5l4.5 7.5-4.5 7.5-4.5-7.5z"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark">◇◻</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LIU33008 · Semantics II</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 3</h1>
+      <div class="a-course-sub">The Kratzer System</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · Michaelmas</div></div>
+  </div>
+</section>
+
+
+<!-- 02 · This week -->
+<section class="slide" data-label="This week" data-screen-label="02">
+  <div class="b-slide pal-a dB" data-sec="wk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">This week</h2>
+      <div class="q-banner">Where the arrows come from</div>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx"><strong>Last week:</strong> \(\Box\) and \(\Diamond\) as quantifiers over accessible worlds. Flavours. Conditions on \(R\).</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx"><strong>This week:</strong> conversational backgrounds. Modal base and ordering source. Best worlds. <strong>Graded</strong> modality.</div></div>
+      <div class="figs-line" data-pstep="3"><b>Figures:</b> Angelika Kratzer &nbsp;·&nbsp; <b>Data:</b> Chisholm · Rullmann, Matthewson &amp; Davis · Zamorano-Mansilla</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 03 · Roadmap -->
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-recap"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></div><span class="lab">Recap</span></div><div class="track"></div><ul class="rmb"><li>Read the box</li><li>T</li><li>D</li><li>4 and 5</li><li>Readings and their logics</li></ul></div>
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>In view of, again</li><li>Graded modality</li><li>Weak <em>must</em></li><li>Rules get broken</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Angelika Kratzer</li><li>Against ambiguity</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Conversational backgrounds</li><li>From \(f\) to \(R\)</li><li>Properties of \(f\)</li><li>Ordering source</li><li>Best worlds</li><li>Chisholm, solved</li><li>T, revisited</li><li>Other notations</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>English and Nez Perce</li><li>St’át’imcets</li><li>Epistemic <em>mustn’t</em></li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 04 · Housekeeping -->
+<section class="slide" data-label="Housekeeping" data-screen-label="04">
+  <div class="b-slide pal-a dB" data-sec="hk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Housekeeping</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx"><strong>Assessment 1</strong> (10%): Friday 16 October, via Blackboard.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx"><strong>Thursday:</strong> handout session, Arts 5039.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 05 · Readings -->
+<section class="slide" data-label="Readings" data-screen-label="05">
+  <div class="b-slide pal-a dB" data-sec="rd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Readings</h2>
+      <div class="qref" data-pstep="1" style="font-size:29px !important;padding:13px 26px;">Portner (2009), <em>Modality</em>, ch. 3, §3.1 &ldquo;The work of Angelika Kratzer&rdquo;. <span class="src" style="font-size:21px">Textbook</span></div>
+      <div class="qref" data-pstep="2" style="font-size:29px !important;padding:13px 26px;margin-top:12px">von Fintel &amp; Heim, <em>Intensional Semantics</em>, ch. 3 &ldquo;Restricting and ordering&rdquo;. <span class="src" style="font-size:21px">Textbook</span></div>
+      <div class="qref" data-pstep="3" style="font-size:29px !important;padding:13px 26px;margin-top:12px">Kratzer (1977), &ldquo;What <em>must</em> and <em>can</em> must and can mean&rdquo;, <em>Linguistics and Philosophy</em> 1. <span class="src" style="font-size:21px">Classical</span></div>
+      <div class="qref" data-pstep="4" style="font-size:29px !important;padding:13px 26px;margin-top:12px">Kratzer (1981), &ldquo;The notional category of modality&rdquo;. <span class="src" style="font-size:21px">Classical</span></div>
+      <div class="qref" data-pstep="5" style="font-size:29px !important;padding:13px 26px;margin-top:12px">Zamorano-Mansilla (2023), &ldquo;Epistemic <em>mustn’t</em> in English&rdquo;, <em>CLAC</em> 36. <span class="src" style="font-size:21px">Contemporary · open access</span></div>
+      <div class="qref" data-pstep="6" style="font-size:29px !important;padding:13px 26px;margin-top:12px">Rullmann, Matthewson &amp; Davis (2008), &ldquo;Modals as distributive indefinites&rdquo;, <em>Natural Language Semantics</em> 16. <span class="src" style="font-size:21px">Contemporary</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § Recap -->
+<section class="slide" data-label="§ Recap" data-screen-label="§ Recap">
+  <div class="lxd2 lens-recap pal-a">
+    <div class="l"><div class="num">0</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-rec"/></svg></div></div>
+    <div class="r"><div class="lab">Recap</div><div class="ct">RECAP · LIU33008 · Week 3</div><h2>Always, knows, must</h2><div class="ask">One box, many readings.</div><div class="lx-rule"></div></div>
+  </div>
+</section>
+
+
+<!-- Read the box -->
+<section class="slide" data-label="Recap ·Read the box" data-screen-label="06">
+  <div class="b-slide pal-a lens-recap dB" data-sec="box">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>Recap</div>
+      <h2 class="b-h">Read the box</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx">\(\Box p\): \(p\) at <strong>every</strong> world \(w\) sees. \(\Diamond p\): at <strong>some</strong>. Swap in a word for each.</div></div>
+      <table class="gtab" style="margin-top:14px">
+        <tr><th></th><th style="font-size:34px">\(\Box\)</th><th style="font-size:34px">\(\Diamond\)</th><th>\(w\) sees</th></tr>
+        <tr data-pstep="2"><td class="rh">time</td><td class="nw"><em>always</em></td><td class="nw"><em>sometimes</em></td><td class="lt">now and later times</td></tr>
+        <tr data-pstep="3"><td class="rh">knowledge</td><td class="nw"><em>Sue knows</em></td><td class="nw"><em>for all Sue knows</em></td><td class="lt">worlds compatible with what she knows</td></tr>
+        <tr data-pstep="4"><td class="rh">rules</td><td class="nw"><em>must</em></td><td class="nw"><em>may</em></td><td class="lt">rule-abiding worlds</td></tr>
+        <tr data-pstep="5"><td class="rh">evidence</td><td class="nw"><em>must</em></td><td class="nw"><em>might</em></td><td class="lt">worlds compatible with the evidence</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- T, Q -->
+<section class="slide" data-label="T, Q" data-screen-label="07">
+  <div class="b-slide pal-a lens-recap" data-sec="axt">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>T: \(\Box p \rightarrow p\). Which hold whatever the facts</div>
+        <div class="convo ">
+          <div class="cv anim" data-pstep="1" style="--d:0.15s"><div class="who">(1)</div><div class="say">If the shop is always open, it is open now.</div></div>
+          <div class="cv anim" data-pstep="2" style="--d:0.30s"><div class="who">(2)</div><div class="say">If Sue knows it is raining, it is raining.</div></div>
+          <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(3)</div><div class="say">If you must be home by six, you are home by six.</div></div>
+          <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(4)</div><div class="say">If it must be raining, it is raining.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- T: \(\Box p \rightarrow p\) -->
+<section class="slide" data-label="T, A" data-screen-label="08">
+  <div class="b-slide pal-a lens-recap dB" data-sec="axt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>Recap</div>
+      <h2 class="b-h">T: \(\Box p \rightarrow p\)</h2>
+      <div class="fourways ">
+        <div class="fw" data-pstep="1" style="--fc:var(--lens-for)"><div class="fl">(1)<small>holds</small></div><div class="ft2">Now is one of the times. <b>Reflexive.</b></div></div>
+        <div class="fw" data-pstep="2" style="--fc:var(--lens-for)"><div class="fl">(2)<small>holds</small></div><div class="ft2">Knowledge is factive. <b>Reflexive.</b></div></div>
+        <div class="fw" data-pstep="3" style="--fc:var(--tcd-grey-75)"><div class="fl">(3)<small>fails</small></div><div class="ft2">Rules get broken. <b>Not reflexive.</b></div></div>
+        <div class="fw" data-pstep="4" style="--fc:var(--lens-emp)"><div class="fl">(4)<small>predicted to hold</small></div><div class="ft2">Yet <em>it must be raining</em> is odd while you watch the rain fall. Still open from last week.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- D, Q -->
+<section class="slide" data-label="D, Q" data-screen-label="09">
+  <div class="b-slide pal-a lens-recap" data-sec="axd">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>D: \(\Box p \rightarrow \Diamond p\). Which hold whatever the facts</div>
+        <div class="convo ">
+          <div class="cv anim" data-pstep="1" style="--d:0.15s"><div class="who">(5)</div><div class="say">If the shop is always open, it is sometimes open.</div></div>
+          <div class="cv anim" data-pstep="2" style="--d:0.30s"><div class="who">(6)</div><div class="say">If Sue knows it is raining, then for all she knows it is raining.</div></div>
+          <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(7)</div><div class="say">If you must leave, you may leave.</div></div>
+          <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(8)</div><div class="say">If it must be raining, it might be raining.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- D: \(\Box p \rightarrow \Diamond p\) -->
+<section class="slide" data-label="D, A" data-screen-label="10">
+  <div class="b-slide pal-a lens-recap dB" data-sec="axd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>Recap</div>
+      <h2 class="b-h">D: \(\Box p \rightarrow \Diamond p\)</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx">(5) to (8): all four hold. Every world sees some world: <strong>serial</strong>.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx">(7) is the <strong>Catch-22</strong> case. An obligation you are not permitted to meet is no obligation.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx">D is weaker than T. Rules satisfy D without satisfying T.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 4 and 5, Q -->
+<section class="slide" data-label="4 and 5, Q" data-screen-label="11">
+  <div class="b-slide pal-a lens-recap" data-sec="ax45">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>4: \(\Box p \rightarrow \Box\Box p\) &nbsp;·&nbsp; 5: \(\Diamond p \rightarrow \Box\Diamond p\)</div>
+        <div class="convo six">
+          <div class="cv anim" data-pstep="1" style="--d:0.15s"><div class="who">(9) &nbsp;4</div><div class="say">If the shop is always open, it is always the case that it is always open.</div></div>
+          <div class="cv anim" data-pstep="2" style="--d:0.30s"><div class="who">(10) 4</div><div class="say">If Sue knows it is raining, she knows that she knows it.</div></div>
+          <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(11) 5</div><div class="say">If the shop is sometimes open, it is always the case that it is sometimes open.</div></div>
+          <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(12) 5</div><div class="say">If for all Sue knows it is raining, she knows that for all she knows it is raining.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 4 and 5 -->
+<section class="slide" data-label="4 and 5, A" data-screen-label="12">
+  <div class="b-slide pal-a lens-recap dB" data-sec="ax45">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>Recap</div>
+      <h2 class="b-h">4 and 5</h2>
+      <div class="fourways ">
+        <div class="fw" data-pstep="1" style="--fc:var(--lens-for)"><div class="fl">(9)<small>4 · holds</small></div><div class="ft2">A later time’s later times are later times. <b>Transitive.</b></div></div>
+        <div class="fw" data-pstep="2" style="--fc:var(--lens-his)"><div class="fl">(10)<small>4 · contested</small></div><div class="ft2">The <b>KK principle</b>. Hintikka for it; Williamson against.</div></div>
+        <div class="fw" data-pstep="3" style="--fc:var(--lens-emp)"><div class="fl">(11)<small>5 · depends</small></div><div class="ft2">If <em>always</em> covers all times, it holds. If it covers the future only, it fails once the shop closes for good.</div></div>
+        <div class="fw" data-pstep="4" style="--fc:var(--tcd-grey-75)"><div class="fl">(12)<small>5 · fails</small></div><div class="ft2">Sue can be unaware of what she does not know. <b>Negative introspection.</b></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Readings and their logics -->
+<section class="slide" data-label="Recap ·Readings and their logics" data-screen-label="13">
+  <div class="b-slide pal-a lens-recap dB" data-sec="logics">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-rec"/></svg></span>Recap</div>
+      <h2 class="b-h">Readings and their logics</h2>
+      <table class="gtab sm">
+        <tr><th>reading</th><th class="c">T</th><th class="c">D</th><th class="c">4</th><th class="c">5</th><th>system</th></tr>
+        <tr data-pstep="1"><td class="rh">always<small>all times</small></td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="sys">S5</td></tr>
+        <tr data-pstep="2"><td class="rh">always<small>from now on</small></td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c no">✗</td><td class="sys">S4</td></tr>
+        <tr data-pstep="3"><td class="rh">knows</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c qm">?</td><td class="c no">✗</td><td class="sys">S4 <small>Hintikka</small></td></tr>
+        <tr data-pstep="4"><td class="rh">believes</td><td class="c no">✗</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="c ok">✓</td><td class="sys">KD45</td></tr>
+        <tr data-pstep="5"><td class="rh">must<small>rules</small></td><td class="c no">✗</td><td class="c ok">✓</td><td class="c qm">?</td><td class="c qm">?</td><td class="sys">KD</td></tr>
+      </table>
+      <div class="erow nolb" data-pstep="6"><div class="tx tight">K holds on every row. For <em>knows</em>, that is <strong>logical omniscience</strong> (week 4).</div></div>
+      <div class="erow nolb" data-pstep="7"><div class="tx tight"><strong>Same \(\Box\), different \(R\), different logic.</strong> Kratzer builds \(R\) from what the context supplies.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § Empirical -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LIU33008 · Week 3</div><h2>Flavour from context</h2><div class="ask">One <em>must</em>, many backgrounds.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+
+<!-- In view of, Q -->
+<section class="slide" data-label="In view of, Q" data-screen-label="14">
+  <div class="b-slide pal-a lens-empirical" data-sec="ivo">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Two contexts for (15), one for each reading</div>
+        <div class="convo ">
+          <div class="cv anim" data-pstep="1" style="--d:0.15s"><div class="who">(13)</div><div class="say">In view of what I know, Mary must be lost.</div></div>
+          <div class="cv anim" data-pstep="2" style="--d:0.30s"><div class="who">(14)</div><div class="say">In view of the rules of the secret committee, Mary must leave.</div></div>
+          <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(15)</div><div class="say">Mary should eat her broccoli.</div></div>
+        </div>
+        <div class="qsrc" data-pstep="4">Kratzer (1977); Portner (2009, §3.1)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- In view of, again -->
+<section class="slide" data-label="In view of, A" data-screen-label="15">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="ivo">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">In view of, again</h2>
+      <div class="fourways ">
+        <div class="fw" data-pstep="1" style="--fc:var(--lens-emp)"><div class="fl">(13)<small>epistemic</small></div><div class="ft2">The phrase names the background: <b>what I know</b>.</div></div>
+        <div class="fw" data-pstep="2" style="--fc:var(--lens-for)"><div class="fl">(14)<small>deontic</small></div><div class="ft2">The phrase names the background: <b>the committee’s rules</b>.</div></div>
+        <div class="fw" data-pstep="3" style="--fc:var(--lens-typ)"><div class="fl">(15)<small>bouletic</small></div><div class="ft2">We are talking about how much Mary loves broccoli.</div></div>
+        <div class="fw" data-pstep="4" style="--fc:var(--lens-for)"><div class="fl">(15)<small>deontic</small></div><div class="ft2">Children finish what is on their plates.</div></div>
+      </div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight">The same <em>should</em> in both. No phrase, so the <strong>context</strong> picks the background.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Stronger and weaker, Q -->
+<section class="slide" data-label="Stronger and weaker, Q" data-screen-label="16">
+  <div class="b-slide pal-a lens-empirical" data-sec="grad">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Rank from strongest to weakest</div>
+        <div class="convo six">
+          <div class="cv anim" data-pstep="1" style="--d:0.15s"><div class="who">(16)</div><div class="say">It must be raining.</div></div>
+          <div class="cv anim" data-pstep="2" style="--d:0.30s"><div class="who">(17)</div><div class="say">It is probable that it is raining.</div></div>
+          <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(18)</div><div class="say">There is a good possibility that it is raining.</div></div>
+          <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(19)</div><div class="say">It might be raining.</div></div>
+          <div class="cv anim" data-pstep="5" style="--d:0.75s"><div class="who">(20)</div><div class="say">There is a slight possibility that it is raining.</div></div>
+          <div class="cv anim" data-pstep="6" style="--d:0.90s"><div class="who">(21)</div><div class="say">It is more likely that it is raining than that it is snowing.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Graded modality -->
+<section class="slide" data-label="Graded modality, A" data-screen-label="17">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="grad">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Graded modality</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight">(16) &gt; (17) &gt; (18) &gt; (19) &gt; (20). And (21) compares <strong>two</strong> propositions.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Slight possibility</strong> is negative: (20) suggests it is probably not raining.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Two forces are too few.</strong> A set of accessible worlds gives \(\forall\) and \(\exists\) and nothing between. Grades need worlds <strong>ranked</strong> against each other.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>Kratzer (1991):</strong> necessity, weak necessity, good possibility, possibility, slight possibility, better possibility.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Weak <em>must</em> -->
+<section class="slide" data-label="Empirical ·Weak must" data-screen-label="18">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="weak">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Weak <em>must</em></h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eg" data-pstep="1"><span class="no">(22)</span><span class="ex"><span class="ctx2">Watching the rain through the window</span><span style="color:var(--lens);font-style:normal">#</span>It must be raining.</span></div>
+        <div class="eg" data-pstep="2"><span class="no">(23)</span><span class="ex"><span class="ctx2">Wet coats in the hall</span>It must be raining.</span></div>
+      </div>
+      <div class="erow nolb" data-pstep="3" style="border-top:none"><div class="tx tight"><strong>Karttunen (1972):</strong> <em>must p</em> sounds weaker than plain <em>p</em>.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>Last week’s theory:</strong> reflexive \(R\), so <em>must p</em> entails <em>p</em>. Nothing about evidence.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>von Fintel &amp; Gillies (2010):</strong> <em>must</em> is strong, and signals <strong>indirect</strong> evidence.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Rules get broken, Q -->
+<section class="slide" data-label="Rules get broken, Q" data-screen-label="19">
+  <div class="b-slide pal-a lens-empirical" data-sec="chis">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Put all four into last week’s logic</div>
+        <div class="convo ">
+          <div class="cv anim" data-pstep="1" style="--d:0.15s"><div class="who">(24)</div><div class="say">Mary must not rob John.</div></div>
+          <div class="cv anim" data-pstep="2" style="--d:0.30s"><div class="who">(25)</div><div class="say">Mary robs John.</div></div>
+          <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(26)</div><div class="say">If Mary robs John, she must be punished.</div></div>
+          <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(27)</div><div class="say">If Mary does not rob John, she must not be punished.</div></div>
+        </div>
+        <div class="qsrc" data-pstep="5">Chisholm (1963), in the version of Åqvist (1967)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Chisholm’s paradox -->
+<section class="slide" data-label="Chisholm’s paradox, A" data-screen-label="20">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="chis">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Chisholm’s paradox</h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eghead">\(r\): Mary robs John &nbsp;·&nbsp; \(q\): Mary is punished &nbsp;·&nbsp; after Åqvist (1967)</div>
+        <div class="fgrid" data-pstep="1">
+          <div class="fc"><span class="no">(24)</span><span class="fm">\(\Box\neg r\)</span></div>
+          <div class="fc"><span class="no">(25)</span><span class="fm">\(r\)</span></div>
+          <div class="fc"><span class="no">(26)</span><span class="fm">\(r \rightarrow \Box q\)</span></div>
+          <div class="fc"><span class="no">(27)</span><span class="fm">\(\Box(\neg r \rightarrow \neg q)\)</span></div>
+        </div>
+      </div>
+      <div class="erow nolb" data-pstep="2" style="border-top:none"><div class="tx tight">(25) and (26): \(\Box q\). (24), (27) and K: \(\Box\neg q\). Together \(\Box q \wedge \Box\neg q\), which <strong>D</strong> rules out.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Three grades of world.</strong> No robbery: best. Robbery and punishment: next. Robbery unpunished: worst. An accessibility relation draws <strong>one</strong> line through these.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § Historical -->
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LIU33008 · Week 3</div><h2>Angelika Kratzer</h2><div class="ask">Modals from 1977 to 1991.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+
+<!-- Angelika Kratzer -->
+<section class="slide" data-label="Historical ·Angelika Kratzer" data-screen-label="21">
+  <div class="b-slide pal-a lens-historical dB" data-sec="kra">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Angelika Kratzer</h2>
+      <div class="figrow">
+        <!-- No freely licensed photograph found on Wikimedia Commons (Sept 2026): monogram plate. PhD Konstanz 1979 (Wikipedia); birth year not stated on the slide (sources disagree). -->
+        <div class="portrait npf"><div class="npmono">AK</div><div class="pc"><div class="nm">Angelika Kratzer</div><div class="dt">PhD Konstanz, 1979</div><div class="rl">University of Massachusetts Amherst.</div></div></div>
+        <div class="figbody">
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>1977.</strong> &ldquo;What <em>must</em> and <em>can</em> must and can mean&rdquo;, <em>Linguistics and Philosophy</em> 1. Relative modality.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>1981.</strong> &ldquo;The notional category of modality&rdquo;. Ordering semantics.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>1991.</strong> &ldquo;Modality&rdquo;, in the handbook <em>Semantik/Semantics</em>. The English modals.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>2012.</strong> <em>Modals and Conditionals</em>, Oxford University Press. The papers collected and revised.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Against ambiguity -->
+<section class="slide" data-label="Historical ·Against ambiguity" data-screen-label="22">
+  <div class="b-slide pal-a lens-historical dB" data-sec="amb">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Against ambiguity</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>Modal logic for linguists.</strong> Epistemic <em>must</em> and deontic <em>must</em> are two words, each with its own \(R\).</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Kratzer.</strong> One <em>must</em>. Context supplies the background.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>The evidence.</strong> The same spread in <em>must, may, can, should</em> and in German <em>müssen, können</em>. <em>In view of</em> phrases fix the reading compositionally. Deontic words regularly gain epistemic uses over time.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">With ambiguity, each of those is a <strong>coincidence</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § Formal -->
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · LIU33008 · Week 3</div><h2>Conversational backgrounds</h2><div class="ask">Modal base, ordering source, best worlds.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+
+<!-- Conversational backgrounds -->
+<section class="slide" data-label="Formal ·Conversational backgrounds" data-screen-label="23">
+  <div class="b-slide pal-a lens-formal dB" data-sec="cb">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Conversational backgrounds</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>Conversational background.</strong> A function \(f\) from worlds to sets of propositions: \(f(w) \subseteq \wp(W)\).</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Example.</strong> <em>What I know</em>: \(f(w)\) = {the lights are on, Anna’s car is outside, her keys are on the hook}.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">\(\bigcap f(w)\): the worlds where every proposition in \(f(w)\) is true.</div></div>
+      <svg class="wfig" data-pstep="4" viewBox="0 0 1400 330" role="img" aria-label="Three overlapping regions, one for each proposition the speaker knows. Their common part is shaded: the worlds where all three are true. The evaluation world w lies inside it.">
+        <defs>
+          <clipPath id="cbA"><ellipse cx="560" cy="140" rx="250" ry="115"/></clipPath>
+          <clipPath id="cbB"><ellipse cx="820" cy="140" rx="250" ry="115"/></clipPath>
+        </defs>
+        <rect class="sp" x="20" y="8" width="1360" height="314" rx="16"/>
+        <g clip-path="url(#cbA)"><g clip-path="url(#cbB)"><ellipse class="int" cx="690" cy="228" rx="260" ry="86"/></g></g>
+        <ellipse class="pc3" cx="560" cy="140" rx="250" ry="115"/>
+        <ellipse class="pc3" cx="820" cy="140" rx="250" ry="115"/>
+        <ellipse class="pc3" cx="690" cy="228" rx="260" ry="86"/>
+        <text class="pl" x="50" y="68">the lights are on</text>
+        <text class="pl" x="1356" y="68" text-anchor="end">Anna’s car is outside</text>
+        <text class="pl" x="1356" y="302" text-anchor="end">her keys are on the hook</text>
+        <circle class="w0" cx="690" cy="172" r="20"/><text class="wl" x="734" y="182" style="font-size:36px">w</text>
+        <text class="pl" x="70" y="256" style="fill:var(--lens);font-style:normal;font-weight:700">⋂ f(w)</text>
+        <line class="ar" x1="220" y1="244" x2="610" y2="200"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+
+<!-- From \(f\) to \(R\) -->
+<section class="slide" data-label="Formal ·From f to R" data-screen-label="24">
+  <div class="b-slide pal-a lens-formal dB" data-sec="f2r">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">From \(f\) to \(R\)</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>The relation.</strong> \(wR_f w'\) iff \(w' \in \bigcap f(w)\).</div></div>
+      <div class="egpanel" style="margin-top:10px">
+        <div class="eghead" data-pstep="2">Last week</div>
+        <div class="fx" data-pstep="2">\(\sem{\textit{must}}^{w} = \lambda R.\,\lambda p.\;\forall w'\,[\,wRw' \rightarrow w' \in p\,]\)</div>
+        <div class="eghead" data-pstep="3">This week</div>
+        <div class="fx" data-pstep="3">\(\sem{\textit{must}}^{w} = \lambda f.\,\lambda p.\;\bigcap f(w) \subseteq p\) </div>
+        <div class="fx" data-pstep="4">\(\sem{\textit{might}}^{w} = \lambda f.\,\lambda p.\;\bigcap f(w) \cap p \neq \varnothing\) </div>
+      </div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>Portner’s gloss.</strong> <em>must p</em>: \(f(w)\) <strong>entails</strong> \(p\). <em>might p</em>: \(f(w)\) is <strong>compatible</strong> with \(p\).</div></div>
+      <div class="erow nolb" data-pstep="6"><div class="tx tight"><strong>In view of \(\alpha\).</strong> \(\sem{\text{in view of } \alpha,\ S}^{w,f} = \sem{S}^{w,\sem{\alpha}}\): the phrase sets \(f\).</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Properties of \(f\) -->
+<section class="slide" data-label="Formal ·Properties of f" data-screen-label="25">
+  <div class="b-slide pal-a lens-formal dB" data-sec="prop">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Properties of \(f\)</h2>
+      <table class="gtab sm">
+        <tr><th>\(f\) is</th><th>iff, for every \(w\)</th><th>\(R_f\) is</th><th class="c">axiom</th></tr>
+        <tr data-pstep="1"><td class="rh">realistic</td><td>\(w \in \bigcap f(w)\)</td><td>reflexive</td><td class="c ok">T</td></tr>
+        <tr data-pstep="2"><td class="rh">consistent</td><td>\(\bigcap f(w) \neq \varnothing\)</td><td>serial</td><td class="c ok">D</td></tr>
+        <tr data-pstep="3"><td class="rh">positively<br>introspective</td><td>if \(w' \in \bigcap f(w)\), then \(\bigcap f(w') \subseteq \bigcap f(w)\)</td><td>transitive</td><td class="c ok">4</td></tr>
+      </table>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>What I know:</strong> realistic. <strong>The rules in force:</strong> consistent, not realistic.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight">The recap’s table, one level down. Kaufmann, Condoravdi &amp; Harizanov (2006), via Portner.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Ordering source -->
+<section class="slide" data-label="Formal ·Ordering source" data-screen-label="26">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ord">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Ordering source</h2>
+      <div class="twocol">
+        <div>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>Ordering source.</strong> A second background \(g\). \(g(w)\): the <strong>ideals</strong> at \(w\): laws, goals, expectations.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">\(u \leq_{g(w)} v\) iff every ideal in \(g(w)\) true at \(v\) is also true at \(u\). \(u\) is at least as good as \(v\).</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Here \(g(w) = \{p, q, r\}\). Arrows point to better worlds. \(pq\) and \(qr\) are <strong>incomparable</strong>: a partial order.</div></div>
+        </div>
+        <div>
+      <svg class="ofig" data-pstep="3" viewBox="0 0 600 470" role="img" aria-label="Seven groups of worlds in three tiers. Top: worlds where p, q and r are all true. Middle: p q, p r, q r. Bottom: p, q, r. Arrows run from each group to the groups above it that add one proposition.">
+        <defs><marker id="oah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--tcd-ink)"/></marker></defs>
+        <line class="oa" x1="112" y1="236" x2="268" y2="92" marker-end="url(#oah)"/>
+        <line class="oa" x1="300" y1="228" x2="300" y2="102" marker-end="url(#oah)"/>
+        <line class="oa" x1="488" y1="236" x2="332" y2="92" marker-end="url(#oah)"/>
+        <line class="oa" x1="96" y1="396" x2="96" y2="290" marker-end="url(#oah)"/>
+        <line class="oa" x1="120" y1="400" x2="276" y2="288" marker-end="url(#oah)"/>
+        <line class="oa" x1="276" y1="400" x2="120" y2="288" marker-end="url(#oah)"/>
+        <line class="oa" x1="324" y1="400" x2="480" y2="288" marker-end="url(#oah)"/>
+        <line class="oa" x1="480" y1="400" x2="324" y2="288" marker-end="url(#oah)"/>
+        <line class="oa" x1="504" y1="396" x2="504" y2="290" marker-end="url(#oah)"/>
+        <rect class="on top" x="235" y="30" width="130" height="68" rx="34"/><text class="ot" x="300" y="76">pqr</text>
+        <rect class="on" x="40" y="222" width="112" height="64" rx="32"/><text class="ot" x="96" y="266">pq</text>
+        <rect class="on" x="244" y="222" width="112" height="64" rx="32"/><text class="ot" x="300" y="266">pr</text>
+        <rect class="on" x="448" y="222" width="112" height="64" rx="32"/><text class="ot" x="504" y="266">qr</text>
+        <rect class="on" x="56" y="398" width="80" height="64" rx="32"/><text class="ot" x="96" y="442">p</text>
+        <rect class="on" x="260" y="398" width="80" height="64" rx="32"/><text class="ot" x="300" y="442">q</text>
+        <rect class="on" x="464" y="398" width="80" height="64" rx="32"/><text class="ot" x="504" y="442">r</text>
+      </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Best worlds -->
+<section class="slide" data-label="Formal ·Best worlds" data-screen-label="27">
+  <div class="b-slide pal-a lens-formal dB" data-sec="best">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Best worlds</h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="fx" data-pstep="1">\(\mathrm{Best}(f(w), g(w)) = \{\,v \in \bigcap f(w) : \neg\exists u \in \bigcap f(w)\;\, u <_{g(w)} v\,\}\)</div>
+        <div class="fx" data-pstep="2">\(\sem{\textit{must}\ p}^{w} = 1\) iff \(\mathrm{Best}(f(w), g(w)) \subseteq p\)</div>
+        <div class="fx" data-pstep="3">\(\sem{\textit{might}\ p}^{w} = 1\) iff \(\mathrm{Best}(f(w), g(w)) \cap p \neq \varnothing\)</div>
+      </div>
+      <div class="erow nolb" data-pstep="4" style="border-top:none"><div class="tx tight"><strong>Empty \(g\).</strong> Every world ties, so Best = \(\bigcap f(w)\): last week’s system.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>Limit assumption.</strong> There always are best worlds. Kratzer (1981) manages without; Thursday.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Chisholm, solved -->
+<section class="slide" data-label="Formal ·Chisholm, solved" data-screen-label="28">
+  <div class="b-slide pal-a lens-formal dB" data-sec="chs">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Chisholm, solved</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>\(f\):</strong> the relevant circumstances. <strong>\(g(w)\):</strong> Mary does not rob John · robbers are punished · non-robbers are not.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">(24) \(f\) leaves the robbery open. Best worlds: no robbery. <strong>True.</strong></div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">(26) <em>If</em> adds <em>Mary robs John</em> to \(f\). Best of those: she is punished. <strong>True.</strong></div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">(27) <em>If</em> adds <em>Mary does not rob John</em> to \(f\). Best of those: no punishment. <strong>True.</strong></div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight">\(\Box q\) and \(\Box\neg q\) never meet under one modal base. More on <em>if</em> in week 8.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Your turn, Q -->
+<section class="slide" data-label="Your turn, Q" data-screen-label="29">
+  <div class="b-slide pal-a lens-formal" data-sec="turn">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Modal base and ordering source for each</div>
+        <div class="convo ">
+          <div class="cv anim" data-pstep="1" style="--d:0.15s"><div class="who">(28)</div><div class="say">The book must have been checked out.</div></div>
+          <div class="cv anim" data-pstep="2" style="--d:0.30s"><div class="who">(29)</div><div class="say">You must turn at the next light.</div></div>
+          <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(30)</div><div class="say">I must have that painting.</div></div>
+          <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(31)</div><div class="say">We all must die.</div></div>
+        </div>
+        <div class="qsrc" data-pstep="5">Portner (2009), ex. (106)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Your turn -->
+<section class="slide" data-label="Your turn, A" data-screen-label="30">
+  <div class="b-slide pal-a lens-formal dB" data-sec="turn">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Your turn</h2>
+      <div class="fourways ">
+        <div class="fw" data-pstep="1" style="--fc:var(--lens-emp)"><div class="fl">(28)</div><div class="ft2"><b>Epistemic</b> base · doxastic or stereotypical ordering.</div></div>
+        <div class="fw" data-pstep="2" style="--fc:var(--lens-for)"><div class="fl">(29)</div><div class="ft2"><b>Circumstantial</b> base · teleological ordering.</div></div>
+        <div class="fw" data-pstep="3" style="--fc:var(--lens-for)"><div class="fl">(30)</div><div class="ft2"><b>Circumstantial</b> base · bouletic ordering.</div></div>
+        <div class="fw" data-pstep="4" style="--fc:var(--lens-for)"><div class="fl">(31)</div><div class="ft2"><b>Circumstantial</b> base · empty ordering.</div></div>
+      </div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>Modal bases:</strong> epistemic, circumstantial. Both realistic. <strong>Ordering sources:</strong> deontic, bouletic, teleological, stereotypical, doxastic.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- T, revisited -->
+<section class="slide" data-label="Formal ·T, revisited" data-screen-label="31">
+  <div class="b-slide pal-a lens-formal dB" data-sec="trev">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">T, revisited</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>Deontic <em>must</em>.</strong> The circumstantial base is realistic, so \(w \in \bigcap f(w)\). But \(w\) need not be among the best worlds. The <strong>ordering source</strong> is what breaks T.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Epistemic <em>must</em>.</strong> Realistic base plus stereotypical ordering. The best worlds can leave out \(w\), so <em>must p</em> can be true while \(p\) is false. Kratzer’s account of the weakness in (23).</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>von Fintel &amp; Gillies.</strong> Keep T. Put the evidence into the meaning.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Other notations -->
+<section class="slide" data-label="Formal ·Other notations" data-screen-label="32">
+  <div class="b-slide pal-a lens-formal dB" data-sec="nota">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Other notations</h2>
+      <div class="ntab">
+        <div class="nh"><span>In this module</span><span>In the readings and elsewhere</span></div>
+        <div class="nr" data-pstep="1"><div class="no1">\(f,\ g\)</div><div class="no2"><i>conversational background, modal base, ordering source</i> &middot; \(B\) <i>for the base: Rullmann, Matthewson &amp; Davis</i></div></div>
+        <div class="nr" data-pstep="2"><div class="no1">\(u \leq_{g(w)} v\)</div><div class="no2">\(u \leq_{g,w} v\) <i>last year’s notes</i> &middot; <i>better world on the right in some texts</i></div></div>
+        <div class="nr" data-pstep="3"><div class="no1">\(\mathrm{Best}(f(w), g(w))\)</div><div class="no2">\(\max_{g(w)}(\bigcap f(w))\) <i>von Fintel &amp; Heim</i> &middot; \(\mathrm{Best}_{g,w}(\bigcap f(w))\) <i>last year’s notes</i></div></div>
+        <div class="nr" data-pstep="4"><div class="no1">necessity<small>possibility</small></div><div class="no2"><i>human necessity, human possibility: Kratzer (1981)</i> &middot; <i>simple necessity: empty ordering source</i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- § Typological -->
+<section class="slide" data-label="§ Typological" data-screen-label="§ Typological">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
+    <div class="r"><div class="lab">Typological</div><div class="ct">LENS 04 / 04 · LIU33008 · Week 3</div><h2>Force and flavour across languages</h2><div class="ask">Which of the two the word fixes.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+
+<!-- English and Nez Perce -->
+<section class="slide" data-label="Typological ·English and Nez Perce" data-screen-label="33">
+  <div class="b-slide pal-a lens-typological dB" data-sec="eng">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">English and Nez Perce</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>English.</strong> Force in the word, flavour from context.</div></div>
+      <div class="fourways ">
+        <div class="fw" data-pstep="2" style="--fc:var(--lens-for)"><div class="fl"><em style='text-transform:none'>must</em><small>necessity</small></div><div class="ft2">Epistemic or deontic.</div></div>
+        <div class="fw" data-pstep="3" style="--fc:var(--lens-emp)"><div class="fl"><em style='text-transform:none'>might</em><small>possibility</small></div><div class="ft2">Epistemic only.</div></div>
+        <div class="fw" data-pstep="4" style="--fc:var(--lens-for)"><div class="fl"><em style='text-transform:none'>can</em><small>possibility</small></div><div class="ft2">Circumstantial, deontic, ability.</div></div>
+      </div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>Nez Perce, last week.</strong> <em>-o’qa</em>: possibility with no necessity partner. Read as <em>can</em> or <em>should</em> (Deal 2011).</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- St’át’imcets -->
+<section class="slide" data-label="Typological ·St’át’imcets" data-screen-label="34">
+  <div class="b-slide pal-a lens-typological dB" data-sec="stat">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">St’át’imcets</h2>
+      <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>Lillooet Salish, British Columbia.</strong> Flavour in the word, force from context.</div></div>
+      <!-- Examples from Rullmann, Matthewson & Davis (2008), as reproduced in Farudi, Harris & Siraj's PNW seminar handout (UMass, 2008), exx. (16a) and (6). Orthography to be checked, and glosses added verbatim, from the published paper before teaching. -->
+      <div class="egpanel" style="margin-top:6px">
+        <div class="eghead">The enclitic <em style="text-transform:none">k’a</em> &middot; epistemic, inferential &middot; Rullmann, Matthewson &amp; Davis (2008)</div>
+        <div class="eg" data-pstep="2"><span class="no">(32)</span><span class="ex" style="font-style:normal"><span class="ctx2">The wind-dried salmon is gone. John eats it whenever he can.</span><span class="ol2">ts’aqw-an’-ás <b>k’a</b> i ts’wán-a kw s-John</span><span class="tr">&lsquo;John <b>must</b> have eaten the ts’wan.&rsquo;</span></span></div>
+        <div class="eg" data-pstep="3"><span class="no">(33)</span><span class="ex" style="font-style:normal"><span class="ctx2">John’s bag has gone, but he may have taken it to the bathroom.</span><span class="ol2">qwatsáts <b>k’a</b> tu7 kw s-John, …</span><span class="tr">&lsquo;John <b>may</b> have left, but maybe he hasn’t left yet.&rsquo;</span></span></div>
+      </div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>The analysis.</strong> A universal quantifier over a subset of the accessible worlds, chosen by context. Smaller subset, weaker claim.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Epistemic <em>mustn’t</em> -->
+<section class="slide" data-label="Typological ·Epistemic mustn't" data-screen-label="35">
+  <div class="b-slide pal-a lens-typological dB" data-sec="mnt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB ">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Epistemic <em>mustn’t</em></h2>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eg" data-pstep="1"><span class="no">(34)</span><span class="ex">He mustn’t be Scottish.<span class="fr">\(\Box\neg p\)</span></span></div>
+        <div class="eg" data-pstep="2"><span class="no">(35)</span><span class="ex">He can’t be Scottish.<span class="fr">\(\neg\Diamond p\)</span></span></div>
+      </div>
+      <div class="erow nolb" data-pstep="3" style="border-top:none"><div class="tx tight"><strong>Duality.</strong> Over the same best worlds, (34) and (35) have the same truth conditions.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>The standard claim.</strong> English has no epistemic <em>mustn’t</em>; <em>can’t</em> fills the gap.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>Zamorano-Mansilla (2023).</strong> Epistemic <em>mustn’t</em> occurs in Present-day English: negative inference, like positive <em>must</em>. <em>Can’t</em>: a judgement of impossibility, usually with evidence given.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Thursday -->
+<section class="slide" data-label="Thursday" data-screen-label="36">
+  <div class="b-slide pal-a lens-typological" data-sec="thu">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s;color:var(--lens-typ)"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Thursday</div>
+        <div class="bigq anim" style="--d:.15s;font-size:58px">Best worlds by hand, graded modality, the paradoxes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/sem2-meta.js"></script>
+<script src="../../shared/sem2-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-pragmatics/week-01 — the expandable TOC reflects
+   THIS lecture's sections; strand groups carry their lens colour. */
+(function () {
+  var TITLES = {
+    wk:"This week", road:"Roadmap", hk:"Housekeeping", rd:"Readings",
+    box:"Read the box", axt:"T", axd:"D", ax45:"4 and 5", logics:"Readings and their logics",
+    ivo:"In view of, again", grad:"Graded modality", weak:"Weak must", chis:"Rules get broken",
+    kra:"Angelika Kratzer", amb:"Against ambiguity",
+    cb:"Conversational backgrounds", f2r:"From f to R", prop:"Properties of f", ord:"Ordering source", best:"Best worlds",
+    chs:"Chisholm, solved", turn:"Your turn", trev:"T, revisited", nota:"Other notations",
+    eng:"English and Nez Perce", stat:"St’át’imcets", mnt:"Epistemic mustn’t", thu:"Thursday"
+  };
+  var GROUPS = [
+    { t:"Introduction", sc:null,         keys:["wk","road","hk","rd"] },
+    { t:"Recap",        sc:"--tcd-blue", keys:["box","axt","axd","ax45","logics"] },
+    { t:"Empirical",    sc:"--lens-emp", keys:["ivo","grad","weak","chis"] },
+    { t:"Historical",   sc:"--lens-his", keys:["kra","amb"] },
+    { t:"Formal",       sc:"--lens-for", keys:["cb","f2r","prop","ord","best","chs","turn","trev","nota"] },
+    { t:"Typological",  sc:"--lens-typ", keys:["eng","stat","mnt","thu"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "▾" : "▸";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LIU33008<br>Week 3</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 3</div><div class="t2">The Kratzer System</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#0f352d"/>
+    <rect x="8" y="10" width="84" height="3" rx="1.5" fill="#c4dbd6" opacity=".6"/>
+    <rect x="8" y="20" width="84" height="22" rx="3" fill="#14483d"/>
+    <rect x="8" y="48" width="84" height="44" rx="3" fill="#14483d" opacity=".7"/>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#89b7ae" text-anchor="middle">LIU33008 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>
