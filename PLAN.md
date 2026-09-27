@@ -985,3 +985,11 @@ what the next session must know)*
   solution, three-world model, Chisholm by modal base); 5 What you need to know + notation
   table. Deck and sheet notation row now "Semantics III notes" for ≤ with subscript g,w.
   Hub: handout draft.
+- **2026-09-27: week 3 handout, motivating data (Thomas: "make sure the devices are motivated by
+  clear linguistic examples").** Each device now follows numbered data: conversational
+  backgrounds after (1)–(3) *Mary must leave* / *in view of*; realism and consistency after
+  (4) #*Sue knows that it is raining, but it isn't*, (5) *You must be home by six, but you won't
+  be*, (6) inconsistent rules; the ordering source after Portner's coffee cup, (7)–(8), where
+  moral principles in f make ∩f(w) empty; modal base types after Kratzer's hydrangeas (9)–(10)
+  and ordering sources after the flu pair (11)–(12); graded force after (17)–(20). Examples now
+  (1) to (27), 9 pages. Deck "Ordering source" slide: p, q, r read as three house rules.

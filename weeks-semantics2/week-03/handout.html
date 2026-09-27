@@ -51,14 +51,22 @@
        conversational backgrounds split into modal bases and ordering sources, as in Portner 2009, (106).
        Block 0 properties of f: Portner 2009, (80)–(82), after Kaufmann, Condoravdi & Harizanov 2006.
        Block 3 definitions: Portner 2009, (98)–(104), and the English table from Kratzer 1991 (Portner's Table 3.2).
-       Block 4 data: Portner 2009, (86), (88) and (122). -->
+       Block 4 data: Portner 2009, (86), (88) and (122).
+       Motivating data before each device: (1)–(3) Portner (71)–(72); (4)–(6) for realism and consistency; (7)–(8) Portner's coffee cup
+       (§3.1.3, "Ordering semantics"); (9)–(10) Kratzer's hydrangeas (1991; Modals and Conditionals ch. 2); (11)–(12) Portner (105) with
+       Karttunen 1972; (17)–(20) for graded force. -->
 
   <!-- ══ 0 ══ -->
   <div class="sec">
     <div class="num">0</div>
     <div class="body">
       <h2>Conversational backgrounds</h2>
-      <p>Kratzer’s proposal: modals are not (primarily) lexically ambiguous. The differences among epistemic, deontic, circumstantial, teleological and bouletic uses of a modal come from contextually supplied background assumptions, <i>conversational backgrounds</i>.</p>
+      <ol class="exs">
+        <li><span>(1)</span><span class="s">Mary must leave.</span></li>
+        <li><span>(2)</span><span class="s">In view of what I know, Mary must leave.</span></li>
+        <li><span>(3)</span><span class="s">In view of the rules of the secret committee, Mary must leave.</span></li>
+      </ol>
+      <p>(2) is epistemic and (3) is deontic, with the same <i>must</i>. Kratzer’s proposal: modals are not (primarily) lexically ambiguous. The differences among epistemic, deontic, circumstantial, teleological and bouletic uses of a modal come from contextually supplied background assumptions, <i>conversational backgrounds</i>. An <i>in view of</i> phrase names the background; in (1) the context supplies it.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">Conversational background</span><span class="g">A function <i>f</i> from worlds to sets of propositions, <i>f</i> : <i>W</i> → ℘(℘(<i>W</i>)). <i>f</i>(<i>w</i>) is a set of propositions (facts, rules, goals, circumstances, …) relevant at <i>w</i>.</span></div>
@@ -69,17 +77,18 @@
         <div class="d"><span class="t"><i>might</i> φ</span><span class="g">True at <i>w</i> iff <i>f</i>(<i>w</i>) is compatible with ⟦φ⟧: ∩<i>f</i>(<i>w</i>) ∩ ⟦φ⟧ ≠ ∅.</span></div>
         <div class="d"><span class="t"><i>In view of</i> α</span><span class="g">Sets the conversational background: ⟦in view of α, <i>S</i>⟧<sup><i>w</i>,<i>f</i></sup> = ⟦<i>S</i>⟧<sup><i>w</i>,⟦α⟧</sup>.</span></div>
       </div>
+      <ol class="exs">
+        <li><span>(4)</span><span><span class="ctx">#</span><span class="s">Sue knows that it is raining, but it isn’t.</span></span></li>
+        <li><span>(5)</span><span class="s">You must be home by six, but you won’t be.</span></li>
+        <li><span>(6)</span><span class="s">In view of the rules, you must leave and you must stay.</span></li>
+      </ol>
+      <p>What Sue knows is true at the actual world: (4) is a contradiction. The rules need not be obeyed there: (5) is fine. (6) describes rules that cannot all be obeyed. Each is a property of <i>f</i>.</p>
       <table class="rec">
         <tr><th colspan="3">Properties of <i>f</i> and conditions on <i>R</i><sub><i>f</i></sub></th></tr>
         <tr><td>Realistic</td><td><i>w</i> ∈ ∩<i>f</i>(<i>w</i>) for every <i>w</i></td><td>⇔ reflexive (T)</td></tr>
         <tr><td>Consistent</td><td>∩<i>f</i>(<i>w</i>) ≠ ∅ for every <i>w</i></td><td>⇔ serial (D)</td></tr>
         <tr><td>Positive introspection</td><td><i>w</i>′ ∈ ∩<i>f</i>(<i>w</i>) ⇒ ∩<i>f</i>(<i>w</i>′) ⊆ ∩<i>f</i>(<i>w</i>)</td><td>⇔ transitive (4)</td></tr>
       </table>
-      <ol class="exs">
-        <li><span>(1)</span><span class="s">Mary must leave.</span></li>
-        <li><span>(2)</span><span class="s">In view of what I know, Mary must leave.</span></li>
-        <li><span>(3)</span><span class="s">In view of the rules of the secret committee, Mary must leave.</span></li>
-      </ol>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Explain in one or two sentences each how (2) and (3) constrain the conversational background compared to (1).</span></div>
@@ -113,7 +122,11 @@
     <div class="num">1</div>
     <div class="body">
       <h2>Ordering semantics</h2>
-      <p>A single accessibility relation makes a binary cut: accessible and inaccessible worlds. Many modal judgements, especially deontic and teleological ones, need graded comparison among worlds. Kratzer models this with two conversational backgrounds.</p>
+      <ol class="exs">
+        <li><span>(7)</span><span><span class="ctx">[the speaker has done wrong before and will again]</span> <span class="s">I must not throw my coffee cup at the student outside my office.</span></span></li>
+        <li><span>(8)</span><span class="s">I must throw my coffee cup at the student outside my office.</span></li>
+      </ol>
+      <p>Put the moral principles in <i>f</i>(<i>w</i>). The facts include wrongs already done, so no world obeys every principle: ∩<i>f</i>(<i>w</i>) = ∅, and (7) and (8) both come out true. Yet a world where I throw the cup is clearly worse than one where I don’t. A single accessibility relation makes a binary cut: accessible and inaccessible worlds. Kratzer keeps the facts in one conversational background and uses the principles, in a second, to rank the worlds.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">Modal base</span><span class="g">A conversational background <i>f</i> fixing which worlds are relevant: those in ∩<i>f</i>(<i>w</i>).</span></div>
@@ -129,7 +142,7 @@
       <div class="proc">
         <div class="sc proc-head">Worked: Logan</div>
         <ol class="steps">
-          <li><i>p</i> = Logan does his homework.</li>
+          <li><i>p</i> = Logan does his homework. The circumstances leave open whether he does it.</li>
           <li><i>f</i>(<i>w</i>): the relevant circumstances. Logan has maths today; Logan has time tonight.</li>
           <li><i>g</i>(<i>w</i>): the salient priorities. Logan follows the teacher’s rules; Logan does required assignments.</li>
           <li><i>Logan must do his homework</i> is true iff Logan does his homework in all the best <i>f</i>-worlds, ranked by <i>g</i>. <i>Logan might do his homework</i> is true iff he does it in some of them.</li>
@@ -161,6 +174,13 @@
     <div class="num">2</div>
     <div class="body">
       <h2>Modal bases and ordering sources</h2>
+      <ol class="exs">
+        <li><span>(9)</span><span><span class="ctx">[soil and climate suit hydrangeas; we know none are planted here]</span> <span class="s">Hydrangeas can grow here.</span></span></li>
+        <li><span>(10)</span><span><span class="ctx">[the same garden]</span> <span class="s">There might be hydrangeas growing here.</span></span></li>
+        <li><span>(11)</span><span><span class="ctx">[a doctor, after the examination]</span> <span class="s">You must have the flu.</span></span></li>
+        <li><span>(12)</span><span class="s">You have the flu.</span></li>
+      </ol>
+      <p>(9) is true and (10) is false of the same garden: (9) depends on the circumstances, (10) on what we know. These are the two kinds of modal base. (11) is weaker than (12): the doctor’s conclusion also rests on expectations about how illnesses usually go, and those can fail. Expectations like these are an ordering source.</p>
       <div class="defs">
         <div class="sc">Modal bases</div>
         <div class="d"><span class="t">Epistemic</span><span class="g"><i>f</i>(<i>w</i>) is a set of facts known in <i>w</i>.</span></div>
@@ -176,24 +196,23 @@
         <div class="d"><span class="t">Empty</span><span class="g"><i>g</i>(<i>w</i>) = ∅: no world is better than any other.</span></div>
       </div>
       <ol class="exs">
-        <li><span>(4)</span><span><span class="ctx">(Based on what I know,)</span> <span class="s">Hannah must be in the library.</span></span></li>
-        <li><span>(5)</span><span><span class="ctx">(According to the department rules,)</span> <span class="s">you must submit the form by Friday.</span></span></li>
-        <li><span>(6)</span><span><span class="ctx">(Given the circumstances,)</span> <span class="s">the glass can break if you drop it.</span></span></li>
-        <li><span>(7)</span><span><span class="ctx">(To catch the 7am train,)</span> <span class="s">you have to leave now.</span></span></li>
-        <li><span>(8)</span><span><span class="ctx">[a doctor, after the examination]</span> <span class="s">You must have the flu.</span></span></li>
+        <li><span>(13)</span><span><span class="ctx">(Based on what I know,)</span> <span class="s">Hannah must be in the library.</span></span></li>
+        <li><span>(14)</span><span><span class="ctx">(According to the department rules,)</span> <span class="s">you must submit the form by Friday.</span></span></li>
+        <li><span>(15)</span><span><span class="ctx">(Given the circumstances,)</span> <span class="s">the glass can break if you drop it.</span></span></li>
+        <li><span>(16)</span><span><span class="ctx">(To catch the 7am train,)</span> <span class="s">you have to leave now.</span></span></li>
       </ol>
-      <p><span class="runin">Exercise.</span> For each sentence, identify the modal force (necessity or possibility), and describe a plausible modal base <i>f</i> and ordering source <i>g</i>: what kinds of propositions are in <i>f</i>(<i>w</i>) and <i>g</i>(<i>w</i>)?</p>
+      <p><span class="runin">Exercise.</span> For each of (13) to (16), identify the modal force (necessity or possibility), and describe a plausible modal base <i>f</i> and ordering source <i>g</i>: what kinds of propositions are in <i>f</i>(<i>w</i>) and <i>g</i>(<i>w</i>)?</p>
       <table class="rec fill wide">
         <tr><th></th><th>Force</th><th><i>f</i>(<i>w</i>)</th><th><i>g</i>(<i>w</i>)</th></tr>
-        <tr><td>(4)</td><td></td><td></td><td></td></tr>
-        <tr><td>(5)</td><td></td><td></td><td></td></tr>
-        <tr><td>(6)</td><td></td><td></td><td></td></tr>
-        <tr><td>(7)</td><td></td><td></td><td></td></tr>
-        <tr><td>(8)</td><td></td><td></td><td></td></tr>
+        <tr><td>(13)</td><td></td><td></td><td></td></tr>
+        <tr><td>(14)</td><td></td><td></td><td></td></tr>
+        <tr><td>(15)</td><td></td><td></td><td></td></tr>
+        <tr><td>(16)</td><td></td><td></td><td></td></tr>
       </table>
     </div>
     <div class="note">
       <p><b>Kratzer 1991.</b> Modality. In A. von Stechow &amp; D. Wunderlich (eds.), <i>Semantik/Semantics.</i> de Gruyter. 639–650.</p>
+      <p><b>Karttunen 1972.</b> Possible and must. In J. Kimball (ed.), <i>Syntax and Semantics</i> 1. Academic Press. 1–20.</p>
       <p><b>Portner 2009.</b> <i>Modality.</i> Oxford University Press. §3.1.3, (105) and (106).</p>
     </div>
   </div>
@@ -203,7 +222,13 @@
     <div class="num">3</div>
     <div class="body">
       <h2>Graded modality</h2>
-      <p>Kratzer (1981, 1991) defines further grades of modal force from <i>f</i> and <i>g</i>. The definitions do not assume that best worlds exist. All worlds below are in ∩<i>f</i>(<i>w</i>), and ≤ is ≤<sub><i>g</i>(<i>w</i>)</sub>.</p>
+      <ol class="exs">
+        <li><span>(17)</span><span class="s">It is probable that Anna is home, but she might not be.</span></li>
+        <li><span>(18)</span><span><span class="ctx">#</span><span class="s">Anna must be home, but she might not be.</span></span></li>
+        <li><span>(19)</span><span class="s">There is a slight possibility that Anna is home.</span></li>
+        <li><span>(20)</span><span class="s">It is more likely that Anna is home than that she is at work.</span></li>
+      </ol>
+      <p>(17) and (18): <i>probable</i> is weaker than <i>must</i>, and it is stronger than <i>might</i>. (19) suggests that Anna is probably not home. (20) compares two propositions. ∀ and ∃ over one set of worlds give only two forces; Kratzer (1981, 1991) defines the others from the ordering. The definitions do not assume that best worlds exist. All worlds below are in ∩<i>f</i>(<i>w</i>), and ≤ is ≤<sub><i>g</i>(<i>w</i>)</sub>.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">Necessity</span><span class="g"><i>p</i> is a necessity iff for every <i>u</i> there is a <i>v</i> ≤ <i>u</i> such that every <i>z</i> ≤ <i>v</i> is in <i>p</i>. In a finite model: Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i>.</span></div>
@@ -222,7 +247,7 @@
         <tr><td>good possibility</td><td class="it">there is a good possibility that</td></tr>
         <tr><td>better possibility</td><td class="it">it is more likely that … than that …</td></tr>
       </table>
-      <p><span class="runin">Model.</span> ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>}. <i>g</i>(<i>w</i>) = {<i>I</i><sub>1</sub>, <i>I</i><sub>2</sub>}, where <i>I</i><sub>1</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>} and <i>I</i><sub>2</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Three propositions: <i>p</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>4</sub>}, <i>q</i> = {<i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}, <i>r</i> = {<i>w</i><sub>2</sub>}.</p>
+      <p><span class="runin">Model.</span> ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>}. <i>g</i>(<i>w</i>) = {<i>I</i><sub>1</sub>, <i>I</i><sub>2</sub>}, where <i>I</i><sub>1</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>} and <i>I</i><sub>2</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Read <i>g</i>(<i>w</i>) as two stereotypical expectations. Three propositions: <i>p</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>4</sub>}, <i>q</i> = {<i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}, <i>r</i> = {<i>w</i><sub>2</sub>}.</p>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Draw the ordering on ∩<i>f</i>(<i>w</i>), with arrows pointing to better worlds, and compute Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)).</span></div>
@@ -258,24 +283,24 @@
         <div class="d"><span class="t">Chisholm’s paradox</span><span class="g">Four consistent sentences about an obligation and what to do if it is broken entail, in standard deontic logic, both □<i>q</i> and □¬<i>q</i>.</span></div>
       </div>
       <ol class="exs">
-        <li><span>(9)</span><span class="s">It ought to be that John is not injured in a robbery.</span></li>
-        <li><span>(10)</span><span class="s">It ought to be that someone helps John, who was injured in a robbery.</span></li>
-        <li><span>(11)</span><span class="s">It ought to be that John is injured in a robbery and someone helps John.</span></li>
+        <li><span>(21)</span><span class="s">It ought to be that John is not injured in a robbery.</span></li>
+        <li><span>(22)</span><span class="s">It ought to be that someone helps John, who was injured in a robbery.</span></li>
+        <li><span>(23)</span><span class="s">It ought to be that John is injured in a robbery and someone helps John.</span></li>
       </ol>
       <div class="proc">
         <div class="sc proc-head">Åqvist’s formalisation</div>
         <ol class="steps">
           <li><i>p</i>: John was injured in a robbery. <i>q</i>: someone helps John.</li>
-          <li>(9) is □¬<i>p</i>. (10) is □(<i>p</i> ∧ <i>q</i>).</li>
+          <li>(21) is □¬<i>p</i>. (22) is □(<i>p</i> ∧ <i>q</i>).</li>
           <li>□(<i>p</i> ∧ <i>q</i>) entails □<i>p</i>. With □¬<i>p</i> this gives □<i>p</i> ∧ □¬<i>p</i>, which D rules out.</li>
         </ol>
       </div>
       <div class="proc">
         <div class="sc proc-head">Kratzer’s solution</div>
         <ol class="steps">
-          <li>(9) is interpreted with a realistic modal base <i>f</i> that does not entail <i>p</i>, and a deontic ordering source that ranks worlds without robbery above otherwise similar worlds with one.</li>
-          <li>The relative clause in (10) presents <i>p</i> as given. So (10) is interpreted with a modal base <i>f</i>′ with <i>p</i> ∈ <i>f</i>′(<i>w</i>), and the same ordering source ranks worlds where someone helps John above worlds where nobody does.</li>
-          <li>(9) and (10) are true relative to different modal bases, so they are consistent.</li>
+          <li>(21) is interpreted with a realistic modal base <i>f</i> that does not entail <i>p</i>, and a deontic ordering source that ranks worlds without robbery above otherwise similar worlds with one.</li>
+          <li>The relative clause in (22) presents <i>p</i> as given. So (22) is interpreted with a modal base <i>f</i>′ with <i>p</i> ∈ <i>f</i>′(<i>w</i>), and the same ordering source ranks worlds where someone helps John above worlds where nobody does.</li>
+          <li>(21) and (22) are true relative to different modal bases, so they are consistent.</li>
         </ol>
       </div>
       <p><span class="runin">Model.</span> Three worlds: at <i>w</i><sub>1</sub> John is not injured and nobody helps him; at <i>w</i><sub>2</sub> he is injured and someone helps him; at <i>w</i><sub>3</sub> he is injured and nobody helps him. ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}; ∩<i>f</i>′(<i>w</i>) = {<i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. <i>g</i>(<i>w</i>) = {¬<i>p</i>, <i>p</i> → <i>q</i>}.</p>
@@ -283,19 +308,19 @@
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Compute Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) and Best(<i>f</i>′(<i>w</i>), <i>g</i>(<i>w</i>)).</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(b)</span><span>Show that (9) is true relative to <i>f</i>, and that <i>someone helps John</i> is a necessity relative to <i>f</i>′.</span></div>
+        <div class="task"><span>(b)</span><span>Show that (21) is true relative to <i>f</i>, and that <i>someone helps John</i> is a necessity relative to <i>f</i>′.</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>Is (11) true relative to <i>f</i>? Say whether that matches your judgement of (11).</span></div>
+        <div class="task"><span>(c)</span><span>Is (23) true relative to <i>f</i>? Say whether that matches your judgement of (23).</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
       <ol class="exs">
-        <li><span>(12)</span><span class="s">Mary must not rob John.</span></li>
-        <li><span>(13)</span><span class="s">Mary robs John.</span></li>
-        <li><span>(14)</span><span class="s">If Mary robs John, she must be punished.</span></li>
-        <li><span>(15)</span><span class="s">If Mary does not rob John, she must not be punished.</span></li>
+        <li><span>(24)</span><span class="s">Mary must not rob John.</span></li>
+        <li><span>(25)</span><span class="s">Mary robs John.</span></li>
+        <li><span>(26)</span><span class="s">If Mary robs John, she must be punished.</span></li>
+        <li><span>(27)</span><span class="s">If Mary does not rob John, she must not be punished.</span></li>
       </ol>
       <div class="tasks">
-        <div class="task"><span>(d)</span><span>An <i>if</i>-clause adds its proposition to the modal base. Which two of (12) to (15) together give <i>Mary must be punished</i>, and which two give <i>Mary must not be punished</i>? Say which modal base each conclusion is drawn under.</span></div>
+        <div class="task"><span>(d)</span><span>An <i>if</i>-clause adds its proposition to the modal base. Which two of (24) to (27) together give <i>Mary must be punished</i>, and which two give <i>Mary must not be punished</i>? Say which modal base each conclusion is drawn under.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
       </div>
     </div>
