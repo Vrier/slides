@@ -1001,3 +1001,9 @@ what the next session must know)*
   Kratzer (1991); weak *must* attributed to von Fintel & Gillies (2010); Properties of f and
   From f to R point back to (2), (3), (7), (13), (14); T and the ordering source cites Portner's
   doctor. 45 slides, examples (1) to (42). Roadmap Formal list trimmed to eight items.
+- **2026-09-27: week 3 deck, "Logics without D" (Thomas: every system shown so far had D).**
+  New Recap slide after the D answer: time with a last moment (K4.3), Sartre's student as a moral
+  dilemma (Lemmon 1962, van Fraassen 1973, Marcus 1980; K), conflicting desires with *want* (K),
+  Kratzer 1977 with inconsistent rules; closing row on dead-end frames and on Kratzer 1981's
+  ordering source keeping *must p* and *must ¬p* apart. Examples renumbered, now (1) to (46);
+  46 slides.
