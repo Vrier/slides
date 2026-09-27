@@ -966,3 +966,11 @@ what the next session must know)*
   / *plan k'a qwatsáts* 'Maybe he's already gone', text and glosses verbatim from the RMD
   manuscript (exx. 93b, 6e). Historical divider: "Lewis and Kratzer". Hub and catalogue
   figures: Lewis · Kratzer. 42 slides.
+- **2026-09-27: week 3 deck, writing pass (Thomas: "not so LLM-like").** Aphorisms and clever
+  titles replaced with plain statements: banner now the question "How does context fix what a
+  modal means?"; "Read the box" → "Four readings of □"; "Chisholm, solved" → "Solving Chisholm's
+  paradox"; "T, revisited" → "T and the ordering source"; dividers "Modal logic, again",
+  "Context and grading", "Modals across languages". Cut: "Same □, different R, different logic",
+  "Two forces are too few", "Smaller subset, weaker claim", "one level down", "Keep T. Put the
+  evidence into the meaning", emphatic mid-sentence bold. Contrastive "consistent, not realistic"
+  reworded. Content unchanged.
