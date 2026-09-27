@@ -993,3 +993,11 @@ what the next session must know)*
   moral principles in f make ∩f(w) empty; modal base types after Kratzer's hydrangeas (9)–(10)
   and ordering sources after the flu pair (11)–(12); graded force after (17)–(20). Examples now
   (1) to (27), 9 pages. Deck "Ordering source" slide: p, q, r read as three house rules.
+- **2026-09-27: week 3 deck, classic data before each device (Thomas).** Conversational
+  backgrounds now open on Kratzer's (1991) Maori trio (28)–(30), with the ∩f(w) figure on its own
+  slide ("Intersecting a background"); Portner's coffee cup (31)–(32) motivates the ordering
+  source and is solved on Best worlds; Kratzer's hydrangeas (33)–(34) motivate the two modal
+  bases before Your turn (now (35)–(38)); graded modality uses Portner's (84) Mary-lost set with
+  Kratzer (1991); weak *must* attributed to von Fintel & Gillies (2010); Properties of f and
+  From f to R point back to (2), (3), (7), (13), (14); T and the ordering source cites Portner's
+  doctor. 45 slides, examples (1) to (42). Roadmap Formal list trimmed to eight items.
