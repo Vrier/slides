@@ -1042,3 +1042,15 @@ what the next session must know)*
   (29) and (32) under f, (31) under f + r; brackets redrawn. "Best worlds, pictured" titled
   "Best worlds". Your turn prompt "What is the modal base and ordering source?", no citation.
   Closing Assessment 1 slide moved into Typological. 47 slides, examples (1) to (45).
+- **2026-09-28: week 3 handout rebuilt for Thursday.** The lecture stopped at the start of the
+  ordering-source material, so the sheet now starts there and follows the rest of the deck, plus
+  the compositional first pass moved to Thursday. Blocks: 0 Ordering sources (coffee cup; ≤, <,
+  incomparable; house-rules model with five worlds); 1 Best worlds (Logan; coffee cup worked;
+  Semantics III Exercise 6 with the T-failure task); 2 Chisholm's paradox (the slides' four
+  sentences, translate and derive □q ∧ □¬q; Kratzer's solution on a four-world model);
+  3 Modal bases and ordering sources (hydrangeas, doctor; Exercise 5 table; T with a realistic
+  base); 4 Graded modality (Portner (84), Kratzer's grades, four-world model); 5 Force and flavour
+  across languages (English may; St'át'imcets k'a pair glossed verbatim from RMD; grid tasks);
+  6 Modals and attitude verbs, compositionally (types, must/might/believe/know entries; tree and
+  derivations); 7 What you need to know + notation. Examples (1) to (26); 10 pages; ruled lines
+  capped at two per task. Conversational-background block and Samaritan material dropped.
