@@ -1019,3 +1019,13 @@ what the next session must know)*
   modal, compositionally (must/might with f, g; types; in view of on (22)); Attitude verbs,
   compositionally (believe/know after Hintikka 1969, Dox/Epi, know presupposes p). 51 slides,
   examples (1) to (50).
+- **2026-09-28: week 3 deck, diagrams (Thomas chose four).** (1) Kripke frames: reflexive, serial,
+  transitive (forced arrow dashed) and euclidean pictures beside each axiom's note on the T, D,
+  4 and 5 question slides; a dead-end frame on Logics without D; small copies in a new "frame"
+  column on Properties of f. (3) Chisholm's three grades as stacked bands: on the paradox answer
+  with the one line an accessibility relation can draw; on Solving Chisholm's paradox with
+  brackets for the three modal bases of (32), (34), (35) and stars on their best worlds.
+  (4) New slide "Best worlds, pictured": ranked ∩f(w) with Best shaded, p covering all best worlds
+  (must, tied to the coffee cup) and only some (might). (5) New slide "English and St'át'imcets":
+  force × flavour grids, English words filling rows and St'át'imcets words filling columns, after
+  Rullmann, Matthewson & Davis (2008). Figure helpers live outside the repo (figs_w3.py). 53 slides.

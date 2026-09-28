@@ -465,6 +465,40 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .b-main.dense .gtab.sm td{ padding:8px 16px; } .b-main.dense .gtab.sm td.rh small{ font-size:20px; }
   .ntab .no1{ font-size:42px; } .ntab .no2{ font-size:34px; } .ntab .no2 i{ font-size:27px; } .ntab .nr{ padding:20px 0; } .ntab .nh{ font-size:21px; }
   .ntab .no1 small{ font-size:24px; }
+
+  /* week 3 figures */
+  .ffig{ width:100%; height:auto; display:block; overflow:visible; }
+  .ffig .fw0{ fill:#fff; stroke:var(--lens); stroke-width:3; }
+  .ffig .fl{ font-family:var(--serif); font-style:italic; font-size:30px; fill:var(--tcd-ink); text-anchor:middle; dominant-baseline:central; }
+  .ffig .fa{ stroke:var(--tcd-ink); stroke-width:2.5; fill:none; }
+  .ffig .fd{ stroke:var(--lens); stroke-width:2.5; fill:none; stroke-dasharray:9 7; }
+  .ffig .fc{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; fill:var(--lens); text-anchor:middle; }
+  .ffig .fn{ font-family:var(--sans); font-size:24px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .ffig .fband{ fill:#fff; stroke:var(--lens); stroke-width:2.5; }
+  .ffig .fband.top{ fill:color-mix(in srgb, var(--lens) 14%, #fff); }
+  .ffig .fbl{ font-family:var(--serif); font-size:30px; fill:var(--tcd-ink); text-anchor:middle; dominant-baseline:central; }
+  .ffig .fbr{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; }
+  .ffig .fstar{ fill:var(--lens); }
+  .ffig .fnum{ font-family:var(--mono); font-size:24px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .ffig .freg{ fill:none; stroke:var(--tcd-grey-75); stroke-width:2.5; }
+  .ffig .fil{ font-family:var(--sans); font-weight:700; font-size:28px; fill:var(--lens); }
+  .ffig .fbest{ fill:color-mix(in srgb, var(--lens) 18%, #fff); stroke:none; }
+  .ffig .fp{ fill:none; stroke:var(--lens); stroke-width:3; stroke-dasharray:12 8; }
+  .ffig .fdot{ fill:var(--tcd-ink); }
+  .ffig .fcap{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ffig.sm{ width:112px; margin:0 auto; }
+  .qnote.withfig{ display:grid; grid-template-columns:1fr 400px; gap:0 36px; align-items:center; }
+  .figcol{ display:grid; grid-template-columns:1fr 520px; gap:0 40px; align-items:center; }
+  .figcol .erow.nolb:first-child{ border-top:none; }
+  /* force and flavour grids */
+  .ffgrids{ display:grid; grid-template-columns:1fr 1fr; gap:0 64px; margin-top:8px; }
+  .ffgrid h3{ font-family:var(--sans); font-size:24px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lens); margin:0 0 12px; }
+  .ffgrid table{ width:100%; border-collapse:separate; border-spacing:8px; }
+  .ffgrid th{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-100); text-align:center; padding:4px 6px; }
+  .ffgrid th.rh{ text-align:right; vertical-align:middle; }
+  .ffgrid tr + tr{ height:130px; }
+  .ffgrid td{ font-family:var(--serif); font-style:italic; font-size:46px; text-align:center; color:var(--tcd-ink);
+    background:color-mix(in srgb, var(--lens) 14%, #fff); border:2px solid var(--lens); border-radius:14px; padding:26px 10px; }
 </style>
 </head>
 <body class="pal-a" data-week="3">
@@ -607,7 +641,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
           <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(3)</div><div class="say">If you must be home by six, you are home by six.</div></div>
           <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(4)</div><div class="say">If it must be raining, it is raining.</div></div>
         </div>
-        <div class="qnote" data-pstep="6"><b>T</b>, or reflexivity: what is necessary is true. Feys (1937) first defined the system T, by dropping 4 from Gödel’s S4; it is von Wright’s (1951) M. The axiom is also called the truth axiom.</div>
+        <div class="qnote withfig" data-pstep="6"><div><b>T</b>, or reflexivity: what is necessary is true. Feys (1937) first defined the system T, by dropping 4 from Gödel’s S4; it is von Wright’s (1951) M. The axiom is also called the truth axiom.</div><svg class="ffig" viewBox="0 0 420 250" role="img" aria-label="One world with an arrow to itself."><defs><marker id="fg1s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg1d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><path class="fa" d="M195.1 118.7 C 140 35, 280 35, 224.9 118.7" marker-end="url(#fg1s)"/><circle class="fw0" cx="210" cy="140" r="26"/><text class="fl" x="210" y="140">w</text><text class="fc" x="210" y="240">reflexive</text></svg></div>
       </div>
     </div>
   </div>
@@ -645,7 +679,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
           <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(7)</div><div class="say">If you must leave, you may leave.</div></div>
           <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(8)</div><div class="say">If it must be raining, it might be raining.</div></div>
         </div>
-        <div class="qnote" data-pstep="6"><b>D</b>, or seriality: what is necessary is possible. D for <em>deontic</em>: in deontic logic it says that what is obligatory is permitted.</div>
+        <div class="qnote withfig" data-pstep="6"><div><b>D</b>, or seriality: what is necessary is possible. D for <em>deontic</em>: in deontic logic it says that what is obligatory is permitted.</div><svg class="ffig" viewBox="0 0 420 250" role="img" aria-label="Three worlds in a row, each with an arrow to the next; the last points to itself."><defs><marker id="fg2s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg2d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="96.0" y1="140.0" x2="182.0" y2="140.0" marker-end="url(#fg2s)"/><line class="fa" x1="236.0" y1="140.0" x2="322.0" y2="140.0" marker-end="url(#fg2s)"/><path class="fa" d="M335.1 118.7 C 280 35, 420 35, 364.9 118.7" marker-end="url(#fg2s)"/><circle class="fw0" cx="70" cy="140" r="26"/><text class="fl" x="70" y="140">w</text><circle class="fw0" cx="210" cy="140" r="26"/><text class="fl" x="210" y="140">v</text><circle class="fw0" cx="350" cy="140" r="26"/><text class="fl" x="350" y="140">u</text><text class="fc" x="210" y="240">serial</text></svg></div>
       </div>
     </div>
   </div>
@@ -680,7 +714,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="fw" data-pstep="3" style="--fc:var(--lens-typ)"><div class="fl">(11)<small>desires · K</small></div><div class="ft2"><em>I want to go to the party, and I want to stay at home.</em></div></div>
         <div class="fw" data-pstep="4" style="--fc:var(--lens-his)"><div class="fl">(12)<small>Kratzer 1977</small></div><div class="ft2"><em>In view of the rules, you must leave and you must stay.</em> \(\bigcap f(w) = \varnothing\), so every <em>must</em> sentence is true.</div></div>
       </div>
-      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>Frames with dead ends.</strong> K, K4, K5, K45 and KB lack D. Kratzer (1981) puts conflicting rules and desires into \(g\): they give incomparable best worlds, and <em>must p</em> and <em>must</em> \(\neg p\) are never both true.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="figcol" style="grid-template-columns:1fr 300px"><div class="tx tight"><strong>Frames with dead ends.</strong> K, K4, K5, K45 and KB lack D. Kratzer (1981) puts conflicting rules and desires into \(g\): they give incomparable best worlds, and <em>must p</em> and <em>must</em> \(\neg p\) are never both true.</div><svg class="ffig" viewBox="0 0 420 250" role="img" aria-label="w points to v; v has no arrows out."><defs><marker id="fg3s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg3d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="116.0" y1="120.0" x2="272.0" y2="120.0" marker-end="url(#fg3s)"/><circle class="fw0" cx="90" cy="120" r="26"/><text class="fl" x="90" y="120">w</text><circle class="fw0" cx="300" cy="120" r="26"/><text class="fl" x="300" y="120">v</text><text class="fn" x="300" y="182">no arrows out</text><text class="fc" x="210" y="240">a dead end</text></svg></div></div>
     </div>
   </div>
 </section>
@@ -699,7 +733,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
           <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(15)</div><div class="say">If you must leave, it is required that you must leave.</div></div>
           <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(16)</div><div class="say">If it must be raining, it must be that it must be raining.</div></div>
         </div>
-        <div class="qnote" data-pstep="6"><b>4</b>, or transitivity: what is necessary is necessarily necessary. Becker (1930) proposed it; the name comes from Lewis’s system S4 (Lewis &amp; Langford 1932). For knowledge it is <b>positive introspection</b>.</div>
+        <div class="qnote withfig" data-pstep="6"><div><b>4</b>, or transitivity: what is necessary is necessarily necessary. Becker (1930) proposed it; the name comes from Lewis’s system S4 (Lewis &amp; Langford 1932). For knowledge it is <b>positive introspection</b>.</div><svg class="ffig" viewBox="0 0 420 250" role="img" aria-label="w points to v and v to u; a dashed arrow from w to u is forced."><defs><marker id="fg4s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg4d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="89.4" y1="162.7" x2="189.1" y2="73.6" marker-end="url(#fg4s)"/><line class="fa" x1="229.4" y1="72.3" x2="329.1" y2="161.4" marker-end="url(#fg4s)"/><line class="fd" x1="96.0" y1="180.0" x2="322.0" y2="180.0" marker-end="url(#fg4d)"/><circle class="fw0" cx="70" cy="180" r="26"/><text class="fl" x="70" y="180">w</text><circle class="fw0" cx="210" cy="55" r="26"/><text class="fl" x="210" y="55">v</text><circle class="fw0" cx="350" cy="180" r="26"/><text class="fl" x="350" y="180">u</text><text class="fc" x="210" y="240">transitive</text></svg></div>
       </div>
     </div>
   </div>
@@ -737,7 +771,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
           <div class="cv anim" data-pstep="3" style="--d:0.45s"><div class="who">(19)</div><div class="say">If you may leave, it is required that you may leave.</div></div>
           <div class="cv anim" data-pstep="4" style="--d:0.60s"><div class="who">(20)</div><div class="say">If it might be raining, it must be that it might be raining.</div></div>
         </div>
-        <div class="qnote" data-pstep="6"><b>5</b>, or euclideanness: what is possible is necessarily possible. Also from Becker (1930); the name comes from Lewis’s S5. For knowledge it is <b>negative introspection</b>.</div>
+        <div class="qnote withfig" data-pstep="6"><div><b>5</b>, or euclideanness: what is possible is necessarily possible. Also from Becker (1930); the name comes from Lewis’s S5. For knowledge it is <b>negative introspection</b>.</div><svg class="ffig" viewBox="0 0 420 250" role="img" aria-label="w points to v and to u; dashed arrows between v and u are forced."><defs><marker id="fg5s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg5d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="190.6" y1="72.3" x2="90.9" y2="161.4" marker-end="url(#fg5s)"/><line class="fa" x1="229.4" y1="72.3" x2="329.1" y2="161.4" marker-end="url(#fg5s)"/><line class="fd" x1="96.0" y1="180.0" x2="322.0" y2="180.0" marker-end="url(#fg5d)" marker-start="url(#fg5d)"/><circle class="fw0" cx="210" cy="55" r="26"/><text class="fl" x="210" y="55">w</text><circle class="fw0" cx="70" cy="180" r="26"/><text class="fl" x="70" y="180">v</text><circle class="fw0" cx="350" cy="180" r="26"/><text class="fl" x="350" y="180">u</text><text class="fc" x="210" y="240">euclidean</text></svg></div>
       </div>
     </div>
   </div>
@@ -927,7 +961,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         </div>
       </div>
       <div class="erow nolb" data-pstep="2" style="border-top:none"><div class="tx tight">(33) and (34): \(\Box q\). (32), (35) and K: \(\Box\neg q\). Together \(\Box q \wedge \Box\neg q\), which <strong>D</strong> rules out.</div></div>
-      <div class="erow nolb" data-pstep="3"><div class="tx tight">Intuitively there are three grades of world: no robbery is best, robbery and punishment next, robbery without punishment worst. An accessibility relation only separates accessible from inaccessible worlds.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="figcol"><div class="tx tight">Intuitively there are three grades of world: no robbery is best, robbery and punishment next, robbery without punishment worst. An accessibility relation only separates accessible from inaccessible worlds.</div><svg class="ffig" viewBox="0 0 640 400" role="img" aria-label="Three bands of worlds, best at the top: no robbery; robbery and punishment; robbery unpunished. A single dashed line separates the top band, accessible, from the other two."><defs><marker id="fg6s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg6d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="55" y1="385" x2="55" y2="30" marker-end="url(#fg6s)"/><text class="fn" transform="translate(34 210) rotate(-90)">better</text><rect class="fband top" x="110" y="20" width="330" height="110" rx="18"/><text class="fbl" x="275.0" y="75.0">no robbery</text><rect class="fband" x="110" y="150" width="330" height="110" rx="18"/><text class="fbl" x="275.0" y="205.0">robbery, punished</text><rect class="fband" x="110" y="280" width="330" height="110" rx="18"/><text class="fbl" x="275.0" y="335.0">robbery, unpunished</text><line class="fd" x1="90" y1="140" x2="630" y2="140"/><text class="fn" x="470" y="112" style="text-anchor:start">accessible</text><text class="fn" x="470" y="180" style="text-anchor:start">inaccessible</text></svg></div></div>
     </div>
   </div>
 </section>
@@ -1094,14 +1128,13 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Properties of \(f\)</h2>
       <table class="gtab sm">
-        <tr><th>\(f\) is</th><th>iff, for every \(w\)</th><th>\(R_f\) is</th><th class="c">axiom</th></tr>
-        <tr data-pstep="1"><td class="rh">realistic</td><td>\(w \in \bigcap f(w)\)</td><td>reflexive</td><td class="c ok">T</td></tr>
-        <tr data-pstep="2"><td class="rh">consistent</td><td>\(\bigcap f(w) \neq \varnothing\)</td><td>serial</td><td class="c ok">D</td></tr>
-        <tr data-pstep="3"><td class="rh">positively<br>introspective</td><td>if \(w' \in \bigcap f(w)\), then \(\bigcap f(w') \subseteq \bigcap f(w)\)</td><td>transitive</td><td class="c ok">4</td></tr>
-        <tr data-pstep="4"><td class="rh">negatively<br>introspective</td><td>if \(w' \in \bigcap f(w)\), then \(\bigcap f(w) \subseteq \bigcap f(w')\)</td><td>euclidean</td><td class="c ok">5</td></tr>
+        <tr><th>\(f\) is</th><th>iff, for every \(w\)</th><th>\(R_f\) is</th><th class="c">axiom</th><th class="c">frame</th></tr>
+        <tr data-pstep="1"><td class="rh">realistic</td><td>\(w \in \bigcap f(w)\)</td><td>reflexive</td><td class="c ok">T</td><td class="c" style="padding:2px 8px"><svg class="ffig sm" viewBox="0 0 420 250" role="img" aria-label="One world with an arrow to itself."><defs><marker id="fg7s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg7d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><path class="fa" d="M195.1 118.7 C 140 35, 280 35, 224.9 118.7" marker-end="url(#fg7s)"/><circle class="fw0" cx="210" cy="140" r="26"/><text class="fl" x="210" y="140">w</text><text class="fc" x="210" y="240">reflexive</text></svg></td></tr>
+        <tr data-pstep="2"><td class="rh">consistent</td><td>\(\bigcap f(w) \neq \varnothing\)</td><td>serial</td><td class="c ok">D</td><td class="c" style="padding:2px 8px"><svg class="ffig sm" viewBox="0 0 420 250" role="img" aria-label="Three worlds in a row, each with an arrow to the next; the last points to itself."><defs><marker id="fg8s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg8d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="96.0" y1="140.0" x2="182.0" y2="140.0" marker-end="url(#fg8s)"/><line class="fa" x1="236.0" y1="140.0" x2="322.0" y2="140.0" marker-end="url(#fg8s)"/><path class="fa" d="M335.1 118.7 C 280 35, 420 35, 364.9 118.7" marker-end="url(#fg8s)"/><circle class="fw0" cx="70" cy="140" r="26"/><text class="fl" x="70" y="140">w</text><circle class="fw0" cx="210" cy="140" r="26"/><text class="fl" x="210" y="140">v</text><circle class="fw0" cx="350" cy="140" r="26"/><text class="fl" x="350" y="140">u</text><text class="fc" x="210" y="240">serial</text></svg></td></tr>
+        <tr data-pstep="3"><td class="rh">positively<br>introspective</td><td>if \(w' \in \bigcap f(w)\), then \(\bigcap f(w') \subseteq \bigcap f(w)\)</td><td>transitive</td><td class="c ok">4</td><td class="c" style="padding:2px 8px"><svg class="ffig sm" viewBox="0 0 420 250" role="img" aria-label="w points to v and v to u; a dashed arrow from w to u is forced."><defs><marker id="fg9s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg9d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="89.4" y1="162.7" x2="189.1" y2="73.6" marker-end="url(#fg9s)"/><line class="fa" x1="229.4" y1="72.3" x2="329.1" y2="161.4" marker-end="url(#fg9s)"/><line class="fd" x1="96.0" y1="180.0" x2="322.0" y2="180.0" marker-end="url(#fg9d)"/><circle class="fw0" cx="70" cy="180" r="26"/><text class="fl" x="70" y="180">w</text><circle class="fw0" cx="210" cy="55" r="26"/><text class="fl" x="210" y="55">v</text><circle class="fw0" cx="350" cy="180" r="26"/><text class="fl" x="350" y="180">u</text><text class="fc" x="210" y="240">transitive</text></svg></td></tr>
+        <tr data-pstep="4"><td class="rh">negatively<br>introspective</td><td>if \(w' \in \bigcap f(w)\), then \(\bigcap f(w) \subseteq \bigcap f(w')\)</td><td>euclidean</td><td class="c ok">5</td><td class="c" style="padding:2px 8px"><svg class="ffig sm" viewBox="0 0 420 250" role="img" aria-label="w points to v and to u; dashed arrows between v and u are forced."><defs><marker id="fg10s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg10d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><line class="fa" x1="190.6" y1="72.3" x2="90.9" y2="161.4" marker-end="url(#fg10s)"/><line class="fa" x1="229.4" y1="72.3" x2="329.1" y2="161.4" marker-end="url(#fg10s)"/><line class="fd" x1="96.0" y1="180.0" x2="322.0" y2="180.0" marker-end="url(#fg10d)" marker-start="url(#fg10d)"/><circle class="fw0" cx="210" cy="55" r="26"/><text class="fl" x="210" y="55">w</text><circle class="fw0" cx="70" cy="180" r="26"/><text class="fl" x="70" y="180">v</text><circle class="fw0" cx="350" cy="180" r="26"/><text class="fl" x="350" y="180">u</text><text class="fc" x="210" y="240">euclidean</text></svg></td></tr>
       </table>
-      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>What I know</strong> is realistic: (2). <strong>The rules in force</strong> are consistent but not realistic: (3) and (7).</div></div>
-      <div class="erow nolb" data-pstep="6"><div class="tx tight">The week 2 frame conditions, stated as conditions on \(f\). The first three: Kaufmann, Condoravdi &amp; Harizanov (2006), via Portner.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight"><strong>What I know</strong> is realistic: (2). <strong>The rules in force</strong> are consistent but not realistic: (3) and (7). The week 2 frame conditions, stated for \(f\); the first three from Kaufmann, Condoravdi &amp; Harizanov (2006).</div></div>
     </div>
   </div>
 </section>
@@ -1187,25 +1220,45 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 
+<!-- Best worlds, pictured -->
+<section class="slide" data-label="Formal ·Best worlds, pictured" data-screen-label="34">
+  <div class="b-slide pal-a lens-formal dB" data-sec="bestp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Best worlds, pictured</h2>
+<svg class="ffig" style="width:84%;margin:0 auto" viewBox="0 0 1500 550" role="img" aria-label="Two copies of a ranked set of worlds with arrows towards better worlds and the best worlds shaded. Left: p covers all the best worlds. Right: p covers only one best world."><defs><marker id="fg11s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg11d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><g data-pstep="1"><rect class="freg" x="20" y="20" width="700" height="460" rx="30"/><text class="fil" x="46" y="66">⋂ f(w)</text><rect class="fbest" x="205" y="72" width="310" height="76" rx="38"/><text class="fn" x="190" y="118" style="text-anchor:end">Best</text><line class="fa" x1="178.2" y1="246.3" x2="250.7" y2="125.4" marker-end="url(#fg11s)"/><line class="fa" x1="351.1" y1="246.7" x2="270.0" y2="125.0" marker-end="url(#fg11s)"/><line class="fa" x1="368.9" y1="246.7" x2="450.0" y2="125.0" marker-end="url(#fg11s)"/><line class="fa" x1="541.8" y1="246.3" x2="469.3" y2="125.4" marker-end="url(#fg11s)"/><line class="fa" x1="170.0" y1="394.0" x2="170.0" y2="278.0" marker-end="url(#fg11s)"/><line class="fa" x1="360.0" y1="394.0" x2="360.0" y2="278.0" marker-end="url(#fg11s)"/><line class="fa" x1="550.0" y1="394.0" x2="550.0" y2="278.0" marker-end="url(#fg11s)"/><ellipse class="fp" cx="320" cy="150" rx="215" ry="125"/><text class="fl" x="95" y="205">p</text><circle class="fdot" cx="260" cy="110" r="16"/><circle class="fdot" cx="460" cy="110" r="16"/><circle class="fdot" cx="170" cy="260" r="16"/><circle class="fdot" cx="360" cy="260" r="16"/><circle class="fdot" cx="550" cy="260" r="16"/><circle class="fdot" cx="170" cy="410" r="16"/><circle class="fdot" cx="360" cy="410" r="16"/><circle class="fdot" cx="550" cy="410" r="16"/><text class="fcap" x="370" y="530">must p: Best ⊆ p</text></g><g data-pstep="2"><rect class="freg" x="800" y="20" width="700" height="460" rx="30"/><text class="fil" x="826" y="66">⋂ f(w)</text><rect class="fbest" x="985" y="72" width="310" height="76" rx="38"/><text class="fn" x="970" y="118" style="text-anchor:end">Best</text><line class="fa" x1="958.2" y1="246.3" x2="1030.7" y2="125.4" marker-end="url(#fg11s)"/><line class="fa" x1="1131.1" y1="246.7" x2="1050.0" y2="125.0" marker-end="url(#fg11s)"/><line class="fa" x1="1148.9" y1="246.7" x2="1230.0" y2="125.0" marker-end="url(#fg11s)"/><line class="fa" x1="1321.8" y1="246.3" x2="1249.3" y2="125.4" marker-end="url(#fg11s)"/><line class="fa" x1="950.0" y1="394.0" x2="950.0" y2="278.0" marker-end="url(#fg11s)"/><line class="fa" x1="1140.0" y1="394.0" x2="1140.0" y2="278.0" marker-end="url(#fg11s)"/><line class="fa" x1="1330.0" y1="394.0" x2="1330.0" y2="278.0" marker-end="url(#fg11s)"/><ellipse class="fp" cx="1285" cy="260" rx="115" ry="215"/><text class="fl" x="1435" y="80">p</text><circle class="fdot" cx="1040" cy="110" r="16"/><circle class="fdot" cx="1240" cy="110" r="16"/><circle class="fdot" cx="950" cy="260" r="16"/><circle class="fdot" cx="1140" cy="260" r="16"/><circle class="fdot" cx="1330" cy="260" r="16"/><circle class="fdot" cx="950" cy="410" r="16"/><circle class="fdot" cx="1140" cy="410" r="16"/><circle class="fdot" cx="1330" cy="410" r="16"/><text class="fcap" x="1150" y="530">might p: Best ∩ p ≠ ∅; must p is false</text></g></svg>
+      <div class="erow nolb" data-pstep="3" style="border-top:none"><div class="tx tight"><strong>Left.</strong> Every best world is a \(p\)-world. With \(p\) = the cup stays on the desk, this is why (39) is true.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>Right.</strong> Some best worlds are \(p\)-worlds and some are not: <em>might p</em> is true and <em>must p</em> false.</div></div>
+    </div>
+  </div>
+</section>
+
+
 <!-- Solving Chisholm’s paradox -->
-<section class="slide" data-label="Formal ·Solving Chisholm’s paradox" data-screen-label="34">
+<section class="slide" data-label="Formal ·Solving Chisholm’s paradox" data-screen-label="35">
   <div class="b-slide pal-a lens-formal dB" data-sec="chs">
     <aside class="mrail"></aside>
-    <div class="b-main dB ">
+    <div class="b-main dB dense">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Solving Chisholm’s paradox</h2>
       <div class="erow nolb" data-pstep="1" style="border-top:none"><div class="tx tight"><strong>\(f\):</strong> the relevant circumstances. <strong>\(g(w)\):</strong> Mary does not rob John · robbers are punished · non-robbers are not.</div></div>
-      <div class="erow nolb" data-pstep="2"><div class="tx tight">(32) \(f\) leaves the robbery open. Best worlds: no robbery. <strong>True.</strong></div></div>
+      <div class="figcol" style="grid-template-columns:1fr 640px; align-items:start">
+        <div>
+      <div class="erow nolb" data-pstep="2" style="border-top:none"><div class="tx tight">(32) \(f\) leaves the robbery open. Best worlds: no robbery. <strong>True.</strong></div></div>
       <div class="erow nolb" data-pstep="3"><div class="tx tight">(34) <em>If</em> adds <em>Mary robs John</em> to \(f\). Best of those: she is punished. <strong>True.</strong></div></div>
       <div class="erow nolb" data-pstep="4"><div class="tx tight">(35) <em>If</em> adds <em>Mary does not rob John</em> to \(f\). Best of those: no punishment. <strong>True.</strong></div></div>
-      <div class="erow nolb" data-pstep="5"><div class="tx tight">\(\Box q\) and \(\Box\neg q\) are true relative to different modal bases, so they do not contradict each other. Conditionals: week 8.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight">Different modal bases, so \(\Box q\) and \(\Box\neg q\) do not contradict each other. Conditionals: week 8.</div></div>
+        </div>
+        <div><svg class="ffig" data-pstep="2" viewBox="0 0 640 470" role="img" aria-label="The same three bands. Brackets mark three modal bases: all worlds, best world no robbery; robbery worlds, best world robbery and punishment; no-robbery worlds, best world no robbery."><defs><marker id="fg12s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--tcd-ink)"/></marker><marker id="fg12d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--lens)"/></marker></defs><rect class="fband" x="20" y="20" width="320" height="110" rx="18"/><text class="fbl" x="180.0" y="75.0">no robbery</text><rect class="fband" x="20" y="150" width="320" height="110" rx="18"/><text class="fbl" x="180.0" y="205.0">robbery, punished</text><rect class="fband" x="20" y="280" width="320" height="110" rx="18"/><text class="fbl" x="180.0" y="335.0">robbery, unpunished</text><path class="fbr" d="M388 24 H400 V386 H388"/><polygon class="fstar" points="422.0,58.0 426.4,68.9 438.2,69.7 429.1,77.3 432.0,88.8 422.0,82.5 412.0,88.8 414.9,77.3 405.8,69.7 417.6,68.9"/><text class="fnum" x="406" y="418">(32)</text><text class="fl" x="406" y="452" style="font-size:26px">f</text><path class="fbr" d="M478 154 H490 V386 H478"/><polygon class="fstar" points="512.0,188.0 516.4,198.9 528.2,199.7 519.1,207.3 522.0,218.8 512.0,212.5 502.0,218.8 504.9,207.3 495.8,199.7 507.6,198.9"/><text class="fnum" x="496" y="418">(34)</text><text class="fl" x="496" y="452" style="font-size:26px">f + r</text><path class="fbr" d="M568 24 H580 V126 H568"/><polygon class="fstar" points="602.0,58.0 606.4,68.9 618.2,69.7 609.1,77.3 612.0,88.8 602.0,82.5 592.0,88.8 594.9,77.3 585.8,69.7 597.6,68.9"/><text class="fnum" x="586" y="418">(35)</text><text class="fl" x="586" y="452" style="font-size:26px">f + ¬r</text><polygon class="fstar" points="34.0,428.0 37.1,435.7 45.4,436.3 39.0,441.6 41.1,449.7 34.0,445.3 26.9,449.7 29.0,441.6 22.6,436.3 30.9,435.7"/><text class="fn" x="54" y="448" style="text-anchor:start">best worlds</text></svg></div>
+      </div>
     </div>
   </div>
 </section>
 
 
 <!-- Two modal bases -->
-<section class="slide" data-label="Formal ·Two modal bases" data-screen-label="35">
+<section class="slide" data-label="Formal ·Two modal bases" data-screen-label="36">
   <div class="b-slide pal-a lens-formal dB" data-sec="hyd">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1224,7 +1277,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Your turn, Q -->
-<section class="slide" data-label="Your turn, Q" data-screen-label="36">
+<section class="slide" data-label="Your turn, Q" data-screen-label="37">
   <div class="b-slide pal-a lens-formal" data-sec="turn">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1244,7 +1297,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Your turn -->
-<section class="slide" data-label="Your turn, A" data-screen-label="37">
+<section class="slide" data-label="Your turn, A" data-screen-label="38">
   <div class="b-slide pal-a lens-formal dB" data-sec="turn">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1263,7 +1316,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- T and the ordering source -->
-<section class="slide" data-label="Formal ·T and the ordering source" data-screen-label="38">
+<section class="slide" data-label="Formal ·T and the ordering source" data-screen-label="39">
   <div class="b-slide pal-a lens-formal dB" data-sec="trev">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1278,7 +1331,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Other notations -->
-<section class="slide" data-label="Formal ·Other notations" data-screen-label="39">
+<section class="slide" data-label="Formal ·Other notations" data-screen-label="40">
   <div class="b-slide pal-a lens-formal dB" data-sec="nota">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1307,7 +1360,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- English and Nez Perce -->
-<section class="slide" data-label="Typological ·English and Nez Perce" data-screen-label="40">
+<section class="slide" data-label="Typological ·English and Nez Perce" data-screen-label="41">
   <div class="b-slide pal-a lens-typological dB" data-sec="eng">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1326,7 +1379,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- St’át’imcets -->
-<section class="slide" data-label="Typological ·St’át’imcets" data-screen-label="41">
+<section class="slide" data-label="Typological ·St’át’imcets" data-screen-label="42">
   <div class="b-slide pal-a lens-typological dB" data-sec="stat">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
@@ -1349,8 +1402,33 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 
+<!-- English and St’át’imcets -->
+<section class="slide" data-label="Typological ·English and St’át’imcets" data-screen-label="43">
+  <div class="b-slide pal-a lens-typological dB" data-sec="grid">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">English and St’át’imcets</h2>
+      <!-- Grid layout after Rullmann, Matthewson & Davis (2008), whose comparison is: English modals lexically encode force, St'at'imcets modals lexically encode flavour. -->
+      <div class="ffgrids">
+        <div class="ffgrid" data-pstep="1"><h3>English</h3>
+          <table><tr><th></th><th>epistemic</th><th>deontic</th></tr>
+            <tr><th class="rh">necessity</th><td colspan="2">must</td></tr>
+            <tr><th class="rh">possibility</th><td colspan="2">may</td></tr></table></div>
+        <div class="ffgrid" data-pstep="2"><h3>St’át’imcets</h3>
+          <table><tr><th></th><th>epistemic</th><th>deontic</th></tr>
+            <tr><th class="rh">necessity</th><td rowspan="2">k’a</td><td rowspan="2">ka</td></tr>
+            <tr><th class="rh">possibility</th></tr></table></div>
+      </div>
+      <div class="erow nolb" data-pstep="3" style="border-top:none"><div class="tx tight"><strong>English.</strong> Each word fills a row: force is lexical, flavour comes from context.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>St’át’imcets.</strong> Each word fills a column: flavour is lexical, force comes from context. After Rullmann, Matthewson &amp; Davis (2008).</div></div>
+    </div>
+  </div>
+</section>
+
+
 <!-- Epistemic <em>mustn’t</em> -->
-<section class="slide" data-label="Typological ·Epistemic mustn't" data-screen-label="42">
+<section class="slide" data-label="Typological ·Epistemic mustn't" data-screen-label="44">
   <div class="b-slide pal-a lens-typological dB" data-sec="mnt">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1369,7 +1447,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Force, flavour and two backgrounds -->
-<section class="slide" data-label="Summary ·Force, flavour and two backgrounds" data-screen-label="43">
+<section class="slide" data-label="Summary ·Force, flavour and two backgrounds" data-screen-label="45">
   <div class="b-slide pal-a lens-recap dB" data-sec="sum">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1385,7 +1463,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- A modal, compositionally -->
-<section class="slide" data-label="Summary ·A modal, compositionally" data-screen-label="44">
+<section class="slide" data-label="Summary ·A modal, compositionally" data-screen-label="46">
   <div class="b-slide pal-a lens-recap dB" data-sec="cmod">
     <aside class="mrail"></aside>
     <div class="b-main dB ">
@@ -1405,7 +1483,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Attitude verbs, compositionally -->
-<section class="slide" data-label="Summary ·Attitude verbs, compositionally" data-screen-label="45">
+<section class="slide" data-label="Summary ·Attitude verbs, compositionally" data-screen-label="47">
   <div class="b-slide pal-a lens-recap dB" data-sec="catt">
     <aside class="mrail"></aside>
     <div class="b-main dB dense">
@@ -1425,7 +1503,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 
 <!-- Assessment 1 -->
-<section class="slide" data-label="Assessment 1" data-screen-label="46">
+<section class="slide" data-label="Assessment 1" data-screen-label="48">
   <div class="b-slide pal-a lens-recap" data-sec="a1">
     <aside class="mrail"></aside>
     <div class="b-main">
@@ -1452,9 +1530,9 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     box:"Four readings", axt:"T", axd:"D", nod:"Logics without D", ax4:"4", ax5:"5", logics:"Readings and their logics",
     ivo:"In view of", grad:"Graded modality", weak:"Weak must", chis:"Chisholm’s paradox",
     lew:"David Lewis", kra:"Angelika Kratzer", amb:"Against ambiguity",
-    cb:"Conversational backgrounds", cb2:"Intersecting a background", f2r:"From f to R", prop:"Properties of f", cup:"The coffee cup", ord:"Ordering source", best:"Best worlds",
+    cb:"Conversational backgrounds", cb2:"Intersecting a background", f2r:"From f to R", prop:"Properties of f", cup:"The coffee cup", ord:"Ordering source", best:"Best worlds", bestp:"Best worlds, pictured",
     chs:"Solving Chisholm’s paradox", hyd:"Two modal bases", turn:"Your turn", trev:"T and the ordering source", nota:"Other notations",
-    eng:"English and Nez Perce", stat:"St’át’imcets", mnt:"Epistemic mustn’t",
+    eng:"English and Nez Perce", stat:"St’át’imcets", grid:"English and St’át’imcets", mnt:"Epistemic mustn’t",
     sum:"Force, flavour and two backgrounds", cmod:"A modal, compositionally", catt:"Attitude verbs, compositionally", a1:"Assessment 1"
   };
   var GROUPS = [
@@ -1462,8 +1540,8 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     { t:"Recap",        sc:"--tcd-blue", keys:["box","axt","axd","nod","ax4","ax5","logics"] },
     { t:"Empirical",    sc:"--lens-emp", keys:["ivo","grad","weak","chis"] },
     { t:"Historical",   sc:"--lens-his", keys:["lew","kra","amb"] },
-    { t:"Formal",       sc:"--lens-for", keys:["cb","cb2","f2r","prop","cup","ord","best","chs","hyd","turn","trev","nota"] },
-    { t:"Typological",  sc:"--lens-typ", keys:["eng","stat","mnt"] },
+    { t:"Formal",       sc:"--lens-for", keys:["cb","cb2","f2r","prop","cup","ord","best","bestp","chs","hyd","turn","trev","nota"] },
+    { t:"Typological",  sc:"--lens-typ", keys:["eng","stat","grid","mnt"] },
     { t:"Summary",      sc:"--tcd-blue", keys:["sum","cmod","catt","a1"] }
   ];
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
