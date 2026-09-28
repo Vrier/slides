@@ -1007,3 +1007,15 @@ what the next session must know)*
   Kratzer 1977 with inconsistent rules; closing row on dead-end frames and on Kratzer 1981's
   ordering source keeping *must p* and *must ¬p* apart. Examples renumbered, now (1) to (46);
   46 slides.
+- **2026-09-28: week 3 deck, Thomas's round of edits.** Thursday session removed (housekeeping
+  and closing slide); both now say Assessment 1 is released on Friday. "Each reading puts English
+  words…" and "Which hold whatever the facts" cut. 4 and 5 split into their own question/answer
+  sections with four examples each (time, knowledge, rules, evidence); every axiom's question
+  slide ends with a note on what it says and where its name comes from (T: Feys 1937 / von
+  Wright's M; D: deontic; 4 and 5: Becker 1930, Lewis & Langford's S4/S5; K after Kripke on the
+  logics slide). Positive and negative introspection distinguished on the 4 and 5 answers and
+  as a new euclidean row on Properties of f. Empirical divider line: "Modal bases and context."
+  New closing Summary part (teal, roadmap sixth stop): Force, flavour and two backgrounds; A
+  modal, compositionally (must/might with f, g; types; in view of on (22)); Attitude verbs,
+  compositionally (believe/know after Hintikka 1969, Dox/Epi, know presupposes p). 51 slides,
+  examples (1) to (50).
