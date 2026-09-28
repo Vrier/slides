@@ -1054,3 +1054,12 @@ what the next session must know)*
   6 Modals and attitude verbs, compositionally (types, must/might/believe/know entries; tree and
   derivations); 7 What you need to know + notation. Examples (1) to (26); 10 pages; ruled lines
   capped at two per task. Conversational-background block and Samaritan material dropped.
+- **2026-09-28: week 3 Thursday handout, trees (Thomas: exercises working entries in a tree).**
+  Block 6 rebuilt: types with cb abbreviating ⟨s,⟨⟨s,t⟩,t⟩⟩; FA and IFA defined; entries with
+  their types; a worked tree for *Mary might leave* (numbered nodes, bottom-up table of type and
+  denotation, FA/IFA marked); exercise trees with blank tables for *must* (f = the committee's
+  rules, g empty) and *Sue believes that it is raining*; *know*'s presupposition by node;
+  draw-your-own tree for epistemic *must* over *know*; T and D for the verbs. Trees drawn as
+  inline SVG, each kept on one page with its table. Coffee-cup worked box dropped from block 1
+  (it repeated the slide); St'át'imcets grid task now written, not drawn. Examples (1) to (28);
+  12 pages.

@@ -26,6 +26,11 @@
   .exs .ig .o { font-style:italic; }
   .exs .ig .g { font-size:9pt; }
   .exs .tr { display:block; margin-top:2pt; }
+  .tfig { width:86%; height:auto; display:block; margin:6pt auto 4pt; } .treebox { break-inside:avoid; page-break-inside:avoid; }
+  .tfig line { stroke:#222; stroke-width:1.6; }
+  .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .tk { font-style:normal; font-size:24px; fill:#777; }
+  .proc .tfig { margin-top:8pt; }
 </style>
 </head>
 <body>
@@ -118,14 +123,6 @@
         <div class="d"><span class="t"><i>might</i> φ</span><span class="g">True at <i>w</i> iff Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ ⟦φ⟧ ≠ ∅.</span></div>
         <div class="d"><span class="t">Empty ordering source</span><span class="g"><i>g</i>(<i>w</i>) = ∅. No world is better than any other, so Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) = ∩<i>f</i>(<i>w</i>).</span></div>
         <div class="d"><span class="t">Limit assumption</span><span class="g">There always are best worlds. It holds in every finite model; Kratzer (1981) does not assume it.</span></div>
-      </div>
-      <div class="proc">
-        <div class="sc proc-head">Worked: the coffee cup</div>
-        <ol class="steps">
-          <li><i>f</i>(<i>w</i>): the circumstances, including the wrongs already done. <i>g</i>(<i>w</i>): the moral principles.</li>
-          <li>∩<i>f</i>(<i>w</i>) ≠ ∅. Among its worlds, those where the cup is not thrown satisfy more principles.</li>
-          <li>Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)): no cup thrown. (1) is true and (2) is false.</li>
-        </ol>
       </div>
       <p><span class="runin">Model.</span> <i>W</i> = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. <i>f</i>(<i>w</i><sub>0</sub>) = {<i>A</i>, <i>B</i>} and <i>g</i>(<i>w</i><sub>0</sub>) = {<i>I</i><sub>1</sub>, <i>I</i><sub>2</sub>}, where <i>A</i> = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}, <i>B</i> = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}, <i>I</i><sub>1</sub> = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>} and <i>I</i><sub>2</sub> = {<i>w</i><sub>0</sub>, <i>w</i><sub>2</sub>}.</p>
       <p><span class="runin">Exercise.</span></p>
@@ -324,8 +321,8 @@
       <div class="tasks">
         <div class="task"><span>(b)</span><span>What is the force of <i>k’a</i> in (22) and in (23)? What in the translations and the context tells you?</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>Draw the same grid for St’át’imcets <i>k’a</i> and <i>ka</i>. How does its shape differ from the English grid?</span></div>
-        <div class="draw"></div>
+        <div class="task"><span>(c)</span><span>What shape does the same grid have for St’át’imcets <i>k’a</i> and <i>ka</i>, and how does it differ from the English grid?</span></div>
+        <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(d)</span><span>In Kratzer’s system, which of force and flavour comes from the lexical entry and which from the context, for English? What would have to change for St’át’imcets?</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
@@ -343,40 +340,127 @@
       <h2>Modals and attitude verbs, compositionally</h2>
       <ol class="exs">
         <li><span>(24)</span><span class="s">In view of the rules of the secret committee, Mary must leave.</span></li>
-        <li><span>(25)</span><span class="s">Sue believes that it is raining.</span></li>
-        <li><span>(26)</span><span class="s">Sue knows that it is raining.</span></li>
+        <li><span>(25)</span><span class="s">Mary might leave.</span></li>
+        <li><span>(26)</span><span class="s">Sue believes that it is raining.</span></li>
+        <li><span>(27)</span><span class="s">Sue knows that it is raining.</span></li>
+        <li><span>(28)</span><span><span class="ctx">[epistemic <i>must</i>]</span> <span class="s">Sue must know that it is raining.</span></span></li>
       </ol>
       <p>A first pass. The modal and the attitude verbs all quantify over worlds. The modal takes its conversational backgrounds as arguments; the verbs fix theirs through their subject.</p>
       <div class="defs">
         <div class="sc">Types</div>
         <div class="d"><span class="t"><i>s</i></span><span class="g">worlds. A proposition is of type ⟨<i>s</i>, <i>t</i>⟩.</span></div>
-        <div class="d"><span class="t"><i>f</i>, <i>g</i></span><span class="g">type ⟨<i>s</i>, ⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩⟩: from worlds to sets of propositions.</span></div>
+        <div class="d"><span class="t"><i>cb</i></span><span class="g">⟨<i>s</i>, ⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩⟩, the type of a conversational background: from worlds to sets of propositions.</span></div>
+      </div>
+      <div class="defs">
+        <div class="sc">Composition</div>
+        <div class="d"><span class="t">FA</span><span class="g">If α has daughters β and γ, and ⟦γ⟧<sup><i>w</i></sup> is in the domain of ⟦β⟧<sup><i>w</i></sup>, then ⟦α⟧<sup><i>w</i></sup> = ⟦β⟧<sup><i>w</i></sup>(⟦γ⟧<sup><i>w</i></sup>).</span></div>
+        <div class="d"><span class="t">IFA</span><span class="g">If α has daughters β and γ, and λ<i>w</i>′. ⟦γ⟧<sup><i>w</i>′</sup> is in the domain of ⟦β⟧<sup><i>w</i></sup>, then ⟦α⟧<sup><i>w</i></sup> = ⟦β⟧<sup><i>w</i></sup>(λ<i>w</i>′. ⟦γ⟧<sup><i>w</i>′</sup>).</span></div>
       </div>
       <div class="defs">
         <div class="sc">Lexical entries</div>
-        <div class="d"><span class="t"><i>must</i></span><span class="g">⟦<i>must</i>⟧<sup><i>w</i></sup> = λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i></span></div>
-        <div class="d"><span class="t"><i>might</i></span><span class="g">⟦<i>might</i>⟧<sup><i>w</i></sup> = λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</span></div>
-        <div class="d"><span class="t"><i>believe</i></span><span class="g">⟦<i>believe</i>⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
-        <div class="d"><span class="t"><i>know</i></span><span class="g">⟦<i>know</i>⟧<sup><i>w</i></sup> = λ<i>p</i> : <i>w</i> ∈ <i>p</i>. λ<i>x</i>. Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
-        <div class="d"><span class="t">Dox<sub><i>x</i></sub>(<i>w</i>)</span><span class="g">The worlds compatible with what <i>x</i> believes in <i>w</i>.</span></div>
-        <div class="d"><span class="t">Epi<sub><i>x</i></sub>(<i>w</i>)</span><span class="g">The worlds compatible with what <i>x</i> knows in <i>w</i>.</span></div>
-        <div class="d"><span class="t">Silent arguments</span><span class="g"><i>f</i> and <i>g</i> are valued by the context, like pronouns. An <i>in view of</i> phrase supplies <i>f</i> overtly.</span></div>
+        <div class="d"><span class="t"><i>must</i></span><span class="g">type ⟨<i>cb</i>, ⟨<i>cb</i>, ⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩⟩⟩. ⟦<i>must</i>⟧<sup><i>w</i></sup> = λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i></span></div>
+        <div class="d"><span class="t"><i>might</i></span><span class="g">same type. ⟦<i>might</i>⟧<sup><i>w</i></sup> = λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</span></div>
+        <div class="d"><span class="t"><i>believe</i></span><span class="g">type ⟨⟨<i>s</i>, <i>t</i>⟩, ⟨<i>e</i>, <i>t</i>⟩⟩. ⟦<i>believe</i>⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
+        <div class="d"><span class="t"><i>know</i></span><span class="g">same type. ⟦<i>know</i>⟧<sup><i>w</i></sup> = λ<i>p</i> : <i>w</i> ∈ <i>p</i>. λ<i>x</i>. Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
+        <div class="d"><span class="t">Dox<sub><i>x</i></sub>(<i>w</i>), Epi<sub><i>x</i></sub>(<i>w</i>)</span><span class="g">The worlds compatible with what <i>x</i> believes, or knows, in <i>w</i>.</span></div>
+        <div class="d"><span class="t">Silent arguments</span><span class="g"><i>f</i> and <i>g</i> are valued by the context, like pronouns. An <i>in view of</i> phrase supplies <i>f</i> overtly. <i>that</i> is vacuous.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Worked: (25)</div>
+      <svg class="tfig" viewBox="0 0 1000 380" role="img" aria-label="Binary tree: S splits into [might f g] and [Mary leave]; [might f g] splits into [might f] and g; [might f] splits into might and f. Nodes numbered 1 to 7.">
+      <line x1="500" y1="66" x2="300" y2="118"/>
+      <line x1="500" y1="66" x2="720" y2="118"/>
+      <line x1="300" y1="166" x2="190" y2="218"/>
+      <line x1="300" y1="166" x2="420" y2="218"/>
+      <line x1="190" y1="266" x2="110" y2="318"/>
+      <line x1="190" y1="266" x2="270" y2="318"/>
+      <text class="tn" x="500" y="56"><tspan class="tk">1 </tspan>S</text>
+      <text class="tn" x="300" y="156"><tspan class="tk">2 </tspan>might  f  g</text>
+      <text class="tn" x="720" y="156"><tspan class="tk">7 </tspan>Mary leave</text>
+      <text class="tn" x="190" y="256"><tspan class="tk">3 </tspan>might  f</text>
+      <text class="tn" x="420" y="256"><tspan class="tk">6 </tspan>g</text>
+      <text class="tn" x="110" y="356"><tspan class="tk">4 </tspan>might</text>
+      <text class="tn" x="270" y="356"><tspan class="tk">5 </tspan>f</text>
+      </svg>
+      <table class="rec">
+        <tr><th>Node</th><th>Type</th><th>Denotation at <i>w</i></th></tr>
+        <tr><td>4</td><td>⟨<i>cb</i>, ⟨<i>cb</i>, ⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩⟩⟩</td><td>λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</td></tr>
+        <tr><td>5</td><td><i>cb</i></td><td><i>f</i>, from the context</td></tr>
+        <tr><td>3</td><td>⟨<i>cb</i>, ⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩⟩</td><td>FA: λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</td></tr>
+        <tr><td>6</td><td><i>cb</i></td><td><i>g</i>, from the context</td></tr>
+        <tr><td>2</td><td>⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩</td><td>FA: λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</td></tr>
+        <tr><td>7</td><td><i>t</i></td><td>1 iff Mary leaves in <i>w</i></td></tr>
+        <tr><td>1</td><td><i>t</i></td><td>IFA: 1 iff Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ {<i>w</i>′ : Mary leaves in <i>w</i>′} ≠ ∅</td></tr>
+      </table>
       </div>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Draw a tree for (24), with <i>must</i>, its two silent arguments and the prejacent <i>Mary leave</i>. Give the type of each node.</span></div>
+        <div class="task"><span>(a)</span><span>The tree for (24) without its <i>in view of</i> phrase is the tree above with <i>must</i> for <i>might</i>. Let <i>f</i> be the committee’s rules and <i>g</i> empty. Give the type and denotation of each node, bottom up, and say where FA and IFA apply.</span></div>
+      </div>
+      <div class="treebox">
+      <svg class="tfig" viewBox="0 0 1000 380" role="img" aria-label="Binary tree: S splits into [must f g] and [Mary leave]; [must f g] splits into [must f] and g; [must f] splits into must and f. Nodes numbered 1 to 7.">
+      <line x1="500" y1="66" x2="300" y2="118"/>
+      <line x1="500" y1="66" x2="720" y2="118"/>
+      <line x1="300" y1="166" x2="190" y2="218"/>
+      <line x1="300" y1="166" x2="420" y2="218"/>
+      <line x1="190" y1="266" x2="110" y2="318"/>
+      <line x1="190" y1="266" x2="270" y2="318"/>
+      <text class="tn" x="500" y="56"><tspan class="tk">1 </tspan>S</text>
+      <text class="tn" x="300" y="156"><tspan class="tk">2 </tspan>must  f  g</text>
+      <text class="tn" x="720" y="156"><tspan class="tk">7 </tspan>Mary leave</text>
+      <text class="tn" x="190" y="256"><tspan class="tk">3 </tspan>must  f</text>
+      <text class="tn" x="420" y="256"><tspan class="tk">6 </tspan>g</text>
+      <text class="tn" x="110" y="356"><tspan class="tk">4 </tspan>must</text>
+      <text class="tn" x="270" y="356"><tspan class="tk">5 </tspan>f</text>
+      </svg>
+      <table class="rec fill wide">
+        <tr><th>Node</th><th>Type</th><th>Denotation at <i>w</i></th></tr>
+        <tr><td>4</td><td></td><td></td></tr>
+        <tr><td>5</td><td></td><td></td></tr>
+        <tr><td>3</td><td></td><td></td></tr>
+        <tr><td>6</td><td></td><td></td></tr>
+        <tr><td>2</td><td></td><td></td></tr>
+        <tr><td>7</td><td></td><td></td></tr>
+        <tr><td>1</td><td></td><td></td></tr>
+      </table>
+      </div>
+      <div class="tasks">
+        <div class="task"><span>(b)</span><span>Do the same for (26).</span></div>
+      </div>
+      <div class="treebox">
+      <svg class="tfig" viewBox="0 0 1000 280" role="img" aria-label="Binary tree: S splits into Sue and VP; VP splits into believes and [that it is raining]. Nodes numbered 1 to 5.">
+      <line x1="500" y1="66" x2="330" y2="118"/>
+      <line x1="500" y1="66" x2="650" y2="118"/>
+      <line x1="650" y1="166" x2="520" y2="218"/>
+      <line x1="650" y1="166" x2="790" y2="218"/>
+      <text class="tn" x="500" y="56"><tspan class="tk">1 </tspan>S</text>
+      <text class="tn" x="330" y="156"><tspan class="tk">2 </tspan>Sue</text>
+      <text class="tn" x="650" y="156"><tspan class="tk">3 </tspan>VP</text>
+      <text class="tn" x="520" y="256"><tspan class="tk">4 </tspan>believes</text>
+      <text class="tn" x="790" y="256"><tspan class="tk">5 </tspan>that it is raining</text>
+      </svg>
+      <table class="rec fill wide">
+        <tr><th>Node</th><th>Type</th><th>Denotation at <i>w</i></th></tr>
+        <tr><td>4</td><td></td><td></td></tr>
+        <tr><td>5</td><td></td><td></td></tr>
+        <tr><td>3</td><td></td><td></td></tr>
+        <tr><td>2</td><td></td><td></td></tr>
+        <tr><td>1</td><td></td><td></td></tr>
+      </table>
+      </div>
+      <div class="tasks">
+        <div class="task"><span>(c)</span><span>In the tree for (27), at which node does the presupposition <i>w</i> ∈ <i>p</i> enter? What is the denotation of node 1 at a world where it is not raining?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Draw a tree for (28), with the modal above <i>Sue know that it is raining</i>, and give its truth conditions. At which worlds is Epi<sub>Sue</sub> evaluated?</span></div>
         <div class="draw"></div>
-        <div class="task"><span>(b)</span><span>With an empty ordering source, derive the truth conditions of (24).</span></div>
-        <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>Derive the truth conditions of (25), and the presupposition and truth conditions of (26).</span></div>
-        <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(d)</span><span>Which of T and D does <i>believe</i> validate, and which does <i>know</i>? Which property of Dox<sub><i>x</i></sub> and Epi<sub><i>x</i></sub> does each depend on?</span></div>
+        <div class="task"><span>(e)</span><span>Which of T and D does <i>believe</i> validate, and which does <i>know</i>? Which property of Dox<sub><i>x</i></sub> and Epi<sub><i>x</i></sub> does each depend on?</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
       <p><b>Hintikka 1969.</b> Semantics for propositional attitudes. In J. W. Davis et al. (eds.), <i>Philosophical Logic.</i> Reidel. 21–45.</p>
-      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 3.</p>
+      <p><b>Heim &amp; Kratzer 1998.</b> <i>Semantics in Generative Grammar.</i> Blackwell. Ch. 12.</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Chs. 1 and 3.</p>
     </div>
   </div>
 
