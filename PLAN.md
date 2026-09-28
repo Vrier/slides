@@ -1029,3 +1029,16 @@ what the next session must know)*
   (must, tied to the coffee cup) and only some (might). (5) New slide "English and St'át'imcets":
   force × flavour grids, English words filling rows and St'át'imcets words filling columns, after
   Rullmann, Matthewson & Davis (2008). Figure helpers live outside the repo (figs_w3.py). 53 slides.
+- **2026-09-28: week 3 deck, Thomas's trim.** Housekeeping adds "Due: Friday 16 October".
+  "Four readings of □" → "Readings of □". T answer (4): "'It must be raining' said when looking
+  at the rain??". Dead-end figure loses its "no arrows out" label. Cut: the In view of Q/A pair,
+  weak-must "Last week's theory" row, Lewis's gloss on premise semantics, Kratzer 2012 "collected
+  and revised", Portner's gloss on From f to R, the rows under Properties of f, "back to the week
+  2 system", the Your turn summary row and title (answer slide now titleless), the St'át'imcets
+  analysis row, the rows under the force/flavour grids, the Epistemic mustn't slide, and the whole
+  Summary part (force/flavour and both compositional slides: moved to Thursday). Chisholm prompt
+  "Translate each into modal logic"; (32) now "It must be the case that if Mary does not rob
+  John, she is not punished" (wide scope), and Solving Chisholm's paradox reworked to match:
+  (29) and (32) under f, (31) under f + r; brackets redrawn. "Best worlds, pictured" titled
+  "Best worlds". Your turn prompt "What is the modal base and ordering source?", no citation.
+  Closing Assessment 1 slide moved into Typological. 47 slides, examples (1) to (45).
