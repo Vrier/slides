@@ -1072,3 +1072,12 @@ what the next session must know)*
   (now three questions on Portner's (84) plus the name table), the St'át'imcets shape/Kratzer
   questions, types and FA (only IFA stated, informally), the know-presupposition and must-know
   tree tasks, and the notation table. Tree tables are denotation-only.
+- **2026-09-29: week 3 Thursday handout checked against the textbooks (Portner 2009 §3.1; von
+  Fintel & Heim ch. 3).** Definitions of ≤, <, Best, must/might, the empty ordering source, the
+  Chisholm solution and Kratzer's grade names all match Portner (90), (91), (96), (100), (122) and
+  Table 3.2. Changes: Logan replaced by von Fintel & Heim's textbook example *Howard has to pay a
+  fine* (ch. 3, (19)); Chisholm ordering source gets Portner's third ideal (non-robbers are not
+  punished), without which (7) depended on the model leaving out a world; Kratzer's solution now
+  says why f leaves the robbery open (Portner: with (5) in f, (4) could not be said); weak *must*
+  flagged as contested (von Fintel & Gillies 2010, as both textbooks note); tree block points to
+  von Fintel & Heim's covert-argument entry (26) and Exercise 3.4.
