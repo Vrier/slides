@@ -1063,3 +1063,12 @@ what the next session must know)*
   inline SVG, each kept on one page with its table. Coffee-cup worked box dropped from block 1
   (it repeated the slide); St'át'imcets grid task now written, not drawn. Examples (1) to (28);
   12 pages.
+- **2026-09-29: week 3 Thursday handout simplified (Thomas: "overly complex").** Pitched at
+  LIU33008: plain-language definitions, small models, short tasks; 12 → 8 pages. Kept the block
+  order (ordering sources, Best, Chisholm, modal bases, graded modality, force and flavour, trees,
+  what you need to know). Cut: set-notation definitions of ≤ and Best, incomparability as a
+  defined term, limit assumption, the T-failure task, the KD proof and fourth world in Chisholm,
+  doxastic ordering source, Kratzer's formal grade definitions and the four-world grading model
+  (now three questions on Portner's (84) plus the name table), the St'át'imcets shape/Kratzer
+  questions, types and FA (only IFA stated, informally), the know-presupposition and must-know
+  tree tasks, and the notation table. Tree tables are denotation-only.
