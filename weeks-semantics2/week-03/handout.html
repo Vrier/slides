@@ -95,6 +95,15 @@
         <div class="task"><span>(c)</span><span>Find two worlds where neither is better than the other.</span></div>
         <div class="lines"><span></span></div>
       </div>
+      <ol class="exs">
+        <li><span>(3)</span><span><span class="ctx">[it is after eleven, and the dishes have not been done]</span> <span class="s">You have to be quiet.</span></span></li>
+        <li><span>(4)</span><span class="s">You must take your shoes off.</span></li>
+        <li><span>(5)</span><span class="s">You can make some noise.</span></li>
+      </ol>
+      <div class="tasks">
+        <div class="task"><span>(d)</span><span>Now the facts rule out <i>w</i><sub>1</sub> and <i>w</i><sub>2</sub>, where the dishes are done: ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>}. Which world is best? Are (3), (4) and (5) true?</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
     </div>
     <div class="note">
       <p><b>Portner 2009.</b> <i>Modality.</i> §3.1.3.</p>
@@ -107,9 +116,11 @@
     <div class="body">
       <h2>Best worlds</h2>
       <ol class="exs">
-        <li><span>(3)</span><span><span class="ctx">[Howard returned his library book late]</span> <span class="s">Howard has to pay a fine.</span></span></li>
+        <li><span>(6)</span><span><span class="ctx">[Howard returned his library book late]</span> <span class="s">Howard has to pay a fine.</span></span></li>
+        <li><span>(7)</span><span class="s">Howard may leave without paying.</span></li>
+        <li><span>(8)</span><span class="s">Howard has to return the book on time.</span></li>
       </ol>
-      <p>The modal base fixes that the book came back late. The library’s rules prefer worlds where no book is late, and among the rest, worlds where the fine is paid. (3) is true: Howard pays in the best worlds the facts allow.</p>
+      <p>The modal base fixes that the book came back late. The library’s rules prefer worlds where no book is late, and among the rest, worlds where the fine is paid. (6) is true: Howard pays in the best worlds the facts allow.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>))</span><span class="g">The worlds in ∩<i>f</i>(<i>w</i>) that no other world in ∩<i>f</i>(<i>w</i>) is better than.</span></div>
@@ -117,14 +128,16 @@
         <div class="d"><span class="t"><i>might</i> φ</span><span class="g">True iff φ is true in some best world.</span></div>
         <div class="d"><span class="t">No ordering source</span><span class="g">No world is better than another, so every world in ∩<i>f</i>(<i>w</i>) is best: the week 2 system.</span></div>
       </div>
-      <p><span class="runin">Model.</span> <i>W</i> = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>}. <i>g</i>(<i>w</i>) = {<i>I</i><sub>1</sub>, <i>I</i><sub>2</sub>}, with <i>I</i><sub>1</sub> = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>} and <i>I</i><sub>2</sub> = {<i>w</i><sub>0</sub>, <i>w</i><sub>2</sub>}.</p>
+      <p><span class="runin">Model.</span> Three worlds: at <i>w</i><sub>0</sub> Howard returns the book on time; at <i>w</i><sub>1</sub> he returns it late and pays the fine; at <i>w</i><sub>2</sub> he returns it late and does not pay. The facts: ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. <i>g</i>(<i>w</i>) = {no book is returned late, anyone who returns a book late pays a fine}.</p>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Which ideals does each world in ∩<i>f</i>(<i>w</i>) satisfy? Which world is best?</span></div>
+        <div class="task"><span>(a)</span><span>Which rules does each world in ∩<i>f</i>(<i>w</i>) satisfy? Which world is best?</span></div>
         <div class="lines"><span></span></div>
-        <div class="task"><span>(b)</span><span>Let <i>p</i> = {<i>w</i><sub>0</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. Is <i>must p</i> true? Is <i>might p</i>?</span></div>
+        <div class="task"><span>(b)</span><span>Is (6) true?</span></div>
         <div class="lines"><span></span></div>
-        <div class="task"><span>(c)</span><span>Let <i>q</i> = {<i>w</i><sub>1</sub>}. Is <i>might q</i> true? Why not, although <i>w</i><sub>1</sub> is in ∩<i>f</i>(<i>w</i>)?</span></div>
+        <div class="task"><span>(c)</span><span>Is (7) true? Why not, although <i>w</i><sub>2</sub> is in ∩<i>f</i>(<i>w</i>)?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(d)</span><span><i>w</i><sub>0</sub> satisfies every rule. Why does (8) still come out false?</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
@@ -140,32 +153,32 @@
     <div class="body">
       <h2>Chisholm’s paradox</h2>
       <ol class="exs">
-        <li><span>(4)</span><span class="s">Mary must not rob John.</span></li>
-        <li><span>(5)</span><span class="s">Mary robs John.</span></li>
-        <li><span>(6)</span><span class="s">If Mary robs John, she must be punished.</span></li>
-        <li><span>(7)</span><span class="s">It must be the case that if Mary does not rob John, she is not punished.</span></li>
+        <li><span>(9)</span><span class="s">Mary must not rob John.</span></li>
+        <li><span>(10)</span><span class="s">Mary robs John.</span></li>
+        <li><span>(11)</span><span class="s">If Mary robs John, she must be punished.</span></li>
+        <li><span>(12)</span><span class="s">It must be the case that if Mary does not rob John, she is not punished.</span></li>
       </ol>
       <p><span class="runin">Exercise.</span> Let <i>r</i> be <i>Mary robs John</i> and <i>q</i> be <i>Mary is punished</i>.</p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Translate each of (4) to (7) into modal logic.</span></div>
+        <div class="task"><span>(a)</span><span>Translate each of (9) to (12) into modal logic.</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(b)</span><span>Use (5) and (6) to derive □<i>q</i>, and (4) and (7) to derive □¬<i>q</i>. Why is that a problem?</span></div>
+        <div class="task"><span>(b)</span><span>Use (10) and (11) to derive □<i>q</i>, and (9) and (12) to derive □¬<i>q</i>. Why is that a problem?</span></div>
         <div class="lines"><span></span></div>
       </div>
       <div class="proc">
         <div class="sc proc-head">Kratzer’s solution</div>
         <ol class="steps">
           <li>An <i>if</i>-clause adds its proposition to the modal base.</li>
-          <li>(4) and (7) use the modal base <i>f</i>, which leaves the robbery open. With (5) in <i>f</i>, (4) could not be said.</li>
-          <li>The main clause of (6) uses <i>f</i> plus <i>r</i>.</li>
+          <li>(9) and (12) use the modal base <i>f</i>, which leaves the robbery open. With (10) in <i>f</i>, (9) could not be said.</li>
+          <li>The main clause of (11) uses <i>f</i> plus <i>r</i>.</li>
           <li>The ordering source ranks the worlds in both.</li>
         </ol>
       </div>
       <p><span class="runin">Model.</span> Three worlds in ∩<i>f</i>(<i>w</i>): at <i>w</i><sub>1</sub> Mary does not rob John and is not punished; at <i>w</i><sub>2</sub> she robs him and is punished; at <i>w</i><sub>3</sub> she robs him and is not punished. <i>g</i>(<i>w</i>) = {Mary does not rob John, robbers are punished, non-robbers are not punished}.</p>
       <div class="tasks">
-        <div class="task"><span>(c)</span><span>Which world is best relative to <i>f</i>? Show that (4) and (7) are true.</span></div>
+        <div class="task"><span>(c)</span><span>Which world is best relative to <i>f</i>? Show that (9) and (12) are true.</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(d)</span><span>Which world is best once <i>r</i> is added to <i>f</i>? Show that the main clause of (6) is true. Why is there no contradiction?</span></div>
+        <div class="task"><span>(d)</span><span>Which world is best once <i>r</i> is added to <i>f</i>? Show that the main clause of (11) is true. Why is there no contradiction?</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
@@ -181,12 +194,12 @@
     <div class="body">
       <h2>Modal bases and ordering sources</h2>
       <ol class="exs">
-        <li><span>(8)</span><span><span class="ctx">[soil and climate suit hydrangeas; I know none grow on my land]</span> <span class="s">Hydrangeas can grow here.</span></span></li>
-        <li><span>(9)</span><span><span class="ctx">[the same land]</span> <span class="s">There might be hydrangeas growing here.</span></span></li>
-        <li><span>(10)</span><span><span class="ctx">[a doctor, after the examination]</span> <span class="s">You must have the flu.</span></span></li>
-        <li><span>(11)</span><span class="s">You have the flu.</span></li>
+        <li><span>(13)</span><span><span class="ctx">[soil and climate suit hydrangeas; I know none grow on my land]</span> <span class="s">Hydrangeas can grow here.</span></span></li>
+        <li><span>(14)</span><span><span class="ctx">[the same land]</span> <span class="s">There might be hydrangeas growing here.</span></span></li>
+        <li><span>(15)</span><span><span class="ctx">[a doctor, after the examination]</span> <span class="s">You must have the flu.</span></span></li>
+        <li><span>(16)</span><span class="s">You have the flu.</span></li>
       </ol>
-      <p>(8) is true and (9) false of the same land: (8) depends on the circumstances, (9) on what I know. Two kinds of modal base. (10) is weaker than (11): the doctor also relies on how illnesses usually go. Expectations like these are an ordering source (Kratzer 1991). This weakness is contested: von Fintel &amp; Gillies (2010) argue that <i>must</i> is strong and only signals indirect evidence.</p>
+      <p>(13) is true and (14) false of the same land: (13) depends on the circumstances, (14) on what I know. Two kinds of modal base. (15) is weaker than (16): the doctor also relies on how illnesses usually go. Expectations like these are an ordering source (Kratzer 1991). This weakness is contested: von Fintel &amp; Gillies (2010) argue that <i>must</i> is strong and only signals indirect evidence.</p>
       <div class="defs">
         <div class="sc">Modal bases</div>
         <div class="d"><span class="t">Epistemic</span><span class="g"><i>f</i>(<i>w</i>): facts known in <i>w</i>.</span></div>
@@ -201,18 +214,20 @@
         <div class="d"><span class="t">Empty</span><span class="g"><i>g</i>(<i>w</i>) = ∅.</span></div>
       </div>
       <ol class="exs">
-        <li><span>(12)</span><span><span class="ctx">(Based on what I know,)</span> <span class="s">Hannah must be in the library.</span></span></li>
-        <li><span>(13)</span><span><span class="ctx">(According to the department rules,)</span> <span class="s">you must submit the form by Friday.</span></span></li>
-        <li><span>(14)</span><span><span class="ctx">(Given the circumstances,)</span> <span class="s">the glass can break if you drop it.</span></span></li>
-        <li><span>(15)</span><span><span class="ctx">(To catch the 7am train,)</span> <span class="s">you have to leave now.</span></span></li>
+        <li><span>(17)</span><span><span class="ctx">(Based on what I know,)</span> <span class="s">Hannah must be in the library.</span></span></li>
+        <li><span>(18)</span><span><span class="ctx">(According to the department rules,)</span> <span class="s">you must submit the form by Friday.</span></span></li>
+        <li><span>(19)</span><span><span class="ctx">(Given the circumstances,)</span> <span class="s">the glass can break if you drop it.</span></span></li>
+        <li><span>(20)</span><span><span class="ctx">(To catch the 7am train,)</span> <span class="s">you have to leave now.</span></span></li>
+        <li><span>(21)</span><span><span class="ctx">(To get to Harvard Square from MIT cheaply and safely,)</span> <span class="s">you ought to take the Red Line.</span></span></li>
       </ol>
-      <p><span class="runin">Exercise.</span> For each of (12) to (15), give the force (necessity or possibility), a plausible modal base and a plausible ordering source.</p>
+      <p><span class="runin">Exercise.</span> For each of (17) to (21), give the force (necessity or possibility), a plausible modal base and a plausible ordering source.</p>
       <table class="rec fill wide">
         <tr><th></th><th>Force</th><th>Modal base</th><th>Ordering source</th></tr>
-        <tr><td>(12)</td><td></td><td></td><td></td></tr>
-        <tr><td>(13)</td><td></td><td></td><td></td></tr>
-        <tr><td>(14)</td><td></td><td></td><td></td></tr>
-        <tr><td>(15)</td><td></td><td></td><td></td></tr>
+        <tr><td>(17)</td><td></td><td></td><td></td></tr>
+        <tr><td>(18)</td><td></td><td></td><td></td></tr>
+        <tr><td>(19)</td><td></td><td></td><td></td></tr>
+        <tr><td>(20)</td><td></td><td></td><td></td></tr>
+        <tr><td>(21)</td><td></td><td></td><td></td></tr>
       </table>
     </div>
     <div class="note">
@@ -228,11 +243,11 @@
     <div class="body">
       <h2>Graded modality</h2>
       <ol class="exs">
-        <li><span>(16)</span><span class="s">It is probable that Mary is lost, but she might not be.</span></li>
-        <li><span>(17)</span><span><span class="ctx">#</span> <span class="s">Mary must be lost, but she might not be.</span></span></li>
-        <li><span>(18)</span><span class="s">There is a slight possibility that Mary is lost.</span></li>
-        <li><span>(19)</span><span class="s">There is a good possibility that Mary is lost.</span></li>
-        <li><span>(20)</span><span class="s">It is more likely that Mary doesn’t want to come to your party than that she is lost.</span></li>
+        <li><span>(22)</span><span class="s">It is probable that Mary is lost, but she might not be.</span></li>
+        <li><span>(23)</span><span><span class="ctx">#</span> <span class="s">Mary must be lost, but she might not be.</span></span></li>
+        <li><span>(24)</span><span class="s">There is a slight possibility that Mary is lost.</span></li>
+        <li><span>(25)</span><span class="s">There is a good possibility that Mary is lost.</span></li>
+        <li><span>(26)</span><span class="s">It is more likely that Mary doesn’t want to come to your party than that she is lost.</span></li>
       </ol>
       <p>With only ∀ and ∃ over one set of worlds there are just two forces. Kratzer (1981, 1991) uses the ordering to define more.</p>
       <table class="rec">
@@ -246,11 +261,11 @@
       </table>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>What do (16) and (17) show about <i>probable</i> and <i>must</i>?</span></div>
+        <div class="task"><span>(a)</span><span>What do (22) and (23) show about <i>probable</i> and <i>must</i>?</span></div>
         <div class="lines"><span></span></div>
-        <div class="task"><span>(b)</span><span>What does (18) suggest about whether Mary is lost? Does (19) suggest the same?</span></div>
+        <div class="task"><span>(b)</span><span>What does (24) suggest about whether Mary is lost? Does (25) suggest the same?</span></div>
         <div class="lines"><span></span></div>
-        <div class="task"><span>(c)</span><span>How is (20) different from the others? Why can’t ∀ and ∃ over one set of worlds express it?</span></div>
+        <div class="task"><span>(c)</span><span>How is (26) different from the others? Why can’t ∀ and ∃ over one set of worlds express it?</span></div>
         <div class="lines"><span></span></div>
       </div>
     </div>
@@ -266,18 +281,22 @@
     <div class="body">
       <h2>Force and flavour across languages</h2>
       <ol class="exs">
-        <li><span>(21)</span><span><span class="ctx">[a teacher, at the end of an exam]</span> <span class="s">You may leave now.</span></span></li>
-        <li><span>(22)</span><span><span class="ctx">[looking at the sky]</span> <span class="s">It may rain later.</span></span></li>
+        <li><span>(27)</span><span><span class="ctx">[a teacher, at the end of an exam]</span> <span class="s">You may leave now.</span></span></li>
+        <li><span>(28)</span><span><span class="ctx">[looking at the sky]</span> <span class="s">It may rain later.</span></span></li>
+        <li><span>(29)</span><span><span class="ctx">[the lights are on]</span> <span class="s">He must be home by now.</span></span></li>
+        <li><span>(30)</span><span><span class="ctx">[a parent to a teenager]</span> <span class="s">You must be home by ten.</span></span></li>
+        <li><span>(31)</span><span><span class="ctx">[a teacher]</span> <span class="s">You can go now.</span></span></li>
+        <li><span>(32)</span><span class="s">This car can reach 200 km an hour.</span></li>
       </ol>
-      <p>One <i>may</i>, two flavours, the same force. In English the word fixes the force and the context supplies the flavour.</p>
+      <p>(27) and (28): one <i>may</i>, two flavours, the same force. In English the word fixes the force and the context supplies the flavour.</p>
       <ol class="exs">
-        <li><span>(23)</span><span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">tu7</span><span class="g">then</span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘He must have left by now.’</span></span></li>
-        <li><span>(24)</span><span><span class="ctx">[His car isn’t there.]</span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘Maybe he’s already gone.’</span></span></li>
+        <li><span>(33)</span><span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">tu7</span><span class="g">then</span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘He must have left by now.’</span></span></li>
+        <li><span>(34)</span><span><span class="ctx">[His car isn’t there.]</span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘Maybe he’s already gone.’</span></span></li>
       </ol>
       <p>St’át’imcets: the same epistemic <i>k’a</i> in both.</p>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Place <i>must</i>, <i>may</i>, <i>might</i>, <i>can</i> and <i>have to</i> in the grid. A word can fill more than one cell.</span></div>
+        <div class="task"><span>(a)</span><span>Place each of (27) to (32) in the grid by its force and flavour.</span></div>
       </div>
       <table class="rec fill">
         <tr><th></th><th>Epistemic</th><th>Deontic</th><th>Circumstantial</th></tr>
@@ -285,12 +304,12 @@
         <tr><td>possibility</td><td></td><td></td><td></td></tr>
       </table>
       <div class="tasks">
-        <div class="task"><span>(b)</span><span>What is the force of <i>k’a</i> in (23), and in (24)? So which does <i>k’a</i> fix, force or flavour?</span></div>
+        <div class="task"><span>(b)</span><span>What is the force of <i>k’a</i> in (33), and in (34)? So which does <i>k’a</i> fix, force or flavour?</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
-      <p><b>Rullmann, Matthewson &amp; Davis 2008.</b> Modals as distributive indefinites. <i>Natural Language Semantics</i> 16. (23) and (24) as there.</p>
+      <p><b>Rullmann, Matthewson &amp; Davis 2008.</b> Modals as distributive indefinites. <i>Natural Language Semantics</i> 16. (33) and (34) as there.</p>
     </div>
   </div>
 
@@ -300,10 +319,10 @@
     <div class="body">
       <h2>Modals and attitude verbs in a tree</h2>
       <ol class="exs">
-        <li><span>(25)</span><span class="s">Mary might leave.</span></li>
-        <li><span>(26)</span><span><span class="ctx">[in view of the rules]</span> <span class="s">Mary must leave.</span></span></li>
-        <li><span>(27)</span><span class="s">Sue believes that it is raining.</span></li>
-        <li><span>(28)</span><span class="s">Sue knows that it is raining.</span></li>
+        <li><span>(35)</span><span class="s">Mary might leave.</span></li>
+        <li><span>(36)</span><span><span class="ctx">[in view of the rules]</span> <span class="s">Mary must leave.</span></span></li>
+        <li><span>(37)</span><span class="s">Sue believes that it is raining.</span></li>
+        <li><span>(38)</span><span class="s">Sue knows that it is raining.</span></li>
       </ol>
       <div class="defs">
         <div class="sc">Lexical entries</div>
@@ -315,7 +334,7 @@
         <div class="d"><span class="t">IFA</span><span class="g">When a word needs a proposition, give it the intension of its sister: λ<i>w</i>′. ⟦γ⟧<sup><i>w</i>′</sup>.</span></div>
       </div>
       <div class="proc">
-        <div class="sc proc-head">Worked: (25)</div>
+        <div class="sc proc-head">Worked: (35)</div>
       <svg class="tfig" viewBox="0 0 1000 380" role="img" aria-label="Binary tree: S splits into [might f g] and [Mary leave]; [might f g] splits into [might f] and g; [might f] splits into might and f. Nodes numbered 1 to 7.">
       <line x1="500" y1="66" x2="300" y2="118"/>
       <line x1="500" y1="66" x2="720" y2="118"/>
@@ -342,7 +361,7 @@
       </div>
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Fill in the table for (26), with the same tree and <i>must</i> for <i>might</i>.</span></div>
+        <div class="task"><span>(a)</span><span>Fill in the table for (36), with the same tree and <i>must</i> for <i>might</i>.</span></div>
       </div>
       <div class="treebox">
       <table class="rec fill wide">
@@ -355,7 +374,7 @@
       </table>
       </div>
       <div class="tasks">
-        <div class="task"><span>(b)</span><span>Fill in the table for (27).</span></div>
+        <div class="task"><span>(b)</span><span>Fill in the table for (37).</span></div>
       </div>
       <div class="treebox">
       <svg class="tfig" viewBox="0 0 1000 280" role="img" aria-label="Binary tree: S splits into Sue and VP; VP splits into believes and [that it is raining]. Nodes numbered 1 to 5.">

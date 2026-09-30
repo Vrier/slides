@@ -1081,3 +1081,9 @@ what the next session must know)*
   says why f leaves the robbery open (Portner: with (5) in f, (4) could not be said); weak *must*
   flagged as contested (von Fintel & Gillies 2010, as both textbooks note); tree block points to
   von Fintel & Heim's covert-argument entry (26) and Exercise 3.4.
+- **2026-09-30: week 3 Thursday handout, more real sentences (Thomas).** House rules now tested on
+  sentences: (3) *You have to be quiet*, (4) *You must take your shoes off*, (5) *You can make some
+  noise*, with the facts narrowing ∩f(w). Block 1's abstract model replaced by a Howard model in
+  words, with (7) *Howard may leave without paying* and (8) *Howard has to return the book on
+  time*. Block 3 exercise adds von Fintel & Heim's *you ought to take the Red Line*. Block 5 grid
+  task now places six sentences by force and flavour ((27)–(32)). Examples (1) to (38); 8 pages.
