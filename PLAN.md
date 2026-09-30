@@ -1087,3 +1087,6 @@ what the next session must know)*
   words, with (7) *Howard may leave without paying* and (8) *Howard has to return the book on
   time*. Block 3 exercise adds von Fintel & Heim's *you ought to take the Red Line*. Block 5 grid
   task now places six sentences by force and flavour ((27)–(32)). Examples (1) to (38); 8 pages.
+- **2026-09-30: week 3 Thursday handout, lattice (Thomas).** The ordering lattice from the
+  lecture's Ordering source slide (Portner's Figure 3.2: pqr; pq, pr, qr; p, q, r) added to block 0
+  in black and white, keyed to the house rules before the five-world model. 9 pages.

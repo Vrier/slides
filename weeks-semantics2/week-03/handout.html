@@ -31,6 +31,11 @@
   .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
   .tfig .tk { font-style:normal; font-size:24px; fill:#777; }
   .proc .tfig { margin-top:8pt; }
+  .lat { width:58%; height:auto; display:block; margin:8pt auto 6pt; }
+  .lat .oa { stroke:#111; stroke-width:2.2; fill:none; }
+  .lat .on { fill:#fff; stroke:#111; stroke-width:2.2; }
+  .lat .on.top { fill:#e6e6e6; }
+  .lat .ot { font-style:italic; font-size:34px; text-anchor:middle; fill:#111; }
 </style>
 </head>
 <body>
@@ -77,7 +82,27 @@
         <div class="d"><span class="t">At least as good</span><span class="g"><i>u</i> ≤<sub><i>g</i>(<i>w</i>)</sub> <i>v</i>: <i>u</i> satisfies every ideal that <i>v</i> satisfies.</span></div>
         <div class="d"><span class="t">Better</span><span class="g"><i>u</i> &lt;<sub><i>g</i>(<i>w</i>)</sub> <i>v</i>: <i>u</i> is at least as good as <i>v</i>, and satisfies some ideal that <i>v</i> does not.</span></div>
       </div>
-      <p><span class="runin">Model.</span> <i>g</i>(<i>w</i>) holds three house rules. Five worlds in ∩<i>f</i>(<i>w</i>):</p>
+      <p>The lattice from the lecture, for three house rules in <i>g</i>(<i>w</i>): <i>p</i>, no shoes indoors; <i>q</i>, dishes done; <i>r</i>, quiet after eleven. Arrows point to better worlds.</p>
+      <svg class="lat" viewBox="0 0 600 470" role="img" aria-label="Seven groups of worlds in three tiers. Top: worlds where p, q and r are all true. Middle: p q, p r, q r. Bottom: p, q, r. Arrows run from each group to the groups above it that add one proposition.">
+      <defs><marker id="hlat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs>
+      <line class="oa" x1="112" y1="236" x2="268" y2="92" marker-end="url(#hlat)"/>
+      <line class="oa" x1="300" y1="228" x2="300" y2="102" marker-end="url(#hlat)"/>
+      <line class="oa" x1="488" y1="236" x2="332" y2="92" marker-end="url(#hlat)"/>
+      <line class="oa" x1="96" y1="396" x2="96" y2="290" marker-end="url(#hlat)"/>
+      <line class="oa" x1="120" y1="400" x2="276" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="276" y1="400" x2="120" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="324" y1="400" x2="480" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="480" y1="400" x2="324" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="504" y1="396" x2="504" y2="290" marker-end="url(#hlat)"/>
+      <rect class="on top" x="235" y="30" width="130" height="68" rx="34"/><text class="ot" x="300" y="76">pqr</text>
+      <rect class="on" x="40" y="222" width="112" height="64" rx="32"/><text class="ot" x="96" y="266">pq</text>
+      <rect class="on" x="244" y="222" width="112" height="64" rx="32"/><text class="ot" x="300" y="266">pr</text>
+      <rect class="on" x="448" y="222" width="112" height="64" rx="32"/><text class="ot" x="504" y="266">qr</text>
+      <rect class="on" x="56" y="398" width="80" height="64" rx="32"/><text class="ot" x="96" y="442">p</text>
+      <rect class="on" x="260" y="398" width="80" height="64" rx="32"/><text class="ot" x="300" y="442">q</text>
+      <rect class="on" x="464" y="398" width="80" height="64" rx="32"/><text class="ot" x="504" y="442">r</text>
+      </svg>
+      <p><span class="runin">Model.</span> Five worlds in ∩<i>f</i>(<i>w</i>):</p>
       <table class="rec">
         <tr><th></th><th>no shoes indoors</th><th>dishes done</th><th>quiet after eleven</th></tr>
         <tr><td><i>w</i><sub>1</sub></td><td>✓</td><td>✓</td><td>✗</td></tr>
