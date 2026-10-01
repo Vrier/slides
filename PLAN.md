@@ -1121,3 +1121,9 @@ what the next session must know)*
   stereotypical model (why Mary isn't at the party; best w1), with finite definitions of slight
   possibility, more likely and probable, and (27)–(31). Attitude verbs removed from the tree
   block ("Modals in a tree"). Six blocks plus What you need to know; examples (1) to (33); 9 pages.
+- **2026-09-30: week 3 Thursday handout, wording pass (Thomas).** World tables use T/F; "Five worlds
+  in ∩f(w)" cut; house-rules (3)–(5) moved after a new (d) ("Imagine it is after 11 and the dishes
+  have not been done. Which worlds are now in ∩f(w)?") with (e) judging them. Worked box retitled
+  "Best worlds", last step reworded; framing paragraph after the definitions cut; exercise labels
+  dropped (Exercise 1 … 6); drawing task (e) now adds ¬R and recalculates (18)–(22); f, g
+  "Inserted by context or by an explicit 'in view of' clause"; tree exercise heading cut.

@@ -111,14 +111,13 @@
       <rect class="on" x="260" y="398" width="80" height="64" rx="32"/><text class="ot" x="300" y="442">q</text>
       <rect class="on" x="464" y="398" width="80" height="64" rx="32"/><text class="ot" x="504" y="442">r</text>
       </svg>
-      <p><span class="runin">Model.</span> Five worlds in ∩<i>f</i>(<i>w</i>):</p>
       <table class="rec">
         <tr><th></th><th>no shoes indoors</th><th>dishes done</th><th>quiet after eleven</th></tr>
-        <tr><td><i>w</i><sub>1</sub></td><td>✓</td><td>✓</td><td>✗</td></tr>
-        <tr><td><i>w</i><sub>2</sub></td><td>✗</td><td>✓</td><td>✓</td></tr>
-        <tr><td><i>w</i><sub>3</sub></td><td>✓</td><td>✗</td><td>✓</td></tr>
-        <tr><td><i>w</i><sub>4</sub></td><td>✓</td><td>✗</td><td>✗</td></tr>
-        <tr><td><i>w</i><sub>5</sub></td><td>✗</td><td>✗</td><td>✗</td></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>5</sub></td><td>F</td><td>F</td><td>F</td></tr>
       </table>
       <p><span class="runin">Exercise 1.</span></p>
       <div class="tasks">
@@ -129,13 +128,17 @@
         <div class="task"><span>(c)</span><span>Find two worlds where neither is better than the other.</span></div>
         <div class="lines"><span></span></div>
       </div>
+      <div class="tasks">
+        <div class="task"><span>(d)</span><span>Imagine it is after 11 and the dishes have not been done. Which worlds are now in ∩<i>f</i>(<i>w</i>)?</span></div>
+        <div class="lines"><span></span></div>
+      </div>
       <ol class="exs">
-        <li><span>(3)</span><span><span class="ctx">[it is after eleven, and the dishes have not been done]</span> <span class="s">You have to be quiet.</span></span></li>
+        <li><span>(3)</span><span class="s">You have to be quiet.</span></li>
         <li><span>(4)</span><span class="s">You must take your shoes off.</span></li>
         <li><span>(5)</span><span class="s">You can make some noise.</span></li>
       </ol>
       <div class="tasks">
-        <div class="task"><span>(d)</span><span>Now the facts rule out <i>w</i><sub>1</sub> and <i>w</i><sub>2</sub>, where the dishes are done: ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>}. Which world is best? Are (3), (4) and (5) true?</span></div>
+        <div class="task"><span>(e)</span><span>Which world is now best? Which of (3), (4) and (5) are true, and which are false?</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
@@ -162,19 +165,18 @@
         <div class="d"><span class="t"><i>might</i> φ</span><span class="g">True iff φ is true in some best world.</span></div>
         <div class="d"><span class="t">Empty ordering source</span><span class="g"><i>g</i>(<i>w</i>) = ∅. No world is better than another, so every world in ∩<i>f</i>(<i>w</i>) is best. Equivalent to no ordering source. Note that this predicts no gradability.</span></div>
       </div>
-      <p>This keeps modal force from before, universal or existential, but replaces “all accessible worlds” with “all best accessible worlds”. The choice of <i>f</i> and <i>g</i> is what yields deontic vs. epistemic vs. teleological readings, without building them in as lexical ambiguities of the modal.</p>
       <div class="proc">
-        <div class="sc proc-head">A small worked example</div>
+        <div class="sc proc-head">Best worlds</div>
         <ol class="steps">
           <li>Let <i>p</i> = Howard pays a fine.</li>
           <li>The modal base <i>f</i>(<i>w</i>) encodes the circumstances: Howard returned the book late. So every world in ∩<i>f</i>(<i>w</i>) is a late-return world.</li>
           <li>The ordering source <i>g</i>(<i>w</i>) encodes the library’s rules: no book is returned late; anyone who returns a book late pays a fine.</li>
           <li>No world in ∩<i>f</i>(<i>w</i>) keeps the first rule. The best are those that keep the second: Howard pays.</li>
-          <li>(6) is true iff Howard pays in all the best worlds. It is.</li>
+          <li>(6) is true iff Howard pays the fine in all of the best worlds (the top ranked worlds that are compatible with the modal base). Which it is.</li>
         </ol>
       </div>
       <p><span class="runin">Model.</span> Three worlds: at <i>w</i><sub>0</sub> Howard returns the book on time; at <i>w</i><sub>1</sub> he returns it late and pays the fine; at <i>w</i><sub>2</sub> he returns it late and does not pay. The facts: ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. <i>g</i>(<i>w</i>) = {no book is returned late, anyone who returns a book late pays a fine}.</p>
-      <p><span class="runin">Exercise 2 (compute Best).</span></p>
+      <p><span class="runin">Exercise 2.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Which rules does each world in ∩<i>f</i>(<i>w</i>) satisfy? Which world is best?</span></div>
         <div class="lines"><span></span></div>
@@ -204,7 +206,7 @@
         <li><span>(12)</span><span><span class="s">It must be the case that if Mary does not rob John, she is not punished.</span><span class="fr">□(¬<i>r</i> → ¬<i>q</i>)</span></span></li>
       </ol>
       <p><i>r</i>: Mary robs John. <i>q</i>: Mary is punished.</p>
-      <p><span class="runin">Exercise 3 (Chisholm).</span></p>
+      <p><span class="runin">Exercise 3.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Use (10) and (11) to derive □<i>q</i>, and (9) and (12) to derive □¬<i>q</i>. Why is that a problem?</span></div>
         <div class="lines"><span></span><span></span></div>
@@ -257,7 +259,7 @@
         <li><span>(16)</span><span><span class="ctx">(To catch the 7am train,)</span> <span class="s">you have to leave now.</span></span></li>
         <li><span>(17)</span><span><span class="ctx">(To get to Harvard Square from MIT cheaply and safely,)</span> <span class="s">you ought to take the Red Line.</span></span></li>
       </ol>
-      <p><span class="runin">Exercise 4 (identify <i>f</i> and <i>g</i>).</span> For each of (13) to (17), give the force (necessity or possibility), a plausible modal base and a plausible ordering source.</p>
+      <p><span class="runin">Exercise 4.</span> For each of (13) to (17), give the force (necessity or possibility), a plausible modal base and a plausible ordering source.</p>
       <table class="rec fill wide">
         <tr><th></th><th>Force</th><th>Modal base</th><th>Ordering source</th></tr>
         <tr><td>(13)</td><td></td><td></td><td></td></tr>
@@ -266,7 +268,7 @@
         <tr><td>(16)</td><td></td><td></td><td></td></tr>
         <tr><td>(17)</td><td></td><td></td><td></td></tr>
       </table>
-      <p><span class="runin">Exercise 5 (draw the model).</span> A doctor’s guidelines. Four atoms: <i>I</i>, you have an infection; <i>A</i>, you take antibacterials; <i>R</i>, you are at risk of flu; <i>J</i>, you get a flu jab. Six worlds:</p>
+      <p><span class="runin">Exercise 5.</span> A doctor’s guidelines. Four atoms: <i>I</i>, you have an infection; <i>A</i>, you take antibacterials; <i>R</i>, you are at risk of flu; <i>J</i>, you get a flu jab. Six worlds:</p>
       <svg class="wpic" viewBox="0 0 1000 400" role="img" aria-label="Six worlds in two rows, each labelled with which of I, A, R and J hold: w1 I A R J; w2 I A R not-J; w3 I not-A R J; w4 I A not-R not-J; w5 I not-A not-R not-J; w6 not-I not-A R J.">
       <rect class="wr" x="10" y="10" width="980" height="380" rx="22"/><text class="wl" x="36" y="50">W</text>
       <circle class="wd" cx="170" cy="110" r="9"/><text class="wn" x="170" y="86"><tspan>w</tspan><tspan class="sb" dy="8">1</tspan></text><text class="wa" x="170" y="152">I, A, R, J</text>
@@ -292,7 +294,7 @@
       <div class="tasks">
         <div class="task"><span>(d)</span><span>Which of (18) to (22) are true in this model? For (22), remember what an <i>if</i>-clause does.</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(e)</span><span>The doctor learns that you are at risk of flu: <i>R</i> is added to <i>f</i>(<i>w</i>). Which answers change?</span></div>
+        <div class="task"><span>(e)</span><span>The doctor learns that you are not at risk of flu: ¬<i>R</i> is added to <i>f</i>(<i>w</i>). Recalculate the truth of (18) to (22).</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
@@ -332,15 +334,15 @@
       <p><span class="runin">Model.</span> Mary is not at the party yet. <i>f</i>(<i>w</i>): she is not here, so something has kept her away. Six worlds in ∩<i>f</i>(<i>w</i>):</p>
       <table class="rec">
         <tr><th></th><th>Mary is lost</th><th>Mary doesn’t want to come</th><th>Mary is stuck in traffic</th></tr>
-        <tr><td><i>w</i><sub>1</sub></td><td>✗</td><td>✗</td><td>✓</td></tr>
-        <tr><td><i>w</i><sub>2</sub></td><td>✓</td><td>✗</td><td>✗</td></tr>
-        <tr><td><i>w</i><sub>3</sub></td><td>✗</td><td>✓</td><td>✗</td></tr>
-        <tr><td><i>w</i><sub>4</sub></td><td>✓</td><td>✗</td><td>✓</td></tr>
-        <tr><td><i>w</i><sub>5</sub></td><td>✗</td><td>✓</td><td>✓</td></tr>
-        <tr><td><i>w</i><sub>6</sub></td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>F</td><td>T</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>5</sub></td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>6</sub></td><td>T</td><td>T</td><td>T</td></tr>
       </table>
       <p><i>g</i>(<i>w</i>), stereotypical expectations: Mary is not lost (she knows the way); Mary wants to come (she likes parties); Mary is stuck in traffic (it is rush hour).</p>
-      <p><span class="runin">Exercise 6 (compute the grades).</span></p>
+      <p><span class="runin">Exercise 6.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Which expectations does each world satisfy? Which world is best? Draw the ordering.</span></div>
         <div class="draw"></div>
@@ -379,7 +381,7 @@
         <div class="sc">Lexical entries</div>
         <div class="d"><span class="t"><i>must</i></span><span class="g">λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i></span></div>
         <div class="d"><span class="t"><i>might</i></span><span class="g">λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</span></div>
-        <div class="d"><span class="t"><i>f</i>, <i>g</i></span><span class="g">Silent, like pronouns: the context supplies them.</span></div>
+        <div class="d"><span class="t"><i>f</i>, <i>g</i></span><span class="g">Inserted by context or by an explicit “in view of” clause.</span></div>
         <div class="d"><span class="t">IFA</span><span class="g">When a word needs a proposition, give it the intension of its sister: λ<i>w</i>′. ⟦γ⟧<sup><i>w</i>′</sup>.</span></div>
       </div>
       <div class="proc">
@@ -408,7 +410,6 @@
         <tr><td>1</td><td>IFA: 1 iff Mary leaves in some best world</td></tr>
       </table>
       </div>
-      <p><span class="runin">Exercise 7 (compose in a tree).</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Fill in the table for (33), with the same tree and <i>must</i> for <i>might</i>.</span></div>
       </div>
