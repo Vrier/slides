@@ -1127,3 +1127,9 @@ what the next session must know)*
   "Best worlds", last step reworded; framing paragraph after the definitions cut; exercise labels
   dropped (Exercise 1 … 6); drawing task (e) now adds ¬R and recalculates (18)–(22); f, g
   "Inserted by context or by an explicit 'in view of' clause"; tree exercise heading cut.
+- **2026-09-30: week 3 Thursday handout, empty ordering sources.** Block 1 gains a subsection after
+  the Howard box: (9) *We all must die* and (10) *Water must boil at 100 °C at sea level* (physical
+  necessity), (11) *This car can reach 200 km an hour* and (12) *Avocado trees can grow there*
+  (ability/disposition), (13) *Jo must have locked them* (strict deduction), each walked through as
+  circumstantial or epistemic with no ideals; no ranking so no grades; contrast (14) the doctor's
+  *You must have the flu* (stereotypical). Later examples renumbered, (1) to (39); 10 pages.
