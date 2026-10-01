@@ -1133,3 +1133,9 @@ what the next session must know)*
   (ability/disposition), (13) *Jo must have locked them* (strict deduction), each walked through as
   circumstantial or epistemic with no ideals; no ranking so no grades; contrast (14) the doctor's
   *You must have the flu* (stereotypical). Later examples renumbered, (1) to (39); 10 pages.
+- **2026-09-30: week 3 Thursday handout, pagination.** Still 10 pages, with less spill: blocks 0–4
+  each start a fresh page (block 5 follows Exercise 6; What you need to know follows block 5);
+  boxes, definition strips, example lists, tables and each task with its ruled lines no longer
+  split; run-in leads stay with what follows; Exercise 5's picture, f/g line and tasks (a)–(c)
+  kept together; What you need to know set in two compact columns; trees at 66% width and
+  drawing boxes 26 mm. Every exercise now sits on a single page.

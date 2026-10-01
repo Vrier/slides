@@ -44,6 +44,30 @@
   .wpic .wn .sb { font-style:normal; font-size:20px; }
   .wpic .wa { font-style:italic; font-size:28px; text-anchor:middle; fill:#111; }
   .exs .fr { float:right; font-style:normal; margin-left:14pt; }
+  @media print {
+    .proc, .defs { break-inside:avoid !important; page-break-inside:avoid !important; }
+    ol.exs { break-inside:avoid; page-break-inside:avoid; }
+    table.rec { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:avoid; page-break-after:avoid; }
+    .tasks .task, .tasks .lines, .tasks .draw { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(+ table.rec), .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ .wpic), .body > p:has(+ .lat) { break-after:avoid; page-break-after:avoid; }
+    .body > ol.exs:has(+ .tasks) { break-after:avoid; page-break-after:avoid; }
+    .sec + .sec { break-before:page !important; page-break-before:always !important; margin-top:0; }
+    .sec + .sec.wyntk { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .sec + .sec.flow { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .tfig { width:66% !important; }
+  }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .wyntk .steps li { font-size:9.6pt; line-height:1.28; margin-bottom:1.5pt; }
+  .wyntk h2 { margin-bottom:4pt; }
+  .sec.wyntk { margin-top:8pt !important; margin-bottom:0 !important; padding-bottom:0 !important; border-bottom:none; }
+  @media print { html, body { height:auto !important; } .sheet { padding-bottom:0 !important; } }
+  .wyntk .proc { margin-bottom:0; } .wyntk .wcols { margin-bottom:0; } .wyntk .body > :last-child { margin-bottom:0; }
+  .wyntk .steps li { font-size:9.4pt; line-height:1.24; margin-bottom:1pt; }
+  @media print {
+    .tasks .draw { height:26mm !important; }
+  }
 </style>
 </head>
 <body>
@@ -289,6 +313,7 @@
         <tr><td>(22)</td><td></td><td></td><td></td></tr>
         <tr><td>(23)</td><td></td><td></td><td></td></tr>
       </table>
+      <div class="treebox">
       <p><span class="runin">Exercise 5.</span> A doctor’s guidelines. Four atoms: <i>I</i>, you have an infection; <i>A</i>, you take antibacterials; <i>R</i>, you are at risk of flu; <i>J</i>, you get a flu jab. Six worlds:</p>
       <svg class="wpic" viewBox="0 0 1000 400" role="img" aria-label="Six worlds in two rows, each labelled with which of I, A, R and J hold: w1 I A R J; w2 I A R not-J; w3 I not-A R J; w4 I A not-R not-J; w5 I not-A not-R not-J; w6 not-I not-A R J.">
       <rect class="wr" x="10" y="10" width="980" height="380" rx="22"/><text class="wl" x="36" y="50">W</text>
@@ -304,6 +329,7 @@
         <div class="task"><span>(a)</span><span>On the picture, circle the worlds in ∩<i>f</i>(<i>w</i>).</span></div>
         <div class="task"><span>(b)</span><span>For each rule in <i>g</i>(<i>w</i>), mark the worlds in ∩<i>f</i>(<i>w</i>) that keep it.</span></div>
         <div class="task"><span>(c)</span><span>Mark the best worlds with a star.</span></div>
+      </div>
       </div>
       <ol class="exs">
         <li><span>(24)</span><span class="s">You must take antibacterials.</span></li>
@@ -390,7 +416,7 @@
   </div>
 
   <!-- ══ 5 ══ -->
-  <div class="sec">
+  <div class="sec flow">
     <div class="num">5</div>
     <div class="body">
       <h2>Modals in a tree</h2>
@@ -456,31 +482,33 @@
   </div>
 
   <!-- ══ 6 ══ -->
-  <div class="sec">
+  <div class="sec wyntk">
     <div class="num">6</div>
     <div class="body">
       <h2>What you need to know</h2>
+      <div class="wcols">
       <div class="proc">
         <div class="sc proc-head">Key notions</div>
         <ol class="steps">
-          <li>Conversational backgrounds: modal base <i>f</i> and ordering source <i>g</i>.</li>
-          <li>Epistemic and circumstantial modal bases; deontic, bouletic, teleological and stereotypical ordering sources.</li>
+          <li>Modal base <i>f</i>; ordering source <i>g</i>.</li>
+          <li>Kinds of modal base and ordering source.</li>
           <li>Best worlds, Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)).</li>
           <li>Chisholm’s paradox; graded modality.</li>
-          <li>Lexical entries for <i>must</i> and <i>might</i>; IFA.</li>
+          <li>Entries for <i>must</i> and <i>might</i>; IFA.</li>
         </ol>
       </div>
       <div class="proc">
         <div class="sc proc-head">Skills</div>
         <ol class="steps">
-          <li>Rank worlds by a set of ideals, and find the best ones.</li>
-          <li>Draw ∩<i>f</i>(<i>w</i>) and the best worlds from a definition of <i>f</i> and <i>g</i>.</li>
-          <li>Given a model, decide whether a modal sentence is true against the best worlds.</li>
-          <li>Describe a plausible modal base and ordering source for a modal in context.</li>
-          <li>Explain how Kratzer’s system avoids Chisholm’s paradox.</li>
-          <li>Compute must, might, slight possibility and probability in a small model.</li>
-          <li>Compute a modal sentence node by node in a tree.</li>
+          <li>Rank worlds by ideals; find the best.</li>
+          <li>Draw ∩<i>f</i>(<i>w</i>) and the best worlds from <i>f</i> and <i>g</i>.</li>
+          <li>Judge modal sentences against the best worlds.</li>
+          <li>Give <i>f</i> and <i>g</i> for a modal in context.</li>
+          <li>Explain how Kratzer avoids Chisholm’s paradox.</li>
+          <li>Compute grades of possibility in a small model.</li>
+          <li>Compute a modal sentence in a tree.</li>
         </ol>
+      </div>
       </div>
     </div>
     <div class="note"></div>
