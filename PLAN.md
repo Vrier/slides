@@ -1108,3 +1108,16 @@ what the next session must know)*
   ordering source. (Best = {w1}: 22 and 24 true, 23 and 25 false; with g empty 22 false, 23 and
   25 true.) Later examples renumbered, (1) to (42); exercises 6–8 renumbered; Skills gains a
   drawing line. 10 pages.
+- **2026-09-30: week 3 Thursday handout, Thomas's round of edits.** Block 0 "Ordering Semantics",
+  opening "Modal bases. … Gradability (and Chisholm's paradox, a.o.) demonstrate that we need
+  something more than this. Kratzer proposes ordering semantics to solve this."; Conversational
+  background added to the first definitions; lattice intro line and the "rank the worlds" label
+  cut. Empty ordering source: "Equivalent to no ordering source. Note that this predicts no
+  gradability." "This keeps modal force from before". Chisholm: translations printed beside
+  (9)–(12) (done in lecture), translate task cut. Hydrangea/flu data and the weak-must note cut.
+  Drawing exercise rebuilt as a deontic doctor's-guidelines model (I infection, A antibacterials,
+  R at risk of flu, J flu jab; f = {I}; g = {I → A, R → J}; best w1, w4) with (18)–(22) and an
+  "R learned" task. Force and flavour block removed. Graded modality now computed on a
+  stereotypical model (why Mary isn't at the party; best w1), with finite definitions of slight
+  possibility, more likely and probable, and (27)–(31). Attitude verbs removed from the tree
+  block ("Modals in a tree"). Six blocks plus What you need to know; examples (1) to (33); 9 pages.
