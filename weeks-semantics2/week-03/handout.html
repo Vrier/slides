@@ -69,17 +69,18 @@
   <div class="sec">
     <div class="num">0</div>
     <div class="body">
-      <h2>Ordering sources</h2>
+      <h2>Kratzer’s second move: ordering semantics</h2>
+      <p><b>Monday: Kratzer’s first move.</b> Modals are not lexically ambiguous. Their flavour comes from a contextually supplied conversational background <i>f</i>, and <i>must</i> and <i>might</i> quantify over the worlds in ∩<i>f</i>(<i>w</i>). <b>This sheet: Kratzer’s second move.</b> A second background ranks those worlds.</p>
       <ol class="exs">
         <li><span>(1)</span><span><span class="ctx">[the speaker has done wrong before and will again]</span> <span class="s">I must not throw my coffee cup at the student outside my office.</span></span></li>
         <li><span>(2)</span><span class="s">I must throw my coffee cup at the student outside my office.</span></li>
       </ol>
-      <p>Put the moral principles in <i>f</i>(<i>w</i>). Wrongs are already done, so no world obeys them all: ∩<i>f</i>(<i>w</i>) = ∅, and (1) and (2) both come out true. Kratzer’s fix: keep the facts in <i>f</i>(<i>w</i>) and use the principles to rank the worlds.</p>
+      <p>A single accessibility relation makes a binary cut: accessible vs. inaccessible worlds. Put the moral principles in <i>f</i>(<i>w</i>): wrongs are already done, so no world obeys them all, ∩<i>f</i>(<i>w</i>) = ∅, and (1) and (2) both come out true. Many modal judgements, especially deontic and teleological ones, need graded comparison among worlds. Kratzer models this with two conversational backgrounds.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Modal base</span><span class="g"><i>f</i>. Which worlds are relevant: those in ∩<i>f</i>(<i>w</i>).</span></div>
-        <div class="d"><span class="t">Ordering source</span><span class="g"><i>g</i>. <i>g</i>(<i>w</i>) is a set of ideals (rules, goals, expectations) used to rank those worlds.</span></div>
-        <div class="d"><span class="t">At least as good</span><span class="g"><i>u</i> ≤<sub><i>g</i>(<i>w</i>)</sub> <i>v</i>: <i>u</i> satisfies every ideal that <i>v</i> satisfies.</span></div>
+        <div class="d"><span class="t">Modal base</span><span class="g"><i>f</i>: which worlds are relevant. Those in ∩<i>f</i>(<i>w</i>).</span></div>
+        <div class="d"><span class="t">Ordering source</span><span class="g"><i>g</i>: which of those worlds are better in view of norms, ideals or goals. <i>g</i>(<i>w</i>) is a set of ideal propositions at <i>w</i>.</span></div>
+        <div class="d"><span class="t">At least as good</span><span class="g"><i>u</i> ≤<sub><i>g</i>(<i>w</i>)</sub> <i>v</i> iff <i>u</i> satisfies every ideal in <i>g</i>(<i>w</i>) that <i>v</i> satisfies. Intuition: <i>u</i> does at least as well by the ideals as <i>v</i>.</span></div>
         <div class="d"><span class="t">Better</span><span class="g"><i>u</i> &lt;<sub><i>g</i>(<i>w</i>)</sub> <i>v</i>: <i>u</i> is at least as good as <i>v</i>, and satisfies some ideal that <i>v</i> does not.</span></div>
       </div>
       <p>The lattice from the lecture, for three house rules in <i>g</i>(<i>w</i>): <i>p</i>, no shoes indoors; <i>q</i>, dishes done; <i>r</i>, quiet after eleven. Arrows point to better worlds.</p>
@@ -111,7 +112,7 @@
         <tr><td><i>w</i><sub>4</sub></td><td>✓</td><td>✗</td><td>✗</td></tr>
         <tr><td><i>w</i><sub>5</sub></td><td>✗</td><td>✗</td><td>✗</td></tr>
       </table>
-      <p><span class="runin">Exercise.</span></p>
+      <p><span class="runin">Exercise 1 (rank the worlds).</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Which worlds are best, with no world better than them?</span></div>
         <div class="lines"><span></span></div>
@@ -145,7 +146,6 @@
         <li><span>(7)</span><span class="s">Howard may leave without paying.</span></li>
         <li><span>(8)</span><span class="s">Howard has to return the book on time.</span></li>
       </ol>
-      <p>The modal base fixes that the book came back late. The library’s rules prefer worlds where no book is late, and among the rest, worlds where the fine is paid. (6) is true: Howard pays in the best worlds the facts allow.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>))</span><span class="g">The worlds in ∩<i>f</i>(<i>w</i>) that no other world in ∩<i>f</i>(<i>w</i>) is better than.</span></div>
@@ -153,8 +153,19 @@
         <div class="d"><span class="t"><i>might</i> φ</span><span class="g">True iff φ is true in some best world.</span></div>
         <div class="d"><span class="t">No ordering source</span><span class="g">No world is better than another, so every world in ∩<i>f</i>(<i>w</i>) is best: the week 2 system.</span></div>
       </div>
+      <p>This keeps the modal force from week 2, universal or existential, but replaces “all accessible worlds” with “all best accessible worlds”. The choice of <i>f</i> and <i>g</i> is what yields deontic vs. epistemic vs. teleological readings, without building them in as lexical ambiguities of the modal.</p>
+      <div class="proc">
+        <div class="sc proc-head">A small worked example</div>
+        <ol class="steps">
+          <li>Let <i>p</i> = Howard pays a fine.</li>
+          <li>The modal base <i>f</i>(<i>w</i>) encodes the circumstances: Howard returned the book late. So every world in ∩<i>f</i>(<i>w</i>) is a late-return world.</li>
+          <li>The ordering source <i>g</i>(<i>w</i>) encodes the library’s rules: no book is returned late; anyone who returns a book late pays a fine.</li>
+          <li>No world in ∩<i>f</i>(<i>w</i>) keeps the first rule. The best are those that keep the second: Howard pays.</li>
+          <li>(6) is true iff Howard pays in all the best worlds. It is.</li>
+        </ol>
+      </div>
       <p><span class="runin">Model.</span> Three worlds: at <i>w</i><sub>0</sub> Howard returns the book on time; at <i>w</i><sub>1</sub> he returns it late and pays the fine; at <i>w</i><sub>2</sub> he returns it late and does not pay. The facts: ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. <i>g</i>(<i>w</i>) = {no book is returned late, anyone who returns a book late pays a fine}.</p>
-      <p><span class="runin">Exercise.</span></p>
+      <p><span class="runin">Exercise 2 (compute Best).</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Which rules does each world in ∩<i>f</i>(<i>w</i>) satisfy? Which world is best?</span></div>
         <div class="lines"><span></span></div>
@@ -177,13 +188,14 @@
     <div class="num">2</div>
     <div class="body">
       <h2>Chisholm’s paradox</h2>
+      <p>What the ordering source buys: obligations for when things have already gone wrong (this block), a distinction between two kinds of background (block 3), and grades of force (block 4).</p>
       <ol class="exs">
         <li><span>(9)</span><span class="s">Mary must not rob John.</span></li>
         <li><span>(10)</span><span class="s">Mary robs John.</span></li>
         <li><span>(11)</span><span class="s">If Mary robs John, she must be punished.</span></li>
         <li><span>(12)</span><span class="s">It must be the case that if Mary does not rob John, she is not punished.</span></li>
       </ol>
-      <p><span class="runin">Exercise.</span> Let <i>r</i> be <i>Mary robs John</i> and <i>q</i> be <i>Mary is punished</i>.</p>
+      <p><span class="runin">Exercise 3 (Chisholm).</span> Let <i>r</i> be <i>Mary robs John</i> and <i>q</i> be <i>Mary is punished</i>.</p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Translate each of (9) to (12) into modal logic.</span></div>
         <div class="lines"><span></span><span></span></div>
@@ -245,7 +257,7 @@
         <li><span>(20)</span><span><span class="ctx">(To catch the 7am train,)</span> <span class="s">you have to leave now.</span></span></li>
         <li><span>(21)</span><span><span class="ctx">(To get to Harvard Square from MIT cheaply and safely,)</span> <span class="s">you ought to take the Red Line.</span></span></li>
       </ol>
-      <p><span class="runin">Exercise.</span> For each of (17) to (21), give the force (necessity or possibility), a plausible modal base and a plausible ordering source.</p>
+      <p><span class="runin">Exercise 4 (identify <i>f</i> and <i>g</i>).</span> For each of (17) to (21), give the force (necessity or possibility), a plausible modal base and a plausible ordering source.</p>
       <table class="rec fill wide">
         <tr><th></th><th>Force</th><th>Modal base</th><th>Ordering source</th></tr>
         <tr><td>(17)</td><td></td><td></td><td></td></tr>
@@ -284,7 +296,7 @@
         <tr><td>slight possibility</td><td class="it">there is a slight possibility that</td></tr>
         <tr><td>better possibility</td><td class="it">it is more likely that … than that …</td></tr>
       </table>
-      <p><span class="runin">Exercise.</span></p>
+      <p><span class="runin">Exercise 5 (grades of force).</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>What do (22) and (23) show about <i>probable</i> and <i>must</i>?</span></div>
         <div class="lines"><span></span></div>
@@ -319,7 +331,7 @@
         <li><span>(34)</span><span><span class="ctx">[His car isn’t there.]</span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘Maybe he’s already gone.’</span></span></li>
       </ol>
       <p>St’át’imcets: the same epistemic <i>k’a</i> in both.</p>
-      <p><span class="runin">Exercise.</span></p>
+      <p><span class="runin">Exercise 6 (force and flavour).</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Place each of (27) to (32) in the grid by its force and flavour.</span></div>
       </div>
@@ -384,7 +396,7 @@
         <tr><td>1</td><td>IFA: 1 iff Mary leaves in some best world</td></tr>
       </table>
       </div>
-      <p><span class="runin">Exercise.</span></p>
+      <p><span class="runin">Exercise 7 (compose in a tree).</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Fill in the table for (36), with the same tree and <i>must</i> for <i>might</i>.</span></div>
       </div>
@@ -439,12 +451,22 @@
     <div class="body">
       <h2>What you need to know</h2>
       <div class="proc">
-        <div class="sc proc-head">After this week you can</div>
+        <div class="sc proc-head">Key notions</div>
+        <ol class="steps">
+          <li>Kratzer’s two moves: relative modality, and ordering semantics.</li>
+          <li>Modal base <i>f</i> and ordering source <i>g</i>; epistemic and circumstantial modal bases; deontic, bouletic, teleological and stereotypical ordering sources.</li>
+          <li>Best worlds, Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)).</li>
+          <li>Chisholm’s paradox; graded modality; force and flavour.</li>
+          <li>Lexical entries for <i>must</i>, <i>might</i>, <i>believe</i> and <i>know</i>; IFA.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
         <ol class="steps">
           <li>Rank worlds by a set of ideals, and find the best ones.</li>
-          <li>Evaluate <i>must</i> and <i>might</i> against the best worlds in a small model.</li>
+          <li>Given a model, decide whether a modal sentence is true against the best worlds.</li>
+          <li>Describe a plausible modal base and ordering source for a modal in context.</li>
           <li>Explain how Kratzer’s system avoids Chisholm’s paradox.</li>
-          <li>Give a plausible modal base and ordering source for a modal in context.</li>
           <li>Say whether a language’s modals fix force or flavour.</li>
           <li>Compute a modal or attitude sentence node by node in a tree.</li>
         </ol>

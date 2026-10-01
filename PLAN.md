@@ -1090,3 +1090,13 @@ what the next session must know)*
 - **2026-09-30: week 3 Thursday handout, lattice (Thomas).** The ordering lattice from the
   lecture's Ordering source slide (Portner's Figure 3.2: pqr; pq, pr, qr; p, q, r) added to block 0
   in black and white, keyed to the house rules before the five-world model. 9 pages.
+- **2026-09-30: week 3 Thursday handout reframed after Thomas's Semantics III "Kratzerian Modals".**
+  Opens with "Monday: Kratzer's first move / This sheet: Kratzer's second move"; block 0 retitled
+  "Kratzer's second move: ordering semantics" and uses last year's wording (binary cut vs graded
+  comparison; modal base = which worlds are relevant, ordering source = which are better in view
+  of norms, ideals or goals; an "Intuition:" gloss on ≤). Block 1 adds last year's two framing
+  sentences (all best accessible worlds; f and g yield the flavours without lexical ambiguity) and
+  a "small worked example" in last year's format, on Howard. Block 2 opens with what the ordering
+  source buys (blocks 2–4). Exercises numbered and named as last year: Exercise 1 (rank the worlds)
+  to Exercise 7 (compose in a tree). What you need to know split into Key notions and Skills.
+  9 pages.
