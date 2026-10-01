@@ -36,6 +36,13 @@
   .lat .on { fill:#fff; stroke:#111; stroke-width:2.2; }
   .lat .on.top { fill:#e6e6e6; }
   .lat .ot { font-style:italic; font-size:34px; text-anchor:middle; fill:#111; }
+  .wpic { width:100%; height:auto; display:block; margin:6pt 0 8pt; }
+  .wpic .wr { fill:none; stroke:#111; stroke-width:2; }
+  .wpic .wl { font-style:italic; font-size:30px; fill:#111; }
+  .wpic .wd { fill:#111; }
+  .wpic .wn { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .wpic .wn .sb { font-style:normal; font-size:20px; }
+  .wpic .wa { font-style:italic; font-size:28px; text-anchor:middle; fill:#111; }
 </style>
 </head>
 <body>
@@ -266,6 +273,34 @@
         <tr><td>(20)</td><td></td><td></td><td></td></tr>
         <tr><td>(21)</td><td></td><td></td><td></td></tr>
       </table>
+      <p><span class="runin">Exercise 5 (draw the model).</span> A doctor’s reasoning, with three atoms: <i>T</i>, you have a temperature; <i>F</i>, you have the flu; <i>C</i>, you have a cold. Six worlds:</p>
+      <svg class="wpic" viewBox="0 0 1000 400" role="img" aria-label="Six worlds in two rows, each labelled with which of T, F and C hold there: w1 T F not-C; w2 T not-F C; w3 T F C; w4 T not-F not-C; w5 not-T F not-C; w6 not-T not-F C.">
+      <rect class="wr" x="10" y="10" width="980" height="380" rx="22"/><text class="wl" x="36" y="50">W</text>
+      <circle class="wd" cx="170" cy="110" r="9"/><text class="wn" x="170" y="86"><tspan>w</tspan><tspan class="sb" dy="8">1</tspan></text><text class="wa" x="170" y="152">T, F, ¬C</text>
+      <circle class="wd" cx="500" cy="110" r="9"/><text class="wn" x="500" y="86"><tspan>w</tspan><tspan class="sb" dy="8">2</tspan></text><text class="wa" x="500" y="152">T, ¬F, C</text>
+      <circle class="wd" cx="830" cy="110" r="9"/><text class="wn" x="830" y="86"><tspan>w</tspan><tspan class="sb" dy="8">3</tspan></text><text class="wa" x="830" y="152">T, F, C</text>
+      <circle class="wd" cx="170" cy="285" r="9"/><text class="wn" x="170" y="261"><tspan>w</tspan><tspan class="sb" dy="8">4</tspan></text><text class="wa" x="170" y="327">T, ¬F, ¬C</text>
+      <circle class="wd" cx="500" cy="285" r="9"/><text class="wn" x="500" y="261"><tspan>w</tspan><tspan class="sb" dy="8">5</tspan></text><text class="wa" x="500" y="327">¬T, F, ¬C</text>
+      <circle class="wd" cx="830" cy="285" r="9"/><text class="wn" x="830" y="261"><tspan>w</tspan><tspan class="sb" dy="8">6</tspan></text><text class="wa" x="830" y="327">¬T, ¬F, C</text>
+      </svg>
+      <p><i>f</i>(<i>w</i>) = {<i>T</i>}: what the doctor knows. <i>g</i>(<i>w</i>) = {<i>T</i> → <i>F</i>, ¬(<i>F</i> ∧ <i>C</i>)}: a temperature usually means flu, and people rarely have both.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>On the picture, circle the worlds in ∩<i>f</i>(<i>w</i>).</span></div>
+        <div class="task"><span>(b)</span><span>For each ideal in <i>g</i>(<i>w</i>), mark the worlds in ∩<i>f</i>(<i>w</i>) where it holds.</span></div>
+        <div class="task"><span>(c)</span><span>Mark the best worlds with a star.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(22)</span><span class="s">You must have the flu.</span></li>
+        <li><span>(23)</span><span class="s">You might have a cold.</span></li>
+        <li><span>(24)</span><span class="s">You must have a temperature.</span></li>
+        <li><span>(25)</span><span class="s">You might not have the flu.</span></li>
+      </ol>
+      <div class="tasks">
+        <div class="task"><span>(d)</span><span>Which of (22) to (25) are true in this model?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(e)</span><span>Now drop the ordering source. Which answers change, and why?</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
     </div>
     <div class="note">
       <p><b>Kratzer 1991.</b> Modality. In A. von Stechow &amp; D. Wunderlich (eds.), <i>Semantik/Semantics.</i> de Gruyter.</p>
@@ -280,11 +315,11 @@
     <div class="body">
       <h2>Graded modality</h2>
       <ol class="exs">
-        <li><span>(22)</span><span class="s">It is probable that Mary is lost, but she might not be.</span></li>
-        <li><span>(23)</span><span><span class="ctx">#</span> <span class="s">Mary must be lost, but she might not be.</span></span></li>
-        <li><span>(24)</span><span class="s">There is a slight possibility that Mary is lost.</span></li>
-        <li><span>(25)</span><span class="s">There is a good possibility that Mary is lost.</span></li>
-        <li><span>(26)</span><span class="s">It is more likely that Mary doesn’t want to come to your party than that she is lost.</span></li>
+        <li><span>(26)</span><span class="s">It is probable that Mary is lost, but she might not be.</span></li>
+        <li><span>(27)</span><span><span class="ctx">#</span> <span class="s">Mary must be lost, but she might not be.</span></span></li>
+        <li><span>(28)</span><span class="s">There is a slight possibility that Mary is lost.</span></li>
+        <li><span>(29)</span><span class="s">There is a good possibility that Mary is lost.</span></li>
+        <li><span>(30)</span><span class="s">It is more likely that Mary doesn’t want to come to your party than that she is lost.</span></li>
       </ol>
       <p>With only ∀ and ∃ over one set of worlds there are just two forces. Kratzer (1981, 1991) uses the ordering to define more.</p>
       <table class="rec">
@@ -296,13 +331,13 @@
         <tr><td>slight possibility</td><td class="it">there is a slight possibility that</td></tr>
         <tr><td>better possibility</td><td class="it">it is more likely that … than that …</td></tr>
       </table>
-      <p><span class="runin">Exercise 5 (grades of force).</span></p>
+      <p><span class="runin">Exercise 6 (grades of force).</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>What do (22) and (23) show about <i>probable</i> and <i>must</i>?</span></div>
+        <div class="task"><span>(a)</span><span>What do (26) and (27) show about <i>probable</i> and <i>must</i>?</span></div>
         <div class="lines"><span></span></div>
-        <div class="task"><span>(b)</span><span>What does (24) suggest about whether Mary is lost? Does (25) suggest the same?</span></div>
+        <div class="task"><span>(b)</span><span>What does (28) suggest about whether Mary is lost? Does (29) suggest the same?</span></div>
         <div class="lines"><span></span></div>
-        <div class="task"><span>(c)</span><span>How is (26) different from the others? Why can’t ∀ and ∃ over one set of worlds express it?</span></div>
+        <div class="task"><span>(c)</span><span>How is (30) different from the others? Why can’t ∀ and ∃ over one set of worlds express it?</span></div>
         <div class="lines"><span></span></div>
       </div>
     </div>
@@ -318,22 +353,22 @@
     <div class="body">
       <h2>Force and flavour across languages</h2>
       <ol class="exs">
-        <li><span>(27)</span><span><span class="ctx">[a teacher, at the end of an exam]</span> <span class="s">You may leave now.</span></span></li>
-        <li><span>(28)</span><span><span class="ctx">[looking at the sky]</span> <span class="s">It may rain later.</span></span></li>
-        <li><span>(29)</span><span><span class="ctx">[the lights are on]</span> <span class="s">He must be home by now.</span></span></li>
-        <li><span>(30)</span><span><span class="ctx">[a parent to a teenager]</span> <span class="s">You must be home by ten.</span></span></li>
-        <li><span>(31)</span><span><span class="ctx">[a teacher]</span> <span class="s">You can go now.</span></span></li>
-        <li><span>(32)</span><span class="s">This car can reach 200 km an hour.</span></li>
+        <li><span>(31)</span><span><span class="ctx">[a teacher, at the end of an exam]</span> <span class="s">You may leave now.</span></span></li>
+        <li><span>(32)</span><span><span class="ctx">[looking at the sky]</span> <span class="s">It may rain later.</span></span></li>
+        <li><span>(33)</span><span><span class="ctx">[the lights are on]</span> <span class="s">He must be home by now.</span></span></li>
+        <li><span>(34)</span><span><span class="ctx">[a parent to a teenager]</span> <span class="s">You must be home by ten.</span></span></li>
+        <li><span>(35)</span><span><span class="ctx">[a teacher]</span> <span class="s">You can go now.</span></span></li>
+        <li><span>(36)</span><span class="s">This car can reach 200 km an hour.</span></li>
       </ol>
-      <p>(27) and (28): one <i>may</i>, two flavours, the same force. In English the word fixes the force and the context supplies the flavour.</p>
+      <p>(31) and (32): one <i>may</i>, two flavours, the same force. In English the word fixes the force and the context supplies the flavour.</p>
       <ol class="exs">
-        <li><span>(33)</span><span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">tu7</span><span class="g">then</span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘He must have left by now.’</span></span></li>
-        <li><span>(34)</span><span><span class="ctx">[His car isn’t there.]</span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘Maybe he’s already gone.’</span></span></li>
+        <li><span>(37)</span><span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">tu7</span><span class="g">then</span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘He must have left by now.’</span></span></li>
+        <li><span>(38)</span><span><span class="ctx">[His car isn’t there.]</span><span class="ig"><span class="wg"><span class="o">plan</span><span class="g">already</span></span><span class="wg"><span class="o">k’a</span><span class="g"><span class="sc">infer</span></span></span><span class="wg"><span class="o">qwatsáts</span><span class="g">leave</span></span></span><span class="tr">‘Maybe he’s already gone.’</span></span></li>
       </ol>
       <p>St’át’imcets: the same epistemic <i>k’a</i> in both.</p>
-      <p><span class="runin">Exercise 6 (force and flavour).</span></p>
+      <p><span class="runin">Exercise 7 (force and flavour).</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Place each of (27) to (32) in the grid by its force and flavour.</span></div>
+        <div class="task"><span>(a)</span><span>Place each of (31) to (36) in the grid by its force and flavour.</span></div>
       </div>
       <table class="rec fill">
         <tr><th></th><th>Epistemic</th><th>Deontic</th><th>Circumstantial</th></tr>
@@ -341,12 +376,12 @@
         <tr><td>possibility</td><td></td><td></td><td></td></tr>
       </table>
       <div class="tasks">
-        <div class="task"><span>(b)</span><span>What is the force of <i>k’a</i> in (33), and in (34)? So which does <i>k’a</i> fix, force or flavour?</span></div>
+        <div class="task"><span>(b)</span><span>What is the force of <i>k’a</i> in (37), and in (38)? So which does <i>k’a</i> fix, force or flavour?</span></div>
         <div class="lines"><span></span><span></span></div>
       </div>
     </div>
     <div class="note">
-      <p><b>Rullmann, Matthewson &amp; Davis 2008.</b> Modals as distributive indefinites. <i>Natural Language Semantics</i> 16. (33) and (34) as there.</p>
+      <p><b>Rullmann, Matthewson &amp; Davis 2008.</b> Modals as distributive indefinites. <i>Natural Language Semantics</i> 16. (37) and (38) as there.</p>
     </div>
   </div>
 
@@ -356,10 +391,10 @@
     <div class="body">
       <h2>Modals and attitude verbs in a tree</h2>
       <ol class="exs">
-        <li><span>(35)</span><span class="s">Mary might leave.</span></li>
-        <li><span>(36)</span><span><span class="ctx">[in view of the rules]</span> <span class="s">Mary must leave.</span></span></li>
-        <li><span>(37)</span><span class="s">Sue believes that it is raining.</span></li>
-        <li><span>(38)</span><span class="s">Sue knows that it is raining.</span></li>
+        <li><span>(39)</span><span class="s">Mary might leave.</span></li>
+        <li><span>(40)</span><span><span class="ctx">[in view of the rules]</span> <span class="s">Mary must leave.</span></span></li>
+        <li><span>(41)</span><span class="s">Sue believes that it is raining.</span></li>
+        <li><span>(42)</span><span class="s">Sue knows that it is raining.</span></li>
       </ol>
       <div class="defs">
         <div class="sc">Lexical entries</div>
@@ -371,7 +406,7 @@
         <div class="d"><span class="t">IFA</span><span class="g">When a word needs a proposition, give it the intension of its sister: λ<i>w</i>′. ⟦γ⟧<sup><i>w</i>′</sup>.</span></div>
       </div>
       <div class="proc">
-        <div class="sc proc-head">Worked: (35)</div>
+        <div class="sc proc-head">Worked: (39)</div>
       <svg class="tfig" viewBox="0 0 1000 380" role="img" aria-label="Binary tree: S splits into [might f g] and [Mary leave]; [might f g] splits into [might f] and g; [might f] splits into might and f. Nodes numbered 1 to 7.">
       <line x1="500" y1="66" x2="300" y2="118"/>
       <line x1="500" y1="66" x2="720" y2="118"/>
@@ -396,9 +431,9 @@
         <tr><td>1</td><td>IFA: 1 iff Mary leaves in some best world</td></tr>
       </table>
       </div>
-      <p><span class="runin">Exercise 7 (compose in a tree).</span></p>
+      <p><span class="runin">Exercise 8 (compose in a tree).</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Fill in the table for (36), with the same tree and <i>must</i> for <i>might</i>.</span></div>
+        <div class="task"><span>(a)</span><span>Fill in the table for (40), with the same tree and <i>must</i> for <i>might</i>.</span></div>
       </div>
       <div class="treebox">
       <table class="rec fill wide">
@@ -411,7 +446,7 @@
       </table>
       </div>
       <div class="tasks">
-        <div class="task"><span>(b)</span><span>Fill in the table for (37).</span></div>
+        <div class="task"><span>(b)</span><span>Fill in the table for (41).</span></div>
       </div>
       <div class="treebox">
       <svg class="tfig" viewBox="0 0 1000 280" role="img" aria-label="Binary tree: S splits into Sue and VP; VP splits into believes and [that it is raining]. Nodes numbered 1 to 5.">
@@ -464,6 +499,7 @@
         <div class="sc proc-head">Skills</div>
         <ol class="steps">
           <li>Rank worlds by a set of ideals, and find the best ones.</li>
+          <li>Draw ∩<i>f</i>(<i>w</i>) and the best worlds from a definition of <i>f</i> and <i>g</i>.</li>
           <li>Given a model, decide whether a modal sentence is true against the best worlds.</li>
           <li>Describe a plausible modal base and ordering source for a modal in context.</li>
           <li>Explain how Kratzer’s system avoids Chisholm’s paradox.</li>

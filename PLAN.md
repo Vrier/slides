@@ -1100,3 +1100,11 @@ what the next session must know)*
   source buys (blocks 2–4). Exercises numbered and named as last year: Exercise 1 (rank the worlds)
   to Exercise 7 (compose in a tree). What you need to know split into Key notions and Skills.
   9 pages.
+- **2026-09-30: week 3 Thursday handout, Exercise 5 (draw the model).** End of block 3: a picture
+  of six worlds labelled with which of T (temperature), F (flu), C (cold) hold; f(w) = {T},
+  g(w) = {T → F, ¬(F ∧ C)}. Students circle ∩f(w), mark where each ideal holds, star the best
+  world, then judge (22) *You must have the flu*, (23) *You might have a cold*, (24) *You must
+  have a temperature*, (25) *You might not have the flu*, and say which answers change with no
+  ordering source. (Best = {w1}: 22 and 24 true, 23 and 25 false; with g empty 22 false, 23 and
+  25 true.) Later examples renumbered, (1) to (42); exercises 6–8 renumbered; Skills gains a
+  drawing line. 10 pages.
