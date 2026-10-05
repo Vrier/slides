@@ -929,3 +929,16 @@ what the next session must know)*
   Frame-conditions exercise removed. 8 pages. Other classic handouts keep page-per-block.
 - `npm test` green (166 files).
 
+
+### 2026-10-05 — Pragmatics II week 3 deck (Information Theory), as built 29 Sept – 1 Oct
+- `weeks-pragmatics2/week-03/deck.html` replaces the skeleton: 46 slides in four strands, ending cold on
+  Wilkins. Empirical: bits per letter, letters in binary (ASCII, Unicode 18.0), the guessing game on Genesis 1:1
+  (one lecture-PDF frame per letter; live in a browser via html.gg-live, which a PDF builder must remove),
+  Morse code, BNC letter frequencies, short words, the 100 most common words in English and Irish (BNC;
+  corpas.ie), short forms in context (Mahowald et al. 2013). Historical: Markov (with a vowel/consonant chain),
+  Shannon, Weaver, Bar-Hillel and Carnap, Chomsky. Formal: the ba/di language game (equal then unequal
+  frequencies), two lexicons, the space of syllable strings (built in ten steps), the best lexicon, logarithms,
+  probability to length, surprisal, entropy, calculating entropy, lexicon B is perfect, surprisal in context,
+  the coding theorem, other notations. Applied: optional *that* (Jaeger 2010), information rates (Coupé et al.
+  2019, drawn from the authors' data), redundancy, redundancy and entropy, Wilkins's taxonomy, his p. 415 table,
+  and the pomiferous trees. Photos in `week-03/images/` with licences in HTML comments.
