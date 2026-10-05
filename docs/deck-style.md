@@ -143,12 +143,67 @@ alternatives slide and in the sheet's notation table.
 
 ---
 
-## 9. Before it ships
+## 9. Text register (from the LI7862 week 3 and week 4 reviews)
+
+Read off Thomas's edits to the Linguistic Pragmatics week 3 deck and his review
+of week 4, October 2026. Applies to every module.
+
+**Rows.** A content row is one to three full explanatory sentences, in the
+register of a textbook paraphrase, often from a named source. No fragments, no
+telegraphic rows, no clipped lists of points. A bold lead opens a row only when it
+names a **term being defined**, a **source** (author and year) or a **title** of a
+work. A lead that is a label or subtitle ("The upshot.", "Rates.", "Why it
+matters.", "Today.", "Both.") is wrong: rewrite the row so it needs none. No bold
+inside a sentence for emphasis.
+
+**No synthesis.** No closing line, no summary row, no "lesson" or pay-off line, no
+row that restates what the slide has already shown. The slide ends on its last
+piece of content.
+
+**Question slides.** Only the data: the exchange, the sentence, the items. No
+prompt, no instruction, no source line. If a heading is needed it is a plain topic
+label ("Scales and strengthening"), never an explanation of the task. The sources
+for a question slide's examples go on the answer slide that follows.
+
+**Sources.** Every content and answer slide ends with a small source line
+(`.srcl`): author (year), venue, what was taken. Attested data carries its source;
+constructed examples are never presented as attested.
+
+**Titles and dividers.** Titles name the thing ("Russell on negation", "The
+barn"); no questions, aphorisms or wordplay, no "X in the wild". A divider is a
+plain title plus one short descriptive line, with no "and the tests that show it"
+tail.
+
+**Phrasing.** The house rules in `CLAUDE.md` hold (no em-dashes, no "X, not Y",
+no "one X, N Y", statements over questions), plus: no "rather than" contrasts, no
+stock phrases, British spelling.
+
+**Notation.** The deck's central notation is the one standard in formal
+semantics, used throughout; alternatives students will meet get the one "Other
+notations" slide (§ 8).
+
+**Pointers.** A pointer to another week is a bare week number at the end of a row.
+
+**Portraits.** Caption is name and dates only; the photo credit lives in an HTML
+comment.
+
+**Sparse slides.** Larger type and deeper rows (`roomy`) rather than empty space;
+dense slides take `dense` or `snug`. Measure every slide.
+
+**Before handing over**, sweep for: labelling leads, mid-sentence bold, summary
+lines, prompts and source lines on question slides, em-dashes, contrastive
+phrasing. Fix them without being asked.
+
+---
+
+## 10. Before it ships
 
 - [ ] Slide count fits the hour.
 - [ ] No sentence on any slide talks about the lecture, a later slide, or a later week beyond a bare week number.
 - [ ] Examples run (1) to (N) without gaps; cross-references still point at the right numbers after any cut.
 - [ ] Every question slide has its answer slide.
+- [ ] No labelling bold leads; no summary or pay-off rows; no prompts or source lines on question slides (§ 9).
+- [ ] Every content and answer slide ends with a source line.
 - [ ] Linguistic data carries a source; nothing invented stands as attested.
 - [ ] Portraits: right person, licence stated, file localised to `week-NN/images/`.
 - [ ] `TITLES` / `GROUPS` match the slides; sidebar shows the right week.

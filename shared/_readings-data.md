@@ -60,11 +60,11 @@ W9 Possible Worlds   C: Kripke 1980 Naming and Necessity (Harvard) | Cont: Menze
 W10 Presupposition   C: Stalnaker 1974 "Pragmatic presuppositions" in Munitz&Unger (NYU Press) | Cont: Schlenker 2009 Local Contexts (open) | Text: Beaver&Geurts SEP "Presupposition"
 W11 Implicature      C: Grice 1975 (pp.41–58) | Cont: Sauerland 2004 (open pdf) | Text: Levinson 1983 Pragmatics ch.3
 
-## PRAGMATICS triad (LI7862) — final picks (W1 has 2 classical)
+## PRAGMATICS triad (LI7862) — final picks (W1 and W4 have 2 classical)
 W1 Pragmatic Meaning  C1: Wittgenstein 1953 Philosophical Investigations (Anscombe trans., Blackwell) ; C2: Ayer 1936 Language, Truth and Logic (Gollancz) | Cont: Carston 2008 Synthese 165(3)321–345 | Text: Levinson 1983 ch.1
 W2 Speech Acts        C: Searle 1975 "Indirect speech acts" in Cole&Morgan SS3 pp.59–82 | Cont: Geurts 2019 Theor.Ling 45(1–2)1–30 | Text: Levinson 1983 ch.5
 W3 Implicature        C: Grice 1975 pp.41–58 | Cont: Sauerland 2004 (open) | Text: Levinson 1983 ch.3
-W4 Presupposition     C: Strawson 1950 Mind 59(235)320–344 | Cont: Schlenker 2008 Theor.Ling 34(3)157–212 | Text: Levinson 1983 ch.4
+W4 Presupposition     C: Russell 1905 Mind 14(56)479–493 ; Strawson 1950 Mind 59(235)320–344 | Text: Levinson 1983 ch.4
 W5 Common Ground&Proj C: Stalnaker 1978 pp.315–332 | Cont: Schlenker 2009 Local Contexts (open) | Text: Potts 2015 in Lappin&Fox Handbook (2nd ed.) Wiley-Blackwell
 W6 Information        C: Shannon 1948 BSTJ 27(3)379–423 | Cont: Piantadosi 2014 Psychon Bull Rev 21(5)1112–1130 | Text: Jurafsky&Martin SLP3 "N-gram language models" (online)
 W7 Politeness         C: Lakoff 1973 CLS9 pp.292–305 | Cont: Terkourafi 2005 JPR 1(2)237–262 | Text: Grundy 2008 Doing Pragmatics 3e (politeness chap.) Hodder

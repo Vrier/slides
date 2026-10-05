@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 4 · Presupposition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-burgundy.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* three-column fields */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  .cols3 .cfoot{ margin-top:12px; font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .cols3 .cfoot b{ color:var(--tcd-blue); font-weight:600; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--tcd-ink); line-height:1.08; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ question / answer slide furniture ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
+
+  /* ============ conversations (paired sentences, Q/A dialogues) ============ */
+  .convo{ margin:6px 0; }
+  .convo .cv{ display:grid; grid-template-columns:190px 1fr; gap:0 26px; padding:11px 0; align-items:baseline; }
+  .convo .cv + .cv{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 12%, #fff); }
+  .convo .who{ font-family:var(--mono); font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .convo .say{ font-family:var(--serif); font-style:italic; font-size:33px; color:var(--tcd-ink); line-height:1.25; }
+  .convo.big .say{ font-size:42px; }
+  .convo.big .cv{ padding:14px 0; }
+
+  /* week-tag chip on answer slides */
+  .wktag{ display:inline-block; font-family:var(--mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 8%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 26%, #fff); border-radius:999px;
+    padding:5px 16px; margin-left:20px; vertical-align:middle; transform:translateY(-6px); }
+
+  /* ============ figure portraits & name plates ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:64px; font-weight:600; letter-spacing:.02em; }
+  .figthree .npf .npmono{ height:300px; }
+
+  /* ============ lineage / genealogy strip ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* shared test-case rows */
+  .fourways{ margin-top:8px; }
+  .fourways .fw{ display:grid; grid-template-columns:280px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .fourways .fw:first-child{ border-top:none; }
+  .fourways .fw .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fc); }
+  .fourways .fw .fl small{ display:block; font-family:var(--mono); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--tcd-grey-75); margin-top:3px; text-transform:none; }
+  .fourways .fw .ft2{ font-family:var(--sans); font-size:23px; color:var(--tcd-black); line-height:1.35; }
+  .fourways .fw .ft2 em{ font-style:italic; } .fourways .fw .ft2 b{ color:var(--tcd-ink); }
+
+  /* ============ housekeeping / week grids / recap ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* hatched to-confirm box (print twin of the scaffold todo-box) */
+  .todo-line{ margin-top:18px; border:1.5px dashed var(--tcd-blue-50); border-radius:9px; background:var(--tcd-blue-10);
+    padding:13px 20px; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+  .todo-line b{ color:var(--tcd-blue); }
+
+  /* question-slide footnote line (as weeks-pragmatics/week-01) */
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+
+  /* Kripke-model figure (week 2): worlds as nodes, R as arrows */
+  .fourways .fw .fl .fm{ display:block; font-family:var(--serif); font-weight:400; font-size:21px; letter-spacing:0; text-transform:none; color:var(--tcd-grey-100); margin-top:4px; }
+
+  /* world diagrams (week 2): logical space, propositions as regions, accessibility */
+
+  /* ============ week 2 type pass: New Computer Modern + larger small text ============
+     Same patterns as week 1. Computer Modern runs small on the body, so running
+     text goes up a step, and nothing on a slide is set below 15px. */
+  .dB .erow .tx{ font-size:31px; line-height:1.34; } .dB .erow .tx.tight{ font-size:29px; }
+  .dB .erow .lb{ font-size:17px; }
+  .dB .lead{ font-size:38px; }
+  .eg .ex{ font-size:31px; } .eg .ex .gl{ font-size:22px; line-height:1.32; } .eg .no{ font-size:21px; }
+  .eghead{ font-size:16px; } .egpanel .fxnote{ font-size:20px; }
+  .fourways .fw{ grid-template-columns:300px 1fr; }
+  .fourways .fw .fl{ font-size:18px; } .fourways .fw .fl small{ font-size:16.5px; margin-top:4px; }
+  .fourways .fw .fl .fm{ font-size:24px; }
+  .fourways .fw .ft2{ font-size:27px; line-height:1.34; }
+  .brn .split span{ font-size:16px; } .brn .arm .h{ font-size:16px; } .brn .arm .t{ font-size:28px; }
+  .convo .who{ font-size:18px; } .qsrc{ font-size:25px; } .qask{ font-size:21px; }
+  .qref .src{ font-size:20px; } .bigq .src{ font-size:24px; }
+  .portrait .pc .dt{ font-size:15px; } .portrait .pc .rl{ font-size:19px; line-height:1.32; }
+  .lineage .ln .era{ font-size:16px; } .lineage .ln .ds{ font-size:19.5px; } .lineage .ln .nm{ font-size:26px; }
+  .roots{ font-size:27px; }
+  .lxr3 .rmb li{ font-size:20px; }
+  .mrail a.si2{ font-size:15px; } .mrail .ghd, .mrail .ghd .gt{ font-size:12px; }
+  .wktag{ font-size:16px; }
+
+  /* notation table (week 2) */
+  .ntab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ntab .nh{ display:grid; grid-template-columns:370px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:18px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .ntab .nr{ display:grid; grid-template-columns:370px 1fr; gap:34px; align-items:baseline; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ntab .no1{ font-family:var(--serif); font-size:32px; color:var(--tcd-ink); }
+  .ntab .no1 small{ display:block; font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); margin-top:2px; }
+  .ntab .no2{ font-family:var(--serif); font-size:27px; line-height:1.4; color:var(--tcd-ink); }
+  .ntab .no2 i{ font-family:var(--sans); font-style:normal; font-size:21px; color:var(--tcd-grey-100); }
+
+  /* ============ week 2 type pass, second round: projector floor ============
+     Floors on the 1920 canvas: running text 27px, glosses and notes 22px,
+     uppercase labels 19px, credits 17px, sidebar 13px. */
+  .dB .erow .lb{ font-size:20px; } .dB .erow{ grid-template-columns:250px 1fr; }
+  .eghead{ font-size:19px; } .eg .ex .gl{ font-size:24px; } .eg .no{ font-size:23px; }
+  .egpanel .fxnote{ font-size:22px; }
+  .brn .split span{ font-size:19px; } .brn .arm .h{ font-size:19px; }
+  .fourways .fw .fl{ font-size:20px; } .fourways .fw .fl small{ font-size:19px; }
+  .fourways .fw .ft2{ font-size:28px; }
+  .portrait .pc .dt{ font-size:17px; line-height:1.35; } .portrait .pc .rl{ font-size:21px; }
+  .wktag{ font-size:18px; }
+  .qask{ font-size:24px; } .convo .who{ font-size:21px; } .qsrc{ font-size:27px; }
+  .qref .src{ font-size:22px; }
+  .lxr3 .stop .head .lab{ font-size:20px; } .lxr3 .rmb li{ font-size:22px; }
+  .lxd2 .r .ct{ font-size:20px; }
+  .ntab .nh{ font-size:19px; } .ntab .no1 small{ font-size:21px; } .ntab .no2 i{ font-size:22px; }
+  .tcd-names .uni{ font-size:18px; }
+  .mrail a.si2{ font-size:16px; } .mrail .ghd .gt{ font-size:13px; } .mrail .ghd .gcar{ font-size:11px; }
+  .mrail .mhd .tt{ font-size:14px; } .mrail .mft .wk{ font-size:14px; }
+
+  /* ============ week 2 type pass, third round: fill the slide ============
+     Week 1's patterns leave the lower third of most slides empty. Default sizes
+     go up again; a slide that would overflow takes class "dense" on .b-main and
+     keeps the second-round sizes. */
+  .dB .erow .tx{ font-size:36px; line-height:1.32; } .dB .erow .tx.tight{ font-size:33px; }
+  .dB .erow{ grid-template-columns:270px 1fr; padding:20px 0; } .dB .erow .lb{ font-size:21px; padding-top:9px; }
+  .eg .ex{ font-size:36px; } .eg .ex .gl{ font-size:26px; } .eg .no{ font-size:25px; }
+  .eghead{ font-size:20px; } .egpanel .fx{ font-size:36px; } .egpanel .fxnote{ font-size:24px; }
+  .fourways .fw{ grid-template-columns:330px 1fr; padding:18px 0; }
+  .fourways .fw .fl{ font-size:22px; } .fourways .fw .fl small{ font-size:20px; } .fourways .fw .fl .fm{ font-size:27px; }
+  .fourways .fw .ft2{ font-size:32px; }
+  .brn .arm .t{ font-size:32px; } .brn .arm .h{ font-size:20px; } .brn .split span{ font-size:20px; }
+  .convo .say{ font-size:40px; } .convo.big .say{ font-size:50px; } .qask{ font-size:26px; } .qsrc{ font-size:29px; }
+  .qref{ font-size:32px !important; } .qref .src{ font-size:23px; }
+  .ntab .no1{ font-size:36px; } .ntab .no2{ font-size:30px; } .ntab .no2 i{ font-size:24px; } .ntab .no1 small{ font-size:22px; }
+  .lxr3 .rmb li{ font-size:24px; } .figs-line{ font-size:25px; } .q-banner{ font-size:34px; }
+  .b-step-lab{ font-size:24px; } .b-step-math{ font-size:44px; }
+  /* dense slides keep the second-round sizes */
+  .b-main.dense .erow .tx{ font-size:31px; } .b-main.dense .erow .tx.tight{ font-size:29px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; }
+  .b-main.dense .eg .ex{ font-size:31px; } .b-main.dense .eg .ex .gl{ font-size:24px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:28px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:32px; }
+  .b-main.dense .ntab .no1{ font-size:32px; } .b-main.dense .ntab .no2{ font-size:27px; } .b-main.dense .ntab .nr{ padding:12px 0; }
+
+  /* ============ fourth round: body text at 40px (about 20pt on a 13.3in slide) ============ */
+  .dB .erow .tx{ font-size:40px; line-height:1.3; } .dB .erow .tx.tight{ font-size:37px; }
+  .dB .erow{ grid-template-columns:280px 1fr; padding:22px 0; } .dB .erow .lb{ font-size:22px; padding-top:12px; }
+  .eg .ex{ font-size:40px; } .eg .ex .gl{ font-size:28px; } .eg .no{ font-size:27px; } .eg{ padding:13px 0; }
+  .egpanel .fx{ font-size:40px; } .egpanel .fxnote{ font-size:25px; } .eghead{ font-size:21px; }
+  .fourways .fw{ grid-template-columns:340px 1fr; padding:20px 0; }
+  .fourways .fw .fl{ font-size:23px; } .fourways .fw .fl small{ font-size:21px; } .fourways .fw .fl .fm{ font-size:29px; }
+  .fourways .fw .ft2{ font-size:35px; line-height:1.3; }
+  .brn .arm .t{ font-size:35px; } .brn .arm .h{ font-size:21px; } .brn .split span{ font-size:21px; }
+  .convo .say{ font-size:44px; } .convo.big .say{ font-size:56px; } .convo .who{ font-size:23px; } .qask{ font-size:28px; } .qsrc{ font-size:31px; }
+  .qref{ font-size:35px !important; } .qref .src{ font-size:24px; }
+  .ntab .no1{ font-size:38px; } .ntab .no2{ font-size:32px; } .ntab .no2 i{ font-size:25px; }
+  .lxr3 .rmb li{ font-size:26px; line-height:1.35; } .lxr3 .stop .head .lab{ font-size:22px; }
+  .figs-line{ font-size:27px; } .q-banner{ font-size:38px; }
+  .b-step-lab{ font-size:26px; } .b-step-math{ font-size:46px; }
+  .portrait .pc .nm{ font-size:30px; }
+  /* dense fallback, restated after the defaults so it still wins */
+  .b-main.dense .erow .tx{ font-size:32px; } .b-main.dense .erow .tx.tight{ font-size:30px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; } .b-main.dense .erow .lb{ font-size:20px; padding-top:7px; }
+  .b-main.dense .eg .ex{ font-size:33px; } .b-main.dense .eg .ex .gl{ font-size:25px; } .b-main.dense .eg{ padding:9px 0; }
+  .b-main.dense .fourways .fw .ft2{ font-size:30px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:34px; }
+  .b-main.dense .brn .arm .t{ font-size:30px; }
+  .b-main.dense .ntab .no1{ font-size:33px; } .b-main.dense .ntab .no2{ font-size:28px; } .b-main.dense .ntab .nr{ padding:11px 0; }
+
+  /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
+  .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
+  .b-main.snug .fourways .fw .ft2{ font-size:33px; }
+
+  /* interlinear gloss (week 2): word over gloss, aligned by column */
+  .eg .ex .ctx2{ display:block; font-family:var(--sans); font-style:normal; font-size:24px; color:var(--tcd-grey-100); margin-bottom:4px; }
+  .eg .ex .tr{ display:block; font-family:var(--serif); font-style:normal; font-size:32px; color:var(--tcd-ink); }
+
+  /* week 2: extension table header, small frame figures */
+
+  /* examples under the row labels (Problems for extensional semantics) */
+  .fourways.exl .fw .fl small{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:27px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); margin-top:6px; line-height:1.22; }
+  /* an unlabelled closing sentence under a panel */
+  .plainline{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin:18px 0 0; }
+
+  /* week 2: displacement answer carries the sentence under its number */
+  .b-main .fourways.disp .fw{ grid-template-columns:470px 1fr; padding:11px 0; }
+  .fourways.disp .fw .fl .sent{ display:block; font-family:var(--serif); font-style:italic; font-weight:400; font-size:26px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); line-height:1.2; margin-top:3px; }
+  .fourways.disp .fw .fl small{ display:inline; margin-left:14px; }
+  /* week 2: intension table cells that are not truth values */
+
+
+  /* ============ week 3 (LI7862, Implicature) additions ============ */
+  /* content rows without a label column: text runs full width, a bold lead carries the term */
+  .dB .erow.full{ grid-template-columns:1fr; }
+  .b-main.dense .erow.full{ grid-template-columns:1fr; }
+  .dB .erow.full .tx strong.ld{ color:var(--lens, var(--tcd-ink)); }
+  .srcl{ font-family:var(--sans); font-size:24px; color:var(--tcd-grey-75); margin-top:12px; line-height:1.35; }
+  .srcl em{ font-style:italic; }
+
+  /* ============ week 4 (LI7862, Presupposition) additions ============ */
+  /* speaker tag inside an example line */
+  .eg .ex .sp{ font-style:normal; font-family:var(--sans); font-size:.6em; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); margin-right:14px; }
+  .eg .ex .hash{ font-style:normal; color:var(--lens); margin-right:4px; }
+  /* response-share tables (Abrusán & Szendrői 2013; Lachenmaier et al. 2025) */
+  .dtab{ margin-top:10px; border-top:2px solid var(--lens); }
+  .dtab .dh, .dtab .dr{ display:grid; grid-template-columns:1fr 190px 190px 190px; gap:0 18px; align-items:baseline; }
+  .dtab .dh{ padding:12px 0 8px; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .dtab .dh span + span, .dtab .dr .v{ text-align:right; }
+  .dtab .dr{ padding:13px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dtab .dr .s{ font-family:var(--serif); font-size:34px; color:var(--tcd-ink); line-height:1.22; }
+  .dtab .dr .s em{ font-style:italic; }
+  .dtab .dr .s .n{ font-family:var(--mono); font-size:24px; color:var(--tcd-grey-75); margin-right:12px; }
+  .dtab .dr .v{ font-family:var(--serif); font-size:40px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .dtab .dr .v.hi{ color:var(--lens); font-weight:700; }
+  /* three-valued truth table beside its rows */
+  .tvwrap{ display:flex; gap:60px; align-items:flex-start; margin-top:10px; }
+  .tvt{ flex:0 0 auto; border-collapse:collapse; font-family:var(--serif); font-size:42px; color:var(--tcd-ink); }
+  .tvt th{ font-weight:400; padding:8px 36px 12px; border-bottom:2px solid var(--lens); }
+  .tvt th small{ display:block; font-family:var(--sans); font-size:19px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lens); margin-top:6px; }
+  .tvt td{ padding:12px 36px; text-align:center; border-top:1px solid var(--tcd-grey-25); font-variant-numeric:tabular-nums; }
+  .tvt tr:first-child td{ border-top:none; }
+  .tvt td.gap{ color:var(--lens); font-weight:700; }
+  .tvwrap .figbody{ flex:1 1 0; min-width:0; }
+  .tvwrap .figbody .erow:first-child{ border-top:none; padding-top:0; }
+  /* inference comparison table */
+  .itab{ margin-top:8px; border-top:2px solid var(--lens); }
+  .itab .ih, .itab .ir{ display:grid; grid-template-columns:270px 1fr 210px 330px; gap:0 24px; align-items:baseline; }
+  .itab .ih{ padding:12px 0 8px; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .itab .ir{ padding:18px 0; border-top:1px solid var(--tcd-grey-25); font-family:var(--sans); font-size:32px; color:var(--tcd-black); line-height:1.28; }
+  .itab .ir .k{ font-family:var(--sans); font-size:23px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lens); }
+  .itab .ir em{ font-style:italic; }
+  /* bar figure (Loftus 1975) */
+  .bfig{ width:100%; height:auto; display:block; margin:6px 0 0; }
+  .bfig .bar{ fill:var(--lens); } .bfig .bar.off{ fill:var(--tcd-grey-50); }
+  .bfig .bl{ font-family:var(--sans); font-size:30px; fill:var(--tcd-ink); }
+  .bfig .bv{ font-family:var(--serif); font-size:42px; font-weight:700; fill:var(--tcd-ink); }
+  .bfig .ax{ stroke:var(--tcd-grey-50); stroke-width:2; }
+  /* roomy: a sparse slide takes larger type and deeper rows (fill the frame) */
+  .b-main.roomy .erow .tx{ font-size:45px; line-height:1.3; } .b-main.roomy .erow .tx.tight{ font-size:42px; }
+  .b-main.roomy .erow{ padding:28px 0; }
+  .b-main.roomy .eg .ex{ font-size:48px; } .b-main.roomy .eg .ex .gl{ font-size:30px; }
+  .b-main.roomy .egpanel .fx{ font-size:46px; } .b-main.roomy .egpanel .fxnote{ font-size:26px; }
+  .b-main.roomy .tvt{ font-size:48px; }
+  .b-main.roomy .itab .ir{ font-size:38px; padding:28px 0; } .b-main.roomy .itab .ir .k{ font-size:25px; } .b-main.roomy .itab .ih{ font-size:23px; }
+  .b-main.roomy .itab .ih, .b-main.roomy .itab .ir{ grid-template-columns:300px 1fr 220px 380px; }
+  /* Triggers slides: the trigger words under each class, large and bold */
+  .b-main.trig .fourways .fw .fl{ font-size:25px; }
+  .b-main.trig .fourways .fw .fl small{ display:block; font-family:var(--serif); font-style:italic; font-weight:700; font-size:32px; color:var(--tcd-ink); letter-spacing:0; text-transform:none; margin-top:4px; line-height:1.12; }
+  .b-main.trig .fourways .fw{ grid-template-columns:340px 1fr; padding:16px 0; }
+  .b-main.trig .fourways .fw .ft2{ font-size:33px; }
+  /* trigger classes beneath the loaded-question task */
+  .trigs{ display:grid; grid-template-columns:repeat(5, 1fr); gap:22px 28px; margin-top:54px; }
+  .trigs div b{ display:block; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .trigs div i{ display:block; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink); margin-top:4px; line-height:1.2; }
+  /* a long question slide */
+  .b-main.qdense .convo .cv{ padding:9px 0; } .b-main.qdense .convo .say{ font-size:34px; line-height:1.3; } .b-main.qdense .convo .who{ font-size:22px; }
+  /* lineage text up to the projector floors */
+  .lineage .ln .era{ font-size:20px; } .lineage .ln .nm{ font-size:33px; } .lineage .ln .ds{ font-size:26px; line-height:1.32; }
+  /* display formula for a case split */
+  .egpanel .fx.lf{ text-align:left; padding-left:12px; }
+</style>
+</head>
+<body class="pal-a" data-week="4">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark" style="font-style:italic">“</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7862 · Linguistic Pragmatics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 4</h1>
+      <div class="a-course-sub">Presupposition</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · 2026</div></div>
+  </div>
+</section>
+
+
+
+<!-- 02 · This week -->
+<section class="slide" data-label="This week" data-screen-label="02">
+  <div class="b-slide pal-a dB" data-sec="wk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">This week</h2>
+      <div class="q-banner">What goes without saying?</div>
+      <div class="erow full" style="border-top:none"><div class="tx"><strong class="ld">Last week.</strong> What is said and what is <strong>implicated</strong>. The Cooperative Principle, the maxims, and <em>not all</em> from <em>some</em>.</div></div>
+      <div class="erow full"><div class="tx"><strong class="ld">This week.</strong> What an utterance takes for granted: <strong>presupposition</strong>.</div></div>
+      <div class="figs-line"><b>Figures:</b> Frege · Russell · Strawson &nbsp;·&nbsp; <b>Data:</b> Moses and the Ark · the King of France · a barn · loaded questions · language models</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 03 · Roadmap -->
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Moses</li><li>Distorted questions</li><li>Asserted and presupposed</li><li>The family of sentences</li><li>Hey, wait a minute</li><li>Triggers</li><li>True, false or neither</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Frege</li><li>Russell</li><li>Strawson</li><li>Austin</li><li>Heim</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Semantic presupposition</li><li>A third value</li><li>Two negations</li><li>Definedness</li><li>Three inferences</li><li>Sorting inferences</li><li>Semi-factives</li><li>Soft and hard triggers</li><li>Other notations</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Loaded questions</li><li>Loftus (1975)</li><li>Slogans</li><li>Irish English <em>sure</em></li><li>Machines</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 04 · Readings (as on weeks-pragmatics/week-04/readings.html) -->
+<section class="slide" data-label="Readings" data-screen-label="04">
+  <div class="b-slide pal-a dB" data-sec="rd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Readings</h2>
+      <div class="qref" style="font-size:27px">Grundy, P. (2008). <em>Doing Pragmatics</em>, 3rd ed., ch. 3 &ldquo;Presupposition: accommodating background knowledge&rdquo;, §§3.1–3.2. <span class="src">Textbook</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Russell, B. (1905). On denoting. <em>Mind</em> 14(56), 479–493. <span class="src">Classical</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Strawson, P. F. (1950). On referring. <em>Mind</em> 59(235), 320–344. <span class="src">Classical</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Empirical -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LI7862 · Week 4</div><h2>Taken for granted</h2><div class="ask">Content an utterance treats as settled.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+
+
+<!-- 05 · Moses · question. Erickson & Mattson (1981), the Moses illusion. -->
+<section class="slide" data-label="Moses, Q" data-screen-label="05">
+  <div class="b-slide pal-a lens-empirical" data-sec="mos">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(1)</div><div class="say">How many animals of each kind did Moses take on the Ark?</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 06 · Moses. 52.3% "Moses answers" across four distorted questions (Erickson & Mattson 1981, Exp. 1), as reported by Speckmann & Unkelbach (2021), Memory & Cognition 49: 843–862. -->
+<section class="slide" data-label="Empirical ·Moses" data-screen-label="06">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="mos">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The Moses illusion</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx">Noah took the animals onto the Ark, and most people answer <em>two</em> all the same.</div></div>
+      <div class="erow full" data-step="2"><div class="tx"><strong class="ld">Erickson &amp; Mattson (1981).</strong> Across four questions of this kind, about half of all answers took the error on board, from people who could say afterwards who built the Ark.</div></div>
+      <div class="erow full" data-step="3"><div class="tx">The question takes it for granted that Moses took animals onto the Ark and asks only about the number. The hearer accommodates the background without checking it and answers the part that was asked.</div></div>
+      <div class="srcl" data-step="2">Erickson &amp; Mattson (1981), also Speckmann &amp; Unkelbach (2021).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 07 · Distorted questions. (2) to (4) from the item list in Speckmann & Unkelbach (2021), Appendix 1; (5) from Shafto & MacKay (2000), Psychological Science 11: 372–378. Erickson & Mattson's own four items are in the 1981 paper, not reproduced here. -->
+<section class="slide" data-label="Empirical ·Distorted questions" data-screen-label="07">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="dis">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Distorted questions</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(2)</span><span class="ex">In the biblical story, what was Joshua swallowed by?<span class="gl" data-step="2">Jonah</span></span></div>
+        <div class="eg" data-step="3"><span class="no">(3)</span><span class="ex">By flying a kite, what did Edison discover?<span class="gl" data-step="4">Franklin</span></span></div>
+        <div class="eg" data-step="5"><span class="no">(4)</span><span class="ex">What country was Margaret Thatcher president of?<span class="gl" data-step="6">Prime minister</span></span></div>
+        <div class="eg" data-step="7"><span class="no">(5)</span><span class="ex">What was the famous line uttered by Louis Armstrong when he first set foot on the moon?<span class="gl" data-step="8">Neil</span></span></div>
+      </div>
+      <div class="erow full" data-step="9" style="border-top:none"><div class="tx tight">Erickson &amp; Mattson's four questions drew 52% distorted answers. In a multiple-choice format with a <em>can't say</em> option on every item, the rate was still 49% (Speckmann &amp; Unkelbach 2021).</div></div>
+      <div class="srcl" data-step="1">(2) to (4) Speckmann &amp; Unkelbach (2021), after Park &amp; Reder (2004) · (5) Shafto &amp; MacKay (2000), the Armstrong illusion.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 08 · Asserted and presupposed. Grundy (2008) ch. 3, examples (1) and (3). -->
+<section class="slide" data-label="Empirical ·Asserted and presupposed" data-screen-label="08">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="asp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Asserted and presupposed</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(6)</span><span class="ex">When will you be back?<span class="gl" data-step="2">Branka to Peter. Taken for granted: Peter is coming back.</span></span></div>
+        <div class="eg" data-step="3"><span class="no">(7)</span><span class="ex">Have you got your other ticket?<span class="gl" data-step="4">A ticket inspector. Taken for granted: there is another ticket.</span></span></div>
+        <div class="eg" data-step="5"><span class="no">(8)</span><span class="ex">Alex stopped smoking.<span class="gl" data-step="6">Taken for granted: Alex used to smoke.</span></span></div>
+      </div>
+      <div class="erow full" data-step="7" style="border-top:none"><div class="tx tight"><strong class="ld">Asserted.</strong> The main point of the utterance: what is put forward, asked or denied, and what a reply is expected to take up.</div></div>
+      <div class="erow full" data-step="8"><div class="tx tight"><strong class="ld">Presupposed.</strong> Background the speaker treats as already accepted and the hearer is expected to take on without argument: the common ground, what speaker and hearer mutually accept.</div></div>
+      <div class="srcl" data-step="1">(6), (7) Grundy (2008: 48–49).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 09 · The family of sentences · question. Last year's running example (PragIL6); Belize has a prime minister. -->
+<section class="slide" data-label="The family of sentences, Q" data-screen-label="09">
+  <div class="b-slide pal-a lens-empirical" data-sec="fam">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(9)</div><div class="say">The prime minister of Belize is visiting Dublin.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(10a)</div><div class="say">The prime minister of Belize is not visiting Dublin.</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(10b)</div><div class="say">Is the prime minister of Belize visiting Dublin?</div></div>
+          <div class="cv anim" style="--d:0.60s"><div class="who">(10c)</div><div class="say">If the prime minister of Belize is visiting Dublin, the meeting will be rescheduled.</div></div>
+          <div class="cv anim" style="--d:0.75s"><div class="who">(10d)</div><div class="say">Maybe the prime minister of Belize is visiting Dublin.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 10 · The family of sentences -->
+<section class="slide" data-label="Empirical ·The family of sentences" data-screen-label="10">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="fam">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The family of sentences</h2>
+      <div class="fourways">
+        <div class="fw" data-step="1" style="--fc:var(--lens-emp)"><div class="fl">(10a)<small>negation</small></div><div class="ft2">The assertion is reversed. Still conveyed: Belize has a prime minister.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-emp)"><div class="fl">(10b)<small>question</small></div><div class="ft2">Nothing is asserted. Still conveyed.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-emp)"><div class="fl">(10c)<small>antecedent of <em>if</em></small></div><div class="ft2">Nothing is asserted. Still conveyed.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-emp)"><div class="fl">(10d)<small>possibility modal</small></div><div class="ft2">Only a possibility is raised. Still conveyed.</div></div>
+      </div>
+      <div class="erow full" data-step="5"><div class="tx"><strong class="ld">Projection.</strong> Presupposed content survives embeddings that suspend the assertion.</div></div>
+      <div class="srcl" data-step="5">The family of sentences: Chierchia &amp; McConnell-Ginet (1990).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 11 · Hey, wait a minute. (12) from Danny Fox's MIT 24.954 lecture notes (2010, OCW), after von Fintel. Last year's Burkina Faso version dropped: Burkina Faso has a prime minister (R. J. E. Ouédraogo, interim, since 7 Dec 2024). Switzerland has none. -->
+<section class="slide" data-label="Empirical ·Hey, wait a minute" data-screen-label="11">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="hwm">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Hey, wait a minute</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(11)</span><span class="ex"><span class="sp">A</span>The prime minister of Switzerland is visiting Dublin.</span></div>
+        <div class="eg" data-step="2"><span class="no"></span><span class="ex"><span class="sp">B</span>No, he isn't.<span class="gl">Denies the assertion.</span></span></div>
+        <div class="eg" data-step="3"><span class="no"></span><span class="ex"><span class="sp">B</span>Hey, wait a minute. Switzerland doesn't have a prime minister.<span class="gl">Objects to the background, and keeps it out of the common ground.</span></span></div>
+      </div>
+      <div class="egpanel" data-step="4" style="margin-top:14px">
+        <div class="eg" data-step="4"><span class="no">(12)</span><span class="ex"><span class="sp">A</span>The person who broke the typewriter was Sam.</span></div>
+        <div class="eg" data-step="5"><span class="no"></span><span class="ex"><span class="sp">B</span>Hey, wait a minute. I didn't know that someone broke the typewriter.</span></div>
+        <div class="eg" data-step="6"><span class="no"></span><span class="ex"><span class="sp">B</span><span class="hash">#</span>Hey, wait a minute. I didn't know that Sam broke anything.</span></div>
+      </div>
+      <div class="erow full" data-step="7" style="border-top:none"><div class="tx tight"><em>Hey, wait a minute</em> picks out presupposed content. Aimed at the main point, as in the last reply to (12), it is odd, so the reply that comes naturally shows which part of the utterance was background.</div></div>
+      <div class="srcl" data-step="7">Shanon (1976); von Fintel (2004) · (12) Fox (2010), MIT lecture notes.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 12 · Triggers: words. Grundy (2008) ch. 3: (44′), (17), (15), (26), and "my dentist" on p. 49. -->
+<section class="slide" data-label="Empirical ·Triggers: words" data-screen-label="12">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="trw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB trig">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Triggers: words</h2>
+      <div class="fourways">
+        <div class="fw" data-step="1" style="--fc:var(--lens-emp)"><div class="fl">Factive<small>regret, know, be aware</small></div><div class="ft2">(13) <em>His admirers regret that Shakespeare was an erratic speller.</em> Presupposed: Shakespeare was an erratic speller.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-emp)"><div class="fl">Change of state<small>stop, begin, take up</small></div><div class="ft2">(14) <em>I began jogging last summer.</em> Presupposed: I didn't jog before.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-emp)"><div class="fl">Iterative<small>again, another, too</small></div><div class="ft2">(15) <em>another piece of bad news for the Government</em> Presupposed: earlier bad news.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-emp)"><div class="fl">Implicative<small>manage, forget</small></div><div class="ft2">(16) <em>Mr Cool manages to avoid doing a Henman.</em> Presupposed: it wasn't easy.</div></div>
+        <div class="fw" data-step="5" style="--fc:var(--lens-emp)"><div class="fl">Definite description<small>the, possessives</small></div><div class="ft2">(17) <em>my dentist</em> Presupposed: I have a dentist.</div></div>
+      </div>
+      <div class="srcl" data-step="6">Examples from Grundy (2008: 49–55) · Factives: Kiparsky &amp; Kiparsky (1970).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 13 · Triggers: constructions. Frege 1892, the Schleswig-Holstein example (Levinson 1983: 169). Grundy (2008): (19), (27), (21), (22). -->
+<section class="slide" data-label="Empirical ·Triggers: constructions" data-screen-label="13">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="trc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB trig">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Triggers: constructions</h2>
+      <div class="fourways">
+        <div class="fw" data-step="1" style="--fc:var(--lens-emp)"><div class="fl">Temporal clause<small>before, after, since</small></div><div class="ft2">(18) <em>After the separation of Schleswig-Holstein from Denmark, Prussia and Austria quarrelled.</em> Presupposed: the separation happened.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-emp)"><div class="fl">Cleft<small>it was X who</small></div><div class="ft2">(19) <em>It was the Scots who invented whisky.</em> Presupposed: someone invented whisky.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-emp)"><div class="fl">Wh-question</div><div class="ft2">(20) <em>How many tickets do National Express give you?</em> Presupposed: they give you tickets.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-emp)"><div class="fl">Counterfactual<small>if I had</small></div><div class="ft2">(21) <em>If I had won the lottery on Saturday, I wouldn't be here now.</em> Presupposed: I didn't win.</div></div>
+        <div class="fw" data-step="5" style="--fc:var(--lens-emp)"><div class="fl">Stress</div><div class="ft2">(22) <em>Radion removes dirt AND odours.</em> Presupposed: other powders don't remove odours.</div></div>
+      </div>
+      <div class="srcl" data-step="6">(18) Frege (1892) · (19) to (22) Grundy (2008: 52–53).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 14 · Five triggers · question. Five of the ten items on last year's handout; the other five (dude, Jamie, Julius, Trinidad and Tobago, Seidensticker) stay on the sheet. -->
+<section class="slide" data-label="Five triggers, Q" data-screen-label="14">
+  <div class="b-slide pal-a lens-empirical" data-sec="yt1">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Triggers</div>
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(23)</div><div class="say">Berlusconi knows that he is signing the end of Berlusconism.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(24)</div><div class="say">China has stopped stockpiling metals.</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(25)</div><div class="say">It was Jesus who set me free.</div></div>
+          <div class="cv anim" style="--d:0.60s"><div class="who">(26)</div><div class="say">I have written to every headmaster in Rochdale.</div></div>
+          <div class="cv anim" style="--d:0.75s"><div class="who">(27)</div><div class="say">HE set me free.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 15 · Five triggers -->
+<section class="slide" data-label="Empirical ·Five triggers" data-screen-label="15">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="yt1">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Five triggers</h2>
+      <div class="fourways">
+        <div class="fw" data-step="1" style="--fc:var(--lens-emp)"><div class="fl">(23) factive<small>knows</small></div><div class="ft2">Presupposed: Berlusconi is signing the end of Berlusconism.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-emp)"><div class="fl">(24) change of state<small>stopped</small></div><div class="ft2">Presupposed: China used to stockpile metals.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-emp)"><div class="fl">(25) cleft<small>it was Jesus who</small></div><div class="ft2">Presupposed: someone set me free.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-emp)"><div class="fl">(26) quantifier<small>every</small></div><div class="ft2">Presupposed: there are headmasters in Rochdale.</div></div>
+        <div class="fw" data-step="5" style="--fc:var(--lens-emp)"><div class="fl">(27) focus<small>stress on <em>he</em></small></div><div class="ft2">Presupposed: someone set me free.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 16 · True, false or neither · question. Abrusán & Szendrői (2013), Semantics & Pragmatics 6(10), Table 1: conditions C0, C6, C8. -->
+<section class="slide" data-label="True, false or neither, Q" data-screen-label="16">
+  <div class="b-slide pal-a lens-empirical" data-sec="tfn">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>True, false or neither</div>
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(28)</div><div class="say">The King of France is bald.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(29)</div><div class="say">The King of France isn't bald.</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(30)</div><div class="say">The King of France is not married to Carla Bruni.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 17 · True, false or neither. Appendix 2, Table 3: C0 3.1/19.1/77.8; C6 21.3/33.9/44.9; C8 71.8/9.7/18.5 (true/can't say/false). -->
+<section class="slide" data-label="Empirical ·True, false or neither" data-screen-label="17">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="tfn">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">True, false or neither</h2>
+      <div class="dtab" data-step="1">
+        <div class="dh"><span></span><span>true</span><span>can't say</span><span>false</span></div>
+        <div class="dr" data-step="1"><div class="s"><span class="n">(28)</span><em>The King of France is bald.</em></div><div class="v">3%</div><div class="v">19%</div><div class="v hi">78%</div></div>
+        <div class="dr" data-step="2"><div class="s"><span class="n">(29)</span><em>The King of France isn't bald.</em></div><div class="v">21%</div><div class="v">34%</div><div class="v hi">45%</div></div>
+        <div class="dr" data-step="3"><div class="s"><span class="n">(30)</span><em>The King of France is not married to Carla Bruni.</em></div><div class="v hi">72%</div><div class="v">10%</div><div class="v">18%</div></div>
+      </div>
+      <div class="erow full" data-step="4" style="border-top:none;margin-top:6px"><div class="tx tight"><strong class="ld">Abrusán &amp; Szendrői (2013).</strong> 33 native speakers answered a trivia quiz with three buttons: true, false and can't say.</div></div>
+      <div class="erow full" data-step="5"><div class="tx tight"><strong class="ld">Strawson (1964).</strong> Strawson himself allowed that <em>The exhibition was visited yesterday by the King of France</em> sounds false. Whether the description is the topic of the sentence, and whether the sentence can be checked without it, both shape the judgement.</div></div>
+      <div class="srcl" data-step="4">Abrusán &amp; Szendrői (2013), <em>Semantics &amp; Pragmatics</em> 6, conditions 0, 6 and 8 · Strawson (1964), <em>Theoria</em> 30.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Historical -->
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">STRAND 02 / 04 · LI7862 · Week 4</div><h2>Frege, Russell &amp; Strawson</h2><div class="ask">Names, descriptions and the King of France, 1892 to 1964.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+
+
+<!-- 18 · Frege. Frege (1892): Kepler, Odysseus. Kepler died in Regensburg in November 1630, owed 11,817 gulden by the Emperor. -->
+<section class="slide" data-label="Historical ·Frege" data-screen-label="18">
+  <div class="b-slide pal-a lens-historical dB" data-sec="fre">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Frege</h2>
+      <div class="figrow">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Young_frege.jpg — public domain (c. 1879, photographer unknown); local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/frege.jpg" alt="Gottlob Frege, about 1879" style="object-position:50% 20%"><div class="pc"><div class="nm">Gottlob Frege</div><div class="dt">1848 – 1925</div></div></div>
+        <div class="figbody">
+          <div class="egpanel" data-step="1" style="margin-top:0">
+            <div class="eg"><span class="no">(31)</span><span class="ex">Kepler starb im Elend.<span class="gl">Kepler died in misery. True: he died at Regensburg in 1630, on a journey to collect money the Emperor owed him.</span></span></div>
+          </div>
+          <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight"><strong class="ld">Über Sinn und Bedeutung (1892).</strong> To assert (31) is to presuppose that the name <em>Kepler</em> refers to something. Frege's word for it is <em>Voraussetzung</em>.</div></div>
+          <div class="erow full" data-step="3"><div class="tx tight">(32) <em>Kepler did not die in misery</em> presupposes the same thing, so the presupposition is no part of the thought the sentence expresses.</div></div>
+          <div class="erow full" data-step="4"><div class="tx tight">A name with no reference leaves the sentence with no truth value: (33) <em>Odysseus was set ashore at Ithaca while sound asleep</em>.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="2">Frege (1892), <em>Zeitschrift für Philosophie und philosophische Kritik</em> 100.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 19 · The will of the people. Frege (1892), in the passage on names without Bedeutung, just after Kepler. -->
+<section class="slide" data-label="Historical ·The will of the people" data-screen-label="19">
+  <div class="b-slide pal-a lens-historical dB" data-sec="wil">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">The will of the people</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx">In a logically perfect language every name would refer. Ordinary language falls short of that, and some of its names refer to nothing.</div></div>
+      <div class="erow full" data-step="2"><div class="tx">Frege adds that such names lend themselves to demagogic abuse, perhaps more easily than ambiguity does, and gives (34) as his example: an expression with no generally accepted reference.</div></div>
+      <div class="egpanel" data-step="3">
+        <div class="eg"><span class="no">(34)</span><span class="ex">der Wille des Volkes<span class="gl">The will of the people.</span></span></div>
+      </div>
+      <div class="srcl" data-step="2">Frege (1892).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 20 · Russell. Russell (1905), Mind 14: 479–493, p. 485. -->
+<section class="slide" data-label="Historical ·Russell" data-screen-label="20">
+  <div class="b-slide pal-a lens-historical dB" data-sec="rus">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Russell</h2>
+      <div class="figrow">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Honourable_Bertrand_Russell.jpg — public domain (published 1916, photographer not identified); local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/russell.jpg" alt="Bertrand Russell, 1916" style="object-position:50% 25%"><div class="pc"><div class="nm">Bertrand Russell</div><div class="dt">1872 – 1970</div></div></div>
+        <div class="figbody">
+          <div class="erow full" data-step="1" style="border-top:none;padding-top:2px"><div class="tx tight"><strong class="ld">On Denoting (1905).</strong> Grammatical form misleads, and logical form settles truth. Ramsey later called the paper <em>that paradigm of philosophy</em>.</div></div>
+          <div class="egpanel" data-step="2" style="margin-top:4px">
+            <div class="eg"><span class="no">(35)</span><span class="ex">The present King of France is bald.</span></div>
+            <div class="eg"><span class="no">(36)</span><span class="ex">The present King of France is not bald.</span></div>
+          </div>
+          <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight">By excluded middle, (35) or its negation must be true. Yet if we listed the bald things and then the things that are not bald, the King would appear on neither list. <em>Hegelians, who love a synthesis, will probably conclude that he wears a wig.</em></div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="1">Russell (1905), <em>Mind</em> 14 · Ramsey (1931), <em>The Foundations of Mathematics</em>.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 21 · Russell's analysis -->
+<section class="slide" data-label="Historical ·Russell's analysis" data-screen-label="21">
+  <div class="b-slide pal-a lens-historical dB" data-sec="rua">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Russell's analysis</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx">\(\exists x\,\bigl(K(x) \wedge \forall y\,(K(y) \rightarrow y = x) \wedge B(x)\bigr)\)</div>
+        <div class="fxnote">(35): there is exactly one King of France, and he is bald</div>
+      </div>
+      <div class="fourways" style="margin-top:8px">
+        <div class="fw" data-step="2" style="--fc:var(--lens-his)"><div class="fl">Existence</div><div class="ft2">\(\exists x\,K(x)\): there is a King of France.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-his)"><div class="fl">Uniqueness</div><div class="ft2">\(\forall y\,(K(y) \rightarrow y = x)\): at most one.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-his)"><div class="fl">Predication</div><div class="ft2">\(B(x)\): he is bald.</div></div>
+      </div>
+      <div class="erow full" data-step="5"><div class="tx">With no King, the existence conjunct is false, so (35) is false and every sentence keeps one of two truth values.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 22 · Russell on negation. Russell (1905): primary and secondary occurrence of a denoting phrase. -->
+<section class="slide" data-label="Historical ·Russell on negation" data-screen-label="22">
+  <div class="b-slide pal-a lens-historical dB" data-sec="run">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Russell on negation</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(36)</span><span class="ex">The present King of France is not bald.</span></div>
+      </div>
+      <div class="fourways" style="margin-top:8px">
+        <div class="fw" data-step="2" style="--fc:var(--lens-his)"><div class="fl">Primary occurrence<small>description outside</small></div><div class="ft2">\(\exists x\,\bigl(K(x) \wedge \forall y\,(K(y) \rightarrow y = x) \wedge \neg B(x)\bigr)\)<br>False: there is no King.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-his)"><div class="fl">Secondary occurrence<small>negation outside</small></div><div class="ft2">\(\neg\exists x\,\bigl(K(x) \wedge \forall y\,(K(y) \rightarrow y = x) \wedge B(x)\bigr)\)<br>True.</div></div>
+      </div>
+      <div class="erow full" data-step="4"><div class="tx">This is Russell's answer to the negation test: (36) is ambiguous, and on the reading where the whole description sits under the negation it is simply true.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 23 · Strawson -->
+<section class="slide" data-label="Historical ·Strawson" data-screen-label="23">
+  <div class="b-slide pal-a lens-historical dB" data-sec="str">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Strawson</h2>
+      <div class="figrow">
+        <div class="portrait" data-step="1"><img src="images/strawson.jpg" alt="P. F. Strawson" style="object-position:50% 15%"><div class="pc"><div class="nm">P. F. Strawson</div><div class="dt">1919 – 2006</div></div></div>
+        <div class="figbody">
+          <div class="erow full" data-step="2" style="border-top:none;padding-top:2px"><div class="tx tight"><strong class="ld">St John's.</strong> Strawson read PPE at St John's, Oxford, from 1937 to 1940, with Grice among his tutors.</div></div>
+          <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Oxford.</strong> Fellow of University College from 1948 and Waynflete Professor of Metaphysical Philosophy from 1968 to 1987. Knighted in 1977.</div></div>
+          <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">Searle.</strong> John Searle wrote his DPhil (1959) under Austin and Strawson, on problems in the theory of meaning arising from sense and reference.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="2"><em>Stanford Encyclopedia of Philosophy</em>, Peter Frederick Strawson · <em>Philosophy Now</em> 171.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 24 · On Referring. Strawson (1950), Mind 59: 320–344; the "imply" passage p. 330. Louis XIII bald at 23 in 1624 (National Geographic; Pitt Rivers Museum); Louis-Philippe abdicated 24 Feb 1848. -->
+<section class="slide" data-label="Historical ·On Referring" data-screen-label="24">
+  <div class="b-slide pal-a lens-historical dB" data-sec="onr">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">On Referring (1950)</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">Strawson's answer to Russell: a sentence is neither true nor false. A use of it on an occasion makes a statement, and the statement is what has a truth value. The same sentence, (35), used at different times:</div></div>
+      <div class="lineage" data-step="2" style="margin-top:14px">
+        <div class="ln" data-step="2"><div class="dot"></div><div class="era">1624</div><div class="nm">Louis XIII</div><div class="ds">Bald at 23 and in a wig from then on. (35) true.</div></div>
+        <div class="ln" data-step="3"><div class="dot"></div><div class="era">1660</div><div class="nm">Louis XIV</div><div class="ds">At 21, his own hair still long. (35) false.</div></div>
+        <div class="ln" data-step="4"><div class="dot"></div><div class="era">1848</div><div class="nm">Louis-Philippe</div><div class="ds">Abdicates on 24 February. The last king.</div></div>
+        <div class="ln" data-step="5"><div class="dot"></div><div class="era">1905</div><div class="nm">Russell</div><div class="ds">No king. The description refers to nothing.</div></div>
+        <div class="ln" data-step="6"><div class="dot"></div><div class="era">1950</div><div class="nm">Strawson</div><div class="ds">No king. A use of (35) makes no statement.</div></div>
+      </div>
+      <div class="erow full" data-step="7" style="margin-top:34px"><div class="tx tight">Said today there is no king, so there is no statement with a truth value, and the question of truth or falsity does not arise. Saying (35) implies that there is a king of France in <em>some sense of &lsquo;imply&rsquo;</em>, which Strawson distinguishes from entailment.</div></div>
+      <div class="srcl" data-step="1">Strawson (1950), <em>Mind</em> 59 · Louis XIII, bald at 23 and in a wig from 1624.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 25 · Austin. Austin, How to Do Things with Words (1962), Lecture II p. 20 and Lecture IV pp. 48–51. -->
+<section class="slide" data-label="Historical ·Austin" data-screen-label="25">
+  <div class="b-slide pal-a lens-historical dB" data-sec="aus">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Austin on presupposition in speech acts</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(37)</span><span class="ex">All Jack's children are bald.<span class="gl">Said when Jack has no children.</span></span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx">Both (37) and <em>Jack's children are not bald</em> presuppose that Jack has children. With none, Austin's verdict is that <em>the utterance is void</em>, the same verdict he gives a performative that misfires.</div></div>
+      <div class="erow full" data-step="3"><div class="tx">Austin's own comparison is with purporting to bequeath something you do not own.</div></div>
+      <div class="srcl" data-step="2">Austin (1962), <em>How to Do Things with Words</em>, pp. 20 and 48–51.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 26 · Heim. Photograph supplied by Thomas. Heim: PhD UMass Amherst 1982; MIT from 1989. -->
+<section class="slide" data-label="Historical ·Heim" data-screen-label="26">
+  <div class="b-slide pal-a lens-historical dB" data-sec="heim">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Heim on definites and indefinites</h2>
+      <div class="figrow">
+        <div class="portrait" data-step="1"><img src="images/heim.jpg" alt="Irene Heim" style="object-position:50% 20%"><div class="pc"><div class="nm">Irene Heim</div><div class="dt">born 1954</div></div></div>
+        <div class="figbody">
+          <div class="erow full" data-step="1" style="border-top:none;padding-top:2px"><div class="tx tight"><strong class="ld">The Semantics of Definite and Indefinite Noun Phrases (1982).</strong> Heim's dissertation treats a discourse as a file of cards. An indefinite introduces a new card, the novelty condition; a definite picks up a card already in the file, the familiarity condition.</div></div>
+          <div class="egpanel" data-step="2" style="margin-top:4px">
+            <div class="eg" data-step="2"><span class="no">(38)</span><span class="ex">A dog came in. The dog barked.<span class="gl" data-step="3"><em>A</em> opens the card; <em>the</em> presupposes it.</span></span></div>
+            <div class="eg" data-step="4"><span class="no">(39)</span><span class="ex">The dog barked.<span class="gl" data-step="5">Out of the blue, no card to pick up: the presupposition fails.</span></span></div>
+          </div>
+          <div class="erow full" data-step="6" style="border-top:none"><div class="tx tight">On this view the presupposition carried by <em>the</em> is familiarity. Russell's description picks out the one entity that fits it; Heim's definite picks out the entity already under discussion.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="1">Heim (1982), University of Massachusetts, Amherst · Heim (1983), &ldquo;File change semantics and the familiarity theory of definiteness&rdquo;.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Formal -->
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">STRAND 03 / 04 · LI7862 · Week 4</div><h2>Truth-value gaps</h2><div class="ask">Presupposition as a condition on having a truth value.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+
+
+<!-- 27 · Semantic presupposition -->
+<section class="slide" data-label="Formal ·Semantic presupposition" data-screen-label="27">
+  <div class="b-slide pal-a lens-formal dB" data-sec="sem">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Semantic presupposition</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx">\[ S \text{ presupposes } p \quad\text{iff}\quad S \models p \;\text{ and }\; \neg S \models p \]</div>
+        <div class="fxnote">Strawson (1952); Levinson (1983: ch. 4)</div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">A sentence presupposes p when p is true whenever the sentence is true and whenever it is false. So (8) presupposes that Alex used to smoke, which holds whether Alex stopped or not; if Alex never smoked, (8) is neither true nor false.</div></div>
+      <div class="egpanel" data-step="3" style="margin-top:10px">
+        <div class="fx">\[ \sem{S} \text{ is defined only if } p \]</div>
+        <div class="fxnote">the notation used here; \(\sem{S} = \#\) when p fails</div>
+      </div>
+      <div class="erow full" data-step="4" style="border-top:none"><div class="tx tight">Formal semantics writes the same idea as a condition on the sentence having a value at all: a definedness condition on \(\sem{S}\), with \(\#\) for the missing value (Heim &amp; Kratzer 1998).</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 28 · A third value. Levinson (1983: 175–176) on semantic presupposition under bivalence; Frege (1892) on Kepler. -->
+<section class="slide" data-label="Formal ·A third value" data-screen-label="28">
+  <div class="b-slide pal-a lens-formal dB" data-sec="thv">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">A third value</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx">\[ S \models p, \quad \neg S \models p, \quad \models S \vee \neg S \quad\Longrightarrow\quad \models p \]</div>
+        <div class="fxnote">with two values, a presupposition would be true in every situation</div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">With two truth values, either S or its negation is always true, so if both entail p then p is true everywhere and a presupposition could only ever be a tautology. <em>France has a king</em> is contingent. Either (35) entails it and its negation does not, which is Russell's position, or there is a third value, which is Frege's and Strawson's.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">Frege makes the same argument in prose. Were <em>Kepler refers</em> part of the content of (31), then (32) would mean that Kepler did not die in misery or that <em>Kepler</em> refers to nothing, which is plainly wrong.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">Łukasiewicz (1920).</strong> The first three-valued logic, and much of the later work on many-valued logics, is Łukasiewicz's. He spent the last decade of his life in Dublin, as Professor of Mathematical Logic at the Royal Irish Academy from 1946 until his death in 1956.</div></div>
+      <div class="srcl" data-step="2">Levinson (1983: 175–176) · Frege (1892) · Łukasiewicz (1920), <em>Ruch Filozoficzny</em> 5.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 29 · Two negations. Internal and external negation, as in Levinson (1983: ch. 4). -->
+<section class="slide" data-label="Formal ·Two negations" data-screen-label="29">
+  <div class="b-slide pal-a lens-formal dB" data-sec="neg">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Two negations</h2>
+      <div class="tvwrap">
+        <table class="tvt" data-step="1">
+          <tr><th>\(A\)</th><th>\(\neg A\)<small>internal</small></th><th>\(\sim\! A\)<small>external</small></th></tr>
+          <tr data-step="1"><td>1</td><td>0</td><td>0</td></tr>
+          <tr data-step="2"><td>0</td><td>1</td><td>1</td></tr>
+          <tr data-step="3"><td class="gap">#</td><td class="gap">#</td><td>1</td></tr>
+        </table>
+        <div class="figbody">
+          <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">Internal negation.</strong> A gap stays a gap, so (28) and (29) both come out \(\#\) when there is no king.</div></div>
+          <div class="erow full" data-step="5"><div class="tx tight"><strong class="ld">External negation.</strong> True unless A is true, so <em>It is not true that the King of France is bald</em> comes out 1.</div></div>
+          <div class="erow full" data-step="6"><div class="tx tight">Russell gets the same two readings with two values, as the two scopes of (36).</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="4">Internal and external negation: Levinson (1983: ch. 4).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 30 · Metalinguistic negation. Horn (1985), "Metalinguistic negation and pragmatic ambiguity", Language 61: 121–174. -->
+<section class="slide" data-label="Formal ·Metalinguistic negation" data-screen-label="30">
+  <div class="b-slide pal-a lens-formal dB" data-sec="mln">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Metalinguistic negation</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(40)</span><span class="ex">The King of France isn't bald: there is no King of France.</span></div>
+        <div class="eg" data-step="2"><span class="no">(41)</span><span class="ex">I didn't manage to trap two mongeese: I managed to trap two mongooses.</span></div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight"><strong class="ld">Metalinguistic negation.</strong> A negation that objects to how something was put: to a presupposition in (40), to a word form in (41), or to an implicature. A correction follows and the intonation is marked; without the correction, (40) is odd.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">This is the sense in which Grundy calls presuppositions defeasible: they can be cancelled or denied (2008: 55), but only by a negation of this kind.</div></div>
+      <div class="srcl" data-step="3">Horn (1985), <em>Language</em> 61 · Grundy (2008: 55).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 31 · Definedness -->
+<section class="slide" data-label="Formal ·Definedness" data-screen-label="31">
+  <div class="b-slide pal-a lens-formal dB" data-sec="def">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Presupposition as definedness</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx lf">\[ \sem{\text{the King of France}} \;=\; \begin{cases} \text{the King of France} & \text{if France has exactly one king} \\ \text{undefined} & \text{otherwise} \end{cases} \]</div>
+      </div>
+      <div class="egpanel" data-step="2" style="margin-top:14px">
+        <div class="fx lf">\[ \sem{(28)} \;=\; \begin{cases} 1 & \text{if the King of France is bald} \\ 0 & \text{if he is not} \\ \# & \text{if there is no unique King of France} \end{cases} \]</div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx">The presupposition is a definedness condition on the meaning of the description, and the sentence inherits it. Heim &amp; Kratzer write the condition into the function itself, as \(\lambda x : \varphi.\ \psi\), a function defined only where \(\varphi\) holds.</div></div>
+      <div class="srcl" data-step="3">Heim &amp; Kratzer (1998), ch. 4.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 32 · Three inferences -->
+<section class="slide" data-label="Formal ·Three inferences" data-screen-label="32">
+  <div class="b-slide pal-a lens-formal dB" data-sec="inf">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Three inferences</h2>
+      <div class="itab">
+        <div class="ih"><span></span><span>From (8) or (42)</span><span>Negated</span><span>Cancelled</span></div>
+        <div class="ir" data-step="1"><div class="k">Entailment</div><div>(8) entails: Alex doesn't smoke now</div><div>lost</div><div>contradiction</div></div>
+        <div class="ir" data-step="2"><div class="k">Presupposition</div><div>(8) presupposes: Alex used to smoke</div><div>survives</div><div>only by denial, as in (40)</div></div>
+        <div class="ir" data-step="3"><div class="k">Implicature</div><div>(42) <em>Some of the students passed</em> implicates: not all did</div><div>changes</div><div>fine: <em>in fact, all did</em></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 33 · Sorting inferences · question. Levinson (1983) trigger list (factive, implicative, cleft); used to (implicature, cancellable); stop under negation (entailment); only and its prejacent (Horn 1969, presupposition on the standard view); numerals (contested). The answer slide was cut at Thomas's request. -->
+<section class="slide" data-label="Sorting inferences, Q" data-screen-label="33">
+  <div class="b-slide pal-a lens-formal" data-sec="yt2">
+    <aside class="mrail"></aside>
+    <div class="b-main qdense">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Entailment, presupposition or implicature</div>
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(43)</div><div class="say">Martha regrets drinking John's home brew. &nbsp;→&nbsp; Martha drank John's home brew.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(44)</div><div class="say">John managed to open the door. &nbsp;→&nbsp; John opened the door.</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(45)</div><div class="say">John managed to open the door. &nbsp;→&nbsp; John tried to open the door.</div></div>
+          <div class="cv anim" style="--d:0.60s"><div class="who">(46)</div><div class="say">Mary used to live in Dublin. &nbsp;→&nbsp; Mary no longer lives in Dublin.</div></div>
+          <div class="cv anim" style="--d:0.75s"><div class="who">(47)</div><div class="say">It was Henry that kissed Rosie. &nbsp;→&nbsp; Someone kissed Rosie.</div></div>
+          <div class="cv anim" style="--d:0.90s"><div class="who">(48)</div><div class="say">John didn't stop smoking. &nbsp;→&nbsp; John still smokes.</div></div>
+          <div class="cv anim" style="--d:1.05s"><div class="who">(49)</div><div class="say">Only Rosie passed. &nbsp;→&nbsp; Rosie passed.</div></div>
+          <div class="cv anim" style="--d:1.20s"><div class="who">(50)</div><div class="say">Rosie has three children. &nbsp;→&nbsp; Rosie has no more than three children.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 34 · Semi-factives. Karttunen (1971), "Some observations on factivity", Papers in Linguistics 4: 55–69. -->
+<section class="slide" data-label="Formal ·Semi-factives" data-screen-label="34">
+  <div class="b-slide pal-a lens-formal dB" data-sec="sfa">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Semi-factives</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(51)</span><span class="ex">If I discover later that I have not told the truth, I will confess it to everyone.</span></div>
+        <div class="eg" data-step="2"><span class="no">(52)</span><span class="ex">If I regret later that I have not told the truth, I will confess it to everyone.</span></div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight"><strong class="ld">Semi-factives.</strong> <em>Discover</em>, <em>realise</em>, <em>find out</em> and <em>know</em> are factive in a plain assertion, but the presupposition gives way in a conditional, a question or the first person: in (51) I may well have told the truth. With <em>regret</em>, <em>be glad</em> and <em>be odd</em> it stays, so (52) presupposes that I have not told the truth.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">Not all factive presuppositions are equally strong. Grundy's <em>regret</em> in (13) is the strong kind; the SEP's <em>knows</em> in (23) is the weaker kind.</div></div>
+      <div class="srcl" data-step="3">Karttunen (1971), <em>Papers in Linguistics</em> 4; the <em>discover</em> and <em>regret</em> pair as usually cited.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 35 · Soft and hard triggers. Wording of (53) and (54) as cited from Abusch (2002, 2010) in Jayez & Mongelli, "How hard are hard triggers?", Sinn und Bedeutung 17. -->
+<section class="slide" data-label="Formal ·Soft and hard triggers" data-screen-label="35">
+  <div class="b-slide pal-a lens-formal dB" data-sec="sht">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Soft and hard triggers</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(53)</span><span class="ex">I don't know whether John participated in the race, but if he won he must be very happy.</span></div>
+        <div class="eg" data-step="2"><span class="no">(54)</span><span class="ex"><span class="hash">??</span>I don't know whether John read the letter. But if Mary read it too, let's ask her to be discreet about the content.</span></div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight"><strong class="ld">Soft and hard triggers.</strong> <em>Win</em> presupposes taking part, and (53) suspends that without strain; <em>too</em> and clefts resist, and (54) is odd. Abusch's reading is that soft presuppositions look pragmatic and hard ones conventional.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">Abrusán (2016) argues that there is no categorical split and derives the difference from how each trigger interacts with its context.</div></div>
+      <div class="srcl" data-step="3">After Abusch (2002, 2010) · Abrusán (2016), <em>Natural Language Semantics</em> 24.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 36 · Other notations. The module's notation for presupposition is the definedness condition, with # for the third value. -->
+<section class="slide" data-label="Formal ·Other notations" data-screen-label="36">
+  <div class="b-slide pal-a lens-formal dB" data-sec="nota">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Other notations</h2>
+      <div class="ntab">
+        <div class="nh"><span>In this module</span><span>In the readings and elsewhere</span></div>
+        <div class="nr" data-step="1"><div class="no1">\(\sem{S}\) defined only if \(p\)<small>S presupposes p</small></div><div class="no2">\(S \gg p\) or \(S >\!\!> p\) <i>Levinson, Huang</i> &middot; \(\partial p\) <i>the presupposition operator: Beaver</i> &middot; \(\langle p \rangle\) <i>round the presupposed content: Grundy</i> &middot; \(\rightarrow p\) <i>under the example: the SEP entry</i> &middot; \(\lambda x : \varphi.\ \psi\) <i>Heim &amp; Kratzer</i></div></div>
+        <div class="nr" data-step="2"><div class="no1">\(\#\)<small>no truth value</small></div><div class="no2"><i>undefined</i> &middot; \(u\) or \(\tfrac{1}{2}\) <i>in three-valued logics</i> &middot; <i>also # for an infelicitous example</i></div></div>
+        <div class="nr" data-step="3"><div class="no1">\(\neg A\) &nbsp; \(\sim\! A\)<small>internal, external</small></div><div class="no2"><i>narrow and wide scope</i> &middot; <i>primary and secondary occurrence: Russell</i></div></div>
+        <div class="nr" data-step="4"><div class="no1">Triggers: words, constructions<small>trigger classes</small></div><div class="no2"><i>Yule: existential, factive, non-factive, lexical, structural, counterfactual</i> &middot; <i>Karttunen: factives and semi-factives</i> &middot; <i>Abusch: soft and hard</i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Applied -->
+<section class="slide" data-label="§ Applied" data-screen-label="§ Applied">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-app"/></svg></div></div>
+    <div class="r"><div class="lab">Applied</div><div class="ct">STRAND 04 / 04 · LI7862 · Week 4</div><h2>Presupposition in use</h2><div class="ask">Loaded questions, slogans, Irish English <em>sure</em>, and language models.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+
+
+<!-- 37 · Loaded questions. Geoffrey Cox, House of Commons, 25 Sept 2019 (urgent question on the prorogation advice; apology to Emma Hardy MP). -->
+<section class="slide" data-label="Applied ·Loaded questions" data-screen-label="37">
+  <div class="b-slide pal-a lens-typological dB" data-sec="lq">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Loaded questions</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(55)</span><span class="ex">Have you stopped beating your wife?<span class="gl">The textbook loaded question: <em>yes</em> and <em>no</em> both grant the background.</span></span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight"><strong class="ld">Westminster, 2019.</strong> Asked when he knew his advice to the Prime Minister was untrue, the Attorney General called it a <em>when did you stop beating your wife</em> question and said he did not accept the premise. He apologised for the phrase the same day.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Leading questions.</strong> Questions that supply their own background. Courts restrict them when a party examines its own witness.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">The assumptive close.</strong> Sales training's version is an alternative question, <em>Did you want the basic kit or the enhanced system?</em></div></div>
+      <div class="srcl" data-step="2">House of Commons, 25 September 2019 · Hopkins, <em>Sales Closing For Dummies</em>.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- · Your turn: write a loaded question. The trigger classes from the two Triggers slides, for reference -->
+<section class="slide" data-label="Loaded questions, your turn" data-screen-label="38">
+  <div class="b-slide pal-a lens-typological" data-sec="esc">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:.15s"><div class="who"></div><div class="say">Write a question your neighbour cannot answer with <em>yes</em> or <em>no</em> without conceding something false.</div></div>
+        </div>
+        <div class="trigs anim" style="--d:.45s">
+          <div><b>Factive</b><i>regret, know, be aware</i></div>
+          <div><b>Change of state</b><i>stop, begin, take up</i></div>
+          <div><b>Iterative</b><i>again, another, too</i></div>
+          <div><b>Implicative</b><i>manage, forget</i></div>
+          <div><b>Definite description</b><i>the, possessives</i></div>
+          <div><b>Temporal clause</b><i>before, after, since</i></div>
+          <div><b>Cleft</b><i>it was X who</i></div>
+          <div><b>Wh-question</b><i>when, why, how many</i></div>
+          <div><b>Counterfactual</b><i>if I had</i></div>
+          <div><b>Stress</b><i>dirt AND odours</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 39 · Loftus (1975). Loftus (1975), Experiment 3 (150 students, University of Washington). Bar widths: 50 px per point. -->
+<section class="slide" data-label="Applied ·Loftus (1975)" data-screen-label="39">
+  <div class="b-slide pal-a lens-typological dB" data-sec="barn">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Loftus (1975)</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(56)</span><span class="ex">How fast was the white sports car going when it passed the barn while traveling along the country road?<span class="gl">There was no barn in the film.</span></span></div>
+        <div class="eg"><span class="no">(57)</span><span class="ex">Did you see a barn?</span></div>
+      </div>
+      <svg class="bfig" data-step="2" viewBox="0 0 1400 160" role="img" aria-label="A week later, 17.3 per cent of those asked question 61 said they had seen a barn, against 2.7 per cent of those asked without the barn.">
+        <g data-step="2"><text class="bl" x="0" y="52">asked (56)</text><rect class="bar" x="380" y="16" width="865" height="48" rx="6"/><text class="bv" x="1262" y="55">17.3%</text></g>
+        <g data-step="3"><text class="bl" x="0" y="124">asked without the barn</text><rect class="bar off" x="380" y="88" width="135" height="48" rx="6"/><text class="bv" x="532" y="127">2.7%</text></g>
+        <line class="ax" x1="380" y1="6" x2="380" y2="146"/>
+      </svg>
+      <div class="erow full" data-step="4" style="border-top:none"><div class="tx tight">150 students watched a film of a car accident, and half were asked (56) straight afterwards. A week later all of them were asked (57), and the bars show the share answering <em>yes</em>. Loftus's own term for the barn is a false presupposition in the first question.</div></div>
+      <div class="erow full" data-step="5"><div class="tx tight"><strong class="ld">Loftus &amp; Zanni (1975).</strong> <em>Did you see the broken headlight?</em> drew more <em>yes</em> answers than <em>Did you see a broken headlight?</em>, whether or not the item was in the film.</div></div>
+      <div class="srcl" data-step="4">Loftus (1975), <em>Cognitive Psychology</em> 7, Experiment 3 · Loftus &amp; Zanni (1975), <em>Bulletin of the Psychonomic Society</em> 5.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 40 · Slogans -->
+<section class="slide" data-label="Applied ·Slogans" data-screen-label="40">
+  <div class="b-slide pal-a lens-typological dB" data-sec="slo">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Slogans</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(58)</span><span class="ex">Take back control.<span class="gl">Vote Leave, 2016</span></span></div>
+        <div class="eg" data-step="2"><span class="no">(59)</span><span class="ex">Make America Great Again.<span class="gl">Trump campaign, 2016</span></span></div>
+        <div class="eg" data-step="3"><span class="no">(60)</span><span class="ex">Build Back Better.<span class="gl">Biden campaign, 2020</span></span></div>
+      </div>
+      <div class="erow full" data-step="4" style="border-top:none"><div class="tx"><strong class="ld">Iteratives.</strong> <em>Back</em> and <em>again</em> presuppose an earlier state: control once held, greatness once had, something once built. The contested claim arrives as common ground, and a hearer who wants to dispute it has to say <em>Hey, wait a minute</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 41 · Irish English sure. (61) and (62) are the titles of the two chapters, each an attested line from the corpus. -->
+<section class="slide" data-label="Applied ·Irish English sure" data-screen-label="41">
+  <div class="b-slide pal-a lens-typological dB" data-sec="sure">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Irish English <em>sure</em></h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg" data-step="1"><span class="no">(61)</span><span class="ex">[B]ut sure its only a penny after all<span class="gl">An Irish emigrant letter.</span></span></div>
+        <div class="eg" data-step="2"><span class="no">(62)</span><span class="ex">but a[h] Hellen d[ea]r sure you have it more in your power in every respect than I have<span class="gl">An Irish emigrant letter.</span></span></div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight">Irish English <em>sure</em> stands at the start or end of a clause and is unstressed. It signals expected consensus: the speaker offers the content as already in the common ground. It is attested in emigrant letters from at least the 1760s.</div></div>
+      <div class="srcl" data-step="3">Amador-Moreno &amp; McCafferty (2015); McCafferty &amp; Amador-Moreno (2019), from the Corpus of Irish English Correspondence.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 42 · Machines · question. The opening example of Lachenmaier, Sieker & Zarrieß (2025), ACL. -->
+<section class="slide" data-label="Machines, Q" data-screen-label="42">
+  <div class="b-slide pal-a lens-typological" data-sec="mac">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(63)</div><div class="say">How old is the king of France?</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 43 · Machines -->
+<section class="slide" data-label="Applied ·Machines" data-screen-label="43">
+  <div class="b-slide pal-a lens-typological dB" data-sec="mac">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Machines</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">Answer (63) with <em>65</em> and the false belief stays in place; answer <em>Wait a minute, there is no king of France</em> and the common ground is repaired. Lachenmaier, Sieker &amp; Zarrieß (2025) open with this pair.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight"><strong class="ld">Yu et al. (2023).</strong> 25% of 8,400 Reddit questions carry a false presupposition.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Kim et al. (2021).</strong> In Natural Questions, a set of real Google queries, about 21% of the unanswerable questions trace to unverifiable presuppositions, as in <em>Which linguist invented the lightbulb?</em> Users prefer answers that point out the failure.</div></div>
+      <div class="srcl" data-step="2">Yu, Min, Zettlemoyer &amp; Hajishirzi (2023), ACL · Kim, Pavlick, Karagol Ayan &amp; Ramachandran (2021), ACL.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 44 · Loaded questions to machines. Table 2 (accommodated / imprecise / rejected: GPT 41.4/20.5/38.1; Llama 31.3/48.1/20.7; Mistral 64.1/25.5/10.4). -->
+<section class="slide" data-label="Applied ·Loaded questions to machines" data-screen-label="44">
+  <div class="b-slide pal-a lens-typological dB" data-sec="mac2">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Loaded questions to machines</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(64)</span><span class="ex">Did the voters discover that the CDU/CSU is in favour of replacing the euro with a German national currency?<span class="gl">Factive <em>discover</em>; the presupposition is false. Asked in German.</span></span></div>
+      </div>
+      <div class="dtab" data-step="2">
+        <div class="dh"><span>Model</span><span>accepts</span><span>unclear</span><span>rejects</span></div>
+        <div class="dr" data-step="2"><div class="s">GPT-4o</div><div class="v hi">41%</div><div class="v">21%</div><div class="v">38%</div></div>
+        <div class="dr" data-step="3"><div class="s">Llama-3-8B</div><div class="v">31%</div><div class="v hi">48%</div><div class="v">21%</div></div>
+        <div class="dr" data-step="4"><div class="s">Mistral-7B</div><div class="v hi">64%</div><div class="v">26%</div><div class="v">10%</div></div>
+      </div>
+      <div class="erow full" data-step="5" style="border-top:none;margin-top:6px"><div class="tx tight"><strong class="ld">Lachenmaier, Sieker &amp; Zarrieß (2025).</strong> Models seldom say <em>wait a minute</em>, even when they answer the direct question correctly, and the authors trace part of the failure to face-saving. On 585 patient questions about cancer with false presuppositions, no model fully corrected more than 43% (Zhu et al. 2025).</div></div>
+      <div class="srcl" data-step="5">Lachenmaier, Sieker &amp; Zarrieß (2025), ACL, Table 2 · Zhu et al. (2025), Cancer-Myth.</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/prag-meta.js"></script>
+<script src="../../shared/prag-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-semantics2/week-02: the expandable TOC reflects
+   THIS lecture's sections; strand groups carry their lens colour. */
+(function () {
+  var TITLES = {
+    wk:"This week", road:"Today", rd:"Readings",
+    mos:"Moses", dis:"Distorted questions", asp:"Asserted and presupposed", fam:"The family of sentences", hwm:"Hey, wait a minute",
+    trw:"Triggers: words", trc:"Triggers: constructions", yt1:"Five triggers", tfn:"True, false or neither",
+    fre:"Frege", wil:"The will of the people", rus:"Russell", rua:"Russell's analysis", run:"Russell on negation",
+    str:"Strawson", onr:"On Referring", aus:"Austin", heim:"Heim",
+    sem:"Semantic presupposition", thv:"A third value", neg:"Two negations", mln:"Metalinguistic negation",
+    def:"Definedness", inf:"Three inferences", yt2:"Sorting inferences", sfa:"Semi-factives", sht:"Soft and hard triggers", nota:"Other notations",
+    lq:"Loaded questions", esc:"Your turn", barn:"Loftus (1975)", slo:"Slogans", sure:"Irish English sure", mac:"Machines", mac2:"Loaded questions to machines"
+  };
+  var GROUPS = [
+    { t:"Introduction", sc:null,         keys:["wk","road","rd"] },
+    { t:"Empirical",    sc:"--lens-emp", keys:["mos","dis","asp","fam","hwm","trw","trc","yt1","tfn"] },
+    { t:"Historical",   sc:"--lens-his", keys:["fre","wil","rus","rua","run","str","onr","aus","heim"] },
+    { t:"Formal",       sc:"--lens-for", keys:["sem","thv","neg","mln","def","inf","yt2","sfa","sht","nota"] },
+    { t:"Applied",      sc:"--lens-typ", keys:["lq","esc","barn","slo","sure","mac","mac2"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "▾" : "▸";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LI7862<br>Week 4</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 4</div><div class="t2">Presupposition</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+</body>
+</html>

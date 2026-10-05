@@ -61,7 +61,11 @@ window.WEEKS = [
     figures: ["Grice"], lenses: blankLenses() },
 
   { no: 4, title: "Presupposition", section: 3,
-    figures: ["Russell", "Frege", "Strawson"], lenses: blankLenses() },
+    figures: ["Russell", "Frege", "Strawson"], lenses: {
+      empirical:   { q: "What does an utterance take for granted?", d: "Asserted and presupposed content, the family of sentences, triggers, and judgements when the background fails." },
+      historical:  { q: "Frege, Russell & Strawson", d: "Names, descriptions and the King of France, from Frege (1892) to Strawson (1950) and Russell's reply (1957)." },
+      formal:      { q: "Gaps, negation & definedness", d: "Semantic presupposition, the case for a third value, two negations, definedness, and three kinds of inference." },
+      typological: { q: "Presupposition in use", d: "Loaded questions, eyewitness memory, slogans, Irish English sure, and language models." } } },
 
   { no: 5, title: "Common Ground & Projection", section: 3,
     figures: ["Stalnaker", "Heim"], lenses: blankLenses() },
