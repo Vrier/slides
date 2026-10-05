@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="../../shared/lens.css" />
 <link rel="stylesheet" href="../../shared/deck-slides.css" />
 <link rel="stylesheet" href="../../shared/theme-burgundy.css" />
+<link rel="stylesheet" href="../../shared/type-latex.css" />
 <script>
 window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
 </script>
@@ -205,6 +206,17 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
 
   .lens-kick .ct{ display:none; }
+
+/* larger opening slides */
+.big2 .b-h{font-size:80px}
+.big2 .lead{font-size:54px;line-height:1.25}
+.big2 .erow .lb{font-size:24px}
+.big2 .erow .tx{font-size:44px;line-height:1.35}
+.big2 .erow{padding:26px 0}
+.big3 .b-h{font-size:80px}
+.big3 .lxr3{gap:36px}
+.big3 .lxr3 .stop .lab{font-size:28px}
+.big3 .lxr3 .rmb li{font-size:34px;padding:10px 0 10px 24px;line-height:1.3}
 </style>
 </head>
 <body class="pal-a" data-week="2">
@@ -240,31 +252,29 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 
 <!-- 02 · Framing hook -->
 <section class="slide" data-label="Saying as doing" data-screen-label="02">
-  <div class="b-slide pal-a" data-sec="how">
+  <div class="b-slide pal-a big2" data-sec="how">
     <aside class="mrail"></aside>
     <div class="b-main dB">
-      <div class="b-kick">The question behind this week</div>
       <h2 class="b-h">How do we do things with words?</h2>
-      <div class="lead">Some utterances do not describe the world at all. They <mk>change</mk> it.</div>
+      <div class="lead">Some (most?) utterances do <mk>something other</mk> than describe the world.</div>
       <div class="accrule"></div>
-      <div class="erow"><div class="lb">The received picture</div><div class="tx">An utterance reports a state of affairs, and we judge it <strong>true or false</strong>. Week 1 already strained this picture: much of what we say is not description.</div></div>
-      <div class="erow"><div class="lb">This week's claim</div><div class="tx">Saying can be <strong>doing</strong>. Some utterances are actions, and the right question is not whether they are true but whether they <strong>succeed</strong>.</div></div>
+      <div class="erow"><div class="lb">A purely descriptive Semantic picture</div><div class="tx">An utterance reports a state of affairs, and we judge it <strong>true or false</strong>. We've already seen several cases last week where context and role in interaction come in.</div></div>
+      <div class="erow"><div class="lb">This week</div><div class="tx">Saying can be <strong>doing</strong>. Some utterances are actions, and the right question is not whether they are true but whether they <strong>succeed</strong>.</div></div>
     </div>
   </div>
 </section>
 
 <!-- 03 · Roadmap -->
 <section class="slide" data-label="Roadmap" data-screen-label="03">
-  <div class="b-slide pal-a" data-sec="road">
+  <div class="b-slide pal-a big3" data-sec="road">
     <aside class="mrail"></aside>
     <div class="b-main">
-      <div class="b-kick">Through four strands</div>
       <h2 class="b-h">Today</h2>
       <div class="lxr3">
         <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Pronouncing</li><li>Betting</li><li>A misfire</li><li>Felicity conditions</li><li>Misfires &amp; abuses</li></ul></div>
         <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Ordinary-language Oxford</li><li>Austin</li><li>Searle</li></ul></div>
-        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Three acts</li><li>Force &amp; content</li><li>Direction of fit</li><li>The five types</li><li>Indirect speech acts</li></ul></div>
-        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Institutions</li><li>Dogwhistles</li><li>Defusing &amp; failure</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Three acts</li><li>Force &amp; content</li><li>How to promise</li><li>Direction of fit</li><li>The five types</li><li>Indirect speech acts</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Institutions</li><li>Saul</li><li>Dogwhistles</li><li>Defusing &amp; failure</li><li>Figleaves</li><li>Machine speech acts</li></ul></div>
       </div>
     </div>
   </div>
@@ -274,18 +284,18 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
   <div class="lxd2 lens-empirical pal-a">
     <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
-    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LI7862 · Week 2</div><h2>When is saying also doing?</h2><div class="ask">Performatives and felicity: utterances we judge successful or failed acts in context, not true or false descriptions.</div><div class="lx-rule"></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LI7862 · Week 2</div><h2>Performatives and felicity</h2><div class="ask">Utterances judged as successful or failed acts in context rather than as true or false descriptions.</div><div class="lx-rule"></div></div>
     <div class="lxd2-foot" data-lens="empirical"></div>
   </div>
 </section>
 
 <!-- 05 · Empirical, pronouncing · question -->
-<section class="slide" data-label="What is this doing?, pronouncing" data-screen-label="05 Q">
+<section class="slide" data-label="What is this doing?, pronouncing" data-screen-label="04 Q">
   <div class="b-slide pal-a lens-empirical" data-sec="pron">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="qwrap">
-        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What is this utterance doing?</div>
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide what this utterance does</div>
         <div class="bigq anim" style="font-size:72px;--d:.35s">I now pronounce you husband and wife.<span class="src anim" style="--d:.7s">an officiant, at a wedding</span></div>
       </div>
     </div>
@@ -293,18 +303,18 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 06 · Empirical, pronouncing · answer -->
-<section class="slide" data-label="Pronouncing, a consideration" data-screen-label="05 A">
+<section class="slide" data-label="Pronouncing, a consideration" data-screen-label="04 A">
   <div class="b-slide pal-a lens-empirical dB" data-sec="pron">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">Saying it makes it so</h2>
+      <h2 class="b-h">Performatives</h2>
       <div class="qref">I now pronounce you husband and wife.<span class="src">an officiant, at a wedding</span></div>
       <div class="erow"><div class="lb">Not a report</div><div class="tx">You cannot reply <em>That's false</em>. Nothing is being described: before the words there is no marriage, and after them there is one.</div></div>
       <div class="erow"><div class="lb">Performative</div><div class="tx">Austin's name for utterances that <strong>perform</strong> the very act they name. In saying <em>I pronounce</em>, the officiant pronounces.</div></div>
       <div class="egpanel">
         <div class="eghead">More performatives · first person, present tense</div>
-        <div class="eg"><div class="no">(1)</div><div class="ex">I apologize.</div></div>
+        <div class="eg"><div class="no">(1)</div><div class="ex">I apologise.</div></div>
         <div class="eg"><div class="no">(2)</div><div class="ex">I promise to pay you tomorrow.</div></div>
         <div class="eg"><div class="no">(3)</div><div class="ex">I hereby declare the meeting open.<span class="gl">the <span class="chip">hereby</span> test: a performative still sounds natural with <em>hereby</em> inserted</span></div></div>
       </div>
@@ -313,12 +323,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 07 · Empirical, betting · question -->
-<section class="slide" data-label="What is this doing?, betting" data-screen-label="06 Q">
+<section class="slide" data-label="What is this doing?, betting" data-screen-label="05 Q">
   <div class="b-slide pal-a lens-empirical" data-sec="bet">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="qwrap">
-        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What is this utterance doing?</div>
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide what this utterance does</div>
         <div class="bigq anim" style="font-size:70px;--d:.35s">I bet you sixpence it will rain tomorrow.<span class="src anim" style="--d:.7s">J. L. Austin's own example</span></div>
       </div>
     </div>
@@ -326,12 +336,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 08 · Empirical, betting · answer -->
-<section class="slide" data-label="Betting, a consideration" data-screen-label="06 A">
+<section class="slide" data-label="Betting, a consideration" data-screen-label="05 A">
   <div class="b-slide pal-a lens-empirical dB" data-sec="bet">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">A bet needs taking</h2>
+      <h2 class="b-h">Uptake</h2>
       <div class="qref">I bet you sixpence it will rain tomorrow.</div>
       <div class="erow"><div class="lb">Uptake</div><div class="tx">The bet exists only once you answer <em>You're on</em>. Some acts need the hearer's <strong>uptake</strong> to come off at all.</div></div>
       <div class="erow"><div class="lb">Evaluation</div><div class="tx">If it rains I win, and if not you do. But the bet itself was never true or false; it was <strong>on</strong>, or it was <strong>off</strong>.</div></div>
@@ -341,12 +351,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 09 · Empirical, misfire · question -->
-<section class="slide" data-label="What is this doing?, house party" data-screen-label="07 Q">
+<section class="slide" data-label="What is this doing?, house party" data-screen-label="06 Q">
   <div class="b-slide pal-a lens-empirical" data-sec="party">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="qwrap">
-        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>What is this utterance doing?</div>
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Decide what this utterance does</div>
         <div class="bigq anim" style="font-size:72px;--d:.35s">I hereby declare you married.<span class="src anim" style="--d:.7s">someone at a house party, glass raised</span></div>
       </div>
     </div>
@@ -354,12 +364,12 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 10 · Empirical, misfire · answer -->
-<section class="slide" data-label="House party, a misfire" data-screen-label="07 A">
+<section class="slide" data-label="House party, a misfire" data-screen-label="06 A">
   <div class="b-slide pal-a lens-empirical dB" data-sec="party">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
-      <h2 class="b-h">Nothing happened</h2>
+      <h2 class="b-h">A misfire</h2>
       <div class="qref">I hereby declare you married.<span class="src">someone at a house party, glass raised</span></div>
       <div class="erow"><div class="lb">What went wrong</div><div class="tx">Not falsity. There is no recognised procedure for house-party weddings, the speaker has no standing, and everyone treats it as a joke: the act simply <strong>fails to come off</strong>.</div></div>
       <div class="erow"><div class="lb">The diagnosis</div><div class="tx">The utterance is <strong>infelicitous</strong>. To say exactly when performatives fail, Austin wrote out conditions of <mk>felicity</mk>.</div></div>
@@ -368,13 +378,13 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 11 · Empirical, felicity conditions -->
-<section class="slide" data-label="Felicity conditions" data-screen-label="08">
+<section class="slide" data-label="Felicity conditions" data-screen-label="07">
   <div class="b-slide pal-a lens-empirical dB" data-sec="fel">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">Austin's felicity conditions</h2>
-      <div class="lead">Six conditions, lettered A, B and Γ. Break one, and the act <mk>misfires</mk> or is <mk>abused</mk>.</div>
+      <div class="lead">Six conditions, lettered A, B and Γ.</div>
       <div class="accrule"></div>
       <div class="felgrp">A · The procedure</div>
       <div class="felrow"><div class="fno">A.1</div><div class="ftx">There must exist an accepted <strong>conventional procedure</strong> with a conventional effect, including the uttering of certain words by certain persons in certain circumstances.</div></div>
@@ -390,7 +400,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 12 · Empirical, misfires vs abuses -->
-<section class="slide" data-label="Misfires and abuses" data-screen-label="09">
+<section class="slide" data-label="Misfires and abuses" data-screen-label="08">
   <div class="b-slide pal-a lens-empirical dB" data-sec="mis">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -412,7 +422,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
           <div class="egq">I promise to pay you tomorrow.<b>said with no intention of paying. Insincere, but the promise was made, and you may hold me to it.</b></div>
         </div>
       </div>
-      <div class="erow" style="margin-top:24px"><div class="lb">The lesson</div><div class="tx tight">Performatives have their own dimension of assessment: not truth, but <strong>felicity</strong>. That dimension has structure.</div></div>
+      <div class="erow" style="margin-top:24px"><div class="lb">The intuition</div><div class="tx tight">Performatives have a dimension of assessment of their own: <strong>felicity</strong> rather than truth. That dimension has structure.</div></div>
     </div>
   </div>
 </section>
@@ -427,7 +437,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 14 · Historical, ordinary-language Oxford -->
-<section class="slide" data-label="Historical, Oxford" data-screen-label="14">
+<section class="slide" data-label="Historical, Oxford" data-screen-label="09">
   <div class="b-slide pal-a lens-historical dB" data-sec="oxf">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -442,22 +452,23 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   </div>
 </section>
 
+
 <!-- 15 · Historical, Austin -->
-<section class="slide" data-label="Historical, Austin" data-screen-label="15">
+<section class="slide" data-label="Historical, Austin" data-screen-label="10">
   <div class="b-slide pal-a lens-historical" data-sec="aus">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
       <h2 class="b-h">Austin: saying as doing</h2>
       <div class="figrow">
-        <div class="portrait npf">
-          <div class="npmono">JLA</div>
+        <div class="portrait">
+          <img src="images/austin.jpg" alt="J. L. Austin" style="object-position:center 20%">
           <div class="pc"><div class="nm">J. L. Austin</div><div class="dt">1911 – 1960 · Oxford</div></div>
         </div>
         <div class="figbody dB">
-          <div class="fbio">John Langshaw Austin was an Oxford ordinary-language philosopher, trained as a classicist at Balliol. During the war he led the intelligence section preparing for the D-Day landings, with a meticulousness colleagues considered decisive. He published almost nothing in his lifetime; his lectures were reconstructed and published after his early death.</div>
-          <div class="erow"><div class="lb">How to Do Things with Words</div><div class="tx tight">The 1955 William James Lectures at Harvard, published posthumously in 1962. They disrupt the received picture: many utterances are <strong>actions performed in speaking</strong>, not descriptions to be judged true or false.</div></div>
-          <div class="erow"><div class="lb">The collapse</div><div class="tx tight">Austin begins by separating <strong>performatives</strong> from truth-evaluable <strong>constatives</strong>, then shows the border will not hold: stating is itself an act, with its own ways of failing. Every utterance does something.</div></div>
+          <div class="fbio">A classicist at Balliol, prize fellow of All Souls at 22, then tutor at Magdalen. He published almost nothing in his lifetime and died at 48; both books were reconstructed from his lectures.</div>
+          <div class="erow"><div class="lb">The war</div><div class="tx tight">Intelligence Corps from 1940; from 1942 he directed the section (the <em>Martians</em>) that prepared the intelligence for the invasion of Western Europe. Warnock: <strong>“more than anybody responsible for the life-saving accuracy of the D-Day intelligence”</strong>. Left in 1945 a Lt-Colonel: OBE, Croix de Guerre, US Legion of Merit.</div></div>
+          <div class="erow"><div class="lb">How to Do Things with Words</div><div class="tx tight">The 1955 William James Lectures at Harvard, published in 1962. Many utterances are <strong>actions performed in speaking</strong> rather than descriptions judged true or false.</div></div>
         </div>
       </div>
     </div>
@@ -465,21 +476,21 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 16 · Historical, Searle -->
-<section class="slide" data-label="Historical, Searle" data-screen-label="16">
+<section class="slide" data-label="Historical, Searle" data-screen-label="11">
   <div class="b-slide pal-a lens-historical" data-sec="sea">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
-      <h2 class="b-h">Searle: the systematiser</h2>
+      <h2 class="b-h">John Searle</h2>
       <div class="figrow">
         <div class="portrait">
           <img src="https://commons.wikimedia.org/wiki/Special:FilePath/John%20searle2.jpg?width=700" alt="John Searle" referrerpolicy="no-referrer">
           <div class="pc"><div class="nm">John Searle</div><div class="dt">1932 – 2025 · Berkeley</div></div>
         </div>
         <div class="figbody dB">
-          <div class="fbio">John Searle came to Oxford from the United States as a Rhodes Scholar and studied at Christ Church while Austin was lecturing. He spent his career at Berkeley, where his later work ranged over intentionality, consciousness (the Chinese Room), and institutional facts. Where Austin observed, Searle built theory.</div>
+          <div class="fbio">John Searle came to Oxford from the United States as a Rhodes Scholar and studied at Christ Church while Austin was lecturing. He spent his career at Berkeley, where his later work ranged over intentionality, consciousness (the Chinese Room), and institutional facts.</div>
           <div class="erow"><div class="lb">Speech Acts (1969)</div><div class="tx tight">Turned Austin's observations into a theory: every illocution analysed as a <strong>force applied to a content</strong>, governed by statable conditions.</div></div>
-          <div class="erow"><div class="lb">The taxonomy (1976)</div><div class="tx tight">Classified every possible illocutionary act into <strong>five types</strong>, using three diagnostic dimensions. The formal strand works through both.</div></div>
+          <div class="erow"><div class="lb">The taxonomy (1976)</div><div class="tx tight">Classified every possible illocutionary act into <strong>five types</strong>, using three diagnostic dimensions.</div></div>
         </div>
       </div>
     </div>
@@ -496,7 +507,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 18 · Formal, three acts -->
-<section class="slide" data-label="Formal, Three acts" data-screen-label="18">
+<section class="slide" data-label="Formal, Three acts" data-screen-label="12">
   <div class="b-slide pal-a lens-formal dB" data-sec="acts">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -530,7 +541,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 19 · Formal, force over content -->
-<section class="slide" data-label="Formal, Force over content" data-screen-label="19">
+<section class="slide" data-label="Formal, Force over content" data-screen-label="13">
   <div class="b-slide pal-a lens-formal dB" data-sec="fp">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -548,19 +559,37 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
           <div class="frow"><div class="op">W(p)</div><div class="fl">Wish</div><div class="fe">Would that Sam smoked habitually.</div></div>
         </div>
       </div>
-      <div class="erow" style="margin-top:26px"><div class="lb">Why it matters</div><div class="tx tight">Same content, four different acts. Force is not part of <em>p</em>; it is what the speaker <strong>does with</strong> <em>p</em>. Searle's example, from <em>Speech Acts</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Formal, how to promise -->
+<section class="slide" data-label="Formal, How to promise" data-screen-label="14">
+  <div class="b-slide pal-a lens-formal dB" data-sec="prom">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">How to promise</h2>
+      <div class="lead">To promise that p is to satisfy four kinds of condition.</div>
+      <div class="accrule"></div>
+      <div class="felrow"><div class="fno">1</div><div class="ftx"><strong>Propositional content</strong>: p predicates a <strong>future act A</strong> of the speaker S.</div></div>
+      <div class="felrow"><div class="fno">2</div><div class="ftx"><strong>Preparatory</strong>: H would <strong>prefer</strong> S's doing A to S's not doing it; it is not obvious that S would do A anyway.</div></div>
+      <div class="felrow"><div class="fno">3</div><div class="ftx"><strong>Sincerity</strong>: S <strong>intends</strong> to do A.</div></div>
+      <div class="felrow"><div class="fno">4</div><div class="ftx"><strong>Essential</strong>: the utterance <strong>counts as</strong> the undertaking of an obligation to do A.</div></div>
+      <div class="erow" style="margin-top:24px"><div class="lb">Constitutive rules</div><div class="tx tight">What <strong>makes an act a promise</strong> at all, rather than advice on promising well: constitutive rules, like the rules of chess, rather than regulative ones, like etiquette. <em>Speech Acts</em>&nbsp;(1969), Ch.&nbsp;3.</div></div>
     </div>
   </div>
 </section>
 
 <!-- 20 · Formal, direction of fit -->
-<section class="slide" data-label="Formal, Direction of fit" data-screen-label="20">
+<section class="slide" data-label="Formal, Direction of fit" data-screen-label="15">
   <div class="b-slide pal-a lens-formal dB" data-sec="fit">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">Direction of fit</h2>
-      <div class="lead">When words and world disagree, which one is at <mk>fault</mk>?</div>
+      <div class="lead">When words and world disagree, one of them is at <mk>fault</mk>.</div>
       <div class="accrule"></div>
       <div class="fitcards">
         <div class="fitc">
@@ -588,7 +617,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 </section>
 
 <!-- 21 · Formal, the five types -->
-<section class="slide" data-label="Formal, The five types" data-screen-label="21">
+<section class="slide" data-label="Formal, The five types" data-screen-label="16">
   <div class="b-slide pal-a lens-formal dB" data-sec="tax">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -625,7 +654,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
             <td class="pt2">express an attitude</td>
             <td><span class="fit">0</span></td>
             <td class="pt2">varies</td>
-            <td class="ex">thank, apologize, congratulate</td>
+            <td class="ex">thank, apologise, congratulate</td>
           </tr>
           <tr>
             <td><div class="cat">Declarations</div><span class="chip sch">authority + procedure</span></td>
@@ -640,22 +669,86 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
   </div>
 </section>
 
-<!-- 22 · Formal, indirect speech acts -->
-<section class="slide" data-label="Formal, Indirect speech acts" data-screen-label="22">
+<!-- Formal, indirect speech acts · question -->
+<section class="slide" data-label="What is this doing?, salt" data-screen-label="17 Q">
+  <div class="b-slide pal-a lens-formal" data-sec="ind">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Decide what this utterance does</div>
+        <div class="bigq anim" style="font-size:80px;--d:.35s">Can you pass me the salt?<span class="src anim" style="--d:.7s">a guest, at dinner</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Formal, indirect speech acts · two acts -->
+<section class="slide" data-label="Formal, Indirect speech acts" data-screen-label="17 A">
   <div class="b-slide pal-a lens-formal dB" data-sec="ind">
     <aside class="mrail"></aside>
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
-      <h2 class="b-h">Indirect speech acts</h2>
-      <div class="qref">Can you pass me the salt?</div>
-      <div class="erow"><div class="lb">Two acts at once</div><div class="tx tight">Literally a <strong>question</strong> about ability (the secondary act); in use, a polite <strong>request</strong> (the primary act). The hearer computes the request from the question, plus context.</div></div>
+      <h2 class="b-h">Two acts at once</h2>
+      <div class="qref">Can you pass me the salt?<span class="src">a guest, at dinner</span></div>
+      <div class="erow"><div class="lb">The literal act</div><div class="tx tight">A yes/no <strong>question</strong> about ability. It is really asked: the hearer can answer <em>Yes</em> and sit still. The literal answer shows the question was there.</div></div>
+      <div class="erow"><div class="lb">The primary act</div><div class="tx tight">A <strong>request</strong>, performed <em>by way of</em> the question. Searle (1975): the secondary act is performed literally, the primary act indirectly, and the hearer must <strong>compute</strong> one from the other.</div></div>
       <div class="egpanel">
         <div class="eghead">Spot the primary act</div>
-        <div class="eg"><div class="no">(1)</div><div class="ex">It's cold in here.<span class="gl">→ a request: close the window</span></div></div>
-        <div class="eg"><div class="no">(2)</div><div class="ex">Do you know what time it is?<span class="gl">→ a request: tell me the time</span></div></div>
-        <div class="eg"><div class="no">(3)</div><div class="ex">I wouldn't do that if I were you.<span class="gl">→ a warning</span></div></div>
+        <div class="eg"><div class="no">(4)</div><div class="ex">It's cold in here.<span class="gl">→ a request: close the window</span></div></div>
+        <div class="eg"><div class="no">(5)</div><div class="ex">Do you know what time it is?<span class="gl">→ a request: tell me the time</span></div></div>
+        <div class="eg"><div class="no">(6)</div><div class="ex">I wouldn't do that if I were you.<span class="gl">→ a warning</span></div></div>
       </div>
-      <div class="erow"><div class="lb">Why indirect?</div><div class="tx tight">Indirectness leaves the hearer an out: they can respond to the literal act. This is where speech acts meet <strong>politeness</strong>, in week 8.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Formal, indirect speech acts · the pattern -->
+<section class="slide" data-label="Formal, Indirection is systematic" data-screen-label="18">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ind">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Indirection is systematic</h2>
+      <div class="lead">Indirect requests are not random. Each one targets a <mk>felicity condition</mk> of the direct request it stands in for.</div>
+      <table class="taxE">
+        <thead>
+          <tr><th style="width:30%">Condition on requesting</th><th style="width:26%">Route</th><th style="width:44%">Indirect request</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><div class="cat">Preparatory</div><span class="chip sch">H can do A</span></td><td class="pt2">ask about, or assert, ability</td><td class="ex">Can you close the window?</td></tr>
+          <tr><td><div class="cat">Sincerity</div><span class="chip sch">S wants H to do A</span></td><td class="pt2">state the want</td><td class="ex">I'd like you to close the window.</td></tr>
+          <tr><td><div class="cat">Propositional content</div><span class="chip sch">H will do A</span></td><td class="pt2">ask about the future act</td><td class="ex">Will you close the window?</td></tr>
+          <tr><td><div class="cat">Reasons</div><span class="chip sch">there is reason to do A</span></td><td class="pt2">assert, or ask about, a reason</td><td class="ex">It's cold in here.</td></tr>
+        </tbody>
+      </table>
+      <div class="erow" style="margin-top:24px"><div class="lb">The pattern</div><div class="tx tight">Each route mentions one condition on the direct act; the hearer reasons from the condition to the act. Searle (1975); Gordon &amp; Lakoff (1975).</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Formal, indirect speech acts · convention or inference -->
+<section class="slide" data-label="Formal, Convention or inference" data-screen-label="19">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ind">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Convention or inference</h2>
+      <div class="lead"><em>Can you…?</em> as a request: by <mk>rule</mk>, or by <mk>reasoning</mk>.</div>
+      <div class="accrule"></div>
+      <div class="mabs">
+        <div class="arm">
+          <div class="cond">Sadock (1974)</div>
+          <div class="h">Idiom</div>
+          <div class="t">A <b>speech-act idiom</b>, like <em>kick the bucket</em>: the request meaning is listed in the lexicon rather than computed.</div>
+          <div class="egq">Can you please close the window?<b><em>please</em> fits the conventional form only: ?<em>Are you able to please close the window?</em></b></div>
+        </div>
+        <div class="arm">
+          <div class="cond">Searle (1975)</div>
+          <div class="h">Inference</div>
+          <div class="t">Computed from the literal act, shared background and <b>cooperation</b>. The same routes recur across languages; idioms would not predict that.</div>
+          <div class="egq">Can you pass me the salt? Yes.<b>the literal act stays available; an idiom would have swallowed it.</b></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -664,13 +757,13 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="§ Applied" data-screen-label="§ Applied">
   <div class="lxd2 lens-typological pal-a">
     <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-app"/></svg></div></div>
-    <div class="r"><div class="lab">Applied</div><div class="ct">STRAND 04 / 04 · LI7862 · Week 2</div><h2>Speech acts in the wild</h2><div class="ask">From institutions that run on declarations to dogwhistles engineered for deniability: speech-act theory as a tool for analysing real communication.</div><div class="lx-rule"></div></div>
+    <div class="r"><div class="lab">Applied</div><div class="ct">STRAND 04 / 04 · LI7862 · Week 2</div><h2>Speech acts in the wild</h2><div class="ask">Speech-act theory as a tool for analysing real communication.</div><div class="lx-rule"></div></div>
     <div class="lxd2-foot" data-lens="typological"></div>
   </div>
 </section>
 
 <!-- 24 · Applied, institutions -->
-<section class="slide" data-label="Applied, Institutions" data-screen-label="24">
+<section class="slide" data-label="Applied, Institutions" data-screen-label="20">
   <div class="b-slide pal-a lens-typological dB" data-sec="inst">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -680,19 +773,42 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="accrule"></div>
       <div class="egpanel">
         <div class="eghead">Declarations at work</div>
-        <div class="eg"><div class="no">(1)</div><div class="ex">I resign.</div></div>
-        <div class="eg"><div class="no">(2)</div><div class="ex">You're out.<span class="gl">an umpire says it, and the batter is out</span></div></div>
-        <div class="eg"><div class="no">(3)</div><div class="ex">The meeting is adjourned.</div></div>
-        <div class="eg"><div class="no">(4)</div><div class="ex">I sentence you to five years.<span class="gl">only a judge, only in court, only after a verdict</span></div></div>
+        <div class="eg"><div class="no">(7)</div><div class="ex">I resign.</div></div>
+        <div class="eg"><div class="no">(8)</div><div class="ex">You're out.<span class="gl">an umpire says it, and the batter is out</span></div></div>
+        <div class="eg"><div class="no">(9)</div><div class="ex">The meeting is adjourned.</div></div>
+        <div class="eg"><div class="no">(10)</div><div class="ex">I sentence you to five years.<span class="gl">only a judge, only in court, only after a verdict</span></div></div>
       </div>
-      <div class="erow"><div class="lb">The infrastructure</div><div class="tx tight">Each works only inside a <strong>procedure</strong> with recognised <strong>authority</strong>: Austin's A-conditions, hardened into standing institutions.</div></div>
+      <div class="erow"><div class="lb">The infrastructure</div><div class="tx tight">Each works only inside a <strong>procedure</strong> with recognised <strong>authority</strong>: Austin's A-conditions.</div></div>
       <div class="erow"><div class="lb">Institutional facts</div><div class="tx tight">Searle's later point: money, marriage, property and games exist partly <strong>because we declare them</strong>, and keep treating them as declared.</div></div>
     </div>
   </div>
 </section>
 
+<!-- Applied, Saul -->
+<section class="slide" data-label="Applied, Saul" data-screen-label="21">
+  <div class="b-slide pal-a lens-typological" data-sec="saul">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Jennifer Saul</h2>
+      <div class="figrow">
+        <div class="portrait">
+          <img src="images/saul.jpg" alt="Jennifer Saul" style="object-position:center 30%">
+          <div class="pc"><div class="nm">Jennifer Saul</div><div class="dt">b. 1968 · Waterloo</div></div>
+        </div>
+        <div class="figbody dB">
+          <div class="fbio">American philosopher of language: BA Rochester, PhD Princeton under Scott Soames. Over twenty years at Sheffield; since 2019 Waterloo Chair in Social and Political Philosophy of Language. Director of the Society for Women in Philosophy UK (2009–2019); founder of the Feminist Philosophers blog.</div>
+          <div class="erow"><div class="lb">Lying, Misleading, and What Is Said (2012)</div><div class="tx tight">Lying versus <strong>merely misleading</strong>, and what the difference shows about <strong>what is said</strong>.</div></div>
+          <div class="erow"><div class="lb">Implicit bias</div><div class="tx tight">Director of the Leverhulme <strong>Implicit Bias and Philosophy</strong> project (2011–2013).</div></div>
+          <div class="erow"><div class="lb">Dogwhistles and Figleaves (2024)</div><div class="tx tight">The pragmatics of <strong>racist and deceptive political speech</strong>: overt, covert and protean dogwhistles; figleaves.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- 25 · Applied, dogwhistles -->
-<section class="slide" data-label="Applied, Dogwhistles" data-screen-label="25">
+<section class="slide" data-label="Applied, Dogwhistles" data-screen-label="22">
   <div class="b-slide pal-a lens-typological dB" data-sec="dwm">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -713,13 +829,13 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         </div>
       </div>
       <div class="erow" style="margin-top:24px"><div class="lb">The common core</div><div class="tx">Audience <strong>segmentation</strong> plus <strong>deniability</strong>: both kinds rely on concealment from some hearers, and the speaker can always retreat to the innocent reading.</div></div>
-      <div class="erow"><div class="lb">Read as speech acts</div><div class="tx tight">One locution, two intended illocutions: an innocuous act for the broad audience, a signal of allegiance for the target audience.</div></div>
+      <div class="erow"><div class="lb">Read as speech acts</div><div class="tx tight">One locution, two intended illocutions: an innocuous act for the broad audience, a signal of allegiance for the target audience. Saul (2018; 2024).</div></div>
     </div>
   </div>
 </section>
 
 <!-- 26 · Applied, defusing & failure -->
-<section class="slide" data-label="Applied, Defusing and failure" data-screen-label="26">
+<section class="slide" data-label="Applied, Defusing and failure" data-screen-label="23">
   <div class="b-slide pal-a lens-typological dB" data-sec="dwf">
     <aside class="mrail"></aside>
     <div class="b-main dB">
@@ -728,25 +844,76 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="lead">Publicly naming a dogwhistle can defuse it, but only under conditions: <mk>felicity conditions</mk>, again.</div>
       <div class="accrule"></div>
       <div class="erow"><div class="lb">Norm acceptance</div><div class="tx tight">Defusing works only where the audience shares a norm against explicit prejudice, so that exposure carries a cost.</div></div>
-      <div class="erow"><div class="lb">Target match</div><div class="tx tight">…and only where the audience agrees on who the target is. <em>Protean</em> dogwhistles shift targets, so both conditions wobble and defusing fails.</div></div>
+      <div class="erow"><div class="lb">Target match</div><div class="tx tight">…and only where the audience agrees on who the target is. <em>Protean</em> dogwhistles shift targets, so both conditions wobble and defusing fails. Saul (2019).</div></div>
       <div class="erow"><div class="lb">Misfire</div><div class="tx tight">The target audience misses the signal: nothing beyond the innocent reading is communicated. The covert act does not come off.</div></div>
       <div class="erow"><div class="lb">Backfire</div><div class="tx tight">The broad audience recognises the signal: deniability collapses, and the speaker owns the act in public.</div></div>
     </div>
   </div>
 </section>
 
+
+<!-- Applied, figleaves -->
+<section class="slide" data-label="Applied, Figleaves" data-screen-label="24">
+  <div class="b-slide pal-a lens-typological dB" data-sec="fig">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Figleaves</h2>
+      <div class="lead">The dogwhistle's partner device: it <mk>covers</mk> the message rather than hiding it.</div>
+      <div class="accrule"></div>
+      <div class="egpanel">
+        <div class="eghead">Figleaves at work</div>
+        <div class="eg"><div class="no">(11)</div><div class="ex">I'm not racist, but…</div></div>
+        <div class="eg"><div class="no">(12)</div><div class="ex">Just asking questions.</div></div>
+        <div class="eg"><div class="no">(13)</div><div class="ex">Many people are saying…</div></div>
+      </div>
+      <div class="erow"><div class="lb">What it does</div><div class="tx tight">Attaches to a message that would otherwise be rejected as norm-violating, and supplies <strong>just enough cover</strong> for conflicted hearers to accept it. The message stays in full view.</div></div>
+      <div class="erow"><div class="lb">Against the dogwhistle</div><div class="tx tight">A dogwhistle <strong>conceals</strong> the act; a figleaf performs it openly and buys deniability another way. Same goal, opposite mechanism. Each covered utterance shifts what the audience treats as <strong>sayable</strong>. Saul (2024), <em>Dogwhistles and Figleaves</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Applied, machine speech acts · question -->
+<section class="slide" data-label="What is this doing?, chatbot" data-screen-label="25 Q">
+  <div class="b-slide pal-a lens-typological" data-sec="llm">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Decide what this utterance does</div>
+        <div class="bigq anim" style="font-size:72px;--d:.35s">I sincerely apologise for the confusion.<span class="src anim" style="--d:.7s">a chatbot, having invented a citation</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Applied, machine speech acts · answer -->
+<section class="slide" data-label="Applied, Machine speech acts" data-screen-label="25 A">
+  <div class="b-slide pal-a lens-typological dB" data-sec="llm">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Machine speech acts</h2>
+      <div class="qref">I sincerely apologise for the confusion.<span class="src">a chatbot, having invented a citation</span></div>
+      <div class="erow"><div class="lb">Run the checklist</div><div class="tx tight">The form is perfect: first person, present tense, passes the <em>hereby</em> test. But the Γ-conditions want a <strong>state to express</strong>; a promise wants an <strong>obligation undertaken</strong>; an assertion wants a speaker who can be <strong>held to it</strong>.</div></div>
+      <div class="erow"><div class="lb">No assertion</div><div class="tx tight">Butlin &amp; Viebahn (2024): asserting requires descriptive function <em>and</em> liability to <strong>sanction</strong>. Current systems fail the second.</div></div>
+      <div class="erow"><div class="lb">Proto-assertion</div><div class="tx tight">Williams &amp; Bayne (2024): a category <strong>between</strong> mere output and full assertion, as with children entering the practice.</div></div>
+      <div class="erow"><div class="lb">Chatbot apologies</div><div class="tx tight">Magnus, Buccella &amp; D'Cruz (2025): chatbot apologies keep the form while <strong>nothing satisfies the Γ-conditions</strong>.</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- 27 · Summary -->
-<section class="slide" data-label="Summary" data-screen-label="27">
+<section class="slide" data-label="Summary" data-screen-label="26">
   <div class="b-slide pal-a" data-sec="sum">
     <aside class="mrail"></aside>
     <div class="b-main">
       <div class="b-kick">Week 2 wrap-up</div>
-      <h2 class="b-h">Four strands, one act</h2>
+      <h2 class="b-h">What to take away</h2>
       <div class="recap">
-        <div class="rr" style="--rc:var(--lens-emp)"><div class="rl">Empirical</div><div class="rt">Performatives and felicity: utterances judged successful or failed, not true or false. Misfires and abuses.</div></div>
+        <div class="rr" style="--rc:var(--lens-emp)"><div class="rl">Empirical</div><div class="rt">Performatives and felicity: utterances judged successful or failed rather than true or false. Misfires and abuses.</div></div>
         <div class="rr" style="--rc:var(--lens-his)"><div class="rl">Historical</div><div class="rt">Austin's disruption and Searle's system, out of post-war Oxford ordinary-language philosophy.</div></div>
-        <div class="rr" style="--rc:var(--lens-for)"><div class="rl">Formal</div><div class="rt">Three acts, force over content, direction of fit, and the five illocutionary types.</div></div>
-        <div class="rr" style="--rc:var(--lens-typ)"><div class="rl">Applied</div><div class="rt">Institutions built from declarations; dogwhistles and their modes of failure.</div></div>
+        <div class="rr" style="--rc:var(--lens-for)"><div class="rl">Formal</div><div class="rt">Three acts, force over content, how to promise, direction of fit, the five types, and indirect speech acts.</div></div>
+        <div class="rr" style="--rc:var(--lens-typ)"><div class="rl">Applied</div><div class="rt">Institutions built from declarations; dogwhistles, figleaves, and whether a machine can do things with words.</div></div>
       </div>
       <p style="font-size:var(--type-small);color:var(--tcd-grey-100);margin-top:30px"><strong>Next week:</strong> Implicature. What we mean beyond what we say, and Grice's cooperative principle.</p>
     </div>
@@ -767,16 +934,16 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     how:"Saying as doing", road:"Roadmap",
     pron:"Pronouncing", bet:"Betting", party:"A misfire", fel:"Felicity conditions", mis:"Misfires & abuses",
     oxf:"Ordinary-language Oxford", aus:"Austin", sea:"Searle",
-    acts:"Three acts", fp:"Force & content", fit:"Direction of fit", tax:"The five types", ind:"Indirect speech acts",
-    inst:"Institutions", dwm:"Dogwhistles", dwf:"Defusing & failure",
+    acts:"Three acts", fp:"Force & content", prom:"How to promise", fit:"Direction of fit", tax:"The five types", ind:"Indirect speech acts",
+    inst:"Institutions", saul:"Saul", dwm:"Dogwhistles", dwf:"Defusing & failure", fig:"Figleaves", llm:"Machine speech acts",
     sum:"Wrap-up"
   };
   var GROUPS = [
     { t:"Introduction",            sc:null,         keys:["how","road"] },
     { t:"What is this doing?",     sc:"--lens-emp", keys:["pron","bet","party","fel","mis"] },
     { t:"Austin & Searle",         sc:"--lens-his", keys:["oxf","aus","sea"] },
-    { t:"Force & the taxonomy",    sc:"--lens-for", keys:["acts","fp","fit","tax","ind"] },
-    { t:"In the wild",             sc:"--lens-typ", keys:["inst","dwm","dwf"] },
+    { t:"Force & the taxonomy",    sc:"--lens-for", keys:["acts","fp","prom","fit","tax","ind"] },
+    { t:"In the wild",             sc:"--lens-typ", keys:["inst","saul","dwm","dwf","fig","llm"] },
     { t:"Wrap-up",                 sc:null,         keys:["sum"] }
   ];
   function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }

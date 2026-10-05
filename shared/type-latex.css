@@ -1,0 +1,78 @@
+/* type-latex.css — LaTeX typefaces and a readability pass.
+   Link after the module theme (theme-*.css) in any deck that should use it.
+   Fonts: Computer Modern as shipped with KaTeX (cdnjs), with the previous
+   stack kept as fallback so any glyph CM lacks (↕, ⊢ …) still renders. */
+
+@font-face { font-family: "CM Serif"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_Main-Regular.woff2") format("woff2"); }
+@font-face { font-family: "CM Serif"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_Main-Bold.woff2") format("woff2"); }
+@font-face { font-family: "CM Serif"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_Main-Italic.woff2") format("woff2"); }
+@font-face { font-family: "CM Serif"; font-style: italic; font-weight: 700; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_Main-BoldItalic.woff2") format("woff2"); }
+
+@font-face { font-family: "CM Sans"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_SansSerif-Regular.woff2") format("woff2"); }
+@font-face { font-family: "CM Sans"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_SansSerif-Bold.woff2") format("woff2"); }
+@font-face { font-family: "CM Sans"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_SansSerif-Italic.woff2") format("woff2"); }
+
+@font-face { font-family: "CM Mono"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/fonts/KaTeX_Typewriter-Regular.woff2") format("woff2"); }
+
+:root {
+  --serif: "CM Serif", "STIX Two Text", Georgia, "Times New Roman", serif;
+  --sans: "CM Sans", "Source Sans 3", "Source Sans Pro", system-ui, sans-serif;
+  --mono: "CM Mono", "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Computer Modern sits visually smaller than STIX at the same px: scale up. */
+  --type-title: 68px;
+  --type-subtitle: 46px;
+  --type-body: 37px;
+  --type-small: 30px;
+  --type-kicker: 23px;
+  --type-micro: 19px;
+}
+
+/* Readability pass for the label-row deck classes (LI7862 decks). */
+.dB .lead { font-size: 40px; }
+.dB .erow .lb { font-size: 17px; }
+.dB .erow .tx { font-size: 32px; }
+.dB .erow .tx.tight { font-size: 30px; }
+.fbio { font-size: 20px; line-height: 1.4; }
+.portrait .pc .nm { font-size: 30px; }
+.eghead { font-size: 15px; }
+.eg .no { font-size: 21px; }
+.eg .ex { font-size: 32px; }
+.eg .ex .gl { font-size: 20px; }
+.qask { font-size: 22px; }
+.bigq .src { font-size: 24px; }
+.qref .src { font-size: 19px; }
+.aline { font-size: 42px; }
+.felgrp { font-size: 15px; }
+.felrow .fno { font-size: 23px; }
+.felrow .ftx { font-size: 28px; }
+.mabs .arm .cond { font-size: 17px; }
+.mabs .arm .h { font-size: 40px; }
+.mabs .arm .t { font-size: 23px; }
+.mabs .arm .egq b { font-size: 17px; }
+.act .an { font-size: 19px; }
+.act .ad { font-size: 25px; }
+.act .aw { font-size: 19px; }
+.act .ae { font-size: 22px; }
+.fpd .pnode .pv { font-size: 31px; }
+.fpd .frow .fl { font-size: 18px; }
+.fpd .frow .fe { font-size: 25px; }
+.fitc .fh { font-size: 19px; }
+.fitc .ft { font-size: 25px; }
+.taxE th { font-size: 16px; }
+.taxE .cat { font-size: 30px; }
+.taxE .pt2 { font-size: 23px; }
+.taxE .ex { font-size: 23px; }
+.brn .arm .h { font-size: 16px; }
+.brn .arm .t { font-size: 28px; }
+.recap .rr .rl { font-size: 17px; }
+.recap .rr .rt { font-size: 29px; }
+.lxr3 .rmb li { font-size: 20px; }
