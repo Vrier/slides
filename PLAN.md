@@ -942,3 +942,9 @@ what the next session must know)*
   the coding theorem, other notations. Applied: optional *that* (Jaeger 2010), information rates (Coupé et al.
   2019, drawn from the authors' data), redundancy, redundancy and entropy, Wilkins's taxonomy, his p. 415 table,
   and the pomiferous trees. Photos in `week-03/images/` with licences in HTML comments.
+- **Text register sweep (docs/deck-style.md § 9).** Rows rewritten as full sentences; bold leads only for
+  terms, sources and titles (year and label leads gone); question slides carry data only (prompt and source
+  lines removed, plain topic labels); a `.srcl` source line on 21 content and answer slides (the corpas.ie
+  CC BY-SA credit restored there); portrait captions name and dates only. Five slides re-fitted after the
+  sweep (binary, top 100, Markov, Chomsky, information rates). Kept as Thomas dictated: the guessing-game
+  instruction, the naming tasks, the uneven-distribution wording, the top-100 notes, Weaver's A/B/C line.
