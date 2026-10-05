@@ -109,7 +109,7 @@ window.MODULE = {
   default: "liu22012",
   identities: [
     { key: "liu22012", code: "LIU22012", name: "Pragmatics I", term: "Semester 2 / Hilary", coordinator: "Dr Conor Pyle",
-      overview: { file: "overview-liu22012.html", status: "none" },
+      overview: { file: "overview-liu22012.html", status: "ready" },
       assessments: [
         { no: 1, title: "Assessment 1", weight: 20, file: "assessments/liu22012-a1.html", status: "none" },
         { no: 2, title: "Assessment 2", weight: 20, file: "assessments/liu22012-a2.html", status: "none" },
