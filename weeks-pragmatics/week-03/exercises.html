@@ -3,138 +3,279 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LI7862 · Week 3 — Implicature · Homework</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="../../shared/tokens.css" />
-<link rel="stylesheet" href="../../shared/lens.css" />
-<link rel="stylesheet" href="../../shared/handout.css" />
-<link rel="stylesheet" href="../../shared/exercises.css" />
+<title>LI7862 · Week 3, Implicature · Homework</title>
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Homework data sheet: a transcript (block 1), tagging grids (block 2) and
+     questions (block 3). No margin column, so the grids take the full width.
+     Block 2 opens a fresh page; block 3 runs on under the grids. */
+  body { font-size:11pt; }
+  .sec { grid-template-columns:30pt 1fr; margin-top:16.2pt; }
+  .data { margin:4pt 0 0; }
+  @media print {
+    .sec.runon { break-before:auto; page-break-before:auto; }
+  }
+  .sec.runon { margin-top:26.5pt; }
+  @media print {
+    .sec.flows { break-inside:auto; }
+  }
+  /* transcript, set as a playscript */
+  table.play { width:100%; border-collapse:collapse; font-size:9.6pt; line-height:1.294; margin:3pt 0 0; }
+  table.play td { padding:0 0 1.1pt; vertical-align:top; }
+  table.play td.n { width:26pt; }
+  table.play td.who { width:80pt; font-size:8.2pt; text-transform:uppercase; letter-spacing:.04em; padding-top:.9pt; }
+  table.play tr.cut td { padding-top:8pt; font-size:9pt; }
+  table.play tr.cut.tight td { padding-top:0; }
+  @media print { table.play tr { break-inside:avoid; page-break-inside:avoid; } }
+  /* tagging grids */
+  .sub { margin:12pt 0 3.2pt; font-size:8pt; }
+  .sub:first-of-type { margin-top:0; }
+  .sub, .sub + p { break-after:avoid; page-break-after:avoid; }
+  table.grid { width:100%; border-collapse:collapse; margin:6pt 0 0; table-layout:fixed; }
+  table.grid th { text-align:left; vertical-align:middle; font-weight:700; text-transform:uppercase; letter-spacing:.12em;
+                  font-size:7.8pt; line-height:1.38; padding:3.5pt 5pt; border-top:.75pt solid var(--rule); border-bottom:.75pt solid var(--rule); }
+  table.grid td { font-size:9.4pt; line-height:1.3; padding:2.5pt 8pt 2.2pt 5pt; vertical-align:top; border-bottom:.75pt solid var(--rule); }
+  table.grid th:not(:last-child), table.grid td:not(:last-child) { border-right:.75pt solid var(--rule); }
+  table.grid td .no { margin-right:6pt; }
+  @media print { table.grid tr { break-inside:avoid; page-break-inside:avoid; } table.grid thead { display:table-header-group; } }
+  ol.qs { margin:2pt 0 0; padding-left:18pt; }
+  ol.qs li { margin:0 0 5pt; padding-left:2pt; }
+</style>
 </head>
-<body class="pal-a">
+<body>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <defs>
-    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
-    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
-    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
-    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
-  </defs>
-</svg>
+<div class="sheet">
 
-<div class="handout-week hw" data-week="3"><div class="page">
-
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
-      </div>
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
     </div>
-    <div class="h-meta">
-      <div class="code">LI7862 · Linguistic Pragmatics</div>
-      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    <div class="right">
+      <div class="sc code">LI7862 · Linguistic Pragmatics</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas 2026</div>
     </div>
-  </header>
-
-  <div class="h-title-row">
-    <div class="h-week">Week 3 · Homework</div>
-    <h1 class="h-title">Implicature</h1>
   </div>
+  <div class="mast-rule"></div>
 
-  <div class="hw-band">
-    <span class="tag">Homework</span>
-    <span class="due">Due <b>Week 4 · 17:00</b> · submit via Blackboard</span>
-    <span class="pts">— marks</span>
-  </div>
+  <div class="sc doc-kicker">Week 3 · Homework</div>
+  <h1 class="doc-title">Implicature Data Analysis</h1>
+  <p class="data"><span class="runin">Data.</span> Excerpts from the official transcript of an exchange between President Donald Trump and reporters in the lobby of Trump Tower, New York, on 15 August 2017. It followed remarks on infrastructure, and came three days after the Unite the Right rally in Charlottesville, Virginia, at which a counter-protester, Heather Heyer, was killed. Source: <i>Daily Compilation of Presidential Documents</i>, DCPD-201700573.</p>
 
-  <div class="hw-sub">
-    <div class="f"><span class="lab">Name</span><span class="ln"></span></div>
-    <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
-  </div>
-
-  <p class="hw-intro">Homework problem set for Week 3. <b>Content to add</b> — the four lens problems below are placeholders. Replace each with take-home problems distinct from the in-class handout.</p>
-  <p class="hw-intro" style="margin-top:-6pt"><b>Key figures:</b> Grice.</p>
-
-  <div class="hw-legend">
-    <span class="lg lens-empirical"><i style="background:var(--lens)"></i>Empirical</span>
-    <span class="lg lens-historical"><i style="background:var(--lens)"></i>Historical</span>
-    <span class="lg lens-formal"><i style="background:var(--lens)"></i>Formal</span>
-    <span class="lg lens-typological"><i style="background:var(--lens)"></i>Applied</span>
-  </div>
-
-  <div class="hw-prob lens-empirical">
-    <div class="hw-prob-head">
-      <span class="n">1</span>
-      <span class="q">Empirical — Implicature<span class="lens-pip">Empirical</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 1 ══ -->
+  <div class="sec flows">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Trump Tower, 15 August 2017</h2>
+      <table class="play">
+        <tr><td class="n">(1)</td><td class="who">Trump</td><td>[…] And I just want to show you this, because it was just shown to me, and I said, I think I’m going to show it to the media, both real and fake media, by the way.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td><i>[At this point, the President displayed a flowchart illustrating the permitting process for a federally funded highway project.]</i></td></tr>
+        <tr><td class="n">(2)</td><td class="who"></td><td>[…] I’ve seen a highway recently in a certain State—I won’t mention its name—it’s 17 years. I could have built it for 4 or 5 million dollars without the permitting process. […]</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td><i>[The President dropped the longer flowchart to the floor and displayed a shorter flowchart illustrating a streamlined permitting process.]</i></td></tr>
+        <tr><td class="n">(3)</td><td class="who"></td><td>[…] So this is—maybe this one we’ll save, let’s throw the other one away. Would anybody like it from the media? <i>[Laughter]</i> Would anybody like that long, beautiful chart? You can have it.</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Let me ask you, Mr. President, why did you wait so long to blast neo-Nazis?</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Why do Nazis like you?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>I didn’t wait long.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Why do Nazis like you?</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>You waited 2 days——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>I didn’t wait long.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Forty-eight hours.</td></tr>
+        <tr><td class="n">(4)</td><td class="who">Trump</td><td>I wanted to make sure, unlike most politicians, that what I said was correct, not make a quick statement.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>The statement I made on Saturday, the first statement, was a fine statement. But you don’t make statements that direct unless you know the fact. It takes a little while to get the facts. You still don’t know the facts. And it’s a very, very important process to me, and it’s a very important statement. […]</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>So you had to—<i>[inaudible]</i>—White supremacists?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>I brought it. I brought it. I brought it.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td><i>[The President removed a sheet of paper from his breast pocket.]</i></td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Was it terrorism?</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>What did you bring, Mr. President?</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Was it terrorism, in your opinion, what happened?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>As I said on—remember, Saturday——</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td><i>[The President read from the sheet of paper.]</i></td></tr>
+        <tr><td class="n">(5)</td><td class="who"></td><td>“We condemn in the strongest possible terms this egregious display of hatred, bigotry, and violence. It has no place in America.”</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>And then, I went on from there. Now, here’s the thing——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td><i>[Inaudible]</i>—on many sides.</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Excuse me. Excuse me. Take it nice and easy. Here’s the thing: When I make a statement, I like to be correct. I want the facts. This event just happened.</td></tr>
+        <tr><td class="n">(6)</td><td class="who"></td><td>In fact, a lot of the event didn’t even happen yet, as we were speaking.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>This event just happened. […]</td></tr>
+        <tr class="cut tight"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n">(7)</td><td class="who">Trump</td><td>And honestly, if the press were not fake, and if it was honest, the press would have said what I said was very nice.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>But unlike you, and unlike——</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td><i>[Many reporters began speaking at once.]</i></td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>Excuse me, unlike you and unlike the media, before I make a statement, I like to know the facts.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Why do Nazis like you—<i>[inaudible]</i>—these statements?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>They don’t. They don’t.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>They do. Look——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Richard Spencer has praised you. David Duke has praised you.</td></tr>
+        <tr><td class="n">(8)</td><td class="who">Trump</td><td>How about a couple of infrastructure questions?</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Mr. Trump, can you tell us how you’re feeling about your Chief Strategist, Mr. Bannon? Can you talk about that?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Go ahead.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>I would echo Maggie’s <i>[Maggie Haberman, New York Times]</i> question. Steve Bannon has come under——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>I never spoke to Mr. Bannon about it.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Can you tell us broadly what you’re feeling—do you still have confidence in Steve?</td></tr>
+        <tr><td class="n">(9)</td><td class="who">Trump</td><td>Well, we’ll see.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>Look, look, I like Mr. Bannon. He’s a friend of mine.</td></tr>
+        <tr><td class="n">(10)</td><td class="who"></td><td>But Mr. Bannon came on very late. You know that. I went through 17 Senators, Governors, and I won all the primaries. Mr. Bannon came on very much later than that.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>And I like him, he’s a good man. He is not a racist, I can tell you that. He’s a good person. He actually gets a very unfair press in that regard. But we’ll see what happens with Mr. Bannon. But he’s a good person, and I think the press treats him, frankly, very unfairly.</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Senator McCain said that the alt-right is behind these attacks, and he linked that same group to those who perpetrated the attack in Charlottesville.</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Well, I don’t know. I can’t tell you.</td></tr>
+        <tr><td class="n">(11)</td><td class="who"></td><td>I’m sure Senator McCain must know what he’s talking about.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>But when you say the alt-right, define “alt-right” to me. You define it. Go ahead.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Well, I’m saying, as Senator——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>No, define it for me. Come on, let’s go. Define it for me.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Senator McCain defined them as the same group——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Okay, what about the alt-left that came charging at them—excuse me, what about the alt-left that came charging at the, as you say, the alt-right? Do they have any semblance of guilt?</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>But, sir, sir——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>This was Senator McCain’s statement, sir.</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Let me ask you this: What about the fact they came charging—that they came charging with clubs in their hands, swinging clubs?</td></tr>
+        <tr><td class="n">(12)</td><td class="who"></td><td>Do they have any problem? I think they do.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>So, you know, as far as I’m concerned, that was a horrible, horrible day.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>You’re not putting these——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Wait a minute. I’m not finished. I’m not finished, fake news. That was a horrible day——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Sir, you’re not putting these protestors on the same level as neo-Nazis——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Is the alt-left as bad as White supremacists?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>I will tell you something. I watched those very closely, much more closely than you people watched it.</td></tr>
+        <tr><td class="n">(13)</td><td class="who"></td><td>And you have—you had a group on one side that was bad, and you had a group on the other side that was also very violent.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>And nobody wants to say that, but I’ll say it right now. You had a group on the other side that came charging in, without a permit, and they were very, very violent.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Is the alt-left as bad as Nazis?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Go ahead.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Do you think that what you call the alt-left is the same as neo-Nazis?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Those people—all of those people—excuse me, I’ve condemned neo-Nazis. I’ve condemned many different groups.</td></tr>
+        <tr><td class="n">(14)</td><td class="who"></td><td>But not all of those people were neo-Nazis, believe me. Not all of those people were White supremacists by any stretch.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Well, White nationalists——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Those people were also there because they wanted to protest the taking down of a statue, Robert E. Lee.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Should that statue be taken down?</td></tr>
+        <tr><td class="n">(15)</td><td class="who">Trump</td><td>So—excuse me. And you take a look at some of the groups, and you’d see—and you’d know it if you were honest reporters, which in many cases you’re not—but many of those people were there to protest the taking down of the statue of Robert E. Lee.</td></tr>
+        <tr><td class="n">(16)</td><td class="who"></td><td>So this week, it’s Robert E. Lee. I noticed that Stonewall Jackson is coming down. I wonder, is it George Washington next week? And is it Thomas Jefferson the week after? You know, you really do have to ask yourself, where does it stop?</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>How concerned are you about race relations in America? And do you think things have gotten worse or better since you took office?</td></tr>
+        <tr><td class="n">(17)</td><td class="who">Trump</td><td>I think they’ve gotten better or the same.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>I—look, they’ve been frayed for a long time. And you can ask President Obama about that, because he’d make speeches about it. […]</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n">(18)</td><td class="who">Reporter</td><td>Mr. President, are you putting what you’re calling the alt-left and White supremacists on the same moral plane?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>I’m not putting anybody on a moral plane. What I’m saying is this: You had a group on one side, and you had a group on the other, and they came at each other with clubs. And it was vicious, and it was horrible. And it was a horrible thing to watch. But there is another side. There was a group on this side. You can call them the left—you’ve just called them the left—that came violently attacking the other group. So you can say what you want, but that’s the way it is.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Mr. President, in your words——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td><i>[Inaudible]</i>—on both sides, sir. You said there was hatred, there was violence on both sides. Are the——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Well, I do think there’s blame—yes, I think there’s blame on both sides.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Is there bigotry on both sides?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>If you look at both sides, I think there’s blame on both sides. And I have no doubt about it, and you don’t have any doubt about it either.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Mr. President, but only the Nazis——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>And if you reported it accurately, you would say——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>But as for bigotry, the neo-Nazis started this. They showed up in Charlottesville to protest the removal of that statue——</td></tr>
+        <tr><td class="n">(19)</td><td class="who">Trump</td><td>Excuse me, excuse me. They didn’t put themselves down as you do, and you had some very bad people in that group, but you also had people that were very fine people, on both sides. You had people in that group——</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td><i>[Inaudible]</i></td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Excuse me, excuse me. I saw the same pictures as you did. You had people in that group that were there to protest the taking down of, to them, a very, very important statue and the renaming of a park from Robert E. Lee to another name.</td></tr>
+        <tr class="cut tight"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>So you know what, it’s fine. You’re changing history. You’re changing culture.</td></tr>
+        <tr><td class="n">(20)</td><td class="who"></td><td>And you had people—and I’m not talking about the neo-Nazis and the White nationalists, because they should be condemned totally—but you had many people in that group other than neo-Nazis and White nationalists. Okay?</td></tr>
+        <tr><td class="n">(21)</td><td class="who"></td><td>And the press has treated them absolutely unfairly.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>What——</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Now, in the other group also, you had some fine people. But you also had troublemakers, and you see them come with the black outfits and with the helmets and with the baseball bats. You had a lot of bad people in the other group.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Who are the good people? Who are the good people?</td></tr>
+        <tr><td class="n">(22)</td><td class="who">Reporter</td><td>Sir, I’m sorry. I just didn’t understand what you were saying. You were saying the press has treated White nationalists unfairly?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>No.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>I just don’t understand what you were saying.</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>No. There were people in that rally—and I looked the night before—if you look, there were people protesting very quietly the taking down of the statue of Robert E. Lee.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>I’m sure in that group there were some bad ones.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>The following day it looked like they had some rough, bad people: neo-Nazis, White nationalists, whatever you want to call them.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>But you had a lot of people in that group that were there to innocently protest, and very legally protest—because you know, I don’t know if you know, they had a permit. The other group didn’t have a permit.</td></tr>
+        <tr><td class="n">(23)</td><td class="who"></td><td>So I only tell you this: There are two sides to a story. I thought what took place was a horrible moment for our country, a horrible moment. But there are two sides to the country.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>Does anybody have a final——</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Mr. President, have you spoke to the family—have you spoken to the family of the victim of the car attack?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>No, I’ll be reaching out. I’ll be reaching out.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>When will you be reaching out?</td></tr>
+        <tr><td class="n">(24)</td><td class="who">Trump</td><td>I was very—I thought that the statement put out—the mother’s statement I thought was a beautiful statement. I must tell you, it was something that I really appreciated. I thought it was terrific. And really, under the kind of stress that she’s under and the heartache that she’s under, I thought putting out that statement, to me, was really something I won’t forget.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>Thank you, all, very much. Thank you. Thank you.</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td><i>[As the President walked away from the podium, his exchange with reporters continued follows.]</i></td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Mr. President, do you think you’re helping to heal the Nation?</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Will you go to Charlottesville?</td></tr>
+        <tr><td class="n">(25)</td><td class="who">Trump</td><td>I own a house in Charlottesville.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Will you go to check out what happened?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Does anyone know I own a house in Charlottesville?</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Where is it?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>Oh boy, it’s going to be——</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>Where is it?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>It’s in Charlottesville. You’ll see.</td></tr>
+        <tr><td class="n"></td><td class="who">Reporter</td><td>You do? Is it near the winery or something?</td></tr>
+        <tr><td class="n"></td><td class="who">Trump</td><td>It is the winery.</td></tr>
+      </table>
     </div>
-    <p class="lead">What utterance data motivates this week’s analysis?</p>
-    <div class="hw-todo">Draft a empirical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
   </div>
 
-  <div class="hw-prob lens-historical">
-    <div class="hw-prob-head">
-      <span class="n">2</span>
-      <span class="q">Historical — Implicature<span class="lens-pip">Historical</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 2 ══ -->
+  <div class="sec flows">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Tagging</h2>
+      <div class="sc sub">Implicature</div>
+      <p>Identify what each line implicates. Use Grice’s framework and categories, or your own where you think they fit a particular case better.</p>
+      <table class="grid">
+        <colgroup><col style="width:40.41%" /><col style="width:24.19%" /><col style="width:15.48%" /><col style="width:19.92%" /></colgroup>
+        <thead><tr><th>Example</th><th>What is implicated</th><th>Category</th><th>Notes / subcategory</th></tr></thead>
+        <tbody>
+          <tr><td><span class="no">(1)</span>[…] I think I’m going to show it to the media, both real and fake media, by the way.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(6)</span>In fact, a lot of the event didn’t even happen yet, as we were speaking.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(7)</span>And honestly, if the press were not fake, and if it was honest, the press would have said what I said was very nice.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(9)</span>Well, we’ll see.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(10)</span>But Mr. Bannon came on very late. […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(12)</span>Do they have any problem? I think they do.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(13)</span>And you have—you had a group on one side that was bad, and you had a group on the other side that was also very violent.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(16)</span>[…] I wonder, is it George Washington next week? And is it Thomas Jefferson the week after?</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(23)</span>There are two sides to a story. […] But there are two sides to the country.</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="sc sub">Maxims</div>
+      <p>For each line, name the maxim at stake and the kind of non-observance: violating, flouting, infringing, opting out, clash or suspending. Some lines may observe every maxim.</p>
+      <table class="grid">
+        <colgroup><col style="width:56.06%" /><col style="width:14.02%" /><col style="width:29.92%" /></colgroup>
+        <thead><tr><th>Example</th><th>Maxim</th><th>Non-observance</th></tr></thead>
+        <tbody>
+          <tr><td><span class="no">(2)</span>I’ve seen a highway recently in a certain State—I won’t mention its name—it’s 17 years.</td><td></td><td></td></tr>
+          <tr><td><span class="no">(3)</span>[…] Would anybody like that long, beautiful chart? You can have it.</td><td></td><td></td></tr>
+          <tr><td><span class="no">(5)</span>“We condemn in the strongest possible terms this egregious display of hatred, bigotry, and violence. It has no place in America.”</td><td></td><td></td></tr>
+          <tr><td><span class="no">(8)</span>How about a couple of infrastructure questions?</td><td></td><td></td></tr>
+          <tr><td><span class="no">(11)</span>I’m sure Senator McCain must know what he’s talking about.</td><td></td><td></td></tr>
+          <tr><td><span class="no">(21)</span>And the press has treated them absolutely unfairly.</td><td></td><td></td></tr>
+          <tr><td><span class="no">(24)</span>I was very—I thought that the statement put out—the mother’s statement I thought was a beautiful statement. […]</td><td></td><td></td></tr>
+          <tr><td><span class="no">(25)</span>I own a house in Charlottesville.</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="sc sub">Scales</div>
+      <p>For each line, give the scale, what the line implicates, and whether the implicature is weak or strong.</p>
+      <table class="grid">
+        <colgroup><col style="width:47.98%" /><col style="width:15.98%" /><col style="width:22.09%" /><col style="width:13.95%" /></colgroup>
+        <thead><tr><th>Example</th><th>Scale</th><th>Implicature</th><th>Weak or strong</th></tr></thead>
+        <tbody>
+          <tr><td><span class="no">(4)</span>I wanted to make sure, unlike most politicians, that what I said was correct, not make a quick statement.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(14)</span>But not all of those people were neo-Nazis, believe me. Not all of those people were White supremacists by any stretch.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(15)</span>[…] you’d know it if you were honest reporters, which in many cases you’re not […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(17)</span>I think they’ve gotten better or the same.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(19)</span>[…] you had some very bad people in that group, but you also had people that were very fine people, on both sides.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(20)</span>And you had people—and I’m not talking about the neo-Nazis and the White nationalists, because they should be condemned totally—but you had many people in that group other than neo-Nazis and White nationalists. Okay?</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
     </div>
-    <p class="lead">Who developed this, and in what intellectual context?</p>
-    <div class="hw-todo">Draft a historical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
   </div>
 
-  <div class="hw-prob lens-formal">
-    <div class="hw-prob-head">
-      <span class="n">3</span>
-      <span class="q">Formal — Implicature<span class="lens-pip">Formal</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 3 ══ -->
+  <div class="sec runon">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <ol class="qs">
+        <li>In (18) and (22) reporters put into words what they took Trump to implicate. What did they take him to mean, and how does each of his answers respond?</li>
+        <li>In (20) Trump says he is not talking about the neo-Nazis and white nationalists. What is he cancelling, and does the cancellation work by the lecture’s test? Where does he reinforce an implicature instead?</li>
+        <li>What stronger alternatives were available in (14) and (15)? Does competence hold for Trump here, and what follows if it does?</li>
+        <li>What do <i>even</i>, <i>also</i> and <i>but</i> contribute in (6), (13) and (19)? Rephrase each line without them: what is lost, and what does that show?</li>
+      </ol>
     </div>
-    <p class="lead">What analytical machinery do we need?</p>
-    <div class="hw-todo">Draft a formal homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
   </div>
 
-  <div class="hw-prob lens-typological">
-    <div class="hw-prob-head">
-      <span class="n">4</span>
-      <span class="q">Applied — Implicature<span class="lens-pip">Applied</span></span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">How does it play out in real social use?</p>
-    <div class="hw-todo">Draft a applied homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
-  </div>
-
-  <div class="h-footer">
-    <span class="left">LI7862 · Homework</span>
-    <span>Week 3 · Implicature</span>
-    <span>1</span>
-  </div>
-
-</div></div><!-- /handout-week 3 -->
-
-<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
-
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#fbeae3"/>
-    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#c0512c" stroke-width="2"/>
-    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">1</text>
-    <line x1="46" y1="31" x2="64" y2="31" stroke="#e0b3a3" stroke-width="2"/>
-    <line x1="38" y1="44" x2="64" y2="44" stroke="#e0b3a3" stroke-width="1.6"/>
-    <line x1="38" y1="52" x2="64" y2="52" stroke="#e0b3a3" stroke-width="1.6"/>
-    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#c0512c" text-anchor="middle">LI7862 · HOMEWORK</text>
-  </svg>
-</template>
+</div>
 </body>
 </html>
