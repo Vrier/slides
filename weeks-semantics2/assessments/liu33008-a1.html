@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Semantics II · Assessment 1</title>
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Assessment 1 as released (the LaTeX paper), on the classic sheet's page
+     frame and New Computer Modern. Page breaks follow the paper: before
+     Q2a, Q4, Q7, Q8b and Q10. NB no subscript digits in the face: w<sub>1</sub>, never w₁. */
+  @page { size:A4; margin:25.4mm 25.4mm 25.4mm 25.4mm; }
+  body { font-size:10.95pt; line-height:1.245; }
+  .sheet { padding:25.4mm; }
+  h1.paper { font-size:14.3pt; font-weight:700; text-align:center; margin:4pt 0 0; padding-bottom:3pt; border-bottom:.5pt solid #000; }
+  .instr { margin:14pt 0 0; }
+  .q { margin-top:22pt; }
+  .q h2 { display:flex; justify-content:space-between; font-size:10.95pt; font-weight:700; margin:0 0 1pt; line-height:1.245; }
+  .q h2 .pts { font-weight:700; }
+  .q p { margin:0 0 6.5pt; }
+  ul.facts { margin:9pt 0 9pt; padding-left:21pt; list-style:none; }
+  ul.facts li { position:relative; margin:0 0 1.9pt; }
+  ul.facts li::before { content:'•'; position:absolute; left:-10pt; }
+  ol.items { margin:12pt 0 6pt; padding-left:22pt; }
+  ol.items > li { margin:0 0 9.1pt; padding-left:3pt; }
+  ol.items.pairs > li { margin-bottom:9.2pt; }
+  ol.roman { list-style:none; margin:12pt 0 6pt; padding-left:22pt; }
+  ol.roman > li { margin:0 0 9.1pt; position:relative; }
+  ol.roman > li > .rn { position:absolute; right:calc(100% + 4pt); }
+  .part { margin:0 0 6.5pt; }
+  .part b.pl { margin-right:4pt; }
+  .sp { margin-top:11pt; }
+  table.bk { border-collapse:collapse; margin:12pt auto 14pt; font-size:10pt; }
+  table.bk th, table.bk td { padding:1pt 9pt; text-align:center; font-weight:400; }
+  table.bk thead tr:first-child th { border-top:.8pt solid #000; padding-top:3pt; }
+  table.bk thead tr:last-child th { border-bottom:.5pt solid #000; padding-bottom:2pt; }
+  table.bk tbody tr:last-child td { border-bottom:.8pt solid #000; padding-bottom:3pt; }
+  table.bk td.l, table.bk th.l { text-align:left; }
+  .disp { text-align:center; margin:10pt 0; }
+  .disp span + span { margin-left:22pt; }
+  .q7fig { display:flex; gap:12pt; align-items:flex-start; margin:14pt 0 14pt 22pt; }
+  .q7fig table.bk { margin:4pt 0 0; font-size:10.95pt; }
+  .q7fig .ideals p { margin:0 0 3pt; }
+  .q7fig .ideals p.gw { margin-bottom:7pt; }
+  .big { font-size:120%; line-height:0; }
+  @media print {
+    .sheet { padding:0; }
+    .q { break-inside:auto; }
+    .q h2 { break-after:avoid; page-break-after:avoid; }
+    .pb { break-before:page; page-break-before:always; margin-top:0; }
+    .q.newpage { break-before:page; page-break-before:always; margin-top:0; }
+    ol.items > li, ol.roman > li, table.bk, .q7fig { break-inside:avoid; page-break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1 class="paper">Semantics II: Assessment 1</h1>
+  <p class="instr"><b>Instructions.</b> Answer <b>all</b> questions. Show working where appropriate.</p>
+
+  <div class="q">
+    <h2><span>Q1. Substitution and opacity</span><span class="pts">(10 points)</span></h2>
+    <p>Assume these facts throughout.</p>
+    <ul class="facts">
+      <li>Charles Dodgson wrote under the name <i>Lewis Carroll</i>.</li>
+      <li>Mont Blanc is the highest mountain in the Alps.</li>
+      <li>Tom owns the red van.</li>
+      <li>The members of the chess club are exactly the members of the choir.</li>
+    </ul>
+    <p>In each pair, the second sentence is the first with a co-referring or co-extensive expression swapped in. Say whether the environment is <b>transparent</b> or <b>opaque</b>, and briefly justify your answer. For each opaque environment, describe a scenario in which the first sentence is true and the second is false.</p>
+    <ol class="items pairs">
+      <li>Lewis Carroll wrote ‘What the Tortoise Said to Achilles’.<br />Charles Dodgson wrote ‘What the Tortoise Said to Achilles’.</li>
+      <li>Anna suspects that Lewis Carroll wrote ‘What the Tortoise Said to Achilles’.<br />Anna suspects that Charles Dodgson wrote ‘What the Tortoise Said to Achilles’.</li>
+      <li>Mont Blanc is necessarily Mont Blanc.<br />Mont Blanc is necessarily the highest mountain in the Alps.</li>
+      <li>It is not the case that Lewis Carroll wrote <i>Nineteen Eighty-Four</i>.<br />It is not the case that Charles Dodgson wrote <i>Nineteen Eighty-Four</i>.</li>
+      <li>The police are looking for the owner of the red van.<br />The police are looking for Tom.</li>
+      <li>The police arrested Tom.<br />The police arrested the owner of the red van.</li>
+      <li>Sophie is a former member of the chess club.<br />Sophie is a former member of the choir.</li>
+    </ol>
+  </div>
+
+  <div class="q">
+    <h2><span>Q2. Extensions and intensions</span><span class="pts">(10 points)</span></h2>
+    <p>Take four worlds, where <i>w</i><sub>1</sub> is the actual world.</p>
+    <table class="bk">
+      <thead><tr><th></th><th><i>w</i><sub>1</sub></th><th><i>w</i><sub>2</sub></th><th><i>w</i><sub>3</sub></th><th><i>w</i><sub>4</sub></th></tr></thead>
+      <tbody>
+        <tr><td class="l"><i>it is raining in London</i></td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td class="l"><i>the ferry to Holyhead is running</i></td><td>T</td><td>F</td><td>T</td><td>F</td></tr>
+        <tr><td class="l"><i>is a dragon</i></td><td>∅</td><td>∅</td><td>{Smaug}</td><td>{Smaug}</td></tr>
+        <tr><td class="l"><i>is a hobbit</i></td><td>∅</td><td>{Samwise}</td><td>∅</td><td>{Samwise}</td></tr>
+      </tbody>
+    </table>
+    <p>Let <i>p</i> = ⟦<i>it is raining in London</i>⟧ and <i>q</i> = ⟦<i>the ferry to Holyhead is running</i>⟧.</p>
+    <p class="part sp pb"><b class="pl">a.</b> Treat propositions as sets of worlds.</p>
+    <ol class="roman">
+      <li><span class="rn">(i)</span>Write <i>p</i> and <i>q</i> as sets of worlds.</li>
+      <li><span class="rn">(ii)</span>Compute <i>p</i> ∩ <i>q</i>, and give an English sentence that expresses it.</li>
+      <li><span class="rn">(iii)</span>Compute the complement of <i>q</i>, and give an English sentence that expresses it.</li>
+    </ol>
+    <p class="part sp"><b class="pl">b.</b> Dox<sub>Anna</sub>(<i>w</i>) is the set of worlds doxastically accessible to Anna at <i>w</i>, that is, the worlds compatible with everything she believes at <i>w</i>. Suppose Dox<sub>Anna</sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>}, and that <i>x</i> believes <i>p</i> at <i>w</i> iff Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>. At <i>w</i><sub>1</sub>, does Anna believe:</p>
+    <ol class="roman">
+      <li><span class="rn">(i)</span><i>p</i>?</li>
+      <li><span class="rn">(ii)</span><i>q</i> ∧ <i>p</i>?</li>
+      <li><span class="rn">(iii)</span>that there is a dragon?</li>
+      <li><span class="rn">(iv)</span>that there is a hobbit?</li>
+    </ol>
+  </div>
+
+  <div class="q">
+    <h2><span>Q3. Translation</span><span class="pts">(10 points)</span></h2>
+    <p>Translate each sentence into propositional modal logic with □ and/or ♢.</p>
+    <ol class="items">
+      <li>It is possible that the ferry is cancelled.</li>
+      <li>The ferry must be cancelled.</li>
+      <li>The ferry can’t be cancelled.</li>
+      <li>The ferry might not be cancelled.</li>
+      <li>The ferry needn’t be cancelled, but it might be delayed.</li>
+      <li>If the wind is up, the ferry must be cancelled.</li>
+      <li>The ferry might be cancelled and it might be delayed, but it can’t be both.</li>
+      <li>If the wind is up and the sea is rough, the ferry must be either cancelled or delayed.</li>
+      <li>Klara knows that if the ferry is cancelled, she might not get home tonight.</li>
+      <li>Klara doesn’t know whether the ferry is cancelled, but she knows that if the wind is up, it must be.</li>
+    </ol>
+  </div>
+
+  <div class="q newpage">
+    <h2><span>Q4. Temporal logic</span><span class="pts">(10 points)</span></h2>
+    <p>Read □<i>p</i> as <i>it has always been the case that p</i>, that is, <i>p</i> held at every time before now, and ♢<i>p</i> as <i>at some time before now, p</i>. The accessibility relation is then <i>earlier than</i>: from a time, the accessible times are the ones before it.</p>
+    <p>Let <i>p</i> be <i>the shop is open</i> and <i>q</i> be <i>the lights are on</i>.</p>
+    <p>For each formula below, (i) write out the sentence it expresses in English on this reading, and (ii) say whether that sentence must be true, whatever the shop’s history.</p>
+    <ol class="items">
+      <li>□<i>p</i> → <i>p</i></li>
+      <li>□<i>p</i> → ♢<i>p</i></li>
+      <li>□<i>p</i> → □□<i>p</i></li>
+      <li><i>p</i> → □♢<i>p</i></li>
+      <li>□<i>p</i> → ¬♢¬<i>p</i></li>
+      <li>□(<i>p</i> ∨ <i>q</i>) → (□<i>p</i> ∨ □<i>q</i>)</li>
+      <li>(♢<i>p</i> ∧ ♢<i>q</i>) → ♢(<i>p</i> ∧ <i>q</i>)</li>
+      <li>□<i>p</i> ∨ □¬<i>p</i></li>
+    </ol>
+  </div>
+
+  <div class="q">
+    <h2><span>Q5. Conversational backgrounds</span><span class="pts">(10 points)</span></h2>
+    <p>For each sentence in its context, say which <b>flavour</b> of modality it has: <b>epistemic</b>, <b>deontic</b>, <b>circumstantial</b>, <b>teleological</b> or <b>bouletic</b>. If you think more than one flavour is plausible in the context, list them all. Briefly justify your interpretation.</p>
+    <ol class="items">
+      <li>[The college regulations.] <i>Students have to register by Friday.</i></li>
+      <li>[Peter’s light is on, and his bike is outside.] <i>Peter must be home.</i></li>
+      <li>[You want to be in Paris by noon.] <i>You have to take the eight o’clock train.</i></li>
+      <li>[Jonas has trained all summer.] <i>Jonas can swim the English Channel.</i></li>
+      <li>[Julia hates the cold.] <i>Julia should spend the winter in Spain.</i></li>
+    </ol>
+  </div>
+
+  <div class="q">
+    <h2><span>Q6. Modal bases</span><span class="pts">(10 points)</span></h2>
+    <p>A field in Kent has the same soil and climate as a vineyard in Champagne where vines thrive. You know that no vines have ever been planted in the field. Of the field, you say:</p>
+    <ol class="roman">
+      <li><span class="rn">(i)</span>Vines can grow here.</li>
+      <li><span class="rn">(ii)</span>There might be vines growing here.</li>
+    </ol>
+    <p class="part sp"><b class="pl">a.</b> Which of (i) and (ii) is true, and which is false?</p>
+    <p class="part"><b class="pl">b.</b> Which kind of modal base does each use? Say what goes into <i>f</i>(<i>w</i>) for each.</p>
+    <p class="part"><b class="pl">c.</b> What linguistically differentiates (i) and (ii)?</p>
+  </div>
+
+  <div class="q newpage">
+    <h2><span>Q7. Ordering sources and best worlds</span><span class="pts">(10 points)</span></h2>
+    <p>Ben is about to board the U-Bahn in Berlin. The circumstances <i>f</i>(<i>w</i>) leave open whether Ben buys a ticket and whether Ben pays a fine, so <span class="big">⋂</span><i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>}. The ordering source <i>g</i>(<i>w</i>) contains three ideals from the rules of the U-Bahn.</p>
+    <div class="q7fig">
+      <div>
+        <div><span class="big">⋂</span><i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>}</div>
+        <table class="bk">
+          <thead><tr><th></th><th>Ticket</th><th>Fine</th></tr></thead>
+          <tbody>
+            <tr><td class="l"><i>w</i><sub>1</sub></td><td>T</td><td>F</td></tr>
+            <tr><td class="l"><i>w</i><sub>2</sub></td><td>T</td><td>T</td></tr>
+            <tr><td class="l"><i>w</i><sub>3</sub></td><td>F</td><td>T</td></tr>
+            <tr><td class="l"><i>w</i><sub>4</sub></td><td>F</td><td>F</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ideals">
+        <p class="gw"><i>g</i>(<i>w</i>) = {A, B, C}</p>
+        <p>A. Ben buys a ticket.</p>
+        <p>B. If Ben does not buy a ticket, Ben pays a fine.</p>
+        <p>C. If Ben buys a ticket, Ben does not pay a fine.</p>
+      </div>
+    </div>
+    <p class="part"><b class="pl">a.</b> For each world, list the ideals it satisfies. Then draw the ordering ≤<sub><i>g</i>(<i>w</i>)</sub> of the four worlds as a lattice, or list the worlds in tiers from best to worst, with equally good worlds in the same tier.</p>
+    <p class="part"><b class="pl">b.</b> Give Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)). Decide whether each sentence is true: (i) Ben must buy a ticket. (ii) Ben must not pay a fine. (iii) Ben may pay a fine.</p>
+    <p class="part"><b class="pl">c.</b> Remove ideal C from <i>g</i>(<i>w</i>). Which worlds are best now? Which of your answers to (i) to (iii) change?</p>
+  </div>
+
+  <div class="q">
+    <h2><span>Q8. Graded modality</span><span class="pts">(10 points)</span></h2>
+    <p>The seminar has started and Alice isn’t here. <i>f</i>(<i>w</i>): she is not here, so something has kept her away. There are six worlds in <span class="big">⋂</span><i>f</i>(<i>w</i>):</p>
+    <table class="bk">
+      <thead><tr><th></th><th>Alice is not here</th><th>Alice is ill</th><th>Her train is delayed</th><th>Alice forgot</th></tr></thead>
+      <tbody>
+        <tr><td class="l"><i>w</i><sub>1</sub></td><td>T</td><td>F</td><td>T</td><td>F</td></tr>
+        <tr><td class="l"><i>w</i><sub>2</sub></td><td>T</td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td class="l"><i>w</i><sub>3</sub></td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td class="l"><i>w</i><sub>4</sub></td><td>T</td><td>T</td><td>T</td><td>F</td></tr>
+        <tr><td class="l"><i>w</i><sub>5</sub></td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td class="l"><i>w</i><sub>6</sub></td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+      </tbody>
+    </table>
+    <p><i>g</i>(<i>w</i>), stereotypical expectations:</p>
+    <ul class="facts">
+      <li>Alice is not ill (she was fine yesterday);</li>
+      <li>Alice has not forgotten (she set a reminder);</li>
+      <li>Alice’s train is delayed (her line is always late on Mondays).</li>
+    </ul>
+    <p>Use the definitions of <i>slight possibility</i>, <i>more likely</i> and <i>probable</i> from the week 3 handout.</p>
+    <p class="part"><b class="pl">a.</b> Is it more likely that Alice forgot than that she is ill?</p>
+    <p class="part sp pb"><b class="pl">b.</b> Which of the following are true in this model?</p>
+    <ol class="items">
+      <li>Alice’s train must be delayed.</li>
+      <li>Alice might be ill.</li>
+      <li>There is a slight possibility that Alice forgot.</li>
+      <li>It is more likely that Alice is ill than that her train is delayed.</li>
+      <li>It is probable that Alice’s train is delayed.</li>
+    </ol>
+  </div>
+
+  <div class="q">
+    <h2><span>Q9. A model</span><span class="pts">(10 points)</span></h2>
+    <p><i>M</i> = ⟨<i>W</i>, <i>R</i>, <i>V</i>⟩, where</p>
+    <div class="disp">
+      <div><span><i>W</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>}</span><span><i>V</i>(<i>p</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>4</sub>}</span><span><i>V</i>(<i>q</i>) = {<i>w</i><sub>2</sub>, <i>w</i><sub>5</sub>}</span></div>
+      <div><i>R</i> = {⟨<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>⟩, ⟨<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>⟩, ⟨<i>w</i><sub>2</sub>, <i>w</i><sub>2</sub>⟩, ⟨<i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>⟩, ⟨<i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>⟩, ⟨<i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>⟩, ⟨<i>w</i><sub>5</sub>, <i>w</i><sub>4</sub>⟩}</div>
+    </div>
+    <p class="part sp"><b class="pl">a.</b> Say whether each of the following is true or false.</p>
+    <ol class="items">
+      <li>□<i>p</i> is true at <i>w</i><sub>3</sub>.</li>
+      <li>♢<i>q</i> is true at <i>w</i><sub>5</sub>.</li>
+      <li>□♢<i>p</i> is true at <i>w</i><sub>4</sub>.</li>
+      <li>□(♢<i>q</i> → <i>p</i>) is true at <i>w</i><sub>1</sub>.</li>
+      <li>♢(□<i>p</i> ∧ ¬<i>q</i>) is true at <i>w</i><sub>1</sub>.</li>
+      <li>♢□<i>q</i> is true at <i>w</i><sub>1</sub>.</li>
+    </ol>
+    <p class="part sp"><b class="pl">b.</b> Say whether the frame of <i>M</i> has each of the following properties.</p>
+    <ol class="items">
+      <li>reflexive</li>
+      <li>serial</li>
+      <li>transitive</li>
+      <li>symmetric</li>
+    </ol>
+  </div>
+
+  <div class="q newpage">
+    <h2><span>Q10. The messy knots puzzle</span><span class="pts">(10 points)</span></h2>
+    <p>Anoushka is a mountain guide. The local university has sent the six faculty members of its logic department on a beginners’ mountaineering course. This is deeply frustrating for Anoushka because, although they are all perfect logicians, they are novice climbers.</p>
+    <p>One important skill for any climber is tying the knot that attaches them to the rope. It is often hard to check your own knot, because it sits under your jacket, but easy to see other climbers’ knots, so climbers often check each other’s.</p>
+    <p>Anoushka teaches the six logicians to tie a figure-of-eight knot and asks them each to tie one. She then gathers them round to see whether they have done it correctly. Each logician can see every other logician’s knot, but not their own. Anoushka notices, to her frustration, that not all of the knots are right. She shakes her head and announces: “Well, at least one of you hasn’t tied your knot correctly. Without looking at your own knot, raise your hand if you know that your knot is tied incorrectly.” The logicians look around at each other and all shake their heads. “How about now?” says Anoushka. Again they look around despondently. “How about now?” she asks a third time, and suddenly some of the logicians raise their hands.</p>
+    <p>How many logicians had tied their knots correctly? Justify your answer.</p>
+  </div>
+
+</div>
+</body>
+</html>

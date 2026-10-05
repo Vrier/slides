@@ -106,7 +106,7 @@ window.MODULE = {
     { key: "liu33008", code: "LIU33008", name: "Semantics II", term: "Semester 1 / Michaelmas", coordinator: "Dr Thomas Stephen",
       overview: { file: "overview-liu33008.html", status: "ready" },
       assessments: [
-        { no: 1, title: "Assessment 1", weight: 10, file: "assessments/liu33008-a1.html", status: "none" },
+        { no: 1, title: "Assessment 1", weight: 10, file: "assessments/liu33008-a1.html", status: "ready" },
         { no: 2, title: "Assessment 2", weight: 30, file: "assessments/liu33008-a2.html", status: "none" },
         { no: 3, title: "Assessment 3", weight: 60, file: "assessments/liu33008-a3.html", status: "none" },
       ] },
