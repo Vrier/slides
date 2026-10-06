@@ -87,7 +87,7 @@ window.MODULE = {
   default: "liu44008",
   identities: [
     { key: "liu44008", code: "LIU44008", name: "Pragmatics II", term: "Semester 1 / Michaelmas", coordinator: "Dr Thomas Stephen",
-      overview: { file: "overview-liu44008.html", status: "none" },
+      overview: { file: "overview-liu44008.html", status: "ready" },
       assessments: [
         { no: 1, title: "Presentation", weight: 40, file: "assessments/liu44008-a1.html", status: "none" },
         { no: 2, title: "Essay", weight: 60, file: "assessments/liu44008-a2.html", status: "none" },
