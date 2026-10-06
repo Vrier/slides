@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Teaching Workspace · Semantics I · II · III · Pragmatics I · II</title>
+<title>Semantics and Pragmatics Teaching Materials · Semantics I · II · III · Pragmatics I · II</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -166,6 +166,7 @@
   .mod-tools.prag { --accent: var(--prag); }
   .mod-tools.prag2 { --accent: var(--prag2); }
   .mod-tools .badge { font-family: var(--mono); font-size: 9.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--tcd-grey-75); background: #eee; padding: 2px 7px; border-radius: 999px; }
+  .mt-docs { display: inline-flex; flex-wrap: wrap; gap: 8px; }
   .mt-ov { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--tcd-grey-100); border: 1px dashed var(--tcd-grey-50); border-radius: 8px; padding: 6px 11px; background: repeating-linear-gradient(45deg,#fafafa,#fafafa 7px,#f4f4f4 7px,#f4f4f4 14px); }
   .mt-ov .ico { width: 16px; height: 16px; color: var(--accent); display: inline-flex; }
   .mt-ov .ico svg { width: 100%; height: 100%; }
@@ -216,8 +217,7 @@
   </header>
 
   <div class="hero">
-    <h1>Teaching Workspace</h1>
-    <p>Every week of both modules in one place. Open a <strong>deck</strong>, <strong>handout</strong>, <strong>readings</strong> list, or downloadable <strong>homework</strong> sheet to view or edit. Homework and readings open print-ready — students use <span class="mono">Print → Save as PDF</span> to work on them on a laptop or tablet.</p>
+    <h1>Semantics and Pragmatics Teaching Materials</h1>
   </div>
 
   <div class="controls">
@@ -368,7 +368,7 @@ const IDENTITIES = {
       assessments:[ {no:1,title:'Assignment · limit 3,500 words',w:100,st:'ready',guide:'li7862-a1-guidance.html'} ] },
   ],
   prag2: [
-    { key:'liu44008', code:'LIU44008', name:'Pragmatics II', term:'Semester 1 · Michaelmas', coord:'Dr Thomas Stephen', ov:'ready',
+    { key:'liu44008', code:'LIU44008', name:'Pragmatics II', term:'Semester 1 · Michaelmas', coord:'Dr Thomas Stephen', ov:'ready', topics:'presentation-topics.html',
       assessments:[ {no:1,title:'Presentation',w:40}, {no:2,title:'Essay',w:60} ] },
   ],
 };
@@ -418,8 +418,11 @@ function modToolsHTML(g, id){
   const ov = id.ov === 'ready'
     ? `<a class="mt-ov ready" href="${ovHref}" title="${ovHref}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Overview</span><span class="badge ready">ready</span></a>`
     : `<div class="mt-ov" title="${ovHref} (not created)"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Overview</span><span class="badge">not created</span></div>`;
+  const tp = id.topics
+    ? `<a class="mt-ov ready" href="${dir}/${id.topics}" title="${dir}/${id.topics}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Topics</span><span class="badge ready">ready</span></a>`
+    : '';
   return `<div class="mod-tools ${g}">
-    ${ov}
+    <div class="mt-docs">${ov}${tp}</div>
     <div class="mt-as">
       <span class="mt-lab">Assessments</span>
       <span class="mt-sum">${as.length} ${noun} · ${sum}</span>
