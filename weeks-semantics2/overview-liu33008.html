@@ -6,200 +6,122 @@
 <title>LIU33008 · Semantics II · Module Overview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../shared/tokens.css" />
-<link rel="stylesheet" href="../shared/lens.css" />
-<link rel="stylesheet" href="../shared/handout.css" />
-<link rel="stylesheet" href="../shared/theme-teal.css" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../shared/handout-classic.css" />
 <style>
-  /* section heading for the overview (not lens content — plain accent rule) */
-  .ov-h { display: flex; align-items: baseline; gap: 8pt; margin: 14pt 0 6pt; padding-bottom: 3pt; border-bottom: 1.5pt solid var(--tcd-blue); }
-  .ov-h .n { font-family: var(--mono); font-size: 9pt; font-weight: 600; color: var(--tcd-blue); }
-  .ov-h h2 { font-family: var(--serif); font-size: 13.5pt; font-weight: 700; color: var(--tcd-ink); margin: 0; }
-
-  /* plain callouts: neutralise the coloured def/key/note accents for this page */
-  .callout, .callout-def, .callout-ex, .callout-key, .callout-note {
-    --c-def: var(--tcd-grey-100); --c-ex: var(--tcd-grey-100);
-    --c-key: var(--tcd-grey-100); --c-note: var(--tcd-grey-100);
-  }
-
-  /* 12-week schedule table */
-  .ov-sched { width: 100%; border-collapse: separate; border-spacing: 0; margin: 5pt 0 2pt; font-family: var(--sans); }
-  .ov-sched th { background: var(--tcd-ink); color: #fff; font-family: var(--serif); font-weight: 600; font-size: 8.5pt; text-align: left; padding: 4pt 7pt; }
-  .ov-sched td { font-size: 8.5pt; padding: 3.5pt 7pt; border-bottom: 0.5pt solid var(--tcd-grey-25); vertical-align: top; }
-  .ov-sched tr:last-child td { border-bottom: none; }
-  .ov-sched .wk { font-family: var(--mono); font-size: 8pt; font-weight: 600; color: var(--tcd-blue); white-space: nowrap; }
-  .ov-sched .tp { font-family: var(--serif); font-weight: 600; color: var(--tcd-ink); }
-  .ov-sched .tp a { color: inherit; text-decoration: none; border-bottom: 0.5pt dotted var(--tcd-grey-50); }
-  .ov-sched .tp a:hover { color: var(--tcd-blue); border-bottom-color: var(--tcd-blue); }
-  .ov-sched .sec { color: var(--tcd-grey-100); }
-  .ov-sched .fg { font-style: italic; color: var(--tcd-grey-100); }
-  .ov-sched .rw td { background: var(--tcd-blue-10); font-style: italic; color: var(--tcd-grey-100); }
-
-  /* logistics facts grid */
-  .ov-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 6pt 10pt; margin: 5pt 0 2pt; }
-  .ov-fact { border: 0.5pt solid var(--tcd-grey-25); border-left: 2pt solid var(--tcd-blue); padding: 5pt 8pt; }
-  .ov-fact .fh { font-family: var(--sans); font-size: 7.5pt; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--tcd-blue); margin-bottom: 2pt; }
-  .ov-fact .fb { font-family: var(--sans); font-size: 9pt; color: var(--tcd-ink); }
-  .ov-fact .fb small { display: block; font-size: 7.5pt; color: var(--tcd-grey-100); margin-top: 1.5pt; }
-
-  /* outcomes list */
-  .ov-outcomes { margin: 4pt 0 2pt; padding: 0 0 0 14pt; }
-  .ov-outcomes li { font-family: var(--sans); font-size: 9pt; color: var(--tcd-ink); line-height: 1.45; padding: 1.5pt 0; }
-
-  /* keep the document mono on print despite the teal override layer */
+  /* Module overview on the classic sheet (docs/handout-style.md). Blocks
+     start on a fresh page as on the handouts, except Logistics, which runs
+     on under Assessment: nothing on the overview is written on. */
   @media print {
-    :root {
-      --tcd-blue: #000; --tcd-blue-75: #555; --tcd-blue-50: #888;
-      --tcd-blue-25: #bbb; --tcd-blue-10: #f2f2f2;
-      --tcd-ink: #000; --c-def: #000;
-      --lens-emp: #000; --lens-his: #000; --lens-for: #000; --lens-typ: #000;
-    }
+    .sec.runon { break-before:auto; page-break-before:auto; break-inside:avoid; page-break-inside:avoid; }
   }
+  .sec a { color:inherit; text-decoration:none; }
+  @media screen { .sec a { border-bottom:.6pt dotted #000; } }
 </style>
 </head>
 <body>
 
-<div class="handout-week"><div class="page">
+<div class="sheet">
 
-  <!-- Header -->
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas 2026</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Module Overview</div>
+  <h1 class="doc-title">Semantics II</h1>
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>What the module is about</h2>
+      <p>Semantics II is about intensional meaning. An extensional theory interprets each expression by what it picks out in the actual world: an individual, a set, a truth value. Some expressions make a contribution that cannot be stated this way. Modals, attitude verbs and conditionals are sensitive to how things could be or might have been, and to what someone believes, and two sentences with the same truth value can make different contributions under them. The standard response is to interpret expressions relative to possible worlds. The intension of an expression is a function from worlds to extensions, and a proposition is the set of worlds in which it is true.</p>
+      <div class="proc">
+        <div class="sc proc-head">Learning outcomes</div>
+        <p>On successful completion of this module, students will be able to:</p>
+        <ol class="steps">
+          <li>identify intensional contexts (modals, attitude reports, conditionals, intensional transitives) in real language data, using substitution and related diagnostics;</li>
+          <li>work with the core notions of intensional semantics: intensions, propositions as sets of worlds, accessibility, modal logic;</li>
+          <li>give formal analyses of modals, attitude reports and conditionals, and compare competing analyses of them;</li>
+          <li>evaluate analyses of aspect, evidentiality and tense against new data.</li>
+        </ol>
       </div>
     </div>
-    <div class="h-meta">
-      <div class="code">LIU33008 · Semantics II</div>
-      <div class="term">Dr. Thomas Stephen · Semester 1 · Michaelmas 2026</div>
+    <div class="note">
     </div>
-  </header>
-
-  <div class="h-title-row">
-    <div class="h-week">Module Overview</div>
-    <h1 class="h-title">Semantics II</h1>
   </div>
 
-  <!-- ── 1 · Description, aims & outcomes ─────────────────────── -->
-  <div class="ov-h"><span class="n">01</span><h2>What the module is about</h2></div>
-
-  <p style="font-family:var(--sans);font-size:9.5pt;line-height:1.5;color:var(--tcd-ink);margin:4pt 0">
-    Semantics I built a theory of truth in one world: a model, denotations, predicate logic,
-    λ and events. This module is about everything that theory cannot see. <em>The Morning
-    Star is the Evening Star</em> was news. <em>Sue thinks Harry is single</em> is true or
-    false whatever Harry's love life. <em>Emma is seeking a unicorn</em> is true with no
-    unicorns anywhere. Semantics II rebuilds meaning across <strong>possible worlds</strong>:
-    extension gives way to <strong>intension</strong>, and the operators above the verb are
-    re-derived one by one: negation, modality, attitudes, conditionals, aspect, evidentiality.
-  </p>
-  <p style="font-family:var(--sans);font-size:9.5pt;line-height:1.5;color:var(--tcd-ink);margin:4pt 0">
-    The machinery is built early. Worlds and modal logic in week 2; Kratzer's system in
-    week 3. Attitude reports, conditionals, aspect and evidentiality then reuse it,
-    converging on the modals-and-tense capstone. Every teaching week runs four lenses:
-    <strong>empirical</strong> &rarr; <strong>historical</strong> &rarr;
-    <strong>formal</strong> &rarr; <strong>typological</strong>. Prerequisite: the
-    Semantics I toolkit, recapped at speed in week 1.
-  </p>
-
-  <div class="callout callout-def">
-    <span class="badge">Learning outcomes</span>
-    <p>On successful completion of this module, students will be able to:</p>
-    <ol class="ov-outcomes">
-      <li>diagnose opaque environments (attitudes, modals, epistemic adverbs, intensional transitives) with the substitutivity test, in real language data;</li>
-      <li>compute with the core intensional notions: extension vs intension, propositions as sets of worlds, world-relative interpretation, accessibility;</li>
-      <li>analyse modal sentences in the Kripke and Kratzer frameworks (force, flavour, modal base, ordering source) and attitude reports in Hintikka's;</li>
-      <li>apply the restrictor analysis of conditionals, the topic-time analysis of aspect, and the competing analyses of evidentials to new data;</li>
-      <li>evaluate cross-linguistic evidence (variable-force modals, indexical shift, evidential systems) bearing on the universality of the type inventory.</li>
-    </ol>
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Week by week</h2>
+      <table class="rec">
+        <colgroup><col style="width:10%" /><col style="width:48%" /><col style="width:42%" /></colgroup>
+        <thead><tr><th>Week</th><th>Topic</th><th>Key figures</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><a href="week-01/readings.html">Recap &amp; the Intensional Turn</a></td><td>Frege&nbsp;· Carnap&nbsp;· Montague</td></tr>
+          <tr><td>2</td><td><a href="week-02/readings.html">Worlds, Intensions &amp; Modal Logic</a></td><td>Carnap&nbsp;· Kripke&nbsp;· Lewis</td></tr>
+          <tr><td>3</td><td><a href="week-03/readings.html">The Kratzer System</a></td><td>Kratzer</td></tr>
+          <tr><td>4</td><td><a href="week-04/readings.html">Attitude Reports</a></td><td>Frege&nbsp;· Hintikka&nbsp;· Quine</td></tr>
+          <tr><td>5</td><td><a href="week-05/readings.html">Factivity, Selection &amp; Neg-Raising</a></td><td>Kiparsky &amp; Kiparsky&nbsp;· Karttunen</td></tr>
+          <tr><td>6</td><td>Hyperintensionality</td><td>Cresswell&nbsp;· Barwise &amp; Perry</td></tr>
+          <tr><td>7</td><td class="it">Reading Week</td><td class="it">No teaching.</td></tr>
+          <tr><td>8</td><td><a href="week-08/readings.html">Indicatives &amp; the Restrictor Analysis</a></td><td>Kratzer&nbsp;· Lewis&nbsp;· Stalnaker</td></tr>
+          <tr><td>9</td><td><a href="week-09/readings.html">Counterfactuals &amp; Similarity</a></td><td>Stalnaker&nbsp;· Lewis&nbsp;· Iatridou</td></tr>
+          <tr><td>10</td><td><a href="week-10/readings.html">Aspect &amp; the Perfect</a></td><td>Klein&nbsp;· Dowty&nbsp;· Vendler</td></tr>
+          <tr><td>11</td><td><a href="week-11/readings.html">Evidentiality</a></td><td>Aikhenvald&nbsp;· Faller&nbsp;· Matthewson</td></tr>
+          <tr><td>12</td><td><a href="week-12/readings.html">Modals &amp; Tense</a></td><td>Condoravdi&nbsp;· Hacquard&nbsp;· Bhatt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+    </div>
   </div>
 
-  <!-- ── 2 · Weekly schedule ──────────────────────────────────── -->
-  <div class="ov-h"><span class="n">02</span><h2>Week by week</h2></div>
-
-  <table class="ov-sched">
-    <thead><tr><th style="width:9%">Week</th><th style="width:33%">Topic</th><th style="width:24%">Block</th><th style="width:34%">Key figures</th></tr></thead>
-    <tbody>
-      <tr><td class="wk">01</td><td class="tp"><a href="week-01/readings.html">Recap &amp; the Intensional Turn</a></td><td class="sec">Foundations</td><td class="fg">Frege · Carnap · Montague</td></tr>
-      <tr><td class="wk">02</td><td class="tp"><a href="week-02/readings.html">Worlds, Intensions &amp; Modal Logic</a></td><td class="sec">Modality</td><td class="fg">C.&nbsp;I.&nbsp;Lewis · Carnap · Kripke</td></tr>
-      <tr><td class="wk">03</td><td class="tp"><a href="week-03/readings.html">The Kratzer System</a></td><td class="sec">Modality</td><td class="fg">Kratzer</td></tr>
-      <tr><td class="wk">04</td><td class="tp"><a href="week-04/readings.html">Attitude Reports</a></td><td class="sec">Attitudes &amp; Embedding</td><td class="fg">Frege · Hintikka · Quine</td></tr>
-      <tr><td class="wk">05</td><td class="tp"><a href="week-05/readings.html">Factivity, Selection &amp; Neg-Raising</a></td><td class="sec">Attitudes &amp; Embedding</td><td class="fg">Kiparsky &amp; Kiparsky · Karttunen</td></tr>
-      <tr><td class="wk">06</td><td class="tp">Hyperintensionality</td><td class="sec">Attitudes &amp; Embedding</td><td class="fg">Cresswell · Fine · readings to follow</td></tr>
-      <tr class="rw"><td class="wk">07</td><td class="tp">Reading Week</td><td class="sec">·</td><td class="fg">no teaching, 26 – 30 October. Catch up on readings; Assessment 1 feedback returns</td></tr>
-      <tr><td class="wk">08</td><td class="tp"><a href="week-08/readings.html">Indicatives &amp; the Restrictor Analysis</a></td><td class="sec">Conditionals</td><td class="fg">Kratzer · Lewis · Stalnaker</td></tr>
-      <tr><td class="wk">09</td><td class="tp"><a href="week-09/readings.html">Counterfactuals &amp; Similarity</a></td><td class="sec">Conditionals</td><td class="fg">Stalnaker · Lewis · Iatridou</td></tr>
-      <tr><td class="wk">10</td><td class="tp"><a href="week-10/readings.html">Aspect &amp; the Perfect</a></td><td class="sec">Time &amp; Aspect</td><td class="fg">Klein · Dowty · Vendler</td></tr>
-      <tr><td class="wk">11</td><td class="tp"><a href="week-11/readings.html">Evidentiality</a></td><td class="sec">Evidentiality</td><td class="fg">Aikhenvald · Faller · Matthewson</td></tr>
-      <tr><td class="wk">12</td><td class="tp"><a href="week-12/readings.html">Modals &amp; Tense</a></td><td class="sec">Interactions</td><td class="fg">Condoravdi · Hacquard · Bhatt</td></tr>
-    </tbody>
-  </table>
-  <p style="font-family:var(--sans);font-size:8pt;color:var(--tcd-grey-100);margin:3pt 0 0">
-    Topics link to the week's reading list. Decks and handouts: released week by week.
-    The typological thread visits one language per week that carves the space of worlds
-    differently: St'át'imcets, Amharic, Cuzco Quechua, Slavic aspect, Hindi correlatives.
-  </p>
-
-  <!-- ── 3 · Assessment ───────────────────────────────────────── -->
-  <div class="ov-h"><span class="n">03</span><h2>Assessment</h2></div>
-
-  <div class="callout callout-key">
-    <span class="badge">Three components · 10% + 30% + 60%</span>
-    <p><strong>Assessment 1 · 10%</strong>: covers weeks 1 to 4 (the extensional recap, the
-    substitutivity diagnostics, worlds and modal logic, the Kratzer system). An early
-    health-check; feedback returns over the study week.
-    <strong>Due Friday 16 October 2026</strong> (week 5).</p>
-    <p><strong>Assessment 2 · 30%</strong>: covers weeks 5 to 8 (attitude reports, factivity
-    and embedding, the restrictor analysis of conditionals).
-    <strong>Due Friday 13 November 2026</strong> (week 9).</p>
-    <p><strong>Assessment 3 · 60%</strong>: the capstone component, covering the term with
-    emphasis on weeks 8 to 12 (conditionals, aspect, evidentiality, modals &amp; tense).
-    <strong>Due Monday 14 December 2026.</strong></p>
-    <p>All three submitted via Blackboard. Titles, formats and briefs: released on
-    Blackboard in advance of each deadline.</p>
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Assessment</h2>
+      <p>Three assessments, weighted 10%, 30% and 60%.</p>
+      <p><span class="runin">Assessment 1, 10%.</span> Due Friday 16 October 2026.</p>
+      <p><span class="runin">Assessment 2, 30%.</span> Due Friday 13 November 2026.</p>
+      <p><span class="runin">Assessment 3, 60%.</span> Due Monday 14 December 2026.</p>
+      <p>Submit all three via Blackboard. Each brief is released on Blackboard in advance of its deadline.</p>
+    </div>
+    <div class="note">
+    </div>
   </div>
 
-  <!-- ── 4 · Logistics & policies ─────────────────────────────── -->
-  <div class="ov-h"><span class="n">04</span><h2>Logistics</h2></div>
-
-  <div class="ov-facts">
-    <div class="ov-fact"><div class="fh">Sessions</div><div class="fb">Mondays, 12:00 to 13:00 · Thursdays, 13:00 to 14:00<small>Monday: the lecture · Thursday: the week's handout, worked through together</small></div></div>
-    <div class="ov-fact"><div class="fh">Office hours</div><div class="fb">Thursdays, 14:00 to 15:00 · PX113<small>straight after the Thursday session · or email for an alternative slot</small></div></div>
-    <div class="ov-fact"><div class="fh">Coordinator</div><div class="fb">Dr Thomas Stephen · <a href="mailto:tmurrays@tcd.ie" style="color:var(--tcd-blue);text-decoration:none">tmurrays@tcd.ie</a><small>School of Linguistic, Speech &amp; Communication Sciences</small></div></div>
-    <div class="ov-fact"><div class="fh">Texts</div><div class="fb">Coppock &amp; Champollion · von Fintel &amp; Heim · Portner<small>plus one or two primary papers each week; see the week's reading list</small></div></div>
+  <!-- ══ 3 ══ -->
+  <div class="sec runon">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Logistics</h2>
+      <div class="defs">
+        <div class="d"><span class="t">Lectures</span><span class="g">Mondays, 12:00 to 13:00, Room&nbsp;RM2.03.</span></div>
+        <div class="d"><span class="t">Seminars</span><span class="g">Thursdays, 13:00 to 14:00, Arts&nbsp;5039.</span></div>
+        <div class="d"><span class="t">Office hours</span><span class="g">Thursdays, 14:00 to 15:00, or email for an alternative slot.</span></div>
+        <div class="d"><span class="t">Coordinator</span><span class="g">Dr Thomas Stephen, <a href="mailto:tmurrays@tcd.ie">tmurrays@tcd.ie</a>. School of Linguistic, Speech &amp; Communication Sciences.</span></div>
+        <div class="d"><span class="t">Readings</span><span class="g">Coppock &amp; Champollion, von Fintel &amp; Heim, and Portner, with one or two primary papers each week. See the week's reading list.</span></div>
+      </div>
+      <p>Policies (late work, academic integrity, attendance): see the TJH Linguistics handbook and the module's Blackboard page.</p>
+    </div>
+    <div class="note">
+    </div>
   </div>
 
-  <p style="font-family:var(--sans);font-size:8.5pt;color:var(--tcd-grey-100);margin:6pt 0 0">
-    No teaching in the study/review week, 26 – 30 October. Policies (late work, academic
-    integrity, attendance): see the TJH Linguistics handbook and the module's Blackboard page.
-  </p>
-
-  <!-- Footer -->
-  <div class="h-footer">
-    <span class="left">LIU33008 · Semantics II</span>
-    <span>Module Overview</span>
-    <span>1</span>
-  </div>
-
-</div><!-- /page -->
-</div><!-- /handout-week -->
-
-<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
-
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#e3efec"/>
-    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#136f5c" stroke-width="2"/>
-    <line x1="36" y1="30" x2="64" y2="30" stroke="#136f5c" stroke-width="3"/>
-    <line x1="36" y1="40" x2="60" y2="40" stroke="#a7cdc2" stroke-width="2"/>
-    <line x1="36" y1="47" x2="64" y2="47" stroke="#a7cdc2" stroke-width="2"/>
-    <line x1="36" y1="54" x2="58" y2="54" stroke="#a7cdc2" stroke-width="2"/>
-    <line x1="36" y1="61" x2="62" y2="61" stroke="#a7cdc2" stroke-width="2"/>
-    <text x="50" y="92" font-family="serif" font-size="7" fill="#136f5c" text-anchor="middle">LIU33008 · OVERVIEW</text>
-  </svg>
-</template>
+</div>
 </body>
 </html>
