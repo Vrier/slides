@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 4, Attitude Reports · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+
+  /* As week 2: blocks run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  /* two definition strips in a row share one rule */
+  .defs + .defs { margin-top:0; border-top:none; }
+  table.rec.fill.wide td:not(:first-child) { width:auto; }
+  .exs .ig { display:flex; flex-wrap:wrap; gap:0 14pt; }
+  .exs .ig .wg { display:inline-flex; flex-direction:column; }
+  .exs .ig .o { font-style:italic; }
+  .exs .ig .g { font-size:9pt; }
+  .exs .tr { display:block; margin-top:2pt; }
+  .tfig { width:86%; height:auto; display:block; margin:6pt auto 4pt; } .treebox { break-inside:avoid; page-break-inside:avoid; }
+  .tfig line { stroke:#222; stroke-width:1.6; }
+  .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .tk { font-style:normal; font-size:24px; fill:#777; }
+  .proc .tfig { margin-top:8pt; }
+  .lat { width:58%; height:auto; display:block; margin:8pt auto 6pt; }
+  .lat .oa { stroke:#111; stroke-width:2.2; fill:none; }
+  .lat .on { fill:#fff; stroke:#111; stroke-width:2.2; }
+  .lat .on.top { fill:#e6e6e6; }
+  .lat .ot { font-style:italic; font-size:34px; text-anchor:middle; fill:#111; }
+  .wpic { width:100%; height:auto; display:block; margin:6pt 0 8pt; }
+  .wpic .wr { fill:none; stroke:#111; stroke-width:2; }
+  .wpic .wl { font-style:italic; font-size:30px; fill:#111; }
+  .wpic .wd { fill:#111; }
+  .wpic .wn { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .wpic .wn .sb { font-style:normal; font-size:20px; }
+  .wpic .wa { font-style:italic; font-size:28px; text-anchor:middle; fill:#111; }
+  .exs .fr { float:right; font-style:normal; margin-left:14pt; }
+  @media print {
+    .proc, .defs { break-inside:avoid !important; page-break-inside:avoid !important; }
+    ol.exs { break-inside:avoid; page-break-inside:avoid; }
+    table.rec { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:avoid; page-break-after:avoid; }
+    .tasks .task, .tasks .lines, .tasks .draw { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(+ table.rec), .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ .wpic), .body > p:has(+ .lat) { break-after:avoid; page-break-after:avoid; }
+    .body > ol.exs:has(+ .tasks) { break-after:avoid; page-break-after:avoid; }
+    .sec + .sec { break-before:page !important; page-break-before:always !important; margin-top:0; }
+    .sec + .sec.wyntk { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .sec + .sec.flow { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .tfig { width:66% !important; }
+  }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .wyntk .steps li { font-size:9.6pt; line-height:1.28; margin-bottom:1.5pt; }
+  .wyntk h2 { margin-bottom:4pt; }
+  .sec.wyntk { margin-top:8pt !important; margin-bottom:0 !important; padding-bottom:0 !important; border-bottom:none; }
+  @media print { html, body { height:auto !important; } .sheet { padding-bottom:0 !important; } }
+  .wyntk .proc { margin-bottom:0; } .wyntk .wcols { margin-bottom:0; } .wyntk .body > :last-child { margin-bottom:0; }
+  .wyntk .steps li { font-size:9.4pt; line-height:1.24; margin-bottom:1pt; }
+  @media print {
+    .tasks .draw { height:26mm !important; }
+  }
+  /* Week 4: object-language forms inside raw example rows */
+  .exs .o { font-style:italic; }
+  .body > p + .defs { margin-top:4pt; }
+  .sec.wide { grid-template-columns:30pt 1fr; }
+  .tfig.t4 { width:84%; }
+  @media print { .tfig.t4 { width:80% !important; } }
+  p.keep { break-inside:avoid; page-break-inside:avoid; }
+  /* examples set under the task that uses them */
+  .tasks ol.exs { margin:3pt 0 2pt 22pt; }
+  .tasks .task + ol.exs + .lines { margin-top:4pt; }
+  .tasks p.keep { margin-left:22pt; }
+  table.rec.prob td:nth-child(2) { width:38%; }
+  ul.sum { margin:2pt 0 6pt 0; padding-left:14pt; }
+  ul.sum li { margin:0 0 5pt 0; line-height:1.42; }
+  .tfig.t4.small { width:80%; }
+  .tfig.t4.blank { width:96%; }
+  @media print { .tfig.t4.small { width:78% !important; } .tfig.t4.blank { width:92% !important; } }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 4 · Handout</div>
+  <h1 class="doc-title">Attitude Reports</h1>
+
+  <!-- Thursday handout (Oct 2026). The sections carry what the deck
+       states briefly or leaves for the sheet: Hintikka entries in set and quantifier notation, evaluated in a model; the
+       existential and identity entries for believe (von Fintel & Heim ch. 2 §2.1; Coppock & Champollion §12.5.2);
+       composition with that-clauses at type <s,t> and plain FA, with an unlabelled tree to annotate (no IFA, by request);
+       frame conditions and closure; want with a doxastic modal base and bouletic ordering source (Heim 1992; von Fintel 1999)
+       and Anand & Hacquard's believe/want contrast; de se against de dicto and de re (Perry's shopper; Chierchia's war hero
+       with an expect minimal pair; Lewis's centred worlds; acquaintance relations after Kaplan 1968; LFs after Percus &
+       Sauerland 2003); interrogative and noun phrase complements. De re and de dicto is left to the lecture; the Cluedo
+       game, a recap of weeks 1 to 4 and a preview of later weeks are left out by request. -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Doxastic alternatives</h2>
+      <ol class="exs">
+        <li><span>(1)</span><span><span class="ctx">[it is dry; Anna, indoors, hears drumming on the roof]</span> <span class="s">Anna believes that it is raining.</span></span></li>
+      </ol>
+      <p>(1) can be true on a dry day. Its truth turns on Anna’s beliefs: on the worlds compatible with them.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Attitude holder</span><span class="g">The subject of an attitude verb.</span></div>
+        <div class="d"><span class="t">Doxastic alternatives</span><span class="g">Dox<sub><i>x</i></sub>(<i>w</i>): the worlds compatible with everything <i>x</i> believes in <i>w</i>. Intuition: the ways things could be, for all <i>x</i> believes.</span></div>
+        <div class="d"><span class="t">Epistemic alternatives</span><span class="g">Epi<sub><i>x</i></sub>(<i>w</i>): the worlds compatible with everything <i>x</i> knows in <i>w</i>.</span></div>
+        <div class="d"><span class="t">Bouletic alternatives</span><span class="g">Bul<sub><i>x</i></sub>(<i>w</i>): the worlds in which <i>x</i>’s desires in <i>w</i> are met.</span></div>
+        <div class="d"><span class="t">Hintikka semantics</span><span class="g">An attitude verb is a universal quantifier over the attitude holder’s alternatives.</span></div>
+        <div class="d"><span class="t"><i>believe</i></span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
+        <div class="d"><span class="t"><i>know</i></span><span class="g">⟦know⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
+        <div class="d"><span class="t"><i>want</i></span><span class="g">⟦want⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Bul<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
+        <div class="d"><span class="t">Quantifier notation</span><span class="g">Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> iff ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]. So ⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1], and likewise for <i>know</i> and <i>want</i>.</span></div>
+      </div>
+      <p>(1) is true at <i>w</i> iff Dox<sub><i>Anna</i></sub>(<i>w</i>) ⊆ {<i>w</i>′ : it rains at <i>w</i>′}, equivalently iff ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>) → it rains at <i>w</i>′].</p>
+      <p><span class="runin">Model.</span> Four worlds. The actual world is <i>w</i><sub>3</sub>.</p>
+      <table class="rec">
+        <tr><th></th><th>it is raining</th><th>Ben called</th></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>F</td><td>F</td></tr>
+      </table>
+      <p>Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. Dox<sub><i>Ben</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Dox<sub><i>Anna</i></sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>1</sub>}.</p>
+      <p><span class="runin">Exercise 1.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Which of (2) to (6) are true at <i>w</i><sub>3</sub>?</span></div>
+      <ol class="exs">
+        <li><span>(2)</span><span><span class="s">Anna believes that it is raining.</span></span></li>
+        <li><span>(3)</span><span><span class="s">Anna believes that Ben called.</span></span></li>
+        <li><span>(4)</span><span><span class="s">Anna believes that Ben did not call.</span></span></li>
+        <li><span>(5)</span><span><span class="s">Anna does not believe that Ben called.</span></span></li>
+        <li><span>(6)</span><span><span class="s">Anna believes that it is raining or Ben called.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Show that (4) entails (5) whenever Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) is non-empty. Does (5) entail (4)?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>(7) and (8) need Dox<sub><i>Anna</i></sub> at each of Ben’s alternatives. Are they true at <i>w</i><sub>3</sub>?</span></div>
+      <ol class="exs">
+        <li><span>(7)</span><span><span class="s">Ben believes that Anna believes that it is raining.</span></span></li>
+        <li><span>(8)</span><span><span class="s">Ben believes that Anna believes that Ben called.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Anna is told that Ben called and believes it. Change Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) to match. Which of (2) to (6) change truth value?</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Hintikka 1969.</b> Semantics for propositional attitudes. In J. W. Davis, D. J. Hockney &amp; W. K. Wilson (eds.), <i>Philosophical Logic.</i> Reidel. 21–45.</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 2, §2.1.</p>
+      <p><b>Heim 1992.</b> Presupposition projection and the semantics of attitude verbs. <i>Journal of Semantics</i> 9: 183–221.</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec flow">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Wrong entries</h2>
+      <p>Two alternatives to the universal entry of section 0.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Existential entry</span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ∩ <i>p</i> ≠ ∅, or ∃<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) ∧ <i>p</i>(<i>w</i>′) = 1]</span></div>
+        <div class="d"><span class="t">Identity entry</span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) = <i>p</i>, or ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) ↔ <i>p</i>(<i>w</i>′) = 1]</span></div>
+        <div class="d"><span class="t">Universal entry</span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>, or ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]</span></div>
+      </div>
+      <p><span class="runin">Exercise 2.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>In the model of section 0, Anna has no view on whether Ben called. Show that the existential entry makes <i>Anna believes that Ben called</i> and <i>Anna believes that Ben did not call</i> both true at <i>w</i><sub>3</sub>. What does it predict for (9), which is false?</span></div>
+      <ol class="exs">
+        <li><span>(9)</span><span><span class="ctx">[Anna has no idea whether Ben called]</span> <span class="s">Anna believes that Ben called.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>(10) is valid. Show that on the identity entry its premise and conclusion cannot both be true unless the two complements denote the same proposition.</span></div>
+      <ol class="exs">
+        <li><span>(10)</span><span><span class="s">Anna believes that Ben called and that it is raining. ⇒ Anna believes that Ben called.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>The existential entry gives the meaning of an English phrase. Give one. Try to find a single English verb with that meaning.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 2, §2.1.</p>
+      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> §12.5.2.</p>
+    </div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec flow">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Composition</h2>
+      <ol class="exs">
+        <li><span>(11)</span><span><span class="s">Sue thinks that Harry is single.</span></span></li>
+        <li><span>(12)</span><span><span class="s">Sue thinks that Dublin is in Ireland.</span></span></li>
+      </ol>
+      <p>(11) and (12) can differ in truth value although both complements are true. A complement of type <i>t</i> contributes only its truth value.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Type <i>s</i></span><span class="g">Worlds. ⟨<i>s</i>, <i>t</i>⟩ is the type of propositions: functions from worlds to truth values, or sets of worlds.</span></div>
+        <div class="d"><span class="t">That-clause</span><span class="g">⟦that S⟧<sup><i>w</i></sup> = {<i>w</i>′ : ⟦S⟧<sup><i>w</i>′</sup> = 1}, type ⟨<i>s</i>, <i>t</i>⟩.</span></div>
+        <div class="d"><span class="t">Attitude verb</span><span class="g">Type ⟨⟨<i>s</i>, <i>t</i>⟩, ⟨<i>e</i>, <i>t</i>⟩⟩.</span></div>
+        <div class="d"><span class="t"><i>it is raining</i></span><span class="g">⟦it is raining⟧<sup><i>w</i></sup> = 1 iff it rains at <i>w</i>. Type <i>t</i>.</span></div>
+        <div class="d"><span class="t"><i>not</i></span><span class="g">⟦not⟧<sup><i>w</i></sup> = λ<i>u</i>. 1 iff <i>u</i> = 0. Type ⟨<i>t</i>, <i>t</i>⟩.</span></div>
+      </div>
+      <div class="treebox">
+      <div class="proc">
+        <div class="sc proc-head">Worked: (1) <i>Anna believes that it is raining</i></div>
+      <svg class="tfig t4" viewBox="0 0 726 286" role="img" aria-label="Tree: S splits into Anna and VP; VP splits into believes and that it is raining.">
+      <line x1="234" y1="68" x2="85" y2="124"/>
+      <line x1="234" y1="68" x2="383" y2="124"/>
+      <line x1="383" y1="168" x2="244" y2="224"/>
+      <line x1="383" y1="168" x2="522" y2="224"/>
+      <text class="tn" x="234" y="56">S</text>
+      <text class="tn" x="85" y="156">Anna</text>
+      <text class="tn" x="383" y="156">VP</text>
+      <text class="tn" x="244" y="256">believes</text>
+      <text class="tn" x="522" y="256">that it is raining</text>
+      </svg>
+      </div>
+      <table class="rec">
+        <tr><th>Node</th><th>Denotation at <i>w</i></th></tr>
+        <tr><td><i>Anna</i></td><td>Anna</td></tr>
+        <tr><td><i>believes</i></td><td>λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></td></tr>
+        <tr><td><i>that it is raining</i></td><td>{<i>w</i>′ : it rains at <i>w</i>′}</td></tr>
+        <tr><td>VP</td><td>FA: λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ {<i>w</i>′ : it rains at <i>w</i>′}</td></tr>
+        <tr><td>S</td><td>FA: 1 iff Dox<sub><i>Anna</i></sub>(<i>w</i>) ⊆ {<i>w</i>′ : it rains at <i>w</i>′}</td></tr>
+      </table>
+      </div>
+      <p><span class="runin">Exercise 3.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Annotate each node of the tree for (13) with its type and its denotation at <i>w</i>. Then give the truth condition at <i>w</i>.</span></div>
+      <ol class="exs">
+        <li><span>(13)</span><span><span class="s">Anna believes that it is not raining.</span></span></li>
+      </ol>
+      <div class="treebox">
+      <svg class="tfig t4 blank" viewBox="0 0 1148 626" role="img" aria-label="Unlabelled tree: Anna and a node that splits into believes and a node that splits into that and a node that splits into not and it is raining.">
+      <line x1="299" y1="54" x2="106" y2="152"/>
+      <line x1="299" y1="54" x2="492" y2="152"/>
+      <line x1="492" y1="189" x2="313" y2="287"/>
+      <line x1="492" y1="189" x2="671" y2="287"/>
+      <line x1="671" y1="324" x2="520" y2="422"/>
+      <line x1="671" y1="324" x2="822" y2="422"/>
+      <line x1="822" y1="459" x2="691" y2="557"/>
+      <line x1="822" y1="459" x2="952" y2="557"/>
+      <circle cx="299" cy="52" r="5" fill="#222"/>
+      <text class="tn" x="106" y="191">Anna</text>
+      <circle cx="492" cy="187" r="5" fill="#222"/>
+      <text class="tn" x="313" y="326">believes</text>
+      <circle cx="671" cy="322" r="5" fill="#222"/>
+      <text class="tn" x="520" y="461">that</text>
+      <circle cx="822" cy="457" r="5" fill="#222"/>
+      <text class="tn" x="691" y="596">not</text>
+      <text class="tn" x="952" y="596">it is raining</text>
+      </svg>
+      </div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 1 and 2.</p>
+      <p><b>Heim &amp; Kratzer 1998.</b> <i>Semantics in Generative Grammar.</i> Ch. 12.</p>
+    </div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec flow">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Axioms and closure</h2>
+      <p>Conditions on Dox<sub><i>x</i></sub>(<i>w</i>) and Epi<sub><i>x</i></sub>(<i>w</i>) decide which inferences about belief and knowledge come out valid.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Alternatives as R</span><span class="g">Fix <i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) and Epi<sub><i>x</i></sub>(<i>w</i>) are each an <i>R</i>(<i>w</i>).</span></div>
+        <div class="d"><span class="t">Reflexive</span><span class="g"><i>w</i> ∈ <i>R</i>(<i>w</i>).</span></div>
+        <div class="d"><span class="t">Serial</span><span class="g"><i>R</i>(<i>w</i>) ≠ ∅.</span></div>
+        <div class="d"><span class="t">Transitive</span><span class="g">If <i>w</i>′ ∈ <i>R</i>(<i>w</i>) and <i>w</i>″ ∈ <i>R</i>(<i>w</i>′), then <i>w</i>″ ∈ <i>R</i>(<i>w</i>).</span></div>
+        <div class="d"><span class="t">Euclidean</span><span class="g">If <i>w</i>′ ∈ <i>R</i>(<i>w</i>) and <i>w</i>″ ∈ <i>R</i>(<i>w</i>), then <i>w</i>″ ∈ <i>R</i>(<i>w</i>′).</span></div>
+        <div class="d"><span class="t">T, D</span><span class="g"><i>x</i> knows <i>p</i> → <i>p</i>. <i>x</i> believes <i>p</i> → <i>x</i> does not believe ¬<i>p</i>.</span></div>
+        <div class="d"><span class="t">4, 5</span><span class="g">Positive introspection: knows <i>p</i> → knows that knows <i>p</i>. Negative introspection: does not know <i>p</i> → knows that does not know <i>p</i>.</span></div>
+        <div class="d"><span class="t">S4, KD45</span><span class="g">The usual systems for knowledge (T and 4) and for belief (D, 4 and 5).</span></div>
+        <div class="d"><span class="t">Closure</span><span class="g">If <i>x</i> believes <i>p</i> and <i>p</i> ⊆ <i>q</i>, then <i>x</i> believes <i>q</i>.</span></div>
+        <div class="d"><span class="t">Logical omniscience</span><span class="g"><i>x</i> believes every necessary truth and everything entailed by what <i>x</i> believes.</span></div>
+      </div>
+      <p><span class="runin">Exercise 4.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Show that if <i>w</i> ∈ Epi<sub><i>x</i></sub>(<i>w</i>) for every <i>w</i>, then <i>x knows p</i> entails <i>p</i>.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Show that if Dox<sub><i>x</i></sub>(<i>w</i>) ≠ ∅, <i>x</i> cannot believe both <i>p</i> and ¬<i>p</i>. What does this predict for (14)?</span></div>
+      <ol class="exs">
+        <li><span>(14)</span><span><span class="s">Anna believes that it is raining, and she believes that it is not raining.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Which relation between Dox<sub><i>x</i></sub>(<i>w</i>) and Epi<sub><i>x</i></sub>(<i>w</i>) makes knowing <i>p</i> entail believing <i>p</i>? Prove it.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Prove closure. Show that it makes the first sentence of (15) and of (16) entail the second. Which of the two entailments is right?</span></div>
+      <ol class="exs">
+        <li><span>(15)</span><span><span class="s">Anna believes that the shop opens at nine. ⇒ Anna believes that the shop opens before ten.</span></span></li>
+        <li><span>(16)</span><span><span class="s">Anna believes that 2 + 2 = 4. ⇏ Anna believes that the prime factors of 1,234,567 are 127 and 9,721.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(e)</span><span>Which axiom does (17) instantiate? Is it valid in S4?</span></div>
+      <ol class="exs">
+        <li><span>(17)</span><span><span class="s">Anna knows that the shop opens at nine. ⇒? Anna knows that she knows that the shop opens at nine.</span></span></li>
+      </ol>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(f)</span><span>Build a reflexive, transitive model in which Anna does not know <i>p</i> and does not know that she does not know <i>p</i>, as in (18). Which frame condition fails?</span></div>
+      <ol class="exs">
+        <li><span>(18)</span><span><span class="ctx">[it is raining; Anna is sure it is dry]</span> <span class="s">Anna does not know that it is raining, and she does not know that she does not know it.</span></span></li>
+      </ol>
+        <div class="draw"></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Hintikka 1962.</b> <i>Knowledge and Belief.</i> Cornell University Press.</p>
+      <p><b>Fagin, Halpern, Moses &amp; Vardi 1995.</b> <i>Reasoning about Knowledge.</i> MIT Press.</p>
+    </div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec flow">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Want</h2>
+      <ol class="exs">
+        <li><span>(19)</span><span><span class="ctx">[Anna would rather not teach at all, but knows she has to]</span> <span class="s">Anna wants to teach Tuesdays and Thursdays next semester.</span></span></li>
+      </ol>
+      <p>(19) is true, although Anna’s desires are best met where she does not teach at all. Her desires rank the worlds she believes possible.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Bouletic entry</span><span class="g"><i>x</i> wants <i>p</i> iff Bul<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>, as in section 0.</span></div>
+        <div class="d"><span class="t">Kratzerian entry</span><span class="g">Modal base <i>f</i>: what <i>x</i> believes in <i>w</i>, so ∩<i>f</i>(<i>w</i>) = Dox<sub><i>x</i></sub>(<i>w</i>). Ordering source <i>g</i>: <i>x</i>’s desires in <i>w</i>. <i>x</i> wants <i>p</i> iff Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i>, or ∀<i>w</i>′[<i>w</i>′ ∈ Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) → <i>p</i>(<i>w</i>′) = 1].</span></div>
+        <div class="d"><span class="t">Embedded epistemic</span><span class="g">An epistemic modal in the complement of an attitude verb, with the attitude holder’s alternatives as its modal base.</span></div>
+      </div>
+      <p><span class="runin">Model.</span> Three worlds. Dox<sub><i>Anna</i></sub>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. Bul<sub><i>Anna</i></sub>(<i>w</i>) = {<i>w</i><sub>3</sub>}.</p>
+      <table class="rec">
+        <tr><th></th><th>Anna teaches</th><th>Anna’s Mondays, Wednesdays and Fridays are free</th></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>F</td><td>T</td></tr>
+      </table>
+      <p><i>g</i>(<i>w</i>) = {Anna does not teach, Anna’s Mondays, Wednesdays and Fridays are free}. Anna teaches Tuesdays and Thursdays at <i>w</i><sub>1</sub>.</p>
+      <p><span class="runin">Exercise 5.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>On the bouletic entry, is (19) true?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(b)</span><span>On the Kratzerian entry, which world is best? Is (19) true?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Let ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. What does the Kratzerian entry now predict for (19)?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Give the truth condition of (20) at <i>w</i>, with Dox<sub><i>Anna</i></sub>(<i>w</i>) as the modal base of <i>might</i>.</span></div>
+      <ol class="exs">
+        <li><span>(20)</span><span><span class="s">Anna believes that it might be raining.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(e)</span><span>(21) is odd. Give the truth condition it would have with Bul<sub><i>Anna</i></sub>(<i>w</i>) as the modal base of <i>might</i>.</span></div>
+      <ol class="exs">
+        <li><span>(21)</span><span><span class="s">#Anna wants that it might be raining.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Heim 1992.</b> Presupposition projection and the semantics of attitude verbs. <i>Journal of Semantics</i> 9: 183–221.</p>
+      <p><b>von Fintel 1999.</b> NPI licensing, Strawson entailment, and context dependency. <i>Journal of Semantics</i> 16: 97–148.</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 2.</p>
+      <p><b>Anand &amp; Hacquard 2013.</b> Epistemics and attitudes. <i>Semantics and Pragmatics</i> 6(8): 1–59.</p>
+    </div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec flow">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>De se</h2>
+      <p class="keep"><span class="runin">Context.</span> Perry follows a trail of sugar round a supermarket, looking for the shopper with the torn sack to tell him he is making a mess. The trail grows thicker on each lap. He is the shopper he is trying to catch.</p>
+      <ol class="exs">
+        <li><span>(22)</span><span><span class="ctx">[before he realises]</span> <span class="s">Perry believes that the shopper with the torn sack is making a mess.</span></span></li>
+        <li><span>(23)</span><span><span class="ctx">[after]</span> <span class="s">I am making a mess.</span></span></li>
+      </ol>
+      <p>(22) is true before and after. Only the belief in (23) makes him stop. No description repairs this: for any description of himself, Perry could fail to know that he fits it. A name is no better, since he could forget that he is Perry.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">De dicto</span><span class="g">The complement is a proposition, and any description in it is evaluated at the alternatives <i>w</i>′.</span></div>
+        <div class="d"><span class="t">De re</span><span class="g">The verb takes a res <i>r</i> and a property. <i>x</i> believes the property of <i>r</i> under some acquaintance relation <i>A</i> that <i>x</i> bears to <i>r</i> at <i>w</i>: seeing <i>r</i>, reading about <i>r</i>.</span></div>
+        <div class="d"><span class="t">De se</span><span class="g">A belief about oneself, held as a belief about oneself. The verb takes a property and no res.</span></div>
+        <div class="d"><span class="t">Centred world</span><span class="g">A pair ⟨<i>w</i>′, <i>y</i>⟩ of a world and an individual in it, the centre. Intuition: a world with a marker saying who you are.</span></div>
+        <div class="d"><span class="t">Centred alternatives</span><span class="g">Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>): the centred worlds ⟨<i>w</i>′, <i>y</i>⟩ compatible with what <i>x</i> believes in <i>w</i>, where <i>y</i> is the individual <i>x</i> would call <i>I</i> in <i>w</i>′.</span></div>
+      </div>
+      <div class="defs">
+        <div class="sc">Truth conditions</div>
+        <div class="d"><span class="t">De dicto</span><span class="g"><i>x</i> believes <i>p</i> iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]. The centre plays no role.</span></div>
+        <div class="d"><span class="t">De re</span><span class="g"><i>x</i> believes <i>P</i> of <i>r</i> iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>P</i>(<i>A</i><sub><i>w</i>′</sub>(<i>y</i>))(<i>w</i>′) = 1], where <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) is the individual <i>y</i> bears <i>A</i> to in <i>w</i>′.</span></div>
+        <div class="d"><span class="t">De se</span><span class="g"><i>x</i> believes <i>P</i> de se iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>P</i>(<i>y</i>)(<i>w</i>′) = 1], equivalently Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) ⊆ {⟨<i>w</i>′, <i>y</i>⟩ : <i>P</i>(<i>y</i>)(<i>w</i>′) = 1}.</span></div>
+      </div>
+      <p class="keep"><span class="runin">Context.</span> John, an amnesiac war hero, reads about the hero’s deeds and comes to expect that the hero will get a medal. He does not realise that he is the hero.</p>
+      <ol class="exs">
+        <li><span>(24)</span><span><span class="s">John expects that the hero will get a medal.</span> <span class="ctx">de dicto</span></span></li>
+      </ol>
+      <div class="treebox">
+      <svg class="tfig t4 small" viewBox="0 0 1046 362" role="img" aria-label="Tree: John; VP with expects and a CP, that the hero will get a medal.">
+      <line x1="244" y1="68" x2="85" y2="109"/>
+      <line x1="244" y1="68" x2="403" y2="109"/>
+      <line x1="403" y1="160" x2="239" y2="201"/>
+      <line x1="403" y1="160" x2="568" y2="201"/>
+      <line x1="568" y1="252" x2="393" y2="293"/>
+      <line x1="568" y1="252" x2="742" y2="293"/>
+      <text class="tn" x="244" y="56">S</text>
+      <text class="tn" x="85" y="148">John</text>
+      <text class="tn" x="403" y="148">VP</text>
+      <text class="tn" x="239" y="240">expects</text>
+      <text class="tn" x="568" y="240">CP</text>
+      <text class="tn" x="393" y="332">that</text>
+      <text class="tn" x="742" y="332">the hero will get a medal</text>
+      </svg>
+      </div>
+      <ol class="exs">
+        <li><span>(25)</span><span><span class="s">John expects that he will get a medal.</span> <span class="ctx">de re</span></span></li>
+      </ol>
+      <div class="treebox">
+      <svg class="tfig t4 small" viewBox="0 0 1046 362" role="img" aria-label="Tree: John; VP with expects plus the res he, and a property node lambda 1 over t1 will get a medal.">
+      <line x1="287" y1="68" x2="85" y2="109"/>
+      <line x1="287" y1="68" x2="490" y2="109"/>
+      <line x1="490" y1="160" x2="316" y2="201"/>
+      <line x1="316" y1="252" x2="239" y2="293"/>
+      <line x1="316" y1="252" x2="393" y2="293"/>
+      <line x1="490" y1="160" x2="664" y2="201"/>
+      <line x1="664" y1="238" x2="522" y2="293"/>
+      <line x1="664" y1="238" x2="806" y2="293"/>
+      <text class="tn" x="287" y="56">S</text>
+      <text class="tn" x="85" y="148">John</text>
+      <text class="tn" x="490" y="148">VP</text>
+      <text class="tn" x="316" y="240">V</text>
+      <text class="tn" x="239" y="332">expects</text>
+      <text class="tn" x="393" y="332">he</text>
+      <circle cx="664" cy="236" r="5" fill="#222"/>
+      <text class="tn" x="522" y="332">λ<tspan baseline-shift="sub" font-size="31px">1</tspan></text>
+      <text class="tn" x="806" y="332">t<tspan baseline-shift="sub" font-size="31px">1</tspan> will get a medal</text>
+      </svg>
+      </div>
+      <ol class="exs">
+        <li><span>(26)</span><span><span class="s">John expects to get a medal.</span> <span class="ctx">de se</span></span></li>
+      </ol>
+      <div class="treebox">
+      <svg class="tfig t4 small" viewBox="0 0 917 362" role="img" aria-label="Tree: John; VP with expects and a property node lambda 1 over PRO1 to get a medal.">
+      <line x1="236" y1="68" x2="85" y2="109"/>
+      <line x1="236" y1="68" x2="387" y2="109"/>
+      <line x1="387" y1="160" x2="239" y2="201"/>
+      <line x1="387" y1="160" x2="535" y2="201"/>
+      <line x1="535" y1="238" x2="393" y2="293"/>
+      <line x1="535" y1="238" x2="677" y2="293"/>
+      <text class="tn" x="236" y="56">S</text>
+      <text class="tn" x="85" y="148">John</text>
+      <text class="tn" x="387" y="148">VP</text>
+      <text class="tn" x="239" y="240">expects</text>
+      <circle cx="535" cy="236" r="5" fill="#222"/>
+      <text class="tn" x="393" y="332">λ<tspan baseline-shift="sub" font-size="31px">1</tspan></text>
+      <text class="tn" x="677" y="332">PRO<tspan baseline-shift="sub" font-size="31px">1</tspan> to get a medal</text>
+      </svg>
+      </div>
+      <p>In the scenario (24) and (25) are true, and (26) is false. (25) and (26) share the verb, the individual, John, and the property, getting a medal. Only the de se report is false, so de se is neither de dicto nor de re. In the trees the difference is the complement: a proposition, a res plus a property, and a property alone. PRO is bound at the edge of the complement and has no res. The <i>he</i> of (25) can be bound the same way, which gives the sentence a de se reading too.</p>
+      <p>Lewis reverses the reduction: every belief is the self-ascription of a property, and de dicto and de re belief are the special cases above. A context fixes a world and a speaker, so it works as a centred world. The shifted <i>I</i> of Amharic and Ewe <i>yè</i> are read de se.</p>
+      <p><span class="runin">Exercise 6.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Write (22) as a de dicto belief, and Perry’s belief in (23) as a de se belief. Which is true before he realises?</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Give the truth conditions of (24), (25) and (26) from their trees, with <i>A</i> for John’s acquaintance relation in (25). Check them against the scenario.</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Set <i>A</i> to identity, so that <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) = <i>y</i>. Show that the de re formula for (25) becomes the de se formula for (26). Which relation does John bear to himself in the scenario?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>John learns that he is the hero. Which of (24), (25) and (26) change truth value?</span></div>
+        <div class="lines"><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Perry 1979.</b> The problem of the essential indexical. <i>Noûs</i> 13: 3–21.</p>
+      <p><b>Lewis 1979.</b> Attitudes de dicto and de se. <i>Philosophical Review</i> 88: 513–543.</p>
+      <p><b>Kaplan 1968.</b> Quantifying in. <i>Synthese</i> 19: 178–214.</p>
+      <p><b>Chierchia 1989.</b> Anaphora and attitudes de se. In R. Bartsch, J. van Benthem &amp; P. van Emde Boas (eds.), <i>Semantics and Contextual Expression.</i> Foris. 1–31.</p>
+      <p><b>Percus &amp; Sauerland 2003.</b> On the LFs of attitude reports. <i>Sinn und Bedeutung</i> 7: 228–242.</p>
+    </div>
+  </div>
+
+  <!-- ══ 6 ══ -->
+  <div class="sec flow">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Interrogative and noun phrase complements</h2>
+      <ol class="exs">
+        <li><span>(27)</span><span>a. <span class="s">Anna knows [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna knows [<b>whether</b> Ben called].</span></span></li>
+        <li><span>(28)</span><span>a. <span class="s">Anna believes [<b>that</b> Ben called].</span><br/>b. <span class="s">*Anna believes [<b>whether</b> Ben called].</span></span></li>
+        <li><span>(29)</span><span>a. <span class="s">*Anna wonders [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna wonders [<b>whether</b> Ben called].</span></span></li>
+      </ol>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Hamblin semantics</span><span class="g">A question denotes the set of its possible answers. ⟦whether Ben called⟧ = {<i>p</i>, ¬<i>p</i>}, with <i>p</i> = ⟦that Ben called⟧. Type ⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩.</span></div>
+        <div class="d"><span class="t">Responsive</span><span class="g">Takes declarative and interrogative complements: <i>know</i>.</span></div>
+        <div class="d"><span class="t">Rogative</span><span class="g">Takes interrogative complements only: <i>wonder</i>.</span></div>
+        <div class="d"><span class="t">Anti-rogative</span><span class="g">Takes declarative complements only: <i>believe</i>.</span></div>
+        <div class="d"><span class="t"><i>know</i> + question</span><span class="g"><i>x</i> knows <i>Q</i> at <i>w</i> iff Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>, for the <i>p</i> ∈ <i>Q</i> that is true at <i>w</i>.</span></div>
+        <div class="d"><span class="t">Concealed question</span><span class="g">A noun phrase read as a question: <i>knows the capital of Italy</i> as <i>knows what the capital of Italy is</i>.</span></div>
+        <div class="d"><span class="t">Hidden clause</span><span class="g"><i>want a sloop</i> as <i>want to have a sloop</i>; <i>believe Mary</i> as <i>believe what Mary says</i>.</span></div>
+        <div class="d"><span class="t">Content noun</span><span class="g">A noun with a propositional content (<i>rumour</i>, <i>story</i>, <i>claim</i>). The verb applies to that content.</span></div>
+        <div class="d"><span class="t">Modifier analysis</span><span class="g">The clause modifies an argument of type <i>e</i>, a content-bearing individual, and the verb takes that argument.</span></div>
+      </div>
+      <p><span class="runin">Exercise 7.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Use the model of section 0 with Epi<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Is (27b) true at <i>w</i><sub>3</sub>? Is <i>Anna knows whether it is raining</i> true there?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Paraphrase (30) with a clause. Which proposition must Anna know for it to be true?</span></div>
+      <ol class="exs">
+        <li><span>(30)</span><span><span class="s">Anna knows the capital of Italy.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Give the de re and de dicto readings of (31), using the hidden clause.</span></div>
+      <ol class="exs">
+        <li><span>(31)</span><span><span class="s">Anna wants a sloop.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Which strategy, if any, handles each of (32) to (34)?</span></div>
+      <ol class="exs">
+        <li><span>(32)</span><span><span class="s">Anna believes the rumour.</span></span></li>
+        <li><span>(33)</span><span><span class="s">Anna believes Mary.</span></span></li>
+        <li><span>(34)</span><span><span class="s">Anna fears the dentist.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Hamblin 1973.</b> Questions in Montague English. <i>Foundations of Language</i> 10: 41–53.</p>
+      <p><b>Lahiri 2002.</b> <i>Questions and Answers in Embedded Contexts.</i> Oxford University Press.</p>
+      <p><b>Heim 1979.</b> Concealed questions. In R. Bäuerle, U. Egli &amp; A. von Stechow (eds.), <i>Semantics from Different Points of View.</i> Springer. 51–60.</p>
+      <p><b>Moulton 2015.</b> CPs: copies and compositionality. <i>Linguistic Inquiry</i> 46: 305–342.</p>
+    </div>
+  </div>
+
+  <!-- ══ 7 ══ -->
+  <div class="sec wyntk">
+    <div class="num">7</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Key notions</div>
+        <ol class="steps">
+          <li>Dox, Epi, Bul; Hintikka semantics.</li>
+          <li>The existential and identity entries for <i>believe</i>.</li>
+          <li>Complements of type ⟨<i>s</i>, <i>t</i>⟩.</li>
+          <li>Frame conditions for knowledge and belief; closure.</li>
+          <li>Kratzerian <i>want</i>; embedded epistemics.</li>
+          <li>De se against de re and de dicto; centred worlds; acquaintance relations.</li>
+          <li>Hamblin semantics; responsive, rogative and anti-rogative predicates; concealed questions and hidden clauses.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Evaluate attitude reports in a small model, nested ones too.</li>
+          <li>Show why the existential and identity entries fail.</li>
+          <li>Annotate a tree for an attitude report, with negation.</li>
+          <li>Prove T, D and closure from frame conditions; build a countermodel.</li>
+          <li>Compute <i>want</i> from Dox and a bouletic ordering.</li>
+          <li>Give de dicto, de re and de se truth conditions from a tree, and judge them in a scenario.</li>
+          <li>Evaluate <i>know whether</i>; paraphrase noun phrase complements.</li>
+        </ol>
+      </div>
+      </div>
+      <p><span class="runin">Notation.</span> This sheet and the slides use one notation. The readings use others.</p>
+      <table class="rec">
+        <tr><th>On this sheet</th><th>In the readings</th></tr>
+        <tr><td>Dox<sub><i>x</i></sub>(<i>w</i>)</td><td><i>B</i>(<i>x</i>)(<i>w</i>) von Fintel &amp; Heim · <i>R</i><sup>dox</sup><sub><i>x</i></sub> Coppock &amp; Champollion · <i>w</i><i>R</i><sub><i>x</i></sub><i>w</i>′ · doxastic alternatives, belief worlds</td></tr>
+        <tr><td>Epi<sub><i>x</i></sub>(<i>w</i>), Bul<sub><i>x</i></sub>(<i>w</i>)</td><td><i>w</i><i>K</i><sub><i>x</i></sub><i>w</i>′ von Fintel &amp; Heim · <i>R</i><sup>boul</sup><sub><i>x</i></sub> Coppock &amp; Champollion · epistemic, bouletic alternatives</td></tr>
+        <tr><td>Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></td><td>∀<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>): <i>p</i>(<i>w</i>′) = 1 · ∀<i>w</i>′[<i>R</i><sup>dox</sup><sub><i>x</i>,<i>w</i></sub>(<i>w</i>′) → <i>p</i>(<i>w</i>′)] Coppock &amp; Champollion</td></tr>
+        <tr><td>□ read as an attitude</td><td><i>K</i><sub><i>a</i></sub><i>p</i>, <i>B</i><sub><i>a</i></sub><i>p</i> Hintikka · □<sub><i>a</i></sub><i>p</i></td></tr>
+        <tr><td>de re, de dicto</td><td>relational, notional Quine · primary, secondary occurrence Russell · transparent, opaque · specific, non-specific · wide scope, narrow scope</td></tr>
+        <tr><td>Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>)</td><td><i>Alt</i><sub><i>x</i></sub>(<i>w</i>) · doxastic alternatives as centred worlds, or as individual–world pairs</td></tr>
+      </table>
+    </div>
+    <div class="note"></div>
+  </div>
+</div>
+</body>
+</html>
