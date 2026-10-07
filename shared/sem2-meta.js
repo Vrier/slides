@@ -64,7 +64,7 @@ window.WEEKS = [
     figures: ["Lewis", "Kratzer"], lenses: blankLenses() },
 
   { no: 4, title: "Attitude Reports", section: 2,
-    figures: ["Frege", "Hintikka", "Quine"], lenses: blankLenses() },
+    figures: ["Frege", "Quine", "Barcan Marcus", "Hintikka", "Kaplan"], lenses: blankLenses() },
 
   { no: 5, title: "Factivity, Selection & Neg-Raising", section: 2,
     figures: ["Kiparsky & Kiparsky", "Karttunen"], lenses: blankLenses() },

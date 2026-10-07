@@ -527,6 +527,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="qref" style="font-size:31px">von Fintel &amp; Heim, <em>Intensional Semantics</em>, ch. 2, &sect;2.1 &ldquo;Attitudes&rdquo;. <span class="src">Textbook</span></div>
       <div class="qref" style="font-size:31px;margin-top:18px">Coppock &amp; Champollion, <em>Invitation to Formal Semantics</em>, &sect;12.5.2 &ldquo;Propositional attitudes&rdquo; and &sect;12.6 &ldquo;De dicto vs. de re&rdquo;. <span class="src">Textbook</span></div>
       <div class="qref" style="font-size:31px;margin-top:18px">Hintikka (1969), &ldquo;Semantics for propositional attitudes&rdquo;. <span class="src">Classical</span></div>
+      <div class="qref" style="font-size:31px;margin-top:18px">Perry (1979), &ldquo;The problem of the essential indexical&rdquo;, <em>No&ucirc;s</em> 13. <span class="src">Classical</span></div>
       <div class="qref" style="font-size:31px;margin-top:18px">Anand &amp; Hacquard (2013), &ldquo;Epistemics and attitudes&rdquo;, <em>Semantics and Pragmatics</em> 6. <span class="src">Contemporary</span></div>
     </div>
   </div>
@@ -582,7 +583,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
     <div class="b-main dB">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
       <h2 class="b-h">De re and de dicto</h2>
-      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx"><strong>De dicto</strong>, &lsquo;of the (indirect) speech&rsquo;: the description is understood as part of the content of the attitude, from the subject&rsquo;s point of view. On this reading (6) says that Oedipus wanted <em>I marry my mother</em>.</div></div>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx"><strong>De dicto</strong>, &lsquo;of the (indirect) speech&rsquo;: the description is understood as part of the content of the attitude, from the subject&rsquo;s point of view. On this reading (6) attributes to Oedipus the wish he would put as <em>I marry my mother</em>, and so it is false.</div></div>
       <div class="erow nolb" data-step="2"><div class="tx"><strong>De re</strong>, &lsquo;of the thing&rsquo;: the description is the speaker&rsquo;s way of picking out an individual in the actual world, and the attitude is about that individual. On this reading (6) says that, of the woman who is in fact his mother, Oedipus wanted to marry her.</div></div>
       <div class="srcline">The terms <em>de re</em> and <em>de dicto</em> first appear in Aquinas.</div>
     </div>
@@ -818,9 +819,9 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <text class="la" x="860" y="352" text-anchor="middle">Dox<tspan dy="7" font-size="68%">Anna</tspan><tspan dy="-7">(w</tspan><tspan dy="7" font-size="68%">0</tspan><tspan dy="-7">): Anna&#8217;s belief worlds</tspan></text>
         <text class="lw" x="190" y="280" text-anchor="middle">evaluation world · dry</text>
       </svg>
-      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><strong>Doxastic alternatives</strong>: \(\mathrm{Dox}_a(w)\) is the set of worlds compatible with everything \(a\) believes in \(w\). These worlds are \(a\)&rsquo;s doxastic alternatives in \(w\).</div></div>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><strong>Doxastic alternatives</strong>: \(\mathrm{Dox}_x(w)\) is the set of worlds compatible with everything \(x\) believes in \(w\). These worlds are \(x\)&rsquo;s doxastic alternatives in \(w\).</div></div>
       <div class="erow nolb" data-step="3"><div class="tx tight"><em>Anna believes that it is raining</em> is true at \(w\) iff \(\mathrm{Dox}_{\mathit{Anna}}(w) \subseteq \sem{\textit{it is raining}}\). In the diagram it is true although \(w_0\) itself is dry, since belief does not require truth.</div></div>
-      <div class="srcline">Hintikka (1969), &ldquo;Semantics for propositional attitudes&rdquo;: the alternativeness relation. The notation \(\mathrm{Dox}_a(w)\) follows Heim (1992), <em>Journal of Semantics</em> 9.</div>
+      <div class="srcline">Hintikka (1969), &ldquo;Semantics for propositional attitudes&rdquo;: the alternativeness relation. The notation \(\mathrm{Dox}_x(w)\) follows Heim (1992), <em>Journal of Semantics</em> 9.</div>
     </div>
   </div>
 </section>
@@ -840,7 +841,7 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
         <div class="fw" data-step="3" style="--fc:var(--lens-for)"><div class="fl">know<small>\(\boldsymbol{\mathrm{Epi}_x(w)}\)</small></div><div class="ft2">the worlds compatible with what \(x\) knows in \(w\)</div></div>
         <div class="fw" data-step="4" style="--fc:var(--lens-for)"><div class="fl">want<small>\(\boldsymbol{\mathrm{Bul}_x(w)}\)</small></div><div class="ft2">the worlds in which \(x\)&rsquo;s desires in \(w\) are met</div></div>
       </div>
-      <div class="erow nolb" style="border-top:none" data-step="5"><div class="tx">\(\mathrm{Dox}_x(w)\) defines \(R(w)\), the accessibility relation, relative to a person and a world.</div></div>
+      <div class="erow nolb" style="border-top:none" data-step="5"><div class="tx">\(\mathrm{Dox}_x(w)\) plays the role of \(R(w)\): one accessibility relation for each attitude holder.</div></div>
     </div>
   </div>
 </section>
@@ -1042,19 +1043,20 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
 <section class="slide" data-label="Formal ·Scope" data-screen-label="28">
   <div class="b-slide pal-a lens-formal dB" data-sec="scp">
     <aside class="mrail"></aside>
-    <div class="b-main dB">
+    <div class="b-main dB dense snug">
       <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
       <h2 class="b-h">De re and de dicto as scope</h2>
       <div class="egpanel" style="margin-top:4px">
         <div class="eg"><span class="no">(9)</span><span class="ex">Mary wants to marry a Norwegian.</span></div>
         <div class="fxl" data-step="1">(9) de dicto</div>
-        <div class="fx l" style="font-size:44px" data-step="1">\(\mathrm{Bul}_{m}(w) \subseteq \{w' : \exists x\,[\mathit{norw}_{w'}(x) \wedge \mathit{marry}_{w'}(m,x)]\}\)</div>
+        <div class="fx l" style="font-size:40px" data-step="1">\(\mathrm{Bul}_{m}(w) \subseteq \{w' : \exists x\,[\mathit{norw}_{w'}(x) \wedge \mathit{marry}_{w'}(m,x)]\}\)</div>
         <div class="fxl" data-step="2">(9) de re</div>
-        <div class="fx l" style="font-size:44px" data-step="2">\(\exists x\,[\mathit{norw}_{w}(x) \wedge \mathrm{Bul}_{m}(w) \subseteq \{w' : \mathit{marry}_{w'}(m,x)\}]\)</div>
+        <div class="fx l" style="font-size:40px" data-step="2">\(\exists x\,[\mathit{norw}_{w}(x) \wedge \mathrm{Bul}_{m}(w) \subseteq \{w' : \mathit{marry}_{w'}(m,x)\}]\)</div>
       </div>
       <div class="erow nolb" style="border-top:none" data-step="3"><div class="tx tight">On the de dicto reading <em>a Norwegian</em> takes narrow scope, inside the attitude, and is checked at Mary&rsquo;s desire worlds \(w'\).</div></div>
       <div class="erow nolb" data-step="4"><div class="tx tight">On the de re reading it takes wide scope, outside the attitude, and is checked at the actual world \(w\).</div></div>
       <div class="erow nolb" data-step="5"><div class="tx tight"><em>His mother</em> in (6) works in the same way.</div></div>
+      <div class="erow nolb" data-step="6"><div class="tx tight">With de re as wide scope, (12) and (13) together give \(\mathrm{Dox}_{\mathit{Ralph}}(w) \subseteq \{w' : \mathit{spy}_{w'}(o)\} \cap \{w' : \neg\mathit{spy}_{w'}(o)\} = \emptyset\), so Ralph believes everything. Kaplan (1968) adds acquaintance relations.</div></div>
     </div>
   </div>
 </section>
@@ -1950,10 +1952,10 @@ window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]
       <div class="egpanel" style="margin-top:4px" data-step="1">
         <div class="eghead">Amharic</div>
         <div class="eg"><span class="no">(34)</span><span class="ex" style="font-style:normal"><span class="igl"><span class="wd2"><b>ǰon</b><i>John</i></span><span class="wd2"><b>ǰəgna</b><i>hero</i></span><span class="wd2"><b>nə-ññ</b><i>be.<span class="sc2">pf</span>-<span class="sc2">1so</span></i></span><span class="wd2"><b>yɨl-all</b><i><span class="sc2">3m</span>.say-<span class="sc2">aux</span>.<span class="sc2">3m</span></i></span></span><span class="tr">&lsquo;John says that he is a hero.&rsquo; Word for word: &lsquo;John says that I am a hero.&rsquo;</span></span></div>
-        <div class="eg" data-step="3"><span class="no">(35)</span><span class="ex">Hesen told me that I am rich.<span class="gl">Zazaki</span></span></div>
+        <div class="eg" data-step="3"><span class="no">(35)</span><span class="ex">Hesen told me that I am rich.<span class="gl">Zazaki, in translation</span></span></div>
       </div>
       <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight">In Amharic the verb <em>say</em> can shift the context, so <em>I</em> in (34) picks out John, the reported speaker. The verb is a monster in Kaplan&rsquo;s sense.</div></div>
-      <div class="erow nolb" data-step="4"><div class="tx tight">In Zazaki (35) can report Hesen saying that he is rich, and the shifted indexicals in a clause shift together. Indexical shift is reported in languages from at least ten families, but is contested in all.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight">In Zazaki (35) can report Hesen saying that he is rich, and the shifted indexicals in a clause shift together. Indexical shift is reported in languages from at least ten families, and its analysis is debated.</div></div>
       <div class="srcline">Schlenker (2003), &ldquo;A plea for monsters&rdquo;, <em>Linguistics and Philosophy</em> 26, citing Leslau (1995): (34). Anand &amp; Nevins (2004), <em>SALT</em> 14: (35) and shifting together. Deal (2020), <em>A Theory of Indexical Shift</em>, MIT Press: the survey.</div>
     </div>
   </div>

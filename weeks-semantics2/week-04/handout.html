@@ -227,7 +227,7 @@
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">Type <i>s</i></span><span class="g">Worlds. ⟨<i>s</i>, <i>t</i>⟩ is the type of propositions: functions from worlds to truth values, or sets of worlds.</span></div>
-        <div class="d"><span class="t">That-clause</span><span class="g">⟦that S⟧<sup><i>w</i></sup> = {<i>w</i>′ : ⟦S⟧<sup><i>w</i>′</sup> = 1}, type ⟨<i>s</i>, <i>t</i>⟩.</span></div>
+        <div class="d"><span class="t">That-clause</span><span class="g">⟦that S⟧<sup><i>w</i></sup> = {<i>w</i>′ : ⟦S⟧<sup><i>w</i>′</sup> = 1}, type ⟨<i>s</i>, <i>t</i>⟩. <i>that</i> has no denotation of its own; the rule interprets its mother.</span></div>
         <div class="d"><span class="t">Attitude verb</span><span class="g">Type ⟨⟨<i>s</i>, <i>t</i>⟩, ⟨<i>e</i>, <i>t</i>⟩⟩.</span></div>
         <div class="d"><span class="t"><i>it is raining</i></span><span class="g">⟦it is raining⟧<sup><i>w</i></sup> = 1 iff it rains at <i>w</i>. Type <i>t</i>.</span></div>
         <div class="d"><span class="t"><i>not</i></span><span class="g">⟦not⟧<sup><i>w</i></sup> = λ<i>u</i>. 1 iff <i>u</i> = 0. Type ⟨<i>t</i>, <i>t</i>⟩.</span></div>
@@ -377,14 +377,19 @@
         <div class="lines"><span></span><span></span></div>
         <div class="task"><span>(c)</span><span>Let ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. What does the Kratzerian entry now predict for (19)?</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(d)</span><span>Give the truth condition of (20) at <i>w</i>, with Dox<sub><i>Anna</i></sub>(<i>w</i>) as the modal base of <i>might</i>.</span></div>
+        <div class="task"><span>(d)</span><span>Back in the original model, show that the Kratzerian entry makes (20) true. It is odd to say. Which condition relating Dox<sub><i>Anna</i></sub>(<i>w</i>) and the complement would rule it out?</span></div>
       <ol class="exs">
-        <li><span>(20)</span><span><span class="s">Anna believes that it might be raining.</span></span></li>
+        <li><span>(20)</span><span><span class="s">Anna wants to teach next semester.</span></span></li>
       </ol>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(e)</span><span>(21) is odd. Give the truth condition it would have with Bul<sub><i>Anna</i></sub>(<i>w</i>) as the modal base of <i>might</i>.</span></div>
+        <div class="task"><span>(e)</span><span>Read <i>possibly</i> like <i>might</i>. Give the truth condition of (21) at <i>w</i>, with Dox<sub><i>Anna</i></sub>(<i>w</i>) as its modal base.</span></div>
       <ol class="exs">
-        <li><span>(21)</span><span><span class="s">#Anna wants that it might be raining.</span></span></li>
+        <li><span>(21)</span><span><span class="s">Anna believes that it is possibly raining.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(f)</span><span>(22) is odd. Give the truth condition it would have with Bul<sub><i>Anna</i></sub>(<i>w</i>) as the modal base of <i>possibly</i>.</span></div>
+      <ol class="exs">
+        <li><span>(22)</span><span><span class="s">#Anna wants it to possibly be raining.</span></span></li>
       </ol>
         <div class="lines"><span></span><span></span></div>
       </div>
@@ -404,10 +409,10 @@
       <h2>De se</h2>
       <p class="keep"><span class="runin">Context.</span> Perry follows a trail of sugar round a supermarket, looking for the shopper with the torn sack to tell him he is making a mess. The trail grows thicker on each lap. He is the shopper he is trying to catch.</p>
       <ol class="exs">
-        <li><span>(22)</span><span><span class="ctx">[before he realises]</span> <span class="s">Perry believes that the shopper with the torn sack is making a mess.</span></span></li>
-        <li><span>(23)</span><span><span class="ctx">[after]</span> <span class="s">I am making a mess.</span></span></li>
+        <li><span>(23)</span><span><span class="ctx">[before he realises]</span> <span class="s">Perry believes that the shopper with the torn sack is making a mess.</span></span></li>
+        <li><span>(24)</span><span><span class="ctx">[after]</span> <span class="s">I am making a mess.</span></span></li>
       </ol>
-      <p>(22) is true before and after. Only the belief in (23) makes him stop. No description repairs this: for any description of himself, Perry could fail to know that he fits it. A name is no better, since he could forget that he is Perry.</p>
+      <p>(23) is true before and after. Only the belief in (24) makes him stop. No description repairs this: for any description of himself, Perry could fail to know that he fits it. A name is no better, since he could forget that he is Perry.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
         <div class="d"><span class="t">De dicto</span><span class="g">The complement is a proposition, and any description in it is evaluated at the alternatives <i>w</i>′.</span></div>
@@ -419,12 +424,12 @@
       <div class="defs">
         <div class="sc">Truth conditions</div>
         <div class="d"><span class="t">De dicto</span><span class="g"><i>x</i> believes <i>p</i> iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]. The centre plays no role.</span></div>
-        <div class="d"><span class="t">De re</span><span class="g"><i>x</i> believes <i>P</i> of <i>r</i> iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>P</i>(<i>A</i><sub><i>w</i>′</sub>(<i>y</i>))(<i>w</i>′) = 1], where <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) is the individual <i>y</i> bears <i>A</i> to in <i>w</i>′.</span></div>
+        <div class="d"><span class="t">De re</span><span class="g"><i>x</i> believes <i>P</i> of <i>r</i> iff for some acquaintance relation <i>A</i> with <i>A</i><sub><i>w</i></sub>(<i>x</i>) = <i>r</i>, ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>P</i>(<i>A</i><sub><i>w</i>′</sub>(<i>y</i>))(<i>w</i>′) = 1]. <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) is the individual <i>y</i> bears <i>A</i> to in <i>w</i>′.</span></div>
         <div class="d"><span class="t">De se</span><span class="g"><i>x</i> believes <i>P</i> de se iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>P</i>(<i>y</i>)(<i>w</i>′) = 1], equivalently Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) ⊆ {⟨<i>w</i>′, <i>y</i>⟩ : <i>P</i>(<i>y</i>)(<i>w</i>′) = 1}.</span></div>
       </div>
       <p class="keep"><span class="runin">Context.</span> John, an amnesiac war hero, reads about the hero’s deeds and comes to expect that the hero will get a medal. He does not realise that he is the hero.</p>
       <ol class="exs">
-        <li><span>(24)</span><span><span class="s">John expects that the hero will get a medal.</span> <span class="ctx">de dicto</span></span></li>
+        <li><span>(25)</span><span><span class="s">John expects that the hero will get a medal.</span> <span class="ctx">de dicto</span></span></li>
       </ol>
       <div class="treebox">
       <svg class="tfig t4 small" viewBox="0 0 1046 362" role="img" aria-label="Tree: John; VP with expects and a CP, that the hero will get a medal.">
@@ -444,22 +449,22 @@
       </svg>
       </div>
       <ol class="exs">
-        <li><span>(25)</span><span><span class="s">John expects that he will get a medal.</span> <span class="ctx">de re</span></span></li>
+        <li><span>(26)</span><span><span class="s">John expects that he will get a medal.</span> <span class="ctx">de re</span></span></li>
       </ol>
       <div class="treebox">
       <svg class="tfig t4 small" viewBox="0 0 1046 362" role="img" aria-label="Tree: John; VP with expects plus the res he, and a property node lambda 1 over t1 will get a medal.">
       <line x1="287" y1="68" x2="85" y2="109"/>
       <line x1="287" y1="68" x2="490" y2="109"/>
       <line x1="490" y1="160" x2="316" y2="201"/>
-      <line x1="316" y1="252" x2="239" y2="293"/>
-      <line x1="316" y1="252" x2="393" y2="293"/>
+      <line x1="316" y1="238" x2="239" y2="293"/>
+      <line x1="316" y1="238" x2="393" y2="293"/>
       <line x1="490" y1="160" x2="664" y2="201"/>
       <line x1="664" y1="238" x2="522" y2="293"/>
       <line x1="664" y1="238" x2="806" y2="293"/>
       <text class="tn" x="287" y="56">S</text>
       <text class="tn" x="85" y="148">John</text>
       <text class="tn" x="490" y="148">VP</text>
-      <text class="tn" x="316" y="240">V</text>
+      <circle cx="316" cy="236" r="5" fill="#222"/>
       <text class="tn" x="239" y="332">expects</text>
       <text class="tn" x="393" y="332">he</text>
       <circle cx="664" cy="236" r="5" fill="#222"/>
@@ -468,7 +473,7 @@
       </svg>
       </div>
       <ol class="exs">
-        <li><span>(26)</span><span><span class="s">John expects to get a medal.</span> <span class="ctx">de se</span></span></li>
+        <li><span>(27)</span><span><span class="s">John expects to get a medal.</span> <span class="ctx">de se</span></span></li>
       </ol>
       <div class="treebox">
       <svg class="tfig t4 small" viewBox="0 0 917 362" role="img" aria-label="Tree: John; VP with expects and a property node lambda 1 over PRO1 to get a medal.">
@@ -487,17 +492,17 @@
       <text class="tn" x="677" y="332">PRO<tspan baseline-shift="sub" font-size="31px">1</tspan> to get a medal</text>
       </svg>
       </div>
-      <p>In the scenario (24) and (25) are true, and (26) is false. (25) and (26) share the verb, the individual, John, and the property, getting a medal. Only the de se report is false, so de se is neither de dicto nor de re. In the trees the difference is the complement: a proposition, a res plus a property, and a property alone. PRO is bound at the edge of the complement and has no res. The <i>he</i> of (25) can be bound the same way, which gives the sentence a de se reading too.</p>
-      <p>Lewis reverses the reduction: every belief is the self-ascription of a property, and de dicto and de re belief are the special cases above. A context fixes a world and a speaker, so it works as a centred world. The shifted <i>I</i> of Amharic and Ewe <i>yè</i> are read de se.</p>
+      <p>In the scenario (25) and (26) are true, and (27) is false. (26) and (27) share the verb, the individual, John, and the property, getting a medal. Only the de se report is false, so de se is neither de dicto nor de re. In the trees the difference is the complement: a proposition, a res plus a property, and a property alone. PRO is bound at the edge of the complement and has no res. The <i>he</i> of (26) can be bound the same way, which gives the sentence a de se reading too.</p>
+      <p>Lewis reverses the reduction: every belief is the self-ascription of a property, and de dicto and de re belief are the special cases above. A context fixes a world and a speaker, so it works as a centred world. The shifted <i>I</i> of Amharic is read de se.</p>
       <p><span class="runin">Exercise 6.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Write (22) as a de dicto belief, and Perry’s belief in (23) as a de se belief. Which is true before he realises?</span></div>
+        <div class="task"><span>(a)</span><span>Write (23) as a de dicto belief, and Perry’s belief in (24) as a de se belief. Which is true before he realises?</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
-        <div class="task"><span>(b)</span><span>Give the truth conditions of (24), (25) and (26) from their trees, with <i>A</i> for John’s acquaintance relation in (25). Check them against the scenario.</span></div>
+        <div class="task"><span>(b)</span><span>Give the truth conditions of (25), (26) and (27) from their trees, with <i>A</i> for John’s acquaintance relation in (26). Check them against the scenario.</span></div>
         <div class="lines"><span></span><span></span><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>Set <i>A</i> to identity, so that <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) = <i>y</i>. Show that the de re formula for (25) becomes the de se formula for (26). Which relation does John bear to himself in the scenario?</span></div>
+        <div class="task"><span>(c)</span><span>Set <i>A</i> to identity, so that <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) = <i>y</i>. Show that the de re formula for (26) becomes the de se formula for (27). Which relation does John bear to himself in the scenario?</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(d)</span><span>John learns that he is the hero. Which of (24), (25) and (26) change truth value?</span></div>
+        <div class="task"><span>(d)</span><span>John learns that he is the hero. Which of (25), (26) and (27) change truth value?</span></div>
         <div class="lines"><span></span></div>
       </div>
     </div>
@@ -516,9 +521,9 @@
     <div class="body">
       <h2>Interrogative and noun phrase complements</h2>
       <ol class="exs">
-        <li><span>(27)</span><span>a. <span class="s">Anna knows [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna knows [<b>whether</b> Ben called].</span></span></li>
-        <li><span>(28)</span><span>a. <span class="s">Anna believes [<b>that</b> Ben called].</span><br/>b. <span class="s">*Anna believes [<b>whether</b> Ben called].</span></span></li>
-        <li><span>(29)</span><span>a. <span class="s">*Anna wonders [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna wonders [<b>whether</b> Ben called].</span></span></li>
+        <li><span>(28)</span><span>a. <span class="s">Anna knows [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna knows [<b>whether</b> Ben called].</span></span></li>
+        <li><span>(29)</span><span>a. <span class="s">Anna believes [<b>that</b> Ben called].</span><br/>b. <span class="s">*Anna believes [<b>whether</b> Ben called].</span></span></li>
+        <li><span>(30)</span><span>a. <span class="s">*Anna wonders [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna wonders [<b>whether</b> Ben called].</span></span></li>
       </ol>
       <div class="defs">
         <div class="sc">Definitions</div>
@@ -534,23 +539,23 @@
       </div>
       <p><span class="runin">Exercise 7.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Use the model of section 0 with Epi<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Is (27b) true at <i>w</i><sub>3</sub>? Is <i>Anna knows whether it is raining</i> true there?</span></div>
+        <div class="task"><span>(a)</span><span>Add Cara to the model of section 0, with Epi<sub><i>Cara</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Is <i>Cara knows whether Ben called</i> true at <i>w</i><sub>3</sub>? Is <i>Cara knows whether it is raining</i>?</span></div>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(b)</span><span>Paraphrase (30) with a clause. Which proposition must Anna know for it to be true?</span></div>
+        <div class="task"><span>(b)</span><span>Paraphrase (31) with a clause. Which proposition must Anna know for it to be true?</span></div>
       <ol class="exs">
-        <li><span>(30)</span><span><span class="s">Anna knows the capital of Italy.</span></span></li>
+        <li><span>(31)</span><span><span class="s">Anna knows the capital of Italy.</span></span></li>
       </ol>
         <div class="lines"><span></span><span></span></div>
-        <div class="task"><span>(c)</span><span>Give the de re and de dicto readings of (31), using the hidden clause.</span></div>
+        <div class="task"><span>(c)</span><span>Give the de re and de dicto readings of (32), using the hidden clause.</span></div>
       <ol class="exs">
-        <li><span>(31)</span><span><span class="s">Anna wants a sloop.</span></span></li>
+        <li><span>(32)</span><span><span class="s">Anna wants a sloop.</span></span></li>
       </ol>
         <div class="lines"><span></span><span></span><span></span></div>
-        <div class="task"><span>(d)</span><span>Which strategy, if any, handles each of (32) to (34)?</span></div>
+        <div class="task"><span>(d)</span><span>Which strategy, if any, handles each of (33) to (35)?</span></div>
       <ol class="exs">
-        <li><span>(32)</span><span><span class="s">Anna believes the rumour.</span></span></li>
-        <li><span>(33)</span><span><span class="s">Anna believes Mary.</span></span></li>
-        <li><span>(34)</span><span><span class="s">Anna fears the dentist.</span></span></li>
+        <li><span>(33)</span><span><span class="s">Anna believes the rumour.</span></span></li>
+        <li><span>(34)</span><span><span class="s">Anna believes Mary.</span></span></li>
+        <li><span>(35)</span><span><span class="s">Anna fears the dentist.</span></span></li>
       </ol>
         <div class="lines"><span></span><span></span></div>
       </div>
@@ -602,7 +607,6 @@
         <tr><td>Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></td><td>∀<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>): <i>p</i>(<i>w</i>′) = 1 · ∀<i>w</i>′[<i>R</i><sup>dox</sup><sub><i>x</i>,<i>w</i></sub>(<i>w</i>′) → <i>p</i>(<i>w</i>′)] Coppock &amp; Champollion</td></tr>
         <tr><td>□ read as an attitude</td><td><i>K</i><sub><i>a</i></sub><i>p</i>, <i>B</i><sub><i>a</i></sub><i>p</i> Hintikka · □<sub><i>a</i></sub><i>p</i></td></tr>
         <tr><td>de re, de dicto</td><td>relational, notional Quine · primary, secondary occurrence Russell · transparent, opaque · specific, non-specific · wide scope, narrow scope</td></tr>
-        <tr><td>Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>)</td><td><i>Alt</i><sub><i>x</i></sub>(<i>w</i>) · doxastic alternatives as centred worlds, or as individual–world pairs</td></tr>
       </table>
     </div>
     <div class="note"></div>
