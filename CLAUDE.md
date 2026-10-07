@@ -20,7 +20,9 @@ old PDFs in `uploads/` / `pdfs/` unless explicitly asked.
 
 `index.html` (repo root) is the **Teaching Workspace**: a filterable catalogue of
 every week of every module, linking each week's four artifacts (deck · handout ·
-readings · homework). It supports term filters (Michaelmas / Hilary), per-module
+readings · homework). From October 2026 LI7862 (`prag`) weeks show three: lecture · readings ·
+data analysis task, with no handout. The rows each module shows live in `CARD_ROWS`
+in `index.html`; the week's status keys off the deck and the task for `prag`. It supports term filters (Michaelmas / Hilary), per-module
 filters, search, and a twin-identity toggle for dual-coded modules. It is the
 lecturer's working view — students only receive direct links to week pages.
 

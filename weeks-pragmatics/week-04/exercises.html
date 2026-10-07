@@ -3,138 +3,189 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LI7862 · Week 4 — Presupposition · Homework</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="../../shared/tokens.css" />
-<link rel="stylesheet" href="../../shared/lens.css" />
-<link rel="stylesheet" href="../../shared/handout.css" />
-<link rel="stylesheet" href="../../shared/exercises.css" />
+<title>LI7862 · Week 4, Presupposition · Homework</title>
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Homework data sheet: a transcript (block 1), tagging grids (block 2) and
+     questions (block 3). No margin column, so the grids take the full width.
+     Block 2 opens a fresh page; block 3 runs on under the grids. */
+  body { font-size:11pt; }
+  .sec { grid-template-columns:30pt 1fr; margin-top:16.2pt; }
+  .data { margin:4pt 0 0; }
+  @media print {
+    .sec.runon { break-before:auto; page-break-before:auto; }
+  }
+  .sec.runon { margin-top:26.5pt; }
+  @media print {
+    .sec.flows { break-inside:auto; }
+  }
+  /* transcript, set as a playscript */
+  table.play { width:100%; border-collapse:collapse; font-size:9.6pt; line-height:1.294; margin:3pt 0 0; }
+  table.play td { padding:0 0 1.1pt; vertical-align:top; }
+  table.play td.n { width:26pt; }
+  table.play td.who { width:80pt; font-size:8.2pt; text-transform:uppercase; letter-spacing:.04em; padding-top:.9pt; }
+  table.play tr.cut td { padding-top:8pt; font-size:9pt; }
+  table.play tr.cut.tight td { padding-top:0; }
+  @media print { table.play tr { break-inside:avoid; page-break-inside:avoid; } }
+  /* tagging grids */
+  .sub { margin:12pt 0 3.2pt; font-size:8pt; }
+  .sub:first-of-type { margin-top:0; }
+  .sub, .sub + p { break-after:avoid; page-break-after:avoid; }
+  table.grid { width:100%; border-collapse:collapse; margin:6pt 0 0; table-layout:fixed; }
+  table.grid th { text-align:left; vertical-align:middle; font-weight:700; text-transform:uppercase; letter-spacing:.12em;
+                  font-size:7.8pt; line-height:1.38; padding:3.5pt 5pt; border-top:.75pt solid var(--rule); border-bottom:.75pt solid var(--rule); }
+  table.grid td { font-size:9.4pt; line-height:1.3; padding:2.5pt 8pt 2.2pt 5pt; vertical-align:top; border-bottom:.75pt solid var(--rule); }
+  table.grid th:not(:last-child), table.grid td:not(:last-child) { border-right:.75pt solid var(--rule); }
+  table.grid td .no { margin-right:6pt; }
+  @media print { table.grid tr { break-inside:avoid; page-break-inside:avoid; } table.grid thead { display:table-header-group; } }
+  ol.qs { margin:2pt 0 0; padding-left:18pt; }
+  ol.qs li { margin:0 0 5pt; padding-left:2pt; }
+  /* week 4: the second grid stays together with its heading and instruction */
+  @media print { .keep { break-inside:avoid; page-break-inside:avoid; } }
+</style>
 </head>
-<body class="pal-a">
+<body>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <defs>
-    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
-    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
-    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
-    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
-  </defs>
-</svg>
+<div class="sheet">
 
-<div class="handout-week hw" data-week="4"><div class="page">
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LI7862 · Linguistic Pragmatics</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas 2026</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
 
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
+  <div class="sc doc-kicker">Week 4 · Homework</div>
+  <h1 class="doc-title">Presupposition Data Analysis</h1>
+  <p class="data"><span class="runin">Data.</span> Excerpts from the official report of Prime Minister’s Questions in the House of Commons on 4 September 2019, the first faced by Prime Minister Boris Johnson, with questions from the Leader of the Opposition, Jeremy Corbyn, the SNP’s Westminster leader, Ian Blackford, and backbench MPs. The evening before, MPs had voted to take control of Commons business to pass a Bill requiring the Prime Minister to seek a delay to Brexit, and the 21 Conservatives who voted with them, among them David Gauke and Dominic Grieve, had lost the whip. Parliament was due to be prorogued the following week; the Supreme Court later found the prorogation unlawful. The Bill passed that evening, and the United Kingdom left the EU on 31 January 2020. Source: Hansard, HC Deb 4 September 2019, vol. 664, cols 163–172. Contains Parliamentary information licensed under the Open Parliament Licence v3.0.</p>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec flows">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>House of Commons, 4 September 2019</h2>
+      <table class="play">
+        <tr><td class="n">(1)</td><td class="who">McDonagh</td><td>[…] On Brexit, the former Prime Minister’s deal was unacceptable to this House, but to leave without a deal is unthinkable, yet the Prime Minister pursues a game of brinksmanship built on the livelihoods, health and future of my constituents and our country.</td></tr>
+        <tr><td class="n">(2)</td><td class="who"></td><td>There is still an option to resolve this once and for all: if the Prime Minister really believes in no deal, let him put it to the people and ask our people if that is the price they want to pay.</td></tr>
+        <tr><td class="n">(3)</td><td class="who">Johnson</td><td>As the hon. Lady knows very well, this Government will take this country out of the European Union on 31 October.</td></tr>
+        <tr><td class="n">(4)</td><td class="who"></td><td>There is only one thing that stands in our way: the surrender Bill currently being proposed by the Leader of the Opposition. I invite the Leader of the Opposition to confirm, when he stands up shortly, that if that surrender Bill is passed, he will allow the people of this country to have their view on what he is proposing to hand over in their name with an election on 15 October.</td></tr>
+        <tr><td class="n">(5)</td><td class="who">Halfon</td><td>Will my right hon. Friend confirm that when we leave the European Union on 31 October, we will no longer be subjected to EU rules on VAT on our energy bills, costing Harlow constituents and households around £55 extra every year?</td></tr>
+        <tr><td class="n">(6)</td><td class="who"></td><td>Will he confirm that we will take back control of our energy bills and save households around £1.5 billion a year on their heating and lighting?</td></tr>
+        <tr><td class="n">(7)</td><td class="who">Johnson</td><td>I thank my right hon. Friend for his excellent suggestion. As he knows, we currently apply the reduced 5% rate on domestic fuel and power, which is the lowest allowed under EU law, but of course when we leave the EU on 31 October, it will be open to us to change this to the benefit of the people of Harlow.</td></tr>
+        <tr><td class="n">(8)</td><td class="who">Corbyn</td><td>[…] Yesterday, it was revealed that the Prime Minister’s negotiating strategy was to run down the clock and that the Attorney General told him that his belief that the EU would drop the backstop was a complete fantasy. Are these reports accurate, or can the Prime Minister provide the detail of the proposals he has put forward to the EU?</td></tr>
+        <tr><td class="n">(9)</td><td class="who">Johnson</td><td>Our negotiating strategy is to get a deal by the summit on 17 October, to take this country out of the EU on 31 October and to get Brexit done. The right hon. Gentleman’s surrender Bill would wreck any chances of the talks. We do not know what his strategy would be if he took over. He is asking for mobs of Momentum activists to paralyse the traffic. What are they supposed to chant? What is the slogan? “What do we want? Dither and delay. When do we want it? We don’t know.” That is his policy. Can he confirm now that he will allow the people of this country to decide on what he is giving up in their name with a general election on 15 October? Or is he frit?</td></tr>
+        <tr><td class="n">(10)</td><td class="who">Corbyn</td><td>My first question to the Prime Minister, and no answer given! I asked what proposals had been put to the EU. We asked yesterday—many colleagues asked—and he seems utterly incapable of answering. Any rational human being would assume therefore that none have been put and there is no answer.</td></tr>
+        <tr><td class="n">(11)</td><td class="who"></td><td>The Prime Minister and his Cabinet colleagues have said he is making progress. The EU’s chief negotiator, the Chancellor of Germany and the Taoiseach of Ireland say that no proposals have yet been made by the UK. If the Prime Minister thinks he has made progress, will he publish the proposals he has put forward to replace the backstop?</td></tr>
+        <tr><td class="n">(12)</td><td class="who">Johnson</td><td>As the right hon. Gentleman knows very well, you do not negotiate in public. We are making substantial progress and we will get that backstop out. <i>[Interruption.]</i></td></tr>
+        <tr><td class="n"></td><td class="who">Speaker</td><td>Order. Forgive me for interrupting, Prime Minister, but there is a long way to go and a lot of questions to be reached. The questions must be heard, and the Prime Minister’s responses must and will be heard.</td></tr>
+        <tr><td class="n">(13)</td><td class="who">Johnson</td><td>Let us be absolutely clear. This Government will get a deal from our friends in Brussels and we will get the backstop out. We will get an agreement that I think the House can agree with. The only thing standing in our way is the undermining of our negotiations by this surrender Bill, which would lead to more dither and delay. We delayed in March; we delayed in April; and now the right hon. Gentleman wants to delay again for absolutely no purpose whatever. […]</td></tr>
+        <tr><td class="n">(14)</td><td class="who">Corbyn</td><td>I really fail to see how I can be accused of undermining negotiations, because no negotiations are taking place. The right hon. Gentleman has been Prime Minister for six weeks, and he promised to get Brexit sorted. In six weeks, he has presented nothing to change the previous Prime Minister’s deal, which he twice voted against. The negotiations that he talks about are a sham. All that he is doing is running down the clock.</td></tr>
+        <tr><td class="n">(15)</td><td class="who"></td><td>At the weekend, the Chancellor of the Duchy of Lancaster said that food prices would go up under no deal. Will the Prime Minister publish the Yellowhammer documents so that people can see which food prices will go up and by how much?</td></tr>
+        <tr><td class="n">(16)</td><td class="who">Johnson</td><td>The Chancellor of the Duchy of Lancaster said absolutely no such thing, and I can tell the right hon. Gentleman that, thanks to my right hon. Friend’s good offices and thanks to his efforts, preparations for no deal are very far advanced. […]</td></tr>
+        <tr><td class="n">(17)</td><td class="who">Corbyn</td><td>[…] I hope that no more young female staff are going to be frogmarched out of Downing Street, because there was another Government leak at the weekend, concerning disruption of our ports. […] So I ask the Prime Minister again: will he publish the Yellowhammer documents in full, so that people can see which foodstuffs are not going to be available, which medicines are not going to be supplied and what will happen given the shortages of vital supplies in every one of our hospitals all over the country?</td></tr>
+        <tr><td class="n">(18)</td><td class="who">Johnson</td><td>I am afraid that the right hon. Gentleman is guilty of the most shameless scaremongering. We have made ample preparations for coming out of the EU. What his party is recommending is yet—<i>[Interruption.]</i></td></tr>
+        <tr><td class="n"></td><td class="who">Speaker</td><td>Order. It is very difficult to hear the responses from the Prime Minister. Members must calm themselves. There is a long way to go.</td></tr>
+        <tr><td class="n">(19)</td><td class="who">Johnson</td><td>What the right hon. Gentleman is recommending is yet more dither, yet more delay and yet more uncertainty for business. What we in the Government want to do is deliver on the mandate of the people.</td></tr>
+        <tr><td class="n">(20)</td><td class="who"></td><td>The right hon. Gentleman used to be a democrat. He used to believe in upholding the referendum result. Can he say now whether he would vote in favour of leave or remain, and can he say now whether is in favour of a second referendum or not?</td></tr>
+        <tr><td class="n">(21)</td><td class="who">Corbyn</td><td>The Prime Minister failed to answer my questions about food supplies, about medicine supplies and about the problems in hospitals. He refuses to publish the Yellowhammer documents. He talks about scaremongering. […] He knows it is not, and they know it is not. He is hiding the facts.</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n">(22)</td><td class="who">Speaker</td><td>Order. If we have to go on longer because people sitting on the Treasury Bench are yelling to try to disrupt, so be it, we will go on longer. Some people used to believe in good behaviour; I believe in good behaviour on both sides of the House. It had better happen or it will take a whole lot longer—very simple, very clear.</td></tr>
+        <tr><td class="n"></td><td class="who">Corbyn</td><td>Thank you, Mr Speaker.</td></tr>
+        <tr><td class="n">(23)</td><td class="who"></td><td>If the Prime Minister does to the country what he has done to his party in the past 24 hours, a lot of people have a great deal to fear from his incompetence, his vacillation and his refusal to publish known facts—that are known to him—about the effects of a no-deal Brexit.</td></tr>
+        <tr><td class="n">(24)</td><td class="who">Johnson</td><td>I really do not see how with a straight face the right hon. Gentleman can accuse anybody of being unwilling to stand up to scrutiny when he will not agree to submit his surrender Bill to the verdict of the people in an election. He is frit; he is frightened. […]</td></tr>
+        <tr><td class="n"></td><td class="who"></td><td>What this country needs is sensible, moderate, progressive Conservative government and to take this country out of the EU on 31 October, and that is what we are going to deliver.</td></tr>
+        <tr><td class="n"></td><td class="who">Hon. Members</td><td>More!</td></tr>
+        <tr><td class="n"></td><td class="who">Speaker</td><td>There will indeed be more, starting with the closed question from Dr Julian Lewis.</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n">(25)</td><td class="who">Blackford</td><td>Last night, Parliament once again defeated this shambolic Tory Government. Today, we have seized back control from a Prime Minister who is behaving more like a dictator than a democrat. The Prime Minister must be stopped, and MPs must tonight unite across this House to take no deal off the table. We will defeat the Government again, so, when we succeed, will the Prime Minister respect the democratic vote of this House and the democratic will of the people we represent and finally act to remove the threat of a catastrophic no-deal Brexit?</td></tr>
+        <tr><td class="n">(26)</td><td class="who">Johnson</td><td>I might ask the right hon. Gentleman if he will respect the democratic will of the people of the United Kingdom, which this House voted to do time and again, to implement the result of the referendum.</td></tr>
+        <tr><td class="n">(27)</td><td class="who">Blackford</td><td>I know that the right hon. Gentleman is a new boy, but may I suggest to him that we ask the questions and he is supposed to answer them? Quite simply, my colleagues and I are sent here by the people of Scotland, where we have a majority. The people of Scotland voted to remain in the European Union and we are not going to be dragged out against our will by the Prime Minister. […] Once again, I ask the Prime Minister: are you a dictator or a Democrat? Will he accept the legislation today so that no deal can be avoided, and will he let us vote for an election so that the people can truly decide the next steps?</td></tr>
+        <tr><td class="n">(28)</td><td class="who">Johnson</td><td>I am a democrat, because I not only want to respect the will of the people in the referendum but want to have an election—or I am willing to have an election—if the terrible Bill goes through. […] Their signature policy is to return Scotland to the European Union after Brexit, complete with the euro, the full panoply of EU laws and, as I never tire of saying, the surrendering of Scottish fish just when they have been taken back by this country.</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n">(29)</td><td class="who">Davies</td><td>People in Swansea voted to leave the EU, but leave voters are saying to me that they did not vote for a no deal or for “do or die” on 31 October. They want to live. They voted for good things—for more money, more jobs and more control—and now they see that they will get less money, less jobs and less control, so they want a final say. […]</td></tr>
+        <tr><td class="n">(30)</td><td class="who">Johnson</td><td>If the hon. Gentleman wants to put that matter to the people, the best thing he can do is persuade his right hon. Friend to summon up his courage and to stop being so frit. If he is going to pass this wretched surrender Bill, at least he should submit it to the judgment of the people in the form of a general election.</td></tr>
+        <tr><td class="n">(31)</td><td class="who">Gauke</td><td>The Prime Minister has said that the Prorogation of Parliament is nothing to do with Brexit. Is that still his position?</td></tr>
+        <tr><td class="n">(32)</td><td class="who">Johnson</td><td>As my right hon. Friend knows full well, there have been demands for the Prorogation of Parliament ahead of a Queen’s Speech from the hon. Member for Walsall South (Valerie Vaz) and from across the House. This Session has lasted longer than any in the last 400 years, and there will be ample opportunity to debate the Brexit deal in this House after 17 October if this Government are allowed to get on and deliver a deal.</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n">(33)</td><td class="who">Lee</td><td>Last weekend, in Lincoln and right across the country, there were cross-party protests against the Prorogation of Parliament. Does this unelected Prime Minister, who has no majority in this House, believe that his attack on our democracy is his only means of forcing a disastrous no-deal Brexit on Lincoln and on the businesses and people of this country?</td></tr>
+        <tr><td class="n">(34)</td><td class="who">Johnson</td><td>If the hon. Lady wants to speak for the people of Lincoln, who, after all, voted to leave —yes, they did—the best thing she can do is make sure we come out of the EU on 31 October with a deal. […]</td></tr>
+        <tr class="cut"><td></td><td>[…]</td><td></td></tr>
+        <tr><td class="n">(35)</td><td class="who">Blomfield</td><td>In a desperate attempt to win yesterday’s vote, the Prime Minister apparently made emotional appeals to Conservative MPs that he was serious in seeking a deal, but his answers in the House yesterday and today make it clear that there are no real negotiations, in public or in private. Those with whom he claims to be negotiating in the European Union have said: “Nothing has been put on the table”. So does the Prime Minister understand why, across this country, people find it difficult to trust a word he says?</td></tr>
+        <tr><td class="n">(36)</td><td class="who">Johnson</td><td>May I tell the hon. Gentleman that what the people of this country want to see is us come together to come out of the EU on 31 October with a deal? We are making great progress with our friends and partners in Brussels and Dublin, and even in Paris, but I am afraid those talks are currently being undermined by the absurd Bill before the House today. […]</td></tr>
+        <tr><td class="n">(37)</td><td class="who">Grieve</td><td>In the light of the Prime Minister’s answer to my right hon. Friend the Member for South West Hertfordshire (Mr Gauke), could the Prime Minister please explain why it has proved impossible to find any official or Minister prepared to state that the reasons for Prorogation were to pave the way for a Queen’s Speech, in the course of the current legal proceedings in which the Government are involved? Would the Prime Minister like to reconsider the answer he has just given to the House?</td></tr>
+        <tr><td class="n">(38)</td><td class="who">Johnson</td><td>I hesitate to advise my right hon. and learned Friend about legal proceedings but, if he looks at what happened in Scotland this morning, he will discover that that case was thrown out.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec flows">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Tagging</h2>
+      <div class="sc sub">Triggers</div>
+      <p>Identify the trigger in each line, its class, and what it presupposes. Use the lecture’s classes, or your own where you think they fit a particular case better.</p>
+      <table class="grid">
+        <colgroup><col style="width:46%" /><col style="width:15%" /><col style="width:13%" /><col style="width:26%" /></colgroup>
+        <thead><tr><th>Example</th><th>Trigger</th><th>Class</th><th>Presupposition</th></tr></thead>
+        <tbody>
+          <tr><td><span class="no">(3)</span>As the hon. Lady knows very well, this Government will take this country out of the European Union on 31 October.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(4)</span>There is only one thing that stands in our way: the surrender Bill currently being proposed by the Leader of the Opposition.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(5)</span>[…] when we leave the European Union on 31 October, we will no longer be subjected to EU rules on VAT on our energy bills […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(8)</span>Yesterday, it was revealed that the Prime Minister’s negotiating strategy was to run down the clock […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(11)</span>[…] will he publish the proposals he has put forward to replace the backstop?</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(17)</span>I hope that no more young female staff are going to be frogmarched out of Downing Street, because there was another Government leak […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(19)</span>[…] yet more dither, yet more delay and yet more uncertainty for business.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(21)</span>The Prime Minister failed to answer my questions about food supplies […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(23)</span>If the Prime Minister does to the country what he has done to his party in the past 24 hours […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(25)</span>Last night, Parliament once again defeated this shambolic Tory Government. Today, we have seized back control […]</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(30)</span>[…] persuade his right hon. Friend to summon up his courage and to stop being so frit.</td><td></td><td></td><td></td></tr>
+          <tr><td><span class="no">(31)</span>The Prime Minister has said that the Prorogation of Parliament is nothing to do with Brexit. Is that still his position?</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+      <div class="keep">
+      <div class="sc sub">Established or new</div>
+      <p>For each line, give what is presupposed, and whether it was already established for everyone in the exchange or is new information presented as if it were.</p>
+      <table class="grid">
+        <colgroup><col style="width:50%" /><col style="width:32%" /><col style="width:18%" /></colgroup>
+        <thead><tr><th>Example</th><th>Presupposed content</th><th>Established or new</th></tr></thead>
+        <tbody>
+          <tr><td><span class="no">(2)</span>There is still an option to resolve this once and for all […]</td><td></td><td></td></tr>
+          <tr><td><span class="no">(13)</span>The only thing standing in our way is the undermining of our negotiations by this surrender Bill […]</td><td></td><td></td></tr>
+          <tr><td><span class="no">(26)</span>[…] the democratic will of the people of the United Kingdom, which this House voted to do time and again […]</td><td></td><td></td></tr>
+          <tr><td><span class="no">(27)</span>I know that the right hon. Gentleman is a new boy […]</td><td></td><td></td></tr>
+          <tr><td><span class="no">(28)</span>[…] the surrendering of Scottish fish just when they have been taken back by this country.</td><td></td><td></td></tr>
+          <tr><td><span class="no">(34)</span>[…] the people of Lincoln, who, after all, voted to leave —yes, they did— […]</td><td></td><td></td></tr>
+          <tr><td><span class="no">(35)</span>So does the Prime Minister understand why, across this country, people find it difficult to trust a word he says?</td><td></td><td></td></tr>
+          <tr><td><span class="no">(37)</span>[…] explain why it has proved impossible to find any official or Minister prepared to state that the reasons for Prorogation were to pave the way for a Queen’s Speech […]</td><td></td><td></td></tr>
+        </tbody>
+      </table>
       </div>
     </div>
-    <div class="h-meta">
-      <div class="code">LI7862 · Linguistic Pragmatics</div>
-      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec runon">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <ol class="qs">
+        <li>The Prime Minister calls the European Union (Withdrawal) (No. 6) Bill the surrender Bill in (4), (9), (13), (24) and (30). What does the name take for granted, and how could an opponent object to it without contradicting anything he asserts?</li>
+        <li>In (13) the Prime Minister blames the Bill for undermining the negotiations, and in (14) Corbyn answers that no negotiations are taking place. Is Corbyn denying what (13) asserts or what it presupposes? Could he have begun with <i>Hey, wait a minute</i>?</li>
+        <li>The United Kingdom left the EU on 31 January 2020. Is (7) false, or neither true nor false? Does it matter that it was said before 31 October? Give Russell’s answer and Strawson’s.</li>
+        <li>In (6) Halfon wants to <i>take back control</i>, the Vote Leave slogan, and in (25) Blackford says Parliament has <i>seized back control</i>. What does <i>back</i> presuppose in each, and who had control before?</li>
+      </ol>
     </div>
-  </header>
-
-  <div class="h-title-row">
-    <div class="h-week">Week 4 · Homework</div>
-    <h1 class="h-title">Presupposition</h1>
   </div>
 
-  <div class="hw-band">
-    <span class="tag">Homework</span>
-    <span class="due">Due <b>Week 5 · 17:00</b> · submit via Blackboard</span>
-    <span class="pts">— marks</span>
-  </div>
-
-  <div class="hw-sub">
-    <div class="f"><span class="lab">Name</span><span class="ln"></span></div>
-    <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
-  </div>
-
-  <p class="hw-intro">Homework problem set for Week 4. <b>Content to add</b> — the four lens problems below are placeholders. Replace each with take-home problems distinct from the in-class handout.</p>
-  <p class="hw-intro" style="margin-top:-6pt"><b>Key figures:</b> Russell · Frege · Strawson.</p>
-
-  <div class="hw-legend">
-    <span class="lg lens-empirical"><i style="background:var(--lens)"></i>Empirical</span>
-    <span class="lg lens-historical"><i style="background:var(--lens)"></i>Historical</span>
-    <span class="lg lens-formal"><i style="background:var(--lens)"></i>Formal</span>
-    <span class="lg lens-typological"><i style="background:var(--lens)"></i>Applied</span>
-  </div>
-
-  <div class="hw-prob lens-empirical">
-    <div class="hw-prob-head">
-      <span class="n">1</span>
-      <span class="q">Empirical — Presupposition<span class="lens-pip">Empirical</span></span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">What utterance data motivates this week’s analysis?</p>
-    <div class="hw-todo">Draft a empirical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
-  </div>
-
-  <div class="hw-prob lens-historical">
-    <div class="hw-prob-head">
-      <span class="n">2</span>
-      <span class="q">Historical — Presupposition<span class="lens-pip">Historical</span></span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">Who developed this, and in what intellectual context?</p>
-    <div class="hw-todo">Draft a historical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
-  </div>
-
-  <div class="hw-prob lens-formal">
-    <div class="hw-prob-head">
-      <span class="n">3</span>
-      <span class="q">Formal — Presupposition<span class="lens-pip">Formal</span></span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">What analytical machinery do we need?</p>
-    <div class="hw-todo">Draft a formal homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
-  </div>
-
-  <div class="hw-prob lens-typological">
-    <div class="hw-prob-head">
-      <span class="n">4</span>
-      <span class="q">Applied — Presupposition<span class="lens-pip">Applied</span></span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">How does it play out in real social use?</p>
-    <div class="hw-todo">Draft a applied homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
-  </div>
-
-  <div class="h-footer">
-    <span class="left">LI7862 · Homework</span>
-    <span>Week 4 · Presupposition</span>
-    <span>1</span>
-  </div>
-
-</div></div><!-- /handout-week 4 -->
-
-<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
-
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#fbeae3"/>
-    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#c0512c" stroke-width="2"/>
-    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">1</text>
-    <line x1="46" y1="31" x2="64" y2="31" stroke="#e0b3a3" stroke-width="2"/>
-    <line x1="38" y1="44" x2="64" y2="44" stroke="#e0b3a3" stroke-width="1.6"/>
-    <line x1="38" y1="52" x2="64" y2="52" stroke="#e0b3a3" stroke-width="1.6"/>
-    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#c0512c" text-anchor="middle">LI7862 · HOMEWORK</text>
-  </svg>
-</template>
+</div>
 </body>
 </html>

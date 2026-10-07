@@ -315,7 +315,7 @@ const WEEKS = [
   { m:'prag', no:1,  sec:'Foundations',                    title:'Pragmatic Meaning',          fig:'Logical Positivism · Wittgenstein', deck:'ready', handout:'none', ex:'ready', rd:'ready' },
   { m:'prag', no:2,  sec:'Speech Acts',                    title:'Speech Acts',                fig:'Austin · Searle',                   deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
   { m:'prag', no:3,  sec:'Implicature',                    title:'Implicature',                fig:'Grice',                             deck:'none', handout:'none', ex:'ready', rd:'ready' },
-  { m:'prag', no:4,  sec:'Presupposition & Common Ground', title:'Presupposition',             fig:'Russell · Frege · Strawson',        deck:'draft', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:4,  sec:'Presupposition & Common Ground', title:'Presupposition',             fig:'Russell · Frege · Strawson',        deck:'ready', handout:'none', ex:'ready', rd:'ready' },
   { m:'prag', no:5,  sec:'Presupposition & Common Ground', title:'Common Ground & Projection', fig:'Stalnaker · Heim',                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
   { m:'prag', no:6,  sec:'Information',                    title:'Information',                fig:'Shannon · Huffman · Zipf · Hamming',deck:'none', handout:'none', ex:'draft', rd:'ready' },
   { m:'prag', no:7,  sec:'Reading Week',                   title:'Reading Week',               reading:true },
@@ -340,6 +340,15 @@ const WEEKS = [
 ];
 
 const DIR = { sem:'weeks-semantics1', sem2:'weeks-semantics2', sem3:'weeks-semantics3', prag:'weeks-pragmatics', prag2:'weeks-pragmatics2' };
+// What each week card shows. LI7862 (prag) runs as a lecture, readings and a
+// data analysis task from October 2026, with no handout; other modules keep four rows.
+const CARD_ROWS = {
+  default: [ ['deck','deck.html','Presentation','i-deck'], ['handout','handout.html','Handout','i-handout'],
+             ['rd','readings.html','Readings','i-read'], ['ex','exercises.html','Homework','i-hw'] ],
+  prag:    [ ['deck','deck.html','Lecture','i-deck'], ['rd','readings.html','Readings','i-read'],
+             ['ex','exercises.html','Data analysis task','i-hw'] ],
+};
+const rowsFor = m => CARD_ROWS[m] || CARD_ROWS.default;
 
 /* Module identities. Describing Meaning & Linguistic Pragmatics are dual-coded:
    the same weeks are taught under an undergrad code (default) and an MPhil code.
@@ -383,6 +392,11 @@ WEEKS.forEach(w => { if (!w.reading && !('rd' in w)) w.rd = 'ready'; });
 const pad = n => String(n).padStart(2,'0');
 
 function overall(w){
+  if (w.m in CARD_ROWS){
+    if (w.deck==='ready' && w.ex==='ready') return {k:'ready', t:'Ready'};
+    if (w.deck==='none' && w.ex!=='ready') return {k:'soon', t:'Upcoming'};
+    return {k:'prog', t:'In progress'};
+  }
   if (w.deck==='ready' && w.handout==='ready') return {k:'ready', t:'Ready'};
   if (w.deck==='none' && w.handout==='none') return {k:'soon', t:'Upcoming'};
   return {k:'prog', t:'In progress'};
@@ -447,7 +461,7 @@ function cardHTML(w){
   if (w.reading){
     return `<article class="card ${w.m} card-reading" data-mod="${w.m}" data-status="soon" data-title="reading week break">
       <div class="c-top"><span class="c-sec">${w.sec}</span><span class="c-status soon"><i></i>No class</span></div>
-      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Reading Week</div><div class="c-fig">No lecture, handout or homework — catch up on readings and coursework.</div></div></div>
+      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Reading Week</div><div class="c-fig">${w.m==='prag' ? 'No lecture or data analysis task' : 'No lecture, handout or homework'} — catch up on readings and coursework.</div></div></div>
     </article>`;
   }
   if (w.present){
@@ -467,10 +481,7 @@ function cardHTML(w){
       <div class="c-namewrap"><div class="c-name">${w.title}</div>${w.fig ? `<div class="c-fig">${w.fig}</div>` : ''}</div>
     </div>
     <div class="c-links">
-      ${linkRow(w,'deck','deck.html','Presentation','i-deck')}
-      ${linkRow(w,'handout','handout.html','Handout','i-handout')}
-      ${linkRow(w,'rd','readings.html','Readings','i-read')}
-      ${linkRow(w,'ex','exercises.html','Homework','i-hw')}
+      ${rowsFor(w.m).map(r => linkRow(w, ...r)).join('\n      ')}
     </div>
   </article>`;
 }
