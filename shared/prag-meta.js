@@ -58,7 +58,11 @@ window.WEEKS = [
   }},
 
   { no: 3, title: "Implicature", section: 2,
-    figures: ["Grice"], lenses: blankLenses() },
+    figures: ["Grice"], lenses: {
+      empirical:   { q: "What is said and what is meant", d: "Literal meaning and speaker meaning" },
+      historical:  { q: "Grice", d: "The meaning of meaning" },
+      formal:      { q: "Calculating implicatures", d: "The maxims as an inference engine; scales, alternatives and the epistemic step." },
+      typological: { q: "Implicature in use", d: "Humour, language change, a courtroom, another culture, machines, and an experiment." } } },
 
   { no: 4, title: "Presupposition", section: 3,
     figures: ["Russell", "Frege", "Strawson"], lenses: {

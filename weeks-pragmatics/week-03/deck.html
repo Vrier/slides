@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 3, Implicature · Lecture Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-burgundy.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* three-column fields */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  .cols3 .cfoot{ margin-top:12px; font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .cols3 .cfoot b{ color:var(--tcd-blue); font-weight:600; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--tcd-ink); line-height:1.08; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ question / answer slide furniture ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
+
+  /* ============ conversations (paired sentences, Q/A dialogues) ============ */
+  .convo{ margin:6px 0; }
+  .convo .cv{ display:grid; grid-template-columns:190px 1fr; gap:0 26px; padding:11px 0; align-items:baseline; }
+  .convo .cv + .cv{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 12%, #fff); }
+  .convo .who{ font-family:var(--mono); font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .convo .say{ font-family:var(--serif); font-style:italic; font-size:33px; color:var(--tcd-ink); line-height:1.25; }
+  .convo.big .say{ font-size:42px; }
+  .convo.big .cv{ padding:14px 0; }
+
+  /* week-tag chip on answer slides */
+  .wktag{ display:inline-block; font-family:var(--mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 8%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 26%, #fff); border-radius:999px;
+    padding:5px 16px; margin-left:20px; vertical-align:middle; transform:translateY(-6px); }
+
+  /* ============ figure portraits & name plates ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:64px; font-weight:600; letter-spacing:.02em; }
+  .figthree .npf .npmono{ height:300px; }
+
+  /* ============ lineage / genealogy strip ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* shared test-case rows */
+  .fourways{ margin-top:8px; }
+  .fourways .fw{ display:grid; grid-template-columns:280px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .fourways .fw:first-child{ border-top:none; }
+  .fourways .fw .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fc); }
+  .fourways .fw .fl small{ display:block; font-family:var(--mono); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--tcd-grey-75); margin-top:3px; text-transform:none; }
+  .fourways .fw .ft2{ font-family:var(--sans); font-size:23px; color:var(--tcd-black); line-height:1.35; }
+  .fourways .fw .ft2 em{ font-style:italic; } .fourways .fw .ft2 b{ color:var(--tcd-ink); }
+
+  /* ============ housekeeping / week grids / recap ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* hatched to-confirm box (print twin of the scaffold todo-box) */
+  .todo-line{ margin-top:18px; border:1.5px dashed var(--tcd-blue-50); border-radius:9px; background:var(--tcd-blue-10);
+    padding:13px 20px; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+  .todo-line b{ color:var(--tcd-blue); }
+
+  /* question-slide footnote line (as weeks-pragmatics/week-01) */
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+
+  /* ============ week 2 type pass: New Computer Modern + larger small text ============
+     Same patterns as week 1. Computer Modern runs small on the body, so running
+     text goes up a step, and nothing on a slide is set below 15px. */
+  .dB .erow .tx{ font-size:31px; line-height:1.34; } .dB .erow .tx.tight{ font-size:29px; }
+  .dB .erow .lb{ font-size:17px; }
+  .dB .lead{ font-size:38px; }
+  .eg .ex{ font-size:31px; } .eg .ex .gl{ font-size:22px; line-height:1.32; } .eg .no{ font-size:21px; }
+  .eghead{ font-size:16px; } .egpanel .fxnote{ font-size:20px; }
+  .fourways .fw{ grid-template-columns:300px 1fr; }
+  .fourways .fw .fl{ font-size:18px; } .fourways .fw .fl small{ font-size:16.5px; margin-top:4px; }
+  .fourways .fw .fl .fm{ font-size:24px; }
+  .fourways .fw .ft2{ font-size:27px; line-height:1.34; }
+  .brn .split span{ font-size:16px; } .brn .arm .h{ font-size:16px; } .brn .arm .t{ font-size:28px; }
+  .convo .who{ font-size:18px; } .qsrc{ font-size:25px; } .qask{ font-size:21px; }
+  .qref .src{ font-size:20px; } .bigq .src{ font-size:24px; }
+  .portrait .pc .dt{ font-size:15px; } .portrait .pc .rl{ font-size:19px; line-height:1.32; }
+  .lineage .ln .era{ font-size:16px; } .lineage .ln .ds{ font-size:19.5px; } .lineage .ln .nm{ font-size:26px; }
+  .roots{ font-size:27px; }
+  .lxr3 .rmb li{ font-size:20px; }
+  .mrail a.si2{ font-size:15px; } .mrail .ghd, .mrail .ghd .gt{ font-size:12px; }
+  .wktag{ font-size:16px; }
+
+  /* notation table (week 2) */
+  .ntab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ntab .nh{ display:grid; grid-template-columns:370px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:18px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .ntab .nr{ display:grid; grid-template-columns:370px 1fr; gap:34px; align-items:baseline; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ntab .no1{ font-family:var(--serif); font-size:32px; color:var(--tcd-ink); }
+  .ntab .no1 small{ display:block; font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); margin-top:2px; }
+  .ntab .no2{ font-family:var(--serif); font-size:27px; line-height:1.4; color:var(--tcd-ink); }
+  .ntab .no2 i{ font-family:var(--sans); font-style:normal; font-size:21px; color:var(--tcd-grey-100); }
+
+  /* ============ week 2 type pass, second round: projector floor ============
+     Floors on the 1920 canvas: running text 27px, glosses and notes 22px,
+     uppercase labels 19px, credits 17px, sidebar 13px. */
+  .dB .erow .lb{ font-size:20px; } .dB .erow{ grid-template-columns:250px 1fr; }
+  .eghead{ font-size:19px; } .eg .ex .gl{ font-size:24px; } .eg .no{ font-size:23px; }
+  .egpanel .fxnote{ font-size:22px; }
+  .brn .split span{ font-size:19px; } .brn .arm .h{ font-size:19px; }
+  .fourways .fw .fl{ font-size:20px; } .fourways .fw .fl small{ font-size:19px; }
+  .fourways .fw .ft2{ font-size:28px; }
+  .portrait .pc .dt{ font-size:17px; line-height:1.35; } .portrait .pc .rl{ font-size:21px; }
+  .wktag{ font-size:18px; }
+  .qask{ font-size:24px; } .convo .who{ font-size:21px; } .qsrc{ font-size:27px; }
+  .qref .src{ font-size:22px; }
+  .lxr3 .stop .head .lab{ font-size:20px; } .lxr3 .rmb li{ font-size:22px; }
+  .lxd2 .r .ct{ font-size:20px; }
+  .ntab .nh{ font-size:19px; } .ntab .no1 small{ font-size:21px; } .ntab .no2 i{ font-size:22px; }
+  .tcd-names .uni{ font-size:18px; }
+  .mrail a.si2{ font-size:16px; } .mrail .ghd .gt{ font-size:13px; } .mrail .ghd .gcar{ font-size:11px; }
+  .mrail .mhd .tt{ font-size:14px; } .mrail .mft .wk{ font-size:14px; }
+
+  /* ============ week 2 type pass, third round: fill the slide ============
+     Week 1's patterns leave the lower third of most slides empty. Default sizes
+     go up again; a slide that would overflow takes class "dense" on .b-main and
+     keeps the second-round sizes. */
+  .dB .erow .tx{ font-size:36px; line-height:1.32; } .dB .erow .tx.tight{ font-size:33px; }
+  .dB .erow{ grid-template-columns:270px 1fr; padding:20px 0; } .dB .erow .lb{ font-size:21px; padding-top:9px; }
+  .eg .ex{ font-size:36px; } .eg .ex .gl{ font-size:26px; } .eg .no{ font-size:25px; }
+  .eghead{ font-size:20px; } .egpanel .fx{ font-size:36px; } .egpanel .fxnote{ font-size:24px; }
+  .fourways .fw{ grid-template-columns:330px 1fr; padding:18px 0; }
+  .fourways .fw .fl{ font-size:22px; } .fourways .fw .fl small{ font-size:20px; } .fourways .fw .fl .fm{ font-size:27px; }
+  .fourways .fw .ft2{ font-size:32px; }
+  .brn .arm .t{ font-size:32px; } .brn .arm .h{ font-size:20px; } .brn .split span{ font-size:20px; }
+  .convo .say{ font-size:40px; } .convo.big .say{ font-size:50px; } .qask{ font-size:26px; } .qsrc{ font-size:29px; }
+  .qref{ font-size:32px !important; } .qref .src{ font-size:23px; }
+  .ntab .no1{ font-size:36px; } .ntab .no2{ font-size:30px; } .ntab .no2 i{ font-size:24px; } .ntab .no1 small{ font-size:22px; }
+  .lxr3 .rmb li{ font-size:24px; } .figs-line{ font-size:25px; } .q-banner{ font-size:34px; }
+  .b-step-lab{ font-size:24px; } .b-step-math{ font-size:44px; }
+  /* dense slides keep the second-round sizes */
+  .b-main.dense .erow .tx{ font-size:31px; } .b-main.dense .erow .tx.tight{ font-size:29px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; }
+  .b-main.dense .eg .ex{ font-size:31px; } .b-main.dense .eg .ex .gl{ font-size:24px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:28px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:32px; }
+  .b-main.dense .ntab .no1{ font-size:32px; } .b-main.dense .ntab .no2{ font-size:27px; } .b-main.dense .ntab .nr{ padding:12px 0; }
+
+  /* ============ fourth round: body text at 40px (about 20pt on a 13.3in slide) ============ */
+  .dB .erow .tx{ font-size:40px; line-height:1.3; } .dB .erow .tx.tight{ font-size:37px; }
+  .dB .erow{ grid-template-columns:280px 1fr; padding:22px 0; } .dB .erow .lb{ font-size:22px; padding-top:12px; }
+  .eg .ex{ font-size:40px; } .eg .ex .gl{ font-size:28px; } .eg .no{ font-size:27px; } .eg{ padding:13px 0; }
+  .egpanel .fx{ font-size:40px; } .egpanel .fxnote{ font-size:25px; } .eghead{ font-size:21px; }
+  .fourways .fw{ grid-template-columns:340px 1fr; padding:20px 0; }
+  .fourways .fw .fl{ font-size:23px; } .fourways .fw .fl small{ font-size:21px; } .fourways .fw .fl .fm{ font-size:29px; }
+  .fourways .fw .ft2{ font-size:35px; line-height:1.3; }
+  .brn .arm .t{ font-size:35px; } .brn .arm .h{ font-size:21px; } .brn .split span{ font-size:21px; }
+  .convo .say{ font-size:44px; } .convo.big .say{ font-size:56px; } .convo .who{ font-size:23px; } .qask{ font-size:28px; } .qsrc{ font-size:31px; }
+  .qref{ font-size:35px !important; } .qref .src{ font-size:24px; }
+  .ntab .no1{ font-size:38px; } .ntab .no2{ font-size:32px; } .ntab .no2 i{ font-size:25px; }
+  .lxr3 .rmb li{ font-size:26px; line-height:1.35; } .lxr3 .stop .head .lab{ font-size:22px; }
+  .figs-line{ font-size:27px; } .q-banner{ font-size:38px; }
+  .b-step-lab{ font-size:26px; } .b-step-math{ font-size:46px; }
+  .portrait .pc .nm{ font-size:30px; }
+  /* dense fallback, restated after the defaults so it still wins */
+  .b-main.dense .erow .tx{ font-size:32px; } .b-main.dense .erow .tx.tight{ font-size:30px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; } .b-main.dense .erow .lb{ font-size:20px; padding-top:7px; }
+  .b-main.dense .eg .ex{ font-size:33px; } .b-main.dense .eg .ex .gl{ font-size:25px; } .b-main.dense .eg{ padding:9px 0; }
+  .b-main.dense .fourways .fw .ft2{ font-size:30px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:34px; }
+  .b-main.dense .brn .arm .t{ font-size:30px; }
+  .b-main.dense .ntab .no1{ font-size:33px; } .b-main.dense .ntab .no2{ font-size:28px; } .b-main.dense .ntab .nr{ padding:11px 0; }
+
+  /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
+  .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
+  .b-main.snug .fourways .fw .ft2{ font-size:33px; }
+
+  /* examples under the row labels (Problems for extensional semantics) */
+  .fourways.exl .fw .fl small{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:27px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); margin-top:6px; line-height:1.22; }
+  /* an unlabelled closing sentence under a panel */
+  .plainline{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin:18px 0 0; }
+
+
+  /* ============ week 3 (LI7862, Implicature) additions ============ */
+  /* content rows without a label column: text runs full width, a bold lead carries the term */
+  .dB .erow.full{ grid-template-columns:1fr; }
+  .b-main.dense .erow.full{ grid-template-columns:1fr; }
+  .dB .erow.full .tx strong.ld{ color:var(--lens, var(--tcd-ink)); }
+
+  /* taxonomy tree (what is meant → said / implicated → conventional / conversational → generalised / particularised) */
+  .tfig{ width:100%; height:auto; display:block; margin:10px 0 0; }
+  .tfig .ln{ stroke:var(--tcd-grey-50); stroke-width:3; fill:none; stroke-linecap:square; }
+  .tfig .nd{ fill:#fff; stroke:var(--tcd-grey-50); stroke-width:2.5; }
+  .tfig .nd.on{ fill:color-mix(in srgb, var(--lens) 9%, #fff); stroke:var(--lens); stroke-width:3; }
+  .tfig .nl{ font-family:var(--serif); font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .tfig .nl.on{ font-weight:600; }
+  .tfig .ns{ font-family:var(--sans); font-style:italic; font-size:26px; fill:var(--tcd-grey-100); text-anchor:middle; }
+
+  /* scales table */
+  .sctab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .sctab .sh{ display:grid; grid-template-columns:560px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .sctab .sr{ display:grid; grid-template-columns:560px 1fr; gap:34px; align-items:baseline; padding:13px 0; border-top:1px solid var(--tcd-grey-25); }
+  .sctab .s1{ font-family:var(--serif); font-size:36px; color:var(--tcd-ink); }
+  .sctab .s2{ font-family:var(--serif); font-size:33px; line-height:1.3; color:var(--tcd-ink); }
+  .sctab .s2 em{ font-style:italic; } .sctab .s2 i{ font-family:var(--sans); font-style:normal; font-size:24px; color:var(--tcd-grey-100); }
+  .b-main.dense .sctab .s1{ font-size:32px; } .b-main.dense .sctab .s2{ font-size:29px; } .b-main.dense .sctab .sr{ padding:var(--sr-pad,10px) 0; }
+
+  /* derivation: numbered step, words, formula */
+  .dv{ margin-top:6px; }
+  .dv .st{ display:grid; grid-template-columns:70px 1fr 520px; gap:0 28px; align-items:center; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dv .st:first-child{ border-top:none; }
+  .dv .st .n{ font-family:var(--mono); font-size:25px; color:var(--lens); font-variant-numeric:tabular-nums; }
+  .dv .st .w{ font-family:var(--serif); font-size:33px; line-height:1.28; color:var(--tcd-ink); }
+  .dv .st .w small{ display:block; font-family:var(--sans); font-size:23px; color:var(--tcd-grey-100); margin-top:3px; }
+  .dv .st .m{ font-size:36px; text-align:right; color:var(--tcd-ink); }
+  .dv .st.out{ background:color-mix(in srgb, var(--lens) 7%, #fff); border-radius:10px; padding:15px 16px; margin-top:6px; border-top:none; }
+  .dv .st.out .w{ font-weight:600; }
+  .dv.nomath .st{ grid-template-columns:70px 1fr; }
+  .b-main.dense .dv .st{ padding:10px 0; } .b-main.dense .dv .st .w{ font-size:30px; } .b-main.dense .dv .st .w small{ font-size:21px; }
+  .b-main.dense .dv .st .m{ font-size:32px; } .b-main.dense .dv .st.out{ padding:10px 16px; }
+  .srcl{ margin-top:12px; font-family:var(--sans); font-size:24px; line-height:1.35; color:var(--tcd-grey-75); }
+  .srcl em{ font-style:italic; }
+  /* photos and maps beside text (week 3); no captions; credits in source comments */
+  .imgrow{ display:grid; grid-template-columns:minmax(0,1fr) var(--phw,500px); gap:0 44px; align-items:start; }
+  .imgrow .ph{ margin-top:4px; }
+  .imgrow .ph img{ display:block; width:100%; height:var(--phh,auto); object-fit:cover; object-position:var(--php,center); border-radius:10px; }
+  .imgrow .ph svg{ display:block; width:100%; height:auto; }
+  .mapfig .rt{ fill:none; stroke:var(--lens); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:2 12; }
+  .mapfig .dot{ fill:var(--lens); } .mapfig .dot.on{ fill:#fff; stroke:var(--lens); stroke-width:6; }
+  .mapfig .cl{ font-family:var(--serif); font-size:40px; fill:var(--tcd-ink); }
+  .mapfig .cl.on{ font-weight:600; fill:var(--lens); }
+  /* information-state diagram (week 3, weak and strong) */
+  .kfig3{ display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:6px; max-width:1240px; }
+  .kfig3 .kp > svg{ display:block; width:100%; height:auto; }
+  .kfig3 .w{ fill:#fff; stroke:var(--tcd-grey-25); stroke-width:2; }
+  .kfig3 .pd{ fill:color-mix(in srgb, var(--lens) 6%, #fff); stroke:var(--tcd-grey-75); stroke-width:2.5; }
+  .kfig3 .qd{ fill:color-mix(in srgb, var(--tcd-grey-25) 45%, #fff); stroke:var(--tcd-grey-75); stroke-width:2.5; }
+  .kfig3 .is{ fill:color-mix(in srgb, var(--lens) 38%, transparent); stroke:var(--lens); stroke-width:3.5; stroke-dasharray:9 7; }
+  .kfig3 .dl{ font-family:var(--serif); font-style:italic; font-size:30px; fill:var(--tcd-grey-100); }
+  .kfig3 .kc{ text-align:center; font-size:34px; color:var(--tcd-ink); margin-top:8px; }
+  .kfig3 .kc small{ display:block; font-family:var(--sans); font-size:22px; line-height:1.3; color:var(--tcd-grey-100); margin-top:4px; }
+  .kfig3 .kp.meant .kc{ color:var(--lens); }
+  .kleg{ font-family:var(--sans); font-size:21px; color:var(--tcd-grey-100); margin:6px 0 0; }
+  .kleg i{ display:inline-block; width:34px; height:18px; vertical-align:-2px; margin-right:8px; border:2.5px dashed var(--lens); border-radius:50%; background:color-mix(in srgb, var(--lens) 38%, transparent); }
+  /* disjunction cells (week 3, embedding and disjunction) */
+  .dcell .c{ fill:color-mix(in srgb, var(--lens) 30%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .dcell .x{ fill:#fff; stroke:var(--tcd-grey-50); stroke-width:2.5; }
+  .dcell .xm{ stroke:var(--tcd-grey-50); stroke-width:3; stroke-linecap:round; }
+  .dcell .ct{ font-family:var(--serif); font-size:26px; fill:var(--tcd-ink); text-anchor:middle; }
+  .dcell .ct.o{ fill:var(--tcd-grey-75); }
+  .dcell .rl{ font-family:var(--sans); font-size:25px; fill:var(--tcd-grey-100); }
+  /* round 2 (week 3) */
+  .tri{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin-top:14px; }
+  .tri .col{ border-top:3px solid var(--tcd-grey-50); padding-top:14px; }
+  .tri .col.meant{ border-top-color:var(--lens); }
+  .tri .h{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--tcd-grey-100); }
+  .tri .col.meant .h{ color:var(--lens); }
+  .tri .who{ font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); margin:4px 0 10px; }
+  .tri .t{ font-family:var(--serif); font-size:31px; line-height:1.32; color:var(--tcd-ink); }
+  .sctab.gci .sh, .sctab.gci .sr{ grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); }
+  .sctab.gci .s1{ font-size:30px; font-style:italic; } .sctab.gci .s2{ font-size:28px; }
+  .sctab.nov .sh, .sctab.nov .sr{ grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr) minmax(0,1fr); gap:24px; }
+  .sctab.nov .s1{ font-size:30px; font-style:italic; } .sctab.nov .s2{ font-size:26px; font-family:var(--sans); line-height:1.3; }
+  .sctab.nov .sr.on{ background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .cmp .gno, .sctab .gno{ font-family:var(--serif); font-style:normal; font-size:24px; color:var(--tcd-grey-75); margin-right:6px; }
+  .nbars{ display:block; width:100%; height:auto; }
+  .nbars .gl{ stroke:var(--tcd-grey-25); stroke-width:1.5; }
+  .nbars .yl{ font-family:var(--sans); font-size:20px; fill:var(--tcd-grey-100); text-anchor:end; }
+  .nbars .xl{ font-family:var(--sans); font-size:24px; fill:var(--tcd-ink); text-anchor:middle; }
+  .nbars .b{ fill:color-mix(in srgb, var(--lens) 45%, #fff); } .nbars .b.ad{ fill:var(--lens); }
+  .nbars .bv{ font-family:var(--serif); font-size:30px; fill:var(--tcd-ink); text-anchor:middle; }
+  .cmp{ margin-top:2px; border-top:2px solid var(--lens); }
+  .cmp .ch, .cmp .cr{ display:grid; grid-template-columns:250px minmax(0,1fr) minmax(0,1fr); gap:0 34px; align-items:baseline; }
+  .cmp .ch{ padding:12px 0 10px; font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .cmp .cr{ padding:14px 0; border-top:1px solid var(--tcd-grey-25); }
+  .cmp .cp{ font-family:var(--sans); font-size:23px; font-weight:600; color:var(--tcd-grey-100); }
+  .cmp .cc{ font-family:var(--serif); font-size:31px; line-height:1.3; color:var(--tcd-ink); }
+  .cv .ans{ grid-column:2; font-family:var(--sans); font-size:26px; font-weight:600; letter-spacing:.02em; color:var(--lens); margin-top:6px; }
+  .rmr{ margin-top:18px; display:flex; justify-content:center; }
+  .rmr img{ display:block; width:100%; max-width:1300px; height:auto; }
+</style>
+<body class="pal-a" data-week="3">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark" style="font-style:italic">“</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7862 · Linguistic Pragmatics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 3</h1>
+      <div class="a-course-sub">Implicature</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · 2026</div></div>
+  </div>
+</section>
+
+
+
+<!-- 02 · This week -->
+<section class="slide" data-label="This week" data-screen-label="02">
+  <div class="b-slide pal-a dB" data-sec="wk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">This week</h2>
+      <div class="q-banner">How do we mean more than we say?</div>
+      <div class="erow full" style="border-top:none"><div class="tx"><strong class="ld">Last week.</strong> Saying as doing. Felicity conditions. Force and content, and the indirect route from one act to another.</div></div>
+      <div class="erow full"><div class="tx"><strong class="ld">This week.</strong> What is said and what is implicated. The Cooperative Principle and the maxims. Scales, alternatives, and the derivation of <em>not all</em> from <em>some</em>.</div></div>
+      <div class="figs-line"><b>Figures:</b> Grice · Horn · Traugott &nbsp;·&nbsp; <b>Data:</b> Irish English <em>grand</em> and <em>maybe</em> · jokes · <em>Bronston v. United States</em> · Malagasy · language models</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 03 · Roadmap -->
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Said and meant</li><li>Generalised and particularised</li><li>Generalised implicatures</li><li>Diagnostics</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Grice's problem</li><li>Paul Grice</li><li><em>Meaning</em> (1957)</li><li>Recursive mind reading</li><li>The Cooperative Principle</li><li>Rational cooperation</li><li>Grice's taxonomy</li><li>Conventional and conversational</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Calculability</li><li>Implicature by maxim</li><li>Scales and alternatives</li><li>The derivation</li><li>Weak and strong</li><li>Competence</li><li><em>Grand</em> and <em>maybe</em></li><li>Not observing a maxim</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Humour</li><li>Language change</li><li>Court</li><li>Universality</li><li>Machines</li><li>Noveck (2001)</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 04 · Readings -->
+<section class="slide" data-label="Readings" data-screen-label="04">
+  <div class="b-slide pal-a dB" data-sec="rd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Readings</h2>
+      <div class="qref" style="font-size:27px">Grice, H. P. (1975). Logic and conversation. In P. Cole &amp; J. Morgan (eds), <em>Syntax and Semantics 3: Speech Acts</em>. Reprinted in <em>Studies in the Way of Words</em> (1989). <span class="src">Primary</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Grundy, P. (2008). <em>Doing Pragmatics</em>, 3rd ed., ch. 5 &ldquo;Implicit meaning&rdquo;. <span class="src">Textbook</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Levinson, S. C. (1983). <em>Pragmatics</em>, ch. 3 &ldquo;Conversational implicature&rdquo;. <span class="src">Textbook</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Geurts, B. (2010). <em>Quantity Implicatures</em>, ch. 1. &nbsp;·&nbsp; Chapman, S. (2005). <em>Paul Grice: Philosopher and Linguist</em>. <span class="src">Optional</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Empirical -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LI7862 · Week 3</div><h2>What is said and what is meant</h2><div class="ask">Literal meaning and speaker meaning</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+
+
+<!-- 05 · The meeting · question -->
+<section class="slide" data-label="The meeting, Q" data-screen-label="05">
+  <div class="b-slide pal-a lens-empirical" data-sec="meet">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:.15s"><div class="who">(1) A</div><div class="say">Are you coming to the meeting?</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">B</div><div class="say">I have marking to do.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 06 · Said and meant · answer -->
+<section class="slide" data-label="The meeting, A" data-screen-label="06">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="meet">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Said and meant</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx"><strong class="ld">What is said.</strong> B has marking to do. Nothing about the meeting. True or false on its own.</div></div>
+      <div class="erow full" data-step="2"><div class="tx"><strong class="ld">What is implicated.</strong> B is not coming. Every hearer gets it; no word of the sentence carries it.</div></div>
+      <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Sentence meaning.</strong> What the expression contributes by linguistic convention.</div></div>
+      <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Speaker meaning.</strong> What a speaker communicates in context by choosing that expression.</div></div>
+      <div class="srcl">Grice (1975); Levinson (1983), ch. 3. Example (1): constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 07 · Five exchanges · question. Items from the LIU22012 week 3 exercise sheet. -->
+<section class="slide" data-label="Five exchanges, Q" data-screen-label="07">
+  <div class="b-slide pal-a lens-empirical" data-sec="five">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo">
+          <div class="cv anim" style="--d:.15s"><div class="who">(2)</div><div class="say">A: Did you read the paper? &nbsp; B: I read the abstract.</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(3)</div><div class="say">A: How was the talk? &nbsp; B: The slides were beautifully formatted.</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(4)</div><div class="say">A: Do you like my new haircut? &nbsp; B: It's certainly distinctive.</div></div>
+          <div class="cv anim" style="--d:.6s"><div class="who">(5)</div><div class="say">A: Is Sam a good person to have on the committee? &nbsp; B: Sam is always on time.</div></div>
+          <div class="cv anim" style="--d:.75s"><div class="who">(6)</div><div class="say">A: Where's Alex? &nbsp; B: There's a light on in Alex's office.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Generalised and particularised. Definitions paraphrase Yule 1996 ch. 5 (GCI: no special knowledge of the context needed to calculate the additional meaning; PCI: locally recognised inferences in specific contexts) and Grice 1975 (GCI: the form of words normally carries the implicature in the absence of special circumstances). Examples: Yule 1996 ex. [9] and [16]; Grice 1975 petrol and garage. -->
+<section class="slide" data-label="Empirical ·Generalised and particularised" data-screen-label="x">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="gcipci">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Generalised and particularised</h2>
+      <div class="brn">
+        <div class="arms">
+          <div class="arm" data-step="1"><div class="h">Generalised</div><div class="t">No special knowledge of the context is needed to work out the extra meaning. The form of words carries it, unless something special in the context blocks it.</div></div>
+          <div class="arm meant" data-step="2"><div class="h">Particularised</div><div class="t">The extra meaning depends on assumptions local to this context. Change the context and it goes.</div></div>
+        </div>
+      </div>
+      <div class="egpanel" style="margin-top:14px">
+        <div class="eg" data-step="1"><span class="no">(7)</span><span class="ex">Doobie: Did you invite Bella and Cathy? &nbsp; Mary: I invited Bella.<span class="gl">generalised: not Cathy. Any context will do</span></span></div>
+        <div class="eg" data-step="2"><span class="no">(8)</span><span class="ex">Rick: Hey, coming to the wild party tonight? &nbsp; Tom: My parents are visiting.<span class="gl">particularised: no. Only if Tom has to stay home while his parents visit</span></span></div>
+        <div class="eg" data-step="3"><span class="no">(9)</span><span class="ex">A: I am out of petrol. &nbsp; B: There is a garage round the corner.<span class="gl">particularised: the garage is open, and sells petrol. Grice (1975)</span></span></div>
+      </div>
+      <div class="srcl" data-step="1">Yule, G. (1996). <em>Pragmatics</em>, ch. 5. &nbsp;·&nbsp; Grice, H. P. (1975). Logic and conversation.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Generalised implicatures, several kinds. Scales from Horn 1972 and Levinson 1983 ch. 3 (incl. know/believe, certain/possible); indefinites from Grice 1975 (meeting a woman; went into a house); conjunction buttressing from Levinson 2000. -->
+<section class="slide" data-label="Empirical ·Generalised implicatures" data-screen-label="x">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="gcis">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Generalised implicatures</h2>
+      <div class="sctab gci">
+        <div class="sh"><span>Utterance</span><span>Conveys</span></div>
+        <div class="sr" data-step="1"><div class="s1"><span class="gno">(10)</span> Some of the students passed.</div><div class="s2">not all <i>scalar ⟨all, some⟩</i></div></div>
+        <div class="sr" data-step="2"><div class="s1"><span class="gno">(11)</span> Anna or Sam will chair.</div><div class="s2">not both <i>scalar ⟨and, or⟩</i></div></div>
+        <div class="sr" data-step="3"><div class="s1"><span class="gno">(12)</span> The soup is warm.</div><div class="s2">not hot <i>scalar ⟨hot, warm⟩</i></div></div>
+        <div class="sr" data-step="4"><div class="s1"><span class="gno">(13)</span> It is possible that she will come.</div><div class="s2">not certain <i>scalar ⟨certain, possible⟩</i></div></div>
+        <div class="sr" data-step="5"><div class="s1"><span class="gno">(14)</span> I believe she is in.</div><div class="s2">I don't know she is in <i>scalar ⟨know, believe⟩</i></div></div>
+        <div class="sr" data-step="6"><div class="s1"><span class="gno">(15)</span> X is meeting a woman this evening.</div><div class="s2">not his wife, mother or sister <i>indefinite; Grice (1975)</i></div></div>
+        <div class="sr" data-step="7"><div class="s1"><span class="gno">(16)</span> X went into a house yesterday.</div><div class="s2">not his own house <i>indefinite; Grice (1975)</i></div></div>
+        <div class="sr" data-step="8"><div class="s1"><span class="gno">(17)</span> She turned the key and the engine started.</div><div class="s2">then, and because of it <i><em>and</em>; Levinson (2000)</i></div></div>
+      </div>
+      <div class="srcl">Scales: Horn (1972), Levinson (1983: ch. 3). Indefinites: Grice (1975). <em>And</em>: Levinson (2000).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 10 · Diagnostics -->
+<section class="slide" data-label="Empirical ·Diagnostics" data-screen-label="10">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="diag">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Diagnostics</h2>
+      <div class="egpanel" style="margin-top:0">
+        <div class="eg"><span class="no">(18)</span><span class="ex">Some of the students passed. In fact, all of them did.<span class="gl">fine</span></span></div>
+        <div class="eg"><span class="no">(19)</span><span class="ex"><span style="color:var(--lens);font-style:normal">#</span>Exactly two students passed. In fact, three did.<span class="gl">contradiction: <em>exactly two</em> entails <em>not three</em></span></span></div>
+        <div class="eg"><span class="no">(20)</span><span class="ex">I read the abstract. I didn't have time for the whole paper.<span class="gl">fine, and no repetition</span></span></div>
+      </div>
+      <div class="fourways" style="margin-top:8px">
+        <div class="fw" data-step="1" style="--fc:var(--lens-emp)"><div class="fl">Cancellable</div><div class="ft2">The inference can be withdrawn without contradiction, as in (18). An entailment cannot, as in (19).</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-emp)"><div class="fl">Reinforceable</div><div class="ft2">The inference can be made explicit without redundancy, as in (20).</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-emp)"><div class="fl">Non-detachable</div><div class="ft2">Any way of saying the same thing carries it. <em>Some</em>, <em>a few</em>, <em>part of</em>: still <em>not all</em>.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-emp)"><div class="fl">Calculable</div><div class="ft2">It can be worked out from what was said plus assumptions about the speaker.</div></div>
+      </div>
+      <div class="srcl">Grice (1975): cancellability, non-detachability, calculability. Sadock (1978): reinforceability. Examples constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- § Historical -->
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">STRAND 02 / 04 · LI7862 · Week 3</div><h2>Grice</h2><div class="ask">The meaning of meaning</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+
+
+<!-- Grice's problem: the formalist / informalist dispute that opens Logic and Conversation (Grice 1975: 41–43). -->
+<section class="slide" data-label="Historical ·Grice's problem" data-screen-label="x">
+  <div class="b-slide pal-a lens-historical dB" data-sec="prob">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Grice's problem</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight">Do English <em>and</em>, <em>or</em>, <em>if</em> mean what \(\wedge\), \(\vee\), \(\rightarrow\) mean?</div></div>
+      <div class="egpanel" style="margin-top:4px">
+        <div class="eg"><span class="no">(21)</span><span class="ex">She got married and had a baby. &nbsp;·&nbsp; She had a baby and got married.<span class="gl">\(p \wedge q\) and \(q \wedge p\) are equivalent; the two sentences are not</span></span></div>
+      </div>
+      <div class="tri">
+        <div class="col" data-step="1"><div class="h">Formalists</div><div class="who">Russell, the logical positivists</div><div class="t">The words diverge from the logic. So much the worse for natural language: regiment it.</div></div>
+        <div class="col" data-step="2"><div class="h">Informalists</div><div class="who">Strawson, Austin</div><div class="t">The words diverge from the logic. So much the worse for logic as a theory of meaning.</div></div>
+        <div class="col meant" data-step="3"><div class="h">Grice</div><div class="who">Logic and Conversation, 1967</div><div class="t">No divergence in meaning. <em>And</em> means \(\wedge\). The order is implicated: be orderly.</div></div>
+      </div>
+      <div class="srcl">Grice (1975: 41–43), the formalist and informalist positions. Example constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 13 · Paul Grice. Portrait supplied by Thomas (images/grice.jpg); source and licence to be recorded.
+     Sources: Strawson & Wiggins, PBA 111 (2001); SEP "Paul Grice"; Chapman 2005. -->
+<section class="slide" data-label="Historical ·Paul Grice" data-screen-label="13">
+  <div class="b-slide pal-a lens-historical dB" data-sec="grice">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Paul Grice</h2>
+      <div class="figrow">
+        <div class="portrait"><img src="images/grice.jpg" alt="Paul Grice" style="object-position:50% 18%"><div class="pc"><div class="nm">H. P. Grice</div><div class="dt">1913 – 1988 · Harborne, Birmingham to Berkeley</div><div class="rl">Fellow of St John's, Oxford, 1939 – 1967. Professor at Berkeley, 1967 – 1988.</div></div>
+        </div>
+        <div class="figbody">
+          <div class="erow full" style="border-top:none"><div class="tx tight">Grice was educated at Clifton and at Corpus Christi, Oxford, taking firsts in 1933 and 1935. He became a lecturer at St John's and, in 1939, a Fellow, with Strawson among his pupils, and served in the Royal Navy from 1940 to 1945, in the Atlantic and then in Admiralty intelligence.</div></div>
+          <div class="erow full"><div class="tx tight">He published very little. <em>Meaning</em> was written in 1948 and published in 1957 at Strawson's prodding, and the William James Lectures, given at Harvard in 1967, circulated for years in unauthorised copies before appearing in <em>Studies in the Way of Words</em> (1989).</div></div>
+          <div class="erow full"><div class="tx tight">He played cricket, chess and piano to a high standard, was elected a Fellow of the British Academy in 1966, and taught at Berkeley from 1967 until his death, well past retirement.</div></div>
+          <div class="erow full"><div class="tx tight">He didn't have many books on his shelves, <em>“But he'd read them all.”</em></div></div><!-- Grundy (2008: 130), a former pupil of Grice on the books in his office -->
+        </div>
+      </div>
+      <div class="srcl">Strawson &amp; Wiggins (2001), <em>Proceedings of the British Academy</em> 111. Grandy &amp; Warner, <em>Paul Grice</em>, SEP. Grundy (2008: 130).</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- 15 · Meaning (1957). Philosophical Review 66. -->
+<section class="slide" data-label="Historical ·Meaning (1957)" data-screen-label="15">
+  <div class="b-slide pal-a lens-historical dB" data-sec="mean">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h"><em>Meaning</em> (1957)</h2>
+      <div class="brn">
+        <div class="arms">
+          <div class="arm" data-step="1"><div class="h">Natural meaning</div><div class="t"><em>Those spots mean measles.</em> <em>Smoke means fire.</em> Evidence. Cannot be cancelled: the spots mean measles and he hasn't got measles is a contradiction.</div></div>
+          <div class="arm meant" data-step="2"><div class="h">Non-natural meaning, meaning<sub>NN</sub></div><div class="t"><em>Three rings on the bell mean the bus is full.</em> A convention, or a speaker. Can be cancelled: the conductor rang three times by mistake.</div></div>
+        </div>
+      </div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Speaker meaning as intention recognition.</strong> S means<sub>NN</sub> that \(p\) by uttering \(U\) iff S intends (i) the audience to come to believe \(p\), (ii) the audience to recognise that intention, (iii) that recognition to be part of their reason for believing \(p\).</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">This will end up in recursive mind reading.</div></div>
+      <div class="srcl">Grice (1957), <em>Philosophical Review</em> 66: 377–388.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Recursive mind reading. Image supplied by Thomas (images/recursive-mind-reading.png); source to be recorded. No caption, by request. -->
+<section class="slide" data-label="Historical ·Recursive mind reading" data-screen-label="x">
+  <div class="b-slide pal-a lens-historical dB" data-sec="rmr">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Recursive mind reading</h2>
+      <div class="rmr"><img src="images/recursive-mind-reading.png" alt="Figures thinking about figures who think about figures, with arrows between them"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 16 · The Cooperative Principle and the maxims. Grice 1975, pp. 45–46; the four headings "echoing Kant". -->
+<section class="slide" data-label="Historical ·The Cooperative Principle" data-screen-label="16">
+  <div class="b-slide pal-a lens-historical dB" data-sec="cp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">The Cooperative Principle</h2>
+      <div class="qref" data-step="1">Make your contribution such as is required, at the stage at which it occurs, by the accepted purpose or direction of the talk exchange. <span class="src">Grice (1975)</span></div>
+      <div class="fourways" style="margin-top:6px">
+        <div class="fw" data-step="2" style="--fc:var(--lens-his)"><div class="fl">Quality<small>be truthful</small></div><div class="ft2">Do not say what you believe false. Do not say what you lack evidence for.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-his)"><div class="fl">Quantity<small>be informative</small></div><div class="ft2">As informative as required. No more informative than required.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-his)"><div class="fl">Relation<small>be relevant</small></div><div class="ft2">Make your contribution relevant to the discussion at hand.</div></div>
+        <div class="fw" data-step="5" style="--fc:var(--lens-his)"><div class="fl">Manner<small>be perspicuous</small></div><div class="ft2">Avoid obscurity. Avoid ambiguity. Be brief. Be orderly.</div></div>
+      </div>
+      <div class="srcl">Grice (1975: 45–46).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 17 · Cooperation beyond talk. Grice 1975, p. 47: the car-mending and cake-making analogies. -->
+<section class="slide" data-label="Historical ·Rational cooperation" data-screen-label="17">
+  <div class="b-slide pal-a lens-historical dB" data-sec="coop">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Rational cooperation</h2>
+      <div class="erow full" style="border-top:none"><div class="tx">Maxims are extra grammatical and in a sense extra linguistic. Grice claims they hold for any rational cooperative activity. His examples are mending a car and baking a cake.</div></div>
+      <div class="fourways" style="margin-top:4px">
+        <div class="fw" data-step="1" style="--fc:var(--lens-his)"><div class="fl">Quantity</div><div class="ft2">I need four screws. Hand me exactly four.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-his)"><div class="fl">Quality</div><div class="ft2">I need sugar. Do not hand me salt.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-his)"><div class="fl">Relation</div><div class="ft2">I am mixing the ingredients. Do not hand me a good book, or even an oven cloth.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-his)"><div class="fl">Manner</div><div class="ft2">Make clear what contribution you are making, and make it at reasonable speed.</div></div>
+      </div>
+      <div class="srcl">Grice (1975: 47).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 18 · Grice's taxonomy -->
+<section class="slide" data-label="Historical ·Grice's taxonomy" data-screen-label="18">
+  <div class="b-slide pal-a lens-historical dB" data-sec="tax">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Grice's taxonomy</h2>
+      <svg class="tfig" viewBox="0 0 1400 500" style="max-height:440px" role="img" aria-label="A tree. What is meant divides into what is said and what is implicated. What is implicated divides into conventional and conversational. Conversational divides into generalised and particularised."><rect class="nd" x="355" y="18" width="330" height="64" rx="12"/><text class="nl" x="520" y="62">what is meant</text><g data-step="1"><path class="ln" d="M520,82 V110"/><path class="ln" d="M250,110 H790"/><path class="ln" d="M250,110 V138"/><path class="ln" d="M790,110 V138"/><rect class="nd" x="85" y="138" width="330" height="64" rx="12"/><text class="nl" x="250" y="182">what is said</text><text class="ns" x="250" y="238">truth-conditional</text><rect class="nd on" x="625" y="138" width="330" height="64" rx="12"/><text class="nl on" x="790" y="182">what is implicated</text></g><g data-step="2"><path class="ln" d="M790,202 V230"/><path class="ln" d="M560,230 H1020"/><path class="ln" d="M560,230 V258"/><path class="ln" d="M1020,230 V258"/><rect class="nd" x="395" y="258" width="330" height="64" rx="12"/><text class="nl" x="560" y="302">conventional</text><text class="ns" font-style="normal" x="560" y="358"><tspan font-style="italic">but</tspan>, <tspan font-style="italic">therefore</tspan>, <tspan font-style="italic">even</tspan></text><rect class="nd on" x="855" y="258" width="330" height="64" rx="12"/><text class="nl on" x="1020" y="302">conversational</text></g><g data-step="3"><path class="ln" d="M1020,322 V350"/><path class="ln" d="M850,350 H1190"/><path class="ln" d="M850,350 V378"/><path class="ln" d="M1190,350 V378"/><rect class="nd" x="700" y="378" width="300" height="64" rx="12"/><text class="nl" x="850" y="422">generalised</text><text class="ns" x="850" y="478"><tspan font-style="italic">some</tspan>: not all</text><rect class="nd" x="1040" y="378" width="300" height="64" rx="12"/><text class="nl" x="1190" y="422">particularised</text><text class="ns" x="1190" y="478">the light in Alex's office</text></g></svg>
+      <div class="erow full" data-step="4" style="margin-top:6px"><div class="tx tight"><strong class="ld">Conventional implicature.</strong> <em>She is poor but honest</em>: the contrast is carried by <em>but</em>, is not cancellable, and does not affect truth. Everything below <em>conversational</em> is calculable from the maxims.</div></div>
+      <div class="srcl">Grice (1975); the tree after Levinson (1983), ch. 3.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Conventional vs conversational implicature. Grice 1975 (poor but honest is the standard textbook form; Grice's own examples: "He is an Englishman; he is, therefore, brave"); diagnostics as in Levinson 1983 ch. 3; Karttunen & Peters 1979 on even; Potts 2005. -->
+<section class="slide" data-label="Historical ·Conventional and conversational" data-screen-label="x">
+  <div class="b-slide pal-a lens-historical dB" data-sec="conv">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Conventional and conversational</h2>
+      <div class="cmp">
+        <div class="ch"><span></span><span>Conventional</span><span>Conversational</span></div>
+        <div class="cr"><div class="cp">Example</div><div class="cc"><span class="gno">(22)</span> <em>She is poor but honest.</em></div><div class="cc"><span class="gno">(23)</span> <em>Some of the students passed.</em></div></div>
+        <div class="cr" data-step="1"><div class="cp">Carried by</div><div class="cc">the meaning of a word: <em>but</em>, <em>therefore</em>, <em>even</em></div><div class="cc">the maxims, plus the context</div></div>
+        <div class="cr" data-step="2"><div class="cp">Cancellable</div><div class="cc">no: <em>#…but honest, and I see no contrast</em></div><div class="cc">yes: <em>…in fact, all of them did</em></div></div>
+        <div class="cr" data-step="3"><div class="cp">Detachable</div><div class="cc">yes: <em>poor and honest</em> loses the contrast</div><div class="cc">no: <em>a few passed</em> still conveys <em>not all</em></div></div>
+        <div class="cr" data-step="4"><div class="cp">Calculable</div><div class="cc">no: learned with the word</div><div class="cc">yes: Grice's pattern</div></div>
+        <div class="cr" data-step="5"><div class="cp">Truth conditions</div><div class="cc">unaffected: true if she is poor and honest</div><div class="cc">unaffected: true even if all passed</div></div>
+      </div>
+      <div class="srcl" data-step="1">Grice (1975): <em>but</em>, <em>therefore</em>. &nbsp;·&nbsp; Karttunen &amp; Peters (1979): <em>even</em>. &nbsp;·&nbsp; Potts (2005), <em>The Logic of Conventional Implicatures</em>.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Formal -->
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">STRAND 03 / 04 · LI7862 · Week 3</div><h2>Calculating implicatures</h2><div class="ask">The maxims as an inference engine; scales, alternatives and the epistemic step.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+
+
+<!-- 19 · Calculability. Grice 1975, p. 50, the general pattern, paraphrased. -->
+<section class="slide" data-label="Formal ·Calculability" data-screen-label="19">
+  <div class="b-slide pal-a lens-formal dB" data-sec="calc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Calculability</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight">Grice's general pattern, for a speaker S who says \(p\) and thereby implicates \(q\).</div></div>
+      <div class="dv nomath">
+        <div class="st" data-step="1"><div class="n">1</div><div class="w">S has said that \(p\).</div></div>
+        <div class="st" data-step="2"><div class="n">2</div><div class="w">There is no reason to suppose S is abandoning the Cooperative Principle.<small>the presumption of cooperation</small></div></div>
+        <div class="st" data-step="3"><div class="n">3</div><div class="w">S could not be saying \(p\), cooperatively, unless S thinks that \(q\).<small>the maxim pressure: Quantity, Quality, Relation or Manner</small></div></div>
+        <div class="st" data-step="4"><div class="n">4</div><div class="w">S knows that I can see that step 3 holds, and has done nothing to stop me thinking \(q\).<small>mutual knowledge</small></div></div>
+        <div class="st out" data-step="5"><div class="n">5</div><div class="w">So S intends me to think \(q\). S has implicated that \(q\).</div></div>
+      </div>
+      <div class="srcl">Grice (1975: 50), paraphrased.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 20 · Implicature by maxim. Examples from the LIU22012 week 4 deck. -->
+<section class="slide" data-label="Formal ·Implicature by maxim" data-screen-label="20">
+  <div class="b-slide pal-a lens-formal dB" data-sec="bymax">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Implicature by maxim</h2>
+      <div class="fourways">
+        <div class="fw" data-step="1" style="--fc:var(--lens-for)"><div class="fl">Quality<small>(24) someone arrives drenched</small></div><div class="ft2"><em>Lovely weather.</em> Said: something plainly false. Meant: the opposite. Irony, sarcasm, metaphor.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-for)"><div class="fl">Quantity<small>(25) A: Did Pat pass the exam?</small></div><div class="ft2"><em>B: Pat attended the exam.</em> A weaker statement where the stronger one was available. Meant: B cannot say Pat passed.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-for)"><div class="fl">Relation<small>(26) A: Can you drive us to the airport?</small></div><div class="ft2"><em>B: I have a 9am lecture.</em> Relevance has to be reconstructed. Meant: no.</div></div>
+        <div class="fw" data-step="4" style="--fc:var(--lens-for)"><div class="fl">Manner<small>(27) after the recital</small></div><div class="ft2"><em>Pat produced a sequence of sounds closely corresponding to the score.</em> Long and opaque where <em>sang</em> was available. Meant: Pat did not sing well.</div></div>
+      </div>
+      <div class="srcl">Grice (1975). The Manner example adapts Grice's own; the others are constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 21 · Stronger alternatives · question -->
+<section class="slide" data-label="Stronger alternatives, Q" data-screen-label="21">
+  <div class="b-slide pal-a lens-formal" data-sec="alt">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Scales and strengthening</div>
+        <div class="convo big">
+          <div class="cv anim" style="--d:.15s"><div class="who">(28)</div><div class="say">Some of the students passed.</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(29)</div><div class="say">The talk was good.</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(30)</div><div class="say">Anna or Sam will chair.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 22 · Stronger alternatives · answer -->
+<section class="slide" data-label="Stronger alternatives, A" data-screen-label="22">
+  <div class="b-slide pal-a lens-formal dB" data-sec="alt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Stronger alternatives</h2>
+      <div class="fourways">
+        <div class="fw" data-step="1" style="--fc:var(--lens-for)"><div class="fl">(28) some<small>alternative: <em>all</em></small></div><div class="ft2"><em>All of the students passed</em> entails <em>some passed</em>. Left unsaid, so: <b>not all</b>.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-for)"><div class="fl">(29) good<small>alternative: <em>excellent</em></small></div><div class="ft2"><em>Excellent</em> entails <em>good</em>. Left unsaid, so: <b>not excellent</b>.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-for)"><div class="fl">(30) or<small>alternative: <em>and</em></small></div><div class="ft2"><em>Anna and Sam will chair</em> entails the disjunction. Left unsaid, so: <b>not both</b>.</div></div>
+      </div>
+      <div class="erow full" data-step="4"><div class="tx"><strong class="ld">Scalar implicature.</strong> A Quantity inference driven by alternatives: the speaker used a weaker term, the hearer considers the stronger ones, and the reading excludes them. The best studied case of implicature.</div></div>
+      <div class="srcl">Horn (1972); Gazdar (1979); Levinson (1983), ch. 3. Examples constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 23 · Horn scales. Horn 1972; the numeral row is contested (Horn 1992, Geurts 2010 ch. 2). -->
+<section class="slide" data-label="Formal ·Horn scales" data-screen-label="23">
+  <div class="b-slide pal-a lens-formal dB" data-sec="horn">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Horn scales</h2>
+      <div class="erow full" style="border-top:none;padding-top:0"><div class="tx tight"><strong class="ld">Horn scale.</strong> A sequence \(\langle e_1, e_2, \ldots, e_n\rangle\) of expressions of one grammatical category, ordered so that each entails the next. Asserting \(e_k\) implicates the negation of every \(e_j\) with \(j < k\). Horn (1972).</div></div>
+      <div class="sctab">
+        <div class="sh"><span>Scale</span><span>Asserting the weaker item conveys</span></div>
+        <div class="sr" data-step="1"><div class="s1">\(\langle\)all, most, many, some\(\rangle\)</div><div class="s2"><em>some</em>: not many, not most, not all</div></div>
+        <div class="sr" data-step="2"><div class="s1">\(\langle\)and, or\(\rangle\)</div><div class="s2"><em>or</em>: not both</div></div>
+        <div class="sr" data-step="3"><div class="s1">\(\langle\)must, should, may\(\rangle\)</div><div class="s2"><em>may</em>: not required</div></div>
+        <div class="sr" data-step="4"><div class="s1">\(\langle\)always, often, sometimes\(\rangle\)</div><div class="s2"><em>sometimes</em>: not always</div></div>
+        <div class="sr" data-step="5"><div class="s1">\(\langle\)hot, warm\(\rangle\) &nbsp; \(\langle\)excellent, good\(\rangle\)</div><div class="s2"><em>warm</em>: not hot &nbsp;·&nbsp; <em>good</em>: not excellent</div></div>
+        <div class="sr" data-step="6"><div class="s1">\(\langle\)three, two, one\(\rangle\)</div><div class="s2"><em>two</em>: not three <i>contested: numerals may be exact in the semantics</i></div></div>
+      </div>
+      <div class="srcl">Horn (1972); Levinson (1983), ch. 3; on numerals, Geurts (2010), ch. 7.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 24 · Contextual scales. Hirschberg 1985/1991, A Theory of Scalar Implicature. -->
+<section class="slide" data-label="Formal ·Contextual scales" data-screen-label="24">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ctx">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Contextual scales</h2>
+      <div class="imgrow" style="--phw:430px;"><div class="imtx">
+      <div class="egpanel" style="margin-top:0">
+        <div class="eghead">Travelling north from Cork to Belfast</div>
+        <div class="eg"><span class="no">(31)</span><span class="ex">I made it to Wexford.<span class="gl">conveys: not to Dublin, not to Belfast</span></span></div>
+        <div class="fx" data-step="1" style="text-align:left;margin-left:0">\( \langle \text{Cork},\ \text{Wexford},\ \text{Dublin},\ \text{Belfast} \rangle \)</div>
+        <div class="fxnote" data-step="1" style="text-align:left">ordered by the route: reaching a later point entails reaching the earlier ones</div>
+      </div>
+      <div class="erow full" data-step="2"><div class="tx">A scale can be ordered by entailment between lexical items, as with Horn scales, by a ranking, a sequence, a plan or a route, as here, or by the question under discussion, where the stronger alternatives are the more complete answers.</div></div>
+      </div><div class="ph"><!-- Base map: Island of Ireland location map.svg, NordNordWest / Nilfanion, CC BY-SA 3.0, Wikimedia Commons; recoloured. Bounds 55.6N 51.2N 11W 5W. --><svg class="mapfig" viewBox="0 0 725 904" role="img" aria-label="Map of Ireland with the route Cork, Wexford, Dublin, Belfast"><image href="images/ireland.jpg" x="0" y="0" width="725" height="904"/><g data-step="1"><polyline class="rt" points="306,761 548,671 573,462 613,206"/><circle class="dot" cx="306" cy="761" r="13"/><circle class="dot on" cx="548" cy="671" r="13"/><circle class="dot" cx="573" cy="462" r="13"/><circle class="dot" cx="613" cy="206" r="13"/><text class="cl" x="282" y="817" text-anchor="end">Cork</text><text class="cl on" x="522" y="685" text-anchor="end">Wexford</text><text class="cl" x="547" y="476" text-anchor="end">Dublin</text><text class="cl" x="587" y="200" text-anchor="end">Belfast</text></g></svg></div></div>
+      <div class="srcl">Hirschberg (1985). Example constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 25 · The derivation. Gricean two-step with the epistemic step: Soames 1982, Horn 1989, Sauerland 2004, Geurts 2010 §1.4. Notation: K_S φ for "S knows that φ". -->
+<section class="slide" data-label="Formal ·The derivation" data-screen-label="25">
+  <div class="b-slide pal-a lens-formal dB" data-sec="deriv">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <div class="dv">
+        <div class="st" data-step="1"><div class="n">1</div><div class="w">S said \(p\).<small>(28) some of the students passed</small></div><div class="m">\(p\)</div></div>
+        <div class="st" data-step="2"><div class="n">2</div><div class="w">\(q\) was available, relevant, and stronger.<small>all of the students passed; \(q \models p\), \(p \not\models q\)</small></div><div class="m">\(q\)</div></div>
+        <div class="st" data-step="3"><div class="n">3</div><div class="w">Quantity: had S been in a position to assert \(q\), S would have.<small>Quality: S asserts only what S knows</small></div><div class="m"></div></div>
+        <div class="st" data-step="4"><div class="n">4</div><div class="w">So S does not know that \(q\).<small>the weak implicature</small></div><div class="m">\(\neg K_S\, q\)</div></div>
+        <div class="st" data-step="5"><div class="n">5</div><div class="w">Competence: S knows whether \(q\).<small>an extra assumption about S; often warranted, always cancellable</small></div><div class="m">\(K_S\, q \vee K_S\, \neg q\)</div></div>
+        <div class="st out" data-step="6"><div class="n">6</div><div class="w">So S knows that not \(q\).<small>the strong implicature: not all of the students passed</small></div><div class="m">\(K_S\, \neg q\)</div></div>
+      </div>
+      <div class="srcl" data-step="7">\(K_S\,arphi\): S knows that \(arphi\). Steps 1 to 4: Grice (1975). Steps 5 and 6, the epistemic step: Soames (1982), Sauerland (2004), Geurts (2010), ch. 2.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 26 · Weak and strong -->
+<section class="slide" data-label="Formal ·Weak and strong" data-screen-label="26">
+  <div class="b-slide pal-a lens-formal dB" data-sec="weak">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Weak and strong</h2>
+            <div class="erow full" style="border-top:none"><div class="tx tight">Each box stands for every way the world could be. The outer disc holds the worlds where <em>some</em> passed, the inner disc those where <em>all</em> passed, and the shaded region the worlds the speaker's evidence leaves open; \(K_S\,\varphi\) holds when every shaded world is a \(\varphi\) world.</div></div>
+      <div class="kfig3"><div class="kp" data-step="1"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="w" x="6" y="6" width="388" height="288" rx="14"/><circle class="pd" cx="200" cy="152" r="128"/><circle class="qd" cx="228" cy="166" r="62"/><ellipse class="is" cx="214" cy="170" rx="36" ry="26"/><text class="dl" x="96" y="66">some</text><text class="dl" x="228" y="250" text-anchor="middle">all</text></svg><div class="kc">\(K_S\, p\)<small>what is said: consistent with knowing <em>all</em></small></div></div><div class="kp" data-step="2"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="w" x="6" y="6" width="388" height="288" rx="14"/><circle class="pd" cx="200" cy="152" r="128"/><circle class="qd" cx="228" cy="166" r="62"/><ellipse class="is" cx="250" cy="150" rx="70" ry="38"/><text class="dl" x="96" y="66">some</text><text class="dl" x="228" y="250" text-anchor="middle">all</text></svg><div class="kc">\(\neg K_S\, q\)<small>weak: <em>all</em> left open. Maxims alone</small></div></div><div class="kp meant" data-step="3"><svg viewBox="0 0 400 300" aria-hidden="true"><rect class="w" x="6" y="6" width="388" height="288" rx="14"/><circle class="pd" cx="200" cy="152" r="128"/><circle class="qd" cx="228" cy="166" r="62"/><ellipse class="is" cx="118" cy="150" rx="46" ry="62"/><text class="dl" x="96" y="66">some</text><text class="dl" x="228" y="250" text-anchor="middle">all</text></svg><div class="kc">\(K_S\, \neg q\)<small>strong: <em>all</em> ruled out. Needs competence</small></div></div></div>
+      <div class="kleg" data-step="1"><i></i>worlds the speaker cannot rule out</div>
+      <div class="srcl">Sauerland (2004); Geurts (2010), ch. 2.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Competence (the epistemic step). Sauerland 2004; Geurts 2010 ch. 2 on the competence assumption. -->
+<section class="slide" data-label="Formal ·Competence" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal dB" data-sec="comp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Competence</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight"><strong class="ld">The competence assumption.</strong> The speaker knows whether the stronger alternative is true: \(K_S\, q \vee K_S\, \neg q\). Combined with the weak implicature \(\neg K_S\, q\), it yields the strong one, \(K_S\, \neg q\). Nothing in the maxims supplies it; the context does.</div></div>
+      <div class="egpanel" style="margin-top:10px">
+        <div class="eg" data-step="1"><span class="no">(32)</span><span class="ex"><span style="font-style:normal;color:var(--tcd-grey-75)">[the invigilator, who saw every script]</span> Some of the students passed.<span class="gl">competent: strong reading, not all passed</span></span></div>
+        <div class="eg" data-step="2"><span class="no">(33)</span><span class="ex">Some of the students passed. I haven't seen the rest of the results.<span class="gl">competence withdrawn: weak reading only, and no contradiction</span></span></div>
+        <div class="eg" data-step="3"><span class="no">(34)</span><span class="ex"><span style="font-style:normal;color:var(--tcd-grey-75)">[a new lecturer, asked whether the class did the reading]</span> Some of them did.<span class="gl">competence doubtful: the hearer may stop at the weak reading</span></span></div>
+      </div>
+      <div class="srcl" data-step="1">Soames (1982); Sauerland (2004); Geurts (2010), ch. 2.</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Grand: example alone -->
+<section class="slide" data-label="Grand, example" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal" data-sec="grandx">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(35)</div><div class="say">A: How was the gig? &nbsp; B: Grand.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Grand · answer. Hickey, R. (2017). The pragmatics of grand in Irish English. Journal of Historical Pragmatics 18(1): 82–102. doi:10.1075/jhp.18.1.04hic
+     O'Keeffe, A. & Mark, G. (2021). 'Bloody hell, I'm grand': Adjectives in spoken Irish and British English. In Lucek & Amador-Moreno (eds), Expanding the Landscapes of Irish English Research, 85–109. Routledge.
+     Traugott 1995 (subjectification), 2003 (intersubjectification). Labels "impressive", "approving", "reassuring" grand are Hickey's; "You're grand" is an illustration of the reassuring use, not a quotation. -->
+<section class="slide" data-label="Formal ·Grand" data-screen-label="26b">
+  <div class="b-slide pal-a lens-formal dB" data-sec="grand">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h"><em>Grand</em></h2>
+      <div class="egpanel" style="margin-top:0;padding:8px 30px 4px">
+        <div class="eg" style="border-top:none"><span class="no">(35)</span><span class="ex">A: How was the gig? &nbsp; B: Grand.<span class="gl">said: it was fine. Conveys: not great</span></span></div>
+        <div class="fx" data-step="1">\[ \langle \text{brilliant},\ \text{great},\ \textit{grand} \rangle \]</div>
+      </div>
+      <div class="erow full" data-step="2"><div class="tx tight">Older <em>grand</em>, ‘displaying grandeur’, sits at the top of its scale, so it has nothing stronger to exclude. Irish English <em>grand</em>, ‘fine’, ‘alright’, ‘in good form’, sits near the bottom, so asserting it excludes <em>great</em>, and the hearer has to know which scale is in play.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Hickey (2017).</strong> Over two centuries, impressive <em>grand</em> gave rise to approving <em>grand</em>, the speaker's own assessment, and then to reassuring <em>grand</em>, aimed at the hearer (<em>you're grand</em>): subjectification, then intersubjectification, in Traugott's terms.</div></div>
+      <div class="srcl" data-step="3">Hickey, R. (2017). The pragmatics of <em>grand</em> in Irish English. <em>Journal of Historical Pragmatics</em> 18(1): 82–102. &nbsp;·&nbsp; O'Keeffe, A. &amp; Mark, G. (2021). ‘Bloody hell, I'm grand’: Adjectives in spoken Irish and British English. &nbsp;·&nbsp; Traugott (1995, 2003).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Maybe: example alone. The utterance is the title of O'Riordan & Devlin 2024; the bracketed context is ours. -->
+<section class="slide" data-label="Maybe, example" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal" data-sec="maybex">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(36)</div><div class="say"><span style="font-style:normal;font-size:30px;color:var(--tcd-grey-75)">[asked a favour]</span> &nbsp;Ah, uhm, yeaaaah, maybe.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Maybe · answer. O'Riordan, E. & Devlin, A. M. (2024). ''Ah, uhm, yeaaaah, maybe.'' Developing a new data collection instrument to explore the gendered realisation of refusals by young adult speakers of Irish English. Teanga 31. doi:10.35903/teanga.v31i.7704
+     Design (their Table 1): eight high-imposition requests recorded by Irish English speakers aged 20–30 and 50–60 (a friend borrowing money, a friend wanting a spare concert ticket, a manager asking for the staff party to be planned, a landlord asking for his dogs to be minded, a manager asking for shift cover, a lecturer suggesting a project idea, etc.); 18 respondents (9 m, 9 f) aged 20–30 answered orally.
+     Findings (abstract, §5): pauses, elongations, tuts and dysfluencies prominent; paralinguistic modifiers more frequent towards older askers; avoiding face threat mattered more than gender. -->
+<section class="slide" data-label="Formal ·Maybe" data-screen-label="26c">
+  <div class="b-slide pal-a lens-formal dB" data-sec="maybe">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h"><em>Maybe</em></h2>
+      <div class="dv">
+        <div class="st" data-step="1"><div class="n">1</div><div class="w">S said <em>maybe</em>.<small>(36) Ah, uhm, yeaaaah, maybe.</small></div><div class="m">\(\Diamond q\)</div></div>
+        <div class="st" data-step="2"><div class="n">2</div><div class="w"><em>Yes</em> was available and stronger.<small>\(\langle\)yes, probably, maybe\(\rangle\)</small></div><div class="m">\(q\)</div></div>
+        <div class="st" data-step="3"><div class="n">3</div><div class="w">Quantity: S cannot say <em>yes</em>. Competence: S knows her own plans.<small>withdrawn in (33); about one's own plans, it holds</small></div><div class="m">\(\neg K_S\, q\)</div></div>
+        <div class="st out" data-step="4"><div class="n">4</div><div class="w">So S will not do it. A refusal by scalar implicature.</div><div class="m">\(K_S\, \neg q\)</div></div>
+      </div>
+      <div class="erow full" data-step="5"><div class="tx tight"><strong class="ld">O'Riordan &amp; Devlin (2024).</strong> Eighteen speakers aged 20 to 30 refused eight recorded requests: a loan, minding a landlord's dogs, covering a shift. Pauses, elongations, tuts and hesitations throughout, more towards older askers. Face mattered more than gender.</div></div>
+      <div class="erow full" data-step="6"><div class="tx tight">The scalar term carries the refusal, and the elongated <em>yeaaaah</em> and the pause mark it, by Manner, as a dispreferred response.</div></div>
+      <div class="srcl" data-step="5">O'Riordan &amp; Devlin (2024), <em>Teanga</em> 31: refusals by young adult speakers of Irish English.</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Violating: Grice 1975 ("quietly and unostentatiously violate a maxim ... liable to mislead"), Thomas 1995; dog example as in Yule 1996 ch. 5, from The Pink Panther Strikes Again. -->
+<section class="slide" data-label="Formal ·Violating" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal dB" data-sec="viol">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Violating</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight"><strong class="ld">Violating.</strong> The speaker quietly and unostentatiously breaks a maxim, and the hearer is meant to take the words at face value. Grice: the speaker is liable to mislead.</div></div>
+      <div class="egpanel" style="margin-top:10px">
+        <div class="eg" data-step="1"><span class="no">(37)</span><span class="ex">Man: Does your dog bite? &nbsp; Woman: No. <span style="font-style:normal;color:var(--tcd-grey-75)">[he pats the dog; it bites him]</span> &nbsp; Man: You said your dog doesn't bite! &nbsp; Woman: He doesn't. But that's not my dog.<span class="gl">Quantity: less information than the situation required. Every word true; the man is misled</span></span></div>
+      </div>
+      <div class="erow full" data-step="2"><div class="tx tight">A violation works only while the hearer does not notice it; once it is seen it counts as deception, and no implicature is recovered.</div></div>
+      <div class="srcl" data-step="1">Grice (1975) · Thomas (1995), ch. 3 · Yule (1996), ch. 5, after <em>The Pink Panther Strikes Again</em> (1976).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Flouting: Grice 1975 (testimonial letter; irony) and Thomas 1995 ch. 3 definition, paraphrased. -->
+<section class="slide" data-label="Formal ·Flouting" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal dB" data-sec="flout">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Flouting</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight"><strong class="ld">Flouting.</strong> The speaker blatantly fails to observe a maxim, with no intention to mislead, so that the hearer looks for a meaning other than the one expressed. The Cooperative Principle holds at the level of what is meant.</div></div>
+      <div class="egpanel" style="margin-top:10px">
+        <div class="eg" data-step="1"><span class="no">(38)</span><span class="ex"><span style="font-style:normal;color:var(--tcd-grey-75)">[a testimonial for a candidate for a philosophy job]</span> Dear Sir, Mr X's command of English is excellent, and his attendance at tutorials has been regular. Yours, etc.<span class="gl">Quantity: far too little, from someone who knows more. Conveys: Mr X is no good at philosophy</span></span></div>
+        <div class="eg" data-step="2"><span class="no">(39)</span><span class="ex"><span style="font-style:normal;color:var(--tcd-grey-75)">[of a friend who has passed on a secret]</span> X is a fine friend.<span class="gl">Quality: plainly false. Conveys: the opposite. Irony</span></span></div>
+      </div>
+      <div class="srcl" data-step="1">Grice (1975), examples of flouting · Thomas (1995), ch. 3.</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Infringing: Thomas 1995 ch. 3 (categories paraphrased). Example constructed for illustration. -->
+<section class="slide" data-label="Formal ·Infringing" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal dB" data-sec="infr">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Infringing</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight"><strong class="ld">Infringing.</strong> The speaker fails to observe a maxim with no intention of generating an implicature and no intention of deceiving. The cause is performance: imperfect command of the language (a young child, a learner), impaired performance (nervousness, drunkenness, excitement), or a cognitive impairment.</div></div>
+      <div class="egpanel" style="margin-top:10px">
+        <div class="eg" data-step="1"><span class="no">(40)</span><span class="ex"><span style="font-style:normal;color:var(--tcd-grey-75)">[a nervous interviewee, asked where she studied]</span> At Trinity. Well, first a year at Maynooth, then my sister moved, so I moved too, then Trinity. Trinity, yes.<span class="gl">Quantity and Manner not observed. Nothing is implicated</span></span></div>
+      </div>
+      <div class="srcl">Thomas (1995), ch. 3.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Opting out: Grice 1975 ("I cannot say more; my lips are sealed"); Thomas 1995 on institutional opting out. Second example constructed. -->
+<section class="slide" data-label="Formal ·Opting out" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal dB" data-sec="opt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Opting out</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight"><strong class="ld">Opting out.</strong> The speaker makes plain an unwillingness to cooperate in the way the maxim requires. No maxim is broken behind the hearer's back: the speaker announces that it is off.</div></div>
+      <div class="egpanel" style="margin-top:10px">
+        <div class="eg" data-step="1"><span class="no">(41)</span><span class="ex">I cannot say more; my lips are sealed.<span class="gl">Grice (1975)</span></span></div>
+        <div class="eg" data-step="2"><span class="no">(42)</span><span class="ex"><span style="font-style:normal;color:var(--tcd-grey-75)">[a spokesperson, asked about an ongoing investigation]</span> I'm not in a position to comment on that.<span class="gl">the institutional form: legal or professional constraint</span></span></div>
+      </div>
+      <div class="erow full" data-step="3"><div class="tx tight">Refusing to answer can itself inform, since the hearer can still ask why the speaker opted out.</div></div>
+      <div class="srcl" data-step="1">Grice (1975) · Thomas (1995), ch. 3.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Clash: Grice 1975, the South of France example. -->
+<section class="slide" data-label="Formal ·Clash" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal dB" data-sec="clash">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Clash</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight"><strong class="ld">Clash.</strong> The speaker cannot observe one maxim without breaking another. Typically Quantity against Quality: say as much as required, but only what you have evidence for.</div></div>
+      <div class="egpanel" style="margin-top:10px">
+        <div class="eg" data-step="1"><span class="no">(43)</span><span class="ex"><span style="font-style:normal;color:var(--tcd-grey-75)">[A is planning a holiday in France and would like to visit C, if it is not too far out of the way]</span> A: Where does C live? &nbsp; B: Somewhere in the South of France.<span class="gl">Quantity: less than A needs. Quality explains why. Conveys: B does not know where C lives</span></span></div>
+      </div>
+      <div class="erow full" data-step="2"><div class="tx tight">B's answer carries the weak implicature \(\neg K_S\, q\): for any more specific place \(q\), B does not know that C lives there.</div></div>
+      <div class="srcl" data-step="1">Grice (1975).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Suspending: Thomas 1995 ch. 3 (culture- or event-specific suspension); Keenan 1976 Malagasy. -->
+<section class="slide" data-label="Formal ·Suspending" data-screen-label="x">
+  <div class="b-slide pal-a lens-formal dB" data-sec="susp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Suspending</h2>
+      <div class="erow full" style="border-top:none"><div class="tx tight"><strong class="ld">Suspending.</strong> A maxim is not in force in a particular culture or event, so failing to observe it generates no implicature. Everyone knows it is off.</div></div>
+      <div class="fourways" style="margin-top:6px">
+        <div class="fw" data-step="1" style="--fc:var(--lens-for)"><div class="fl">Quantity<small>Malagasy, Keenan (1976)</small></div><div class="ft2">Speakers routinely give less information than they have; hearers draw nothing from the gap.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-for)"><div class="fl">Quality<small>jokes, fiction, pretend play</small></div><div class="ft2">No one is expected to be saying what they believe true.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-for)"><div class="fl">Manner<small>riddles, crossword clues</small></div><div class="ft2">Obscurity is the genre.</div></div>
+      </div>
+      <div class="srcl" data-step="1">Thomas (1995), ch. 3 · Keenan (1976).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 30 · Flout or violate · question. Items from the LIU22012 week 3 exercise sheet. -->
+<section class="slide" data-label="Flout or violate, Q" data-screen-label="30">
+  <div class="b-slide pal-a lens-formal" data-sec="fv">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Flouting or violating?</div>
+        <div class="convo">
+          <div class="cv anim" style="--d:.15s"><div class="who">(44)</div><div class="say">Did you break my mug? &nbsp; Of course not. &nbsp;<span style="font-style:normal;font-size:28px;color:var(--tcd-grey-75)">(they did)</span></div><div class="ans" data-step="1">violating · Quality</div></div>
+          <div class="cv anim" style="--d:.3s"><div class="who">(45)</div><div class="say">Someone arrives drenched. &nbsp; Lovely weather!</div><div class="ans" data-step="2">flouting · Quality</div></div>
+          <div class="cv anim" style="--d:.45s"><div class="who">(46)</div><div class="say">Any concerns about the candidate? &nbsp; They have very neat handwriting.</div><div class="ans" data-step="3">flouting · Quantity, Relation</div></div>
+          <div class="cv anim" style="--d:.6s"><div class="who">(47)</div><div class="say">Do you have any spare cash? &nbsp; I'm living very economically at the moment.</div><div class="ans" data-step="4">flouting · Manner, Quantity</div></div>
+          <div class="cv anim" style="--d:.75s"><div class="who">(48)</div><div class="say">Could I have an extension? &nbsp; University policy is very clear about deadlines.</div><div class="ans" data-step="5">flouting · Relation</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- § Applied -->
+<section class="slide" data-label="§ Applied" data-screen-label="§ Applied">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-app"/></svg></div></div>
+    <div class="r"><div class="lab">Applied</div><div class="ct">STRAND 04 / 04 · LI7862 · Week 3</div><h2>Implicature in use</h2><div class="ask">Humour, language change, a courtroom, another culture, machines, and an experiment.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+
+
+<!-- Humour: Raskin 1985 (non-bona-fide communication); Attardo 1993 JoP 19: 537–558 (abstract). Groucho line: attributed. Time exchange: a standard classroom example. -->
+<section class="slide" data-label="Applied ·Humour" data-screen-label="x">
+  <div class="b-slide pal-a lens-typological dB" data-sec="hum">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Humour</h2>
+      <div class="egpanel" style="margin-top:0px">
+        <div class="eg" data-step="1"><span class="no">(49)</span><span class="ex">I've had a perfectly wonderful evening. But this wasn't it.</span></div>
+        <div class="eg" data-step="2"><span class="no">(50)</span><span class="ex">A: Do you know what time it is? &nbsp; B: Yes.</span></div>
+      </div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Raskin (1985).</strong> Jokes are non-bona-fide communication. Teller and audience leave the ordinary Cooperative Principle for a joke-telling mode with its own rules.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">Attardo (1993).</strong> Jokes violate maxims, and yet the exchange does not break down: the violation is the point. A joke still conveys information, through what it takes for granted.</div></div>
+      <div class="srcl" data-step="3">Raskin, V. (1985). <em>Semantic Mechanisms of Humor</em>. &nbsp;·&nbsp; Attardo, S. (1993). Violation of conversational maxims and cooperation: the case of jokes. <em>Journal of Pragmatics</em> 19: 537–558.</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- 34 · Language change. Grundy (2008) §5.5; Traugott 1989, 1995, 1999; Levinson 2000 on the PCI → GCI → convention path. -->
+<section class="slide" data-label="Applied ·Language change" data-screen-label="34">
+  <div class="b-slide pal-a lens-typological dB" data-sec="chg">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Language change</h2>
+      <div class="egpanel" style="margin-top:0;padding:8px 30px 4px"><div class="fx">\[ \text{particularised} \;\longrightarrow\; \text{generalised} \;\longrightarrow\; \text{conventional meaning} \]</div><div class="fxnote">an inference drawn once, then by default, then encoded: Levinson (2000), Traugott (1999)</div></div>
+      <div class="fourways" style="margin-top:6px">
+        <div class="fw" data-step="1" style="--fc:var(--lens-typ)"><div class="fl"><em>in fact</em><small>Traugott (1995)</small></div><div class="ft2">16th c. a noun. 18th c. an epistemic marker of speaker belief. Then adversative: <em>x, but in fact y</em>. 19th c. a discourse particle promoting a preferred wording.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-typ)"><div class="fl"><em>as long as</em><small>Traugott (1999)</small></div><div class="ft2">Temporal in Old English, conditional by inference in some uses. The inference becomes the default, then the meaning.</div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-typ)"><div class="fl"><em>may</em><small>Grundy (2008)</small></div><div class="ft2">Deontic first, epistemic later.</div></div>
+      </div>
+      <div class="srcl">Levinson (2000); Traugott (1995, 1999); Grundy (2008), §5.5.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 35 · Court. Bronston v. United States, 409 U.S. 352 (1973). Testimony as quoted in the opinion. -->
+<section class="slide" data-label="Applied ·Court" data-screen-label="35">
+  <div class="b-slide pal-a lens-typological dB" data-sec="crt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h"><em>Bronston v. United States</em> (1973)</h2>
+      <div class="imgrow" style="--phw:440px;--phh:330px;"><div class="imtx">
+      <div class="convo" style="margin-top:0">
+        <div class="cv"><div class="who">(51) Q</div><div class="say" style="font-size:36px">Do you have any bank accounts in Swiss banks, Mr. Bronston?</div></div>
+        <div class="cv"><div class="who">A</div><div class="say" style="font-size:36px">No, sir.</div></div>
+        <div class="cv"><div class="who">Q</div><div class="say" style="font-size:36px">Have you ever?</div></div>
+        <div class="cv"><div class="who">A</div><div class="say" style="font-size:36px">The company had an account there for about six months, in Zurich.</div></div>
+      </div>
+      </div><div class="ph"><!-- US Supreme Court.JPG, Kjetil Ree, CC BY-SA 3.0, Wikimedia Commons --><img src="images/supreme-court.jpg" alt="The United States Supreme Court building"></div></div>
+<div class="erow full" data-step="1"><div class="tx tight">Bronston had held a personal Swiss account for five years. What he said was true, what he implicated was false, and a jury convicted him of perjury.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight">The Supreme Court held that perjury covers what is said: a true but unresponsive answer, even one meant to mislead, is for the questioner to pursue by pressing the witness.</div></div>
+      <div class="srcl"><em>Bronston v. United States</em>, 409 U.S. 352 (1973).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 36 · Universality. Keenan (Ochs) 1976, "The universality of conversational postulates", Language in Society 5. -->
+<section class="slide" data-label="Applied ·Universality" data-screen-label="36">
+  <div class="b-slide pal-a lens-typological dB" data-sec="uni">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Universality</h2>
+      <div class="imgrow" style="--phw:420px;--phh:470px;"><div class="imtx">
+      <div class="egpanel" style="margin-top:0">
+        <div class="eghead">Malagasy, rural Madagascar. Keenan (1976)</div>
+        <div class="eg"><span class="no">(52)</span><span class="ex">Where is your mother? &nbsp; She is either in the house or at the market.<span class="gl">the speaker knows which</span></span></div>
+      </div>
+      <div class="erow full" data-step="1"><div class="tx">In the Malagasy communities Keenan studied, speakers routinely give less information than they have, because information is scarce and valued and committing to a claim that turns out false costs face. Quantity is not met, and hearers draw no implicature from that.</div></div>
+      </div><div class="ph"><!-- Analakely Market in Antananarivo.jpg, Rudolph.A.furtado, CC BY 4.0, Wikimedia Commons --><img src="images/analakely.jpg" alt="A market street in Antananarivo, Madagascar"></div></div>
+<div class="erow full" data-step="2"><div class="tx">Keenan took this to show that the maxims are not universal in application. On the other reading, the maxim fixes only <em>as informative as required</em>, and each community sets what is required.</div></div>
+      <div class="srcl">Keenan (1976), <em>Language in Society</em> 5: 67–80.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 37 · Machines. Ruis et al. 2023 (NeurIPS), "The Goldilocks of pragmatic understanding"; Hu et al. 2023 (ACL), "A fine-grained comparison of pragmatic language understanding in humans and language models". -->
+<section class="slide" data-label="Applied ·Machines" data-screen-label="37">
+  <div class="b-slide pal-a lens-typological dB" data-sec="mach">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Machines</h2>
+      <div class="egpanel" style="margin-top:0">
+        <div class="eg"><span class="no">(53)</span><span class="ex">A: Did you leave fingerprints? &nbsp; B: I wore gloves.<span class="gl">scored: <em>so the answer is no</em> against <em>so the answer is yes</em></span></span></div>
+      </div>
+      <div class="erow full" data-step="1"><div class="tx tight"><strong class="ld">Ruis et al. (2023).</strong> Most model families sit near chance on this binary task. Models instruction-tuned on worked examples do markedly better. What the model was trained to do matters more than its size.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight"><strong class="ld">Hu et al. (2023).</strong> Seven pragmatic phenomena, humans against models, zero-shot. The largest models approach human accuracy and share the human error pattern: when they miss, they take the literal reading.</div></div>
+      <div class="srcl">Ruis et al. (2023), NeurIPS; Hu et al. (2023), ACL.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Noveck 2001, Cognition 78: 165–188, Experiment 3 (after Smith 1980). Materials (a)–(f), participants and procedure from §4.1. -->
+<section class="slide" data-label="Applied ·Noveck (2001): the experiment" data-screen-label="x">
+  <div class="b-slide pal-a lens-typological dB" data-sec="nov1">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Noveck (2001)</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">The experiment asks whether children draw the <em>not all</em> inference from <em>some</em>. A listener who draws it hears a literally true <em>some</em> sentence as false.</div></div>
+      <div class="sctab nov">
+        <div class="sh"><span>Sentence type</span><span>Status</span><span>Expected answer</span></div>
+        <div class="sr" data-step="2"><div class="s1"><span class="gno">(54)</span> Some birds live in cages.</div><div class="s2">true, and fine</div><div class="s2">agree</div></div>
+        <div class="sr" data-step="3"><div class="s1"><span class="gno">(55)</span> Some stores are made of bubbles.</div><div class="s2">false</div><div class="s2">disagree</div></div>
+        <div class="sr on" data-step="4"><div class="s1"><span class="gno">(56)</span> Some giraffes have long necks.</div><div class="s2">true, but all giraffes do</div><div class="s2">logical listener: agree<br>pragmatic listener: disagree</div></div>
+      </div>
+      <div class="erow full" data-step="5"><div class="tx tight">Noveck tested 31 eight-year-olds, 30 ten-year-olds and 15 adults, all native French speakers in Haute-Savoie. Each heard thirty statements with <em>certains</em> and <em>tous</em>, five of each type, including <em>all</em> controls such as <em>All elephants have trunks</em>, and answered <em>yes, I agree</em> or <em>no, I don't agree</em>.</div></div>
+      <div class="srcl">Noveck (2001), <em>Cognition</em> 78: 165–188, Experiment 3.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Noveck 2001 Table 4, last row (Yes = agree): 89 / 85 / 41. Controls 84–99%. Adult pattern §4.2: 6 of 15 disagree with all five (40%), 4 agree with one or two (27%), 5 agree with all five (33%). Bott & Noveck 2004, JML 51. -->
+<section class="slide" data-label="Applied ·Noveck (2001): the results" data-screen-label="x">
+  <div class="b-slide pal-a lens-typological dB" data-sec="nov2">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Noveck (2001)</h2>
+      <div class="imgrow" style="--phw:520px"><div class="imtx">
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">Children mostly agree, reading <em>some</em> logically, as compatible with <em>all</em>. Adults mostly disagree, hearing <em>some</em> as <em>not all</em>, so that the sentence comes out false.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight">On the other five sentence types the children score between 84 and 99% correct.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">Of the 15 adults, six reject all five items, five accept all five, four are mixed.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">Bott &amp; Noveck (2004).</strong> Adults who answer <em>false</em> take measurably longer than those who answer <em>true</em>, so the strengthened reading costs time.</div></div>
+      </div><div class="ph" style="margin-top:6px"><svg class="nbars" data-step="1" viewBox="0 0 560 420" role="img" aria-label="Bar chart: agreement with underinformative some sentences. 7 to 8 year olds 89 percent, 10 to 11 year olds 85 percent, adults 41 percent."><line class="gl" x1="70" y1="360" x2="540" y2="360"/><text class="yl" x="58" y="368">0</text><line class="gl" x1="70" y1="280" x2="540" y2="280"/><text class="yl" x="58" y="288">25</text><line class="gl" x1="70" y1="200" x2="540" y2="200"/><text class="yl" x="58" y="208">50</text><line class="gl" x1="70" y1="120" x2="540" y2="120"/><text class="yl" x="58" y="128">75</text><line class="gl" x1="70" y1="40" x2="540" y2="40"/><text class="yl" x="58" y="48">100</text><g><rect class="b" x="110" y="75" width="100" height="285" rx="4"/><text class="bv" x="160" y="63">89%</text></g><text class="xl" x="160" y="400">7–8</text><g><rect class="b" x="260" y="88" width="100" height="272" rx="4"/><text class="bv" x="310" y="76">85%</text></g><text class="xl" x="310" y="400">10–11</text><g><rect class="b ad" x="410" y="229" width="100" height="131" rx="4"/><text class="bv" x="460" y="217">41%</text></g><text class="xl" x="460" y="400">Adults</text></svg></div></div>
+      <div class="srcl">Noveck (2001), Table 4; Bott &amp; Noveck (2004), <em>Journal of Memory and Language</em> 51.</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/prag-meta.js"></script>
+<script src="../../shared/prag-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-semantics2/week-02: the expandable TOC reflects
+   THIS lecture's sections; strand groups carry their lens colour. */
+(function () {
+  var TITLES = {
+    wk:"This week", road:"Roadmap", rd:"Readings",
+    meet:"Said and meant", five:"Five exchanges", gcipci:"Generalised and particularised", gcis:"Generalised implicatures", diag:"Diagnostics", nov1:"Noveck (2001)", nov2:"Noveck (2001), results",
+    prob:"Grice's problem", grice:"Paul Grice", mean:"Meaning (1957)", rmr:"Recursive mind reading", cp:"The Cooperative Principle", coop:"Rational cooperation", tax:"Grice's taxonomy", conv:"Conventional and conversational",
+    calc:"Calculability", bymax:"Implicature by maxim",
+    alt:"Scales and strengthening", horn:"Horn scales", ctx:"Contextual scales", deriv:"The derivation", weak:"Weak and strong", comp:"Competence", grandx:"Grand: the example", grand:"Grand", maybex:"Maybe: the example", maybe:"Maybe", emb:"Embedding and disjunction",
+    flout:"Flouting", viol:"Violating", infr:"Infringing", opt:"Opting out", clash:"Clash", susp:"Suspending", fv:"Flout or violate",
+    hum:"Humour", sub:"Subtitles", chg:"Language change", crt:"Court", uni:"Universality", mach:"Machines", thu:"Thursday"
+  };
+  var GROUPS = [
+    { t:"Introduction",          sc:null,         keys:["wk","road","rd"] },
+    { t:"Empirical",             sc:"--lens-emp", keys:["meet","five","gcipci","gcis","diag"] },
+    { t:"Historical",            sc:"--lens-his", keys:["prob","grice","mean","rmr","cp","coop","tax","conv"] },
+    { t:"Formal",                sc:"--lens-for", keys:["calc","bymax"] },
+    { t:"Scalar implicature",    sc:"--lens-for", keys:["alt","horn","ctx","deriv","weak","comp","grandx","grand","maybex","maybe"] },
+    { t:"Maxims unobserved",     sc:"--lens-for", keys:["viol","flout","infr","opt","clash","susp","fv"] },
+    { t:"Applied",               sc:"--lens-typ", keys:["hum","chg","crt","uni","mach","nov1","nov2"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "▾" : "▸";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LI7862<br>Week 3</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 3</div><div class="t2">Implicature</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#3a1220"/>
+    <rect x="8" y="10" width="84" height="3" rx="1.5" fill="#e7cdd6" opacity=".6"/>
+    <rect x="8" y="20" width="84" height="22" rx="3" fill="#4d1a2c"/>
+    <rect x="8" y="48" width="84" height="44" rx="3" fill="#4d1a2c" opacity=".7"/>
+    <text x="50" y="96" font-family="serif" font-size="7" fill="#c98aa1" text-anchor="middle">LI7862 · LECTURE DECK</text>
+  </svg>
+</template>
+</body>
+</html>
