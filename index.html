@@ -262,6 +262,7 @@
   <symbol id="i-deck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></symbol>
   <symbol id="i-handout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
   <symbol id="i-hw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 5v15h16V9M4 5 9 .5"/><path d="M9 12h7M9 16h7"/><path d="M19 3l2 2-5 5-2.5.5.5-2.5z"/></symbol>
+  <symbol id="i-ans" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 14.5l2 2 4-4.5"/></symbol>
   <symbol id="i-read" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.5 4 4.7v13C8 17.5 10.5 18 12 19.5M12 6.5C13.5 5 16 4.5 20 4.7v13C16 17.5 13.5 18 12 19.5M12 6.5v13"/></symbol>
 </defs></svg>
 
@@ -273,8 +274,8 @@
    ============================================================ */
 const WEEKS = [
   // ── Semantics · LI7869 ──
-  { m:'sem', no:1,  sec:'Foundations',       title:'What is Meaning?',            deck:'ready', handout:'ready', ex:'draft' },
-  { m:'sem', no:2,  sec:'Logic & Sets',      title:'Sentences and Connectives',   deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem', no:1,  sec:'Foundations',       title:'What is Meaning?',            deck:'ready', handout:'ready', ex:'none' },
+  { m:'sem', no:2,  sec:'Logic & Sets',      title:'Sentences and Connectives',   deck:'none', handout:'none', ex:'none', rd:'none' },
   { m:'sem', no:3,  sec:'Logic & Sets',      title:'Predicates and Set Theory',   deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
   { m:'sem', no:4,  sec:'Nouns & Plurality', title:'Stuff and Things',            deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
   { m:'sem', no:5,  sec:'Quantification',    title:'Quantifiers and Scope',       deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
@@ -286,27 +287,27 @@ const WEEKS = [
   { m:'sem', no:11, sec:'Time & Aspect',     title:'Tense and Aspect',            deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
   { m:'sem', no:12, sec:'Modality',          title:'Necessity and Possibility',   deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
   // ── Semantics II · LIU33008 ──
-  { m:'sem2', no:1,  sec:'Foundations',           title:'Recap & the Intensional Turn',         fig:'Frege · Carnap · Montague',   deck:'ready', handout:'ready', ex:'draft', rd:'ready' },
-  { m:'sem2', no:2,  sec:'Modality',              title:'Worlds, Intensions & Modal Logic',     fig:'C. I. Lewis · Carnap · Kripke', deck:'ready', handout:'ready', ex:'none', rd:'ready' },
-  { m:'sem2', no:3,  sec:'Modality',              title:'The Kratzer System',                   fig:'Lewis · Kratzer',             deck:'draft', handout:'draft', ex:'none', rd:'ready' },
-  { m:'sem2', no:4,  sec:'Attitudes & Embedding', title:'Attitude Reports',                     fig:'Frege · Quine · Barcan Marcus · Hintikka · Kaplan', deck:'ready', handout:'draft', ex:'none', rd:'ready' },
-  { m:'sem2', no:5,  sec:'Attitudes & Embedding', title:'Factivity, Selection & Neg-Raising',   fig:'Kiparsky² · Karttunen',       deck:'none', handout:'none', ex:'none', rd:'ready' },
-  { m:'sem2', no:6,  sec:'Attitudes & Embedding', title:'Hyperintensionality',                  fig:'Cresswell · Fine',            deck:'none', handout:'none', ex:'none', rd:'none' },
+  { m:'sem2', no:1,  sec:'Foundations',           title:'Recap & the Intensional Turn',         fig:'Frege · Carnap · Montague',   deck:'ready', handout:'ready', ans:'none', rd:'ready' },
+  { m:'sem2', no:2,  sec:'Modality',              title:'Worlds, Intensions & Modal Logic',     fig:'C. I. Lewis · Carnap · Kripke', deck:'ready', handout:'ready', ans:'none', rd:'ready' },
+  { m:'sem2', no:3,  sec:'Modality',              title:'The Kratzer System',                   fig:'Lewis · Kratzer',             deck:'ready', handout:'ready', ans:'ready', rd:'ready' },
+  { m:'sem2', no:4,  sec:'Attitudes & Embedding', title:'Attitude Reports',                     fig:'Frege · Quine · Barcan Marcus · Hintikka · Kaplan', deck:'ready', handout:'ready', ans:'none', rd:'ready' },
+  { m:'sem2', no:5,  sec:'Attitudes & Embedding', title:'Factivity, Selection & Neg-Raising',   fig:'Kiparsky² · Karttunen',       deck:'none', handout:'none', ans:'none', rd:'ready' },
+  { m:'sem2', no:6,  sec:'Attitudes & Embedding', title:'Hyperintensionality',                  fig:'Cresswell · Fine',            deck:'none', handout:'none', ans:'none', rd:'none' },
   { m:'sem2', no:7,  sec:'Reading Week',          title:'Reading Week',                         reading:true },
-  { m:'sem2', no:8,  sec:'Conditionals',          title:'Indicatives & the Restrictor Analysis',fig:'Kratzer · Lewis · Stalnaker', deck:'none', handout:'none', ex:'none', rd:'ready' },
-  { m:'sem2', no:9,  sec:'Conditionals',          title:'Counterfactuals & Similarity',         fig:'Stalnaker · Lewis · Iatridou',deck:'none', handout:'none', ex:'none', rd:'ready' },
-  { m:'sem2', no:10, sec:'Time & Aspect',         title:'Aspect & the Perfect',                 fig:'Klein · Dowty · Vendler',     deck:'none', handout:'none', ex:'none', rd:'ready' },
-  { m:'sem2', no:11, sec:'Evidentiality',         title:'Evidentiality',                        fig:'Aikhenvald · Faller · Matthewson', deck:'none', handout:'none', ex:'none', rd:'ready' },
-  { m:'sem2', no:12, sec:'Interactions',          title:'Modals & Tense',                       fig:'Condoravdi · Hacquard · Bhatt',deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'sem2', no:8,  sec:'Conditionals',          title:'Indicatives & the Restrictor Analysis',fig:'Kratzer · Lewis · Stalnaker', deck:'none', handout:'none', ans:'none', rd:'ready' },
+  { m:'sem2', no:9,  sec:'Conditionals',          title:'Counterfactuals & Similarity',         fig:'Stalnaker · Lewis · Iatridou',deck:'none', handout:'none', ans:'none', rd:'ready' },
+  { m:'sem2', no:10, sec:'Time & Aspect',         title:'Aspect & the Perfect',                 fig:'Klein · Dowty · Vendler',     deck:'none', handout:'none', ans:'none', rd:'ready' },
+  { m:'sem2', no:11, sec:'Evidentiality',         title:'Evidentiality',                        fig:'Aikhenvald · Faller · Matthewson', deck:'none', handout:'none', ans:'none', rd:'ready' },
+  { m:'sem2', no:12, sec:'Interactions',          title:'Modals & Tense',                       fig:'Condoravdi · Hacquard · Bhatt',deck:'none', handout:'none', ans:'none', rd:'ready' },
   // ── Semantics III · LIU44010 ──
-  { m:'sem3', no:1,  sec:'Intensionality',       title:'Sense, Reference and Opacity',   fig:'Frege · Russell · Carnap',          deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'sem3', no:2,  sec:'Modality & Attitudes', title:'Frames and Accessibility',       fig:'Kripke',                            deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'sem3', no:3,  sec:'Modality & Attitudes', title:'Quantifying over Alternatives',  fig:'Hintikka · Kratzer',                deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'sem3', no:4,  sec:'Objects of Attitude',  title:'De Re, De Dicto, De Se',         fig:'Lewis · Percus & Sauerland',        deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'sem3', no:5,  sec:'Objects of Attitude',  title:'The Granularity Problem',        fig:'Cresswell & von Stechow · Moltmann',deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'sem3', no:6,  sec:'Decomposition',        title:'Decomposing Attitude Verbs',     fig:'Kratzer · Moulton · Davidson',      deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:1,  sec:'Intensionality',       title:'Sense, Reference and Opacity',   fig:'Frege · Russell · Carnap',          deck:'none', handout:'none', ex:'none', rd:'none' },
+  { m:'sem3', no:2,  sec:'Modality & Attitudes', title:'Frames and Accessibility',       fig:'Kripke',                            deck:'none', handout:'none', ex:'none', rd:'none' },
+  { m:'sem3', no:3,  sec:'Modality & Attitudes', title:'Quantifying over Alternatives',  fig:'Hintikka · Kratzer',                deck:'none', handout:'none', ex:'none', rd:'none' },
+  { m:'sem3', no:4,  sec:'Objects of Attitude',  title:'De Re, De Dicto, De Se',         fig:'Lewis · Percus & Sauerland',        deck:'none', handout:'none', ex:'none', rd:'none' },
+  { m:'sem3', no:5,  sec:'Objects of Attitude',  title:'The Granularity Problem',        fig:'Cresswell & von Stechow · Moltmann',deck:'none', handout:'none', ex:'none', rd:'none' },
+  { m:'sem3', no:6,  sec:'Decomposition',        title:'Decomposing Attitude Verbs',     fig:'Kratzer · Moulton · Davidson',      deck:'none', handout:'none', ex:'none', rd:'none' },
   { m:'sem3', no:7,  sec:'Reading Week',         title:'Reading Week',                   reading:true },
-  { m:'sem3', no:8,  sec:'Factivity',            title:'Factivity',                      fig:'Kiparsky & Kiparsky · Karttunen',   deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'sem3', no:8,  sec:'Factivity',            title:'Factivity',                      fig:'Kiparsky & Kiparsky · Karttunen',   deck:'none', handout:'none', ex:'none', rd:'none' },
   { m:'sem3', no:9,  sec:'Presentations',        title:'Student Presentations',          present:true },
   { m:'sem3', no:10, sec:'Presentations',        title:'Student Presentations',          present:true },
   { m:'sem3', no:11, sec:'Presentations',        title:'Student Presentations',          present:true },
@@ -316,23 +317,23 @@ const WEEKS = [
   { m:'prag', no:2,  sec:'Speech Acts',                    title:'Speech Acts',                fig:'Austin · Searle',                   deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
   { m:'prag', no:3,  sec:'Implicature',                    title:'Implicature',                fig:'Grice',                             deck:'ready', handout:'none', ex:'ready', rd:'ready' },
   { m:'prag', no:4,  sec:'Presupposition & Common Ground', title:'Presupposition',             fig:'Russell · Frege · Strawson',        deck:'ready', handout:'none', ex:'ready', rd:'ready' },
-  { m:'prag', no:5,  sec:'Presupposition & Common Ground', title:'Common Ground & Projection', fig:'Stalnaker · Heim',                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
-  { m:'prag', no:6,  sec:'Information',                    title:'Information',                fig:'Shannon · Huffman · Zipf · Hamming',deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:5,  sec:'Presupposition & Common Ground', title:'Common Ground & Projection', fig:'Stalnaker · Heim',                  deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'prag', no:6,  sec:'Information',                    title:'Information',                fig:'Shannon · Huffman · Zipf · Hamming',deck:'none', handout:'none', ex:'none', rd:'ready' },
   { m:'prag', no:7,  sec:'Reading Week',                   title:'Reading Week',               reading:true },
-  { m:'prag', no:8,  sec:'Politeness',                     title:'Politeness',                 fig:'Brown · Levinson',                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
-  { m:'prag', no:9,  sec:'Gricean & Probabilistic',        title:'Neo-Gricean Pragmatics',     fig:'Horn · Levinson',                   deck:'none', handout:'none', ex:'draft', rd:'ready' },
-  { m:'prag', no:10, sec:'Gricean & Probabilistic',        title:'Relevance Theory',           fig:'Sperber · Wilson',                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
-  { m:'prag', no:11, sec:'Gricean & Probabilistic',        title:'Rational Speech Acts (RSA)', fig:'Bayes · Lewis · Franke · Goodman',  deck:'none', handout:'none', ex:'draft', rd:'ready' },
-  { m:'prag', no:12, sec:'Grammar',                        title:'Grammaticalism',             fig:'',                                  deck:'none', handout:'none', ex:'draft', rd:'ready' },
+  { m:'prag', no:8,  sec:'Politeness',                     title:'Politeness',                 fig:'Brown · Levinson',                  deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'prag', no:9,  sec:'Gricean & Probabilistic',        title:'Neo-Gricean Pragmatics',     fig:'Horn · Levinson',                   deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'prag', no:10, sec:'Gricean & Probabilistic',        title:'Relevance Theory',           fig:'Sperber · Wilson',                  deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'prag', no:11, sec:'Gricean & Probabilistic',        title:'Rational Speech Acts (RSA)', fig:'Bayes · Lewis · Franke · Goodman',  deck:'none', handout:'none', ex:'none', rd:'ready' },
+  { m:'prag', no:12, sec:'Grammar',                        title:'Grammaticalism',             fig:'',                                  deck:'none', handout:'none', ex:'none', rd:'ready' },
   // ── Pragmatics II · LIU44008 ──
   { m:'prag2', no:1,  sec:'Introduction',      title:'From Logic to Probability', fig:'Grice · Horn · Strawson',        deck:'ready', handout:'ready', ex:'ready', rd:'ready' },
-  { m:'prag2', no:2,  sec:'Frameworks',        title:'Game Theory and Signalling', fig:'Lewis · Parikh · Franke · Jäger', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'prag2', no:3,  sec:'Frameworks',        title:'Information Theory',      fig:'Shannon · Zipf · Jaeger · Gibson',  deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:2,  sec:'Frameworks',        title:'Game Theory and Signalling', fig:'Lewis · Parikh · Franke · Jäger', deck:'ready', handout:'ready', ex:'draft', rd:'draft' },
+  { m:'prag2', no:3,  sec:'Frameworks',        title:'Information Theory',      fig:'Shannon · Zipf · Jaeger · Gibson',  deck:'ready', handout:'draft', ex:'draft', rd:'draft' },
   { m:'prag2', no:4,  sec:'Frameworks',        title:'Probability, Priors and Common Ground', fig:'Stalnaker · von Fintel · Tonhauser · Degen', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'prag2', no:5,  sec:'The Model',         title:'Rational Speech Act Models', fig:'Frank & Goodman · Goodman & Stuhlmüller · Scontras', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
-  { m:'prag2', no:6,  sec:'Cognition',         title:'Cognitive Science and Resource Limits', fig:'Sperber & Wilson · Simon · Anderson · Bott & Noveck', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:5,  sec:'The Model',         title:'Rational Speech Act Models', fig:'Frank & Goodman · Goodman & Stuhlmüller · Scontras', deck:'none', handout:'none', ex:'none', rd:'none' },
+  { m:'prag2', no:6,  sec:'Cognition',         title:'Cognitive Science and Resource Limits', fig:'Sperber & Wilson · Simon · Anderson · Bott & Noveck', deck:'none', handout:'none', ex:'none', rd:'none' },
   { m:'prag2', no:7,  sec:'Reading Week',      title:'Reading Week',            reading:true },
-  { m:'prag2', no:8,  sec:'Application',       title:'Models, Data and Language Models', fig:'Oh & Schuler · Mahowald et al. · Bender & Koller · Hu et al.', deck:'draft', handout:'draft', ex:'draft', rd:'draft' },
+  { m:'prag2', no:8,  sec:'Application',       title:'Models, Data and Language Models', fig:'Oh & Schuler · Mahowald et al. · Bender & Koller · Hu et al.', deck:'none', handout:'none', ex:'none', rd:'none' },
   { m:'prag2', no:9,  sec:'Presentations',     title:'Student Presentations',   present:true },
   { m:'prag2', no:10, sec:'Presentations',     title:'Student Presentations',   present:true },
   { m:'prag2', no:11, sec:'Presentations',     title:'Student Presentations',   present:true },
@@ -341,14 +342,25 @@ const WEEKS = [
 
 const DIR = { sem:'weeks-semantics1', sem2:'weeks-semantics2', sem3:'weeks-semantics3', prag:'weeks-pragmatics', prag2:'weeks-pragmatics2' };
 // What each week card shows. LI7862 (prag) runs as a lecture, readings and a
-// data analysis task from October 2026, with no handout; other modules keep four rows.
+// data analysis task from October 2026, with no handout. Semantics II (sem2) has
+// no separate homework: the Thursday handout is the week's exercise sheet, and its
+// answer sheet (handout-answers.html) is listed beside it.
+// Other modules keep four rows.
 const CARD_ROWS = {
   default: [ ['deck','deck.html','Presentation','i-deck'], ['handout','handout.html','Handout','i-handout'],
              ['rd','readings.html','Readings','i-read'], ['ex','exercises.html','Homework','i-hw'] ],
+  sem2:    [ ['deck','deck.html','Presentation','i-deck'], ['handout','handout.html','Handout','i-handout'],
+             ['ans','handout-answers.html','Handout answers','i-ans'], ['rd','readings.html','Readings','i-read'] ],
   prag:    [ ['deck','deck.html','Lecture','i-deck'], ['rd','readings.html','Readings','i-read'],
              ['ex','exercises.html','Data analysis task','i-hw'] ],
 };
 const rowsFor = m => CARD_ROWS[m] || CARD_ROWS.default;
+// The two artifacts a week's overall status keys off.
+const STATUS_KEYS = { default:['deck','handout'], prag:['deck','ex'] };
+// Card notes for reading weeks and presentation weeks.
+const READING_NOTE = { default:'No lecture, handout or homework', sem2:'No lecture or handout', prag:'No lecture or data analysis task' };
+const PRESENT_NOTE = { default:'From the topic pool. Student-led, no lecture materials.',
+                       prag2:'Introduction on Thursday, student presentation on Friday, from the topics sheet.' };
 
 /* Module identities. Describing Meaning & Linguistic Pragmatics are dual-coded:
    the same weeks are taught under an undergrad code (default) and an MPhil code.
@@ -392,13 +404,10 @@ WEEKS.forEach(w => { if (!w.reading && !('rd' in w)) w.rd = 'ready'; });
 const pad = n => String(n).padStart(2,'0');
 
 function overall(w){
-  if (w.m in CARD_ROWS){
-    if (w.deck==='ready' && w.ex==='ready') return {k:'ready', t:'Ready'};
-    if (w.deck==='none' && w.ex!=='ready') return {k:'soon', t:'Upcoming'};
-    return {k:'prog', t:'In progress'};
-  }
-  if (w.deck==='ready' && w.handout==='ready') return {k:'ready', t:'Ready'};
-  if (w.deck==='none' && w.handout==='none') return {k:'soon', t:'Upcoming'};
+  const [a, b] = STATUS_KEYS[w.m] || STATUS_KEYS.default;
+  const st = k => w[k] || 'none';
+  if (st(a)==='ready' && st(b)==='ready') return {k:'ready', t:'Ready'};
+  if (st(a)==='none' && st(b)==='none') return {k:'soon', t:'Upcoming'};
   return {k:'prog', t:'In progress'};
 }
 
@@ -461,13 +470,13 @@ function cardHTML(w){
   if (w.reading){
     return `<article class="card ${w.m} card-reading" data-mod="${w.m}" data-status="soon" data-title="reading week break">
       <div class="c-top"><span class="c-sec">${w.sec}</span><span class="c-status soon"><i></i>No class</span></div>
-      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Reading Week</div><div class="c-fig">${w.m==='prag' ? 'No lecture or data analysis task' : 'No lecture, handout or homework'} — catch up on readings and coursework.</div></div></div>
+      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Reading Week</div><div class="c-fig">${READING_NOTE[w.m] || READING_NOTE.default}. Catch up on readings and coursework.</div></div></div>
     </article>`;
   }
   if (w.present){
     return `<article class="card ${w.m} card-reading" data-mod="${w.m}" data-status="soon" data-title="student presentations">
       <div class="c-top"><span class="c-sec">${w.sec}</span><span class="c-status soon"><i></i>Student-led</span></div>
-      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Student Presentations</div><div class="c-fig">From the 10-topic pool — student-led, no lecture materials.</div></div></div>
+      <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Student Presentations</div><div class="c-fig">${PRESENT_NOTE[w.m] || PRESENT_NOTE.default}</div></div></div>
     </article>`;
   }
   const ov = overall(w);
