@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU33008 · Week 1, Recap &amp; the Intensional Turn · Handout</title>
+<title>Answers · LIU33008 · Week 1, Recap &amp; the Intensional Turn · Handout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
@@ -18,6 +18,18 @@
   table.rec.types td.blank { border-bottom:.8pt solid #000; }
   table.rec.types tr td { padding-top:5pt; padding-bottom:5pt; }
   .space { height:128pt; margin:0 0 8pt 22pt; }
+</style>
+<style>
+  .ans { font-family: var(--sans, sans-serif); font-size: 9pt; line-height: 1.45; color: #1f4e79; margin: 2pt 0 8pt 18pt; }
+  .ans i, .ans em { font-style: italic; }
+  table.rec td.av { color: #1f4e79; font-family: var(--sans, sans-serif); font-style: normal; }
+  .atree { display:block; height:auto; margin:4pt 0 10pt 22pt; }
+  .atree text { font-family: var(--serif); text-anchor:middle; fill:#1f4e79; }
+  .atree .nl { font-size:17px; font-style:italic; }
+  .atree .nd { font-size:17px; }
+  .atree .ny { font-size:13.5px; }
+  .atree line { stroke:#1f4e79; stroke-width:1.2; }
+  @media print { .atree { break-inside:avoid; page-break-inside:avoid; } }
 </style>
 </head>
 <body>
@@ -38,11 +50,11 @@
   </div>
   <div class="mast-rule"></div>
 
-  <div class="sc doc-kicker">Week 1 · Handout</div>
+  <div class="sc doc-kicker">Week 1 · Handout · Answers</div>
   <h1 class="doc-title">Recap &amp; the Intensional Turn</h1>
 
-  <!-- Thursday handout, week 1. Rebuilt from Thomas's PDF SemII_H1 (Oct 2026), replacing the old lens-style scaffold.
-       Seven blocks, one per printed page: the Semantics I system, then the six problems for extensional semantics from the lecture. -->
+  <!-- Answer sheet for the week 1 handout: the handout as printed, with answers in blue in place of the ruled lines.
+       Rebuilt from Thomas's PDF SemII_HA1 (Oct 2026). 1(c) has no answer in the PDF and keeps its lines. -->
 
   <!-- ══ 0 ══ -->
   <div class="sec">
@@ -57,14 +69,14 @@
         <tr><td class="it">swims</td><td>a set of individuals</td><td>⟨<i>e</i>, <i>t</i>⟩</td></tr>
         <tr><td class="it">admires</td><td>a relation on <i>D</i> × <i>D</i></td><td>⟨<i>e</i>, ⟨<i>e</i>, <i>t</i>⟩⟩</td></tr>
         <tr><td class="it">Anna swims</td><td>a truth value</td><td><i>t</i></td></tr>
-        <tr><td class="it">every student</td><td>a set of sets</td><td class="blank"></td></tr>
-        <tr><td class="it">every</td><td>a relation between sets</td><td class="blank"></td></tr>
+        <tr><td class="it">every student</td><td>a set of sets</td><td class="av">⟨⟨<i>e</i>, <i>t</i>⟩, <i>t</i>⟩</td></tr>
+        <tr><td class="it">every</td><td>a relation between sets</td><td class="av">⟨⟨<i>e</i>, <i>t</i>⟩, ⟨⟨<i>e</i>, <i>t</i>⟩, <i>t</i>⟩⟩</td></tr>
         <tr><th colspan="3">Davidsonian</th></tr>
-        <tr><td class="it">giggled</td><td>λ<i>x</i>. λ<i>e</i>. <i>giggle</i>(<i>e</i>, <i>x</i>)</td><td class="blank"></td></tr>
-        <tr><td class="it">buttered</td><td>λ<i>y</i>. λ<i>x</i>. λ<i>e</i>. <i>butter</i>(<i>e</i>, <i>x</i>, <i>y</i>)</td><td class="blank"></td></tr>
+        <tr><td class="it">giggled</td><td>λ<i>x</i>. λ<i>e</i>. <i>giggle</i>(<i>e</i>, <i>x</i>)</td><td class="av">⟨<i>e</i>, ⟨<i>v</i>, <i>t</i>⟩⟩</td></tr>
+        <tr><td class="it">buttered</td><td>λ<i>y</i>. λ<i>x</i>. λ<i>e</i>. <i>butter</i>(<i>e</i>, <i>x</i>, <i>y</i>)</td><td class="av">⟨<i>e</i>, ⟨<i>e</i>, ⟨<i>v</i>, <i>t</i>⟩⟩⟩</td></tr>
         <tr><th colspan="3">Neo-Davidsonian</th></tr>
-        <tr><td class="it">giggled</td><td>λ<i>e</i>. <i>giggle</i>(<i>e</i>)</td><td class="blank"></td></tr>
-        <tr><td class="it">loudly</td><td>λ<i>e</i>. <i>loud</i>(<i>e</i>)</td><td class="blank"></td></tr>
+        <tr><td class="it">giggled</td><td>λ<i>e</i>. <i>giggle</i>(<i>e</i>)</td><td class="av">⟨<i>v</i>, <i>t</i>⟩</td></tr>
+        <tr><td class="it">loudly</td><td>λ<i>e</i>. <i>loud</i>(<i>e</i>)</td><td class="av">⟨<i>v</i>, <i>t</i>⟩</td></tr>
       </table>
     </div>
     <div class="note">
@@ -95,9 +107,57 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Draw the composition tree for (1) in our extensional system. Treat <i>the Morning Star</i> as a name denoting <i>m</i>. Label every node with its denotation and its type.</span></div>
-        <div class="space"></div>
+        <svg class="atree" viewBox="0 0 530 256" style="width:69%" role="img" aria-label="Tree for (1): S, planet(m), type t, splits into the Morning Star (m, e) and VP (lambda x. planet(x), e t); VP splits into is (lambda P. P) and a planet (lambda x. planet(x)).">
+        <text class="nl" x="224" y="26">S</text>
+        <text class="nd" x="224" y="45">planet(m)</text>
+        <text class="ny" x="224" y="62">t</text>
+        <line x1="224" y1="70" x2="100" y2="103"/>
+        <text class="nl" x="100" y="118"><tspan font-style="italic">the Morning Star</tspan></text>
+        <text class="nd" x="100" y="137">m</text>
+        <text class="ny" x="100" y="154">e</text>
+        <line x1="224" y1="70" x2="348" y2="103"/>
+        <text class="nl" x="348" y="118">VP</text>
+        <text class="nd" x="348" y="137">λx. planet(x)</text>
+        <text class="ny" x="348" y="154">⟨e, t⟩</text>
+        <line x1="348" y1="162" x2="265" y2="195"/>
+        <text class="nl" x="265" y="210"><tspan font-style="italic">is</tspan></text>
+        <text class="nd" x="265" y="229">λP. P</text>
+        <text class="ny" x="265" y="246">⟨⟨e,t⟩, ⟨e,t⟩⟩</text>
+        <line x1="348" y1="162" x2="430" y2="195"/>
+        <text class="nl" x="430" y="210"><tspan font-style="italic">a planet</tspan></text>
+        <text class="nd" x="430" y="229">λx. planet(x)</text>
+        <text class="ny" x="430" y="246">⟨e, t⟩</text>
+      </svg>
         <div class="task"><span>(b)</span><span>Do the same for (3). Give the denotation and the type of the embedded clause, then state the type <i>believes</i> must take to combine with it.</span></div>
-        <div class="space"></div>
+        <svg class="atree" viewBox="0 0 695 348" style="width:90%" role="img" aria-label="Tree for (3): S, believe(a, 1), type t, splits into Anna (a, e) and VP (lambda x. believe(x, 1)); VP splits into believes (lambda p. lambda x. believe(x, p), type t to e t) and the that-clause (1, type t), which splits into the Morning Star (m) and visible at dawn (lambda x. vis(x)).">
+        <text class="nl" x="244" y="26">S</text>
+        <text class="nd" x="244" y="45">believe(a, 1)</text>
+        <text class="ny" x="244" y="62">t</text>
+        <line x1="244" y1="70" x2="100" y2="103"/>
+        <text class="nl" x="100" y="118"><tspan font-style="italic">Anna</tspan></text>
+        <text class="nd" x="100" y="137">a</text>
+        <text class="ny" x="100" y="154">e</text>
+        <line x1="244" y1="70" x2="389" y2="103"/>
+        <text class="nl" x="389" y="118">VP</text>
+        <text class="nd" x="389" y="137">λx. believe(x, 1)</text>
+        <text class="ny" x="389" y="154">⟨e, t⟩</text>
+        <line x1="389" y1="162" x2="265" y2="195"/>
+        <text class="nl" x="265" y="210"><tspan font-style="italic">believes</tspan></text>
+        <text class="nd" x="265" y="229">λp. λx. believe(x, p)</text>
+        <text class="ny" x="265" y="246">⟨t, ⟨e, t⟩⟩</text>
+        <line x1="389" y1="162" x2="512" y2="195"/>
+        <text class="nl" x="512" y="210"><tspan font-style="italic">that-clause</tspan></text>
+        <text class="nd" x="512" y="229">1</text>
+        <text class="ny" x="512" y="246">t</text>
+        <line x1="512" y1="254" x2="430" y2="287"/>
+        <text class="nl" x="430" y="302"><tspan font-style="italic">the Morning Star</tspan></text>
+        <text class="nd" x="430" y="321">m</text>
+        <text class="ny" x="430" y="338">e</text>
+        <line x1="512" y1="254" x2="595" y2="287"/>
+        <text class="nl" x="595" y="302"><tspan font-style="italic">visible at dawn</tspan></text>
+        <text class="nd" x="595" y="321">λx. vis(x)</text>
+        <text class="ny" x="595" y="338">⟨e, t⟩</text>
+      </svg>
         <div class="task"><span>(c)</span><span><i>m</i> = <i>e</i>. Swap the leaf and recompute for (4). Find the node at which the derivation stops telling (3) and (4) apart.</span></div>
         <div class="lines"><span></span><span></span><span></span></div>
       </div>
@@ -118,7 +178,7 @@
         <li><span>(6)</span><span class="s">The temperature is rising.</span></li>
       </ol>
       <p>Given extensional substitution, why would these sentences be problematic?</p>
-      <div class="lines"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="ans">Substitution into (6): <i>#15 degrees is rising</i>. False, though (5) and (6) are true.</div>
     </div>
     <div class="note">
       <p><b>Montague 1973.</b> “The Proper Treatment of Quantification in Ordinary English”. The puzzle is attributed there to Barbara Partee.</p>
@@ -148,11 +208,11 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Run the test on (7), (8), (10), (11). Sort by whether the speaker is committed.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="ans">Committed: (7), (11). Not committed: (8), (10).</div>
         <div class="task"><span>(b)</span><span>(8) and (9) can differ in truth value. State precisely why the extensional system cannot let them.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="ans">The contribution of the noun is a set, in this case both the empty set, so the whole sentence must have the same truth value.</div>
         <div class="task"><span>(c)</span><span>Show that (10) and (11) come apart although both contain <i>a unicorn</i>.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="ans">(11) contains an existential presupposition about unicorns and (10) does not.</div>
       </div>
     </div>
     <div class="note">
@@ -186,11 +246,11 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Judge (12) to (14) in the scenario.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="ans">(12) true. (13) true. (14) false de dicto; true de re.</div>
         <div class="task"><span>(b)</span><span>Run the continuation test on (15) and (16). Give each its two readings.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="ans">Both accept both continuations. (15): ∃<i>x</i>[believe(<i>r</i>, spy(<i>x</i>))]; believe(<i>r</i>, ∃<i>x</i> spy(<i>x</i>)). (16): ∃<i>x</i>[norwegian(<i>x</i>) ∧ want(<i>emma</i>, marry(<i>emma</i>, <i>x</i>))]; want(<i>emma</i>, ∃<i>x</i>[norwegian(<i>x</i>) ∧ marry(<i>emma</i>, <i>x</i>)]).</div>
         <div class="task"><span>(c)</span><span>Label the readings de re and de dicto from their behaviour on the test.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="ans"><i>Namely, Ortcutt</i>: de re. <i>But no one in particular</i>: de dicto.</div>
       </div>
     </div>
     <div class="note">
@@ -220,11 +280,11 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Apply the test to (17) and (18). State the result.</span></div>
-        <div class="lines"><span></span><span></span></div>
+        <div class="ans">(17) true, (18) false. ‘Might’ creates an opaque environment.</div>
         <div class="task"><span>(b)</span><span>Describe a situation in which (19) is warranted and (20) false, and one in which (20) is true and (19) unwarranted.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="ans">Warranted, false: wet from the street cleaners. True, unwarranted: you watched it rain.</div>
         <div class="task"><span>(c)</span><span>Say what fixes the truth of (19), given that the facts of the actual world do not.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="ans">The evidence. True iff it rained in every world compatible with the evidence.</div>
       </div>
     </div>
     <div class="note">
@@ -257,11 +317,11 @@
       <p><span class="runin">Exercise.</span></p>
       <div class="tasks">
         <div class="task"><span>(a)</span><span>Give the value the material conditional assigns to (21) and (22). Say in each case what forces it, and whether you accept the sentence.</span></div>
-        <div class="lines"><span></span><span></span><span></span><span></span></div>
+        <div class="ans">(21) true (false antecedent); odd/unacceptable. (22) true (true consequent); acceptable.</div>
         <div class="task"><span>(b)</span><span>(23) is true. Show that the material conditional makes (24) follow from it. Say whether it does follow.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="ans"><i>p</i> → <i>q</i> ⊨ (<i>p</i> ∧ <i>r</i>) → <i>q</i>. Does not follow: (24) false.</div>
         <div class="task"><span>(c)</span><span>(25) and (26) share an antecedent and a consequent. Show that the material conditional gives them one value, then say what speakers judge.</span></div>
-        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="ans">Both true (false antecedent). Generally (25) true, (26) false.</div>
       </div>
     </div>
     <div class="note">

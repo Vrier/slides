@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Answers · LIU33008 · Week 4, Attitude Reports · Handout</title>
+<title>Answers · LIU33008 · Week 3, The Kratzer System · Handout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../shared/handout-classic.css" />
 <link rel="stylesheet" href="../../shared/font-latex.css" />
 <style>
-
   /* As week 2: blocks run on without a page break; small units still avoid splitting. */
   @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
   .sec + .sec { margin-top:14pt; }
@@ -19,7 +18,7 @@
   .body p { orphans:3; widows:3; }
   .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
   @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
-  /* two definition strips in a row share one rule */
+  /* Week 3: two definition strips in a row share one rule */
   .defs + .defs { margin-top:0; border-top:none; }
   table.rec.fill.wide td:not(:first-child) { width:auto; }
   .exs .ig { display:flex; flex-wrap:wrap; gap:0 14pt; }
@@ -69,31 +68,19 @@
   @media print {
     .tasks .draw { height:26mm !important; }
   }
-  /* Week 4: object-language forms inside raw example rows */
-  .exs .o { font-style:italic; }
-  .body > p + .defs { margin-top:4pt; }
-  .sec.wide { grid-template-columns:30pt 1fr; }
-  .tfig.t4 { width:84%; }
-  @media print { .tfig.t4 { width:80% !important; } }
-  p.keep { break-inside:avoid; page-break-inside:avoid; }
-  /* examples set under the task that uses them */
-  .tasks ol.exs { margin:3pt 0 2pt 22pt; }
-  .tasks .task + ol.exs + .lines { margin-top:4pt; }
-  .tasks p.keep { margin-left:22pt; }
-  table.rec.prob td:nth-child(2) { width:38%; }
-  ul.sum { margin:2pt 0 6pt 0; padding-left:14pt; }
-  ul.sum li { margin:0 0 5pt 0; line-height:1.42; }
-  .tfig.t4.small { width:80%; }
-  .tfig.t4.blank { width:100%; }
-  @media print { .tfig.t4.small { width:78% !important; } .tfig.t4.blank { width:100% !important; } }
 </style>
 <style>
   .ans { font-family: var(--sans, sans-serif); font-size: 9pt; line-height: 1.45; color: #1f4e79; margin: 2pt 0 8pt 18pt; }
   .ans i, .ans em { font-style: italic; }
-  table.rec.anst { margin-left: 18pt; width: calc(100% - 18pt); }
-  table.rec.anst td { color: #1f4e79; font-family: var(--sans, sans-serif); font-size: 8.5pt; }
-  .tfig .at { font-family: var(--sans, sans-serif); font-style: normal; font-size: 34px; fill: #1f4e79; }
-  table.rec.anst td:nth-child(-n+2) { white-space: nowrap; }
+  table.rec td.av { color: #1f4e79; font-family: var(--sans, sans-serif); font-style: normal; }
+  .wpic .am { fill:none; stroke:#1f4e79; stroke-width:3; }
+  .wpic .at { font-family: var(--sans, sans-serif); font-size:22px; text-anchor:middle; fill:#1f4e79; }
+  .wpic .as { font-size:40px; text-anchor:middle; fill:#1f4e79; }
+  .alat { width:52%; height:auto; display:block; margin:4pt auto 6pt; }
+  .alat .oa { stroke:#1f4e79; stroke-width:2.2; fill:none; }
+  .alat .on { fill:#fff; stroke:#1f4e79; stroke-width:2.2; }
+  .alat .ot { font-family: var(--sans, sans-serif); font-style:italic; font-size:30px; text-anchor:middle; fill:#1f4e79; }
+  .alat .ot tspan.sb { font-style:normal; font-size:20px; }
 </style>
 </head>
 <body>
@@ -114,310 +101,344 @@
   </div>
   <div class="mast-rule"></div>
 
-  <div class="sc doc-kicker">Week 4 · Handout · Answers</div>
-  <h1 class="doc-title">Attitude Reports</h1>
+  <div class="sc doc-kicker">Week 3 · Handout · Answers</div>
+  <h1 class="doc-title">The Kratzer System</h1>
 
-  <!-- Thursday handout (Oct 2026). The sections carry what the deck
-       states briefly or leaves for the sheet: Hintikka entries in set and quantifier notation, evaluated in a model; the
-       existential and identity entries for believe (von Fintel & Heim ch. 2 §2.1; Coppock & Champollion §12.5.2);
-       composition with that as a world abstractor returning an intension and plain FA, with an unlabelled tree to annotate (no IFA, by request);
-       frame conditions and closure; want with a doxastic modal base and bouletic ordering source (Heim 1992; von Fintel 1999)
-       and its non-triviality; de se against de dicto and de re (Perry's shopper; Chierchia's war hero
-       with an expect minimal pair; Lewis's centred worlds; acquaintance relations after Kaplan 1968; LFs after Percus &
-       Sauerland 2003); interrogative and noun phrase complements. De re and de dicto is left to the lecture; the Cluedo
-       game, a recap of weeks 1 to 4 and a preview of later weeks are left out by request. -->
+  <!-- Thursday handout (Sept 2026): picks up at the ordering source and follows the rest of the deck, then a modal in a tree.
+       Sources: Portner's coffee cup (§3.1.3); the deck's house rules and lattice; von Fintel & Heim's Howard (ch. 3, (19));
+       Chisholm as on the slides, with the lecture's translations; Exercise 5 from Thomas's Semantics III handout "Kratzerian Modals";
+       von Fintel & Heim's Red Line; a deontic doctor's-guidelines model for drawing; Portner (84) with Kratzer's grades computed
+       on a stereotypical model (finite versions of Portner (100)-(104)). -->
 
   <!-- ══ 0 ══ -->
   <div class="sec">
     <div class="num">0</div>
     <div class="body">
-      <h2>Doxastic alternatives</h2>
+      <h2>Ordering Semantics</h2>
+      <p><i>Modal bases.</i> Modals are not lexically ambiguous. Their flavour comes from a contextually supplied conversational background <i>f</i>, and <i>must</i> and <i>might</i> quantify over the worlds in ∩<i>f</i>(<i>w</i>). Gradability (and Chisholm’s paradox, a.o.) demonstrate that we need something more than this. Kratzer proposes ordering semantics to solve this.</p>
+      <ol class="exs">
+        <li><span>(1)</span><span><span class="ctx">[the speaker has done wrong before and will again]</span> <span class="s">I must not throw my coffee cup at the student outside my office.</span></span></li>
+        <li><span>(2)</span><span class="s">I must throw my coffee cup at the student outside my office.</span></li>
+      </ol>
+      <p>A single accessibility relation makes a binary cut: accessible vs. inaccessible worlds. Put the moral principles in <i>f</i>(<i>w</i>): wrongs are already done, so no world obeys them all, ∩<i>f</i>(<i>w</i>) = ∅, and (1) and (2) both come out true. Many modal judgements, especially deontic and teleological ones, need graded comparison among worlds. Kratzer models this with two conversational backgrounds.</p>
       <div class="defs">
         <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Attitude holder</span><span class="g">The subject of an attitude verb.</span></div>
-        <div class="d"><span class="t">Doxastic alternatives</span><span class="g">Dox<sub><i>x</i></sub>(<i>w</i>): the worlds compatible with everything <i>x</i> believes in <i>w</i>. Intuition: the ways things could be, for all <i>x</i> believes.</span></div>
-        <div class="d"><span class="t">Epistemic alternatives</span><span class="g">Epi<sub><i>x</i></sub>(<i>w</i>): the worlds compatible with everything <i>x</i> knows in <i>w</i>.</span></div>
-        <div class="d"><span class="t">Bouletic alternatives</span><span class="g">Bul<sub><i>x</i></sub>(<i>w</i>): the worlds in which <i>x</i>’s desires in <i>w</i> are met.</span></div>
-        <div class="d"><span class="t">Hintikka semantics</span><span class="g">An attitude verb is a universal quantifier over the attitude holder’s alternatives.</span></div>
-        <div class="d"><span class="t"><i>believe</i></span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
-        <div class="d"><span class="t"><i>know</i></span><span class="g">⟦know⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
-        <div class="d"><span class="t"><i>want</i></span><span class="g">⟦want⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Bul<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></span></div>
-        <div class="d"><span class="t">Quantifier notation</span><span class="g">Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> iff ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]. So ⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1], and likewise for <i>know</i> and <i>want</i>.</span></div>
+        <div class="d"><span class="t">Conversational background</span><span class="g">A function from worlds to sets of propositions. <i>f</i>(<i>w</i>) is a set of propositions (facts, rules, goals, circumstances, …) relevant at <i>w</i>.</span></div>
+        <div class="d"><span class="t">Modal base</span><span class="g"><i>f</i>: which worlds are relevant. Those in ∩<i>f</i>(<i>w</i>).</span></div>
+        <div class="d"><span class="t">Ordering source</span><span class="g"><i>g</i>: which of those worlds are better in view of norms, ideals or goals. <i>g</i>(<i>w</i>) is a set of ideal propositions at <i>w</i>.</span></div>
+        <div class="d"><span class="t">At least as good</span><span class="g"><i>u</i> ≤<sub><i>g</i>(<i>w</i>)</sub> <i>v</i> iff <i>u</i> satisfies every ideal in <i>g</i>(<i>w</i>) that <i>v</i> satisfies. Intuition: <i>u</i> does at least as well by the ideals as <i>v</i>.</span></div>
+        <div class="d"><span class="t">Better</span><span class="g"><i>u</i> &lt;<sub><i>g</i>(<i>w</i>)</sub> <i>v</i>: <i>u</i> is at least as good as <i>v</i>, and satisfies some ideal that <i>v</i> does not.</span></div>
       </div>
-      <p><span class="runin">Model.</span> The actual world is <i>w</i><sub>3</sub>.</p>
+      <div class="treebox">
+      <p><i>g</i>(<i>w</i>) = {No shoes indoors, Dishes done, Quiet after eleven}.</p>
+      <svg class="lat" viewBox="0 0 600 470" role="img" aria-label="Seven groups of worlds in three tiers. Top: worlds where p, q and r are all true. Middle: p q, p r, q r. Bottom: p, q, r. Arrows run from each group to the groups above it that add one proposition.">
+      <defs><marker id="hlat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs>
+      <line class="oa" x1="112" y1="236" x2="268" y2="92" marker-end="url(#hlat)"/>
+      <line class="oa" x1="300" y1="228" x2="300" y2="102" marker-end="url(#hlat)"/>
+      <line class="oa" x1="488" y1="236" x2="332" y2="92" marker-end="url(#hlat)"/>
+      <line class="oa" x1="96" y1="396" x2="96" y2="290" marker-end="url(#hlat)"/>
+      <line class="oa" x1="120" y1="400" x2="276" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="276" y1="400" x2="120" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="324" y1="400" x2="480" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="480" y1="400" x2="324" y2="288" marker-end="url(#hlat)"/>
+      <line class="oa" x1="504" y1="396" x2="504" y2="290" marker-end="url(#hlat)"/>
+      <rect class="on top" x="235" y="30" width="130" height="68" rx="34"/><text class="ot" x="300" y="76">pqr</text>
+      <rect class="on" x="40" y="222" width="112" height="64" rx="32"/><text class="ot" x="96" y="266">pq</text>
+      <rect class="on" x="244" y="222" width="112" height="64" rx="32"/><text class="ot" x="300" y="266">pr</text>
+      <rect class="on" x="448" y="222" width="112" height="64" rx="32"/><text class="ot" x="504" y="266">qr</text>
+      <rect class="on" x="56" y="398" width="80" height="64" rx="32"/><text class="ot" x="96" y="442">p</text>
+      <rect class="on" x="260" y="398" width="80" height="64" rx="32"/><text class="ot" x="300" y="442">q</text>
+      <rect class="on" x="464" y="398" width="80" height="64" rx="32"/><text class="ot" x="504" y="442">r</text>
+      </svg>
+      </div>
       <table class="rec">
-        <tr><th></th><th>it is raining</th><th>Ben called</th></tr>
-        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td></tr>
-        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>F</td></tr>
-        <tr><td><i>w</i><sub>3</sub></td><td>F</td><td>T</td></tr>
-        <tr><td><i>w</i><sub>4</sub></td><td>F</td><td>F</td></tr>
+        <tr><th></th><th>no shoes indoors</th><th>dishes done</th><th>quiet after eleven</th></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>5</sub></td><td>F</td><td>F</td><td>F</td></tr>
       </table>
-      <p>Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. Dox<sub><i>Ben</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Dox<sub><i>Anna</i></sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>1</sub>}.</p>
       <p><span class="runin">Exercise 1.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Which of (1) to (5) are true at <i>w</i><sub>3</sub>?</span></div>
+        <div class="task"><span>(a)</span><span>Which worlds are best, with no world better than them?</span></div>
+        <div class="ans"><i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>.</div>
+        <div class="task"><span>(b)</span><span>Which world is worse than every other world?</span></div>
+        <div class="ans"><i>w</i><sub>5</sub>.</div>
+        <div class="task"><span>(c)</span><span>Find two worlds where neither is better than the other.</span></div>
+        <div class="ans"><i>w</i><sub>1</sub> and <i>w</i><sub>2</sub>. Also <i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>; <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>; <i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>.</div>
+      </div>
+      <div class="tasks">
+        <div class="task"><span>(d)</span><span>Imagine it is after 11 and the dishes have not been done. Which worlds are now in ∩<i>f</i>(<i>w</i>)?</span></div>
+        <div class="ans"><i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>.</div>
+      </div>
       <ol class="exs">
-        <li><span>(1)</span><span><span class="s">It is raining.</span></span></li>
-        <li><span>(2)</span><span><span class="s">Ben called.</span></span></li>
-        <li><span>(3)</span><span><span class="s">Anna believes that Ben did not call.</span></span></li>
-        <li><span>(4)</span><span><span class="s">Anna does not believe that Ben called.</span></span></li>
-        <li><span>(5)</span><span><span class="s">Anna believes that it is raining or Ben called.</span></span></li>
+        <li><span>(3)</span><span class="s">You have to be quiet.</span></li>
+        <li><span>(4)</span><span class="s">You must take your shoes off.</span></li>
+        <li><span>(5)</span><span class="s">You can make some noise.</span></li>
       </ol>
-        <div class="ans">(1) false. (2) true. (3) false. (4) true. (5) true.</div>
-        <div class="task"><span>(b)</span><span>Show that (3) entails (4) whenever Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) is non-empty. Does (4) entail (3)?</span></div>
-        <div class="ans">(3) gives Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) ⊆ ⟦that Ben did not call⟧. Non-empty, so some world in it is one where Ben did not call. So Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) ⊄ ⟦that Ben called⟧. (4) does not entail (3). At <i>w</i><sub>3</sub> (4) is true and (3) false (<i>w</i><sub>1</sub>).</div>
-        <div class="task"><span>(c)</span><span>(6) and (7) need Dox<sub><i>Anna</i></sub> at each of Ben’s alternatives. Are they true at <i>w</i><sub>3</sub>?</span></div>
-      <ol class="exs">
-        <li><span>(6)</span><span><span class="s">Ben believes that Anna believes that it is raining.</span></span></li>
-        <li><span>(7)</span><span><span class="s">Ben believes that Anna believes that Ben called.</span></span></li>
-      </ol>
-        <div class="ans">(6) true. Dox<sub><i>Anna</i></sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>1</sub>} and Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>} contain only raining worlds. (7) false. <i>w</i><sub>2</sub> ∈ Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) and Ben did not call.</div>
+      <div class="tasks">
+        <div class="task"><span>(e)</span><span>Which world is now best? Which of (3), (4) and (5) are true, and which are false?</span></div>
+        <div class="ans"><i>w</i><sub>3</sub>. (3) true. (4) true. (5) false.</div>
       </div>
     </div>
     <div class="note">
-      <p><b>Hintikka 1969.</b> Semantics for propositional attitudes. In J. W. Davis, D. J. Hockney &amp; W. K. Wilson (eds.), <i>Philosophical Logic.</i> Reidel. 21–45.</p>
-      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 2, §2.1.</p>
-      <p><b>Heim 1992.</b> Presupposition projection and the semantics of attitude verbs. <i>Journal of Semantics</i> 9: 183–221.</p>
+      <p><b>Portner 2009.</b> <i>Modality.</i> §3.1.3.</p>
+      <p><b>Kratzer 1981.</b> The notional category of modality. In H.-J. Eikmeyer &amp; H. Rieser (eds.), <i>Words, Worlds, and Contexts.</i> de Gruyter. 38–74.</p>
     </div>
   </div>
 
   <!-- ══ 1 ══ -->
-  <div class="sec flow">
+  <div class="sec">
     <div class="num">1</div>
     <div class="body">
-      <h2>Some wrong entries from von Fintel and Heim</h2>
+      <h2>Best worlds</h2>
+      <ol class="exs">
+        <li><span>(6)</span><span><span class="ctx">[Howard returned his library book late]</span> <span class="s">Howard has to pay a fine.</span></span></li>
+        <li><span>(7)</span><span class="s">Howard may leave without paying.</span></li>
+        <li><span>(8)</span><span class="s">Howard has to return the book on time.</span></li>
+      </ol>
       <div class="defs">
         <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Existential entry</span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ∩ <i>p</i> ≠ ∅, or ∃<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) ∧ <i>p</i>(<i>w</i>′) = 1]</span></div>
-        <div class="d"><span class="t">Identity entry</span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) = <i>p</i>, or ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) ↔ <i>p</i>(<i>w</i>′) = 1]</span></div>
-        <div class="d"><span class="t">Universal entry</span><span class="g">⟦believe⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>, or ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]</span></div>
+        <div class="d"><span class="t">Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>))</span><span class="g">The worlds in ∩<i>f</i>(<i>w</i>) that no other world in ∩<i>f</i>(<i>w</i>) is better than.</span></div>
+        <div class="d"><span class="t"><i>must</i> φ</span><span class="g">True iff φ is true in every best world.</span></div>
+        <div class="d"><span class="t"><i>might</i> φ</span><span class="g">True iff φ is true in some best world.</span></div>
+        <div class="d"><span class="t">Empty ordering source</span><span class="g"><i>g</i>(<i>w</i>) = ∅. No world is better than another, so every world in ∩<i>f</i>(<i>w</i>) is best. Equivalent to no ordering source. Note that this predicts no gradability.</span></div>
       </div>
+      <div class="proc">
+        <div class="sc proc-head">Best worlds</div>
+        <ol class="steps">
+          <li>Let <i>p</i> = Howard pays a fine.</li>
+          <li>The modal base <i>f</i>(<i>w</i>) encodes the circumstances: Howard returned the book late. So every world in ∩<i>f</i>(<i>w</i>) is a late-return world.</li>
+          <li>The ordering source <i>g</i>(<i>w</i>) encodes the library’s rules: no book is returned late; anyone who returns a book late pays a fine.</li>
+          <li>No world in ∩<i>f</i>(<i>w</i>) keeps the first rule. The best are those that keep the second: Howard pays.</li>
+          <li>(6) is true iff Howard pays the fine in all of the best worlds (the top ranked worlds that are compatible with the modal base). Which it is.</li>
+        </ol>
+      </div>
+      <ol class="exs">
+        <li><span>(9)</span><span class="s">We all must die.</span></li>
+        <li><span>(10)</span><span class="s">Water must boil at 100 °C at sea level.</span></li>
+        <li><span>(11)</span><span class="s">This car can reach 200 km an hour.</span></li>
+        <li><span>(12)</span><span><span class="ctx">[the conditions are good for them]</span> <span class="s">Avocado trees can grow there.</span></span></li>
+        <li><span>(13)</span><span><span class="ctx">[all the doors were locked from inside, and only Jo was in the house]</span> <span class="s">Jo must have locked them.</span></span></li>
+        <li><span>(14)</span><span><span class="ctx">[a doctor, after the examination]</span> <span class="s">You must have the flu.</span></span></li>
+      </ol>
+      <div class="proc">
+        <div class="sc proc-head">Empty ordering sources</div>
+        <ol class="steps">
+          <li>(9) and (10): physical necessity. A circumstantial modal base and no ideals: the modal quantifies over every world the facts allow.</li>
+          <li>(11) and (12): ability and disposition. Again circumstantial and unranked: true iff some world compatible with the facts makes the prejacent true.</li>
+          <li>(13): strict deduction. An epistemic modal base and no assumptions about what normally happens: every world compatible with what is known is one where Jo locked the doors.</li>
+          <li>No ranking, so no grades: <i>#There is a good possibility that we all must die.</i></li>
+          <li>Contrast (14). It relies on expectations about how illnesses usually go: a stereotypical ordering source. That is why it can be weaker than <i>You have the flu</i>.</li>
+        </ol>
+      </div>
+      <p><span class="runin">Model.</span> Three worlds: at <i>w</i><sub>0</sub> Howard returns the book on time; at <i>w</i><sub>1</sub> he returns it late and pays the fine; at <i>w</i><sub>2</sub> he returns it late and does not pay. The facts: ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. <i>g</i>(<i>w</i>) = {no book is returned late, anyone who returns a book late pays a fine}.</p>
       <p><span class="runin">Exercise 2.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>In the model of section 0, Anna has no view on whether Ben called. Show that the existential entry makes <i>Anna believes that Ben called</i> and <i>Anna believes that Ben did not call</i> both true at <i>w</i><sub>3</sub>.</span></div>
-        <div class="ans">Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) ∩ ⟦that Ben called⟧ = {<i>w</i><sub>1</sub>} ≠ ∅. Dox<sub><i>Anna</i></sub>(<i>w</i><sub>3</sub>) ∩ ⟦that Ben did not call⟧ = {<i>w</i><sub>2</sub>} ≠ ∅. Both true.</div>
-        <div class="task"><span>(b)</span><span>(8) is valid. Show that on the identity entry its premise and conclusion cannot both be true unless the two complements denote the same proposition.</span></div>
-      <ol class="exs">
-        <li><span>(8)</span><span><span class="s">Anna believes that Ben called and that it is raining. ⇒ Anna believes that Ben called.</span></span></li>
-      </ol>
-        <div class="ans">Premise Dox<sub><i>Anna</i></sub>(<i>w</i>) = ⟦that Ben called and it is raining⟧. Conclusion Dox<sub><i>Anna</i></sub>(<i>w</i>) = ⟦that Ben called⟧. Both true only if ⟦that Ben called and it is raining⟧ = ⟦that Ben called⟧.</div>
-        <div class="task"><span>(c)</span><span>The existential entry gives the meaning of an English phrase. Give one. Try to find a single English verb with that meaning.</span></div>
-        <div class="ans"><i>x thinks it possible that p</i>, <i>for all x believes, p</i>. No single verb fits according to von Fintel and Heim.</div>
+        <div class="task"><span>(a)</span><span>Which rules does each world in ∩<i>f</i>(<i>w</i>) satisfy? Which world is best?</span></div>
+        <div class="ans"><i>w</i><sub>1</sub> keeps the second rule. <i>w</i><sub>2</sub> keeps neither. Best is <i>w</i><sub>1</sub>.</div>
+        <div class="task"><span>(b)</span><span>Is (6) true?</span></div>
+        <div class="ans">True.</div>
+        <div class="task"><span>(c)</span><span>Is (7) true? Why not, although <i>w</i><sub>2</sub> is in ∩<i>f</i>(<i>w</i>)?</span></div>
+        <div class="ans">False. <i>w</i><sub>2</sub> is not best. <i>w</i><sub>1</sub> is better.</div>
+        <div class="task"><span>(d)</span><span><i>w</i><sub>0</sub> satisfies every rule. Why does (8) still come out false?</span></div>
+        <div class="ans"><i>w</i><sub>0</sub> is not in ∩<i>f</i>(<i>w</i>). The book was returned late. Best worlds come from ∩<i>f</i>(<i>w</i>) only.</div>
       </div>
     </div>
     <div class="note">
-      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 2, §2.1.</p>
-      <p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> §12.5.2.</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 3, (19) and (23).</p>
+      <p><b>Portner 2009.</b> <i>Modality.</i> §3.1.3.</p>
     </div>
   </div>
 
   <!-- ══ 2 ══ -->
-  <div class="sec flow">
+  <div class="sec">
     <div class="num">2</div>
     <div class="body">
-      <h2>Composition</h2>
+      <h2>Chisholm’s paradox</h2>
       <ol class="exs">
-        <li><span>(9)</span><span><span class="s">Sue thinks that Harry is single.</span></span></li>
-        <li><span>(10)</span><span><span class="s">Sue thinks that Dublin is in Ireland.</span></span></li>
+        <li><span>(15)</span><span><span class="s">Mary must not rob John.</span><span class="fr">□¬<i>r</i></span></span></li>
+        <li><span>(16)</span><span><span class="s">Mary robs John.</span><span class="fr"><i>r</i></span></span></li>
+        <li><span>(17)</span><span><span class="s">If Mary robs John, she must be punished.</span><span class="fr"><i>r</i> → □<i>q</i></span></span></li>
+        <li><span>(18)</span><span><span class="s">It must be the case that if Mary does not rob John, she is not punished.</span><span class="fr">□(¬<i>r</i> → ¬<i>q</i>)</span></span></li>
       </ol>
-      <p>(9) and (10) can differ in truth value although both complements are true. A complement of type <i>t</i> contributes only its truth value.</p>
-      <div class="defs">
-        <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Type <i>s</i></span><span class="g">Worlds. ⟨<i>s</i>, <i>t</i>⟩ is the type of propositions: functions from worlds to truth values, or sets of worlds.</span></div>
-        <div class="d"><span class="t"><i>that</i></span><span class="g">Abstracts over the world of evaluation and returns an intension: ⟦that S⟧<sup><i>w</i></sup> = λ<i>w</i>′. ⟦S⟧<sup><i>w</i>′</sup>, type ⟨<i>s</i>, <i>t</i>⟩.</span></div>
-        <div class="d"><span class="t">Attitude verb</span><span class="g">Type ⟨⟨<i>s</i>, <i>t</i>⟩, ⟨<i>e</i>, <i>t</i>⟩⟩.</span></div>
-      </div>
-      <div class="treebox">
-      <div class="proc">
-        <div class="sc proc-head"><i>Anna believes that it is raining</i></div>
-      <svg class="tfig t4" viewBox="0 0 726 286" role="img" aria-label="Tree: S splits into Anna and VP; VP splits into believes and that it is raining.">
-      <line x1="234" y1="68" x2="85" y2="124"/>
-      <line x1="234" y1="68" x2="383" y2="124"/>
-      <line x1="383" y1="168" x2="244" y2="224"/>
-      <line x1="383" y1="168" x2="522" y2="224"/>
-      <text class="tn" x="234" y="56">S</text>
-      <text class="tn" x="85" y="156">Anna</text>
-      <text class="tn" x="383" y="156">VP</text>
-      <text class="tn" x="244" y="256">believes</text>
-      <text class="tn" x="522" y="256">that it is raining</text>
-      </svg>
-      </div>
-      <table class="rec">
-        <tr><th>Node</th><th>Denotation at <i>w</i></th></tr>
-        <tr><td><i>Anna</i></td><td>Anna</td></tr>
-        <tr><td><i>believes</i></td><td>λ<i>p</i>. λ<i>x</i>. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]</td></tr>
-        <tr><td><i>that it is raining</i></td><td>λ<i>w</i>′. ⟦it is raining⟧<sup><i>w</i>′</sup></td></tr>
-        <tr><td>VP</td><td>FA: λ<i>x</i>. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]</td></tr>
-        <tr><td>S</td><td>FA: ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]</td></tr>
-      </table>
-      </div>
+      <p><i>r</i>: Mary robs John. <i>q</i>: Mary is punished.</p>
       <p><span class="runin">Exercise 3.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Annotate each node of the tree for (11) with its type and its denotation at <i>w</i>, with each <i>that</i> abstracting over worlds as above. Then give the truth condition at <i>w</i>.</span></div>
-      <ol class="exs">
-        <li><span>(11)</span><span><span class="s">John doesn’t believe that Anna believes that it is raining.</span></span></li>
-      </ol>
-      <div class="treebox">
-      <svg class="tfig t4 blank" viewBox="0 0 1341 812" role="img" aria-label="Unlabelled tree for John does not believe that Anna believes that it is raining: a right-branching chain with not, John, believe, that, Anna, believes and that as left daughters, ending in it is raining.">
-      <line x1="259" y1="44" x2="141" y2="81"/>
-      <line x1="259" y1="44" x2="377" y2="139"/>
-      <line x1="377" y1="148" x2="259" y2="185"/>
-      <line x1="377" y1="148" x2="495" y2="243"/>
-      <line x1="495" y1="252" x2="377" y2="289"/>
-      <line x1="495" y1="252" x2="613" y2="347"/>
-      <line x1="613" y1="356" x2="495" y2="393"/>
-      <line x1="613" y1="356" x2="731" y2="451"/>
-      <line x1="731" y1="460" x2="613" y2="497"/>
-      <line x1="731" y1="460" x2="849" y2="555"/>
-      <line x1="849" y1="564" x2="731" y2="601"/>
-      <line x1="849" y1="564" x2="967" y2="659"/>
-      <line x1="967" y1="668" x2="849" y2="705"/>
-      <line x1="967" y1="668" x2="1085" y2="705"/>
-      <circle cx="259" cy="40" r="5" fill="#222"/>
-      <circle cx="377" cy="144" r="5" fill="#222"/>
-      <circle cx="495" cy="248" r="5" fill="#222"/>
-      <circle cx="613" cy="352" r="5" fill="#222"/>
-      <circle cx="731" cy="456" r="5" fill="#222"/>
-      <circle cx="849" cy="560" r="5" fill="#222"/>
-      <circle cx="967" cy="664" r="5" fill="#222"/>
-      <text class="tn" x="141" y="144">not</text>
-      <text class="tn" x="259" y="248">John</text>
-      <text class="tn" x="377" y="352">believe</text>
-      <text class="tn" x="495" y="456">that</text>
-      <text class="tn" x="613" y="560">Anna</text>
-      <text class="tn" x="731" y="664">believes</text>
-      <text class="tn" x="849" y="768">that</text>
-      <text class="tn" x="1085" y="768">it is raining</text>
-            <text class="at" x="275" y="34">1 · <tspan font-style="italic">t</tspan></text>
-      <text class="at" x="393" y="138">2 · <tspan font-style="italic">t</tspan></text>
-      <text class="at" x="511" y="242">3 · ⟨<tspan font-style="italic">e</tspan>, <tspan font-style="italic">t</tspan>⟩</text>
-      <text class="at" x="629" y="346">4 · ⟨<tspan font-style="italic">s</tspan>, <tspan font-style="italic">t</tspan>⟩</text>
-      <text class="at" x="747" y="450">5 · <tspan font-style="italic">t</tspan></text>
-      <text class="at" x="865" y="554">6 · ⟨<tspan font-style="italic">e</tspan>, <tspan font-style="italic">t</tspan>⟩</text>
-      <text class="at" x="983" y="658">7 · ⟨<tspan font-style="italic">s</tspan>, <tspan font-style="italic">t</tspan>⟩</text>
-      <text class="at" x="141" y="180" text-anchor="middle">⟨<tspan font-style="italic">t</tspan>, <tspan font-style="italic">t</tspan>⟩</text>
-      <text class="at" x="259" y="284" text-anchor="middle"><tspan font-style="italic">e</tspan></text>
-      <text class="at" x="377" y="388" text-anchor="middle">⟨⟨<tspan font-style="italic">s</tspan>, <tspan font-style="italic">t</tspan>⟩, ⟨<tspan font-style="italic">e</tspan>, <tspan font-style="italic">t</tspan>⟩⟩</text>
-      <text class="at" x="613" y="596" text-anchor="middle"><tspan font-style="italic">e</tspan></text>
-      <text class="at" x="731" y="700" text-anchor="middle">⟨⟨<tspan font-style="italic">s</tspan>, <tspan font-style="italic">t</tspan>⟩, ⟨<tspan font-style="italic">e</tspan>, <tspan font-style="italic">t</tspan>⟩⟩</text>
-      <text class="at" x="1085" y="804" text-anchor="middle"><tspan font-style="italic">t</tspan></text>
-</svg>
+        <div class="task"><span>(a)</span><span>Use (16) and (17) to derive □<i>q</i>, and (15) and (18) to derive □¬<i>q</i>. Why is that a problem?</span></div>
+        <div class="ans">(16), (17) give □<i>q</i>, by modus ponens. (15), (18) give □¬<i>q</i>, by (K). Mary must and must not be punished. With (D), a contradiction, yet (15) to (18) are intuitively consistent.</div>
       </div>
-      <table class="rec anst">
-        <tr><th>Node</th><th>Type</th><th>Denotation at <i>w</i></th></tr>
-        <tr><td><i>not</i></td><td>⟨<i>t</i>, <i>t</i>⟩</td><td>λ<i>u</i>. <i>u</i> = 0</td></tr>
-        <tr><td><i>John</i></td><td><i>e</i></td><td>John</td></tr>
-        <tr><td><i>believe</i></td><td>⟨⟨<i>s</i>, <i>t</i>⟩, ⟨<i>e</i>, <i>t</i>⟩⟩</td><td>λ<i>p</i>. λ<i>x</i>. ∀<i>w</i>″[<i>w</i>″ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>″) = 1]</td></tr>
-        <tr><td><i>Anna</i></td><td><i>e</i></td><td>Anna</td></tr>
-        <tr><td><i>believes</i></td><td>⟨⟨<i>s</i>, <i>t</i>⟩, ⟨<i>e</i>, <i>t</i>⟩⟩</td><td>λ<i>p</i>. λ<i>x</i>. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]</td></tr>
-        <tr><td><i>it is raining</i></td><td><i>t</i></td><td>⟦it is raining⟧<sup><i>w</i></sup></td></tr>
-        <tr><td>7</td><td>⟨<i>s</i>, <i>t</i>⟩</td><td>λ<i>w</i>′. ⟦it is raining⟧<sup><i>w</i>′</sup></td></tr>
-        <tr><td>6</td><td>⟨<i>e</i>, <i>t</i>⟩</td><td>FA. λ<i>x</i>. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]</td></tr>
-        <tr><td>5</td><td><i>t</i></td><td>FA. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]</td></tr>
-        <tr><td>4</td><td>⟨<i>s</i>, <i>t</i>⟩</td><td>λ<i>w</i>″. ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>″) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]</td></tr>
-        <tr><td>3</td><td>⟨<i>e</i>, <i>t</i>⟩</td><td>FA. λ<i>x</i>. ∀<i>w</i>″[<i>w</i>″ ∈ Dox<sub><i>x</i></sub>(<i>w</i>) → ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>″) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]]</td></tr>
-        <tr><td>2</td><td><i>t</i></td><td>FA. ∀<i>w</i>″[<i>w</i>″ ∈ Dox<sub><i>John</i></sub>(<i>w</i>) → ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>″) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]]</td></tr>
-        <tr><td>1</td><td><i>t</i></td><td>FA. 1 iff ¬∀<i>w</i>″[<i>w</i>″ ∈ Dox<sub><i>John</i></sub>(<i>w</i>) → ∀<i>w</i>′[<i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>″) → ⟦it is raining⟧<sup><i>w</i>′</sup> = 1]]</td></tr>
-      </table>
-        <div class="ans">True at <i>w</i> iff some <i>w</i>″ ∈ Dox<sub><i>John</i></sub>(<i>w</i>) has a <i>w</i>′ ∈ Dox<sub><i>Anna</i></sub>(<i>w</i>″) where it is not raining.</div>
+      <div class="proc">
+        <div class="sc proc-head">Kratzer’s solution</div>
+        <ol class="steps">
+          <li>An <i>if</i>-clause adds its proposition to the modal base.</li>
+          <li>(15) and (18) use the modal base <i>f</i>, which leaves the robbery open. With (16) in <i>f</i>, (15) could not be said.</li>
+          <li>The main clause of (17) uses <i>f</i> plus <i>r</i>.</li>
+          <li>The ordering source ranks the worlds in both.</li>
+        </ol>
+      </div>
+      <p><span class="runin">Model.</span> Three worlds in ∩<i>f</i>(<i>w</i>): at <i>w</i><sub>1</sub> Mary does not rob John and is not punished; at <i>w</i><sub>2</sub> she robs him and is punished; at <i>w</i><sub>3</sub> she robs him and is not punished. <i>g</i>(<i>w</i>) = {Mary does not rob John, robbers are punished, non-robbers are not punished}.</p>
+      <div class="tasks">
+        <div class="task"><span>(b)</span><span>Which world is best relative to <i>f</i>? Show that (15) and (18) are true.</span></div>
+        <div class="ans"><i>w</i><sub>1</sub> keeps all three. (15) true, ¬<i>r</i> at <i>w</i><sub>1</sub>. (18) true, ¬<i>r</i> and ¬<i>q</i> at <i>w</i><sub>1</sub>.</div>
+        <div class="task"><span>(c)</span><span>Which world is best once <i>r</i> is added to <i>f</i>? Show that the main clause of (17) is true. Why is there no contradiction?</span></div>
+        <div class="ans"><i>w</i><sub>2</sub> keeps two, <i>w</i><sub>3</sub> one. (17) true, <i>q</i> at <i>w</i><sub>2</sub>. □¬<i>q</i> is relative to <i>f</i>, □<i>q</i> to <i>f</i> plus <i>r</i>. Different best worlds.</div>
       </div>
     </div>
     <div class="note">
-      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 1 and 2.</p>
-      <p><b>Heim &amp; Kratzer 1998.</b> <i>Semantics in Generative Grammar.</i> Ch. 12.</p>
+      <p><b>Chisholm 1963.</b> Contrary-to-duty imperatives and deontic logic. <i>Analysis</i> 24: 33–36.</p>
+      <p><b>Portner 2009.</b> <i>Modality.</i> §3.1.3.</p>
     </div>
   </div>
 
   <!-- ══ 3 ══ -->
-  <div class="sec flow">
+  <div class="sec">
     <div class="num">3</div>
     <div class="body">
-      <h2>Axioms and closure</h2>
-      <p>Conditions on Dox<sub><i>x</i></sub>(<i>w</i>) and Epi<sub><i>x</i></sub>(<i>w</i>) decide which inferences about belief and knowledge come out valid.</p>
+      <h2>Modal bases and ordering sources</h2>
       <div class="defs">
-        <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Alternatives as R</span><span class="g">Fix <i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) and Epi<sub><i>x</i></sub>(<i>w</i>) are each an <i>R</i>(<i>w</i>).</span></div>
-        <div class="d"><span class="t">Reflexive</span><span class="g"><i>w</i> ∈ <i>R</i>(<i>w</i>).</span></div>
-        <div class="d"><span class="t">Serial</span><span class="g"><i>R</i>(<i>w</i>) ≠ ∅.</span></div>
-        <div class="d"><span class="t">Transitive</span><span class="g">If <i>w</i>′ ∈ <i>R</i>(<i>w</i>) and <i>w</i>″ ∈ <i>R</i>(<i>w</i>′), then <i>w</i>″ ∈ <i>R</i>(<i>w</i>).</span></div>
-        <div class="d"><span class="t">Euclidean</span><span class="g">If <i>w</i>′ ∈ <i>R</i>(<i>w</i>) and <i>w</i>″ ∈ <i>R</i>(<i>w</i>), then <i>w</i>″ ∈ <i>R</i>(<i>w</i>′).</span></div>
-        <div class="d"><span class="t">T, D</span><span class="g"><i>x</i> knows <i>p</i> → <i>p</i>. <i>x</i> believes <i>p</i> → <i>x</i> does not believe ¬<i>p</i>.</span></div>
-        <div class="d"><span class="t">4, 5</span><span class="g">Positive introspection: knows <i>p</i> → knows that knows <i>p</i>. Negative introspection: does not know <i>p</i> → knows that does not know <i>p</i>.</span></div>
-        <div class="d"><span class="t">S4, KD45</span><span class="g">The usual systems for knowledge (T and 4) and for belief (D, 4 and 5).</span></div>
-        <div class="d"><span class="t">Closure</span><span class="g">If <i>x</i> believes <i>p</i> and <i>p</i> ⊆ <i>q</i>, then <i>x</i> believes <i>q</i>.</span></div>
-        <div class="d"><span class="t">Logical omniscience</span><span class="g"><i>x</i> believes every necessary truth and everything entailed by what <i>x</i> believes.</span></div>
+        <div class="sc">Modal bases</div>
+        <div class="d"><span class="t">Epistemic</span><span class="g"><i>f</i>(<i>w</i>): facts known in <i>w</i>.</span></div>
+        <div class="d"><span class="t">Circumstantial</span><span class="g"><i>f</i>(<i>w</i>): circumstances holding in <i>w</i>.</span></div>
       </div>
-      <p><span class="runin">Exercise 4.</span></p>
+      <div class="defs">
+        <div class="sc">Ordering sources</div>
+        <div class="d"><span class="t">Deontic</span><span class="g">rules in force.</span></div>
+        <div class="d"><span class="t">Bouletic</span><span class="g">desires.</span></div>
+        <div class="d"><span class="t">Teleological</span><span class="g">goals.</span></div>
+        <div class="d"><span class="t">Stereotypical</span><span class="g">expectations about what is normal.</span></div>
+        <div class="d"><span class="t">Empty</span><span class="g"><i>g</i>(<i>w</i>) = ∅.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(19)</span><span><span class="ctx">(Based on what I know,)</span> <span class="s">Hannah must be in the library.</span></span></li>
+        <li><span>(20)</span><span><span class="ctx">(According to the department rules,)</span> <span class="s">you must submit the form by Friday.</span></span></li>
+        <li><span>(21)</span><span><span class="ctx">(Given the circumstances,)</span> <span class="s">the glass can break if you drop it.</span></span></li>
+        <li><span>(22)</span><span><span class="ctx">(To catch the 7am train,)</span> <span class="s">you have to leave now.</span></span></li>
+        <li><span>(23)</span><span><span class="ctx">(To get to Harvard Square from MIT cheaply and safely,)</span> <span class="s">you ought to take the Red Line.</span></span></li>
+      </ol>
+      <p><span class="runin">Exercise 4.</span> For each of (19) to (23), give the force (necessity or possibility), a plausible modal base and a plausible ordering source.</p>
+      <table class="rec fill wide">
+        <tr><th></th><th>Force</th><th>Modal base</th><th>Ordering source</th></tr>
+        <tr><td>(19)</td><td class="av">necessity</td><td class="av">epistemic</td><td class="av">stereotypical (or empty)</td></tr>
+        <tr><td>(20)</td><td class="av">necessity</td><td class="av">circumstantial</td><td class="av">deontic</td></tr>
+        <tr><td>(21)</td><td class="av">possibility</td><td class="av">circumstantial</td><td class="av">empty</td></tr>
+        <tr><td>(22)</td><td class="av">necessity</td><td class="av">circumstantial</td><td class="av">teleological</td></tr>
+        <tr><td>(23)</td><td class="av">necessity (weak)</td><td class="av">circumstantial</td><td class="av">teleological</td></tr>
+      </table>
+      <div class="treebox">
+      <p><span class="runin">Exercise 5.</span> A doctor’s guidelines. Four atoms: <i>I</i>, you have an infection; <i>A</i>, you take antibacterials; <i>R</i>, you are at risk of flu; <i>J</i>, you get a flu jab. Six worlds:</p>
+      <svg class="wpic" viewBox="0 0 1000 400" role="img" aria-label="Six worlds in two rows, each labelled with which of I, A, R and J hold: w1 I A R J; w2 I A R not-J; w3 I not-A R J; w4 I A not-R not-J; w5 I not-A not-R not-J; w6 not-I not-A R J.">
+      <rect class="wr" x="10" y="10" width="980" height="380" rx="22"/><text class="wl" x="36" y="50">W</text>
+      <circle class="wd" cx="170" cy="110" r="9"/><text class="wn" x="170" y="86"><tspan>w</tspan><tspan class="sb" dy="8">1</tspan></text><text class="wa" x="170" y="152">I, A, R, J</text>
+      <circle class="wd" cx="500" cy="110" r="9"/><text class="wn" x="500" y="86"><tspan>w</tspan><tspan class="sb" dy="8">2</tspan></text><text class="wa" x="500" y="152">I, A, R, ¬J</text>
+      <circle class="wd" cx="830" cy="110" r="9"/><text class="wn" x="830" y="86"><tspan>w</tspan><tspan class="sb" dy="8">3</tspan></text><text class="wa" x="830" y="152">I, ¬A, R, J</text>
+      <circle class="wd" cx="170" cy="285" r="9"/><text class="wn" x="170" y="261"><tspan>w</tspan><tspan class="sb" dy="8">4</tspan></text><text class="wa" x="170" y="327">I, A, ¬R, ¬J</text>
+      <circle class="wd" cx="500" cy="285" r="9"/><text class="wn" x="500" y="261"><tspan>w</tspan><tspan class="sb" dy="8">5</tspan></text><text class="wa" x="500" y="327">I, ¬A, ¬R, ¬J</text>
+      <circle class="wd" cx="830" cy="285" r="9"/><text class="wn" x="830" y="261"><tspan>w</tspan><tspan class="sb" dy="8">6</tspan></text><text class="wa" x="830" y="327">¬I, ¬A, R, J</text>
+      <text class="at" x="170" y="186">I→A, R→J</text>
+      <path class="am" d="M95 56 H905 Q935 56 935 86 V188 Q935 216 905 216 H672 Q645 216 645 244 V350 Q645 378 617 378 H95 Q65 378 65 350 V86 Q65 56 95 56 Z" stroke-linejoin="round"/>
+      <text class="as" x="210" y="123">★</text>
+      <text class="at" x="500" y="186">I→A</text>
+      <text class="at" x="830" y="186">R→J</text>
+      <text class="at" x="170" y="361">I→A, R→J</text>
+      <text class="as" x="210" y="298">★</text>
+      <text class="at" x="500" y="361">R→J</text>
+</svg>
+      <p><i>f</i>(<i>w</i>) = {<i>I</i>}: you have an infection. <i>g</i>(<i>w</i>) = {<i>I</i> → <i>A</i>, <i>R</i> → <i>J</i>}: if you have an infection, you take antibacterials; if you are at risk of flu, you get a flu jab.</p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Show that if <i>w</i> ∈ Epi<sub><i>x</i></sub>(<i>w</i>) for every <i>w</i>, then <i>x knows p</i> entails <i>p</i>.</span></div>
-        <div class="ans">Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> and <i>w</i> ∈ Epi<sub><i>x</i></sub>(<i>w</i>), so <i>w</i> ∈ <i>p</i>.</div>
-        <div class="task"><span>(b)</span><span>Show that if Dox<sub><i>x</i></sub>(<i>w</i>) ≠ ∅, <i>x</i> cannot believe both <i>p</i> and ¬<i>p</i>. What does this predict for (12)?</span></div>
+        <div class="task"><span>(a)</span><span>On the picture, circle the worlds in ∩<i>f</i>(<i>w</i>).</span></div>
+        <div class="task"><span>(b)</span><span>For each rule in <i>g</i>(<i>w</i>), mark the worlds in ∩<i>f</i>(<i>w</i>) that keep it.</span></div>
+        <div class="task"><span>(c)</span><span>Mark the best worlds with a star.</span></div>
+      </div>
+        <div class="ans">∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>}. <i>I</i> → <i>A</i> kept at <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>. <i>R</i> → <i>J</i> kept at <i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>. The best are <i>w</i><sub>1</sub>, <i>w</i><sub>4</sub>.</div>
+      </div>
       <ol class="exs">
-        <li><span>(12)</span><span><span class="s">Anna believes that it is raining, and she believes that it is not raining.</span></span></li>
+        <li><span>(24)</span><span class="s">You must take antibacterials.</span></li>
+        <li><span>(25)</span><span class="s">You must get a flu jab.</span></li>
+        <li><span>(26)</span><span class="s">You may skip the flu jab.</span></li>
+        <li><span>(27)</span><span class="s">You may skip the antibacterials.</span></li>
+        <li><span>(28)</span><span class="s">If you are at risk of flu, you must get a flu jab.</span></li>
       </ol>
-        <div class="ans">Then Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> ∩ ¬<i>p</i> = ∅, against Dox<sub><i>x</i></sub>(<i>w</i>) ≠ ∅. (12) is predicted always false.</div>
-        <div class="task"><span>(c)</span><span>Which relation between Dox<sub><i>x</i></sub>(<i>w</i>) and Epi<sub><i>x</i></sub>(<i>w</i>) makes knowing <i>p</i> entail believing <i>p</i>? Prove it.</span></div>
-        <div class="ans">Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ Epi<sub><i>x</i></sub>(<i>w</i>). If Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>, then Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>.</div>
-        <div class="task"><span>(d)</span><span>Prove closure. Show that it makes the first sentence of (13) and of (14) entail the second. Which of the two entailments is right?</span></div>
-      <ol class="exs">
-        <li><span>(13)</span><span><span class="s">Anna believes that the shop opens at nine. ⇒ Anna believes that the shop opens before ten.</span></span></li>
-        <li><span>(14)</span><span><span class="s">Anna believes that 2 + 2 = 4. ⇏ Anna believes that the prime factors of 1,234,567 are 127 and 9,721.</span></span></li>
-      </ol>
-        <div class="ans">Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> ⊆ <i>q</i>, so Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>q</i>. Opening at nine entails opening before ten, so (13). Both complements in (14) are necessary truths, both denote <i>W</i>, so (14). (13) is right, (14) wrong. Logical omniscience.</div>
-        <div class="task"><span>(e)</span><span>Which axiom does (15) instantiate? Is it valid in S4?</span></div>
-      <ol class="exs">
-        <li><span>(15)</span><span><span class="s">Anna knows that the shop opens at nine. ⇒? Anna knows that she knows that the shop opens at nine.</span></span></li>
-      </ol>
-        <div class="ans">4, positive introspection. Valid in S4, whose frames are transitive.</div>
+      <div class="tasks">
+        <div class="task"><span>(d)</span><span>Which of (24) to (28) are true in this model? For (28), remember what an <i>if</i>-clause does.</span></div>
+        <div class="ans">(24) true. (25) false (<i>w</i><sub>4</sub>). (26) true (<i>w</i><sub>4</sub>). (27) false. (28) true. <i>R</i> is added to <i>f</i>, and the best world is <i>w</i><sub>1</sub>.</div>
+        <div class="task"><span>(e)</span><span>The doctor learns that you are not at risk of flu: ¬<i>R</i> is added to <i>f</i>(<i>w</i>). Recalculate the truth of (24) to (28).</span></div>
+        <div class="ans">∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>}. Best is <i>w</i><sub>4</sub>. (24) true. (25) false. (26) true. (27) false. (28) trivially true. <i>f</i> plus <i>R</i> is inconsistent, so there are no best worlds.</div>
       </div>
     </div>
     <div class="note">
-      <p><b>Hintikka 1962.</b> <i>Knowledge and Belief.</i> Cornell University Press.</p>
-      <p><b>Fagin, Halpern, Moses &amp; Vardi 1995.</b> <i>Reasoning about Knowledge.</i> MIT Press.</p>
+      <p><b>Kratzer 1991.</b> Modality. In A. von Stechow &amp; D. Wunderlich (eds.), <i>Semantik/Semantics.</i> de Gruyter.</p>
+      <p><b>Portner 2009.</b> <i>Modality.</i> §3.1.3, (106).</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 3: the Red Line.</p>
     </div>
   </div>
 
   <!-- ══ 4 ══ -->
-  <div class="sec flow">
+  <div class="sec">
     <div class="num">4</div>
     <div class="body">
-      <h2>Want</h2>
+      <h2>Graded modality</h2>
       <ol class="exs">
-        <li><span>(16)</span><span><span class="ctx">[Anna would rather not teach at all, but knows she has to]</span> <span class="s">Anna wants to teach Tuesdays and Thursdays next semester.</span></span></li>
+        <li><span>(29)</span><span class="s">It is probable that Mary is lost, but she might not be.</span></li>
+        <li><span>(30)</span><span><span class="ctx">#</span> <span class="s">Mary must be lost, but she might not be.</span></span></li>
+        <li><span>(31)</span><span class="s">There is a slight possibility that Mary is lost.</span></li>
+        <li><span>(32)</span><span class="s">It is more likely that Mary doesn’t want to come to your party than that she is lost.</span></li>
       </ol>
-      <p>(16) is true, although Anna’s desires are best met where she does not teach at all. Her desires rank the worlds she believes possible.</p>
+      <p>(29) and (30): <i>probable</i> is weaker than <i>must</i>. (31) suggests Mary is probably not lost. (32) compares two propositions. With only ∀ and ∃ over one set of worlds there are just two forces. Kratzer (1981, 1991) uses the ordering to define more.</p>
       <div class="defs">
-        <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Bouletic entry</span><span class="g"><i>x</i> wants <i>p</i> iff Bul<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>, as in section 0.</span></div>
-        <div class="d"><span class="t">Kratzerian entry</span><span class="g">Modal base <i>f</i>: what <i>x</i> believes in <i>w</i>, so ∩<i>f</i>(<i>w</i>) = Dox<sub><i>x</i></sub>(<i>w</i>). Ordering source <i>g</i>: <i>x</i>’s desires in <i>w</i>. <i>x</i> wants <i>p</i> iff Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i>, or ∀<i>w</i>′[<i>w</i>′ ∈ Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) → <i>p</i>(<i>w</i>′) = 1].</span></div>
+        <div class="sc">Definitions, in a finite model</div>
+        <div class="d"><span class="t">Slight possibility</span><span class="g"><i>p</i> is true in some world in ∩<i>f</i>(<i>w</i>), but in no best world.</span></div>
+        <div class="d"><span class="t">More likely</span><span class="g"><i>p</i> is more likely than <i>q</i> iff (i) every <i>q</i>-world in ∩<i>f</i>(<i>w</i>) has a <i>p</i>-world at least as good as it, and (ii) some <i>p</i>-world has no <i>q</i>-world at least as good as it.</span></div>
+        <div class="d"><span class="t">Probable</span><span class="g"><i>p</i> is more likely than ¬<i>p</i>.</span></div>
       </div>
-      <p><span class="runin">Model.</span> Dox<sub><i>Anna</i></sub>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}. Bul<sub><i>Anna</i></sub>(<i>w</i>) = {<i>w</i><sub>3</sub>}.</p>
       <table class="rec">
-        <tr><th></th><th>Anna teaches</th><th>Anna’s Mondays, Wednesdays and Fridays are free</th></tr>
-        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td></tr>
-        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>F</td></tr>
-        <tr><td><i>w</i><sub>3</sub></td><td>F</td><td>T</td></tr>
+        <tr><th>Kratzer’s name</th><th>English</th></tr>
+        <tr><td>necessity</td><td class="it">must</td></tr>
+        <tr><td>weak necessity</td><td class="it">it is probable that</td></tr>
+        <tr><td>possibility</td><td class="it">might</td></tr>
+        <tr><td>slight possibility</td><td class="it">there is a slight possibility that</td></tr>
+        <tr><td>better possibility</td><td class="it">it is more likely that … than that …</td></tr>
       </table>
-      <p><i>g</i>(<i>w</i>) = {Anna does not teach, Anna’s Mondays, Wednesdays and Fridays are free}. Anna teaches Tuesdays and Thursdays at <i>w</i><sub>1</sub>.</p>
-      <p><span class="runin">Exercise 5.</span></p>
+      <p><span class="runin">Model.</span> Mary is not at the party yet. <i>f</i>(<i>w</i>): she is not here, so something has kept her away. Six worlds in ∩<i>f</i>(<i>w</i>):</p>
+      <table class="rec">
+        <tr><th></th><th>Mary is lost</th><th>Mary doesn’t want to come</th><th>Mary is stuck in traffic</th></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>F</td><td>T</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>5</sub></td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>6</sub></td><td>T</td><td>T</td><td>T</td></tr>
+      </table>
+      <p><i>g</i>(<i>w</i>), stereotypical expectations: Mary is not lost (she knows the way); Mary wants to come (she likes parties); Mary is stuck in traffic (it is rush hour).</p>
+      <p><span class="runin">Exercise 6.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>On the bouletic entry, is (16) true?</span></div>
-        <div class="ans">No. Bul<sub><i>Anna</i></sub>(<i>w</i>) = {<i>w</i><sub>3</sub>}, and Anna does not teach at <i>w</i><sub>3</sub>.</div>
-        <div class="task"><span>(b)</span><span>On the Kratzerian entry, which world is best? Is (16) true?</span></div>
-        <div class="ans"><i>w</i><sub>1</sub>, where her Mondays, Wednesdays and Fridays are free. <i>w</i><sub>2</sub> keeps no desire. (16) true. She teaches Tuesdays and Thursdays at <i>w</i><sub>1</sub>.</div>
-        <div class="task"><span>(c)</span><span>Let ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. What does the Kratzerian entry now predict for (16)?</span></div>
-        <div class="ans">Best is <i>w</i><sub>3</sub>, which keeps both desires. (16) false, as on the bouletic entry.</div>
-        <div class="task"><span>(d)</span><span>Back in the original model, show that the Kratzerian entry makes (17) true. It is odd to say. Which condition relating Dox<sub><i>Anna</i></sub>(<i>w</i>) and the complement would rule it out?</span></div>
+        <div class="task"><span>(a)</span><span>Which expectations does each world satisfy? Which world is best? Draw the ordering.</span></div>
+        <div class="ans"><i>w</i><sub>1</sub> keeps all three. <i>w</i><sub>4</sub> keeps wants to come and stuck in traffic. <i>w</i><sub>5</sub> keeps not lost and stuck in traffic. <i>w</i><sub>2</sub> keeps wants to come. <i>w</i><sub>3</sub> keeps not lost. <i>w</i><sub>6</sub> keeps stuck in traffic. Best is <i>w</i><sub>1</sub>.</div>
+        <svg class="alat" viewBox="0 0 600 380" role="img" aria-label="Ordering: w1 at the top; w4 and w5 below it; w2 below w4, w6 below w4 and w5, w3 below w5.">
+        <defs><marker id="halat" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1f4e79"/></marker></defs>
+        <line class="oa" x1="97" y1="296" x2="152" y2="226" marker-end="url(#halat)"/><line class="oa" x1="271" y1="296" x2="211" y2="226" marker-end="url(#halat)"/><line class="oa" x1="329" y1="296" x2="389" y2="226" marker-end="url(#halat)"/><line class="oa" x1="503" y1="296" x2="448" y2="226" marker-end="url(#halat)"/><line class="oa" x1="209" y1="156" x2="269" y2="86" marker-end="url(#halat)"/><line class="oa" x1="391" y1="156" x2="331" y2="86" marker-end="url(#halat)"/>
+        <rect class="on" x="254" y="18" width="92" height="64" rx="32"/><text class="ot" x="296" y="60">w<tspan class="sb" dy="8">1</tspan></text><rect class="on" x="134" y="158" width="92" height="64" rx="32"/><text class="ot" x="176" y="200">w<tspan class="sb" dy="8">4</tspan></text><rect class="on" x="374" y="158" width="92" height="64" rx="32"/><text class="ot" x="416" y="200">w<tspan class="sb" dy="8">5</tspan></text><rect class="on" x="24" y="298" width="92" height="64" rx="32"/><text class="ot" x="66" y="340">w<tspan class="sb" dy="8">2</tspan></text><rect class="on" x="254" y="298" width="92" height="64" rx="32"/><text class="ot" x="296" y="340">w<tspan class="sb" dy="8">6</tspan></text><rect class="on" x="484" y="298" width="92" height="64" rx="32"/><text class="ot" x="526" y="340">w<tspan class="sb" dy="8">3</tspan></text>
+        </svg>
+      </div>
       <ol class="exs">
-        <li><span>(17)</span><span><span class="s">Anna wants to teach next semester.</span></span></li>
+        <li><span>(33)</span><span class="s">Mary must be stuck in traffic.</span></li>
+        <li><span>(34)</span><span class="s">Mary might be lost.</span></li>
+        <li><span>(35)</span><span class="s">There is a slight possibility that Mary is lost.</span></li>
+        <li><span>(36)</span><span class="s">It is more likely that Mary is stuck in traffic than that she is lost.</span></li>
+        <li><span>(37)</span><span class="s">It is probable that Mary is stuck in traffic.</span></li>
       </ol>
-        <div class="ans">Best is <i>w</i><sub>1</sub>, where Anna teaches. So (17) is true. But she teaches at every world in Dox<sub><i>Anna</i></sub>(<i>w</i>). Rule it out by requiring Dox<sub><i>Anna</i></sub>(<i>w</i>) ⊄ <i>p</i>.</div>
+      <div class="tasks">
+        <div class="task"><span>(b)</span><span>Which of (33) to (37) are true in this model?</span></div>
+        <div class="ans">(33) true. (34) false. No best world where she is lost. (35) true. (36) true. (37) true.</div>
+        <div class="task"><span>(c)</span><span>Is (32) true in this model? Is its converse? What does that say about the two expectations involved?</span></div>
+        <div class="ans">(32) false (<i>w</i><sub>2</sub>). Converse false (<i>w</i><sub>3</sub>). The two expectations are not ranked against each other.</div>
       </div>
     </div>
     <div class="note">
-      <p><b>Heim 1992.</b> Presupposition projection and the semantics of attitude verbs. <i>Journal of Semantics</i> 9: 183–221.</p>
-      <p><b>von Fintel 1999.</b> NPI licensing, Strawson entailment, and context dependency. <i>Journal of Semantics</i> 16: 97–148.</p>
-      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 2.</p>
+      <p><b>Kratzer 1981.</b> The notional category of modality.</p>
+      <p><b>Kratzer 1991.</b> Modality.</p>
+      <p><b>Portner 2009.</b> <i>Modality.</i> §3.1.3, (84), (98) to (104), Table 3.2.</p>
     </div>
   </div>
 
@@ -425,211 +446,101 @@
   <div class="sec flow">
     <div class="num">5</div>
     <div class="body">
-      <h2>De se</h2>
-      <p class="keep"><span class="runin">Context.</span> Perry follows a trail of sugar round a supermarket, looking for the shopper with the torn sack to tell him he is making a mess. The trail grows thicker on each lap. He is the shopper he is trying to catch.</p>
+      <h2>Modals in a tree</h2>
       <ol class="exs">
-        <li><span>(18)</span><span><span class="ctx">[before he realises]</span> <span class="s">Perry believes that the shopper with the torn sack is making a mess.</span></span></li>
-        <li><span>(19)</span><span><span class="ctx">[after]</span> <span class="s">I am making a mess.</span></span></li>
+        <li><span>(38)</span><span class="s">Mary might leave.</span></li>
+        <li><span>(39)</span><span><span class="ctx">[in view of the rules]</span> <span class="s">Mary must leave.</span></span></li>
       </ol>
-      <p>(18) is true before and after. Only the belief in (19) makes him stop. For any description of himself, Perry could fail to know that he fits it.</p>
       <div class="defs">
-        <div class="sc">Definitions</div>
-        <div class="d"><span class="t">De dicto</span><span class="g">The complement is a proposition, and any description in it is evaluated at the alternatives <i>w</i>′.</span></div>
-        <div class="d"><span class="t">De re</span><span class="g">The verb takes a res <i>r</i> and a property. <i>x</i> believes the property of <i>r</i> under some acquaintance relation <i>A</i> that <i>x</i> bears to <i>r</i> at <i>w</i>: seeing <i>r</i>, reading about <i>r</i>.</span></div>
-        <div class="d"><span class="t">De se</span><span class="g">A belief about oneself, held as a belief about oneself. The verb takes a property and no res.</span></div>
-        <div class="d"><span class="t">Centred world</span><span class="g">A pair ⟨<i>w</i>′, <i>y</i>⟩ of a world and an individual in it, the centre. Intuition: a world with a marker saying who you are.</span></div>
-        <div class="d"><span class="t">Centred alternatives</span><span class="g">Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>): the centred worlds ⟨<i>w</i>′, <i>y</i>⟩ compatible with what <i>x</i> believes in <i>w</i>, where <i>y</i> is the individual <i>x</i> would call <i>I</i> in <i>w</i>′.</span></div>
+        <div class="sc">Lexical entries</div>
+        <div class="d"><span class="t"><i>must</i></span><span class="g">λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i></span></div>
+        <div class="d"><span class="t"><i>might</i></span><span class="g">λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</span></div>
+        <div class="d"><span class="t"><i>f</i>, <i>g</i></span><span class="g">Inserted by context or by an explicit “in view of” clause.</span></div>
+        <div class="d"><span class="t">IFA</span><span class="g">When a word needs a proposition, give it the intension of its sister: λ<i>w</i>′. ⟦γ⟧<sup><i>w</i>′</sup>.</span></div>
       </div>
-      <div class="defs">
-        <div class="sc">Truth conditions</div>
-        <div class="d"><span class="t">De dicto</span><span class="g"><i>x</i> believes <i>p</i> iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>p</i>(<i>w</i>′) = 1]. The centre plays no role.</span></div>
-        <div class="d"><span class="t">De re</span><span class="g"><i>x</i> believes <i>P</i> of <i>r</i> iff for some acquaintance relation <i>A</i> with <i>A</i><sub><i>w</i></sub>(<i>x</i>) = <i>r</i>, ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>P</i>(<i>A</i><sub><i>w</i>′</sub>(<i>y</i>))(<i>w</i>′) = 1]. <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) is the individual <i>y</i> bears <i>A</i> to in <i>w</i>′.</span></div>
-        <div class="d"><span class="t">De se</span><span class="g"><i>x</i> believes <i>P</i> de se iff ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) → <i>P</i>(<i>y</i>)(<i>w</i>′) = 1], equivalently Dox<sup>c</sup><sub><i>x</i></sub>(<i>w</i>) ⊆ {⟨<i>w</i>′, <i>y</i>⟩ : <i>P</i>(<i>y</i>)(<i>w</i>′) = 1}.</span></div>
-      </div>
-      <p class="keep"><span class="runin">Context.</span> John, an amnesiac war hero, reads about the hero’s deeds and comes to expect that the hero will get a medal. He does not realise that he is the hero.</p>
-      <ol class="exs">
-        <li><span>(20)</span><span><span class="s">John expects that the hero will get a medal.</span> <span class="ctx">de dicto</span></span></li>
-      </ol>
-      <div class="treebox">
-      <svg class="tfig t4 small" viewBox="0 0 1046 362" role="img" aria-label="Tree: John; VP with expects and a CP, that the hero will get a medal.">
-      <line x1="244" y1="68" x2="85" y2="109"/>
-      <line x1="244" y1="68" x2="403" y2="109"/>
-      <line x1="403" y1="160" x2="239" y2="201"/>
-      <line x1="403" y1="160" x2="568" y2="201"/>
-      <line x1="568" y1="252" x2="393" y2="293"/>
-      <line x1="568" y1="252" x2="742" y2="293"/>
-      <text class="tn" x="244" y="56">S</text>
-      <text class="tn" x="85" y="148">John</text>
-      <text class="tn" x="403" y="148">VP</text>
-      <text class="tn" x="239" y="240">expects</text>
-      <text class="tn" x="568" y="240">CP</text>
-      <text class="tn" x="393" y="332">that</text>
-      <text class="tn" x="742" y="332">the hero will get a medal</text>
+      <div class="proc">
+        <div class="sc proc-head">Worked: (38)</div>
+      <svg class="tfig" viewBox="0 0 1000 380" role="img" aria-label="Binary tree: S splits into [might f g] and [Mary leave]; [might f g] splits into [might f] and g; [might f] splits into might and f. Nodes numbered 1 to 7.">
+      <line x1="500" y1="66" x2="300" y2="118"/>
+      <line x1="500" y1="66" x2="720" y2="118"/>
+      <line x1="300" y1="166" x2="190" y2="218"/>
+      <line x1="300" y1="166" x2="420" y2="218"/>
+      <line x1="190" y1="266" x2="110" y2="318"/>
+      <line x1="190" y1="266" x2="270" y2="318"/>
+      <text class="tn" x="500" y="56"><tspan class="tk">1 </tspan>S</text>
+      <text class="tn" x="300" y="156"><tspan class="tk">2 </tspan>might  f  g</text>
+      <text class="tn" x="720" y="156"><tspan class="tk">7 </tspan>Mary leave</text>
+      <text class="tn" x="190" y="256"><tspan class="tk">3 </tspan>might  f</text>
+      <text class="tn" x="420" y="256"><tspan class="tk">6 </tspan>g</text>
+      <text class="tn" x="110" y="356"><tspan class="tk">4 </tspan>might</text>
+      <text class="tn" x="270" y="356"><tspan class="tk">5 </tspan>f</text>
       </svg>
+      <table class="rec">
+        <tr><th>Node</th><th>Denotation at <i>w</i></th></tr>
+        <tr><td>4</td><td>λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</td></tr>
+        <tr><td>3</td><td>λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</td></tr>
+        <tr><td>2</td><td>λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ∩ <i>p</i> ≠ ∅</td></tr>
+        <tr><td>7</td><td>1 iff Mary leaves in <i>w</i></td></tr>
+        <tr><td>1</td><td>IFA: 1 iff Mary leaves in some best world</td></tr>
+      </table>
       </div>
-      <ol class="exs">
-        <li><span>(21)</span><span><span class="s">John expects that he will get a medal.</span> <span class="ctx">de re</span></span></li>
-      </ol>
-      <div class="treebox">
-      <svg class="tfig t4 small" viewBox="0 0 1046 362" role="img" aria-label="Tree: John; VP with expects plus the res he, and a property node lambda 1 over t1 will get a medal.">
-      <line x1="287" y1="68" x2="85" y2="109"/>
-      <line x1="287" y1="68" x2="490" y2="109"/>
-      <line x1="490" y1="160" x2="316" y2="201"/>
-      <line x1="316" y1="238" x2="239" y2="293"/>
-      <line x1="316" y1="238" x2="393" y2="293"/>
-      <line x1="490" y1="160" x2="664" y2="201"/>
-      <line x1="664" y1="238" x2="522" y2="293"/>
-      <line x1="664" y1="238" x2="806" y2="293"/>
-      <text class="tn" x="287" y="56">S</text>
-      <text class="tn" x="85" y="148">John</text>
-      <text class="tn" x="490" y="148">VP</text>
-      <circle cx="316" cy="236" r="5" fill="#222"/>
-      <text class="tn" x="239" y="332">expects</text>
-      <text class="tn" x="393" y="332">he</text>
-      <circle cx="664" cy="236" r="5" fill="#222"/>
-      <text class="tn" x="522" y="332">λ<tspan baseline-shift="sub" font-size="31px">1</tspan></text>
-      <text class="tn" x="806" y="332">t<tspan baseline-shift="sub" font-size="31px">1</tspan> will get a medal</text>
-      </svg>
-      </div>
-      <ol class="exs">
-        <li><span>(22)</span><span><span class="s">John expects to get a medal.</span> <span class="ctx">de se</span></span></li>
-      </ol>
-      <div class="treebox">
-      <svg class="tfig t4 small" viewBox="0 0 917 362" role="img" aria-label="Tree: John; VP with expects and a property node lambda 1 over PRO1 to get a medal.">
-      <line x1="236" y1="68" x2="85" y2="109"/>
-      <line x1="236" y1="68" x2="387" y2="109"/>
-      <line x1="387" y1="160" x2="239" y2="201"/>
-      <line x1="387" y1="160" x2="535" y2="201"/>
-      <line x1="535" y1="238" x2="393" y2="293"/>
-      <line x1="535" y1="238" x2="677" y2="293"/>
-      <text class="tn" x="236" y="56">S</text>
-      <text class="tn" x="85" y="148">John</text>
-      <text class="tn" x="387" y="148">VP</text>
-      <text class="tn" x="239" y="240">expects</text>
-      <circle cx="535" cy="236" r="5" fill="#222"/>
-      <text class="tn" x="393" y="332">λ<tspan baseline-shift="sub" font-size="31px">1</tspan></text>
-      <text class="tn" x="677" y="332">PRO<tspan baseline-shift="sub" font-size="31px">1</tspan> to get a medal</text>
-      </svg>
-      </div>
-      <p>In the scenario (20) and (21) are true, and (22) is false. (21) and (22) share the verb, the individual, John, and the property, getting a medal. Only the de se report is false, so de se is neither de dicto nor de re. In the trees the difference is the complement: a proposition, a res plus a property, and a property alone. PRO is bound at the edge of the complement and has no res. The <i>he</i> of (21) can be bound the same way, which gives the sentence a de se reading too.</p>
-      <p>For Lewis every belief is the self-ascription of a property, and de dicto and de re belief are the special cases above. A context fixes a world and a speaker, so it works as a centred world. The shifted <i>I</i> of Amharic is read de se.</p>
-      <p><span class="runin">Exercise 6.</span></p>
       <div class="tasks">
-        <div class="task"><span>(a)</span><span>Write (18) as a de dicto belief, and Perry’s belief in (19) as a de se belief. Which is true before he realises?</span></div>
-        <div class="ans">(18) ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>Perry</i></sub>(<i>w</i>) → the shopper with the torn sack is making a mess in <i>w</i>′]. (19) ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>Perry</i></sub>(<i>w</i>) → <i>y</i> is making a mess in <i>w</i>′]. Before, only (18).</div>
-        <div class="task"><span>(b)</span><span>Give the truth conditions of (20), (21) and (22) from their trees, with <i>A</i> for John’s acquaintance relation in (21). Check them against the scenario.</span></div>
-        <div class="ans">(20) ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>John</i></sub>(<i>w</i>) → the hero gets a medal in <i>w</i>′]. True. (21) For an <i>A</i> with <i>A</i><sub><i>w</i></sub>(John) = John, ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>John</i></sub>(<i>w</i>) → <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) gets a medal in <i>w</i>′]. True, with <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) the hero <i>y</i> reads about. (22) ∀⟨<i>w</i>′, <i>y</i>⟩[⟨<i>w</i>′, <i>y</i>⟩ ∈ Dox<sup>c</sup><sub><i>John</i></sub>(<i>w</i>) → <i>y</i> gets a medal in <i>w</i>′]. False.</div>
-        <div class="task"><span>(c)</span><span>Set <i>A</i> to identity, so that <i>A</i><sub><i>w</i>′</sub>(<i>y</i>) = <i>y</i>. Show that the de re formula for (21) becomes the de se formula for (22). Which relation does John bear to himself in the scenario?</span></div>
-        <div class="ans"><i>P</i>(<i>A</i><sub><i>w</i>′</sub>(<i>y</i>))(<i>w</i>′) becomes <i>P</i>(<i>y</i>)(<i>w</i>′), the de se formula. John bears to himself the relation of being the hero he reads about, not identity.</div>
-        <div class="task"><span>(d)</span><span>John learns that he is the hero. Which of (20), (21) and (22) change truth value?</span></div>
-        <div class="ans">(22) only, false to true.</div>
+        <div class="task"><span>(a)</span><span>Fill in the table for (39), with the same tree and <i>must</i> for <i>might</i>.</span></div>
+      </div>
+      <div class="treebox">
+      <table class="rec fill wide">
+        <tr><th>Node</th><th>Denotation at <i>w</i></th></tr>
+        <tr><td>4</td><td class="av">λ<i>f</i>. λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i></td></tr>
+        <tr><td>3</td><td class="av">λ<i>g</i>. λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i></td></tr>
+        <tr><td>2</td><td class="av">λ<i>p</i>. Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)) ⊆ <i>p</i></td></tr>
+        <tr><td>7</td><td class="av">1 iff Mary leaves in <i>w</i></td></tr>
+        <tr><td>1</td><td class="av">IFA. 1 iff Mary leaves in every best world</td></tr>
+      </table>
+      </div>
+      <div class="tasks">
+        <div class="task"><span>(b)</span><span>Let <i>f</i> be the rules and <i>g</i> empty. What are the truth conditions of (39)?</span></div>
+        <div class="ans">1 iff Mary leaves in every world in ∩<i>f</i>(<i>w</i>). Every world where the rules are kept.</div>
       </div>
     </div>
     <div class="note">
-      <p><b>Perry 1979.</b> The problem of the essential indexical. <i>Noûs</i> 13: 3–21.</p>
-      <p><b>Lewis 1979.</b> Attitudes de dicto and de se. <i>Philosophical Review</i> 88: 513–543.</p>
-      <p><b>Kaplan 1968.</b> Quantifying in. <i>Synthese</i> 19: 178–214.</p>
-      <p><b>Chierchia 1989.</b> Anaphora and attitudes de se. In R. Bartsch, J. van Benthem &amp; P. van Emde Boas (eds.), <i>Semantics and Contextual Expression.</i> Foris. 1–31.</p>
-      <p><b>Percus &amp; Sauerland 2003.</b> On the LFs of attitude reports. <i>Sinn und Bedeutung</i> 7: 228–242.</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> Ch. 3, (26) and Exercise 3.4: the same covert arguments.</p>
+      <p><b>Heim &amp; Kratzer 1998.</b> <i>Semantics in Generative Grammar.</i> Ch. 12.</p>
     </div>
   </div>
 
   <!-- ══ 6 ══ -->
-  <div class="sec flow">
-    <div class="num">6</div>
-    <div class="body">
-      <h2>Interrogative and noun phrase complements</h2>
-      <ol class="exs">
-        <li><span>(23)</span><span>a. <span class="s">Anna knows [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna knows [<b>whether</b> Ben called].</span></span></li>
-        <li><span>(24)</span><span>a. <span class="s">Anna believes [<b>that</b> Ben called].</span><br/>b. <span class="s">*Anna believes [<b>whether</b> Ben called].</span></span></li>
-        <li><span>(25)</span><span>a. <span class="s">*Anna wonders [<b>that</b> Ben called].</span><br/>b. <span class="s">Anna wonders [<b>whether</b> Ben called].</span></span></li>
-      </ol>
-      <div class="defs">
-        <div class="sc">Definitions</div>
-        <div class="d"><span class="t">Hamblin semantics</span><span class="g">A question denotes the set of its possible answers. ⟦whether Ben called⟧ = {<i>p</i>, ¬<i>p</i>}, with <i>p</i> = ⟦that Ben called⟧. Type ⟨⟨<i>s</i>, <i>t</i>⟩, <i>t</i>⟩.</span></div>
-        <div class="d"><span class="t">Responsive</span><span class="g">Takes declarative and interrogative complements: <i>know</i>.</span></div>
-        <div class="d"><span class="t">Rogative</span><span class="g">Takes interrogative complements only: <i>wonder</i>.</span></div>
-        <div class="d"><span class="t">Anti-rogative</span><span class="g">Takes declarative complements only: <i>believe</i>.</span></div>
-        <div class="d"><span class="t"><i>know</i> + question</span><span class="g"><i>x</i> knows <i>Q</i> at <i>w</i> iff Epi<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>, for the <i>p</i> ∈ <i>Q</i> that is true at <i>w</i>.</span></div>
-        <div class="d"><span class="t">Concealed question</span><span class="g">A noun phrase read as a question: <i>knows the capital of Italy</i> as <i>knows what the capital of Italy is</i>.</span></div>
-        <div class="d"><span class="t">Hidden clause</span><span class="g"><i>want a sloop</i> as <i>want to have a sloop</i>; <i>believe Mary</i> as <i>believe what Mary says</i>.</span></div>
-        <div class="d"><span class="t">Content noun</span><span class="g">A noun with a propositional content (<i>rumour</i>, <i>story</i>, <i>claim</i>). The verb applies to that content.</span></div>
-        <div class="d"><span class="t">Modifier analysis</span><span class="g">The clause modifies an argument of type <i>e</i>, a content-bearing individual, and the verb takes that argument.</span></div>
-      </div>
-      <p><span class="runin">Exercise 7.</span></p>
-      <div class="tasks">
-        <div class="task"><span>(a)</span><span>Add Cara to the model of section 0, with Epi<sub><i>Cara</i></sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}. Is <i>Cara knows whether Ben called</i> true at <i>w</i><sub>3</sub>? Is <i>Cara knows whether it is raining</i>?</span></div>
-        <div class="ans">Yes. Ben called at <i>w</i><sub>3</sub>, and at both worlds in Epi<sub><i>Cara</i></sub>(<i>w</i><sub>3</sub>). No. It is not raining at <i>w</i><sub>3</sub>, but <i>w</i><sub>1</sub> ∈ Epi<sub><i>Cara</i></sub>(<i>w</i><sub>3</sub>) is a raining world.</div>
-        <div class="task"><span>(b)</span><span>Paraphrase (26) with a clause. Which proposition must Anna know for it to be true?</span></div>
-      <ol class="exs">
-        <li><span>(26)</span><span><span class="s">Anna knows the capital of Italy.</span></span></li>
-      </ol>
-        <div class="ans"><i>Anna knows what the capital of Italy is.</i> That Rome is the capital of Italy.</div>
-        <div class="task"><span>(c)</span><span>Give the de re and de dicto readings of (27), using the hidden clause.</span></div>
-      <ol class="exs">
-        <li><span>(27)</span><span><span class="s">Anna wants a sloop.</span></span></li>
-      </ol>
-        <div class="ans">De dicto. ∀<i>w</i>′[<i>w</i>′ ∈ Bul<sub><i>Anna</i></sub>(<i>w</i>) → ∃<i>x</i>[<i>x</i> is a sloop in <i>w</i>′ ∧ Anna has <i>x</i> in <i>w</i>′]]. De re. ∃<i>x</i>[<i>x</i> is a sloop in <i>w</i> ∧ ∀<i>w</i>′[<i>w</i>′ ∈ Bul<sub><i>Anna</i></sub>(<i>w</i>) → Anna has <i>x</i> in <i>w</i>′]].</div>
-        <div class="task"><span>(d)</span><span>Which strategy, if any, handles each of (28) to (30)?</span></div>
-      <ol class="exs">
-        <li><span>(28)</span><span><span class="s">Anna believes the rumour.</span></span></li>
-        <li><span>(29)</span><span><span class="s">Anna believes Mary.</span></span></li>
-        <li><span>(30)</span><span><span class="s">Anna fears the dentist.</span></span></li>
-      </ol>
-        <div class="lines"><span></span><span></span></div>
-      </div>
-    </div>
-    <div class="note">
-      <p><b>Hamblin 1973.</b> Questions in Montague English. <i>Foundations of Language</i> 10: 41–53.</p>
-      <p><b>Lahiri 2002.</b> <i>Questions and Answers in Embedded Contexts.</i> Oxford University Press.</p>
-      <p><b>Heim 1979.</b> Concealed questions. In R. Bäuerle, U. Egli &amp; A. von Stechow (eds.), <i>Semantics from Different Points of View.</i> Springer. 51–60.</p>
-      <p><b>Moulton 2015.</b> CPs: copies and compositionality. <i>Linguistic Inquiry</i> 46: 305–342.</p>
-    </div>
-  </div>
-
-  <!-- ══ 7 ══ -->
   <div class="sec wyntk">
-    <div class="num">7</div>
+    <div class="num">6</div>
     <div class="body">
       <h2>What you need to know</h2>
       <div class="wcols">
       <div class="proc">
         <div class="sc proc-head">Key notions</div>
         <ol class="steps">
-          <li>Dox, Epi, Bul; Hintikka semantics.</li>
-          <li>The existential and identity entries for <i>believe</i>.</li>
-          <li>Complements of type ⟨<i>s</i>, <i>t</i>⟩.</li>
-          <li>Frame conditions for knowledge and belief; closure.</li>
-          <li>Kratzerian <i>want</i>.</li>
-          <li>De se against de re and de dicto; centred worlds; acquaintance relations.</li>
-          <li>Hamblin semantics; responsive, rogative and anti-rogative predicates; concealed questions and hidden clauses.</li>
+          <li>Modal base <i>f</i>; ordering source <i>g</i>.</li>
+          <li>Kinds of modal base and ordering source.</li>
+          <li>Best worlds, Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)).</li>
+          <li>Chisholm’s paradox; graded modality.</li>
+          <li>Entries for <i>must</i> and <i>might</i>; IFA.</li>
         </ol>
       </div>
       <div class="proc">
         <div class="sc proc-head">Skills</div>
         <ol class="steps">
-          <li>Evaluate attitude reports in a small model, nested ones too.</li>
-          <li>Show why the existential and identity entries fail.</li>
-          <li>Annotate a tree for an attitude report, with negation.</li>
-          <li>Prove T, D and closure from frame conditions.</li>
-          <li>Compute <i>want</i> from Dox and a bouletic ordering.</li>
-          <li>Give de dicto, de re and de se truth conditions from a tree, and judge them in a scenario.</li>
-          <li>Evaluate <i>know whether</i>; paraphrase noun phrase complements.</li>
+          <li>Rank worlds by ideals; find the best.</li>
+          <li>Draw ∩<i>f</i>(<i>w</i>) and the best worlds from <i>f</i> and <i>g</i>.</li>
+          <li>Judge modal sentences against the best worlds.</li>
+          <li>Give <i>f</i> and <i>g</i> for a modal in context.</li>
+          <li>Explain how Kratzer avoids Chisholm’s paradox.</li>
+          <li>Compute grades of possibility in a small model.</li>
+          <li>Compute a modal sentence in a tree.</li>
         </ol>
       </div>
       </div>
-      <p><span class="runin">Notation.</span> This sheet and the slides use one notation. The readings use others.</p>
-      <table class="rec">
-        <tr><th>On this sheet</th><th>In the readings</th></tr>
-        <tr><td>Dox<sub><i>x</i></sub>(<i>w</i>)</td><td><i>B</i>(<i>x</i>)(<i>w</i>) von Fintel &amp; Heim · <i>R</i><sup>dox</sup><sub><i>x</i></sub> Coppock &amp; Champollion · <i>w</i><i>R</i><sub><i>x</i></sub><i>w</i>′ · doxastic alternatives, belief worlds</td></tr>
-        <tr><td>Epi<sub><i>x</i></sub>(<i>w</i>), Bul<sub><i>x</i></sub>(<i>w</i>)</td><td><i>w</i><i>K</i><sub><i>x</i></sub><i>w</i>′ von Fintel &amp; Heim · <i>R</i><sup>boul</sup><sub><i>x</i></sub> Coppock &amp; Champollion · epistemic, bouletic alternatives</td></tr>
-        <tr><td>Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></td><td>∀<i>w</i>′ ∈ Dox<sub><i>x</i></sub>(<i>w</i>): <i>p</i>(<i>w</i>′) = 1 · ∀<i>w</i>′[<i>R</i><sup>dox</sup><sub><i>x</i>,<i>w</i></sub>(<i>w</i>′) → <i>p</i>(<i>w</i>′)] Coppock &amp; Champollion</td></tr>
-        <tr><td>□ read as an attitude</td><td><i>K</i><sub><i>a</i></sub><i>p</i>, <i>B</i><sub><i>a</i></sub><i>p</i> Hintikka · □<sub><i>a</i></sub><i>p</i></td></tr>
-        <tr><td>de re, de dicto</td><td>relational, notional Quine · primary, secondary occurrence Russell · transparent, opaque · specific, non-specific · wide scope, narrow scope</td></tr>
-      </table>
     </div>
     <div class="note"></div>
   </div>
+
 </div>
 </body>
 </html>
