@@ -1139,3 +1139,17 @@ what the next session must know)*
   split; run-in leads stay with what follows; Exercise 5's picture, f/g line and tasks (a)–(c)
   kept together; What you need to know set in two compact columns; trees at 66% width and
   drawing boxes 26 mm. Every exercise now sits on a single page.
+
+### 2026-10-09 — Pragmatics II week 3 handout (Information Theory)
+- `weeks-pragmatics2/week-03/handout.html` replaces the skeleton: classic sheet, sections run on as in week 2,
+  calculation only, focused on computing entropy, the link between probability and bits, and a little redundancy.
+  Worked examples give the basic case; exercises repeat it with less even numbers; probabilities written as decimals
+  between 0 and 1 throughout. 0 Probability (32 references, 14 / 3 / 9 / 6). 1 Information and Logarithms (Guess Who:
+  even-board table and Derek table, each with its first row worked in place). 2 Entropy. 3 Redundancy. 4 The
+  Reference Game in Bits.
+- Reference-game thread (Thomas, Oct 2026): the reference game recurs every week, adding one piece at a time
+  until full RSA. Week 2 payoffs and best response; week 3 the same game in bits, listener beliefs given;
+  week 4 deriving those beliefs by conditioning on a prior (and Markov chains with conditional entropy);
+  week 5 the soft-max speaker and pragmatic listener.
+- `handout-answers.html` beside it, not linked from the hub, styled as the Semantics II answer sheets
+  (#1f4e79, sans, answers in place of the ruled lines, no colons); figures and tables carry their answers in the same blue.
