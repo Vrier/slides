@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 5, Common Ground &amp; Projection · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  table.rec td, table.rec th { text-align:left !important; }
+  table.rec.fill td.it { width:42%; }
+  table.rec.fill td:first-child { white-space:nowrap; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LI7862 · Linguistic Pragmatics</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 5 · Handout</div>
+  <h1 class="doc-title">Context Update</h1>
+
+  <!-- Companion to the Formal strand of the week 5 deck. The model and its sentences are Karttunen's Jack examples recast with Ed;
+       connective clauses as in Heim (1983), disjunction after Karttunen (1974) and Beaver (2001). -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Context sets and update</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Common ground</span><span class="g">The propositions the participants in a conversation mutually accept for its purposes.</span></div>
+        <div class="d"><span class="t">Proposition</span><span class="g">A set of worlds, the worlds where a sentence is true. ⟦<i>S</i>⟧ is a function from worlds to 1, 0 or #.</span></div>
+        <div class="d"><span class="t">Context set</span><span class="g">The worlds where every proposition in the common ground is true. Written <i>c</i>.</span></div>
+        <div class="d"><span class="t">Update</span><span class="g"><i>c</i> + <i>S</i> = {<i>w</i> ∈ <i>c</i> : ⟦<i>S</i>⟧(<i>w</i>) = 1}. Accepting an assertion removes the worlds where it is false.</span></div>
+      </div>
+      <p><span class="runin">Model.</span> Each world settles the sentences below about Ed. # marks a sentence that has no truth value at a world.</p>
+      <table class="rec">
+        <thead><tr><th></th><th><i>w</i><sub>1</sub></th><th><i>w</i><sub>2</sub></th><th><i>w</i><sub>3</sub></th><th><i>w</i><sub>4</sub></th><th><i>w</i><sub>5</sub></th><th><i>w</i><sub>6</sub></th></tr></thead>
+        <tr><td class="it"><i>C</i> Ed has children</td><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td class="it"><i>B</i> Ed's children are bald</td><td>T</td><td>F</td><td>T</td><td>#</td><td>#</td><td>F</td></tr>
+        <tr><td class="it"><i>U</i> Ed used to smoke</td><td>T</td><td>T</td><td>F</td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td class="it"><i>N</i> Ed smokes now</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+      </table>
+      <div class="proc">
+        <div class="sc proc-head">Worked</div>
+        <ol class="steps">
+          <li><i>c</i><sub>0</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>, <i>w</i><sub>6</sub>}, a context where nothing about Ed is settled.</li>
+          <li><i>c</i><sub>0</sub> + <i>Ed has children</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>6</sub>}. <i>w</i><sub>4</sub> and <i>w</i><sub>5</sub> drop out.</li>
+        </ol>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Compute <i>c</i><sub>0</sub> + <i>Ed used to smoke</i>.</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(b)</span><span>Compute (<i>c</i><sub>0</sub> + <i>Ed used to smoke</i>) + <i>Ed smokes now</i>.</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(c)</span><span>Find a sentence about Ed whose update leaves <i>c</i><sub>0</sub> unchanged, and one whose update leaves it empty.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+
+    </div>
+    <div class="note"><p><b>Stalnaker 1978.</b> Assertion. <i>Syntax and Semantics</i> 9: 315–332.</p><p><b>Stalnaker 2002.</b> Common ground. <i>Linguistics and Philosophy</i> 25: 701–721.</p></div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Presupposition as a condition on update</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Presupposition</span><span class="g">⟦<i>S</i>⟧ is defined only if <i>p</i>. Where <i>p</i> is false, ⟦<i>S</i>⟧(<i>w</i>) = #.</span></div>
+        <div class="d"><span class="t">Admittance</span><span class="g"><i>c</i> admits <i>S</i> iff <i>c</i> ⊆ <i>p</i>, every world in <i>c</i> a <i>p</i>-world.</span></div>
+        <div class="d"><span class="t">Definedness</span><span class="g"><i>c</i> + <i>S</i> is defined only if <i>c</i> admits <i>S</i>.</span></div>
+      </div>
+      <p><i>Ed stopped smoking</i> presupposes <i>U</i>. It is true where Ed used to smoke and no longer does, false where he still smokes, and # where he never smoked.</p>
+      <div class="proc">
+        <div class="sc proc-head">Worked</div>
+        <ol class="steps">
+          <li><i>c</i><sub>1</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>}. Every world is a <i>U</i>-world, so <i>c</i><sub>1</sub> admits <i>Ed stopped smoking</i>.</li>
+          <li><i>c</i><sub>1</sub> + <i>Ed stopped smoking</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>4</sub>}. <i>w</i><sub>2</sub> drops out, since Ed still smokes there.</li>
+          <li><i>c</i><sub>0</sub> + <i>Ed stopped smoking</i> is undefined. <i>w</i><sub>3</sub>, <i>w</i><sub>5</sub> and <i>w</i><sub>6</sub> are not <i>U</i>-worlds.</li>
+        </ol>
+      </div>
+      <table class="rec fill">
+        <thead><tr><th>Context</th><th><i>c</i> + <i>Ed's children are bald</i></th><th><i>c</i> + <i>Ed stopped smoking</i></th></tr></thead>
+        <tr><td><i>c</i><sub>2</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}</td><td></td><td></td></tr>
+        <tr><td><i>c</i><sub>3</sub> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>6</sub>}</td><td></td><td></td></tr>
+        <tr><td><i>c</i><sub>4</sub> = {<i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>}</td><td></td><td></td></tr>
+        <tr><td><i>c</i><sub>5</sub> = {<i>w</i><sub>2</sub>}</td><td></td><td></td></tr>
+      </table>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Fill each cell with the result of the update, or # where the update is undefined.</span></div>
+        <div class="task"><span>(b)</span><span>Say which presupposition of <i>Ed's children are bald</i> decides the first column.</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(c)</span><span><i>c</i><sub>5</sub> + <i>Ed stopped smoking</i> is defined, but the result is empty. Say why this is not a case of presupposition failure.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+
+    </div>
+    <div class="note"><p><b>Heim 1983.</b> On the projection problem for presuppositions. <i>WCCFL</i> 2: 114–125.</p><p><b>Karttunen 1974.</b> Presupposition and linguistic context. <i>Theoretical Linguistics</i> 1: 181–194.</p></div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Accommodation</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Accommodation</span><span class="g">Where <i>c</i> does not admit <i>S</i>, the hearer first replaces <i>c</i> with <i>c</i> ∩ <i>p</i> and then updates: (<i>c</i> ∩ <i>p</i>) + <i>S</i>.</span></div>
+        <div class="d"><span class="t">Presupposition failure</span><span class="g"><i>c</i> ∩ <i>p</i> = ∅. No world is left to update, and the utterance cannot be accepted as it stands.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Worked</div>
+        <ol class="steps">
+          <li><i>c</i><sub>0</sub> does not admit <i>Ed stopped smoking</i>. <i>c</i><sub>0</sub> ∩ <i>U</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>}.</li>
+          <li>(<i>c</i><sub>0</sub> ∩ <i>U</i>) + <i>Ed stopped smoking</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>4</sub>}.</li>
+        </ol>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Compute <i>c</i><sub>0</sub> + <i>Ed's children are bald</i> with accommodation.</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(b)</span><span>Compute <i>c</i><sub>3</sub> + <i>Ed stopped smoking</i> with accommodation.</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(c)</span><span>Take <i>c</i> = {<i>w</i><sub>3</sub>, <i>w</i><sub>5</sub>, <i>w</i><sub>6</sub>}. Say what happens with <i>Ed stopped smoking</i>, and give the reply a hearer might make.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Compare (a) with (<i>c</i><sub>0</sub> + <i>Ed has children</i>) + <i>Ed's children are bald</i>. What does accommodation do that the explicit assertion also does?</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+
+    </div>
+    <div class="note"><p><b>Lewis 1979.</b> Scorekeeping in a language game. <i>Journal of Philosophical Logic</i> 8: 339–359.</p><p><b>von Fintel 2008.</b> What is presupposition accommodation, again? <i>Philosophical Perspectives</i> 22: 137–170.</p></div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Connectives</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Negation</span><span class="g"><i>c</i> + not <i>A</i> = <i>c</i> ∖ (<i>c</i> + <i>A</i>).</span></div>
+        <div class="d"><span class="t">Conjunction</span><span class="g"><i>c</i> + (<i>A</i> and <i>B</i>) = (<i>c</i> + <i>A</i>) + <i>B</i>.</span></div>
+        <div class="d"><span class="t">Conditional</span><span class="g"><i>c</i> + (if <i>A</i>, <i>B</i>) = <i>c</i> ∖ ((<i>c</i> + <i>A</i>) ∖ ((<i>c</i> + <i>A</i>) + <i>B</i>)).</span></div>
+        <div class="d"><span class="t">Disjunction</span><span class="g"><i>c</i> + (<i>A</i> or <i>B</i>) = (<i>c</i> + <i>A</i>) ∪ ((<i>c</i> ∖ (<i>c</i> + <i>A</i>)) + <i>B</i>).</span></div>
+        <div class="d"><span class="t">Local context</span><span class="g">The context a part of a sentence updates. For <i>B</i> in <i>A</i> and <i>B</i>, <i>c</i> + <i>A</i>. For <i>B</i> in <i>A</i> or <i>B</i>, <i>c</i> ∖ (<i>c</i> + <i>A</i>).</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Worked</div>
+        <ol class="steps">
+          <li><i>c</i><sub>1</sub> + not (<i>Ed stopped smoking</i>) = <i>c</i><sub>1</sub> ∖ (<i>c</i><sub>1</sub> + <i>Ed stopped smoking</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>} ∖ {<i>w</i><sub>1</sub>, <i>w</i><sub>4</sub>} = {<i>w</i><sub>2</sub>}.</li>
+          <li><i>c</i><sub>0</sub> + not (<i>Ed stopped smoking</i>) is undefined, since <i>c</i><sub>0</sub> + <i>Ed stopped smoking</i> is. The presupposition survives the negation.</li>
+        </ol>
+      </div>
+      <table class="rec fill">
+        <thead><tr><th></th><th>Sentence, updating <i>c</i><sub>0</sub></th><th>Local context of the part with the trigger</th><th>Result</th></tr></thead>
+        <tr><td>(1)</td><td class="it">Ed has children and Ed's children are bald.</td><td></td><td></td></tr>
+        <tr><td>(2)</td><td class="it">Ed's children are bald and Ed has children.</td><td></td><td></td></tr>
+        <tr><td>(3)</td><td class="it">If Ed has children, Ed's children are bald.</td><td></td><td></td></tr>
+        <tr><td>(4)</td><td class="it">Either Ed has no children or Ed's children are bald.</td><td></td><td></td></tr>
+        <tr><td>(5)</td><td class="it">Ed used to smoke and he stopped smoking.</td><td></td><td></td></tr>
+      </table>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Fill the table. Write # where the update is undefined.</span></div>
+        <div class="task"><span>(b)</span><span>(3) and (4) give the same result. Say why, using the clauses above.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Say which of the conjunctions (1), (2) and (5) would be defined if conjunction were defined as <i>c</i> + (<i>A</i> and* <i>B</i>) = (<i>c</i> + <i>B</i>) + <i>A</i>.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+
+    </div>
+    <div class="note"><p><b>Heim 1983.</b> On the projection problem for presuppositions. <i>WCCFL</i> 2: 114–125.</p><p><b>Beaver 2001.</b> <i>Presupposition and Assertion in Dynamic Semantics.</i> CSLI. Ch. 6.</p></div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Deriving projection</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Presupposition of a complex sentence</span><span class="g">The weakest condition on <i>c</i> under which the update is defined for every <i>c</i> that meets it.</span></div>
+        <div class="d"><span class="t">Hole</span><span class="g">A construction whose update is defined only where its part's update is. Negation is one: <i>c</i> + not <i>A</i> needs <i>c</i> + <i>A</i>.</span></div>
+        <div class="d"><span class="t">Filter</span><span class="g">A construction that updates a part in a local context which can supply that part's presupposition.</span></div>
+        <div class="d"><span class="t">Proviso problem</span><span class="g">The gap between the conditional presupposition the clauses predict and the unconditional one hearers often take away.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Worked</div>
+        <ol class="steps">
+          <li>Let <i>B</i> presuppose <i>p</i>. <i>c</i> + (<i>A</i> and <i>B</i>) is defined iff <i>c</i> + <i>A</i> ⊆ <i>p</i>.</li>
+          <li><i>c</i> + <i>A</i> ⊆ <i>p</i> iff every <i>A</i>-world in <i>c</i> is a <i>p</i>-world, so the conjunction presupposes <i>if A, p</i>.</li>
+          <li>For (1) in section 3 this is <i>if Ed has children, Ed has children</i>, which every context meets.</li>
+        </ol>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Show in the same way that <i>if A, B</i> presupposes <i>if A, p</i>, and that <i>not A</i> presupposes <i>p</i> where <i>A</i> presupposes <i>p</i>.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Show that <i>A or B</i> presupposes <i>if not A, p</i> where <i>B</i> presupposes <i>p</i>, and use this to explain why (4) in section 3 presupposes nothing.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span><i>If Theo hates sonnets, so does his wife.</i> Give the presupposition the clauses predict, and the one a hearer takes away.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span><i>If Ed is a scuba diver, he'll bring his wetsuit.</i> Give the predicted presupposition, and say why here the hearer keeps it conditional.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+
+    </div>
+    <div class="note"><p><b>Karttunen 1973.</b> Presuppositions of compound sentences. <i>Linguistic Inquiry</i> 4: 169–193.</p><p><b>Geurts 1996.</b> Local satisfaction guaranteed. <i>Linguistics and Philosophy</i> 19: 259–294.</p></div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Local accommodation</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Global accommodation</span><span class="g">Adding the presupposition to the context the whole sentence updates, as in section 2.</span></div>
+        <div class="d"><span class="t">Local accommodation</span><span class="g">Adding it to a local context instead. For <i>not A</i> with <i>A</i> presupposing <i>p</i>: <i>c</i> ∖ ((<i>c</i> ∩ <i>p</i>) + <i>A</i>).</span></div>
+      </div>
+      <p><i>Ed doesn't have any children. So Ed's children aren't bald.</i></p>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Compute <i>c</i><sub>0</sub> + <i>Ed doesn't have any children</i>. Call the result <i>c</i><sub>6</sub>.</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(b)</span><span>Say why <i>c</i><sub>6</sub> + <i>Ed's children aren't bald</i> is undefined, and why global accommodation cannot repair it.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Compute the update with local accommodation, and say what the second sentence adds to <i>c</i><sub>6</sub>.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span><i>Ed's children aren't bald.</i> Said out of the blue to a hearer who knows nothing about Ed, which accommodation would the hearer make, and why?</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+
+    </div>
+    <div class="note"><p><b>Heim 1983.</b> On the projection problem for presuppositions. <i>WCCFL</i> 2: 114–125.</p><p><b>von Fintel 2008.</b> What is presupposition accommodation, again? <i>Philosophical Perspectives</i> 22: 137–170.</p></div>
+  </div>
+
+  <!-- ══ 6 ══ -->
+  <div class="sec">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="proc">
+        <div class="sc proc-head">After this week you can</div>
+        <ol class="steps">
+          <li>Compute <i>c</i> + <i>S</i> for a sentence and a context set.</li>
+          <li>Say whether a context admits a sentence, and compute the update or mark it undefined.</li>
+          <li>Accommodate a missing presupposition, and recognise presupposition failure.</li>
+          <li>Update with <i>not</i>, <i>and</i>, <i>if</i> and <i>or</i>, and name the local context of each part.</li>
+          <li>Derive the presupposition of a complex sentence from the clauses, including conditional presuppositions.</li>
+          <li>Compute local accommodation under negation.</li>
+        </ol>
+      </div>
+      <p><span class="runin">Notation.</span> This sheet and the slides use one notation. The readings use others.</p>
+      <table class="rec">
+        <tr><th>On this sheet</th><th>In the readings</th></tr>
+        <tr><td><i>c</i>, a context set</td><td><i>C</i>, <i>CG</i> or <i>cg</i> for the common ground as a set of propositions · <i>K</i>, σ, <i>s</i></td></tr>
+        <tr><td><i>c</i> + <i>S</i></td><td><i>c</i>[<i>S</i>] Beaver, Veltman · <i>s</i>[φ] · context change potential</td></tr>
+        <tr><td><i>c</i> admits <i>S</i></td><td><i>c</i> satisfies the presuppositions of <i>S</i> Karttunen · <i>c</i> ⊨ <i>p</i></td></tr>
+        <tr><td>⟦<i>S</i>⟧(<i>w</i>) = #</td><td>⟦<i>S</i>⟧<sup><i>w</i></sup> undefined · ∂<i>p</i> Beaver</td></tr>
+      </table>
+    </div>
+    <div class="note"></div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -3,138 +3,257 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LI7862 · Week 5 — Common Ground & Projection · Homework</title>
+<title>LI7862 · Week 5, Common Ground &amp; Projection · Data analysis task</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="../../shared/tokens.css" />
-<link rel="stylesheet" href="../../shared/lens.css" />
-<link rel="stylesheet" href="../../shared/handout.css" />
-<link rel="stylesheet" href="../../shared/exercises.css" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Data analysis task: no definitions strip, no margin notes; blocks run on. */
+  .sec { display:block; position:relative; padding-left:46pt; }
+  .sec > .num { position:absolute; left:0; top:0; }
+  .sec > .note { display:none; }
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:16pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body p { orphans:3; widows:3; }
+  /* transcript turns */
+  .tr { margin:6pt 0 2pt; }
+  .tr .t { display:grid; grid-template-columns:34pt 1fr; margin:0 0 4pt; }
+  .tr .t .q { font-family:var(--serif); font-size:9pt; color:#000; padding-top:1.5pt; }
+  .tr .t .sp { font-weight:700; }
+  .tr .t .sp::after { content:" "; }
+  .tr .t .omit { font-style:normal; }
+  .src { font-size:8.6pt; line-height:1.35; margin:6pt 0 0; }
+  /* tagging tables */
+  table.rec.tag td, table.rec.tag th { border-right:.5pt solid #000; padding:3pt 5pt; }
+  table.rec.tag th:first-child, table.rec.tag td:first-child { width:34pt; padding-left:0; }
+  table.rec.tag td:last-child, table.rec.tag th:last-child { border-right:none; }
+  table.rec.tag td { height:20pt; vertical-align:top; border-bottom:.5pt solid #000; }
+  table.rec.tag th { white-space:nowrap; }
+  table.rec.tag td.ex { font-style:italic; }
+  table.rec.tag td.w { font-style:normal; }
+  @media print {
+    table.rec.fill.tag, table.rec.tag, table.rec.tag tbody { break-inside:auto !important; page-break-inside:auto !important; }
+    table.rec.tag thead { display:table-header-group; }
+    .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+    .task { break-after:auto; page-break-after:auto; }
+    .task + .lines { break-before:avoid; page-break-before:avoid; }
+  }
+  ol.qs { margin:4pt 0 0 18pt; padding:0; }
+  ol.qs li { margin:0 0 5pt; }
+</style>
 </head>
-<body class="pal-a">
+<body>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <defs>
-    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
-    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
-    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
-    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
-  </defs>
-</svg>
+<div class="sheet">
 
-<div class="handout-week hw" data-week="5"><div class="page">
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LI7862 · Linguistic Pragmatics</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
 
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
+  <div class="sc doc-kicker">Week 5 · Data analysis task</div>
+  <h1 class="doc-title">Common Ground &amp; Projection</h1>
+
+  <!-- Data: Culture, Media and Sport Committee, Oral evidence: The work of the BBC, HC 331, Monday 24 November 2025.
+       Panel I: Caroline Daniel and Michael Prescott (Q217–Q306). Panel II: Dr Samir Shah, Sir Robbie Gibb, Caroline Thomson (Q307–Q387).
+       Excerpts Q302–Q304 and Q307–Q323, verbatim from the published transcript, cuts marked […].
+       Contains Parliamentary information licensed under the Open Parliament Licence v3.0.
+       Terms used in the tasks are the lecture's: satisfied / accommodated / failed; hole, plug, filter; Hey, wait a minute; metalinguistic negation;
+       corrective answer; reformulating the question; question under discussion; information packaging. -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>The data</h2>
+      <p>Two excerpts from one afternoon of evidence to the House of Commons Culture, Media and Sport Committee on 24 November 2025, after the BBC's director general and head of news had resigned over the editing of a speech by President Trump in a <i>Panorama</i> programme. In the first excerpt MPs question Michael Prescott, the former adviser whose leaked memo began the affair. In the second the Chair of the Committee, Dame Caroline Dinenage, questions the Chair of the BBC, Dr Samir Shah. Turn numbers are the transcript's own. Cuts are marked […].</p>
+
+      <p><span class="runin">Excerpt A.</span> Michael Prescott, questioned by Dr Rupa Huq and Cameron Thomas.</p>
+      <div class="tr">
+        <div class="t"><span class="q">Q302</span><span><span class="sp">Dr Huq:</span>Would you be prepared to publish the communications between the two of you in the lead up to the appointment and since the memo?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Michael Prescott:</span>To the EGSC?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Huq:</span>To the Committee—to us.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Michael Prescott:</span>Would I be prepared to publish what?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Huq:</span>Communications that you had in the run-up to getting the job—maybe to scotch the rumours that are out there—and since the memo was published. It mysteriously found its way to <i>The Telegraph</i>; nobody quite knows how.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Michael Prescott:</span>On the first of your things—getting the job on the standards committee—that was openly advertised, and it was an open, competitive process. I am not sure quite what it is you are getting at there. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q303</span><span><span class="sp">Cameron Thomas:</span>Mr Prescott, can you understand why somebody might find it suspicious that somebody who is described as a friend might have a role in that individual's appointment?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Michael Prescott:</span>That is a fair enough question.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Cameron Thomas:</span>If that is a fair enough question, will you submit the documentation?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Michael Prescott:</span>Like I said, it is quite a precedent to set. To answer your question directly, I applied for the standards committee position as described. You had to put in a written submission and then there was an interview. The interview panel was made up of four people, one of whom was from HR. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q304</span><span><span class="sp">Cameron Thomas:</span>I am not criticising you. I am just suggesting that it is interesting that somebody you have described as a friend had a role in your appointment. Do you not think that that is unusual?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Michael Prescott:</span>The thing is, if you operate in this country in the sphere of politics, the media and so on, it is not that unusual to come across people. It happens all the time. So unusual—well, I don't know.</span></div>
+      </div>
+
+      <p style="margin-top:10pt"><span class="runin">Excerpt B.</span> Dr Samir Shah, questioned by the Chair and Cameron Thomas.</p>
+      <div class="tr">
+        <div class="t"><span class="q">Q307</span><span><span class="sp">Chair:</span><span class="omit">[…]</span> Did the BBC block the head of news from apologising for the “Panorama” programme before 10 November?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>I will answer that question directly, but first, if I may, I will take this opportunity, to apologise to all the people who believe in the BBC, care for it, and wish it to survive and thrive. <span class="omit">[…]</span> I now come to the question that you asked, but may I ask you to repeat it for me, so that I can answer it directly?</span></div>
+        <div class="t"><span class="q">Q308</span><span><span class="sp">Chair:</span>Did you and the rest of the BBC board block the head of news from apologising for the “Panorama” programme on 10 November?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span><span class="omit">[…]</span> I heard that news wanted to apologise for the splicing of the edit, with a white spark. I thought that was a necessary thing to do, but was not sufficient, because the fundamental issue here was the sequencing of the edit and the placing of the Proud Boys march. <span class="omit">[…]</span> The answer to your question is, I did not think it was adequate; I thought it was necessary, but not sufficient.</span></div>
+        <div class="t"><span class="q">Q309</span><span><span class="sp">Chair:</span>If you felt that that was the case, why was there no apology when David Grossman first brought that to your attention?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>Do you mean in the EGSC meetings from January and May?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Chair:</span>Yes.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>That is a very fair question. Looking back, I think we should have made the decision earlier—in May, as it happens. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q310</span><span><span class="sp">Chair:</span><span class="omit">[…]</span> I am really interested to know why it took so long. Why did you not get on the front foot? <span class="omit">[…]</span> What was causing the delay? What were your reasons for delaying?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>It seems to me that there were two timelines: one began with the EGSC report in January, and one was the week after the report was in some way leaked to the public by <i>The Telegraph</i>—do you mean that one?</span></div>
+        <div class="t"><span class="q">Q311</span><span><span class="sp">Chair:</span>As soon as <i>The Telegraph</i> started publishing the memo and its coverage of that, there was just a vacuum in the BBC for nearly a week, when no comment was given in any meaningful way to the substance of it. Why did you not get on the front foot with either an apology or some kind of defence of what had happened?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>Precisely because of the question you have just raised: I needed to understand what went wrong and to get the right answer. Getting the right answer was really important—</span></div>
+        <div class="t"><span class="q">Q312</span><span><span class="sp">Chair:</span>You knew what went wrong, because you had already had the Grossman report into this—</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>No, no. I said that we reflected on it. In that week, I asked the director general to review the clip and whether there were any serious editorial breaches. There were. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q313</span><span><span class="sp">Chair:</span>If the BBC had responded quicker, do you think the resignations might not have happened?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>That is a hypothetical I cannot answer. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q314</span><span><span class="sp">Chair:</span>Your culture and media editor, Katie Razzall, reported: “Deborah Turness became more and more angry and frustrated as the week went on because she was prevented by the Board from putting out that apology.” Was that in some way to blame for the fact that she then resigned from her post?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>You will have to ask her. I have already repeated that I thought the apology that was on the table was necessary, but not sufficient.</span></div>
+        <div class="t"><span class="q">Q315</span><span><span class="sp">Chair:</span>Did you try to stop her from resigning?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>I spoke to the director general about it. The resignation or otherwise, of the head of news is a matter for the director general, not for the board or for the chair. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q316</span><span><span class="sp">Chair:</span>The director general resigned as well. Did you try to stop him from resigning?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>I did indeed, and I spent a great deal of time doing so. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q317</span><span><span class="sp">Cameron Thomas:</span><span class="omit">[…]</span> Did you receive pressure from anybody on the board to delay such an apology?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>Absolutely not. We did put out a full statement, which, looking back, was rather vanilla, as corporate BBC tends to do. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q320</span><span><span class="sp">Chair:</span>What was the tipping point that prompted your apology? Was it the 500 letters of complaint to the BBC? The resignation of the director general? Was it the memo? Or was it the threat of legal action from the President of the United States?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span><span class="omit">[…]</span> As I wrote to you, when the memo entered public discourse, there were a lot of complaints about it. We decided at that moment to reflect on and review the decision, and that is when we came out with the outcome that, yes, it was a mistake, an error of judgment <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q321</span><span><span class="sp">Chair:</span>Just to be clear, had this not been covered by the memo and prompted all these letters of complaint, it would never have risen back to the surface.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>It is worth noting that in May we discussed that there had been no complaints to the BBC News about this. <span class="omit">[…]</span> Because there had been no formal complaints, we wrongly let it rest. <span class="omit">[…]</span> This Committee should not think I ignored Mr Prescott. I did not. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q323</span><span><span class="sp">Chair:</span><span class="omit">[…]</span> It has been reported in the press that the reason for that delay was that there was a big dispute within the board about how to respond. In some cases, people said there was chaos in the board. How true is that?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Dr Shah:</span>There was neither chaos nor delay. You wrote to me on the Tuesday, and I replied to you on the Monday—that was the deadline you gave me. <span class="omit">[…]</span></span></div>
+      </div>
+      <p class="src">Culture, Media and Sport Committee, <i>Oral evidence: The work of the BBC</i>, HC 331, 24 November 2025, Q302–Q304 and Q307–Q323. Contains Parliamentary information licensed under the Open Parliament Licence v3.0.</p>
+    </div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Projection</h2>
+      <p>Each row is one presupposition trigger in the data. The first row is done. The environment is the construction the trigger sits inside: a plain declarative, a question, negation, a conditional antecedent, a verb of saying or an attitude verb. The last column says whether the presupposition projects to the speaker of the turn.</p>
+      <table class="rec tag">
+        <thead><tr><th>Turn</th><th>Trigger</th><th>Presupposed content</th><th>Environment</th><th>Projects?</th></tr></thead>
+        <tr><td class="w">Q314</td><td class="ex w">the fact that she then resigned</td><td class="w">Turness resigned</td><td class="w">question</td><td class="w">yes</td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Fill the table for at least nine further triggers, taking some from each excerpt. Include at least one from Q302, Q312, Q313, Q317 and Q321.</span></div>
+        <div class="task"><span>(b)</span><span>For each row whose environment is not a plain declarative, say whether the construction is a hole, a plug or a filter. For each filter, say what supplies the presupposition.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>In Q314 the Chair quotes Katie Razzall. List the presuppositions inside the quotation and say which of them the Chair is committed to. Use what the lecture said about verbs of saying.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
       </div>
     </div>
-    <div class="h-meta">
-      <div class="code">LI7862 · Linguistic Pragmatics</div>
-      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Accommodation</h2>
+      <p>For each presupposition a questioner introduces, one of three things happens in the answer. It was already in the common ground of the exchange and is satisfied. It was not, and the witness accepts it by answering as if it were. Or the witness challenges it. The first row is done.</p>
+      <table class="rec tag">
+        <thead><tr><th>Turn</th><th style="width:34%">Presupposed content</th><th style="width:22%">Satisfied, accommodated or challenged</th><th>Evidence in the answer</th></tr></thead>
+        <tr><td class="w">Q309</td><td class="w">there was no apology when Grossman raised it</td><td class="w">accommodated</td><td class="w"><i>Looking back, I think we should have made the decision earlier</i></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Fill the table for at least seven further presuppositions from the two excerpts.</span></div>
+        <div class="task"><span>(b)</span><span>For each accommodated presupposition, say whether the witness adds the content itself to the common ground or only the questioner's commitment to it. Q320 and Q321 are the cases to compare.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>In Q307 Dr Shah asks for the question to be repeated. Say what that does to the presuppositions of Q307, and whether Q308 carries the same ones.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
     </div>
-  </header>
-
-  <div class="h-title-row">
-    <div class="h-week">Week 5 · Homework</div>
-    <h1 class="h-title">Common Ground & Projection</h1>
+    <div class="note"></div>
   </div>
 
-  <div class="hw-band">
-    <span class="tag">Homework</span>
-    <span class="due">Due <b>Week 6 · 17:00</b> · submit via Blackboard</span>
-    <span class="pts">— marks</span>
-  </div>
-
-  <div class="hw-sub">
-    <div class="f"><span class="lab">Name</span><span class="ln"></span></div>
-    <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
-  </div>
-
-  <p class="hw-intro">Homework problem set for Week 5. <b>Content to add</b> — the four lens problems below are placeholders. Replace each with take-home problems distinct from the in-class handout.</p>
-  <p class="hw-intro" style="margin-top:-6pt"><b>Key figures:</b> Stalnaker · Heim.</p>
-
-  <div class="hw-legend">
-    <span class="lg lens-empirical"><i style="background:var(--lens)"></i>Empirical</span>
-    <span class="lg lens-historical"><i style="background:var(--lens)"></i>Historical</span>
-    <span class="lg lens-formal"><i style="background:var(--lens)"></i>Formal</span>
-    <span class="lg lens-typological"><i style="background:var(--lens)"></i>Applied</span>
-  </div>
-
-  <div class="hw-prob lens-empirical">
-    <div class="hw-prob-head">
-      <span class="n">1</span>
-      <span class="q">Empirical — Common Ground & Projection<span class="lens-pip">Empirical</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Challenges</h2>
+      <p>Every challenged presupposition from section 2 goes in a row here, with the escape the witness uses: <i>Hey, wait a minute</i> or an equivalent interruption, metalinguistic negation, a corrective answer that denies that any answer applies, or the question reformulated and answered in its new form. The last column records whether the challenged content is the question under discussion of the exchange at that point.</p>
+      <table class="rec tag">
+        <thead><tr><th>Turn</th><th style="width:36%">Content challenged</th><th style="width:36%">Escape</th><th>Under discussion?</th></tr></thead>
+        <tr><td class="w">Q312</td><td class="w">Shah already knew what went wrong</td><td class="w">corrective answer, <i>No, no. I said that we reflected on it</i></td><td class="w">yes</td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Fill the table. Q302, Q310, Q314, Q321 and Q323 all contain challenges of some kind.</span></div>
+        <div class="task"><span>(b)</span><span>In Q311 Dr Shah answers as though there was a delay. In Q323 he says there was neither chaos nor delay. Describe what happened to the common ground between the two turns, and say which of the two answers treats the delay as the question under discussion.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>In Q303 and Q304 Mr Prescott answers the question about his friend's role by describing the application process. Say which presupposition his answer leaves standing and which it removes, and name the escape.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
     </div>
-    <p class="lead">What utterance data motivates this week’s analysis?</p>
-    <div class="hw-todo">Draft a empirical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
+    <div class="note"></div>
   </div>
 
-  <div class="hw-prob lens-historical">
-    <div class="hw-prob-head">
-      <span class="n">2</span>
-      <span class="q">Historical — Common Ground & Projection<span class="lens-pip">Historical</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 4 ══ -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Packaging</h2>
+      <p>The same content can be asserted or presupposed. Rewrite the turns below and then say how a hearer's options for objecting change.</p>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Rewrite Q321 as a yes–no question that presupposes nothing about the memo or the complaints.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Rewrite Q309 so that the absence of an apology is asserted and the only question left is why.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Rewrite Dr Shah's <i>we wrongly let it rest</i> in Q321 so that the letting-rest is presupposed and the wrongness is asserted. Then say which objection is open to the Chair after each version.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
     </div>
-    <p class="lead">Who developed this, and in what intellectual context?</p>
-    <div class="hw-todo">Draft a historical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
+    <div class="note"></div>
   </div>
 
-  <div class="hw-prob lens-formal">
-    <div class="hw-prob-head">
-      <span class="n">3</span>
-      <span class="q">Formal — Common Ground & Projection<span class="lens-pip">Formal</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 5 ══ -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <ol class="qs">
+        <li>Which triggers in the data were never challenged by any witness? Does the four-way classification from the lecture predict which triggers should be the hardest to challenge?</li>
+        <li>Where a witness reformulated a question before answering it, did the reformulation drop the presupposition, replace it with another, or keep it?</li>
+        <li>Taking Excerpt B as one conversation, what was in the common ground at the start that was not in it at the end? Which of the additions came in by accommodation, and which by assertion?</li>
+      </ol>
     </div>
-    <p class="lead">What analytical machinery do we need?</p>
-    <div class="hw-todo">Draft a formal homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
+    <div class="note"></div>
   </div>
 
-  <div class="hw-prob lens-typological">
-    <div class="hw-prob-head">
-      <span class="n">4</span>
-      <span class="q">Applied — Common Ground & Projection<span class="lens-pip">Applied</span></span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">How does it play out in real social use?</p>
-    <div class="hw-todo">Draft a applied homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
-  </div>
-
-  <div class="h-footer">
-    <span class="left">LI7862 · Homework</span>
-    <span>Week 5 · Common Ground & Projection</span>
-    <span>1</span>
-  </div>
-
-</div></div><!-- /handout-week 5 -->
-
-<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
-
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#fbeae3"/>
-    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#c0512c" stroke-width="2"/>
-    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">1</text>
-    <line x1="46" y1="31" x2="64" y2="31" stroke="#e0b3a3" stroke-width="2"/>
-    <line x1="38" y1="44" x2="64" y2="44" stroke="#e0b3a3" stroke-width="1.6"/>
-    <line x1="38" y1="52" x2="64" y2="52" stroke="#e0b3a3" stroke-width="1.6"/>
-    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#c0512c" text-anchor="middle">LI7862 · HOMEWORK</text>
-  </svg>
-</template>
+</div>
 </body>
 </html>

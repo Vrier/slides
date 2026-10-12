@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 5 · Common Ground &amp; Projection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-burgundy.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* three-column fields */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  .cols3 .cfoot{ margin-top:12px; font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .cols3 .cfoot b{ color:var(--tcd-blue); font-weight:600; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--tcd-ink); line-height:1.08; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ question / answer slide furniture ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
+
+  /* ============ conversations (paired sentences, Q/A dialogues) ============ */
+  .convo{ margin:6px 0; }
+  .convo .cv{ display:grid; grid-template-columns:190px 1fr; gap:0 26px; padding:11px 0; align-items:baseline; }
+  .convo .cv + .cv{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 12%, #fff); }
+  .convo .who{ font-family:var(--mono); font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .convo .say{ font-family:var(--serif); font-style:italic; font-size:33px; color:var(--tcd-ink); line-height:1.25; }
+  .convo.big .say{ font-size:42px; }
+  .convo.big .cv{ padding:14px 0; }
+
+  /* week-tag chip on answer slides */
+  .wktag{ display:inline-block; font-family:var(--mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 8%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 26%, #fff); border-radius:999px;
+    padding:5px 16px; margin-left:20px; vertical-align:middle; transform:translateY(-6px); }
+
+  /* ============ figure portraits & name plates ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:64px; font-weight:600; letter-spacing:.02em; }
+  .figthree .npf .npmono{ height:300px; }
+
+  /* ============ lineage / genealogy strip ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* shared test-case rows */
+  .fourways{ margin-top:8px; }
+  .fourways .fw{ display:grid; grid-template-columns:280px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .fourways .fw:first-child{ border-top:none; }
+  .fourways .fw .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fc); }
+  .fourways .fw .fl small{ display:block; font-family:var(--mono); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--tcd-grey-75); margin-top:3px; text-transform:none; }
+  .fourways .fw .ft2{ font-family:var(--sans); font-size:23px; color:var(--tcd-black); line-height:1.35; }
+  .fourways .fw .ft2 em{ font-style:italic; } .fourways .fw .ft2 b{ color:var(--tcd-ink); }
+
+  /* ============ housekeeping / week grids / recap ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* hatched to-confirm box (print twin of the scaffold todo-box) */
+  .todo-line{ margin-top:18px; border:1.5px dashed var(--tcd-blue-50); border-radius:9px; background:var(--tcd-blue-10);
+    padding:13px 20px; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+  .todo-line b{ color:var(--tcd-blue); }
+
+  /* question-slide footnote line (as weeks-pragmatics/week-01) */
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+
+  /* Kripke-model figure (week 2): worlds as nodes, R as arrows */
+  .fourways .fw .fl .fm{ display:block; font-family:var(--serif); font-weight:400; font-size:21px; letter-spacing:0; text-transform:none; color:var(--tcd-grey-100); margin-top:4px; }
+
+  /* world diagrams (week 2): logical space, propositions as regions, accessibility */
+
+  /* ============ week 2 type pass: New Computer Modern + larger small text ============
+     Same patterns as week 1. Computer Modern runs small on the body, so running
+     text goes up a step, and nothing on a slide is set below 15px. */
+  .dB .erow .tx{ font-size:31px; line-height:1.34; } .dB .erow .tx.tight{ font-size:29px; }
+  .dB .erow .lb{ font-size:17px; }
+  .dB .lead{ font-size:38px; }
+  .eg .ex{ font-size:31px; } .eg .ex .gl{ font-size:22px; line-height:1.32; } .eg .no{ font-size:21px; }
+  .eghead{ font-size:16px; } .egpanel .fxnote{ font-size:20px; }
+  .fourways .fw{ grid-template-columns:300px 1fr; }
+  .fourways .fw .fl{ font-size:18px; } .fourways .fw .fl small{ font-size:16.5px; margin-top:4px; }
+  .fourways .fw .fl .fm{ font-size:24px; }
+  .fourways .fw .ft2{ font-size:27px; line-height:1.34; }
+  .brn .split span{ font-size:16px; } .brn .arm .h{ font-size:16px; } .brn .arm .t{ font-size:28px; }
+  .convo .who{ font-size:18px; } .qsrc{ font-size:25px; } .qask{ font-size:21px; }
+  .qref .src{ font-size:20px; } .bigq .src{ font-size:24px; }
+  .portrait .pc .dt{ font-size:15px; } .portrait .pc .rl{ font-size:19px; line-height:1.32; }
+  .lineage .ln .era{ font-size:16px; } .lineage .ln .ds{ font-size:19.5px; } .lineage .ln .nm{ font-size:26px; }
+  .roots{ font-size:27px; }
+  .lxr3 .rmb li{ font-size:20px; }
+  .mrail a.si2{ font-size:15px; } .mrail .ghd, .mrail .ghd .gt{ font-size:12px; }
+  .wktag{ font-size:16px; }
+
+  /* notation table (week 2) */
+  .ntab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ntab .nh{ display:grid; grid-template-columns:370px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:18px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .ntab .nr{ display:grid; grid-template-columns:370px 1fr; gap:34px; align-items:baseline; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ntab .no1{ font-family:var(--serif); font-size:32px; color:var(--tcd-ink); }
+  .ntab .no1 small{ display:block; font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); margin-top:2px; }
+  .ntab .no2{ font-family:var(--serif); font-size:27px; line-height:1.4; color:var(--tcd-ink); }
+  .ntab .no2 i{ font-family:var(--sans); font-style:normal; font-size:21px; color:var(--tcd-grey-100); }
+
+  /* ============ week 2 type pass, second round: projector floor ============
+     Floors on the 1920 canvas: running text 27px, glosses and notes 22px,
+     uppercase labels 19px, credits 17px, sidebar 13px. */
+  .dB .erow .lb{ font-size:20px; } .dB .erow{ grid-template-columns:250px 1fr; }
+  .eghead{ font-size:19px; } .eg .ex .gl{ font-size:24px; } .eg .no{ font-size:23px; }
+  .egpanel .fxnote{ font-size:22px; }
+  .brn .split span{ font-size:19px; } .brn .arm .h{ font-size:19px; }
+  .fourways .fw .fl{ font-size:20px; } .fourways .fw .fl small{ font-size:19px; }
+  .fourways .fw .ft2{ font-size:28px; }
+  .portrait .pc .dt{ font-size:17px; line-height:1.35; } .portrait .pc .rl{ font-size:21px; }
+  .wktag{ font-size:18px; }
+  .qask{ font-size:24px; } .convo .who{ font-size:21px; } .qsrc{ font-size:27px; }
+  .qref .src{ font-size:22px; }
+  .lxr3 .stop .head .lab{ font-size:20px; } .lxr3 .rmb li{ font-size:22px; }
+  .lxd2 .r .ct{ font-size:20px; }
+  .ntab .nh{ font-size:19px; } .ntab .no1 small{ font-size:21px; } .ntab .no2 i{ font-size:22px; }
+  .tcd-names .uni{ font-size:18px; }
+  .mrail a.si2{ font-size:16px; } .mrail .ghd .gt{ font-size:13px; } .mrail .ghd .gcar{ font-size:11px; }
+  .mrail .mhd .tt{ font-size:14px; } .mrail .mft .wk{ font-size:14px; }
+
+  /* ============ week 2 type pass, third round: fill the slide ============
+     Week 1's patterns leave the lower third of most slides empty. Default sizes
+     go up again; a slide that would overflow takes class "dense" on .b-main and
+     keeps the second-round sizes. */
+  .dB .erow .tx{ font-size:36px; line-height:1.32; } .dB .erow .tx.tight{ font-size:33px; }
+  .dB .erow{ grid-template-columns:270px 1fr; padding:20px 0; } .dB .erow .lb{ font-size:21px; padding-top:9px; }
+  .eg .ex{ font-size:36px; } .eg .ex .gl{ font-size:26px; } .eg .no{ font-size:25px; }
+  .eghead{ font-size:20px; } .egpanel .fx{ font-size:36px; } .egpanel .fxnote{ font-size:24px; }
+  .fourways .fw{ grid-template-columns:330px 1fr; padding:18px 0; }
+  .fourways .fw .fl{ font-size:22px; } .fourways .fw .fl small{ font-size:20px; } .fourways .fw .fl .fm{ font-size:27px; }
+  .fourways .fw .ft2{ font-size:32px; }
+  .brn .arm .t{ font-size:32px; } .brn .arm .h{ font-size:20px; } .brn .split span{ font-size:20px; }
+  .convo .say{ font-size:40px; } .convo.big .say{ font-size:50px; } .qask{ font-size:26px; } .qsrc{ font-size:29px; }
+  .qref{ font-size:32px !important; } .qref .src{ font-size:23px; }
+  .ntab .no1{ font-size:36px; } .ntab .no2{ font-size:30px; } .ntab .no2 i{ font-size:24px; } .ntab .no1 small{ font-size:22px; }
+  .lxr3 .rmb li{ font-size:24px; } .figs-line{ font-size:25px; } .q-banner{ font-size:34px; }
+  .b-step-lab{ font-size:24px; } .b-step-math{ font-size:44px; }
+  /* dense slides keep the second-round sizes */
+  .b-main.dense .erow .tx{ font-size:31px; } .b-main.dense .erow .tx.tight{ font-size:29px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; }
+  .b-main.dense .eg .ex{ font-size:31px; } .b-main.dense .eg .ex .gl{ font-size:24px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:28px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:32px; }
+  .b-main.dense .ntab .no1{ font-size:32px; } .b-main.dense .ntab .no2{ font-size:27px; } .b-main.dense .ntab .nr{ padding:12px 0; }
+
+  /* ============ fourth round: body text at 40px (about 20pt on a 13.3in slide) ============ */
+  .dB .erow .tx{ font-size:40px; line-height:1.3; } .dB .erow .tx.tight{ font-size:37px; }
+  .dB .erow{ grid-template-columns:280px 1fr; padding:22px 0; } .dB .erow .lb{ font-size:22px; padding-top:12px; }
+  .eg .ex{ font-size:40px; } .eg .ex .gl{ font-size:28px; } .eg .no{ font-size:27px; } .eg{ padding:13px 0; }
+  .egpanel .fx{ font-size:40px; } .egpanel .fxnote{ font-size:25px; } .eghead{ font-size:21px; }
+  .fourways .fw{ grid-template-columns:340px 1fr; padding:20px 0; }
+  .fourways .fw .fl{ font-size:23px; } .fourways .fw .fl small{ font-size:21px; } .fourways .fw .fl .fm{ font-size:29px; }
+  .fourways .fw .ft2{ font-size:35px; line-height:1.3; }
+  .brn .arm .t{ font-size:35px; } .brn .arm .h{ font-size:21px; } .brn .split span{ font-size:21px; }
+  .convo .say{ font-size:44px; } .convo.big .say{ font-size:56px; } .convo .who{ font-size:23px; } .qask{ font-size:28px; } .qsrc{ font-size:31px; }
+  .qref{ font-size:35px !important; } .qref .src{ font-size:24px; }
+  .ntab .no1{ font-size:38px; } .ntab .no2{ font-size:32px; } .ntab .no2 i{ font-size:25px; }
+  .lxr3 .rmb li{ font-size:26px; line-height:1.35; } .lxr3 .stop .head .lab{ font-size:22px; }
+  .figs-line{ font-size:27px; } .q-banner{ font-size:38px; }
+  .b-step-lab{ font-size:26px; } .b-step-math{ font-size:46px; }
+  .portrait .pc .nm{ font-size:30px; }
+  /* dense fallback, restated after the defaults so it still wins */
+  .b-main.dense .erow .tx{ font-size:32px; } .b-main.dense .erow .tx.tight{ font-size:30px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; } .b-main.dense .erow .lb{ font-size:20px; padding-top:7px; }
+  .b-main.dense .eg .ex{ font-size:33px; } .b-main.dense .eg .ex .gl{ font-size:25px; } .b-main.dense .eg{ padding:9px 0; }
+  .b-main.dense .fourways .fw .ft2{ font-size:30px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:34px; }
+  .b-main.dense .brn .arm .t{ font-size:30px; }
+  .b-main.dense .ntab .no1{ font-size:33px; } .b-main.dense .ntab .no2{ font-size:28px; } .b-main.dense .ntab .nr{ padding:11px 0; }
+
+  /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
+  .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
+  .b-main.snug .fourways .fw .ft2{ font-size:33px; }
+
+  /* interlinear gloss (week 2): word over gloss, aligned by column */
+  .eg .ex .ctx2{ display:block; font-family:var(--sans); font-style:normal; font-size:24px; color:var(--tcd-grey-100); margin-bottom:4px; }
+  .eg .ex .tr{ display:block; font-family:var(--serif); font-style:normal; font-size:32px; color:var(--tcd-ink); }
+
+  /* week 2: extension table header, small frame figures */
+
+  /* examples under the row labels (Problems for extensional semantics) */
+  .fourways.exl .fw .fl small{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:27px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); margin-top:6px; line-height:1.22; }
+  /* an unlabelled closing sentence under a panel */
+  .plainline{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin:18px 0 0; }
+
+  /* week 2: displacement answer carries the sentence under its number */
+  .b-main .fourways.disp .fw{ grid-template-columns:470px 1fr; padding:11px 0; }
+  .fourways.disp .fw .fl .sent{ display:block; font-family:var(--serif); font-style:italic; font-weight:400; font-size:26px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); line-height:1.2; margin-top:3px; }
+  .fourways.disp .fw .fl small{ display:inline; margin-left:14px; }
+  /* week 2: intension table cells that are not truth values */
+
+
+  /* ============ week 3 (LI7862, Implicature) additions ============ */
+  /* content rows without a label column: text runs full width, a bold lead carries the term */
+  .dB .erow.full{ grid-template-columns:1fr; }
+  .b-main.dense .erow.full{ grid-template-columns:1fr; }
+  .dB .erow.full .tx strong.ld{ color:var(--lens, var(--tcd-ink)); }
+  .srcl{ font-family:var(--sans); font-size:24px; color:var(--tcd-grey-75); margin-top:12px; line-height:1.35; }
+  .srcl em{ font-style:italic; }
+
+  /* ============ week 4 (LI7862, Presupposition) additions ============ */
+  /* speaker tag inside an example line */
+  .eg .ex .sp{ font-style:normal; font-family:var(--sans); font-size:.6em; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); margin-right:14px; }
+  .eg .ex .hash{ font-style:normal; color:var(--lens); margin-right:4px; }
+  /* response-share tables (Abrusán & Szendrői 2013; Lachenmaier et al. 2025) */
+  .dtab{ margin-top:10px; border-top:2px solid var(--lens); }
+  .dtab .dh, .dtab .dr{ display:grid; grid-template-columns:1fr 190px 190px 190px; gap:0 18px; align-items:baseline; }
+  .dtab .dh{ padding:12px 0 8px; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .dtab .dh span + span, .dtab .dr .v{ text-align:right; }
+  .dtab .dr{ padding:13px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dtab .dr .s{ font-family:var(--serif); font-size:34px; color:var(--tcd-ink); line-height:1.22; }
+  .dtab .dr .s em{ font-style:italic; }
+  .dtab .dr .s .n{ font-family:var(--mono); font-size:24px; color:var(--tcd-grey-75); margin-right:12px; }
+  .dtab .dr .v{ font-family:var(--serif); font-size:40px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .dtab .dr .v.hi{ color:var(--lens); font-weight:700; }
+  /* three-valued truth table beside its rows */
+  .tvwrap{ display:flex; gap:60px; align-items:flex-start; margin-top:10px; }
+  .tvt{ flex:0 0 auto; border-collapse:collapse; font-family:var(--serif); font-size:42px; color:var(--tcd-ink); }
+  .tvt th{ font-weight:400; padding:8px 36px 12px; border-bottom:2px solid var(--lens); }
+  .tvt th small{ display:block; font-family:var(--sans); font-size:19px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lens); margin-top:6px; }
+  .tvt td{ padding:12px 36px; text-align:center; border-top:1px solid var(--tcd-grey-25); font-variant-numeric:tabular-nums; }
+  .tvt tr:first-child td{ border-top:none; }
+  .tvt td.gap{ color:var(--lens); font-weight:700; }
+  .tvwrap .figbody{ flex:1 1 0; min-width:0; }
+  .tvwrap .figbody .erow:first-child{ border-top:none; padding-top:0; }
+  /* inference comparison table */
+  .itab{ margin-top:8px; border-top:2px solid var(--lens); }
+  .itab .ih, .itab .ir{ display:grid; grid-template-columns:270px 1fr 210px 330px; gap:0 24px; align-items:baseline; }
+  .itab .ih{ padding:12px 0 8px; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .itab .ir{ padding:18px 0; border-top:1px solid var(--tcd-grey-25); font-family:var(--sans); font-size:32px; color:var(--tcd-black); line-height:1.28; }
+  .itab .ir .k{ font-family:var(--sans); font-size:23px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--lens); }
+  .itab .ir em{ font-style:italic; }
+  /* bar figure (Loftus 1975) */
+  .bfig{ width:100%; height:auto; display:block; margin:6px 0 0; }
+  .bfig .bar{ fill:var(--lens); } .bfig .bar.off{ fill:var(--tcd-grey-50); }
+  .bfig .bl{ font-family:var(--sans); font-size:30px; fill:var(--tcd-ink); }
+  .bfig .bv{ font-family:var(--serif); font-size:42px; font-weight:700; fill:var(--tcd-ink); }
+  .bfig .ax{ stroke:var(--tcd-grey-50); stroke-width:2; }
+  /* roomy: a sparse slide takes larger type and deeper rows (fill the frame) */
+  .b-main.roomy .erow .tx{ font-size:45px; line-height:1.3; } .b-main.roomy .erow .tx.tight{ font-size:42px; }
+  .b-main.roomy .erow{ padding:28px 0; }
+  .b-main.roomy .eg .ex{ font-size:48px; } .b-main.roomy .eg .ex .gl{ font-size:30px; }
+  .b-main.roomy .egpanel .fx{ font-size:46px; } .b-main.roomy .egpanel .fxnote{ font-size:26px; }
+  .b-main.roomy .tvt{ font-size:48px; }
+  .b-main.roomy .itab .ir{ font-size:38px; padding:28px 0; } .b-main.roomy .itab .ir .k{ font-size:25px; } .b-main.roomy .itab .ih{ font-size:23px; }
+  .b-main.roomy .itab .ih, .b-main.roomy .itab .ir{ grid-template-columns:300px 1fr 220px 380px; }
+  /* Triggers slides: the trigger words under each class, large and bold */
+  .b-main.trig .fourways .fw .fl{ font-size:25px; }
+  .b-main.trig .fourways .fw .fl small{ display:block; font-family:var(--serif); font-style:italic; font-weight:700; font-size:32px; color:var(--tcd-ink); letter-spacing:0; text-transform:none; margin-top:4px; line-height:1.12; }
+  .b-main.trig .fourways .fw{ grid-template-columns:340px 1fr; padding:16px 0; }
+  .b-main.trig .fourways .fw .ft2{ font-size:33px; }
+  /* trigger classes beneath the loaded-question task */
+  .trigs{ display:grid; grid-template-columns:repeat(5, 1fr); gap:22px 28px; margin-top:54px; }
+  .trigs div b{ display:block; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .trigs div i{ display:block; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink); margin-top:4px; line-height:1.2; }
+  /* a long question slide */
+  .b-main.qdense .convo .cv{ padding:9px 0; } .b-main.qdense .convo .say{ font-size:34px; line-height:1.3; } .b-main.qdense .convo .who{ font-size:22px; }
+  /* lineage text up to the projector floors */
+  .lineage .ln .era{ font-size:20px; } .lineage .ln .nm{ font-size:33px; } .lineage .ln .ds{ font-size:26px; line-height:1.32; }
+  /* display formula for a case split */
+  .egpanel .fx.lf{ text-align:left; padding-left:12px; }
+
+  /* ============ week 5 (LI7862, Common Ground & Projection) additions ============ */
+  /* context line and speaker tags inside a question-slide example */
+  .convo .say .ctx{ display:block; font-style:normal; font-family:var(--sans); font-size:28px; color:var(--tcd-grey-100); margin-bottom:8px; line-height:1.3; }
+  .convo .say .sp{ font-style:normal; font-family:var(--sans); font-size:.55em; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); margin-right:16px; }
+  .convo .say .ln{ display:block; }
+  .eg .ex .ln{ display:block; }
+  /* context-set figures: worlds as dots, the context set as a box */
+  .cfig{ width:100%; height:auto; display:block; margin:8px 0 0; flex:0 0 auto; }
+  .cfig .box{ fill:color-mix(in srgb, var(--lens) 4%, #fff); stroke:var(--tcd-grey-50); stroke-width:2.5; }
+  .cfig .w{ fill:#fff; stroke:var(--tcd-grey-75); stroke-width:3; }
+  .cfig .w.on{ fill:var(--lens); stroke:var(--lens); }
+  .cfig .w.gone{ fill:none; stroke:var(--tcd-grey-25); stroke-dasharray:6 6; }
+  .cfig .lab{ font-family:var(--serif); font-style:italic; font-size:42px; fill:var(--tcd-ink); }
+  .cfig .cap{ font-family:var(--sans); font-size:27px; fill:var(--tcd-grey-100); }
+  .cfig .ar{ stroke:var(--tcd-grey-75); stroke-width:3.5; fill:none; }
+  .cfig .arh{ fill:var(--tcd-grey-75); }
+  /* four classes of projective content */
+  .ctab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ctab .ch, .ctab .cr{ display:grid; grid-template-columns:110px 170px 170px 1fr 1fr; gap:0 26px; align-items:baseline; }
+  .ctab .ch{ padding:12px 0 8px; font-family:var(--sans); font-size:20px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--lens); line-height:1.25; }
+  .ctab .cr{ padding:14px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ctab .cr .k{ font-family:var(--serif); font-size:40px; font-weight:600; color:var(--lens); }
+  .ctab .cr .v{ font-family:var(--sans); font-size:28px; color:var(--tcd-grey-100); }
+  .ctab .cr .v.y{ color:var(--tcd-ink); font-weight:700; }
+  .ctab .cr .e{ font-family:var(--serif); font-size:29px; color:var(--tcd-ink); line-height:1.25; }
+  .ctab .cr .e i{ font-style:italic; }
+  /* a display block of update clauses, left aligned */
+  .egpanel .fx.cl{ text-align:left; padding-left:18px; font-size:38px; }
+  .b-main.dense .egpanel .fx.cl{ font-size:33px; }
+  .b-main.roomy .fourways .fw .ft2{ font-size:40px; line-height:1.3; } .b-main.roomy .fourways .fw{ padding:30px 0; }
+  .cfig .w.half{ fill:color-mix(in srgb, var(--lens) 35%, #fff); stroke:var(--lens); }
+  .cfig .box.undef{ stroke:var(--tcd-grey-50); stroke-dasharray:10 8; fill:none; }
+  .cfig .cap.em{ font-family:var(--serif); font-style:italic; font-size:30px; }
+  .cfig .wave{ fill:none; stroke:var(--lens); stroke-width:5; stroke-linejoin:round; }
+  .cfig .axis{ stroke:var(--tcd-grey-50); stroke-width:2.5; }
+  .cfig .tick{ font-family:var(--sans); font-size:24px; fill:var(--tcd-grey-100); }
+  .cfig .node{ fill:#fff; stroke:var(--tcd-grey-50); stroke-width:2.5; }
+  .cfig .node.on{ fill:color-mix(in srgb, var(--lens) 8%, #fff); stroke:var(--lens); }
+  .cfig .nt{ font-family:var(--sans); font-size:28px; fill:var(--tcd-ink); }
+  .cfig .nt.i{ font-family:var(--serif); font-style:italic; font-size:30px; }
+  /* two-by-two grid of projective content classes */
+  .quad{ display:grid; grid-template-columns:150px 1fr 1fr; grid-template-rows:auto 1fr 1fr; gap:0; margin-top:4px; }
+  .quad .ax{ font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--lens); line-height:1.25; }
+  .quad .ax.top{ padding:8px 18px 10px; border-bottom:2px solid var(--lens); }
+  .quad .ax.side{ padding:18px 14px 0 0; border-right:2px solid var(--lens); align-self:stretch; }
+  .quad .cell{ padding:22px 22px 26px; border-bottom:1px solid var(--tcd-grey-25); border-right:1px solid var(--tcd-grey-25); }
+  .quad .cell .k{ font-family:var(--serif); font-size:44px; font-weight:600; color:var(--lens); line-height:1; margin-bottom:8px; }
+  .quad .cell .en{ font-family:var(--serif); font-size:34px; color:var(--tcd-ink); line-height:1.25; }
+  .quad .cell .gn{ font-family:var(--serif); font-size:29px; color:var(--tcd-grey-100); line-height:1.25; margin-top:6px; }
+  .quad .cell .gn i, .quad .cell .en i{ font-style:italic; }
+  .cfig .pipe{ stroke:var(--lens); stroke-width:9; fill:none; stroke-linecap:round; }
+  .cfig .pipe.off{ stroke:var(--tcd-grey-25); stroke-dasharray:14 12; }
+  .cfig .plug{ fill:var(--tcd-ink); }
+  .cfig .op{ fill:#fff; stroke:var(--lens); stroke-width:2.5; }
+  .cfig .opk{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; fill:var(--lens); }
+  .cfig .opt{ font-family:var(--serif); font-style:italic; font-size:27px; fill:var(--tcd-ink); }
+  .cfig .board{ fill:var(--lens); }
+  .cfig .bk{ font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; fill:#fff; opacity:.75; }
+  .cfig .bv{ font-family:var(--serif); font-size:30px; fill:#fff; }
+  .cfig .bv i{ font-style:italic; }
+  .cfig .bsep{ stroke:#fff; stroke-opacity:.3; stroke-width:2; }
+  .figimg{ display:block; width:46%; height:auto; margin:4px auto 6px; }
+  .eg .ex .sp.lt, .convo .say .sp.lt{ text-transform:none; letter-spacing:0; font-size:.62em; }
+  .ptab{ margin-top:4px; border-top:2px solid var(--lens); }
+  .ptab .ph, .ptab .pr{ display:grid; grid-template-columns:78px 1.25fr 1fr 1fr; gap:0 24px; align-items:baseline; }
+  .ptab .ph{ padding:10px 0 8px; font-family:var(--sans); font-size:20px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--lens); }
+  .ptab .pr{ padding:10px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ptab .pr .no{ font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75); }
+  .ptab .pr .x{ font-family:var(--serif); font-style:italic; font-size:31px; color:var(--lens-ink, var(--tcd-ink)); }
+  .ptab .pr .v{ font-family:var(--serif); font-size:28px; color:var(--tcd-ink); line-height:1.25; }
+  .ftab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ftab .fh, .ftab .fr{ display:grid; grid-template-columns:200px 1fr 210px 150px 150px; gap:0 22px; align-items:baseline; }
+  .ftab .fh{ padding:10px 0 8px; font-family:var(--sans); font-size:19px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--lens); }
+  .ftab .fr{ padding:9px 0; border-top:1px solid var(--tcd-grey-25); font-family:var(--serif); font-size:28px; color:var(--tcd-ink); }
+  .ftab .fr .k{ font-family:var(--sans); font-size:24px; font-weight:700; color:var(--lens); }
+  .ftab .fr i{ font-style:italic; }
+  .lxr3 .rmb li{ font-size:23px; line-height:1.25; padding:4px 0 4px 18px; }
+  .puzzle{ max-width:1500px; }
+  .puzzle .pn{ font-family:var(--sans); font-size:26px; color:var(--tcd-grey-75); margin-bottom:10px; }
+  .puzzle p{ font-family:var(--serif); font-size:37px; line-height:1.42; color:var(--tcd-ink); margin:0 0 24px; }
+  .itab.lc .ih, .itab.lc .ir{ grid-template-columns:360px 1fr 1fr; }
+  .itab.lc .ir .k{ text-transform:none; letter-spacing:0; font-family:var(--serif); font-style:italic; font-weight:400; font-size:34px; color:var(--tcd-ink); }
+</style>
+</head>
+<body class="pal-a" data-week="5">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · Title -->
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark" style="font-style:italic">“</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LI7862 · Linguistic Pragmatics</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 5</h1>
+      <div class="a-course-sub">Common Ground &amp; Projection</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · 2026</div></div>
+  </div>
+</section>
+
+
+
+<!-- 02 · This week. No reference to other weeks (Oct 2026 rule), so no "Last week" row. -->
+<section class="slide" data-label="This week" data-screen-label="02">
+  <div class="b-slide pal-a dB" data-sec="wk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <h2 class="b-h">This week</h2>
+      <div class="q-banner">What happens when the background is missing?</div>
+      <div class="erow full" style="border-top:none"><div class="tx">How a conversation keeps track of what is taken for granted, how hearers supply background a speaker has not shared, and how presuppositions behave inside larger sentences: <strong>common ground</strong>, <strong>accommodation</strong> and <strong>projection</strong>.</div></div>
+      <div class="figs-line"><b>Figures:</b> Stalnaker · Lewis · Karttunen · Heim &nbsp;·&nbsp; <b>Data:</b> the messy knots · a sister at the airport · a camel · Jack's children · Paraguayan Guaraní · loaded questions · Tenerife</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 03 · Roadmap -->
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>The messy knots</li><li>Common knowledge and common ground</li><li>Presupposed and asserted</li><li>Presupposition and the common ground</li><li>Accommodation</li><li>My sister</li><li>How easily accommodation happens</li><li>Too</li><li>What accommodation is for</li><li>Asserting and presupposing</li><li>Projection tests</li><li>Holes and plugs</li><li>Filtering</li><li>Filtering and world knowledge</li><li>Hole, plug or filter</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Stalnaker</li><li>Common ground</li><li>Lewis</li><li>The rule of accommodation</li><li>Karttunen</li><li>Holes, plugs and filters</li><li>Local contexts</li><li>Heim</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Context sets</li><li>Update and definedness</li><li>When the presupposition is not met</li><li>Accommodation as update</li><li>Connectives</li><li>Filtering by hand</li><li>Local accommodation</li><li>The proviso problem</li><li>The explanatory problem</li><li>Two diagnostics</li><li>Four classes</li><li>Other notations</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Answering a loaded question</li><li>Evasion</li><li>Framing</li><li>Taking sides</li><li>Interrogation</li><li>Processing</li><li>Readback</li><li>Clinical communication</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 04 · Readings (as on weeks-pragmatics/week-05/readings.html) -->
+<section class="slide" data-label="Readings" data-screen-label="04">
+  <div class="b-slide pal-a dB" data-sec="rd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Readings</h2>
+      <div class="qref" style="font-size:27px">Potts, C. (2015). Presupposition and implicature. In S. Lappin &amp; C. Fox (Eds.), <em>The Handbook of Contemporary Semantic Theory</em>, 2nd ed., 168–202. <span class="src">Textbook</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Stalnaker, R. (2002). Common ground. <em>Linguistics and Philosophy</em> 25(5–6), 701–721. <span class="src">Classical</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Schlenker, P. (2009). Local contexts. <em>Semantics and Pragmatics</em> 2(3), 1–78. <span class="src">Contemporary</span></div>
+      <div class="qref" style="font-size:27px;margin-top:18px">Tonhauser, J., Beaver, D., Roberts, C. &amp; Simons, M. (2013). Toward a taxonomy of projective content. <em>Language</em> 89(1), 66–109. <span class="src">Contemporary</span></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Empirical -->
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LI7862 · Week 5</div><h2>Shared background</h2><div class="ask">Common ground, accommodation and projection.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+
+
+<!-- 05 · The messy knots, Q. Thomas's own exam question, verbatim. -->
+<section class="slide" data-label="The messy knots, Q" data-screen-label="05">
+  <div class="b-slide pal-a lens-empirical" data-sec="mud">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="puzzle"><p>Anoushka is a mountain guide. The local university has sent the six faculty members of its logic department on a beginners’ mountaineering course. This is deeply frustrating for Anoushka because, although they are all perfect logicians, they are novice climbers.</p><p>One important skill for any climber is tying the knot that attaches them to the rope. It is often hard to check your own knot, because it sits under your jacket, but easy to see other climbers’ knots, so climbers often check each other’s.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 06 · The messy knots, Q2. Thomas's own exam question, verbatim. -->
+<section class="slide" data-label="The messy knots, Q2" data-screen-label="06">
+  <div class="b-slide pal-a lens-empirical" data-sec="mud">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="puzzle"><p>Anoushka teaches the six logicians to tie a figure-of-eight knot and asks them each to tie one. She then gathers them round to see whether they have done it correctly. Each logician can see every other logician’s knot, but not their own. Anoushka notices, to her frustration, that not all of the knots are right. She shakes her head and announces: “Well, at least one of you hasn’t tied your knot correctly. Without looking at your own knot, raise your hand if you know that your knot is tied incorrectly.” The logicians look around at each other and all shake their heads. “How about now?” says Anoushka. Again they look around despondently. “How about now?” she asks a third time, and suddenly some of the logicians raise their hands.</p><p>How many logicians had tied their knots correctly? Justify your answer.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 07 · Common knowledge and common ground. -->
+<section class="slide" data-label="Empirical ·Common knowledge and common ground" data-screen-label="07">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="ck">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Common knowledge and common ground</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight"><strong class="ld">Common knowledge.</strong> A proposition is common knowledge in a group when everyone knows it, everyone knows that everyone knows it, and so on without limit. Lewis introduced the notion in his account of convention, and Aumann gave it its formal definition.</div></div>
+      <svg class="cfig" style="width:76%" data-step="2" viewBox="0 0 1400 250" role="img" aria-label="Levels of mutual acceptance: everyone accepts p; everyone accepts that everyone accepts p; everyone accepts that everyone accepts that everyone accepts p; and so on."><rect class="node on" x="0" y="10" width="1000" height="48" rx="8"/><text class="nt" x="18" y="42">everyone accepts p</text><rect class="node on" x="40" y="70" width="1000" height="48" rx="8"/><text class="nt" x="58" y="102">everyone accepts that everyone accepts p</text><rect class="node on" x="80" y="130" width="1000" height="48" rx="8"/><text class="nt" x="98" y="162">everyone accepts that everyone accepts that everyone accepts p</text><text class="cap em" x="140" y="222">and so on</text></svg>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Common ground.</strong> For Stalnaker, the propositions the participants in a conversation mutually accept for its purposes. The acceptance is iterated in the same way, and it can fall short of belief, as when people assume something for the sake of argument.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">The common ground changes as the conversation goes on. An assertion that is accepted adds its content to it, and what a speaker presupposes has to be in it already.</div></div>
+
+      <div class="srcl" data-step="1">Lewis (1969), <em>Convention</em> · Aumann (1976), <em>Annals of Statistics</em> 4 · Stalnaker (2002), <em>Linguistics and Philosophy</em> 25.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 08 · Presupposed and asserted. -->
+<section class="slide" data-label="Empirical ·Presupposed and asserted" data-screen-label="08">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="pa">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Presupposed and asserted</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">The presuppositions of an utterance are what its speaker takes for granted, or acts as if they take for granted, for the utterance to make sense in its context. Some come from the context and the norms of conversation. Others are carried by particular words and constructions, the presupposition triggers.</div></div>
+      <div class="ptab" data-step="2">
+        <div class="ph"><span></span><span>Utterance</span><span>Presupposes</span><span>Asserts or asks</span></div>
+        <div class="pr"><span class="no">(1)</span><span class="x">The dog is grumpy.</span><span class="v">there is a unique salient dog</span><span class="v">the dog is grumpy</span></div>
+        <div class="pr"><span class="no">(2)</span><span class="x">Sam quit smoking.</span><span class="v">Sam smoked in the past</span><span class="v">Sam does not smoke now</span></div>
+        <div class="pr"><span class="no">(3)</span><span class="x">Ed realizes that it is Wednesday.</span><span class="v">it is Wednesday</span><span class="v">Ed is aware of it</span></div>
+        <div class="pr"><span class="no">(4)</span><span class="x">It was Joan who stole the cookies.</span><span class="v">someone stole the cookies</span><span class="v">Joan stole them</span></div>
+        <div class="pr"><span class="no">(5)</span><span class="x">Why did you murder Prof. Jones?</span><span class="v">you murdered Prof. Jones</span><span class="v">asks for your reasons</span></div>
+        <div class="pr"><span class="no">(6)</span><span class="x">JOAN likes spinach too.</span><span class="v">someone else salient likes spinach</span><span class="v">Joan likes spinach</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 09 · Presupposition and the common ground. -->
+<section class="slide" data-label="Empirical ·Presupposition and the common ground" data-screen-label="09">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="pcg">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Presupposition and the common ground</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(7)</span><span class="ex">My mother is coming to pick me up. I have a sister, by the way.</span></div>
+      </div>
+<svg class="cfig" style="width:92%" data-step="2" viewBox="0 0 1400 230" role="img" aria-label="Three context sets. The first contains eight worlds. Adding that the mother is coming leaves four. Adding that the speaker has a sister leaves two."><defs><marker id="arw1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs><rect class="box" x="20" y="40" width="380" height="150" rx="12"/><text class="lab" x="30" y="30">c</text><circle class="w on" cx="116" cy="85" r="21"/><circle class="w on" cx="178" cy="85" r="21"/><circle class="w on" cx="240" cy="85" r="21"/><circle class="w on" cx="302" cy="85" r="21"/><circle class="w on" cx="116" cy="145" r="21"/><circle class="w on" cx="178" cy="145" r="21"/><circle class="w on" cx="240" cy="145" r="21"/><circle class="w on" cx="302" cy="145" r="21"/><rect class="box" x="510" y="40" width="380" height="150" rx="12"/><text class="lab" x="520" y="30"></text><circle class="w on" cx="606" cy="85" r="21"/><circle class="w on" cx="668" cy="85" r="21"/><circle class="w on" cx="730" cy="85" r="21"/><circle class="w on" cx="792" cy="85" r="21"/><circle class="w gone" cx="606" cy="145" r="21"/><circle class="w gone" cx="668" cy="145" r="21"/><circle class="w gone" cx="730" cy="145" r="21"/><circle class="w gone" cx="792" cy="145" r="21"/><rect class="box" x="1000" y="40" width="380" height="150" rx="12"/><text class="lab" x="1010" y="30"></text><circle class="w on" cx="1096" cy="85" r="21"/><circle class="w on" cx="1158" cy="85" r="21"/><circle class="w gone" cx="1220" cy="85" r="21"/><circle class="w gone" cx="1282" cy="85" r="21"/><circle class="w gone" cx="1096" cy="145" r="21"/><circle class="w gone" cx="1158" cy="145" r="21"/><circle class="w gone" cx="1220" cy="145" r="21"/><circle class="w gone" cx="1282" cy="145" r="21"/><line class="ar" x1="410" y1="115" x2="498" y2="115" marker-end="url(#arw1)"/><text class="cap em" x="414" y="215">+ my mother is coming</text><line class="ar" x1="900" y1="115" x2="988" y2="115" marker-end="url(#arw1)"/><text class="cap em" x="904" y="215">+ I have a sister</text></svg>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">A presupposition is content that the speaker treats as already in the common ground. <em>My mother</em> presupposes that the speaker has a mother, which the common ground already contains, so the first sentence only adds that she is coming.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">The second sentence asserts the sister, and accepting it removes the worlds where the speaker has none. Every update in (7) is an addition of asserted content to a common ground that already meets its requirements.</div></div>
+
+      <div class="srcl" data-step="1">Stalnaker (1974) · Karttunen (1974) · (7) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 10 · Accommodation. -->
+<section class="slide" data-label="Empirical ·Accommodation" data-screen-label="10">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="acc0">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Accommodation</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(8)</span><span class="ex">My sister is coming to pick me up.</span></div>
+      </div>
+<svg class="cfig" style="width:80%" data-step="2" viewBox="0 0 1400 230" role="img" aria-label="Three context sets. In the first, only the filled worlds are ones where the speaker has a sister. Accommodation removes the others. Adding that the sister is coming leaves two."><defs><marker id="arw2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs><rect class="box" x="20" y="40" width="380" height="150" rx="12"/><text class="lab" x="30" y="30">c</text><circle class="w on" cx="116" cy="85" r="21"/><circle class="w on" cx="178" cy="85" r="21"/><circle class="w on" cx="240" cy="85" r="21"/><circle class="w on" cx="302" cy="85" r="21"/><circle class="w" cx="116" cy="145" r="21"/><circle class="w" cx="178" cy="145" r="21"/><circle class="w" cx="240" cy="145" r="21"/><circle class="w" cx="302" cy="145" r="21"/><rect class="box" x="510" y="40" width="380" height="150" rx="12"/><text class="lab" x="520" y="30"></text><circle class="w on" cx="606" cy="85" r="21"/><circle class="w on" cx="668" cy="85" r="21"/><circle class="w on" cx="730" cy="85" r="21"/><circle class="w on" cx="792" cy="85" r="21"/><circle class="w gone" cx="606" cy="145" r="21"/><circle class="w gone" cx="668" cy="145" r="21"/><circle class="w gone" cx="730" cy="145" r="21"/><circle class="w gone" cx="792" cy="145" r="21"/><rect class="box" x="1000" y="40" width="380" height="150" rx="12"/><text class="lab" x="1010" y="30"></text><circle class="w on" cx="1096" cy="85" r="21"/><circle class="w on" cx="1158" cy="85" r="21"/><circle class="w gone" cx="1220" cy="85" r="21"/><circle class="w gone" cx="1282" cy="85" r="21"/><circle class="w gone" cx="1096" cy="145" r="21"/><circle class="w gone" cx="1158" cy="145" r="21"/><circle class="w gone" cx="1220" cy="145" r="21"/><circle class="w gone" cx="1282" cy="145" r="21"/><line class="ar" x1="410" y1="115" x2="498" y2="115" marker-end="url(#arw2)"/><text class="cap em" x="414" y="215">accommodate: a sister</text><line class="ar" x1="900" y1="115" x2="988" y2="115" marker-end="url(#arw2)"/><text class="cap em" x="904" y="215">+ she is coming</text></svg>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight"><em>My sister</em> presupposes that the speaker has a sister. If the hearer did not know it, the common ground does not yet contain it, and in the filled worlds the speaker has a sister.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Accommodation.</strong> The adjustment by which hearers add a missing presupposition to the background so that the utterance becomes acceptable, without friction or complaint. The hearer removes the worlds without a sister and then adds that she is coming.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">Presupposition failure.</strong> Where everyone knows that the speaker has no sister, the common ground cannot be adjusted in this way, and the natural reply objects: <em>You don't have a sister.</em></div></div>
+
+      <div class="srcl" data-step="1">Lewis (1979) · von Fintel (2008) · (8) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 11 · My sister · question. Stalnaker (1974) fn. 2, example from Jerrold Sadock; wording as in Benbaji-Elhadad & Doron (2024), ex. (3). -->
+<section class="slide" data-label="My sister, Q" data-screen-label="11">
+  <div class="b-slide pal-a lens-empirical" data-sec="sis">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(9)</div><div class="say"><span class="ctx">Two people who have just met.</span><span class="ln"><span class="sp">A</span>Do you want to join us for lunch?</span><span class="ln"><span class="sp">B</span>I have to pick up my sister from the airport.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 12 · Informative presupposition -->
+<section class="slide" data-label="Empirical ·Informative presupposition" data-screen-label="12">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="sis">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Informative presupposition</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(9)</span><span class="ex"><span class="ln"><span class="sp">A</span>Do you want to join us for lunch?</span><span class="ln"><span class="sp">B</span>I have to pick up my sister from the airport.</span></span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx"><em>My sister</em> presupposes that B has a sister, and A, who has only just met B, cannot have known it. The exchange proceeds normally: A accepts that B has a sister and responds to the refusal.</div></div>
+      <div class="erow full" data-step="2"><div class="tx"><strong class="ld">Informative presupposition.</strong> A presupposition that is new information for the hearer, conveyed by being presented as already shared.</div></div>
+      <div class="srcl" data-step="2">Stalnaker (1974), fn. 2, after Sadock · von Fintel (2008), <em>Philosophical Perspectives</em> 22 · (9) as given in Benbaji-Elhadad &amp; Doron (2024).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 13 · Accommodation, Q · question. (10), (11) Potts (2025); camel after Kissine & Pantazi (2020); fiancé adapted from von Fintel (2008); (83)–(85) constructed. -->
+<section class="slide" data-label="Accommodation, Q" data-screen-label="13">
+  <div class="b-slide pal-a lens-empirical" data-sec="lim">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(10)</div><div class="say">My dog is energetic.</div></div>
+          <div class="cv anim" style="--d:0.27s"><div class="who">(11)</div><div class="say">Sorry I'm late, I was parking my camel.</div></div>
+          <div class="cv anim" style="--d:0.39s"><div class="who">(12)</div><div class="say">We have to leave by ten: the babysitter can only stay until then.</div></div>
+          <div class="cv anim" style="--d:0.51s"><div class="who">(13)</div><div class="say">My giraffe ate my homework.</div></div>
+          <div class="cv anim" style="--d:0.63s"><div class="who">(14)</div><div class="say">Sorry I'm late, I had to drop my car at the garage.</div></div>
+          <div class="cv anim" style="--d:0.75s"><div class="who">(15)</div><div class="say"><span class="ctx">A daughter to her father, who does not know she is engaged.</span>Oh Dad, guess what? My fiancé is subleasing my apartment this summer.</div></div>
+          <div class="cv anim" style="--d:0.87s"><div class="who">(16)</div><div class="say">I can't come tonight: my brother's band is playing.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 14 · How easily accommodation happens. -->
+<section class="slide" data-label="Empirical ·How easily accommodation happens" data-screen-label="14">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="lim">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">How easily accommodation happens</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx">(10), (12), (14) and (16) go through without a pause, while (11), (13) and (15) do not. Accommodation is easiest when the speaker is known to be knowledgeable and trustworthy, and the presupposed content is easy to integrate, uncontroversial and not what the conversation is disputing.</div></div>
+      <div class="erow full" data-step="2"><div class="tx">Lewis (1979) built a limit into accommodation: a missing presupposition comes into existence other things being equal and within certain limits. Content that is surprising or likely to be disputed, like the camel in (11) or the engagement in (15), resists accommodation.</div></div>
+      <div class="erow full" data-step="3"><div class="tx">What a hearer accommodates may be no more than the speaker's public commitment. After (13) the common ground can record that the speaker claims to own a giraffe without the hearer believing it.</div></div>
+
+      <div class="srcl" data-step="1">Lewis (1979), <em>Journal of Philosophical Logic</em> 8.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 15 · Limits · question. (5) after Kissine & Pantazi (2020); (6) adapted from von Fintel (2008), as in Benbaji-Elhadad & Doron (2024), ex. (4a); (7) Kripke (2009 [1990]); (8) constructed, a demonstrative with no salient referent (Tonhauser et al. 2013). -->
+<section class="slide" data-label="Too, Q" data-screen-label="15">
+  <div class="b-slide pal-a lens-empirical" data-sec="too">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.45s"><div class="who">(17)</div><div class="say"><span class="ctx">Said out of the blue.</span>Tonight, John is having dinner in New York, too.</div></div>
+          <div class="cv anim" style="--d:0.60s"><div class="who">(18)</div><div class="say"><span class="ctx">With no linguist mentioned or in view.</span>I can't stand that linguist.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 16 · Too. Kripke's example (ms. 1990, published 2009); the since example and the remark on in medias res openings are von Fintel's (2008, §5). -->
+<section class="slide" data-label="Empirical ·Too" data-screen-label="16">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="too">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Too</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(17)</span><span class="ex"><span class="hash">#</span>Tonight, John is having dinner in New York, too.</span></div>
+        <div class="eg"><span class="no">(18)</span><span class="ex"><span class="hash">#</span>I can't stand that linguist.</span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight"><em>Too</em> in (17) needs someone else already salient who is having dinner in New York tonight. Whether the conversation has mentioned such a person is a fact about the conversation itself, so no adjustment of beliefs can supply one.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">The demonstrative in (18) fails for the same reason. <em>That linguist</em> needs a referent that is already salient, by mention or by pointing, and nothing the hearer could come to believe would make one salient.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">The same sentence as (17) can open a novel without any oddness, because a reader joins a story already under way and reconstructs what has gone before.</div></div>
+      <div class="srcl" data-step="2">Kripke (2009 [1990]), <em>Linguistic Inquiry</em> 40 · von Fintel (2008) · Tonhauser, Beaver, Roberts &amp; Simons (2013) on demonstratives · (18) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 17 · What accommodation is for · question. (4) Lorson, Cummins & Rohde (2019); (6) Karttunen (1974); the politician and spam lines from Potts (2025), §3. -->
+<section class="slide" data-label="What accommodation is for, Q" data-screen-label="17">
+  <div class="b-slide pal-a lens-empirical" data-sec="news">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(19)</div><div class="say">Sorry I'm late: my car broke down.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(20)</div><div class="say">We regret that children cannot accompany their parents to commencement exercises.</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(21)</div><div class="say"><span class="ctx">A politician.</span>I just know we're going to win the election.</div></div>
+          <div class="cv anim" style="--d:0.60s"><div class="who">(22)</div><div class="say"><span class="ctx">A spam email.</span>Confirm your eBay transaction.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 18 · What accommodation is for. -->
+<section class="slide" data-label="Empirical ·What accommodation is for" data-screen-label="18">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="news">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">What accommodation is for</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight"><strong class="ld">Thomason (1990).</strong> Hearers accommodate in order to remove obstacles to what they take the speaker to be trying to do.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight">In (19) presupposing the car saves stating it separately. In (20), a university notice, the factive <em>regret</em> presupposes the rule, and the regret is a courtesy.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">In (21) the factive <em>know</em> presents the win as a fact, which overstates the evidence in order to project confidence.</div></div>
+      <div class="erow full" data-step="5"><div class="tx tight">(22) presupposes a transaction the reader never made, and a reader who accommodates it clicks through.</div></div>
+
+      <div class="srcl" data-step="1">Thomason (1990), in <em>Intentions in Communication</em> · (19) Lorson, Cummins &amp; Rohde (2019) · (20) Karttunen (1974) · (21), (22) a politician and a spam email.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 19 · Asserting and presupposing · question. Constructed; the rent and cousin pairs follow last year's Pragmatics I handout. -->
+<section class="slide" data-label="Asserting and presupposing, Q" data-screen-label="19">
+  <div class="b-slide pal-a lens-empirical" data-sec="asp">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(23)</div><div class="say"><span class="ln"><span class="sp lt">a</span>The landlord increased the rent for a second time this year.</span><span class="ln"><span class="sp lt">b</span>The landlord increased the rent again.</span></div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(24)</div><div class="say"><span class="ln"><span class="sp lt">a</span>I have a cousin, and she is staying with me this week.</span><span class="ln"><span class="sp lt">b</span>My cousin is staying with me this week.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 20 · Asserting and presupposing. Abbott (2008), Linguistics and Philosophy 31: 523–538; von Fintel (2004) on Hey, wait a minute. -->
+<section class="slide" data-label="Empirical ·Asserting and presupposing" data-screen-label="20">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="asp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Asserting and presupposing</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">(23a) and (23b) both convey that the rent has gone up twice. (23a) asserts it, and (23b) asserts the latest increase and uses <em>again</em> to present the earlier one as known.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight"><strong class="ld">Information packaging.</strong> The choice between making content the main point of an utterance and making it background. Asserted content is offered for acceptance, and presupposed content is presented as accepted already.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">As we've seen, these come with different objection conditions and strategies. Ordinary denials such as <em>No</em>, <em>No, he didn't</em> or <em>I doubt it</em> target what is asserted and leave the presupposition standing. An objection to what is presupposed has to interrupt first: <em>Hey, wait a minute, he only put it up once.</em></div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">(24b) is the natural choice when the cousin is only background, and (24a) sounds over-explicit because it makes the cousin part of what is asserted.</div></div>
+      <div class="srcl" data-step="2">Shanon (1976), <em>Foundations of Language</em> 14 · von Fintel (2004) · (23), (24) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 21 · Projection tests. -->
+<section class="slide" data-label="Empirical ·Projection tests" data-screen-label="21">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="proj">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Projection tests</h2>
+      <span class="no" style="display:none">(25)</span><div class="fourways">
+        <div class="fw" data-step="1" style="--fc:var(--lens-emp)"><div class="fl">Hypothesis N<small>negation</small></div><div class="ft2">If p is a presupposition of S, it is also a presupposition of the negation of S. (25a) <em>Sam didn't quit smoking</em> still takes it that Sam used to smoke.</div></div>
+        <div class="fw" data-step="2" style="--fc:var(--lens-emp)"><div class="fl">Hypothesis Q<small>questions</small></div><div class="ft2">If p is a presupposition of S, it is also a presupposition of the question version of S, as in (25b) <em>Did Sam quit smoking?</em></div></div>
+        <div class="fw" data-step="3" style="--fc:var(--lens-emp)"><div class="fl">Hypothesis C<small>conditionals</small></div><div class="ft2">If p is a presupposition of S, it is also a presupposition of <em>if S, then S′</em>, as in (25c) <em>If Sam quit smoking, his marathon time should improve.</em></div></div>
+      </div>
+      <div class="erow full" data-step="4" style="border-top:none"><div class="tx tight"><strong class="ld">Projection.</strong> The inheritance of a presupposition by a larger sentence that contains its trigger.</div></div>
+      <div class="erow full" data-step="5"><div class="tx tight"><strong class="ld">The projection problem.</strong> To predict, from the parts of a complex sentence and the way they are combined, which presuppositions the whole sentence carries.</div></div>
+
+      <div class="srcl" data-step="1">Langendoen &amp; Savin (1971) · Karttunen (1973).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 22 · Holes and plugs. -->
+<section class="slide" data-label="Empirical ·Holes and plugs" data-screen-label="22">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="hp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Holes and plugs</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(26)</span><span class="ex"><span class="ln"><span class="sp lt">a</span>Sam didn't quit smoking.</span><span class="ln"><span class="sp lt">b</span>Maria says that Sam quit smoking.</span></span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx"><strong class="ld">Hole.</strong> An embedding construction that lets the presuppositions of what it embeds through to the whole sentence. Negation, questions, possibility modals and the antecedent of a conditional are holes, so (26a) still presupposes that Sam used to smoke.</div></div>
+      <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Plug.</strong> An embedding construction that stops them. Verbs of saying such as <em>say</em>, <em>tell</em> and <em>promise</em> are plugs, so a speaker of (26b) is not committed to Sam's ever having smoked.</div></div>
+
+      <div class="srcl" data-step="1">Karttunen (1973), <em>Linguistic Inquiry</em> 4 · (26) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 23 · Compound sentences · question. Karttunen (1973)'s Jack examples; (15) the reversed conjunction, after Karttunen (1974). -->
+<section class="slide" data-label="Compound sentences, Q" data-screen-label="23">
+  <div class="b-slide pal-a lens-empirical" data-sec="cmp">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(27)</div><div class="say">All of Jack's children are bald.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(28)</div><div class="say">If Jack has children, then all of Jack's children are bald.</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(29)</div><div class="say">Jack has children and all of Jack's children are bald.</div></div>
+          <div class="cv anim" style="--d:0.60s"><div class="who">(30)</div><div class="say">Either Jack has no children or all of Jack's children are bald.</div></div>
+          <div class="cv anim" style="--d:0.75s"><div class="who">(31)</div><div class="say">All of Jack's children are bald, and Jack has children.</div></div>
+          <div class="cv anim" style="--d:0.90s"><div class="who">(32)</div><div class="say">Either Geraldine isn't a Mormon or she has given up wearing her holy underwear.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 24 · Filtering -->
+<section class="slide" data-label="Empirical ·Filtering" data-screen-label="24">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="cmp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Filtering</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx">(27) presupposes that Jack has children. (28) and (30) contain (27) but can be said by someone unsure whether Jack has any children, and (29) asserts that he does.</div></div>
+      <div class="erow full" data-step="2"><div class="tx">In each case the first part supplies what the second part needs: the antecedent of <em>if</em>, the first conjunct, or the falsity of the first disjunct.</div></div>
+      <div class="erow full" data-step="3"><div class="tx">In (31) the second conjunct comes too late to supply what the first needs, so the order of the parts matters and the sentence still takes Jack's children for granted.</div></div>
+      <div class="srcl" data-step="1">Karttunen (1973), <em>Linguistic Inquiry</em> 4 · (31) after Karttunen (1974).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 25 · Filtering and world knowledge. Karttunen (1973); the presentation follows Coppock (2019), EGG lecture 8. -->
+<section class="slide" data-label="Empirical ·Filtering and world knowledge" data-screen-label="25">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="ger">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Filtering and world knowledge</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(32)</span><span class="ex">Either Geraldine isn't a Mormon or she has given up wearing her holy underwear.</span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx">The second disjunct presupposes that Geraldine has worn holy underwear, and (32) does not presuppose it. Yet the negation of the first disjunct, that Geraldine is a Mormon, does not by itself entail it.</div></div>
+      <div class="erow full" data-step="3"><div class="tx">It does once the context supplies the fact that Mormons wear holy underwear. Filtering draws on what the context contains as well as on what the sentence says.</div></div>
+      <div class="srcl" data-step="1">Karttunen (1973), <em>Linguistic Inquiry</em> 4.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 26 · Hole, plug or filter, Q · question. Constructed, on the trigger stop. -->
+<section class="slide" data-label="Hole, plug or filter, Q" data-screen-label="26">
+  <div class="b-slide pal-a lens-empirical" data-sec="hpf2">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(33)</div><div class="say"><span class="ln"><span class="sp lt">a</span>China hasn't stopped stockpiling metals.</span><span class="ln"><span class="sp lt">b</span>The minister claims that China has stopped stockpiling metals.</span><span class="ln"><span class="sp lt">c</span>If China was stockpiling metals, it has stopped.</span><span class="ln"><span class="sp lt">d</span>Did China stop stockpiling metals?</span><span class="ln"><span class="sp lt">e</span>China was stockpiling metals, and it has stopped.</span><span class="ln"><span class="sp lt">f</span>Perhaps China has stopped stockpiling metals.</span><span class="ln"><span class="sp lt">g</span>Either China was never stockpiling metals, or it has stopped.</span><span class="ln"><span class="sp lt">h</span>If China has stopped stockpiling metals, metal prices will fall.</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 27 · Holes, plugs and filters. -->
+<section class="slide" data-label="Empirical ·Hole, plug or filter" data-screen-label="27">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="hpf2">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Hole, plug or filter</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">Each item embeds <em>China has stopped stockpiling metals</em>, which presupposes that China was stockpiling metals.</div></div>
+      <div class="ptab" data-step="2">
+        <div class="ph"><span></span><span>Environment</span><span>Class</span><span>The presupposition</span></div>
+        <div class="pr"><span class="no">(33a)</span><span class="x" style="font-style:normal;font-family:var(--serif)">negation</span><span class="v">hole</span><span class="v">projects</span></div>
+        <div class="pr"><span class="no">(33b)</span><span class="x" style="font-style:normal;font-family:var(--serif)">verb of saying</span><span class="v">plug</span><span class="v">blocked</span></div>
+        <div class="pr"><span class="no">(33c)</span><span class="x" style="font-style:normal;font-family:var(--serif)">conditional, consequent</span><span class="v">filter</span><span class="v">supplied by the antecedent</span></div>
+        <div class="pr"><span class="no">(33d)</span><span class="x" style="font-style:normal;font-family:var(--serif)">question</span><span class="v">hole</span><span class="v">projects</span></div>
+        <div class="pr"><span class="no">(33e)</span><span class="x" style="font-style:normal;font-family:var(--serif)">second conjunct</span><span class="v">filter</span><span class="v">supplied by the first conjunct</span></div>
+        <div class="pr"><span class="no">(33f)</span><span class="x" style="font-style:normal;font-family:var(--serif)">possibility modal</span><span class="v">hole</span><span class="v">projects</span></div>
+        <div class="pr"><span class="no">(33g)</span><span class="x" style="font-style:normal;font-family:var(--serif)">second disjunct</span><span class="v">filter</span><span class="v">supplied by the negated first disjunct</span></div>
+        <div class="pr"><span class="no">(33h)</span><span class="x" style="font-style:normal;font-family:var(--serif)">conditional, antecedent</span><span class="v">hole</span><span class="v">projects</span></div>
+      </div>
+
+      <div class="srcl" data-step="1">(33) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Historical -->
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">STRAND 02 / 04 · LI7862 · Week 5</div><h2>Stalnaker, Lewis, Karttunen &amp; Heim</h2><div class="ask">Presupposition as a property of conversations.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+
+
+<!-- 28 · Stalnaker. Stalnaker (1970), Synthese 22: 272–289; (1973), JPL 2: 447–457. -->
+<section class="slide" data-label="Historical ·Stalnaker" data-screen-label="28">
+  <div class="b-slide pal-a lens-historical dB" data-sec="stal">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Stalnaker</h2>
+      <div class="figrow">
+        <!-- Portrait supplied by Thomas, Oct 2026 (Stalnaker.jpg); source and licence to confirm; local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/stalnaker.jpg" alt="Robert Stalnaker" style="object-position:50% 30%"><div class="pc"><div class="nm">Robert Stalnaker</div><div class="dt">born 1940</div></div></div>
+        <div class="figbody">
+          <div class="erow full" data-step="1" style="border-top:none;padding-top:2px"><div class="tx"><strong class="ld">Pragmatics (1970)</strong> and <strong class="ld">Presuppositions (1973).</strong> Stalnaker moved presupposition from sentences to speakers. A speaker presupposes p when they take p for granted and assume that their audience does the same.</div></div>
+          <div class="erow full" data-step="2"><div class="tx">A sentence presupposes p, in a derived sense, when it can only appropriately be used by a speaker who presupposes p. Strawson's truth-value gaps become one possible source of such requirements among others.</div></div>
+          <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Pragmatic Presuppositions (1974)</strong> gives a formal picture of this view.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="1">Stalnaker (1970), <em>Synthese</em> 22 · Stalnaker (1973), <em>Journal of Philosophical Logic</em> 2 · Stalnaker (1974), <em>Semantics and Philosophy</em>.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 29 · Common ground -->
+<section class="slide" data-label="Historical ·Common ground" data-screen-label="29">
+  <div class="b-slide pal-a lens-historical dB" data-sec="cg">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Common ground</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx"><strong class="ld">Common Ground (2002).</strong> For Stalnaker the common ground is what the participants mutually accept for the purposes of the conversation. Acceptance can fall short of belief, as when people assume something for the sake of argument.</div></div>
+      <div class="erow full" data-step="2"><div class="tx"><strong class="ld">Context set.</strong> The worlds in which every proposition in the common ground is true, which are the live options for how things are as far as the conversation is concerned.</div></div>
+      <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Assertion (1978).</strong> To assert p is to propose adding p to the common ground. If no one objects, the worlds where p is false drop out of the context set. Stalnaker adds that an assertion should rule out part of the context set and leave part of it standing.</div></div>
+      <div class="srcl" data-step="1">Stalnaker (1978), <em>Syntax and Semantics</em> 9 · Stalnaker (2002), <em>Linguistics and Philosophy</em> 25.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 30 · Lewis. Lewis (1979), JPL 8: 339–359. -->
+<section class="slide" data-label="Historical ·Lewis" data-screen-label="30">
+  <div class="b-slide pal-a lens-historical dB" data-sec="lew">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Lewis</h2>
+      <div class="figrow">
+        <!-- Portrait supplied by Thomas, Oct 2026 (lewis.jpg); source and licence to confirm; local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/lewis.jpg" alt="David Lewis" style="object-position:50% 25%"><div class="pc"><div class="nm">David Lewis</div><div class="dt">1941 – 2001</div></div></div>
+        <div class="figbody">
+          <div class="erow full" data-step="1" style="border-top:none;padding-top:2px"><div class="tx tight"><strong class="ld">Scorekeeping in a Language Game (1979).</strong> A conversation keeps score as a baseball game does. The score at each stage depends on what has happened so far and settles which moves are correct next.</div></div>
+          <div class="erow full" data-step="3"><div class="tx tight">Conversational score also adjusts itself to make moves correct, which no baseball score does. If something said requires a component to be a certain way, the score tends to change so that it is.</div></div>
+          <div class="erow full" data-step="3"><div class="tx tight">The paper works through this pattern for presupposition, permissibility, definite descriptions, <em>come</em> and <em>go</em>, standards of precision, relative modality and performatives.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="1">Lewis (1979), <em>Journal of Philosophical Logic</em> 8.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 31 · The rule of accommodation. Lewis's rule paraphrased (the original is quoted in full in von Fintel 2008, §1.3). (18) Austin (1962: 143), Lewis's Example 5. -->
+<section class="slide" data-label="Historical ·The rule of accommodation" data-screen-label="31">
+  <div class="b-slide pal-a lens-historical dB" data-sec="roa">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">The rule of accommodation</h2>
+      <div class="qref" data-step="1" style="font-style:normal">When an utterance needs presupposition P to be acceptable and P is not yet presupposed, P comes to be presupposed at that moment, other things being equal and within certain limits.<span class="src">Lewis (1979), paraphrased</span></div>
+      <div class="egpanel" data-step="2" style="margin-top:14px">
+        <div class="eg"><span class="no">(34)</span><span class="ex">France is hexagonal.</span></div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx">Lewis applies the same rule beyond presupposition. Austin's (34) is acceptable as a rough description and false by a geographer's standards. An utterance that needs higher standards of precision raises them at once, and lowering them again is harder.</div></div>
+      <div class="srcl" data-step="1">Lewis (1979) · (34) Austin (1962), <em>How to Do Things with Words</em>.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 32 · Karttunen. Biography: ACL obituary (Baldwin 2022); Virittäjä 4/2022. -->
+<section class="slide" data-label="Historical ·Karttunen" data-screen-label="32">
+  <div class="b-slide pal-a lens-historical dB" data-sec="kar">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Karttunen</h2>
+      <div class="figrow">
+        <!-- Portrait supplied by Thomas, Oct 2026 (Karttunen.jpg); source and licence to confirm; local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/karttunen.jpg" alt="Lauri Karttunen" style="object-position:72% 20%"><div class="pc"><div class="nm">Lauri Karttunen</div><div class="dt">1941 – 2022</div></div></div>
+        <div class="figbody">
+          <div class="erow full" data-step="1" style="border-top:none;padding-top:2px"><div class="tx">Born in Finland, Karttunen studied Finnish at Helsinki and took his PhD at Indiana in 1969. He taught semantics at Texas before computational work at Xerox PARC and Stanford.</div></div>
+          <div class="erow full" data-step="2"><div class="tx"><strong class="ld">Presuppositions of Compound Sentences (1973).</strong> The first systematic statement of the projection problem: how the presuppositions of a complex sentence depend on those of its parts.</div></div>
+          <div class="erow full" data-step="3"><div class="tx">The notions of discourse referents and implicative verbs such as <em>manage</em> also come from his work.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="1">Karttunen (1973), <em>Linguistic Inquiry</em> 4 · ACL obituary (2022) · <em>Virittäjä</em> 4/2022.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 33 · Holes, plugs and filters. Karttunen (1973); (20) is his plug example. -->
+<section class="slide" data-label="Historical ·Holes, plugs and filters" data-screen-label="33">
+  <div class="b-slide pal-a lens-historical dB" data-sec="hpf">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Holes, plugs and filters</h2>
+      <svg class="cfig" style="width:74%" data-step="1" viewBox="0 0 1400 330" role="img" aria-label="Three lanes. A sentence presupposing p passes through a hole and p projects; it meets a plug and p is blocked; it passes through a filter and p projects only when the rest of the sentence does not supply it."><g data-step="1"><rect class="node" x="0" y="21" width="300" height="68" rx="10"/><text class="opt" x="22" y="64">S, presupposing p</text><line class="pipe" x1="300" y1="55" x2="470" y2="55"/><rect class="op" x="470" y="9" width="420" height="92" rx="10"/><text class="opk" x="492" y="43">hole</text><text class="opt" x="492" y="81">not, know, regret, stop, manage</text><line class="pipe" x1="890" y1="55" x2="1040" y2="55"/><text class="cap" x="1065" y="64">p projects</text></g><g data-step="2"><rect class="node" x="0" y="131" width="300" height="68" rx="10"/><text class="opt" x="22" y="174">S, presupposing p</text><line class="pipe" x1="300" y1="165" x2="470" y2="165"/><rect class="op" x="470" y="119" width="420" height="92" rx="10"/><text class="opk" x="492" y="153">plug</text><text class="opt" x="492" y="191">say, tell, promise, accuse</text><rect class="plug" x="890" y="135" width="14" height="60" rx="3"/><line class="pipe off" x1="910" y1="165" x2="1040" y2="165"/><text class="cap" x="1065" y="174">p is blocked</text></g><g data-step="3"><rect class="node" x="0" y="241" width="300" height="68" rx="10"/><text class="opt" x="22" y="284">S, presupposing p</text><line class="pipe" x1="300" y1="275" x2="470" y2="275"/><rect class="op" x="470" y="229" width="420" height="92" rx="10"/><text class="opk" x="492" y="263">filter</text><text class="opt" x="492" y="301">if … then, and, or</text><line class="pipe off" x1="890" y1="275" x2="1040" y2="275"/><text class="cap" x="1065" y="284">p projects unless supplied</text></g></svg>
+      <div class="egpanel" data-step="1" style="margin-top:8px">
+        <div class="eg"><span class="no">(35)</span><span class="ex"><span class="ln"><span class="sp lt">a</span>The prime minister of Switzerland is not visiting Dublin.</span><span class="ln"><span class="sp lt">b</span>Maria says that the prime minister of Switzerland is visiting Dublin.</span><span class="ln"><span class="sp lt">c</span>If Switzerland has a prime minister, the prime minister of Switzerland is visiting Dublin.</span></span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">Negation in (35a) lets through the presupposition that Switzerland has a prime minister, <em>says</em> in (35b) keeps it from becoming the speaker's, and the antecedent in (35c) supplies it.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight"><strong class="ld">The cumulative hypothesis.</strong> Every presupposition of every part of a sentence must project. Filters are particularly problematic counterexamples to this hypothesis.</div></div>
+      <div class="srcl" data-step="1">Karttunen (1973) · Langendoen &amp; Savin (1971).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 34 · Local contexts. Karttunen (1974), Theoretical Linguistics 1: 181–193. -->
+<section class="slide" data-label="Historical ·Local contexts" data-screen-label="34">
+  <div class="b-slide pal-a lens-historical dB" data-sec="loc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Local contexts</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight"><strong class="ld">Presupposition and Linguistic Context (1974).</strong> Karttunen recast filtering in terms of contexts. Each part of a sentence is checked against its own local context, which is the initial context plus whatever the earlier parts contribute.</div></div>
+      <div class="itab lc" data-step="2" style="margin-top:4px">
+        <div class="ih"><span>Sentence</span><span>A is checked in</span><span>B is checked in</span></div>
+        <div class="ir"><div class="k">A and B</div><div>c</div><div>c plus A</div></div>
+        <div class="ir"><div class="k">if A then B</div><div>c</div><div>c plus A</div></div>
+        <div class="ir"><div class="k">A or B</div><div>c</div><div>c plus not-A</div></div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight"><strong class="ld">Admittance.</strong> A context admits a sentence when it satisfies the sentence's presuppositions. The second conjunct of (29) is admitted because its local context already contains the first conjunct.</div></div>
+      <div class="srcl" data-step="1">Karttunen (1974), <em>Theoretical Linguistics</em> 1.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 35 · Heim. Heim (1983), WCCFL 2: 114–125. Portrait as in week-04/images. -->
+<section class="slide" data-label="Historical ·Heim" data-screen-label="35">
+  <div class="b-slide pal-a lens-historical dB" data-sec="heim">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Heim</h2>
+      <div class="figrow">
+        <div class="portrait" data-step="1"><img src="images/heim.jpg" alt="Irene Heim" style="object-position:50% 20%"><div class="pc"><div class="nm">Irene Heim</div><div class="dt">born 1954</div></div></div>
+        <div class="figbody">
+          <div class="erow full" data-step="1" style="border-top:none;padding-top:2px"><div class="tx tight"><strong class="ld">On the Projection Problem for Presuppositions (1983).</strong> Heim takes the meaning of a sentence to be its context change potential, a function from contexts to contexts.</div></div>
+          <div class="erow full" data-step="2"><div class="tx tight">A presupposition is a condition on when that function is defined. The projection behaviour of <em>not</em>, <em>and</em> and <em>if</em> follows from how each connective builds its context change potential from those of its parts.</div></div>
+          <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Local accommodation.</strong> Heim's term for adding a missing presupposition inside an embedded update when adding it to the global context is impossible.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="1">Heim (1983), <em>WCCFL</em> 2.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Formal -->
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">STRAND 03 / 04 · LI7862 · Week 5</div><h2>Context change</h2><div class="ask">Presupposition as a condition on updating a context.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+
+
+<!-- 36 · Context sets -->
+<section class="slide" data-label="Formal ·Context sets" data-screen-label="36">
+  <div class="b-slide pal-a lens-formal dB" data-sec="cset">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Context sets</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx">\[ c + S \;=\; \{\, w \in c : \sem{S}(w) = 1 \,\} \]</div>
+      </div>
+      <svg class="cfig" style="width:84%" data-step="2" viewBox="0 0 1400 280" role="img" aria-label="On the left, a context set of eight worlds, four of them worlds where Jack has children. On the right, the context after updating with (36): only those four worlds remain.">
+        <defs><marker id="arw3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs>
+        <rect class="box" x="30" y="40" width="540" height="220" rx="14"/>
+        <text class="lab" x="44" y="30">c</text>
+        <circle class="w on" cx="110" cy="105" r="27"/><circle class="w on" cx="230" cy="105" r="27"/><circle class="w" cx="350" cy="105" r="27"/><circle class="w" cx="470" cy="105" r="27"/>
+        <circle class="w on" cx="110" cy="200" r="27"/><circle class="w on" cx="230" cy="200" r="27"/><circle class="w" cx="350" cy="200" r="27"/><circle class="w" cx="470" cy="200" r="27"/>
+        <line class="ar" x1="605" y1="150" x2="790" y2="150" marker-end="url(#arw3)"/>
+        <text class="cap" x="632" y="130">update</text>
+        <rect class="box" x="830" y="40" width="540" height="220" rx="14"/>
+        <text class="lab" x="844" y="30">c + (36)</text>
+        <circle class="w on" cx="910" cy="105" r="27"/><circle class="w on" cx="1030" cy="105" r="27"/><circle class="w gone" cx="1150" cy="105" r="27"/><circle class="w gone" cx="1270" cy="105" r="27"/>
+        <circle class="w on" cx="910" cy="200" r="27"/><circle class="w on" cx="1030" cy="200" r="27"/><circle class="w gone" cx="1150" cy="200" r="27"/><circle class="w gone" cx="1270" cy="200" r="27"/>
+      </svg>
+      <div class="egpanel" data-step="3" style="margin-top:14px">
+        <div class="eg"><span class="no">(36)</span><span class="ex">Jack has children.<span class="gl">The filled worlds are those where Jack has children.</span></span></div>
+      </div>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight">A context is modelled by its context set c. Asserting S, if the assertion is accepted, removes every world in which S is false.</div></div>
+      <div class="srcl" data-step="2">Stalnaker (1978) · Heim (1983).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 37 · Update and definedness. "Stalnaker's bridge" is von Fintel's (2008) name. -->
+<section class="slide" data-label="Formal ·Update and definedness" data-screen-label="37">
+  <div class="b-slide pal-a lens-formal dB" data-sec="upd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Update and definedness</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx">\[ c + S \text{ is defined only if } c \subseteq p, \quad\text{where } \sem{S} \text{ is defined only if } p \]</div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx">A presupposition of S is a condition on the input context: every world in c must be a p-world before S can update it. This is the definedness condition on \(\sem{S}\) applied to contexts.</div></div>
+      <div class="egpanel" data-step="3" style="margin-top:8px">
+        <div class="eg"><span class="no">(37)</span><span class="ex">Alex stopped smoking.<span class="gl">\(c + (37)\) is defined only if Alex used to smoke in every world in \(c\). Where defined, \(c + (37) = \{\, w \in c : \text{Alex does not smoke now in } w \,\}\).</span></span></div>
+      </div>
+      <div class="erow full" data-step="4" style="border-top:none"><div class="tx"><strong class="ld">Stalnaker's bridge.</strong> von Fintel's name for the principle that a sentence can update a body of information only if it has a truth value in every world of that body.</div></div>
+      <div class="srcl" data-step="2">Heim (1983) · Heim &amp; Kratzer (1998), ch. 4 · von Fintel (2008).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 38 · When the presupposition is not met. After the worked example in last year's lecture (PragI L8, slides 9–10). -->
+<section class="slide" data-label="Formal ·When the presupposition is not met" data-screen-label="38">
+  <div class="b-slide pal-a lens-formal dB" data-sec="fail">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">When the presupposition is not met</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx">\[ c + (37) \text{ requires } \forall w \in c\,[\text{Alex used to smoke in } w] \]</div>
+      </div>
+      <svg class="cfig" style="width:78%" data-step="2" viewBox="0 0 1400 230" role="img" aria-label="A context set c in which four worlds are ones where Alex used to smoke and four are ones where he never smoked. The arrow for updating with Alex stopped smoking leads to a dashed box marked undefined."><defs><marker id="arw4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs><rect class="box" x="20" y="40" width="400" height="170" rx="14"/><text class="lab" x="32" y="30">c</text><circle class="w on" cx="100" cy="90" r="24"/><circle class="w on" cx="180" cy="90" r="24"/><circle class="w" cx="260" cy="90" r="24"/><circle class="w" cx="340" cy="90" r="24"/><circle class="w on" cx="100" cy="160" r="24"/><circle class="w on" cx="180" cy="160" r="24"/><circle class="w" cx="260" cy="160" r="24"/><circle class="w" cx="340" cy="160" r="24"/><line class="ar" x1="450" y1="125" x2="640" y2="125" marker-end="url(#arw4)"/><text class="cap em" x="480" y="100">+ (37)</text><rect class="box undef" x="670" y="40" width="400" height="170" rx="14"/><text class="cap em" x="780" y="135">undefined</text></svg>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">Suppose c leaves it open whether Alex used to smoke. The filled worlds are those where he did, and the condition fails at the others, so \(c + (37)\) is undefined.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">An undefined update is an instruction that cannot be carried out until the context has been repaired, and that repair is accommodation.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">Presupposition and assertion act on the same context in different ways. The presupposition is a condition on the update, and the assertion is what the update adds.</div></div>
+      <div class="srcl" data-step="1">Heim (1983) · Beaver (2001).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 39 · Accommodation as update. Stalnaker (1998) on the timing of the relevant context; von Fintel (2008, §2). -->
+<section class="slide" data-label="Formal ·Accommodation as update" data-screen-label="39">
+  <div class="b-slide pal-a lens-formal dB" data-sec="acc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Accommodation as update</h2>
+      <svg class="cfig" data-step="1" viewBox="0 0 1400 260" role="img" aria-label="Three context sets in a row. The first has eight worlds, four of them p-worlds. Accommodation leaves the four p-worlds. The update with S leaves the two of those where S is true.">
+        <defs><marker id="arw5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs>
+        <rect class="box" x="20" y="44" width="360" height="200" rx="14"/><text class="lab" x="32" y="32">c</text>
+        <circle class="w on" cx="80" cy="104" r="23"/><circle class="w on" cx="160" cy="104" r="23"/><circle class="w" cx="240" cy="104" r="23"/><circle class="w" cx="320" cy="104" r="23"/>
+        <circle class="w on" cx="80" cy="186" r="23"/><circle class="w on" cx="160" cy="186" r="23"/><circle class="w" cx="240" cy="186" r="23"/><circle class="w" cx="320" cy="186" r="23"/>
+        <line class="ar" x1="402" y1="144" x2="492" y2="144" marker-end="url(#arw5)"/>
+        <rect class="box" x="520" y="44" width="360" height="200" rx="14"/><text class="lab" x="532" y="32">c ∩ p</text>
+        <circle class="w on" cx="580" cy="104" r="23"/><circle class="w on" cx="660" cy="104" r="23"/><circle class="w gone" cx="740" cy="104" r="23"/><circle class="w gone" cx="820" cy="104" r="23"/>
+        <circle class="w on" cx="580" cy="186" r="23"/><circle class="w on" cx="660" cy="186" r="23"/><circle class="w gone" cx="740" cy="186" r="23"/><circle class="w gone" cx="820" cy="186" r="23"/>
+        <line class="ar" x1="902" y1="144" x2="992" y2="144" marker-end="url(#arw5)"/>
+        <rect class="box" x="1020" y="44" width="360" height="200" rx="14"/><text class="lab" x="1032" y="32">(c ∩ p) + S</text>
+        <circle class="w on" cx="1080" cy="104" r="23"/><circle class="w on" cx="1160" cy="104" r="23"/><circle class="w gone" cx="1240" cy="104" r="23"/><circle class="w gone" cx="1320" cy="104" r="23"/>
+        <circle class="w gone" cx="1080" cy="186" r="23"/><circle class="w gone" cx="1160" cy="186" r="23"/><circle class="w gone" cx="1240" cy="186" r="23"/><circle class="w gone" cx="1320" cy="186" r="23"/>
+      </svg>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx">When c does not guarantee p, a hearer who accommodates first removes the worlds where p is false and then performs the update. For (9) the first step is \(c \cap \{\, w : \text{B has a sister in } w \,\}\).</div></div>
+      <div class="erow full" data-step="3"><div class="tx">The context that has to satisfy the presupposition is the one changed by the utterance itself, before its content is accepted. Stalnaker compares <em>I</em>, which needs a speaker that only the act of speaking provides.</div></div>
+      <div class="srcl" data-step="2">Stalnaker (1998) · von Fintel (2008).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 40 · Connectives. Heim (1983); the disjunction clause follows Karttunen's (1974) local context for the second disjunct, as in Beaver (2001). -->
+<section class="slide" data-label="Formal ·Connectives" data-screen-label="40">
+  <div class="b-slide pal-a lens-formal dB" data-sec="conn">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Connectives</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx cl">\[ \begin{aligned} c + \text{not } A &\;=\; c \setminus (c + A) \\ c + (A \text{ and } B) &\;=\; (c + A) + B \\ c + (\text{if } A, B) &\;=\; c \setminus \bigl((c + A) \setminus ((c + A) + B)\bigr) \\ c + (A \text{ or } B) &\;=\; (c + A) \cup \bigl((c \setminus (c + A)) + B\bigr) \end{aligned} \]</div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx">Negation first updates c with A and then removes the result, so c must admit A. The presupposition passes through, which is why <em>not</em> is a hole.</div></div>
+      <div class="erow full" data-step="3"><div class="tx">Conjunction updates c with A and then updates the result with B, so the presupposition of B only has to hold in \(c + A\). The consequent of a conditional is likewise evaluated in \(c + A\), and the second disjunct is evaluated in the worlds where the first is false.</div></div>
+      <div class="srcl" data-step="1">Heim (1983) · disjunction after Karttunen (1974) and Beaver (2001).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 41 · Filtering by hand · question -->
+<section class="slide" data-label="Filtering by hand, Q" data-screen-label="41">
+  <div class="b-slide pal-a lens-formal" data-sec="hand">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(29)</div><div class="say">Jack has children and all of Jack's children are bald.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(31)</div><div class="say">All of Jack's children are bald, and Jack has children.</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(30)</div><div class="say">Either Jack has no children or all of Jack's children are bald.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 42 · Filtering by hand -->
+<section class="slide" data-label="Formal ·Filtering by hand" data-screen-label="42">
+  <div class="b-slide pal-a lens-formal dB" data-sec="hand">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Filtering by hand</h2>
+      <svg class="cfig" style="width:88%" data-step="1" viewBox="0 0 1400 385" role="img" aria-label="Two rows of context sets. In the first row, updating c with Jack has children leaves four worlds, and updating those with all of them bald leaves two. In the second row, updating c directly with all of Jack's children are bald is undefined, since c contains worlds where Jack has no children."><defs><marker id="arw6" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs><text class="cap em" x="0" y="92">(29)</text><rect class="box" x="90" y="40" width="330" height="140" rx="12"/><text class="lab" x="100" y="30">c</text><circle class="w on" cx="140" cy="76" r="20"/><circle class="w on" cx="212" cy="76" r="20"/><circle class="w" cx="284" cy="76" r="20"/><circle class="w" cx="356" cy="76" r="20"/><circle class="w half" cx="140" cy="146" r="20"/><circle class="w half" cx="212" cy="146" r="20"/><circle class="w" cx="284" cy="146" r="20"/><circle class="w" cx="356" cy="146" r="20"/><line class="ar" x1="440" y1="110" x2="540" y2="110" marker-end="url(#arw6)"/><text class="cap em" x="462" y="85">+ A</text><rect class="box" x="570" y="40" width="330" height="140" rx="12"/><text class="lab" x="580" y="30">c + A</text><circle class="w on" cx="620" cy="76" r="20"/><circle class="w on" cx="692" cy="76" r="20"/><circle class="w gone" cx="764" cy="76" r="20"/><circle class="w gone" cx="836" cy="76" r="20"/><circle class="w half" cx="620" cy="146" r="20"/><circle class="w half" cx="692" cy="146" r="20"/><circle class="w gone" cx="764" cy="146" r="20"/><circle class="w gone" cx="836" cy="146" r="20"/><line class="ar" x1="920" y1="110" x2="1020" y2="110" marker-end="url(#arw6)"/><text class="cap em" x="942" y="85">+ B</text><rect class="box" x="1050" y="40" width="330" height="140" rx="12"/><text class="lab" x="1060" y="30">(c + A) + B</text><circle class="w on" cx="1100" cy="76" r="20"/><circle class="w on" cx="1172" cy="76" r="20"/><circle class="w gone" cx="1244" cy="76" r="20"/><circle class="w gone" cx="1316" cy="76" r="20"/><circle class="w gone" cx="1100" cy="146" r="20"/><circle class="w gone" cx="1172" cy="146" r="20"/><circle class="w gone" cx="1244" cy="146" r="20"/><circle class="w gone" cx="1316" cy="146" r="20"/><text class="cap em" x="0" y="292">(31)</text><rect class="box" x="90" y="240" width="330" height="140" rx="12"/><text class="lab" x="100" y="230">c</text><circle class="w on" cx="140" cy="276" r="20"/><circle class="w on" cx="212" cy="276" r="20"/><circle class="w" cx="284" cy="276" r="20"/><circle class="w" cx="356" cy="276" r="20"/><circle class="w half" cx="140" cy="346" r="20"/><circle class="w half" cx="212" cy="346" r="20"/><circle class="w" cx="284" cy="346" r="20"/><circle class="w" cx="356" cy="346" r="20"/><line class="ar" x1="440" y1="310" x2="540" y2="310" marker-end="url(#arw6)"/><text class="cap em" x="462" y="285">+ B</text><rect class="box undef" x="570" y="240" width="330" height="140" rx="12"/><text class="lab" x="580" y="230">c + B</text><text class="cap em" x="640" y="320">undefined: c ⊄ A</text></svg>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">Filled worlds are those where Jack has children (A), and the darker ones those where all of them are bald (B). In (29) the first update removes the empty worlds, so the second update is defined whatever c was. In (31) the first update is the one that needs every world to be filled, and nothing has removed the empty worlds from c beforehand.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">In (30) the second disjunct updates \(c \setminus (c + {}\)<em>Jack has no children</em>\()\), the worlds where Jack has children, so it too is always defined.</div></div>
+      <div class="srcl" data-step="1">Karttunen (1973) · Heim (1983).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 43 · Local accommodation. (23) after von Fintel (2008), ex. (12); Heim (1983) on local accommodation and its ranking. -->
+<section class="slide" data-label="Formal ·Local accommodation" data-screen-label="43">
+  <div class="b-slide pal-a lens-formal dB" data-sec="lacc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Local accommodation</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(38)</span><span class="ex">There is no King of France. So the King of France isn't hiding in this room.</span></div>
+        <div class="fx" data-step="2">\[ c \setminus \bigl((c \cap K) + A\bigr) \;=\; c \setminus \varnothing \;=\; c \]</div>
+      </div>
+      <svg class="cfig" style="width:80%" data-step="2" viewBox="0 0 1400 200" role="img" aria-label="Three boxes. The context c has eight worlds, none with a king. Intersecting with K gives an empty set. Removing that empty set from c leaves c unchanged."><defs><marker id="arw7" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs><rect class="box" x="20" y="40" width="380" height="140" rx="12"/><text class="lab" x="30" y="30">c</text><circle class="w" cx="100" cy="80" r="20"/><circle class="w" cx="166" cy="80" r="20"/><circle class="w" cx="232" cy="80" r="20"/><circle class="w" cx="298" cy="80" r="20"/><circle class="w" cx="100" cy="142" r="20"/><circle class="w" cx="166" cy="142" r="20"/><circle class="w" cx="232" cy="142" r="20"/><circle class="w" cx="298" cy="142" r="20"/><text class="cap" x="430" y="190"> </text><line class="ar" x1="430" y1="110" x2="560" y2="110" marker-end="url(#arw7)"/><text class="cap em" x="455" y="84">∩ K</text><rect class="box undef" x="590" y="40" width="300" height="140" rx="12"/><text class="lab" x="600" y="30">c ∩ K</text><text class="cap em" x="715" y="122">∅</text><line class="ar" x1="920" y1="110" x2="1050" y2="110" marker-end="url(#arw7)"/><text class="cap em" x="955" y="84">∖ ∅</text><rect class="box" x="1080" y="40" width="300" height="140" rx="12"/><text class="lab" x="1090" y="30">c</text><circle class="w" cx="1140" cy="80" r="20"/><circle class="w" cx="1206" cy="80" r="20"/><circle class="w" cx="1272" cy="80" r="20"/><circle class="w" cx="1338" cy="80" r="20"/><circle class="w" cx="1140" cy="142" r="20"/><circle class="w" cx="1206" cy="142" r="20"/><circle class="w" cx="1272" cy="142" r="20"/><circle class="w" cx="1338" cy="142" r="20"/></svg>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">After the first sentence the context entails that there is no king, so global accommodation is impossible. Heim lets the hearer add the presupposition inside the negation, where K is the proposition that France has a king.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">Since \(c \cap K\) is empty, the inner update is empty and the negation leaves c unchanged. The second sentence adds nothing to the first, which is what <em>so</em> signals.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">Heim ranks global accommodation first and local as a last resort. For von Fintel (2008) the local case is a grammatical adjustment of the sentence and a different process from accommodation proper.</div></div>
+      <div class="srcl" data-step="2">Heim (1983) · (38) after von Fintel (2008).</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 44 · The proviso problem. (24) Geurts (1996), as discussed in von Fintel (2008, §7). (25) the scuba-diver conditional as usually cited (attribution to confirm). -->
+<section class="slide" data-label="Formal ·The proviso problem" data-screen-label="44">
+  <div class="b-slide pal-a lens-formal dB" data-sec="prov">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">The proviso problem</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(39)</span><span class="ex">If Theo hates sonnets, so does his wife.</span></div>
+        <div class="eg" data-step="4"><span class="no">(40)</span><span class="ex">If John is a scuba diver, he'll bring his wetsuit.</span></div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx tight">The conditional clause predicts that (39) presupposes only that if Theo hates sonnets he has a wife. Hearers take it to presuppose that Theo has a wife. Geurts called this gap the proviso problem.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">von Fintel (2008).</strong> The semantics delivers the conditional presupposition, and accommodation delivers the stronger one. A speaker of (39) is far more likely to know that Theo has a wife than to know only the conditional.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">In (40) the conditional is what hearers take away, so a theory that always predicted the unconditional presupposition would fail here.</div></div>
+      <div class="srcl" data-step="2">Geurts (1996), <em>Linguistics and Philosophy</em> 19 · von Fintel (2008) · (40) as usually cited.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 45 · The explanatory problem. Rooth's point, in correspondence reported in Heim (1990); Soames (1989); Schlenker (2008), Theoretical Linguistics 34: 157–212; Schlenker (2009). -->
+<section class="slide" data-label="Formal ·The explanatory problem" data-screen-label="45">
+  <div class="b-slide pal-a lens-formal dB" data-sec="expl">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">The explanatory problem</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="fx">\[ c + (A \text{ and}^{*} B) \;=\; (c + B) + A \]</div>
+      </div>
+      <div class="erow full" data-step="2" style="border-top:none"><div class="tx">Heim's clauses describe projection without explaining it. A connective <em>and*</em> defined as above has the same truth conditions as <em>and</em> but would let the second conjunct filter the first, and nothing in the framework rules it out.</div></div>
+      <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Schlenker (2009).</strong> The local context of an expression is the strongest restriction that can be placed on it without changing what the sentence says, given the context and the words before it. For the second conjunct of <em>A and B</em> this is c plus A, so Karttunen's result is derived from the truth conditions.</div></div>
+      <div class="srcl" data-step="2">Rooth, in correspondence reported in Heim (1990) · Soames (1989) · Schlenker (2008), <em>Theoretical Linguistics</em> 34 · Schlenker (2009), <em>Semantics &amp; Pragmatics</em> 2.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 46 · Four classes · question. Constructed, after the obligatory local effect diagnostic of Tonhauser et al. (2013, §5). -->
+<section class="slide" data-label="Four classes, Q" data-screen-label="46">
+  <div class="b-slide pal-a lens-formal" data-sec="four">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(41)</div><div class="say">Kim believes that Alex stopped smoking.</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(42)</div><div class="say">Kim believes that Ruth, who is a doctor, is coming.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 47 · Two diagnostics. Tonhauser, Beaver, Roberts & Simons (2013), §§3 and 5. -->
+<section class="slide" data-label="Formal ·Two diagnostics" data-screen-label="47">
+  <div class="b-slide pal-a lens-formal dB" data-sec="diag">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Two diagnostics</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx">(41) attributes to Kim the belief that Alex used to smoke. (42) does not attribute to Kim the belief that Ruth is a doctor.</div></div>
+      <div class="erow full" data-step="2"><div class="tx"><strong class="ld">Obligatory local effect.</strong> Content has this property when, embedded under an operator such as <em>believe</em>, it must be part of the operator's scope, as in (41).</div></div>
+      <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Strong contextual felicity.</strong> A trigger has this property when it is acceptable only in a context that already entails its projective content, as <em>too</em> is in (17).</div></div>
+      <div class="srcl" data-step="1">Tonhauser, Beaver, Roberts &amp; Simons (2013), <em>Language</em> 89 · (41), (42) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 48 · Four classes. Tonhauser, Beaver, Roberts & Simons (2013), Language 89: 66–109, Tables 1 and 2. -->
+<section class="slide" data-label="Formal ·Four classes" data-screen-label="48">
+  <div class="b-slide pal-a lens-formal dB" data-sec="four2">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Four classes</h2>
+      <div class="quad" data-step="1">
+        <div></div>
+        <div class="ax top">Contextual felicity: yes</div>
+        <div class="ax top">Contextual felicity: no</div>
+        <div class="ax side">Local effect: yes</div>
+        <div class="cell" data-step="1"><div class="k">A</div><div class="en">pronouns, <i>too</i></div><div class="gn"><i>ha'e</i> '3rd person', <i>avei</i> 'too'</div></div>
+        <div class="cell" data-step="2"><div class="k">C</div><div class="en"><i>know</i>, <i>stop</i>, <i>only</i>, <i>almost</i></div><div class="gn"><i>(oi)kuaa</i> 'know', <i>-nte</i> 'only', <i>aimete</i> 'almost'</div></div>
+        <div class="ax side">Local effect: no</div>
+        <div class="cell" data-step="3"><div class="k">D</div><div class="en"><i>too</i> (a salient alternative), focus, demonstratives</div><div class="gn"><i>avei</i> 'too', demonstratives</div></div>
+        <div class="cell" data-step="4"><div class="k">B</div><div class="en">expressives, appositives, non-restrictive relatives</div><div class="gn">expressives, appositives, non-restrictive relatives</div></div>
+      </div>
+      <div class="erow full" data-step="5" style="border-top:none;margin-top:8px"><div class="tx tight">Tonhauser and her co-authors note that the existing theories of projection were each built for one class and do not extend to the others, and that class D had gone unrecognised.</div></div>
+      <div class="srcl" data-step="1">Tonhauser, Beaver, Roberts &amp; Simons (2013), <em>Language</em> 89, Table 2.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 49 · Other notations -->
+<section class="slide" data-label="Formal ·Other notations" data-screen-label="49">
+  <div class="b-slide pal-a lens-formal dB" data-sec="nota">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Other notations</h2>
+      <div class="ntab">
+        <div class="nh"><span>In this module</span><span>In the readings and elsewhere</span></div>
+        <div class="nr" data-step="1"><div class="no1">\(c\)<small>the context set</small></div><div class="no2">\(C\) &middot; \(CG\) or \(cg\) <i>the common ground as a set of propositions</i> &middot; \(K\), \(\sigma\), \(s\)</div></div>
+        <div class="nr" data-step="2"><div class="no1">\(c + S\)<small>update</small></div><div class="no2">\(c[S]\) <i>Beaver, Veltman</i> &middot; \(s[\varphi]\) &middot; <i>context change potential</i></div></div>
+        <div class="nr" data-step="3"><div class="no1">\(c + S\) defined only if \(c \subseteq p\)<small>presupposition</small></div><div class="no2"><i>c admits S; c satisfies the presuppositions of S: Karttunen</i> &middot; \(c \models p\) &middot; <i>Stalnaker's bridge</i></div></div>
+        <div class="nr" data-step="4"><div class="no1">local context</div><div class="no2">\(lc\) <i>Schlenker</i></div></div>
+        <div class="nr" data-step="5"><div class="no1">accommodation</div><div class="no2"><i>global, local, intermediate: Heim, Berman</i> &middot; <i>de facto and de jure: Soames</i></div></div>
+        <div class="nr" data-step="6"><div class="no1">projection</div><div class="no2"><i>inheritance: Soames (1982)</i> &middot; <i>presuppositions as anaphors, bound or accommodated in DRS boxes: van der Sandt (1992)</i></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- § Applied -->
+<section class="slide" data-label="§ Applied" data-screen-label="§ Applied">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-app"/></svg></div></div>
+    <div class="r"><div class="lab">Applied</div><div class="ct">STRAND 04 / 04 · LI7862 · Week 5</div><h2>Accommodation in use</h2><div class="ask">Questioning, framing, processing and safety-critical talk.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+
+
+<!-- 50 · Loaded questions · question. The first two constructed (after last year's PragH8); the third is Kaplan's (1978) CIS500 example, as quoted in later surveys. -->
+<section class="slide" data-label="Loaded questions, Q" data-screen-label="50">
+  <div class="b-slide pal-a lens-typological" data-sec="lq">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(43)</div><div class="say">Have you stopped embezzling money from the charity account?</div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(44)</div><div class="say">Which of the false invoices did you approve first?</div></div>
+          <div class="cv anim" style="--d:0.45s"><div class="who">(45)</div><div class="say"><span class="ctx">CIS500 was not given that term.</span>Which students got a grade of F in CIS500 in spring 1977?</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 51 · Answering a loaded question -->
+<section class="slide" data-label="Applied ·Answering a loaded question" data-screen-label="51">
+  <div class="b-slide pal-a lens-typological dB" data-sec="lq">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Answering a loaded question</h2>
+      <svg class="cfig" data-step="1" viewBox="0 0 1400 230" role="img" aria-label="A loaded question branches into yes and no, both of which carry its presupposition into the context, and a third move, Hey wait a minute, which rejects the presupposition instead.">
+        <defs><marker id="arw8" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" class="arh"/></marker></defs>
+        <rect class="node on" x="20" y="70" width="360" height="90" rx="12"/><text class="nt i" x="40" y="108">Have you stopped … ?</text><text class="cap" x="40" y="146">presupposes p</text>
+        <line class="ar" x1="385" y1="95" x2="560" y2="40" marker-end="url(#arw8)"/><line class="ar" x1="385" y1="115" x2="560" y2="115" marker-end="url(#arw8)"/><line class="ar" x1="385" y1="135" x2="560" y2="190" marker-end="url(#arw8)"/>
+        <rect class="node" x="580" y="10" width="190" height="60" rx="10"/><text class="nt i" x="600" y="50">Yes.</text>
+        <rect class="node" x="580" y="85" width="190" height="60" rx="10"/><text class="nt i" x="600" y="125">No.</text>
+        <rect class="node" x="580" y="160" width="400" height="60" rx="10"/><text class="nt i" x="600" y="200">Hey, wait a minute …</text>
+        <line class="ar" x1="780" y1="40" x2="1010" y2="68" marker-end="url(#arw8)"/><line class="ar" x1="780" y1="115" x2="1010" y2="95" marker-end="url(#arw8)"/>
+        <rect class="node on" x="1030" y="50" width="330" height="80" rx="12"/><text class="nt" x="1050" y="84">c ∩ p: p accepted</text><text class="cap" x="1050" y="116">either way</text>
+        <line class="ar" x1="990" y1="190" x2="1130" y2="190" marker-end="url(#arw8)"/>
+        <rect class="node" x="1150" y="160" width="210" height="60" rx="10"/><text class="nt" x="1170" y="200">p rejected</text>
+      </svg>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">Every answer to a question shares the question's presupposition. <em>Yes</em> and <em>no</em> to (43) both take the embezzling for granted, so answering at all accommodates it. In an American courtroom a question of this kind draws the objection that it assumes facts not in evidence.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight">A hearer can reject the presupposition before answering, or instead of answering: <em>Hey, wait a minute, I have never taken money from the charity.</em> A metalinguistic <em>No, I haven't stopped, I never started</em> rejects it too, though a listener who catches only the first words hears an admission.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">For (44) and (45), a corrective answer denies that any answer applies. Kaplan built a database interface that gave such answers, because a bare <em>None</em> to (45) is literally true and misleading.</div></div>
+      <div class="srcl" data-step="3">Kaplan (1978), <em>Theoretical Issues in Natural Language Processing</em> 2 · Kaplan (1982), <em>Artificial Intelligence</em> 19 · (43), (44) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 52 · Evasion. Clayman (2001), Language in Society 30: 403–442; Clayman & Heritage (2002), ch. 7, "operating on the question" pp. 280–286. -->
+<section class="slide" data-label="Applied ·Evasion" data-screen-label="52">
+  <div class="b-slide pal-a lens-typological dB" data-sec="eva">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Evasion</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx"><strong class="ld">Clayman (2001).</strong> In broadcast news interviews answering remains the norm, so an interviewee who resists a question's agenda is accountable for doing so and, in Clayman's phrase, engages in damage control.</div></div>
+      <div class="erow full" data-step="2"><div class="tx">Overt resistance is announced: the interviewee objects to the question or its premise and softens the move, for instance by deferring to the interviewer or giving a reason.</div></div>
+      <div class="erow full" data-step="3"><div class="tx">Covert resistance goes unmarked. In operating on the question, the interviewee restates the question in a more answerable form, often without its presupposition, and answers that version.</div></div>
+      <div class="srcl" data-step="1">Clayman (2001), <em>Language in Society</em> 30 · Clayman &amp; Heritage (2002), <em>The News Interview</em>, ch. 7.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 53 · Framing · question. (36) constructed, after last year's handout; (87) New York Times, 16 September 2000, via Miller (2001: 102), cited in Potts (2025), ex. (56). -->
+<section class="slide" data-label="Framing, Q" data-screen-label="53">
+  <div class="b-slide pal-a lens-typological" data-sec="pack">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="convo big">
+          <div class="cv anim" style="--d:0.15s"><div class="who">(46)</div><div class="say"><span class="ln"><span class="sp lt">a</span>The committee chair manipulated the vote.</span><span class="ln"><span class="sp lt">b</span>The committee chair hasn't stopped manipulating the vote.</span></div></div>
+          <div class="cv anim" style="--d:0.30s"><div class="who">(47)</div><div class="say"><span class="ctx">George W. Bush, on a reporter who had written that he was dyslexic.</span>That woman who knew I had dyslexia, I never interviewed her.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 54 · Framing. -->
+<section class="slide" data-label="Applied ·Framing" data-screen-label="54">
+  <div class="b-slide pal-a lens-typological dB" data-sec="pack">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Framing</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx">(46a) and (46b) convey the same accusation, packaged as (23a) and (23b) package the rent increase. In (46b) the change-of-state verb presents the manipulation as settled, so the accusation is made without being offered for discussion.</div></div>
+      <div class="erow full" data-step="2"><div class="tx">Packaging is one kind of framing. A speaker with a proposition to convey chooses among the sentences that express it, and the choice decides how easy the hearer's task is, what the maxims add, and whose perspective the issue is seen from.</div></div>
+      <div class="erow full" data-step="3"><div class="tx"><strong class="ld">Lakoff (2004).</strong> Negating a frame evokes it, so <em>I am not a crook</em> keeps crookedness in view, much as Hypothesis N keeps a presupposition in place under negation.</div></div>
+
+      <div class="srcl" data-step="1">Lakoff (2004), <em>Don't Think of an Elephant!</em> · (46) constructed.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 55 · Taking sides. -->
+<section class="slide" data-label="Applied ·Taking sides" data-screen-label="55">
+  <div class="b-slide pal-a lens-typological dB" data-sec="side">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Taking sides</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight">In (47) the factive <em>knew</em> presupposes that Bush had dyslexia, so the denial of the interview concedes the reporter's point. With <em>said</em> or <em>claimed</em> it would not.</div></div>
+      <div class="ftab" data-step="2">
+        <div class="fh"><span>Class</span><span>Examples</span><span>Embedded clause</span><span>Speaker</span><span>Subject</span></div>
+        <div class="fr"><div class="k">Veridical</div><div><i>show</i>, <i>prove</i></div><div>at issue</div><div>+</div><div>+</div></div>
+        <div class="fr"><div class="k">Factive</div><div><i>know</i>, <i>realize</i></div><div>presupposed</div><div>+</div><div>+</div></div>
+        <div class="fr"><div class="k">Antifactive</div><div><i>forget</i></div><div>presupposed</div><div>+</div><div>−</div></div>
+        <div class="fr"><div class="k">Non-factive</div><div><i>think</i>, <i>claim</i>, <i>argue</i></div><div>neither</div><div>unknown</div><div>+</div></div>
+      </div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Luo, Levin &amp; Jurafsky (2023).</strong> In arguments on the ChangeMyView forum, factive predicates went with changing people's minds, though citing one's own research with a factive could have the opposite effect.</div></div>
+
+      <div class="srcl" data-step="1">Luo, Levin &amp; Jurafsky (2023), <em>Proceedings of the LSA</em> · Miller (2001), <em>The Bush Dyslexicon</em>.</div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- 56 · Interrogation. Lorson, Cummins & Rohde (2019), SemDial 23: 89% vs 79% objection rates (p = .012); no difference in words or dysfluencies. (31) is their first critical item, presupposed version. -->
+<section class="slide" data-label="Applied ·Interrogation" data-screen-label="56">
+  <div class="b-slide pal-a lens-typological dB" data-sec="intr">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Interrogation</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(48)</span><span class="ex"><span class="ln"><span class="sp">Q</span>Have you held any other positions?</span><span class="ln"><span class="sp">A</span>I stopped working for the national gallery in Russia in 2017.</span><span class="gl">In the asserted version the suspect says he <em>used to</em> work there <em>until</em> 2017.</span></span></div>
+      </div>
+      <svg class="bfig" style="width:84%" data-step="2" viewBox="0 0 1400 160" role="img" aria-label="False content was challenged in 89 per cent of items when asserted and 79 per cent when presupposed.">
+        <g><text class="bl" x="0" y="52">asserted</text><rect class="bar off" x="300" y="16" width="890" height="48" rx="6"/><text class="bv" x="1208" y="55">89%</text></g>
+        <g><text class="bl" x="0" y="124">presupposed</text><rect class="bar" x="300" y="88" width="790" height="48" rx="6"/><text class="bv" x="1108" y="127">79%</text></g>
+        <line class="ax" x1="300" y1="6" x2="300" y2="146"/>
+      </svg>
+      <div class="erow full" data-step="3" style="border-top:none"><div class="tx tight"><strong class="ld">Lorson, Cummins &amp; Rohde (2019).</strong> Fifty participants in Edinburgh played a detective questioning a suspect, with instructions to challenge every lie. Eight answers contained a falsehood, asserted in one version of the script and presupposed in the other.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">False presupposed content was challenged less often. When participants did object, they used no more words and no more hesitations, and they objected directly without needing a <em>Hey, wait a minute</em>. False presupposed content was still challenged in most cases, and content that bears on the question under discussion is challenged directly.</div></div>
+      <div class="srcl" data-step="3">Lorson, Cummins &amp; Rohde (2019), <em>SemDial</em> 23.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 57 · Processing. Domaneschi, Canal, Masia, Lombardi Vallauri & Bambini (2018); Masia, Garassino, Brocca & de Saussure (2023), Pragmatics & Cognition, doi 10.1075/pc.22011.mas; Lombardi Vallauri et al. (2025), from last year's reference list. -->
+<section class="slide" data-label="Applied ·Processing" data-screen-label="57">
+  <div class="b-slide pal-a lens-typological dB" data-sec="proc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Processing</h2>
+      <div class="figrow">
+        <div class="portrait" data-step="1" style="width:420px"><img src="images/brouwer-crocker-2017-fig1a.jpg" alt="An idealised ERP contrast: a target condition in red against a control in blue, with an N400 effect followed by a P600 effect. Negative is plotted upwards." style="height:230px;object-fit:contain;background:#fff"><div class="pc"><div class="nm" style="font-size:22px">N400, then P600</div><div class="dt">Brouwer &amp; Crocker 2017</div></div></div>
+        <div class="figbody">
+      <div class="erow full" data-step="1" style="border-top:none;padding-top:2px"><div class="tx tight"><strong class="ld">Domaneschi et al. (2018).</strong> In an ERP study, presuppositions that had to be accommodated produced an N400 followed by a P600. With definite descriptions the N400 was more prominent, reflecting the search for an antecedent. With change-of-state verbs the P600 was more prominent, reflecting the later updating of the discourse model.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight"><strong class="ld">Masia et al. (2023).</strong> In tweets by Italian politicians, content presupposed by definite descriptions was processed more shallowly than content presupposed by change-of-state verbs.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Lombardi Vallauri et al. (2025)</strong> relate the N400 effects to a mismatch between how content is packaged and its status in the discourse, and find no link with the hearer's epistemic vigilance.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="1">Figure: panel A of Brouwer &amp; Crocker (2017), <em>Frontiers in Psychology</em> 8: 1327, CC BY; negative plotted upwards · Domaneschi, Canal, Masia, Lombardi Vallauri &amp; Bambini (2018), <em>Journal of Neurolinguistics</em> · Masia, Garassino, Brocca &amp; de Saussure (2023), <em>Pragmatics &amp; Cognition</em> · Lombardi Vallauri et al. (2025), <em>Journal of Neurolinguistics</em>.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 58 · Readback. Tenerife, 27 March 1977, KLM 4805 and Pan Am 1736. Phraseology change: confirm against ICAO Doc 9432 / Doc 4444 before teaching. -->
+<section class="slide" data-label="Applied ·Readback" data-screen-label="58">
+  <div class="b-slide pal-a lens-typological dB" data-sec="rb">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Readback</h2>
+      <div class="egpanel" data-step="1" style="margin-top:4px">
+        <div class="eg"><span class="no">(49)</span><span class="ex">We are now at take-off.<span class="gl">KLM 4805, Tenerife, 27 March 1977.</span></span></div>
+      </div>
+      <div class="figrow">
+        <!-- Photo: Aero Icarus, "KLM Boeing 747-200; PH-BUF@LHR, August 1975", Wikimedia Commons, CC BY-SA 2.0. Local copy images/klm-ph-buf-1975.jpg -->
+        <div class="portrait" data-step="2" style="width:420px"><img src="images/klm-ph-buf-1975.jpg" alt="KLM Boeing 747 PH-BUF, named Rijn, on the apron at Heathrow in 1975" style="height:230px;object-fit:cover;object-position:35% 55%"><div class="pc"><div class="nm">PH-BUF, <em>Rijn</em></div><div class="dt">Heathrow, 1975</div></div></div>
+        <div class="figbody">
+      <div class="erow full" data-step="2" style="border-top:none;padding-top:2px"><div class="tx tight">At Tenerife the KLM crew read back a route clearance and ended with (49). The captain began the take-off roll without a take-off clearance, and the collision with a Pan Am 747 still on the runway killed 583 people.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight">ICAO phraseology now reserves <em>take-off</em> for the clearance itself and its cancellation. At every other point pilots and controllers say <em>departure</em>.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">The pilot reads back the safety-related parts of every clearance and the controller checks the readback, so nothing safety-critical is left for a hearer to accommodate.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-step="2">Spanish and Dutch investigation reports (1978) · ICAO Doc 4444, <em>PANS-ATM</em>, ch. 12 · SKYbrary, <em>Take-off without ATC clearance</em> · Photo: Aero Icarus, CC BY-SA 2.0.</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- 59 · Clinical communication. Lingard et al. (2004), QSHC 13: 330–334; Lingard et al. (2008), Arch Surg 143: 12–17. -->
+<section class="slide" data-label="Applied ·Clinical communication" data-screen-label="59">
+  <div class="b-slide pal-a lens-typological dB" data-sec="ot">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Clinical communication</h2>
+      <div class="erow full" data-step="1" style="border-top:none"><div class="tx tight"><strong class="ld">Lingard et al. (2004).</strong> Over 90 hours and 48 procedures in a Canadian teaching hospital, observers recorded 421 communication events, and 129 of them (about 30%) failed. A third of the failures had visible effects, from delay to procedural error.</div></div>
+      <div class="erow full" data-step="2"><div class="tx tight">The failed exchanges came too late, were incomplete or inaccurate, left the issue unresolved, or left out someone who needed to know. Many of them left the hearer to reconstruct background the speaker never stated.</div></div>
+      <div class="erow full" data-step="3"><div class="tx tight"><strong class="ld">Lingard et al. (2008).</strong> A short checklist briefing before 302 procedures cut communication failures from 3.95 to 1.31 per procedure.</div></div>
+      <div class="erow full" data-step="4"><div class="tx tight">Between clinicians a compressed register and shared training make accommodation cheap and usually safe. With a patient the common ground is much thinner, and King and Hoppe's (2013) review of patient-centred communication recommends plain language, explicit explanation and teach-back, in which the patient restates the plan in their own words.</div></div>
+      <div class="srcl" data-step="1">Lingard et al. (2004), <em>Quality &amp; Safety in Health Care</em> 13 · Lingard et al. (2008), <em>Archives of Surgery</em> 143 · King &amp; Hoppe (2013), <em>Journal of Graduate Medical Education</em> 5.</div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/prag-meta.js"></script>
+<script src="../../shared/prag-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-semantics2/week-02: the expandable TOC reflects
+   THIS lecture's sections; strand groups carry their lens colour. */
+(function () {
+  var TITLES = {
+    wk:"This week", road:"Today", rd:"Readings",
+    mud:"The messy knots", ck:"Common knowledge and common ground", pa:"Presupposed and asserted", pcg:"Presupposition and the common ground", acc0:"Accommodation", sis:"My sister", lim:"How easily accommodation happens", too:"Too", news:"What accommodation is for", asp:"Asserting and presupposing", proj:"Projection tests", hp:"Holes and plugs", cmp:"Filtering", ger:"Filtering and world knowledge", hpf2:"Hole, plug or filter",
+    stal:"Stalnaker", cg:"Common ground", lew:"Lewis", roa:"The rule of accommodation", kar:"Karttunen", hpf:"Holes, plugs and filters", loc:"Local contexts", heim:"Heim",
+    cset:"Context sets", upd:"Update and definedness", fail:"When the presupposition is not met", acc:"Accommodation as update", conn:"Connectives", hand:"Filtering by hand", lacc:"Local accommodation", prov:"The proviso problem", expl:"The explanatory problem", four:"Two diagnostics", four2:"Four classes", nota:"Other notations",
+    lq:"Answering a loaded question", eva:"Evasion", pack:"Framing", side:"Taking sides", intr:"Interrogation", proc:"Processing", rb:"Readback", ot:"Clinical communication"
+  };
+  var GROUPS = [
+    { t:"Introduction", sc:null,         keys:["wk","road","rd"] },
+    { t:"Empirical",    sc:"--lens-emp", keys:["mud","ck","pa","pcg","acc0","sis","lim","too","news","asp","proj","hp","cmp","ger","hpf2"] },
+    { t:"Historical",   sc:"--lens-his", keys:["stal","cg","lew","roa","kar","hpf","loc","heim"] },
+    { t:"Formal",       sc:"--lens-for", keys:["cset","upd","fail","acc","conn","hand","lacc","prov","expl","four","four2","nota"] },
+    { t:"Applied",      sc:"--lens-typ", keys:["lq","eva","pack","side","intr","proc","rb","ot"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "▾" : "▸";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LI7862<br>Week 5</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 5</div><div class="t2">Common Ground &amp; Projection</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+</body>
+</html>
