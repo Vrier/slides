@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Semantics I Summary · Handout</title>
+<style>
+  :root { --serif: 'NewComputerModern10', 'NewCM10', 'Latin Modern Roman', 'STIX Two Text', Georgia, serif; --rule:#000; }
+  @page { size:A4; margin:16mm 15mm 15mm 15mm; }
+  html, body { margin:0; padding:0; background:#f4f4f2; }
+  body { font-family:var(--serif); color:#000; font-size:11pt; line-height:1.36; }
+  .sheet { width:210mm; min-height:297mm; margin:0 auto; background:#fff; padding:16mm 15mm; box-sizing:border-box; }
+  .sc { text-transform:uppercase; letter-spacing:.14em; font-size:7.8pt; font-weight:600; }
+  .mast { display:flex; justify-content:space-between; align-items:flex-start; gap:20pt; }
+  .mast .inst { font-weight:700; font-size:12pt; line-height:1.2; }
+  .mast .ga { font-style:italic; font-size:9pt; }
+  .mast .uni { margin-top:2pt; }
+  .mast .right { text-align:right; font-size:10pt; line-height:1.35; }
+  .mast-rule { border-top:1.2pt solid var(--rule); margin:9pt 0 14pt; }
+  .doc-kicker { margin-bottom:3pt; }
+  .doc-title { font-size:23pt; font-weight:700; line-height:1.12; margin:0 0 4pt; }
+  .doc-sub { font-size:10pt; margin:0 0 2pt; }
+  .sec { display:grid; grid-template-columns:28pt 1fr 92pt; column-gap:13pt;
+         margin-top:18pt; }
+  .sec > .num, .sec > .note { padding-top:8pt; }
+  .sec h2 { position:relative; padding-top:8pt; }
+  .sec h2::before { content:""; position:absolute; top:0; left:-41pt; right:-105pt; border-top:1.2pt solid var(--rule); }
+  .sec > .num { font-size:21pt; font-weight:700; line-height:.96; }
+  .sec > .body { min-width:0; }
+  .sec > .note { font-size:8.4pt; line-height:1.36; }
+  .sec > .note p { margin:0 0 5pt; }
+  .sec h2 { font-size:13.5pt; font-weight:700; margin:0 0 5pt; line-height:1.2; }
+  .sec p { margin:0 0 6pt; }
+  .runin { font-weight:700; }
+  ol.exs { list-style:none; margin:6pt 0 8pt; padding:0; }
+  ol.exs li { display:grid; grid-template-columns:26pt 1fr; margin:0 0 3pt; }
+  ol.exs li.two { grid-template-columns:26pt 1.3fr 1fr; column-gap:8pt; }
+  ol.exs .s { font-style:italic; }
+  ol.exs .ctx { font-style:normal; font-size:9.4pt; }
+  .proc { margin:8pt 0 7pt; }
+  .proc-head { margin-bottom:3pt; }
+  ol.steps { margin:0; padding-left:16pt; }
+  ol.steps li { margin:0 0 2pt; }
+  .tasks { margin-top:4pt; }
+  .task { display:grid; grid-template-columns:22pt 1fr; margin:0 0 5pt; }
+  .task .s { font-style:italic; }
+  ul.items { list-style:none; margin:3pt 0 2pt; padding:0; }
+  ul.items li { display:grid; grid-template-columns:22pt 1fr; margin:0 0 2pt; }
+  table.rec { width:100%; border-collapse:collapse; margin:6pt 0 8pt; }
+  table.rec th { text-align:left; font-weight:600; text-transform:uppercase; letter-spacing:.1em;
+                 font-size:7.6pt; padding:3pt 8pt 3pt 0; border-top:.9pt solid var(--rule); border-bottom:.9pt solid var(--rule); }
+  table.rec td { padding:2.2pt 8pt 2.2pt 0; vertical-align:top; font-size:10.4pt; }
+  table.rec tr:last-child td { border-bottom:.9pt solid var(--rule); }
+  table.rec .it { font-style:italic; }
+  table.rec.c td + td, table.rec.c th + th { text-align:center; }
+  table.rec.nw1 td:first-child { white-space:nowrap; }
+  table.rec.tt th { text-transform:none; letter-spacing:0; font-size:10.4pt; font-weight:400; text-align:center; }
+  table.rec.tt td { text-align:center; padding:1.5pt 8pt 1.5pt 0; }
+  .defs { border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);
+          padding:5pt 0 4.5pt; margin:7pt 0 9pt; }
+  .defs > .sc { margin-bottom:3.5pt; }
+  .defs > div.d { display:grid; grid-template-columns:96pt 1fr; column-gap:10pt; margin:0 0 2.5pt; }
+  .defs > div.d:last-child { margin-bottom:0; }
+  .defs .t { font-weight:700; }
+  .defs .g { font-size:10.4pt; }
+  .rules { margin:4pt 0 8pt; }
+  .rules > div { display:grid; grid-template-columns:118pt 1fr; column-gap:10pt; margin:0 0 3pt; }
+  .rules > div > span:first-child { font-style:italic; }
+  .fig { margin:6pt 0 8pt; }
+  .fig svg { display:block; max-width:100%; height:auto; font-family:var(--serif); }
+  i.s { font-style:italic; }
+  .nw { white-space:nowrap; }
+  .drv { display:grid; grid-template-columns:auto 1fr auto; column-gap:5pt; row-gap:1.5pt; font-size:10.2pt; margin:2pt 0 2pt; }
+  .drv .tag { font-size:8pt; letter-spacing:.1em; align-self:center; }
+  sub { font-size:.72em; line-height:0; }
+  @media print {
+    html, body { background:#fff; }
+    .sheet { width:auto; min-height:0; margin:0; padding:0; }
+    .defs > div.d, .proc, .task, table.rec, ol.exs, .fig, .rules { break-inside:avoid; page-break-inside:avoid; }
+    .sec h2, .proc-head, .hd { break-after:avoid; page-break-after:avoid; }
+    .sec > .note { break-inside:auto; }
+  }
+ sup { font-size:.7em; line-height:0; } </style>
+<link rel="stylesheet" href="../shared/font-latex.css" />
+</head>
+<body>
+<div class="sheet">
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+  <div class="sc doc-kicker">Refresher · Handout</div>
+  <h1 class="doc-title">Semantics I: Summary</h1>
+  <p class="doc-sub">The Semantics I toolkit in twelve blocks. Exercises for each block are on the homework sheet, under the same numbers.</p>
+
+  <!-- == 0 == -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Sets, relations and functions</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">Set</span><span class="g">An abstract unordered collection of distinct objects. {2, 4, 11} = {4, 2, 11}.</span></div>
+<div class="d"><span class="t">Member</span><span class="g">2 ∈ {2, 4, 11}; 3 ∉ {2, 4, 11}. Anything can be a member, including other sets.</span></div>
+<div class="d"><span class="t">Predicate notation</span><span class="g">{x | x is a novel}: the set of all x such that x is a novel.</span></div>
+<div class="d"><span class="t">Cardinality</span><span class="g">|S| is the number of distinct members of S. <span class='nw'>|{3, 3, 3}| = 1.</span></span></div>
+<div class="d"><span class="t">Empty set</span><span class="g">∅ or {}: the set with no members. A singleton has exactly one member.</span></div>
+<div class="d"><span class="t">Subset</span><span class="g">A ⊆ B iff for all x: if x ∈ A, then x ∈ B. Every set is a subset of itself. ∅ is a subset of every set.</span></div>
+<div class="d"><span class="t">Proper subset</span><span class="g">A ⊂ B iff A ⊆ B and A ≠ B. Supersets reverse the relation: A ⊇ B iff B ⊆ A.</span></div>
+<div class="d"><span class="t">Intersection</span><span class="g">A ∩ B = {x | x ∈ A and x ∈ B}. Disjoint sets have an empty intersection.</span></div>
+<div class="d"><span class="t">Union</span><span class="g">A ∪ B = {x | x ∈ A or x ∈ B}. Inclusive <i>or</i>.</span></div>
+<div class="d"><span class="t">Difference</span><span class="g">A − B = {x | x ∈ A and x ∉ B}, also written A \ B. The complement A′ is everything outside A.</span></div>
+<div class="d"><span class="t">Ordered pair</span><span class="g">⟨19, 91⟩ ≠ ⟨91, 19⟩. Order matters.</span></div>
+<div class="d"><span class="t">Relation</span><span class="g">A set of ordered pairs. A × B, the Cartesian product, pairs each member of A with each member of B.</span></div>
+<div class="d"><span class="t">Function</span><span class="g">A relation from A to B is a function iff every element of A is mapped to one and only one member of B. In f(a) = b, a is the argument and b the value.</span></div>
+</div>
+<div class="sc proc-head hd" style="margin-top:8pt">Sets in semantics</div>
+<ol class="exs">
+<li class="two"><span>(1)</span><span class="s">Tilly is a cat.</span><span>t ∈ Cats</span></li>
+<li class="two"><span>(2)</span><span class="s">All cats stalk.</span><span>Cats ⊆ Stalks</span></li>
+<li class="two"><span>(3)</span><span class="s">Kate is a lawyer and a doctor.</span><span>k ∈ L ∩ D</span></li>
+<li class="two"><span>(4)</span><span class="s">No musician snores.</span><span>M ∩ S = ∅</span></li>
+<li class="two"><span>(5)</span><span class="s">Some musician snores.</span><span>M ∩ S ≠ ∅</span></li>
+<li class="two"><span>(6)</span><span class="s">Marilyn likes Neil.</span><span>⟨m, n⟩ ∈ Likes</span></li>
+</ol>
+<p>(1) and (2) together entail t ∈ Stalks. Transitive verbs denote relations because <i>x likes y</i> does not entail <i>y likes x</i>.</p>
+    </div>
+    <div class="note"><p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> §2.3.</p></div>
+  </div>
+  <!-- == 1 == -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Entailment and truth functions</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">Entailment</span><span class="g">A set of sentences A entails a set of sentences B iff there is no way for A to be true and B false at the same time.</span></div>
+<div class="d"><span class="t">Atomic sentence</span><span class="g">A sentence that cannot be broken down further. Symbolised by a propositional variable p, q, r, …</span></div>
+<div class="d"><span class="t">Truth-functional</span><span class="g">The truth of the complex sentence depends only on the truth of its subsentences.</span></div>
+<div class="d"><span class="t">Tautology</span><span class="g">True whatever truth values the atomic propositions take. p ∨ ¬p, p → p, ¬(p ∧ ¬p).</span></div>
+<div class="d"><span class="t">Contradiction</span><span class="g">False whatever truth values the atomic propositions take. p ∧ ¬p.</span></div>
+<div class="d"><span class="t">Contingent</span><span class="g">True on some assignments of truth values and false on others.</span></div>
+<div class="d"><span class="t">Equivalence</span><span class="g">φ ≡ ψ iff they express the same truth function. Equally: they entail each other; φ ↔ ψ is a tautology.</span></div>
+</div>
+<table class="rec tt"><thead><tr><th>p</th><th>q</th><th>¬p</th><th>p ∧ q</th><th>p ∨ q</th><th>p xor q</th><th>p → q</th><th>p ↔ q</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr><tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr></tbody></table>
+<div class="sc proc-head hd" style="margin-top:8pt">Symbolisation</div>
+<ol class="exs">
+<li class="two"><span>(7)</span><span class="s">It is raining and I don’t have an umbrella.</span><span>p ∧ ¬q</span></li>
+<li class="two"><span>(8)</span><span class="s">Neither the projector nor the microphone works.</span><span>¬p ∧ ¬q, or ¬(p ∨ q)</span></li>
+<li class="two"><span>(9)</span><span class="s">You can access the data only if you sign the form.</span><span>p → q</span></li>
+<li class="two"><span>(10)</span><span class="s">If it rains or snows, then neither the match nor the parade goes ahead.</span><span>(p ∨ q) → ¬(r ∨ s)</span></li>
+</ol>
+<div class="sc proc-head hd" style="margin-top:8pt">Patterns</div>
+<div class="rules"><div><span>Simplification</span><span>p ∧ q ∴ p</span></div><div><span>Modus Ponens</span><span>p → q, p ∴ q</span></div><div><span>Modus Tollendo Ponens</span><span>p ∨ q, ¬p ∴ q</span></div><div><span>Double Negation</span><span>¬¬p ∴ p</span></div><div><span>De Morgan</span><span><span class='nw'>¬(p ∧ q) ≡ (¬p ∨ ¬q)</span> &nbsp; <span class='nw'>¬(p ∨ q) ≡ (¬p ∧ ¬q)</span></span></div><div><span>Biconditional</span><span>p ↔ q ≡ (p → q) ∧ (q → p)</span></div></div>
+<div class="proc"><div class="sc proc-head">Testing entailment with a truth table</div><ol class="steps"><li>Symbolise the premises A and the conclusion B.</li><li>Conjoin multiple premises into one formula.</li><li>Draw the truth table for A and for B.</li><li>A entails B iff no row has A = 1 and B = 0.</li></ol></div>
+<p><span class='runin'>Material implication.</span> p → q is false only when p is true and q is false. The natural language conditional needs something more sophisticated: (11) comes out true.</p><ol class="exs">
+<li><span>(11)</span><span><span class='s'>If the moon is made of green cheese, then I had yogurt for breakfast this morning.</span></span></li>
+</ol>
+
+    </div>
+    <div class="note"></div>
+  </div>
+  <!-- == 2 == -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Propositional logic as a language</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">Object language</span><span class="g">The language under study. Here: propositional logic.</span></div>
+<div class="d"><span class="t">Metalanguage</span><span class="g">The language used to state when object-language sentences are true. The predicate <i>is true</i> belongs here (Tarski).</span></div>
+<div class="d"><span class="t">WFF</span><span class="g">Well-formed formula: a grammatical string of the logic.</span></div>
+<div class="d"><span class="t">Metavariable</span><span class="g">φ and ψ stand for any WFF. (p ∧ q) is a formula of the logic; (φ ∧ ψ) is a description of formulas.</span></div>
+<div class="d"><span class="t">Recursive rule</span><span class="g">A rule whose output can be fed back in as its input. ¬p, ¬¬p, ¬¬¬p, …</span></div>
+<div class="d"><span class="t">Model</span><span class="g">For propositional logic: a function M from propositional letters to truth values.</span></div>
+<div class="d"><span class="t">Denotation</span><span class="g"><span class='nw'>⟦φ⟧<sup>M</sup></span>: the interpretation of φ with respect to M.</span></div>
+</div>
+<div class="proc"><div class="sc proc-head">Syntax</div><ol class="steps"><li>Lower case letters p, q, r, s, … are WFF.</li><li>If φ is a WFF, then ¬φ is a WFF.</li><li>If φ and ψ are WFF, then (φ ∧ ψ), (φ ∨ ψ), (φ → ψ) and (φ ↔ ψ) are WFF.</li><li>Nothing else is a WFF. Outermost brackets may be omitted.</li></ol></div>
+<div class="proc"><div class="sc proc-head">Semantics</div><ol class="steps"><li>If p is atomic, <span class='nw'>⟦p⟧<sup>M</sup></span> = M(p).</li><li><span class='nw'>⟦¬φ⟧<sup>M</sup></span> = 1 iff <span class='nw'>⟦φ⟧<sup>M</sup></span> = 0.</li><li><span class='nw'>⟦φ ∧ ψ⟧<sup>M</sup></span> = 1 iff <span class='nw'>⟦φ⟧<sup>M</sup></span> = 1 and <span class='nw'>⟦ψ⟧<sup>M</sup></span> = 1.</li><li><span class='nw'>⟦φ ∨ ψ⟧<sup>M</sup></span> = 1 iff <span class='nw'>⟦φ⟧<sup>M</sup></span> = 1 or <span class='nw'>⟦ψ⟧<sup>M</sup></span> = 1.</li><li><span class='nw'>⟦φ → ψ⟧<sup>M</sup></span> = 1 iff <span class='nw'>⟦φ⟧<sup>M</sup></span> = 0 or <span class='nw'>⟦ψ⟧<sup>M</sup></span> = 1.</li><li><span class='nw'>⟦φ ↔ ψ⟧<sup>M</sup></span> = 1 iff <span class='nw'>⟦φ⟧<sup>M</sup></span> = <span class='nw'>⟦ψ⟧<sup>M</sup></span>.</li></ol></div>
+<ol class="exs">
+<li><span>(12)</span><span>Let M(p) = 1, M(q) = 0, M(r) = 1. Then <span class='nw'>⟦p ∨ q⟧<sup>M</sup></span> = 1 and <span class='nw'>⟦¬r⟧<sup>M</sup></span> = 0, so <span class='nw'>⟦(p ∨ q) → ¬r⟧<sup>M</sup></span> = 0.</span></li>
+</ol>
+
+    </div>
+    <div class="note"><p><b>Tarski 1944.</b> The semantic conception of truth. <i>Philosophy and Phenomenological Research</i> 4: 341–376.</p></div>
+  </div>
+  <!-- == 3 == -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Predicate logic</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">Individual constant</span><span class="g">n (Neil), m (Marilyn). Denotation fixed within a model.</span></div>
+<div class="d"><span class="t">Variable</span><span class="g">x, y, z. Denotation not fixed by the model. Constants and variables are terms.</span></div>
+<div class="d"><span class="t">Predicate</span><span class="g">One-place: laughs, singer. Two-place: sees, likes. Three-place: shows.</span></div>
+<div class="d"><span class="t">Atomic formula</span><span class="g">If π is a one-place predicate and α a term, π(α) is a formula. If π is two-place and α, β are terms, π(α, β) is a formula. Negation and the binary connectives build complex formulas as in block 2.</span></div>
+<div class="d"><span class="t">Model</span><span class="g">M = ⟨D, I⟩: a domain of individuals D and an interpretation function I for all the basic expressions.</span></div>
+<div class="d"><span class="t">Interpretation</span><span class="g">I maps constants to members of D, one-place predicates to sets of individuals from D, two-place predicates to sets of ordered pairs of individuals from D.</span></div>
+</div>
+<ol class="exs">
+<li class="two"><span>(13)</span><span class="s">Neil laughs.</span><span>laughs(n)</span></li>
+<li class="two"><span>(14)</span><span class="s">Marilyn sees Neil.</span><span>sees(m, n) &nbsp; subject first</span></li>
+<li class="two"><span>(15)</span><span class="s">Neil shows Marilyn Edith.</span><span>shows(n, m, e)</span></li>
+<li class="two"><span>(16)</span><span class="s">Marilyn loves Neil and Neil isn’t tall.</span><span>loves(m, n) ∧ ¬tall(n)</span></li>
+</ol>
+<div class="sc proc-head hd" style="margin-top:8pt">Example model M<sub>1</sub></div>
+<p>D<sub>1</sub> = {Harriet, Raj, Chris}. I<sub>1</sub>(h) = Harriet, I<sub>1</sub>(r) = Raj, I<sub>1</sub>(c) = Chris. I<sub>1</sub>(smart) = {Harriet}. I<sub>1</sub>(likes) = {⟨Harriet, Raj⟩, ⟨Harriet, Chris⟩, ⟨Raj, Harriet⟩, ⟨Raj, Chris⟩, ⟨Chris, Harriet⟩, ⟨Chris, Raj⟩}.</p><div class="proc"><div class="sc proc-head">Semantics</div><ol class="steps"><li>If α is a non-logical constant, <span class='nw'>⟦α⟧<sup>M</sup></span> = I(α).</li><li><span class='nw'>⟦π(α)⟧<sup>M</sup></span> = 1 iff <span class='nw'>⟦α⟧<sup>M</sup></span> ∈ <span class='nw'>⟦π⟧<sup>M</sup></span>.</li><li><span class='nw'>⟦π(α, β)⟧<sup>M</sup></span> = 1 iff ⟨<span class='nw'>⟦α⟧<sup>M</sup></span>, <span class='nw'>⟦β⟧<sup>M</sup></span>⟩ ∈ <span class='nw'>⟦π⟧<sup>M</sup></span>.</li><li>Negation and the binary connectives: as in block 2.</li></ol></div>
+<ol class="exs">
+<li><span>(17)</span><span><span class='nw'>⟦smart(h)⟧<sup>M<sub>1</sub></sup></span> = 1, since Harriet ∈ {Harriet}.</span></li>
+<li><span>(18)</span><span><span class='nw'>⟦likes(r, r)⟧<sup>M<sub>1</sub></sup></span> = 0, since ⟨Raj, Raj⟩ ∉ I<sub>1</sub>(likes).</span></li>
+</ol>
+
+    </div>
+    <div class="note"><p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> §4.1.</p></div>
+  </div>
+  <!-- == 4 == -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Quantifiers, variables and assignments</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">∃</span><span class="g">The existential quantifier: <i>there is</i>.</span></div>
+<div class="d"><span class="t">∀</span><span class="g">The universal quantifier: <i>for all</i>.</span></div>
+<div class="d"><span class="t">Scope</span><span class="g">The bracketed formula a quantifier applies to.</span></div>
+<div class="d"><span class="t">Bound variable</span><span class="g">A variable in the scope of a quantifier on that variable. The quantifier fixes its interpretation.</span></div>
+<div class="d"><span class="t">Free variable</span><span class="g">A variable that no quantifier binds. In ∃x.[cat(x)] ∧ purrs(x) the second x is free.</span></div>
+<div class="d"><span class="t">Assignment function</span><span class="g">g maps each variable to an individual in D.</span></div>
+<div class="d"><span class="t">g[x ↦ k]</span><span class="g">The assignment just like g, except that x is mapped to k.</span></div>
+<div class="d"><span class="t">Denotation</span><span class="g"><span class='nw'>⟦·⟧<sup>M,g</sup></span>: relativised to a model and an assignment.</span></div>
+</div>
+<div class="proc"><div class="sc proc-head">Syntax</div><ol class="steps"><li>If u is a variable and φ is a formula, [∀u.φ] is a formula.</li><li>If u is a variable and φ is a formula, [∃u.φ] is a formula.</li></ol></div>
+<ol class="exs">
+<li class="two"><span>(19)</span><span class="s">Some cat purrs.</span><span>∃x.[cat(x) ∧ purrs(x)]</span></li>
+<li class="two"><span>(20)</span><span class="s">Every cat purrs.</span><span>∀x.[cat(x) → purrs(x)]</span></li>
+<li class="two"><span>(21)</span><span class="s">No cat lays eggs.</span><span>¬∃x.[cat(x) ∧ layseggs(x)]</span></li>
+</ol>
+<p>∃ pairs with ∧. ∀ pairs with →.</p><div class="sc proc-head hd" style="margin-top:8pt">Scope ambiguity</div>
+<ol class="exs">
+<li><span>(22)</span><span><span class='s'>Every linguist admires a philosopher.</span><br>a. ∀x.[linguist(x) → ∃y.[philosopher(y) ∧ admires(x, y)]] &nbsp; possibly a different philosopher each<br>b. ∃y.[philosopher(y) ∧ ∀x.[linguist(x) → admires(x, y)]] &nbsp; one philosopher for all</span></li>
+</ol>
+<div class="proc"><div class="sc proc-head">Semantics</div><ol class="steps"><li><span class='nw'>⟦x⟧<sup>M,g</sup></span> = g(x).</li><li><span class='nw'>⟦∃x.φ⟧<sup>M,g</sup></span> = 1 iff there is an individual k ∈ D such that <span class='nw'>⟦φ⟧<sup>M,g[x ↦ k]</sup></span> = 1.</li><li><span class='nw'>⟦∀x.φ⟧<sup>M,g</sup></span> = 1 iff for every individual k ∈ D, <span class='nw'>⟦φ⟧<sup>M,g[x ↦ k]</sup></span> = 1.</li></ol></div>
+<ol class="exs">
+<li><span>(23)</span><span>In M<sub>1</sub>: <span class='nw'>⟦∃x.smart(x)⟧<sup>M<sub>1</sub>,g</sup></span> = 1, taking k = Harriet. <span class='nw'>⟦∀x.smart(x)⟧<sup>M<sub>1</sub>,g</sup></span> = 0, since k = Raj fails.</span></li>
+</ol>
+
+    </div>
+    <div class="note"><p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> §4.2.</p><p><b>Horn 1972.</b> <i>On the Semantic Properties of Logical Operators in English.</i> PhD thesis, UCLA.</p></div>
+  </div>
+  <!-- == 5 == -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Types and λ</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">e</span><span class="g">The type of individuals.</span></div>
+<div class="d"><span class="t">t</span><span class="g">The type of truth values: 1 and 0.</span></div>
+<div class="d"><span class="t">⟨σ, τ⟩</span><span class="g">If σ and τ are types, ⟨σ, τ⟩ is a type: functions from things of type σ to things of type τ. Nothing else is a type.</span></div>
+<div class="d"><span class="t">λ-abstraction</span><span class="g">λx<sub>e</sub>.walks(x): the function from an individual x to 1 iff x walks. Type ⟨e, t⟩.</span></div>
+<div class="d"><span class="t">Application</span><span class="g">[λx.φ](a) reduces to φ with a in place of x (β-reduction). [λx.walks(x)](h) = walks(h).</span></div>
+<div class="d"><span class="t">Sets and functions</span><span class="g"><span class='nw'>⟦happy⟧<sup>M,g</sup></span> = λx<sub>e</sub>.happy(x) = {x : x is happy}.</span></div>
+<div class="d"><span class="t">Further types</span><span class="g">v for events (block 9). i for times (block 11). s for worlds: this module.</span></div>
+</div>
+<table class="rec "><thead><tr><th>Category</th><th>Denotation</th><th>Type</th></tr></thead><tbody><tr><td>Name</td><td>Individual</td><td>e</td></tr><tr><td>Sentence</td><td>Truth value</td><td>t</td></tr><tr><td>Intransitive verb</td><td>Set of individuals</td><td>⟨e, t⟩</td></tr><tr><td>Noun, adjective</td><td>Set of individuals</td><td>⟨e, t⟩</td></tr><tr><td>Transitive verb</td><td>Set of ordered pairs of individuals</td><td>⟨e, ⟨e, t⟩⟩</td></tr><tr><td>Preposition</td><td>Set of ordered pairs of individuals</td><td>⟨e, ⟨e, t⟩⟩</td></tr><tr><td>Determiner</td><td>Set of ordered pairs of sets</td><td>⟨⟨e, t⟩, ⟨⟨e, t⟩, t⟩⟩</td></tr><tr><td>Quantificational DP</td><td>Set of sets</td><td>⟨⟨e, t⟩, t⟩</td></tr></tbody></table>
+<div class="sc proc-head hd" style="margin-top:8pt">Lexical entries</div>
+<ol class="exs">
+<li><span>(24)</span><span><span class='nw'>⟦Harry⟧<sup>M,g</sup></span> = h</span></li>
+<li><span>(25)</span><span><span class='nw'>⟦walks⟧<sup>M,g</sup></span> = λx<sub>e</sub>.walks(x)</span></li>
+<li><span>(26)</span><span><span class='nw'>⟦cherishes⟧<sup>M,g</sup></span> = λy<sub>e</sub>.λx<sub>e</sub>.cherishes(x, y) &nbsp; object first</span></li>
+<li><span>(27)</span><span><span class='nw'>⟦with⟧<sup>M,g</sup></span> = λy<sub>e</sub>.λx<sub>e</sub>.with(x, y)</span></li>
+<li><span>(28)</span><span><span class='nw'>⟦every⟧<sup>M,g</sup></span> = λX<sub>⟨e,t⟩</sub>.λY<sub>⟨e,t⟩</sub>.∀x.X(x) → Y(x)</span></li>
+</ol>
+<p>The copula <i>is</i> and predicative <i>a</i> are treated as semantically vacuous.</p>
+    </div>
+    <div class="note"><p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i></p><p><b>Heim &amp; Kratzer 1998.</b> <i>Semantics in Generative Grammar.</i> Blackwell.</p></div>
+  </div>
+  <!-- == 6 == -->
+  <div class="sec">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Composition</h2>
+<div class="proc"><div class="sc proc-head">Steps of a semantic analysis</div><ol class="steps"><li>Lexical knowledge. Give the syntactic structure. Give the lexical entry for each terminal node.</li><li>Composition. Compute the denotation of each node from the composition rules and the terminal nodes. Give the denotation of the whole tree as an expression of predicate logic.</li><li>Modelling. Give the denotation of that expression relative to a model and an assignment function.</li></ol></div>
+<div class="defs"><div class="sc">Composition rules</div>
+<div class="d"><span class="t">Function Application</span><span class="g">If γ has subnodes α of type ⟨σ, τ⟩ and β of type σ, then <span class='nw'>⟦γ⟧<sup>M,g</sup></span> = <span class='nw'>⟦α⟧<sup>M,g</sup></span>(<span class='nw'>⟦β⟧<sup>M,g</sup></span>).</span></div>
+<div class="d"><span class="t">Predicate Modification</span><span class="g">If γ has subnodes α and β, both of type ⟨e, t⟩, then <span class='nw'>⟦γ⟧<sup>M,g</sup></span> = λx.<span class='nw'>⟦α⟧<sup>M,g</sup></span>(x) ∧ <span class='nw'>⟦β⟧<sup>M,g</sup></span>(x).</span></div>
+</div>
+<ol class="exs">
+<li><span>(29)</span><span><span class='s'>Harry cherishes Ron.</span><div class='drv'><span>⟦cherishes Ron⟧</span><span>= [λy.λx.cherishes(x, y)](r)</span><span class='tag'>FA</span><span></span><span>= λx.cherishes(x, r)</span><span class='tag'></span><span>⟦Harry cherishes Ron⟧</span><span>= [λx.cherishes(x, r)](h)</span><span class='tag'>FA</span><span></span><span>= cherishes(h, r)</span><span class='tag'></span></div></span></li>
+<li><span>(30)</span><span><span class='s'>Every dog is good.</span><div class='drv'><span>⟦every dog⟧</span><span>= [λX.λY.∀x.X(x) → Y(x)](λz.dog(z))</span><span class='tag'>FA</span><span></span><span>= λY.∀x.dog(x) → Y(x)</span><span class='tag'></span><span>⟦every dog is good⟧</span><span>= [λY.∀x.dog(x) → Y(x)](λz.good(z))</span><span class='tag'>FA</span><span></span><span>= ∀x.dog(x) → good(x)</span><span class='tag'></span></div></span></li>
+</ol>
+<div class="fig"><svg viewBox="0 0 430 150" width="100%" role="img" aria-label="Typed tree for Every dog is good">
+<g stroke="#000" stroke-width=".8" fill="none"><path d="M215 20 L120 52"/><path d="M215 20 L330 52"/><path d="M120 68 L55 104"/><path d="M120 68 L200 104"/></g>
+<g font-size="13.5" text-anchor="middle"><text x="215" y="14">t</text><text x="120" y="64">⟨⟨e, t⟩, t⟩</text><text x="330" y="64">⟨e, t⟩</text><text x="330" y="80" font-style="italic">good</text>
+<text x="55" y="116">⟨⟨e, t⟩, ⟨⟨e, t⟩, t⟩⟩</text><text x="55" y="132" font-style="italic">every</text><text x="200" y="116">⟨e, t⟩</text><text x="200" y="132" font-style="italic">dog</text></g></svg></div><ol class="exs">
+<li><span>(31)</span><span><span class='s'>Fiona is a happy dog.</span><div class='drv'><span>⟦happy dog⟧</span><span>= λx.happy(x) ∧ dog(x)</span><span class='tag'>PM</span><span>⟦Fiona is a happy dog⟧</span><span>= [λx.happy(x) ∧ dog(x)](f)</span><span class='tag'>FA</span><span></span><span>= happy(f) ∧ dog(f)</span><span class='tag'></span></div></span></li>
+</ol>
+
+    </div>
+    <div class="note"><p><b>Heim &amp; Kratzer 1998.</b> <i>Semantics in Generative Grammar.</i> Blackwell.</p></div>
+  </div>
+  <!-- == 7 == -->
+  <div class="sec">
+    <div class="num">7</div>
+    <div class="body">
+      <h2>Adjectives</h2>
+<div class="proc"><div class="sc proc-head">Two entailment tests</div><ol class="steps"><li><i>x is an A N</i> entails <i>x is an N</i>.</li><li><i>x is an A N</i> and <i>x is an M</i> entail <i>x is an A M</i>. <i>Clara is a female newscaster. Clara is a cellist. Therefore Clara is a female cellist.</i></li></ol></div>
+<table class="rec "><thead><tr><th>Class</th><th>Test 1</th><th>Test 2</th><th>Examples</th></tr></thead><tbody><tr><td>Intersective</td><td>holds</td><td>holds</td><td><span class='it'>happy, female</span></td></tr><tr><td>Subsective</td><td>holds</td><td>fails</td><td><span class='it'>experienced</span></td></tr><tr><td>Plain non-subsective</td><td>fails</td><td>fails</td><td><span class='it'>alleged</span></td></tr><tr><td>Privative</td><td>A N entails not N</td><td>fails</td><td><span class='it'>former, fake</span></td></tr></tbody></table>
+<p>Subsective, plain non-subsective and privative adjectives are all non-intersective. Plain non-subsective and privative adjectives are non-subsective.</p><div class="defs"><div class="sc">Entries</div>
+<div class="d"><span class="t">Intersective</span><span class="g"><span class='nw'>⟦happy⟧<sup>M,g</sup></span> = λx<sub>e</sub>.happy(x), type ⟨e, t⟩. Composes with the noun by Predicate Modification. <span class='nw'>⟦happy dog⟧<sup>M,g</sup></span> = Happy ∩ Dog.</span></div>
+<div class="d"><span class="t">Non-intersective</span><span class="g"><span class='nw'>⟦experienced⟧<sup>M,g</sup></span> = λX<sub>⟨e,t⟩</sub>.λx<sub>e</sub>.experiencedAs(X, x), type ⟨⟨e, t⟩, ⟨e, t⟩⟩. A relation between a predicate and an individual. Composes by Function Application.</span></div>
+<div class="d"><span class="t">Meaning postulate</span><span class="g">Subsective: ∀X.∀x.experiencedAs(X, x) → X(x). Privative: ∀X.∀x.formerAs(X, x) → ¬X(x).</span></div>
+</div>
+<ol class="exs">
+<li><span>(32)</span><span><span class='s'>Clara is an experienced newscaster.</span> &nbsp; <span class='nw'>experiencedAs(newscaster, c)</span><br>With <i>Clara is a cellist</i> this does not entail <span class='nw'>experiencedAs(cellist, c)</span>.</span></li>
+<li><span>(33)</span><span><span class='nw'>⟦happy⟧<sup>M,g</sup></span> = λX<sub>⟨e,t⟩</sub>.λx<sub>e</sub>.happy(x) ∧ X(x) composes in <i>happy dog</i> and fails in <i>John is happy</i>. Predicate Modification keeps the ⟨e, t⟩ entry for both.</span></li>
+</ol>
+
+    </div>
+    <div class="note"><p><b>Kamp &amp; Partee 1995.</b> Prototype theory and compositionality. <i>Cognition</i> 57: 129–191.</p></div>
+  </div>
+  <!-- == 8 == -->
+  <div class="sec">
+    <div class="num">8</div>
+    <div class="body">
+      <h2>Generalised quantifiers</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">Determiner</span><span class="g">A relation between two sets. Type ⟨⟨e, t⟩, ⟨⟨e, t⟩, t⟩⟩. DET(A)(B): the determiner combines first with A, then with B.</span></div>
+<div class="d"><span class="t">Generalised quantifier</span><span class="g">The denotation of a determiner plus a noun: a set of sets. Type ⟨⟨e, t⟩, t⟩. <span class='nw'>⟦every dog⟧<sup>M,g</sup></span> = {X : ∀y.dog(y) → X(y)}, the set of properties that all dogs have.</span></div>
+<div class="d"><span class="t">Conservative</span><span class="g">DET(A)(B) = DET(A)(A ∩ B). <i>Every dog is fast</i> = <i>Every dog is a fast dog</i>.</span></div>
+<div class="d"><span class="t">Extendable</span><span class="g">Adding things to the domain outside A and B does not change whether DET(A)(B) is true.</span></div>
+<div class="d"><span class="t">Upward monotone</span><span class="g">DET(A)(B ∩ C) entails DET(A)(B). <i>Every dog walks and is happy</i> entails <i>Every dog walks</i>.</span></div>
+<div class="d"><span class="t">Downward monotone</span><span class="g">DET(A)(B) entails DET(A)(B ∩ C). <i>No dog walks</i> entails <i>No dog walks and is happy</i>.</span></div>
+<div class="d"><span class="t">Non-monotone</span><span class="g">Neither pattern holds. On the number line the quantifier turns on and then off again: <i>between two and five dogs</i>.</span></div>
+</div>
+<table class="rec "><thead><tr><th>Determiner</th><th>DET(A)(B)</th><th>Conservative</th><th>Monotone</th></tr></thead><tbody><tr><td><span class='it'>every</span></td><td>A ⊆ B</td><td>yes</td><td>upward</td></tr><tr><td><span class='it'>some</span></td><td>A ∩ B ≠ ∅</td><td>yes</td><td>upward</td></tr><tr><td><span class='it'>no</span></td><td>A ∩ B = ∅</td><td>yes</td><td>downward</td></tr><tr><td><span class='it'>two</span> (at least)</td><td>|A ∩ B| ≥ 2</td><td>yes</td><td>upward</td></tr><tr><td><span class='it'>most</span></td><td>|A ∩ B| &gt; |A − B|</td><td>yes</td><td>upward</td></tr><tr><td>ex2</td><td>|A ∩ B| = 2</td><td>yes</td><td>non-monotone</td></tr><tr><td>even</td><td>|A ∩ B| = 2k, for some integer k</td><td>yes</td><td>non-monotone</td></tr><tr><td>equi</td><td>|A| = |B|</td><td>no</td><td>non-monotone</td></tr></tbody></table>
+<p>ex2, even and equi are fictional. Natural language determiners are conservative and extendable. equi fails conservativity: with A = {a, b} and B = {c, d}, |A| = |B| but |A| ≠ |A ∩ B|.</p>
+    </div>
+    <div class="note"><p><b>Barwise &amp; Cooper 1981.</b> Generalized quantifiers and natural language. <i>Linguistics and Philosophy</i> 4: 159–219.</p></div>
+  </div>
+  <!-- == 9 == -->
+  <div class="sec">
+    <div class="num">9</div>
+    <div class="body">
+      <h2>Events</h2>
+<ol class="exs">
+<li><span>(34)</span><span><span class='s'>Jones buttered the toast slowly, deliberately, in the kitchen, with a knife.</span> ⊨ <span class='s'>Jones buttered the toast.</span></span></li>
+</ol>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">Reification</span><span class="g">Events are entities. Type v, variable e. Adverbials are predicates of events.</span></div>
+<div class="d"><span class="t">Davidsonian verb</span><span class="g">One extra argument place, for the event. <span class='nw'>⟦butter⟧<sup>M,g</sup></span> = λx<sub>e</sub>.λy<sub>e</sub>.λe<sub>v</sub>.butter(y, x, e).</span></div>
+<div class="d"><span class="t">Existential closure</span><span class="g"><span class='nw'>⟦∃⟧<sup>M,g</sup></span> = λV<sub>⟨v,t⟩</sub>.∃e.V(e). Sits at the top of the tree and closes off the event argument.</span></div>
+<div class="d"><span class="t">Adverb</span><span class="g"><span class='nw'>⟦slowly⟧<sup>M,g</sup></span> = λR<sub>⟨e,⟨v,t⟩⟩</sub>.λx<sub>e</sub>.λe<sub>v</sub>.R(x)(e) ∧ slowly(e). Takes a Davidsonian VP and returns a Davidsonian VP.</span></div>
+<div class="d"><span class="t">Neo-Davidsonian</span><span class="g">Verbs are predicates of events only, type ⟨v, t⟩. Participants are introduced separately by thematic roles.</span></div>
+<div class="d"><span class="t">Thematic role</span><span class="g">The relation a participant bears to the event. Agent: the doer. Theme: the participant acted on. Instrument: the means.</span></div>
+</div>
+<table class="rec "><thead><tr><th>Verb</th><th>Classical</th><th>Davidsonian</th><th>Neo-Davidsonian</th></tr></thead><tbody><tr><td>Intransitive</td><td>⟨e, t⟩</td><td>⟨e, ⟨v, t⟩⟩</td><td>⟨v, t⟩</td></tr><tr><td>Transitive</td><td>⟨e, ⟨e, t⟩⟩</td><td>⟨e, ⟨e, ⟨v, t⟩⟩⟩</td><td>⟨v, t⟩</td></tr></tbody></table>
+<ol class="exs">
+<li><span>(35)</span><span><span class='s'>Jones buttered the toast slowly with a knife.</span><br>a. Davidsonian: ∃e.butter(j, t, e) ∧ slowly(e) ∧ with(k, e)<br>b. Neo-Davidsonian: ∃e.butter(e) ∧ agent(e, j) ∧ theme(e, t) ∧ slowly(e) ∧ instrument(e, k)</span></li>
+<li><span>(36)</span><span>(35a) ⊨ ∃e.butter(j, t, e). One conjunct is derived from a conjunction, as with happy(f) ∧ dog(f) ⊨ dog(f).</span></li>
+</ol>
+<div class="sc proc-head hd" style="margin-top:8pt">Two analyses that fail</div>
+<div class="rules"><div><span>Predicate of individuals</span><span>buttered(j, t) ∧ slow(j). <i>Jones buttered the toast slowly and cut the cake quickly</i> would give slow(j) ∧ quick(j).</span></div><div><span>Extra arguments</span><span>butter(x<sub>1</sub>, x<sub>2</sub>, x<sub>3</sub>, …): speed, time, location, instrument, … with no upper bound.</span></div></div>
+
+    </div>
+    <div class="note"><p><b>Davidson 1967.</b> The logical form of action sentences. In Rescher (ed.), <i>The Logic of Decision and Action.</i></p><p><b>Parsons 1990.</b> <i>Events in the Semantics of English.</i> MIT Press.</p></div>
+  </div>
+  <!-- == 10 == -->
+  <div class="sec">
+    <div class="num">10</div>
+    <div class="body">
+      <h2>Aktionsart</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">Eventuality</span><span class="g">States and events. States obtain; events occur. Events divide into activities, accomplishments and achievements.</span></div>
+<div class="d"><span class="t">State</span><span class="g">Homogeneous, no internal structure. Usually no volition. <i>know, believe, have, love, fear</i>.</span></div>
+<div class="d"><span class="t">Activity</span><span class="g">Takes time and does not culminate. Usually volitional. <i>run, walk, sing, drive a car</i>.</span></div>
+<div class="d"><span class="t">Accomplishment</span><span class="g">Takes time and culminates. Preparation (an activity), culmination, result (a state). <i>paint a picture, build a house</i>.</span></div>
+<div class="d"><span class="t">Achievement</span><span class="g">Culminates and is instantaneous. No preparation phase: event and result. <i>recognise, spot, find, die</i>.</span></div>
+<div class="d"><span class="t">Telic</span><span class="g">Has a set terminal point: accomplishments and achievements. Atelic: states and activities.</span></div>
+<div class="d"><span class="t">Subinterval property</span><span class="g">If the predicate is true at an interval I, it is true at any subinterval of I. Holds for states; for activities down to a certain granularity; fails for telic predicates.</span></div>
+</div>
+<table class="rec c"><thead><tr><th>Class</th><th>Durative</th><th>Dynamic</th><th>Telic</th></tr></thead><tbody><tr><td>State</td><td>+</td><td>−</td><td>−</td></tr><tr><td>Activity</td><td>+</td><td>+</td><td>−</td></tr><tr><td>Accomplishment</td><td>+</td><td>+</td><td>+</td></tr><tr><td>Achievement</td><td>−</td><td>+</td><td>+</td></tr><tr><td>Semelfactive</td><td>−</td><td>+</td><td>−</td></tr></tbody></table>
+<table class="rec c nw1"><thead><tr><th>Diagnostic</th><th>State</th><th>Activity</th><th>Accompl.</th><th>Achiev.</th></tr></thead><tbody><tr><td><i>for fifteen minutes</i></td><td>✓</td><td>✓</td><td>#</td><td>#</td></tr><tr><td><i>in fifteen minutes</i></td><td>#</td><td>#</td><td>✓</td><td>✓</td></tr><tr><td><i>finished V-ing</i></td><td>#</td><td>?</td><td>✓</td><td>#</td></tr><tr><td><i>carefully, deliberately</i></td><td>#</td><td>✓</td><td>✓</td><td>#</td></tr><tr><td>Simple present</td><td>holds now</td><td>habitual</td><td>habitual</td><td>habitual</td></tr><tr><td><i>A when B</i>: A falls</td><td>during B</td><td>during B</td><td>during or at end of B</td><td>at B</td></tr></tbody></table>
+<p><span class='runin'>Aktionsart belongs to the verb phrase.</span> The object can change the class.</p><ol class="exs">
+<li><span>(37)</span><span><span class='s'>run</span> activity &nbsp;·&nbsp; <span class='s'>run a mile</span> accomplishment</span></li>
+<li><span>(38)</span><span><span class='s'>build sandcastles</span> activity &nbsp;·&nbsp; <span class='s'>build a sandcastle</span> accomplishment</span></li>
+<li><span>(39)</span><span><span class='s'>drink beer</span> atelic &nbsp;·&nbsp; <span class='s'>drink a beer, drink a pint of beer, drink three beers</span> telic</span></li>
+</ol>
+<div class="defs"><div class="sc">Nominal structure</div>
+<div class="d"><span class="t">Count noun</span><span class="g">Takes numerals, the plural and <i>many</i>: <i>three rings</i>.</span></div>
+<div class="d"><span class="t">Mass noun</span><span class="g">Resists numerals and the plural, takes <i>much</i>: #<i>three water</i>. Counted through a measure phrase or a packaged reading: <i>a pint of beer, three beers</i>.</span></div>
+<div class="d"><span class="t">Boundedness</span><span class="g">A bare mass or bare plural object is unbounded and gives an atelic VP. A counted or measured object is bounded and gives a telic VP.</span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Vendler 1957.</b> Verbs and times. <i>The Philosophical Review</i> 66: 143–160.</p><p><b>Dowty 1979.</b> <i>Word Meaning and Montague Grammar.</i> Reidel.</p></div>
+  </div>
+  <!-- == 11 == -->
+  <div class="sec">
+    <div class="num">11</div>
+    <div class="body">
+      <h2>Tense and aspect</h2>
+<div class="defs"><div class="sc">Definitions</div>
+<div class="d"><span class="t">S</span><span class="g">Speech time.</span></div>
+<div class="d"><span class="t">E</span><span class="g">Event time: E = τ(e), the runtime of the event e.</span></div>
+<div class="d"><span class="t">T</span><span class="g">Topic time, or reference time: the time the sentence is about. Adverbials like <i>yesterday</i> and <i>at 5pm</i> pick it out.</span></div>
+<div class="d"><span class="t">&lt; and ⊆</span><span class="g">S, T and E are intervals. T &lt; E: T temporally precedes E. T ⊆ E: E temporally contains T.</span></div>
+<div class="d"><span class="t">Tense</span><span class="g">Locates the topic time relative to the speech time.</span></div>
+<div class="d"><span class="t">Viewpoint aspect</span><span class="g">Relates the event time to the topic time.</span></div>
+</div>
+<table class="rec "><thead><tr><th>Tense</th><th></th><th>Aspect</th><th></th></tr></thead><tbody><tr><td>Past</td><td>T &lt; S</td><td>Simple (non-states)</td><td>E ⊆ T</td></tr><tr><td>Present</td><td>T = S</td><td>Perfect</td><td>E &lt; T</td></tr><tr><td>Future</td><td>S &lt; T</td><td>Progressive, and states</td><td>T ⊆ E</td></tr><tr><td></td><td></td><td>Continuative perfect (states)</td><td>T ⊆ E, T = S</td></tr></tbody></table>
+<div class="fig"><svg viewBox="0 0 430 118" width="100%" role="img" aria-label="Timelines for simple past, past perfect and past progressive">
+<g font-size="13">
+<g transform="translate(0,6)"><text x="0" y="16">Simple past</text><line x1="120" y1="20" x2="420" y2="20" stroke="#000" stroke-width=".7"/><rect x="190" y="8" width="110" height="9" fill="none" stroke="#000" stroke-width=".8"/><rect x="220" y="23" width="50" height="5" fill="#000"/><line x1="380" y1="12" x2="380" y2="28" stroke="#000" stroke-width="1.2"/><text x="245" y="5" text-anchor="middle" font-size="11.5">T</text><text x="212" y="30" text-anchor="end" font-size="11.5">E</text><text x="380" y="9" text-anchor="middle" font-size="11.5">S</text></g>
+<g transform="translate(0,44)"><text x="0" y="16">Past perfect</text><line x1="120" y1="20" x2="420" y2="20" stroke="#000" stroke-width=".7"/><rect x="240" y="8" width="70" height="9" fill="none" stroke="#000" stroke-width=".8"/><rect x="150" y="23" width="50" height="5" fill="#000"/><line x1="380" y1="12" x2="380" y2="28" stroke="#000" stroke-width="1.2"/><text x="275" y="5" text-anchor="middle" font-size="11.5">T</text><text x="142" y="30" text-anchor="end" font-size="11.5">E</text><text x="380" y="9" text-anchor="middle" font-size="11.5">S</text></g>
+<g transform="translate(0,82)"><text x="0" y="16">Past progressive</text><line x1="120" y1="20" x2="420" y2="20" stroke="#000" stroke-width=".7"/><rect x="225" y="8" width="40" height="9" fill="none" stroke="#000" stroke-width=".8"/><rect x="160" y="23" width="170" height="5" fill="#000"/><line x1="380" y1="12" x2="380" y2="28" stroke="#000" stroke-width="1.2"/><text x="245" y="5" text-anchor="middle" font-size="11.5">T</text><text x="152" y="30" text-anchor="end" font-size="11.5">E</text><text x="380" y="9" text-anchor="middle" font-size="11.5">S</text></g>
+</g></svg></div><ol class="exs">
+<li><span>(40)</span><span><span class='s'>Yesterday Declan walked Fiona.</span><br>T = yesterday ∧ T &lt; S ∧ ∃e.E = τ(e) ∧ E ⊆ T ∧ walk(d, f, e)</span></li>
+<li class="two"><span>(41)</span><span class="s">Tweety flew to London.</span><span>T &lt; S ∧ E ⊆ T</span></li>
+<li class="two"><span>(42)</span><span class="s">Tweety was flying to London.</span><span>T &lt; S ∧ T ⊆ E</span></li>
+<li class="two"><span>(43)</span><span class="s">Fiona knew the answer.</span><span>T &lt; S ∧ T ⊆ E</span></li>
+<li class="two"><span>(44)</span><span class="s">Fiona has arrived.</span><span>T = S ∧ E &lt; T</span></li>
+<li class="two"><span>(45)</span><span class="s">Fiona had arrived.</span><span>T &lt; S ∧ E &lt; T</span></li>
+<li class="two"><span>(46)</span><span class="s">Fiona will have arrived.</span><span>S &lt; T ∧ E &lt; T</span></li>
+<li class="two"><span>(47)</span><span class="s">Omar has been sick for two days.</span><span>T = S ∧ T ⊆ E</span></li>
+<li><span>(48)</span><span>a. <span class='s'>At 5pm, I mailed the letter.</span> &nbsp; <span class='nw'>E ⊆ T</span><br>b. <span class='s'>At 5pm, I had mailed the letter.</span> &nbsp; <span class='nw'>E &lt; T</span>, with T = 5pm</span></li>
+</ol>
+<div class="defs"><div class="sc">Further points</div>
+<div class="d"><span class="t">English</span><span class="g">The grammar marks past against non-past. Future and perfect are periphrastic: <i>will go, had gone</i>. With event verbs the simple present is habitual; the present progressive reports the ongoing event.</span></div>
+<div class="d"><span class="t">Times as entities</span><span class="g">Times can be bound like variables. <i>I never ate vanilla ice cream</i>: ¬∃t … <i>Whenever I eat ice cream, I eat vanilla ice cream</i>: ∀t … → … Type i, variable t.</span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Reichenbach 1947.</b> <i>Elements of Symbolic Logic.</i> Macmillan.</p><p><b>Klein 1994.</b> <i>Time in Language.</i> Routledge.</p><p><b>Partee 1973.</b> Some structural analogies between tenses and pronouns in English. <i>The Journal of Philosophy</i> 70: 601–609.</p></div>
+  </div>
+</div>
+</body>
+</html>

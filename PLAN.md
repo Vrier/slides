@@ -1153,3 +1153,9 @@ what the next session must know)*
   week 5 the soft-max speaker and pragmatic listener.
 - `handout-answers.html` beside it, not linked from the hub, styled as the Semantics II answer sheets
   (#1f4e79, sans, answers in place of the ruled lines, no colons); figures and tables carry their answers in the same blue.
+
+### 2026-10-13 — Semantics I summary and exercises on the hub; Pragmatics II week 3 handout ready
+- `weeks-semantics2/semantics-i-summary.html` and `semantics-i-exercises.html`: the Semantics I refresher sheets
+  from 20 September, unchanged apart from the stylesheet path (now one level up). Linked from the LIU33008
+  tools row beside Overview through a new optional `docs:` list on the module identity.
+- Hub: Pragmatics II week 3 handout marked ready (the handout patch of 9 October is applied).

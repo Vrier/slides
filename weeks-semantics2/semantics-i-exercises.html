@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Semantics I Exercises · Homework</title>
+<style>
+  :root { --serif: 'NewComputerModern10', 'NewCM10', 'Latin Modern Roman', 'STIX Two Text', Georgia, serif; --rule:#000; }
+  @page { size:A4; margin:16mm 15mm 15mm 15mm; }
+  html, body { margin:0; padding:0; background:#f4f4f2; }
+  body { font-family:var(--serif); color:#000; font-size:11pt; line-height:1.36; }
+  .sheet { width:210mm; min-height:297mm; margin:0 auto; background:#fff; padding:16mm 15mm; box-sizing:border-box; }
+  .sc { text-transform:uppercase; letter-spacing:.14em; font-size:7.8pt; font-weight:600; }
+  .mast { display:flex; justify-content:space-between; align-items:flex-start; gap:20pt; }
+  .mast .inst { font-weight:700; font-size:12pt; line-height:1.2; }
+  .mast .ga { font-style:italic; font-size:9pt; }
+  .mast .uni { margin-top:2pt; }
+  .mast .right { text-align:right; font-size:10pt; line-height:1.35; }
+  .mast-rule { border-top:1.2pt solid var(--rule); margin:9pt 0 14pt; }
+  .doc-kicker { margin-bottom:3pt; }
+  .doc-title { font-size:23pt; font-weight:700; line-height:1.12; margin:0 0 4pt; }
+  .doc-sub { font-size:10pt; margin:0 0 2pt; }
+  .sec { display:grid; grid-template-columns:28pt 1fr 92pt; column-gap:13pt;
+         margin-top:18pt; }
+  .sec > .num, .sec > .note { padding-top:8pt; }
+  .sec h2 { position:relative; padding-top:8pt; }
+  .sec h2::before { content:""; position:absolute; top:0; left:-41pt; right:-105pt; border-top:1.2pt solid var(--rule); }
+  .sec > .num { font-size:21pt; font-weight:700; line-height:.96; }
+  .sec > .body { min-width:0; }
+  .sec > .note { font-size:8.4pt; line-height:1.36; }
+  .sec > .note p { margin:0 0 5pt; }
+  .sec h2 { font-size:13.5pt; font-weight:700; margin:0 0 5pt; line-height:1.2; }
+  .sec p { margin:0 0 6pt; }
+  .runin { font-weight:700; }
+  ol.exs { list-style:none; margin:6pt 0 8pt; padding:0; }
+  ol.exs li { display:grid; grid-template-columns:26pt 1fr; margin:0 0 3pt; }
+  ol.exs li.two { grid-template-columns:26pt 1.3fr 1fr; column-gap:8pt; }
+  ol.exs .s { font-style:italic; }
+  ol.exs .ctx { font-style:normal; font-size:9.4pt; }
+  .proc { margin:8pt 0 7pt; }
+  .proc-head { margin-bottom:3pt; }
+  ol.steps { margin:0; padding-left:16pt; }
+  ol.steps li { margin:0 0 2pt; }
+  .tasks { margin-top:4pt; }
+  .task { display:grid; grid-template-columns:22pt 1fr; margin:0 0 5pt; }
+  .task .s { font-style:italic; }
+  ul.items { list-style:none; margin:3pt 0 2pt; padding:0; }
+  ul.items li { display:grid; grid-template-columns:22pt 1fr; margin:0 0 2pt; }
+  table.rec { width:100%; border-collapse:collapse; margin:6pt 0 8pt; }
+  table.rec th { text-align:left; font-weight:600; text-transform:uppercase; letter-spacing:.1em;
+                 font-size:7.6pt; padding:3pt 8pt 3pt 0; border-top:.9pt solid var(--rule); border-bottom:.9pt solid var(--rule); }
+  table.rec td { padding:2.2pt 8pt 2.2pt 0; vertical-align:top; font-size:10.4pt; }
+  table.rec tr:last-child td { border-bottom:.9pt solid var(--rule); }
+  table.rec .it { font-style:italic; }
+  table.rec.c td + td, table.rec.c th + th { text-align:center; }
+  table.rec.nw1 td:first-child { white-space:nowrap; }
+  table.rec.tt th { text-transform:none; letter-spacing:0; font-size:10.4pt; font-weight:400; text-align:center; }
+  table.rec.tt td { text-align:center; padding:1.5pt 8pt 1.5pt 0; }
+  .defs { border-top:.6pt solid var(--rule); border-bottom:.6pt solid var(--rule);
+          padding:5pt 0 4.5pt; margin:7pt 0 9pt; }
+  .defs > .sc { margin-bottom:3.5pt; }
+  .defs > div.d { display:grid; grid-template-columns:96pt 1fr; column-gap:10pt; margin:0 0 2.5pt; }
+  .defs > div.d:last-child { margin-bottom:0; }
+  .defs .t { font-weight:700; }
+  .defs .g { font-size:10.4pt; }
+  .rules { margin:4pt 0 8pt; }
+  .rules > div { display:grid; grid-template-columns:118pt 1fr; column-gap:10pt; margin:0 0 3pt; }
+  .rules > div > span:first-child { font-style:italic; }
+  .fig { margin:6pt 0 8pt; }
+  .fig svg { display:block; max-width:100%; height:auto; font-family:var(--serif); }
+  i.s { font-style:italic; }
+  .nw { white-space:nowrap; }
+  .drv { display:grid; grid-template-columns:auto 1fr auto; column-gap:5pt; row-gap:1.5pt; font-size:10.2pt; margin:2pt 0 2pt; }
+  .drv .tag { font-size:8pt; letter-spacing:.1em; align-self:center; }
+  sub { font-size:.72em; line-height:0; }
+  @media print {
+    html, body { background:#fff; }
+    .sheet { width:auto; min-height:0; margin:0; padding:0; }
+    .defs > div.d, .proc, .task, table.rec, ol.exs, .fig, .rules { break-inside:avoid; page-break-inside:avoid; }
+    .sec h2, .proc-head, .hd { break-after:avoid; page-break-after:avoid; }
+    .sec > .note { break-inside:auto; }
+  }
+ sup { font-size:.7em; line-height:0; } .task { margin-bottom:7pt; } .sec { margin-top:16pt; } </style>
+<link rel="stylesheet" href="../shared/font-latex.css" />
+</head>
+<body>
+<div class="sheet">
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+  <div class="sc doc-kicker">Refresher · Homework</div>
+  <h1 class="doc-title">Semantics I: Exercises</h1>
+  <p class="doc-sub">Formative. Block numbers match the summary handout. Work on separate paper and show each step.</p>
+
+  <!-- == 0 == -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Sets, relations and functions</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Give the cardinality of each set.<br><span class='nw'>i. {∅}</span> &nbsp; <span class='nw'>ii. {a, a, b}</span> &nbsp; <span class='nw'>iii. {{a, b}, a, b}</span> &nbsp; <span class='nw'>iv. {13, {7, 66, 1}}</span></span></div>
+<div class="task"><span>(b)</span><span>Decide: true or false.<br><span class='nw'>i. {3, 3, 2} = {3, 2}</span> &nbsp; <span class='nw'>ii. {∅} = ∅</span> &nbsp; <span class='nw'>iii. ∅ ⊆ {∅}</span> &nbsp; <span class='nw'>iv. {a} ∈ {a, b}</span> &nbsp; <span class='nw'>v. {a} ⊆ {a, b}</span> &nbsp; <span class='nw'>vi. ⟨a, b⟩ = ⟨b, a⟩</span></span></div>
+<div class="task"><span>(c)</span><span>Let A = {1, 2, 3, 4} and B = {3, 4, 5}. Compute A ∩ B, A ∪ B, A − B, B − A and |A × B|.</span></div>
+<div class="task"><span>(d)</span><span>Translate into set-theoretic form. Treat nouns, adjectives and verbs as sets and names as individuals.<ul class="items"><li><span>i.</span><span><span class='s'>Fiona is a dog that barks.</span></span></li><li><span>ii.</span><span><span class='s'>Rory is tall but he isn’t sleepy.</span></span></li><li><span>iii.</span><span><span class='s'>No linguist is a philosopher.</span></span></li><li><span>iv.</span><span><span class='s'>All happy dogs bark.</span></span></li></ul></span></div>
+<div class="task"><span>(e)</span><span>Decide which relations are functions, with a reason for each.<br><span class='nw'>i. people to their birthdays</span> &nbsp; <span class='nw'>ii. people to their siblings</span> &nbsp; <span class='nw'>iii. {⟨1, a⟩, ⟨2, a⟩}</span> &nbsp; <span class='nw'>iv. {⟨1, a⟩, ⟨1, b⟩}</span></span></div>
+</div>
+
+    </div>
+    <div class="note"></div>
+  </div>
+  <!-- == 1 == -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Entailment and truth functions</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Assign a propositional variable to each atomic sentence, then symbolise.<ul class="items"><li><span>i.</span><span><span class='s'>If it rains and the pitch floods, then the match is cancelled.</span></span></li><li><span>ii.</span><span><span class='s'>Neither Mary nor John passed.</span></span></li><li><span>iii.</span><span><span class='s'>You can borrow the car only if you fill the tank.</span></span></li><li><span>iv.</span><span><span class='s'>It is not the case that both the projector and the microphone work.</span></span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Construct a complete truth table for each formula. Classify each as a tautology, a contradiction or contingent.<ul class="items"><li><span>i.</span><span>¬(p ∧ q) ↔ (¬p ∨ ¬q)</span></li><li><span>ii.</span><span>(p → q) ∧ (p ∧ ¬q)</span></li><li><span>iii.</span><span>(p ∨ q) → r</span></li></ul></span></div>
+<div class="task"><span>(c)</span><span>Test each argument with a truth table. State whether the premises entail the conclusion and name the row that decides it.<ul class="items"><li><span>i.</span><span>p → q, ¬q ∴ ¬p</span></li><li><span>ii.</span><span>p → q, q ∴ p</span></li></ul></span></div>
+<div class="task"><span>(d)</span><span>Give one English conditional that → makes true and that speakers judge odd or false. Explain the mismatch in two sentences.</span></div>
+</div>
+
+    </div>
+    <div class="note"></div>
+  </div>
+  <!-- == 2 == -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Propositional logic as a language</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Decide which strings are WFF of propositional logic. For each string that fails, name the rule it breaks.<ul class="items"><li><span>i.</span><span>¬¬p</span></li><li><span>ii.</span><span>(p ∧ q ∨ r)</span></li><li><span>iii.</span><span>¬(p)</span></li><li><span>iv.</span><span>(φ → ψ)</span></li><li><span>v.</span><span>((p → q) ↔ ¬r)</span></li><li><span>vi.</span><span>p¬q</span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Draw the construction tree for ¬(p ∧ q) → (r ∨ ¬s).</span></div>
+<div class="task"><span>(c)</span><span>Let M(p) = 1, M(q) = 0, M(r) = 0. Compute each denotation step by step, citing the semantic rule at each step.<ul class="items"><li><span>i.</span><span>⟦¬p ∨ (q → r)⟧<sup>M</sup></span></li><li><span>ii.</span><span>⟦(p ∧ ¬q) ↔ r⟧<sup>M</sup></span></li></ul></span></div>
+</div>
+
+    </div>
+    <div class="note"></div>
+  </div>
+  <!-- == 3 == -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Predicate logic</h2>
+<p><span class='runin'>Model M<sub>2</sub>.</span> D<sub>2</sub> = {Anna, Brian, Ciara, Rex}. I<sub>2</sub>(a) = Anna, I<sub>2</sub>(b) = Brian, I<sub>2</sub>(c) = Ciara, I<sub>2</sub>(r) = Rex. I<sub>2</sub>(linguist) = {Anna, Brian}. I<sub>2</sub>(dog) = {Rex}. I<sub>2</sub>(happy) = {Anna, Rex}. I<sub>2</sub>(admires) = {⟨Anna, Brian⟩, ⟨Brian, Anna⟩, ⟨Ciara, Anna⟩, ⟨Rex, Anna⟩}.</p><div class="tasks">
+<div class="task"><span>(a)</span><span>Translate into predicate logic.<ul class="items"><li><span>i.</span><span><span class='s'>Anna admires Brian and Brian isn’t happy.</span></span></li><li><span>ii.</span><span><span class='s'>If Ciara is a linguist, then Ciara admires herself.</span></span></li><li><span>iii.</span><span><span class='s'>Either Anna admires Brian or Brian admires Anna, but not both.</span></span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Compute the truth value of each translation in M<sub>2</sub>. Show every membership check.</span></div>
+<div class="task"><span>(c)</span><span>Change I<sub>2</sub> minimally so that (ii) comes out false.</span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> §4.1.</p></div>
+  </div>
+  <!-- == 4 == -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Quantifiers, variables and assignments</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Translate into predicate logic.<ul class="items"><li><span>i.</span><span><span class='s'>Some linguist is happy.</span></span></li><li><span>ii.</span><span><span class='s'>Every linguist admires Anna.</span></span></li><li><span>iii.</span><span><span class='s'>No dog admires a linguist.</span></span></li><li><span>iv.</span><span><span class='s'>Not every linguist is happy.</span></span></li><li><span>v.</span><span><span class='s'>Every linguist who admires Anna is happy.</span></span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Evaluate each translation in M<sub>2</sub> (block 3). For each, name the individual or individuals k whose assignment g[x ↦ k] settles the value.</span></div>
+<div class="task"><span>(c)</span><span><span class='s'>Some student read every book.</span> Give a formula for each reading and a paraphrase of each. State which reading entails the other.</span></div>
+<div class="task"><span>(d)</span><span>Mark each variable occurrence as bound or free.<ul class="items"><li><span>i.</span><span>∀x.[dog(x) → barks(x)] ∧ happy(x)</span></li><li><span>ii.</span><span>∃x.[admires(x, y) ∧ ∀y.[linguist(y)]]</span></li></ul></span></div>
+<div class="task"><span>(e)</span><span>∀x.[cat(x) ∧ purrs(x)] is the wrong translation of <span class='s'>Every cat purrs.</span> ∃x.[cat(x) → purrs(x)] is the wrong translation of <span class='s'>Some cat purrs.</span> For each, describe a model where the wrong formula and the right formula differ in truth value.</span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Coppock &amp; Champollion.</b> <i>Invitation to Formal Semantics.</i> §4.2.</p></div>
+  </div>
+  <!-- == 5 == -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Types and λ</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Give the type of each expression.<ul class="items"><li><span>i.</span><span>λx<sub>e</sub>.dog(x)</span></li><li><span>ii.</span><span>λy<sub>e</sub>.λx<sub>e</sub>.loves(x, y)</span></li><li><span>iii.</span><span>λX<sub>⟨e,t⟩</sub>.∃x.X(x)</span></li><li><span>iv.</span><span>λX<sub>⟨e,t⟩</sub>.λx<sub>e</sub>.X(x) ∧ happy(x)</span></li><li><span>v.</span><span>¬, treated as a function</span></li><li><span>vi.</span><span>∧, treated as a function</span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Reduce each expression as far as possible. Show each application.<ul class="items"><li><span>i.</span><span>[λx.happy(x)](f)</span></li><li><span>ii.</span><span>[λy.λx.loves(x, y)](j)(m)</span></li><li><span>iii.</span><span>[λX.∀x.dog(x) → X(x)](λy.barks(y))</span></li><li><span>iv.</span><span>[λX.λY.∃x.X(x) ∧ Y(x)](λz.dog(z))(λz.loves(z, j))</span></li></ul></span></div>
+<div class="task"><span>(c)</span><span>State who loves whom in the result of (b.ii).</span></div>
+<div class="task"><span>(d)</span><span>Reverse engineer lexical entries for <span class='s'>some</span> and <span class='s'>no</span> by λ-abstraction from the formulas for <span class='s'>Some dog barks</span> and <span class='s'>No dog barks</span>. Give the type of each.</span></div>
+</div>
+
+    </div>
+    <div class="note"></div>
+  </div>
+  <!-- == 6 == -->
+  <div class="sec">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Composition</h2>
+<p>For each sentence give the tree with a type at every node, the lexical entries, the denotation of every node with the rule used, and the final formula.</p><div class="tasks">
+<div class="task"><span>(a)</span><span><span class='s'>Merry is with Pippin.</span></span></div>
+<div class="task"><span>(b)</span><span><span class='s'>Some dog loves Jim.</span></span></div>
+<div class="task"><span>(c)</span><span><span class='s'>Every happy dog barks.</span></span></div>
+<div class="task"><span>(d)</span><span><span class='s'>Every happy linguist admires Brian.</span> After the derivation, evaluate the final formula in M<sub>2</sub> (block 3).</span></div>
+</div>
+
+    </div>
+    <div class="note"></div>
+  </div>
+  <!-- == 7 == -->
+  <div class="sec">
+    <div class="num">7</div>
+    <div class="body">
+      <h2>Adjectives</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Classify each adjective as intersective, subsective, plain non-subsective or privative. Support each answer with the two entailment tests, using full example sentences.<ul class="items"><li><span>i.</span><span><span class='s'>Irish</span></span></li><li><span>ii.</span><span><span class='s'>skilful</span></span></li><li><span>iii.</span><span><span class='s'>alleged</span></span></li><li><span>iv.</span><span><span class='s'>counterfeit</span></span></li><li><span>v.</span><span><span class='s'>potential</span></span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Give a lexical entry and type for <span class='s'>skilful</span>, and the meaning postulate that makes it subsective. Derive the denotation of <span class='s'>Clara is a skilful cellist.</span> Show that with <span class='s'>Clara is a newscaster</span> it does not entail that Clara is a skilful newscaster.</span></div>
+<div class="task"><span>(c)</span><span>⟦happy⟧ = λX<sub>⟨e,t⟩</sub>.λx<sub>e</sub>.happy(x) ∧ X(x). Show where the derivation of <span class='s'>John is happy</span> fails with this entry. Name the composition rule that lets the ⟨e, t⟩ entry cover both uses.</span></div>
+</div>
+
+    </div>
+    <div class="note"></div>
+  </div>
+  <!-- == 8 == -->
+  <div class="sec">
+    <div class="num">8</div>
+    <div class="body">
+      <h2>Generalised quantifiers</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Give DET(A)(B) in set-theoretic terms for <span class='s'>at least three</span>, <span class='s'>exactly one</span>, <span class='s'>fewer than three</span> and <span class='s'>more than half</span>.</span></div>
+<div class="task"><span>(b)</span><span>Write ⟦no dog⟧ and ⟦some dog⟧ as sets of sets. Then decide which of I<sub>2</sub>(linguist), I<sub>2</sub>(happy) and D<sub>2</sub> are members of ⟦every linguist⟧ in M<sub>2</sub> (block 3).</span></div>
+<div class="task"><span>(c)</span><span>Three fictional determiners:<ul class="items"><li><span>i.</span><span>only(A)(B) = B ⊆ A</span></li><li><span>ii.</span><span>odd(A)(B) = |A ∩ B| is odd</span></li><li><span>iii.</span><span>allbut1(A)(B) = |A − B| = 1</span></li></ul>For each, state whether it is conservative, and whether it is upward monotone, downward monotone or non-monotone in B. Justify each answer with sets or with a test sentence pair.</span></div>
+<div class="task"><span>(d)</span><span>State both readings of <span class='s'>Two students passed</span> in set-theoretic terms. Give the monotonicity of each.</span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Barwise &amp; Cooper 1981.</b> Generalized quantifiers and natural language. <i>Linguistics and Philosophy</i> 4: 159–219.</p></div>
+  </div>
+  <!-- == 9 == -->
+  <div class="sec">
+    <div class="num">9</div>
+    <div class="body">
+      <h2>Events</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Give a Davidsonian representation of each sentence. Give a Neo-Davidsonian representation of (ii).<ul class="items"><li><span>i.</span><span><span class='s'>Fiona barked loudly in the garden.</span></span></li><li><span>ii.</span><span><span class='s'>Declan opened the door quietly with a key.</span></span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Show from your representation of (a.i) that the sentence entails <span class='s'>Fiona barked</span> and <span class='s'>Fiona barked in the garden</span>. State the logical step used.</span></div>
+<div class="task"><span>(c)</span><span><span class='s'>Fiona barked loudly and ate quietly.</span> Use this sentence to show that loud(f) is the wrong analysis of the adverb.</span></div>
+<div class="task"><span>(d)</span><span>Compose <span class='s'>Jones buttered the toast slowly</span> with the entries in block 9 of the handout. Give the type at every node, including the closure node.</span></div>
+<div class="task"><span>(e)</span><span>Identify the thematic role of every DP.<ul class="items"><li><span>i.</span><span><span class='s'>The chef sliced the bread.</span></span></li><li><span>ii.</span><span><span class='s'>The knife sliced the bread.</span></span></li><li><span>iii.</span><span><span class='s'>The bread was sliced.</span></span></li></ul>State how the participant structure of <span class='s'>slice</span> differs across the three.</span></div>
+<div class="task"><span>(f)</span><span><span class='s'>Every dog barked loudly.</span> Give a representation. State where ∃e sits relative to ∀x, and what the other order would mean.</span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Davidson 1967.</b> The logical form of action sentences. In Rescher (ed.), <i>The Logic of Decision and Action.</i></p></div>
+  </div>
+  <!-- == 10 == -->
+  <div class="sec">
+    <div class="num">10</div>
+    <div class="body">
+      <h2>Aktionsart</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Classify each verb phrase as a state, activity, accomplishment or achievement. Support each answer with two diagnostics, giving the test sentences and your judgements.<ul class="items"><li><span>i.</span><span><span class='s'>own a car</span></span></li><li><span>ii.</span><span><span class='s'>push a cart</span></span></li><li><span>iii.</span><span><span class='s'>push a cart to the shop</span></span></li><li><span>iv.</span><span><span class='s'>notice the sign</span></span></li><li><span>v.</span><span><span class='s'>eat apples</span></span></li><li><span>vi.</span><span><span class='s'>eat an apple</span></span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Apply the <span class='s'>for</span> and <span class='s'>in</span> adverbial tests to <span class='s'>drink beer</span>, <span class='s'>drink a pint of beer</span> and <span class='s'>drink three beers</span>. Relate the pattern to the mass or count status and the boundedness of the object.</span></div>
+<div class="task"><span>(c)</span><span>State the aspectual class of each <span class='s'>when</span> clause and the reading it gives the sentence.<ul class="items"><li><span>i.</span><span><span class='s'>The alarm will sound when the door opens.</span></span></li><li><span>ii.</span><span><span class='s'>The alarm will sound when the door is open.</span></span></li></ul></span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Vendler 1957.</b> Verbs and times. <i>The Philosophical Review</i> 66: 143–160.</p></div>
+  </div>
+  <!-- == 11 == -->
+  <div class="sec">
+    <div class="num">11</div>
+    <div class="body">
+      <h2>Tense and aspect</h2>
+<div class="tasks">
+<div class="task"><span>(a)</span><span>Give the relations among S, T and E for each sentence. Name the tense and the aspect.<ul class="items"><li><span>i.</span><span><span class='s'>Fiona had eaten.</span></span></li><li><span>ii.</span><span><span class='s'>Fiona was eating.</span></span></li><li><span>iii.</span><span><span class='s'>Fiona will have eaten.</span></span></li><li><span>iv.</span><span><span class='s'>Fiona ate at 5pm.</span></span></li><li><span>v.</span><span><span class='s'>Fiona knew the answer.</span></span></li><li><span>vi.</span><span><span class='s'>Fiona has lived in Dublin for two years.</span></span></li></ul></span></div>
+<div class="task"><span>(b)</span><span>Draw a timeline for each of (i) to (iii).</span></div>
+<div class="task"><span>(c)</span><span>Give the full formula, with the event quantifier and τ(e), for <span class='s'>At 5pm yesterday, Anna was feeding Rex.</span></span></div>
+<div class="task"><span>(d)</span><span>Explain in three sentences why <span class='s'>At 5pm, I had mailed the letter</span> cannot be analysed with S and E alone.</span></div>
+<div class="task"><span>(e)</span><span><span class='s'>Anna always drank tea.</span> Sketch a representation that quantifies over times. Give the type and the variable used for times.</span></div>
+</div>
+
+    </div>
+    <div class="note"><p><b>Reichenbach 1947.</b> <i>Elements of Symbolic Logic.</i> Macmillan.</p></div>
+  </div>
+</div>
+</body>
+</html>
