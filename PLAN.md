@@ -1159,3 +1159,17 @@ what the next session must know)*
   from 20 September, unchanged apart from the stylesheet path (now one level up). Linked from the LIU33008
   tools row beside Overview through a new optional `docs:` list on the module identity.
 - Hub: Pragmatics II week 3 handout marked ready (the handout patch of 9 October is applied).
+
+### 2026-10-13 — Concepts and skills at the start and end of every week
+- Thomas: each week starts and ends with the concepts students will learn and the skills they should have
+  by the end of the week. One list per week, agreed first in the text plan, shown word for word on slide 3
+  of the deck, on the deck's last slide, and in the handout's closing What you need to know block.
+- `docs/deck-style.md` § 11 (new) has the rules, markup and item register; § 2 running order, § 9 and § 10
+  updated (the closing slide replaces the old no-closing rule). `docs/handout-style.md`, `CLAUDE.md` and
+  `docs/new-week-prompt.md` point to it.
+- `shared/deck-slides.css`: `.cs-grid` pattern. `templates/week/deck-*.html`: placeholder slides in place of
+  the old Summary / Wrap slides, so scaffolds come with them.
+- `scripts/check.mjs` § 7: built decks in sem2, sem3, prag and prag2 must carry both slides, identical, and
+  matching the handout block. Decks built before today are baselined in `CS_BASELINE` (Sem II week 5
+  included, pending its patch).
+- Worked example: Semantics II week 4 deck, lists taken from its handout block (now headed Concepts and Skills).

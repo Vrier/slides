@@ -9,6 +9,8 @@
    5. the hub's WEEKS/IDENTITIES mirror the shared/*-meta.js
       catalogues (title · section · reading/present · identities)
    6. no unreplaced {{TOKEN}}s outside templates/ (scaffold guard)
+   7. every built deck opens and ends on the same Concepts and skills
+      slide, matching the handout's What you need to know block
    Add a check for every feature you ship.
    ============================================================ */
 import fs from "node:fs";
@@ -180,10 +182,67 @@ for (const f of htmlFiles) {
   if (hits) fail(`${rel(f)}: unreplaced template token(s) ${[...new Set(hits)].join(", ")}`);
 }
 
+// ---- 7: Concepts and skills ------------------------------------------------------
+// docs/deck-style.md § 11. Every built deck in the current modules carries the
+// week's Concepts and skills slide twice: within the first five slides (after
+// "This week") and as the last slide. The two must list the same items, and when
+// the week's handout has a closing What you need to know block (.wyntk), its two
+// lists must match the deck's too. Scaffolds (still holding a .todo-box) are
+// skipped. Decks built before 13 Oct 2026 are baselined; a baselined deck that
+// gains the slides must come off the list.
+const CS_MODULE_DIRS = ["weeks-semantics2/", "weeks-semantics3/", "weeks-pragmatics/", "weeks-pragmatics2/"];
+const CS_BASELINE = new Set([
+  "weeks-semantics2/week-01/deck.html", "weeks-semantics2/week-02/deck.html", "weeks-semantics2/week-03/deck.html",
+  "weeks-semantics2/week-05/deck.html", // built 12 Oct in chat, patch not yet pushed; add the slides when it lands
+  "weeks-pragmatics/week-01/deck.html", "weeks-pragmatics/week-02/deck.html", "weeks-pragmatics/week-03/deck.html",
+  "weeks-pragmatics/week-04/deck.html", "weeks-pragmatics/week-05/deck.html",
+  "weeks-pragmatics2/week-01/deck.html", "weeks-pragmatics2/week-02/deck.html", "weeks-pragmatics2/week-03/deck.html",
+]);
+const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", rsquo: "\u2019", lsquo: "\u2018",
+  rdquo: "\u201d", ldquo: "\u201c", ndash: "\u2013", mdash: "\u2014", hellip: "\u2026", times: "\u00d7" };
+const plain = (h) => h.replace(/<[^>]+>/g, "")
+  .replace(/&#x([0-9a-f]+);/gi, (_, x) => String.fromCodePoint(parseInt(x, 16)))
+  .replace(/&#(\d+);/g, (_, d) => String.fromCodePoint(+d))
+  .replace(/&([a-z]+);/gi, (m, n) => ENT[n] ?? m)
+  .replace(/\s+/g, " ").trim();
+const listItems = (olHtml) => [...olHtml.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)].map((m) => plain(m[1]));
+for (const f of htmlFiles.filter((f) => path.basename(f) === "deck.html")) {
+  const r = rel(f);
+  if (!CS_MODULE_DIRS.some((d) => r.startsWith(d))) continue;
+  const html = fs.readFileSync(f, "utf8");
+  if (/class="todo-box/.test(html)) continue; // scaffold
+  const slides = html.split(/<section class="slide/).slice(1);
+  const cs = slides.map((s, i) => [i, s]).filter(([, s]) => /data-label="Concepts and skills"/.test(s));
+  if (CS_BASELINE.has(r)) {
+    if (cs.length) fail(`${r}: has Concepts and skills slides now; remove it from CS_BASELINE in scripts/check.mjs`);
+    continue;
+  }
+  if (cs.length !== 2) { fail(`${r}: needs two Concepts and skills slides (opening and last), found ${cs.length}`); continue; }
+  const [[i0, s0], [i1, s1]] = cs;
+  if (i0 > 4) fail(`${r}: the opening Concepts and skills slide should be within the first five slides (it is slide ${i0 + 1})`);
+  if (i1 !== slides.length - 1) fail(`${r}: the closing Concepts and skills slide must be the last slide`);
+  const lists = (s) => [...s.matchAll(/<ol class="cs-list">([\s\S]*?)<\/ol>/g)].map((m) => listItems(m[1]));
+  const L0 = lists(s0), L1 = lists(s1);
+  if (L0.length !== 2 || L0.some((l) => l.length < 2)) { fail(`${r}: the opening Concepts and skills slide needs two ol.cs-list lists (Concepts, Skills) of at least two items`); continue; }
+  if (JSON.stringify(L0) !== JSON.stringify(L1)) fail(`${r}: the opening and closing Concepts and skills slides list different items`);
+  const ho = path.join(path.dirname(f), "handout.html");
+  if (fs.existsSync(ho)) {
+    const h = fs.readFileSync(ho, "utf8");
+    const k = h.indexOf('class="sec wyntk"');
+    if (k !== -1) {
+      const HL = [...h.slice(k).matchAll(/<ol class="steps">([\s\S]*?)<\/ol>/g)].slice(0, 2).map((m) => listItems(m[1]));
+      ["Concepts", "Skills"].forEach((name, j) => {
+        if (JSON.stringify(HL[j] || []) !== JSON.stringify(L0[j]))
+          fail(`${r}: ${name} differ from the What you need to know block in handout.html`);
+      });
+    }
+  }
+}
+
 // ---- report ---------------------------------------------------------------------
 if (failures.length) {
   console.error(`FAIL — ${failures.length} problem(s):`);
   for (const m of failures) console.error("  ✗ " + m);
   process.exit(1);
 }
-console.log(`OK — ${htmlFiles.length} HTML file(s): links, integrity, deck sanity, hub↔catalogue sync all green.`);
+console.log(`OK — ${htmlFiles.length} HTML file(s): links, integrity, deck sanity, hub↔catalogue sync, concepts and skills all green.`);

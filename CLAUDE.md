@@ -157,6 +157,7 @@ shared runtime dependency is the module's `*-meta.js` → its `*-rail.js` (modul
   pre-fills the roadmap and dividers from the meta's lens `q`/`d` (or the arc/approach
   cards), skips files that already exist, and flips the hub statuses `none`→`draft`.
   Fill the lens `q`/`d` in the meta FIRST — the scaffold inherits them.
+- **Concepts and skills first.** Draft the week's two lists (concepts the week introduces; skills students can show by the end of it) as the first item of the text plan and agree them with Thomas before anything else. They open and close the deck and close the handout, word for word, and every skill needs an exercise that practises it. Rules and markup: `docs/deck-style.md` § 11. `npm test` enforces the match.
 - Ask the user for content if not given. Sort it into the four lenses (or the module's arc/approach). Ask which formal tool(s) the week introduces and which language data / historical figures to feature.
 
 ### 1. The deck — `weeks-<module>/week-NN/deck.html`
@@ -181,6 +182,7 @@ in a deck's `<style>` block (the old per-deck `.p2-*`/`.p3-*` copies are retired
 Handout scaffolds likewise use `handout.css`'s `.h-band` › `.tag`, `.todo-box`, `.reads-plain`.
 
 Rules:
+- **Every deck opens (slide 3) and ends on the Concepts and skills slide** (`docs/deck-style.md` § 11).
 - **Semantics II decks: read `docs/deck-style.md` first** (the week 1 deck as Thomas edited it, codified; `weeks-semantics2/week-02/deck.html` is the second worked example).
 - **Slide TEXT follows §Conventions › House style** (plain titles, fragments, no em-dashes, statements over questions) — the wk-1 pragmatics deck is the worked example.
 - The content slide's coloured chrome comes from a lens class on `.b-slide`: `lens-empirical` / `lens-historical` / `lens-formal` / `lens-typological`.

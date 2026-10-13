@@ -48,11 +48,12 @@ sentence about what is coming.
 ## 2. Running order
 
 1. **Title** (`.a-title-wrap`; watermark glyph; week number as `h1`; week title as `.a-course-sub`).
-2. **Overview** — `h2` only; `.q-banner` with the week's framing question (the one place a question is allowed); two `.erow`s; `.figs-line`.
-3. **Today** — `.lxr3` roadmap, one `.stop` per lens, `.rmb` bullets naming the slides.
-4. **Housekeeping** (week 1 only) and **readings** (one slide).
-5. **Four lenses in the fixed order**: Empirical, Historical, Formal, Typological. Each opens with an `.lxd2` divider. Content may sit before a divider when it bridges from the previous part (week 1's nesting problem).
-6. **Final slide** — `.qask` + `.bigq`, one line, headed for what comes next (week 2: "Thursday"). Never "closes", on any slide (Thomas, September 2026).
+2. **This week** — `h2` only; `.q-banner` with the week's framing question (the one place a question is allowed); two `.erow`s; `.figs-line`.
+3. **Concepts and skills** — the week's outcomes, two columns (§ 11).
+4. **Today** — `.lxr3` roadmap, one `.stop` per lens, `.rmb` bullets naming the slides.
+5. **Housekeeping** (week 1 only) and **readings** (one slide).
+6. **Four lenses in the fixed order**: Empirical, Historical, Formal, Typological. Each opens with an `.lxd2` divider. Content may sit before a divider when it bridges from the previous part (week 1's nesting problem).
+7. **Concepts and skills** again, word for word, as the last slide (§ 11). Nothing else closes the deck: no Thursday line, no recap, no wrap-up. Never "closes", on any slide (Thomas, September 2026).
 
 Thursday is the handout session from week 2 onwards, so a week has one deck.
 
@@ -127,7 +128,8 @@ slide text clearer and larger, keeping the week 1 patterns.
 - SVG figure text follows the same floor: world labels 32, captions 28.
 - A slide that sets up a handout block carries the block's title: week 2 has
   Validity, Frame conditions, Axioms and flavours, Substitution under necessity on
-  both. The closing slide lists what Thursday's sheet practises.
+  both. The Skills column of the Concepts and skills slide names what Thursday's
+  sheet practises (§ 11).
 
 ---
 
@@ -158,7 +160,8 @@ inside a sentence for emphasis.
 
 **No synthesis.** No closing line, no summary row, no "lesson" or pay-off line, no
 row that restates what the slide has already shown. The slide ends on its last
-piece of content.
+piece of content. The one repetition allowed in a deck is the closing Concepts and
+skills slide (§ 11), which repeats the opening one word for word.
 
 **Question slides.** Only the data: the exchange, the sentence, the items. No
 prompt, no instruction, no source line. If a heading is needed it is a plain topic
@@ -199,6 +202,7 @@ phrasing. Fix them without being asked.
 ## 10. Before it ships
 
 - [ ] Slide count fits the hour.
+- [ ] Concepts and skills: slide 3 and the last slide, identical, and identical to the handout's What you need to know block (§ 11; `npm test` checks).
 - [ ] No sentence on any slide talks about the lecture, a later slide, or a later week beyond a bare week number.
 - [ ] Examples run (1) to (N) without gaps; cross-references still point at the right numbers after any cut.
 - [ ] Every question slide has its answer slide.
@@ -208,3 +212,83 @@ phrasing. Fix them without being asked.
 - [ ] Portraits: right person, licence stated, file localised to `week-NN/images/`.
 - [ ] `TITLES` / `GROUPS` match the slides; sidebar shows the right week.
 - [ ] `npm test` green.
+
+---
+
+## 11. Concepts and skills
+
+Thomas, 13 October 2026: every week starts and ends with what students are going
+to learn and what they should be able to do by the end of the week.
+
+**Planned first.** The Concepts and skills list is the first item of a week's
+text plan, agreed with Thomas before the deck, handout or data task is planned in
+detail. Everything else in the week is then planned against it: each concept is
+introduced and defined somewhere in the week (deck or handout), and each skill
+is practised by at least one exercise (the Thursday handout in Semantics II, the
+Friday handout in Pragmatics II, the data analysis task in LI7862). A slide or
+exercise that serves nothing on the list is a candidate for cutting; an item
+nothing serves comes off the list.
+
+**One list, three places.** The same two lists appear
+
+1. on slide 3 of the deck, after This week and before Today;
+2. as the last slide of the deck;
+3. as the closing "What you need to know" block of the handout, with its two
+   `.proc` columns headed Concepts and Skills (older sheets say Key notions).
+
+The wording is identical in all three, character for character apart from
+markup (`<em>` on slides, `<i>` on the sheet), so write symbols as Unicode
+(⟨s, t⟩, ⊆) rather than MathJax in these items. `npm test` compares them. When
+the lecture runs short, the list does not change: the handout covers the rest
+of the week, so the closing slide still shows the whole week.
+
+**Writing the items.**
+
+- **Concepts**: the terms, notions and analyses of the week, as bare noun
+  phrases with a full stop. "Hintikka semantics." "Frame conditions for knowledge
+  and belief; closure." Several related terms may share an item, joined by
+  semicolons.
+- **Skills**: what a student can do by the end of the week, as an imperative
+  that a handout exercise could test. "Evaluate attitude reports in a small
+  model." "Compute the entropy of a distribution by hand." Verbs that name a
+  checkable act (evaluate, compute, annotate, prove, diagnose, tag, derive,
+  give the truth conditions of); never "understand", "appreciate", "be familiar
+  with".
+- Four to seven items per column, each short enough for one or two lines. No
+  bold leads, no sources, no week pointers, no colons inside an item.
+- This is the one place in a deck where fragments stand in for full sentences
+  (§ 9): the slide is a checklist, as on the handout.
+
+**Markup.** Copy the two slides from `weeks-semantics2/week-04/deck.html` (the
+worked example). The pattern lives in `shared/deck-slides.css`:
+
+```html
+<section class="slide" data-label="Concepts and skills" data-screen-label="03">
+  <div class="b-slide pal-a dB" data-sec="cs">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">Concepts and skills</h2>
+      <div class="cs-grid">
+        <div class="cs-col" data-step="1"><div class="cs-head">Concepts</div><ol class="cs-list">
+          <li>…</li>
+        </ol></div>
+        <div class="cs-col" data-step="2"><div class="cs-head">Skills</div><ol class="cs-list">
+          <li>…</li>
+        </ol></div>
+      </div>
+    </div>
+  </div>
+</section>
+```
+
+The closing copy takes `data-sec="cs2"`. In the sidebar script, add `cs` to the
+Introduction group and give `cs2` its own last group titled Concepts and skills.
+Use `.cs-grid.dense` when the columns run to six or seven items or several
+two-line items, and measure: the grid ends above y = 960. No source line on
+either slide.
+
+**Enforcement.** `npm test` (§ 7 of `scripts/check.mjs`) fails a built deck in
+Semantics II, Semantics III, LI7862 or Pragmatics II that lacks either slide,
+whose two slides differ, or whose lists differ from the handout's closing block.
+Scaffolds are skipped, and decks built before 13 October 2026 are baselined in
+`CS_BASELINE`; retrofitting one means taking it off that list.

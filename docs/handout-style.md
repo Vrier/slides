@@ -175,6 +175,11 @@ In rough order of use.
 - **`.tasks` › `.task` + `.lines`** — the exercise. Lead with
   `<p><span class="runin">Exercise.</span></p>`, or fold the instruction into a
   run-in where the whole block is one task.
+- **What you need to know** — the sheet's last block (`.sec.wyntk` › `.wcols`
+  › two `.proc` columns headed Concepts and Skills). Its lists are the week's
+  Concepts and skills, word for word as on the deck's opening and closing
+  slides (`docs/deck-style.md` § 11); `npm test` compares them. Every skill on
+  it is practised by at least one exercise on the sheet or in the lecture.
 - A **dataset with no instruction and no answer lines** is a legitimate block.
   Block 6 (triggers) is ten numbered examples, a citation line in the margin,
   and nothing else; the instructions live in the lecture.
@@ -225,6 +230,7 @@ not for judging layout. Strip blank pages before sending anything out.
 ## 9. Before committing
 
 - `npm test` green.
+- The closing What you need to know block matches the deck's Concepts and skills.
 - No em-dashes in visible text; sweep for the vetoed slogan and contrastive
   title forms.
 - Examples numbered contiguously from 1 after any cut, and no prose reference

@@ -48,6 +48,9 @@ thin, ask me instead of filling the gap.
 lines with: arc/approach · session 1 plan · session 2 plan):
 
 - Framing question of the week: [ONE LINE]
+- Concepts and skills (agree these first; they open and close the deck and
+  close the handout, word for word; docs/deck-style.md § 11):
+  Concepts: [NOUN PHRASES]  Skills: [WHAT STUDENTS CAN DO BY THE END OF THE WEEK]
 - Empirical — data, judgements, contrasts to explain: [NOTES]
 - Historical — figures, context, debates: [NOTES]
 - Formal — machinery introduced this week: [NOTES]
