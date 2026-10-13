@@ -1173,3 +1173,9 @@ what the next session must know)*
   matching the handout block. Decks built before today are baselined in `CS_BASELINE` (Sem II week 5
   included, pending its patch).
 - Worked example: Semantics II week 4 deck, lists taken from its handout block (now headed Concepts and Skills).
+- Retrofit (same day): the slides added to every built deck so far. Semantics II weeks 1 to 3, LI7862 weeks
+  1 to 5, Pragmatics II weeks 1 to 3. Lists taken from the handouts where a week had them (Sem II week 3's
+  closing block, Sem II week 2's "After this week you can"), otherwise drafted from the deck and the week's
+  exercises, for Thomas to review. Sem II week 3 sheets now headed Concepts and Skills. The old closing slides
+  (Summary, Wrap, Thursday, Friday, Lecture 1 closes, Assessment 1) are left in place before the new last
+  slide. Pragmatics II week 1 uses the older .b-rail layout, so its two slides carry no data-sec.

@@ -188,15 +188,11 @@ for (const f of htmlFiles) {
 // "This week") and as the last slide. The two must list the same items, and when
 // the week's handout has a closing What you need to know block (.wyntk), its two
 // lists must match the deck's too. Scaffolds (still holding a .todo-box) are
-// skipped. Decks built before 13 Oct 2026 are baselined; a baselined deck that
-// gains the slides must come off the list.
+// skipped. A deck built elsewhere before the slides existed can be baselined here
+// until it gets them; a baselined deck that gains the slides must come off the list.
 const CS_MODULE_DIRS = ["weeks-semantics2/", "weeks-semantics3/", "weeks-pragmatics/", "weeks-pragmatics2/"];
 const CS_BASELINE = new Set([
-  "weeks-semantics2/week-01/deck.html", "weeks-semantics2/week-02/deck.html", "weeks-semantics2/week-03/deck.html",
   "weeks-semantics2/week-05/deck.html", // built 12 Oct in chat, patch not yet pushed; add the slides when it lands
-  "weeks-pragmatics/week-01/deck.html", "weeks-pragmatics/week-02/deck.html", "weeks-pragmatics/week-03/deck.html",
-  "weeks-pragmatics/week-04/deck.html", "weeks-pragmatics/week-05/deck.html",
-  "weeks-pragmatics2/week-01/deck.html", "weeks-pragmatics2/week-02/deck.html", "weeks-pragmatics2/week-03/deck.html",
 ]);
 const ENT = { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'", nbsp: " ", rsquo: "\u2019", lsquo: "\u2018",
   rdquo: "\u201d", ldquo: "\u201c", ndash: "\u2013", mdash: "\u2014", hellip: "\u2026", times: "\u00d7" };
