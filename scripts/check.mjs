@@ -70,12 +70,17 @@ const DIV_BASELINE = {
   "uploads/COMPOSE - Invitation to Formal Semantics Ch 6-8 -Teacher-.html": [178, 174],
   /* weeks-pragmatics/week-01/exercises.html: baseline removed 2026-09-13 —
      the file was rebuilt and now balances (53/53), so the default rule applies. */
+<<<<<<< ours
   /* weeks-pragmatics/week-03/exercises.html: baseline removed 2026-10-05 —
      rebuilt as the Charlottesville data sheet, now balances (24/24). */
   /* weeks-pragmatics/week-04/exercises.html: baseline removed 2026-10-07 —
      rebuilt as the Brexit PMQs data sheet, now balances (24/24). */
   /* weeks-pragmatics/week-05/exercises.html: baseline removed 2026-10-13 —
      rebuilt as the BBC Panorama committee data sheet, now balances (105/105). */
+=======
+  "weeks-pragmatics/week-03/exercises.html": [35, 31],
+  "weeks-pragmatics/week-04/exercises.html": [35, 31],
+>>>>>>> theirs
   "weeks-pragmatics/week-06/exercises.html": [35, 31],
   "weeks-pragmatics/week-08/exercises.html": [35, 31],
   "weeks-pragmatics/week-09/exercises.html": [35, 31],
