@@ -3,90 +3,280 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU44008 · Week 5 · Rational Speech Act Models · Handout</title>
+<title>LIU44008 · Week 5, Probability and Priors · Handout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="../../shared/tokens.css" />
-<link rel="stylesheet" href="../../shared/lens.css" />
-<link rel="stylesheet" href="../../shared/handout.css" />
-<link rel="stylesheet" href="../../shared/theme-rust.css" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
 <style>
-  @media print { :root { --tcd-blue:#000; --tcd-blue-75:#555; --tcd-blue-50:#888; --tcd-blue-25:#bbb; --tcd-blue-10:#f2f2f2; --tcd-ink:#000; --c-def:#000; } }
+  /* Week 3: blocks run on without a page break, as week 2; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:12pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  svg.icon { width:9pt; height:9pt; vertical-align:-1pt; }
+  .defs > div.d { grid-template-columns:104pt 1fr; }
+  .mfig { max-width:330pt; }
+  table.pay { margin:5pt 0 7pt 22pt; border-collapse:collapse; break-inside:avoid; page-break-inside:avoid; }
+  table.pay th, table.pay td { border:.6pt solid var(--rule); padding:2pt 10pt; text-align:center; }
+  table.pay th { border:none; font-weight:600; font-size:9.2pt; }
+  table.pay td.rl { border:none; font-weight:600; font-size:9.2pt; text-align:right; padding-right:8pt; }
+  table.rec.lex, table.rec.parity { width:auto; min-width:60%; }
+  table.rec.pow, table.rec.calc, table.rec.perf, table.rec.toy, table.rec.rates { width:auto; min-width:62%; }
+  table.rec.pow td, table.rec.pow th, table.rec.calc td, table.rec.calc th, table.rec.perf td, table.rec.perf th, table.rec.toy td, table.rec.toy th, table.rec.rates td, table.rec.rates th { padding-right:16pt; }
+  table.rec.l0 { width:auto; min-width:62%; } table.rec.l0 td, table.rec.l0 th { padding-right:14pt; }
+  table.rec.cand td, table.rec.cand th { text-align:center; } table.rec.cand td:first-child { text-align:left; }
+  table.rec.gw td, table.rec.gw th { text-align:center; } table.rec.gw td:first-child { text-align:left; } table.rec.gw td { height:15pt; }
+  table.rec.gain td, table.rec.gain th { text-align:center; } table.rec.gain td:first-child { text-align:left; } table.rec.gain td { height:15pt; }
+  table.rec.words td, table.rec.words th { padding-right:12pt; } table.rec.words td { height:15pt; }
+  table.rec tr.wr td { font-size:8.4pt; line-height:1.25; padding-top:3pt; padding-bottom:3pt; }
+  table.rec.notat { margin-top:10pt; } table.rec.notat td { font-size:9.4pt; padding-right:12pt; }
+  table.rec.small td { font-size:9pt; padding-right:12pt; }
+  table.rec.rates td { height:15pt; }
+  table.rec.lex td, table.rec.lex th { padding-right:22pt; }
+  table.rec.tally td { width:22pt; } table.rec.tally td:first-child { width:52pt; }
+  table.rec.fill.bits td, table.rec.fill.bits3 td { height:15pt; }
+  table.rec.grid20 th { font-size:6.6pt; letter-spacing:0; padding:2pt 0; text-align:center; }
+  table.rec.grid20 td { height:16pt; width:12pt; padding:0; }
+  table.rec.grid20 td:first-child { width:30pt; font-size:8.6pt; text-align:left; }
+  .tasks .task + .lines:empty { display:none; }
+  table.rec th.st { text-transform:none; letter-spacing:0; font-size:9.5pt; font-weight:400; text-align:center; }
+  .mfig.plot { max-width:290pt; }
+  .mfig.small { max-width:270pt; }
+  .dens { margin:4pt 0 8pt 0; font-size:9.6pt; } .dens span + span { margin-left:14pt; }
+  table.rec th.st { text-align:left; }
+  .keep { break-inside:avoid; page-break-inside:avoid; }
+  span.ans { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:8.5pt; font-style:normal; }
+  div.ans { font-family:var(--sans, sans-serif); font-size:9pt; line-height:1.45; color:#1f4e79; margin:2pt 0 8pt 22pt; }
+  div.ans i, div.ans em { font-style:italic; }
+  .ansl { margin:6pt 0 12pt 22pt; color:#1f4e79; line-height:19pt;
+          background-image:linear-gradient(to bottom, transparent 18.2pt, #000 18.2pt); background-size:100% 19pt; background-repeat:repeat-y; }
+  @media print { .mfig, table.rec.fill, table.rec.lex, table.pay, .draw { break-inside:avoid; page-break-inside:avoid; } }
+
+  /* week 5 */
+  span.ans { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:8.5pt; font-style:normal; }
+  div.ans { font-family:var(--sans, sans-serif); font-size:9pt; line-height:1.5; color:#1f4e79; margin:2pt 0 8pt 22pt; }
+  div.ans i, div.ans em { font-style:italic; }
+  div.ans .frac, span.ans .frac { font-size:.95em; }
+  .frac { display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:.86em; line-height:1.1; margin:0 1.5pt; }
+  .frac > span:first-child { border-bottom:.6pt solid currentColor; padding:0 2pt 0.5pt; }
+  .frac > span:last-child { padding:0.5pt 2pt 0; }
+  table.rec td.box { border:.8pt solid var(--rule); height:17pt; }
+  table.rec td.tot { font-weight:bold; white-space:nowrap; }
+  @media print { .sec + .sec { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; } }
+  .sec + .sec { margin-top:14pt; }
+  .exbox { border:.6pt solid var(--rule); padding:5pt 9pt 4pt; margin:6pt 0 9pt; break-inside:avoid; page-break-inside:avoid; }
+  .exbox > .sc { margin-bottom:2pt; }
+  .exbox p { margin:0 0 3pt; }
+  .exbox p:last-child { margin-bottom:0; }
+  table.rec.tiles td, table.rec.tiles th { text-align:center; padding:2pt 3pt; font-size:9.6pt; }
+  table.rec.tiles td:first-child, table.rec.tiles th:first-child { text-align:left; padding-right:8pt; }
+  table.rec.mid { width:auto; min-width:58%; }
+  table.rec.mid td, table.rec.mid th { padding-right:16pt; }
+  table.rec.c td, table.rec.c th { text-align:center; } table.rec.c td:first-child, table.rec.c th:first-child { text-align:left; }
+  table.rec.fill td { height:16pt; }
+  .fx { text-align:center; margin:4pt 0 6pt; font-size:11.5pt; }
+  .anno { display:grid; grid-template-columns:repeat(4, 1fr); gap:0 14pt; margin:8pt 0 4pt 22pt; }
+  .anno div { border-bottom:.8pt solid var(--rule); height:18pt; font-size:9.6pt; }
+  ol.opts { margin:2pt 0 4pt 22pt; padding-left:16pt; } ol.opts li { margin:0 0 1pt; }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .sec.wyntk { margin-top:10pt; break-inside:avoid; page-break-inside:avoid; }
+  .wyntk .proc { margin-bottom:0; }
+  .wyntk .steps li { font-size:9.6pt; line-height:1.28; margin-bottom:1.5pt; }
 </style>
 </head>
 <body>
 
-<div class="handout-week" data-week="5"><div class="page">
+<div class="sheet">
 
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU44008 · Pragmatics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 5 · Handout</div>
+  <h1 class="doc-title">Probability and Priors</h1>
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Probability from counts</h2>
+<div class="defs"><div class="sc">Definitions</div><div class="d"><span class="t">Probability</span><span class="g"><span class="frac"><span>count of an outcome</span><span>total count</span></span>. A number from 0 to 1.</span></div><div class="d"><span class="t">Complement</span><span class="g"><i>P</i>(not <i>A</i>) = 1 − <i>P</i>(<i>A</i>).</span></div><div class="d"><span class="t">Probability distribution</span><span class="g">A function <i>P</i> from outcomes to [0, 1] whose values sum to 1.</span></div><div class="d"><span class="t">Uniform distribution</span><span class="g">Every outcome has the same probability.</span></div><div class="d"><span class="t">Normal distribution</span><span class="g">Symmetric bell curve with mean μ and standard deviation σ. About 0.68 of values lie within σ of μ, about 0.95 within 2σ.</span></div></div>
+      <p><span class="runin">Exercise.</span> An English Scrabble bag holds 100 tiles. Draw one at random.</p>
+      <table class="rec tiles"><tr><th>Tile</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th><th>I</th><th>J</th><th>K</th><th>L</th><th>M</th><th>N</th></tr><tr><td>Count</td><td>9</td><td>2</td><td>2</td><td>4</td><td>12</td><td>2</td><td>3</td><td>2</td><td>9</td><td>1</td><td>1</td><td>4</td><td>2</td><td>6</td></tr></table>
+      <table class="rec tiles"><tr><th>Tile</th><th>O</th><th>P</th><th>Q</th><th>R</th><th>S</th><th>T</th><th>U</th><th>V</th><th>W</th><th>X</th><th>Y</th><th>Z</th><th>blank</th></tr><tr><td>Count</td><td>8</td><td>2</td><td>1</td><td>6</td><td>4</td><td>6</td><td>4</td><td>2</td><td>2</td><td>1</td><td>2</td><td>1</td><td>2</td></tr></table>
+      <div class="tasks">
+<div class="task"><span>(a)</span><span><i>P</i>(E) and <i>P</i>(Q).</span></div>
+<div class="lines"><span></span></div>
+<div class="task"><span>(b)</span><span><i>P</i>(vowel), with A, E, I, O and U as the vowels.</span></div>
+<div class="lines"><span></span></div>
+<div class="task"><span>(c)</span><span><i>P</i>(consonant).</span></div>
+<div class="lines"><span></span></div>
+<div class="task"><span>(d)</span><span>The probability that the tile is one of the letters of <i>pragmatics</i>.</span></div>
+<div class="lines"><span></span></div>
       </div>
     </div>
-    <div class="h-meta">
-      <div class="code">LIU44008 · Pragmatics II</div>
-      <div class="term">Thomas Stephen · Semester 1, Michaelmas</div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Independent events</h2>
+<div class="defs"><div class="sc">Definitions</div><div class="d"><span class="t">Independent</span><span class="g">One happening leaves the probability of the other unchanged.</span></div><div class="d"><span class="t">Product rule</span><span class="g">For independent <i>A</i> and <i>B</i>, <i>P</i>(<i>A</i> and <i>B</i>) = <i>P</i>(<i>A</i>) × <i>P</i>(<i>B</i>).</span></div></div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+<div class="task"><span>(a)</span><span>Given two rolls of a fair 6 sided die, what are: <i>P</i>(two sixes) and <i>P</i>(at least one six).</span></div>
+<div class="lines"><span></span><span></span><span></span></div>
+<div class="task"><span>(b)</span><span>Assuming double or nothing, would you take either of these bets?</span></div>
+      </div>
+      <ol class="opts" type="A"><li>Rolling a single fair die up to 4 times and winning if at least one 6 appears.</li><li>Rolling a pair of fair dice up to 24 times and winning if at least one double-six appears.</li></ol>
+      <div class="lines"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="tasks">
+<div class="task"><span>(c)</span><span>Draw a Scrabble tile, put it back, draw again. <i>P</i>(two vowels)? Without putting it back, why are the two draws no longer independent?</span></div>
+<div class="lines"><span></span><span></span></div>
+      </div>
     </div>
-  </header>
-
-  <div class="h-title-row">
-    <div class="h-week">Week 5</div>
-    <h1 class="h-title">Rational Speech Act Models</h1>
+    <div class="note"><p><b>Pascal &amp; Fermat 1654.</b> Letters on the problem of points.</p></div>
   </div>
 
-  <div class="h-band">
-    <span class="tag">The Model</span>
-    <span class="tag">Scalar implicature</span>
-    <span class="tag">Presupposition</span>
-    <span class="tag">Interface</span>
-  </div>
-
-  <div class="callout callout-note">
-    <span class="badge">This week</span>
-    <p><strong>Session 1.</strong> Scalar implicature via the exhaustivity operator; embedded implicatures as the decisive argument for grammar — or are they?</p>
-    <p><strong>Session 2.</strong> Presupposition projection as dynamic semantics (Karttunen filtering; Heim's context-change potential) — the grammar corner's flagship case.</p>
-  </div>
-
-  <div class="ex-block">
-    <div class="ex-tool-intro">
-      <div class="tl-label">Skeleton</div>
-      <div class="tl-name">Content to add</div>
-      <p>Build out this week's handout — mirror the worked sheet in <b>weeks-pragmatics/week-02/handout.html</b>: callouts (<b>.callout</b>), tool intros + tasks (<b>.ex-block</b>), progressive items (<b>.ex-prog</b>), and ruled <b>.answer-space</b>. Frame the tasks around the two diagnostics and the interface thread.</p>
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Surprisal and entropy</h2>
+<div class="defs"><div class="sc">Definitions</div><div class="d"><span class="t">Surprisal</span><span class="g">log<sub>2</sub> <span class="frac"><span>1</span><span><i>p</i></span></span> bits. How many halvings take 1 down to <i>p</i>.</span></div><div class="d"><span class="t">Entropy</span><span class="g"><i>H</i> = Σ<sub><i>x</i></sub> <i>P</i>(<i>x</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>x</i>)</span></span>. Average surprisal of a distribution.</span></div><div class="d"><span class="t">Information</span><span class="g">How far an observation lowers the entropy.</span></div><div class="d"><span class="t">log<sub>2</sub> on a calculator</span><span class="g">log<sub>2</sub> <i>x</i> = <span class="frac"><span>log<sub>10</sub> <i>x</i></span><span>log<sub>10</sub> 2</span></span>.</span></div></div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+<div class="task"><span>(a)</span><span>The surprisal of drawing E, and of drawing Q, from the Scrabble bag.</span></div>
+<div class="lines"><span></span></div>
+<div class="task"><span>(b)</span><span>The entropy of each distribution over the next word. Which is lower?</span></div>
+      </div>
+      <table class="rec mid fill c"><tr><th><i>Happy birthday to</i></th><th><i>you</i></th><th><i>me</i></th><th><i>them</i></th></tr><tr><td><i>p</i></td><td>0.9</td><td>0.05</td><td>0.05</td></tr><tr><td>surprisal</td><td></td><td></td><td></td></tr><tr><td><i>p</i> × surprisal</td><td></td><td></td><td></td></tr><tr><td class="tot">Total Entropy</td><td class="box" colspan="3"></td></tr></table>
+      <table class="rec mid fill c"><tr><th><i>A cup of</i></th><th><i>tea</i></th><th><i>coffee</i></th><th><i>water</i></th></tr><tr><td><i>p</i></td><td>0.5</td><td>0.4</td><td>0.1</td></tr><tr><td>surprisal</td><td></td><td></td><td></td></tr><tr><td><i>p</i> × surprisal</td><td></td><td></td><td></td></tr><tr><td class="tot">Total Entropy</td><td class="box" colspan="3"></td></tr></table>
     </div>
+    <div class="note"><p><b>Shannon 1948.</b> A mathematical theory of communication. <i>Bell System Technical Journal</i> 27.</p></div>
   </div>
 
-  <div class="todo-box"><b>Exercises to add.</b></div>
-
-  <div class="h-footer">
-    <span class="left">LIU44008 · Pragmatics II</span>
-    <span>Week 5 · Rational Speech Act Models</span>
-    <span>1</span>
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Bayes&rsquo; rule</h2>
+<div class="defs"><div class="sc">Definitions</div><div class="d"><span class="t">Hypothesis <i>H</i></span><span class="g">The claim you want to know about.</span></div><div class="d"><span class="t">Evidence <i>E</i></span><span class="g">What you have observed.</span></div><div class="d"><span class="t">Prior</span><span class="g"><i>P</i>(<i>H</i>), before the evidence.</span></div><div class="d"><span class="t">Likelihood</span><span class="g"><i>P</i>(<i>E</i> | <i>H</i>), how expected the evidence is if <i>H</i> is true.</span></div><div class="d"><span class="t">Posterior</span><span class="g"><i>P</i>(<i>H</i> | <i>E</i>), after the evidence.</span></div><div class="d"><span class="t">Bayes&rsquo; rule</span><span class="g"><i>P</i>(<i>H</i> | <i>E</i>) = <span class="frac"><span><i>P</i>(<i>E</i> | <i>H</i>) · <i>P</i>(<i>H</i>)</span><span><i>P</i>(<i>E</i>)</span></span>.</span></div><div class="d"><span class="t">Evidence term</span><span class="g"><i>P</i>(<i>E</i>) = <i>P</i>(<i>E</i> | <i>H</i>) · <i>P</i>(<i>H</i>) + <i>P</i>(<i>E</i> | not <i>H</i>) · <i>P</i>(not <i>H</i>).</span></div><div class="d"><span class="t">Conditional probability</span><span class="g"><i>P</i>(<i>A</i> | <i>B</i>) = <span class="frac"><span><i>P</i>(<i>A</i> and <i>B</i>)</span><span><i>P</i>(<i>B</i>)</span></span>.</span></div><div class="d"><span class="t">Joint probability</span><span class="g"><i>P</i>(<i>A</i> and <i>B</i>) = <i>P</i>(<i>A</i> | <i>B</i>) · <i>P</i>(<i>B</i>) = <i>P</i>(<i>B</i> | <i>A</i>) · <i>P</i>(<i>A</i>).</span></div></div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+<div class="task"><span>(a)</span><span>1 essay in 20 is written by AI. A detector flags an AI essay with probability 0.9 and a human essay with probability 0.05. Draw the tree for 1,000 essays and find <i>P</i>(AI | flagged).</span></div>
+<div class="lines"><span></span><span></span><span></span></div>
+<div class="task"><span>(b)</span><span>A second, independent detector flags the same essay, with the same probabilities. Use your answer to (a) as the new prior.</span></div>
+<div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Bayes 1763.</b> An essay towards solving a problem in the doctrine of chances. <i>Philosophical Transactions</i> 53.</p><p><b>Bar-Hillel 1980.</b> The base-rate fallacy in probability judgments. <i>Acta Psychologica</i> 44.</p></div>
   </div>
 
-</div></div>
+  <!-- ══ 4 ══ -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Updating beliefs</h2>
+<div class="defs"><div class="sc">Definitions</div><div class="d"><span class="t">Updating</span><span class="g">The posterior after one piece of evidence is the prior for the next.</span></div></div>
+      <p><span class="runin">Exercise.</span> At a party in Dublin you meet a stranger. Your prior over where they grew up, and how likely someone from each city is to say each word.</p>
+      <table class="rec mid fill c"><tr><th></th><th>Dublin</th><th>Belfast</th><th>Glasgow</th></tr><tr><td>Prior</td><td>0.5</td><td>0.3</td><td>0.2</td></tr><tr><td><i>P</i>(<i>wee</i> | city)</td><td>0.1</td><td>0.6</td><td>0.8</td></tr><tr><td>Prior × likelihood</td><td></td><td></td><td></td></tr><tr><td>Posterior</td><td></td><td></td><td></td></tr><tr><td><i>P</i>(<i>grand</i> | city)</td><td>0.6</td><td>0.4</td><td>0.05</td></tr><tr><td>Posterior × likelihood</td><td></td><td></td><td></td></tr><tr><td>New posterior</td><td></td><td></td><td></td></tr></table>
+      <div class="tasks">
+<div class="task"><span>(a)</span><span>They say <i>wee</i>, then <i>grand</i>. Complete the table.</span></div>
+<div class="lines"><span></span></div>
+<div class="task"><span>(b)</span><span>Does it matter which order the words are overheard?</span></div>
+<div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"></div>
+  </div>
 
-<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
+  <!-- ══ 5 ══ -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>The reference game</h2>
+<div class="defs"><div class="sc">Definitions</div><div class="d"><span class="t">Speaker&rsquo;s choices</span><span class="g"><i>P</i>(<i>w</i> | <i>s</i>), how often the speaker uses word <i>w</i> for object <i>s</i>. Each row sums to 1.</span></div><div class="d"><span class="t">Listener&rsquo;s posterior</span><span class="g"><i>P</i>(<i>s</i> | <i>w</i>), the probability of guessing object <i>s</i> after hearing <i>w</i>. Multiply each prior by its entry in the column for <i>w</i>; divide by the column&rsquo;s total.</span></div><div class="d"><span class="t">Informative</span><span class="g">A word is more informative for an object the higher the listener&rsquo;s posterior for that object, and the fewer bits of surprisal, log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>s</i> | <i>w</i>)</span></span>, are left.</span></div></div>
+      <table class="rec mid c"><tr><th></th><th>Prior</th><th><i>blue</i></th><th><i>green</i></th><th><i>square</i></th><th><i>circle</i></th></tr><tr><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></td><td>0.44</td><td>0.42</td><td>0</td><td>0.58</td><td>0</td></tr><tr><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></td><td>0.09</td><td>0</td><td>0.65</td><td>0.35</td><td>0</td></tr><tr><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></td><td>0.28</td><td>0.39</td><td>0</td><td>0</td><td>0.61</td></tr><tr><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></td><td>0.19</td><td>0</td><td>0.63</td><td>0</td><td>0.37</td></tr></table>
+      <p><span class="runin">Exercise.</span> The listener&rsquo;s posteriors. The row for <i>circle</i> is done: <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg> 0.61 × 0.28 = 0.17, <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg> 0.37 × 0.19 = 0.07, divided by 0.24.</p>
+      <table class="rec fill c"><tr><th>Word heard</th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></th></tr><tr><td><i>blue</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>green</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>square</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>circle</i></td><td>0</td><td>0</td><td>0.71</td><td>0.29</td></tr></table>
+      <div class="tasks">
+<div class="task"><span>(a)</span><span>Complete the table.</span></div>
+<div class="lines"><span></span></div>
+<div class="task"><span>(b)</span><span>The speaker wants the listener to guess <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>. Is <i>blue</i> or <i>circle</i> the better word to send? Compare the listener&rsquo;s posterior for <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg> and the bits of surprisal left after each.</span></div>
+<div class="lines"><span></span><span></span><span></span></div>
+<div class="task"><span>(c)</span><span>Which word should the speaker send for each of the other three objects?</span></div>
+<div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Frank &amp; Goodman 2012.</b> Predicting pragmatic reasoning in language games. <i>Science</i> 336.</p></div>
+  </div>
 
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#faeae2"/>
-    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#b23a1e" stroke-width="2"/>
-    <line x1="36" y1="32" x2="64" y2="32" stroke="#b23a1e" stroke-width="2.5"/>
-    <line x1="36" y1="42" x2="58" y2="42" stroke="#efcab9" stroke-width="2"/>
-    <line x1="36" y1="50" x2="62" y2="50" stroke="#efcab9" stroke-width="2"/>
-    <line x1="36" y1="58" x2="54" y2="58" stroke="#efcab9" stroke-width="2"/>
-    <text x="50" y="92" font-family="serif" font-size="7" fill="#b23a1e" text-anchor="middle">LIU44008 · HANDOUT</text>
-  </svg>
-</template>
+  <!-- ══ 6 ══ -->
+  <div class="sec">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Degrees of belief and expected value</h2>
+<div class="defs"><div class="sc">Definitions</div><div class="d"><span class="t">Expected value</span><span class="g">Σ<sub><i>x</i></sub> <i>P</i>(<i>x</i>) × value(<i>x</i>). The average payoff over many plays.</span></div><div class="d"><span class="t">Degree of belief</span><span class="g">Probability as how strongly someone believes: the most they would pay for a ticket worth €1 if it comes true.</span></div><div class="d"><span class="t">Dutch book</span><span class="g">A set of bets that loses whatever happens. Possible when degrees of belief break the laws of probability.</span></div><div class="d"><span class="t">Rational</span><span class="g">Degrees of belief that obey the laws of probability.</span></div></div>
+      <p>England v France. Anna&rsquo;s beliefs: France 0.55, draw 0.30, England 0.25, total 1.10. The bookmaker sells €1 tickets at €0.52, €0.28 and €0.23, each below her belief.</p>
+      <p>She buys all three: €1.03. Exactly one result happens: she gets €1. Net €1 − €1.03 = −€0.03.</p>
+    </div>
+    <div class="note"><p><b>de Finetti 1937.</b> La prévision. <i>Annales de l&rsquo;Institut Henri Poincaré</i> 7.</p><p><b>Ramsey 1926.</b> Truth and probability.</p></div>
+  </div>
+
+  <!-- ══ 7 ══ -->
+  <div class="sec wyntk">
+    <div class="num">7</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>Probability distributions, written as functions.</li>
+          <li>Independent events and the product rule.</li>
+          <li>The normal distribution.</li>
+          <li>Surprisal, entropy and information.</li>
+          <li>Conditional probability.</li>
+          <li>Hypothesis, evidence, prior, likelihood and posterior.</li>
+          <li>Expected value; degrees of belief.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Compute probabilities from counts.</li>
+          <li>Multiply probabilities along a tree for independent events.</li>
+          <li>Compute surprisal and entropy by hand.</li>
+          <li>Compute a conditional probability from counts.</li>
+          <li>Annotate Bayes&rsquo; rule and compute a posterior.</li>
+          <li>Update a belief one piece of evidence at a time.</li>
+          <li>Read a conditional probability table by row and by column.</li>
+        </ol>
+      </div>
+      </div>
+    </div>
+    <div class="note"></div>
+  </div>
+
+</div>
+
 </body>
 </html>

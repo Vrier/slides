@@ -1,124 +1,1490 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU44008 · Week 5 · Rational Speech Act Models · Lecture Deck</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LIU44008 · Week 5 · Probability and Priors · Lecture deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../../shared/tokens.css" />
 <link rel="stylesheet" href="../../shared/dir-a.css" />
 <link rel="stylesheet" href="../../shared/dir-b.css" />
 <link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
 <link rel="stylesheet" href="../../shared/deck-slides.css" />
 <link rel="stylesheet" href="../../shared/theme-rust.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
 <script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" id="MathJax-script" async></script>
+<script src="../../shared/deck-stage.js" defer></script>
+<script src="../../shared/prag2-meta.js" defer></script>
+<script src="../../shared/prag2-rail.js" defer></script>
 <style>
+
   html,body{margin:0;padding:0;background:#11151a;}
   deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* three-column fields */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  .cols3 .cfoot{ margin-top:12px; font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .cols3 .cfoot b{ color:var(--tcd-blue); font-weight:600; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--tcd-ink); line-height:1.08; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ question / answer slide furniture ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
+
+  /* ============ conversations (paired sentences, Q/A dialogues) ============ */
+  .convo{ margin:6px 0; }
+  .convo .cv{ display:grid; grid-template-columns:190px 1fr; gap:0 26px; padding:11px 0; align-items:baseline; }
+  .convo .cv + .cv{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 12%, #fff); }
+  .convo .who{ font-family:var(--mono); font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .convo .say{ font-family:var(--serif); font-style:italic; font-size:33px; color:var(--tcd-ink); line-height:1.25; }
+  .convo.big .say{ font-size:42px; }
+  .convo.big .cv{ padding:14px 0; }
+
+  /* week-tag chip on answer slides */
+  .wktag{ display:inline-block; font-family:var(--mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 8%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 26%, #fff); border-radius:999px;
+    padding:5px 16px; margin-left:20px; vertical-align:middle; transform:translateY(-6px); }
+
+  /* ============ figure portraits & name plates ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:64px; font-weight:600; letter-spacing:.02em; }
+  .figthree .npf .npmono{ height:300px; }
+
+  /* ============ lineage / genealogy strip ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* shared test-case rows */
+  .fourways{ margin-top:8px; }
+  .fourways .fw{ display:grid; grid-template-columns:280px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .fourways .fw:first-child{ border-top:none; }
+  .fourways .fw .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fc); }
+  .fourways .fw .fl small{ display:block; font-family:var(--mono); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--tcd-grey-75); margin-top:3px; text-transform:none; }
+  .fourways .fw .ft2{ font-family:var(--sans); font-size:23px; color:var(--tcd-black); line-height:1.35; }
+  .fourways .fw .ft2 em{ font-style:italic; } .fourways .fw .ft2 b{ color:var(--tcd-ink); }
+
+  /* ============ housekeeping / week grids / recap ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* hatched to-confirm box (print twin of the scaffold todo-box) */
+  .todo-line{ margin-top:18px; border:1.5px dashed var(--tcd-blue-50); border-radius:9px; background:var(--tcd-blue-10);
+    padding:13px 20px; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+  .todo-line b{ color:var(--tcd-blue); }
+
+  /* question-slide footnote line (as weeks-pragmatics/week-01) */
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+
+  /* Kripke-model figure (week 2): worlds as nodes, R as arrows */
+  .kfig{ width:100%; height:auto; display:block; margin:8px 0 0; }
+  .kfig .nd{ fill:#fff; stroke:var(--lens, var(--tcd-blue)); stroke-width:3; }
+  .kfig .ar{ stroke:var(--tcd-ink); stroke-width:3; fill:none; }
+  .kfig .wl{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .kfig .vl{ font-family:var(--sans); font-size:23px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .fourways .fw .fl .fm{ display:block; font-family:var(--serif); font-weight:400; font-size:21px; letter-spacing:0; text-transform:none; color:var(--tcd-grey-100); margin-top:4px; }
+
+  /* world diagrams (week 2): logical space, propositions as regions, accessibility */
+  .wfig{ width:100%; height:auto; display:block; margin:4px 0 6px; }
+  .wfig .sp{ fill:#fff; stroke:var(--tcd-grey-50); stroke-width:2; }
+  .wfig .pr{ fill:color-mix(in srgb, var(--lens) 13%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .qr{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .acc{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .ar{ stroke:var(--tcd-ink); stroke-width:2.5; fill:none; }
+  .wfig .wd{ fill:#fff; stroke:var(--tcd-ink); stroke-width:2.5; }
+  .wfig .wd.dim{ stroke:var(--tcd-grey-50); }
+  .wfig .w0{ fill:var(--tcd-ink); }
+  .wfig .wl{ font-family:var(--serif); font-style:italic; font-size:29px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .wl.inv{ fill:#fff; } .wfig .wl.dim{ fill:var(--tcd-grey-75); }
+  .wfig .ws{ font-family:var(--sans); font-size:20px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .wfig .lp{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--lens); }
+  .wfig .lps{ font-family:var(--serif); font-size:24px; fill:var(--lens); }
+  .wfig .lq{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--tcd-ink); }
+  .wfig .lqs{ font-family:var(--serif); font-size:24px; fill:var(--tcd-ink); }
+  .wfig .la{ font-family:var(--sans); font-size:21px; font-weight:600; fill:var(--tcd-ink); }
+  .wfig .lw{ font-family:var(--mono); font-size:16px; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .sd{ fill:color-mix(in srgb, var(--lens) 8%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .sdt{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .rl{ stroke:var(--tcd-grey-25); stroke-width:1.5; }
+  .wfig .rs{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); }
+  .wfig .tv{ font-family:var(--mono); font-size:28px; font-weight:600; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .tv.off{ fill:var(--tcd-grey-50); }
+  .wfig .rn{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .rn.on{ fill:var(--lens); }
+
+
+  /* week-02 prag2 additions: wide photo cards, clock card, greek row tweaks */
+  .photocard{ width:600px; flex:0 0 600px; }
+  .photocard img{ height:340px; }
+  .clockface{ width:100%; height:360px; border-radius:7px; background:var(--tcd-blue-10); display:flex; align-items:center; justify-content:center; }
+  .centrewrap{ flex:1 1 0; display:flex; align-items:center; justify-content:center; gap:64px; }
+  /* roadmap: larger, legible agenda text */
+  .lxr3 .stop .lab{ font-size:19px; }
+  .lxr3 .rmb li{ font-size:24px; padding:8px 0 8px 22px; line-height:1.3; }
+  .lxr3 .rmb li::before{ top:17px; width:8px; height:8px; }
+  /* label columns retired: full-width rows, larger type */
+  .dB .erow.nolb{ grid-template-columns:1fr; gap:0; padding:26px 0; }
+  .dB .erow.nolb .tx{ font-size:40px; line-height:1.4; }
+  .dB .erow.nolb .tx.tight{ font-size:35px; line-height:1.38; }
+
+
+  /* ============ type pass (as weeks-semantics2/week-02): New Computer Modern, 40px body ============ */
+  /* ============ week 2 type pass: New Computer Modern + larger small text ============
+     Same patterns as week 1. Computer Modern runs small on the body, so running
+     text goes up a step, and nothing on a slide is set below 15px. */
+  .dB .erow .tx{ font-size:31px; line-height:1.34; } .dB .erow .tx.tight{ font-size:29px; }
+  .dB .erow .lb{ font-size:17px; }
+  .dB .lead{ font-size:38px; }
+  .eg .ex{ font-size:31px; } .eg .ex .gl{ font-size:22px; line-height:1.32; } .eg .no{ font-size:21px; }
+  .eghead{ font-size:16px; } .egpanel .fxnote{ font-size:20px; }
+  .fourways .fw{ grid-template-columns:300px 1fr; }
+  .fourways .fw .fl{ font-size:18px; } .fourways .fw .fl small{ font-size:16.5px; margin-top:4px; }
+  .fourways .fw .fl .fm{ font-size:24px; }
+  .fourways .fw .ft2{ font-size:27px; line-height:1.34; }
+  .brn .split span{ font-size:16px; } .brn .arm .h{ font-size:16px; } .brn .arm .t{ font-size:28px; }
+  .convo .who{ font-size:18px; } .qsrc{ font-size:25px; } .qask{ font-size:21px; }
+  .qref .src{ font-size:20px; } .bigq .src{ font-size:24px; }
+  .portrait .pc .dt{ font-size:15px; } .portrait .pc .rl{ font-size:19px; line-height:1.32; }
+  .lineage .ln .era{ font-size:16px; } .lineage .ln .ds{ font-size:19.5px; } .lineage .ln .nm{ font-size:26px; }
+  .roots{ font-size:27px; }
+  .lxr3 .rmb li{ font-size:20px; }
+  .mrail a.si2{ font-size:15px; } .mrail .ghd, .mrail .ghd .gt{ font-size:12px; }
+  .wktag{ font-size:16px; }
+
+  /* notation table (week 2) */
+  .ntab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ntab .nh{ display:grid; grid-template-columns:370px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:18px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .ntab .nr{ display:grid; grid-template-columns:370px 1fr; gap:34px; align-items:baseline; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ntab .no1{ font-family:var(--serif); font-size:32px; color:var(--tcd-ink); }
+  .ntab .no1 small{ display:block; font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); margin-top:2px; }
+  .ntab .no2{ font-family:var(--serif); font-size:27px; line-height:1.4; color:var(--tcd-ink); }
+  .ntab .no2 i{ font-family:var(--sans); font-style:normal; font-size:21px; color:var(--tcd-grey-100); }
+
+  /* ============ week 2 type pass, second round: projector floor ============
+     Floors on the 1920 canvas: running text 27px, glosses and notes 22px,
+     uppercase labels 19px, credits 17px, sidebar 13px. */
+  .dB .erow .lb{ font-size:20px; } .dB .erow{ grid-template-columns:250px 1fr; }
+  .eghead{ font-size:19px; } .eg .ex .gl{ font-size:24px; } .eg .no{ font-size:23px; }
+  .egpanel .fxnote{ font-size:22px; }
+  .brn .split span{ font-size:19px; } .brn .arm .h{ font-size:19px; }
+  .fourways .fw .fl{ font-size:20px; } .fourways .fw .fl small{ font-size:19px; }
+  .fourways .fw .ft2{ font-size:28px; }
+  .portrait .pc .dt{ font-size:17px; line-height:1.35; } .portrait .pc .rl{ font-size:21px; }
+  .wktag{ font-size:18px; }
+  .qask{ font-size:24px; } .convo .who{ font-size:21px; } .qsrc{ font-size:27px; }
+  .qref .src{ font-size:22px; }
+  .lxr3 .stop .head .lab{ font-size:20px; } .lxr3 .rmb li{ font-size:22px; }
+  .lxd2 .r .ct{ font-size:20px; }
+  .ntab .nh{ font-size:19px; } .ntab .no1 small{ font-size:21px; } .ntab .no2 i{ font-size:22px; }
+  .tcd-names .uni{ font-size:18px; }
+  .mrail a.si2{ font-size:16px; } .mrail .ghd .gt{ font-size:13px; } .mrail .ghd .gcar{ font-size:11px; }
+  .mrail .mhd .tt{ font-size:14px; } .mrail .mft .wk{ font-size:14px; }
+  .kfig .vl{ font-size:26px; }
+  .wfig .ws{ font-size:24px; } .wfig .lp, .wfig .lq{ font-size:26px; } .wfig .lps, .wfig .lqs{ font-size:26px; }
+  .wfig .la{ font-size:25px; } .wfig .lw{ font-size:20px; } .wfig .rn{ font-size:24px; }
+
+  /* ============ week 2 type pass, third round: fill the slide ============
+     Week 1's patterns leave the lower third of most slides empty. Default sizes
+     go up again; a slide that would overflow takes class "dense" on .b-main and
+     keeps the second-round sizes. */
+  .dB .erow .tx{ font-size:36px; line-height:1.32; } .dB .erow .tx.tight{ font-size:33px; }
+  .dB .erow{ grid-template-columns:270px 1fr; padding:20px 0; } .dB .erow .lb{ font-size:21px; padding-top:9px; }
+  .eg .ex{ font-size:36px; } .eg .ex .gl{ font-size:26px; } .eg .no{ font-size:25px; }
+  .eghead{ font-size:20px; } .egpanel .fx{ font-size:36px; } .egpanel .fxnote{ font-size:24px; }
+  .fourways .fw{ grid-template-columns:330px 1fr; padding:18px 0; }
+  .fourways .fw .fl{ font-size:22px; } .fourways .fw .fl small{ font-size:20px; } .fourways .fw .fl .fm{ font-size:27px; }
+  .fourways .fw .ft2{ font-size:32px; }
+  .brn .arm .t{ font-size:32px; } .brn .arm .h{ font-size:20px; } .brn .split span{ font-size:20px; }
+  .convo .say{ font-size:40px; } .convo.big .say{ font-size:50px; } .qask{ font-size:26px; } .qsrc{ font-size:29px; }
+  .qref{ font-size:32px !important; } .qref .src{ font-size:23px; }
+  .ntab .no1{ font-size:36px; } .ntab .no2{ font-size:30px; } .ntab .no2 i{ font-size:24px; } .ntab .no1 small{ font-size:22px; }
+  .lxr3 .rmb li{ font-size:24px; } .figs-line{ font-size:25px; } .q-banner{ font-size:34px; }
+  .b-step-lab{ font-size:24px; } .b-step-math{ font-size:44px; }
+  /* dense slides keep the second-round sizes */
+  .b-main.dense .erow .tx{ font-size:31px; } .b-main.dense .erow .tx.tight{ font-size:29px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; }
+  .b-main.dense .eg .ex{ font-size:31px; } .b-main.dense .eg .ex .gl{ font-size:24px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:28px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:32px; }
+  .b-main.dense .ntab .no1{ font-size:32px; } .b-main.dense .ntab .no2{ font-size:27px; } .b-main.dense .ntab .nr{ padding:12px 0; }
+
+  /* ============ fourth round: body text at 40px (about 20pt on a 13.3in slide) ============ */
+  .dB .erow .tx{ font-size:40px; line-height:1.3; } .dB .erow .tx.tight{ font-size:37px; }
+  .dB .erow{ grid-template-columns:280px 1fr; padding:22px 0; } .dB .erow .lb{ font-size:22px; padding-top:12px; }
+  .eg .ex{ font-size:40px; } .eg .ex .gl{ font-size:28px; } .eg .no{ font-size:27px; } .eg{ padding:13px 0; }
+  .egpanel .fx{ font-size:40px; } .egpanel .fxnote{ font-size:25px; } .eghead{ font-size:21px; }
+  .fourways .fw{ grid-template-columns:340px 1fr; padding:20px 0; }
+  .fourways .fw .fl{ font-size:23px; } .fourways .fw .fl small{ font-size:21px; } .fourways .fw .fl .fm{ font-size:29px; }
+  .fourways .fw .ft2{ font-size:35px; line-height:1.3; }
+  .brn .arm .t{ font-size:35px; } .brn .arm .h{ font-size:21px; } .brn .split span{ font-size:21px; }
+  .convo .say{ font-size:44px; } .convo.big .say{ font-size:56px; } .convo .who{ font-size:23px; } .qask{ font-size:28px; } .qsrc{ font-size:31px; }
+  .qref{ font-size:35px !important; } .qref .src{ font-size:24px; }
+  .ntab .no1{ font-size:38px; } .ntab .no2{ font-size:32px; } .ntab .no2 i{ font-size:25px; }
+  .lxr3 .rmb li{ font-size:26px; line-height:1.35; } .lxr3 .stop .head .lab{ font-size:22px; }
+  .figs-line{ font-size:27px; } .q-banner{ font-size:38px; }
+  .b-step-lab{ font-size:26px; } .b-step-math{ font-size:46px; }
+  .portrait .pc .nm{ font-size:30px; }
+  .wfig .ws{ font-size:28px; } .wfig .lp, .wfig .lq{ font-size:30px; } .wfig .lps, .wfig .lqs{ font-size:29px; }
+  .wfig .la{ font-size:28px; } .wfig .lw{ font-size:22px; } .wfig .wl{ font-size:32px; }
+  .kfig .vl{ font-size:30px; } .kfig .wl{ font-size:36px; }
+  /* dense fallback, restated after the defaults so it still wins */
+  .b-main.dense .erow .tx{ font-size:32px; } .b-main.dense .erow .tx.tight{ font-size:30px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; } .b-main.dense .erow .lb{ font-size:20px; padding-top:7px; }
+  .b-main.dense .eg .ex{ font-size:33px; } .b-main.dense .eg .ex .gl{ font-size:25px; } .b-main.dense .eg{ padding:9px 0; }
+  .b-main.dense .fourways .fw .ft2{ font-size:30px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:34px; }
+  .b-main.dense .brn .arm .t{ font-size:30px; }
+  .b-main.dense .ntab .no1{ font-size:33px; } .b-main.dense .ntab .no2{ font-size:28px; } .b-main.dense .ntab .nr{ padding:11px 0; }
+
+  /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
+  .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
+  .b-main.snug .fourways .fw .ft2{ font-size:33px; }
+
+  /* label-less rows keep their week 2 sizes over the type pass; dense/snug restated for them */
+  .dB .erow.nolb{ grid-template-columns:1fr; gap:0; padding:24px 0; }
+  .dB .erow.nolb .tx{ font-size:40px; line-height:1.32; }
+  .dB .erow.nolb .tx.tight{ font-size:36px; line-height:1.32; }
+  .b-main.dense .erow.nolb{ padding:15px 0; grid-template-columns:1fr; }
+  .b-main.dense .erow.nolb .tx{ font-size:33px; } .b-main.dense .erow.nolb .tx.tight{ font-size:31px; }
+  .b-main.snug .erow.nolb{ padding:14px 0; }
+
+  /* ============ week 3 additions ============ */
+  .ico{ display:inline-block; vertical-align:middle; }
+  .ico svg{ display:block; }
+  /* the four objects with their frequencies */
+  .objrow{ display:flex; gap:78px; justify-content:center; align-items:flex-end; margin:26px 0 10px; }
+  .objrow .ob{ display:flex; flex-direction:column; align-items:center; gap:14px; }
+  .objrow .ob .fq{ font-family:var(--serif); font-size:44px; color:var(--tcd-ink); }
+  .objrow .ob .nmw{ font-family:var(--serif); font-style:italic; font-size:46px; color:var(--lens); margin-top:2px; }
+  .objrow.small{ gap:56px; margin:30px 0 0; } .objrow.small .ob .fq{ font-size:36px; }
+  /* lexicon / pricing tables */
+  .ltab{ display:grid; margin-top:18px; border-top:2px solid var(--lens); }
+  .ltab > div{ padding:15px 12px; border-bottom:1px solid var(--tcd-grey-25); display:flex; align-items:center; }
+  .wrow{ display:flex; align-items:flex-end; gap:0; margin:18px 0 8px; border-top:2px solid var(--lens); border-bottom:1px solid var(--tcd-grey-25); padding:14px 0; }
+  .wrow .wno{ font-family:var(--serif); font-size:30px; color:var(--tcd-grey-75); width:90px; }
+  .wrow .wcol{ flex:1 1 0; text-align:center; }
+  .wrow .en{ font-family:var(--sans); font-size:26px; color:var(--tcd-grey-100); }
+  .wk{ font-style:normal; }
+  .wrow .wl{ font-family:var(--serif); font-style:normal; font-size:54px; color:var(--tcd-ink); line-height:1.15; }
+  .wrow .ip{ font-family:var(--serif); font-size:30px; color:var(--tcd-grey-75); }
+  .tax .gh{ font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; fill:var(--lens); }
+  .tax .gs{ font-family:var(--serif); font-size:27px; font-weight:700; fill:var(--tcd-ink); }
+  .tax .gn{ font-family:var(--serif); font-size:25px; fill:var(--tcd-ink); }
+  .tax .hl{ fill:var(--lens); }
+  .tax .gn.hl{ font-weight:700; }
+  .bhc .portrait{ width:250px; flex:0 0 250px; } .bhc .portrait img{ height:300px; }
+  .srcl{ font-family:var(--sans); font-size:24px; color:var(--tcd-grey-75); margin-top:12px; line-height:1.35; }
+  .srcl em{ font-style:italic; }
+  .ltab.tight > div{ padding:9px 12px; }
+  .ltab .th{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .ltab .th em{ font-family:var(--serif); font-size:34px; font-weight:400; letter-spacing:0; }
+  .ltab .fq{ font-family:var(--serif); font-size:38px; color:var(--tcd-ink); }
+  .ltab .wd{ font-family:var(--serif); font-style:italic; font-size:42px; color:var(--tcd-ink); }
+  .ltab .nm{ font-family:var(--serif); font-size:38px; color:var(--tcd-ink); justify-content:center; }
+  .ltab .nm.inf{ color:var(--tcd-grey-75); }
+  .ltab .nm.best{ font-weight:700; color:var(--lens); }
+  .ltab .st{ font-family:var(--sans); font-size:30px; color:var(--tcd-ink); }
+  .ltab .foot{ font-family:var(--serif); font-size:34px; color:var(--tcd-ink); border-bottom:none; }
+  /* syllable stream */
+  .stream{ font-family:var(--serif); font-style:italic; font-size:64px; color:var(--tcd-ink); letter-spacing:.02em; text-align:center; margin:6px 0 4px; }
+  .stream .cut{ color:var(--lens); font-style:normal; padding:0 .25em; }
+  .segrow{ display:flex; justify-content:center; gap:70px; margin:6px 0 10px; }
+  .segrow .sg{ display:flex; flex-direction:column; align-items:center; gap:10px; font-family:var(--serif); font-style:italic; font-size:40px; color:var(--tcd-ink); }
+  /* figures */
+  .ifig{ display:block; width:100%; height:auto; }
+  .ifig .cl{ font-family:var(--serif); font-style:italic; font-size:30px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ifig .cl.off{ fill:var(--tcd-grey-50); }
+  .ifig .rl{ font-family:var(--sans); font-size:24px; fill:var(--tcd-grey-100); }
+  .ifig .ax{ stroke:var(--tcd-ink); stroke-width:2.5; fill:none; }
+  .ifig .gd{ stroke:var(--tcd-grey-25); stroke-width:1.5; }
+  .ifig .cv{ stroke:var(--lens); stroke-width:5; fill:none; }
+  .ifig .pt{ fill:var(--lens); }
+  .ifig .tk{ font-family:var(--serif); font-size:28px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ifig .tky{ font-family:var(--serif); font-size:28px; fill:var(--tcd-ink); text-anchor:end; }
+  .ifig .al{ font-family:var(--sans); font-size:24px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .ifig .pl{ font-family:var(--serif); font-size:28px; fill:var(--lens); }
+  .ifig .ar{ font-family:var(--serif); font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ifig .bx{ stroke:var(--tcd-ink); stroke-width:2; }
+  .sidefig{ display:flex; gap:44px; align-items:flex-start; }
+  .sidefig > .col{ flex:1 1 0; min-width:0; }
+  .sidefig > .fig{ flex:0 0 auto; }
+  /* the guessing game (live): each letter is a button; click cycles hidden, missed, got first time */
+  .gg{ display:flex; flex-wrap:wrap; gap:12px 8px; margin:26px 0 8px; }
+  .gg .w{ display:flex; gap:6px; margin-right:26px; }
+  .gg button{ width:52px; height:72px; border:2px solid color-mix(in srgb, var(--lens) 35%, #fff); border-radius:8px;
+    background:#fff; font-family:var(--mono); font-size:38px; color:var(--tcd-grey-50); cursor:pointer; padding:0; }
+  .gg button.sp{ width:34px; border-style:dashed; }
+  .gg button{ position:relative; }
+  .gg button .lt{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; border-radius:6px;
+    background:color-mix(in srgb, var(--lens) 8%, #fff); color:var(--tcd-ink); }
+  .gg button .lt.sp{ background:color-mix(in srgb, var(--lens) 3%, #fff); }
+  html.gg-live .gg button .lt{ visibility:hidden; }
+  html.gg-live .gg button[data-s="1"] .lt, html.gg-live .gg button[data-s="2"] .lt{ visibility:visible; }
+  html.gg-live .gg button[data-s="2"] .lt{ color:var(--lens); font-weight:700; background:color-mix(in srgb, var(--lens) 16%, #fff); }
+  .live-only{ display:none; } html.gg-live .live-only{ display:block; }
+  html.gg-live .ggsrc, html.gg-live .ggest{ visibility:hidden; }
+  html.gg-live .gg-done .ggsrc, html.gg-live .gg-done .ggest{ visibility:visible; }
+  .ggest{ font-family:var(--serif); font-size:36px; line-height:1.3; color:var(--tcd-ink); margin-top:18px; }
+  .gg button[data-s="1"]{ color:var(--tcd-ink); background:color-mix(in srgb, var(--lens) 8%, #fff); }
+  .gg button[data-s="2"]{ color:var(--lens); background:color-mix(in srgb, var(--lens) 16%, #fff); font-weight:700; }
+  .ggtally{ font-family:var(--sans); font-size:30px; color:var(--tcd-grey-100); margin-top:14px; }
+  .ggtally b{ color:var(--lens); }
+  /* the 100 most common words: two word columns and a band chart */
+  .top3{ display:grid; grid-template-columns:462px 462px 1fr; gap:40px; margin-top:14px; align-items:start; }
+  .top3 .lh{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens);
+    padding-bottom:8px; border-bottom:2px solid color-mix(in srgb, var(--lens) 35%, #fff); margin-bottom:12px; }
+  .top3 .lh small{ display:block; font-weight:400; letter-spacing:.02em; text-transform:none; font-size:20px; color:var(--tcd-grey-75); margin-top:3px; }
+  .wflow{ font-family:var(--serif); font-style:italic; font-size:25px; line-height:1.26; color:var(--tcd-ink); word-spacing:.12em; }
+  .wflow .lg{ color:var(--lens); font-weight:700; }
+  .topnote{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin-top:22px; padding-top:18px; border-top:1px solid var(--tcd-grey-25); }
+  .topsrc{ font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:10px; }
+
+  /* a formula line inside running rows */
+  .fxline{ font-size:40px; text-align:center; margin:10px 0 2px; }
+  .fxline mjx-container{ margin:6px 0 !important; }
+
+
+  /* ============ week 5 additions ============ */
+  /* roomy: a sparse slide takes larger type and deeper rows (fill the frame) */
+  .b-main.roomy .erow .tx{ font-size:45px; line-height:1.3; } .b-main.roomy .erow .tx.tight{ font-size:42px; }
+  .b-main.roomy .erow{ padding:28px 0; }
+  .b-main.roomy .eg .ex{ font-size:48px; }
+  /* the wager: payoff table on the question slide */
+  .paytab{ display:grid; grid-template-columns:560px 1fr 1fr; margin:40px 0 0; border-top:3px solid var(--lens); }
+  .paytab > div{ padding:34px 20px; border-bottom:1px solid var(--tcd-grey-25); display:flex; align-items:center;
+    font-family:var(--serif); font-size:50px; color:var(--tcd-ink); line-height:1.15; }
+  .paytab .h{ font-family:var(--sans); font-size:32px; font-weight:700; color:var(--lens); justify-content:center; }
+  .paytab .r{ font-family:var(--sans); font-size:34px; color:var(--tcd-grey-100); }
+  .paytab .c{ justify-content:center; text-align:center; }
+  /* ten imagined tosses */
+  .tossrow{ display:flex; gap:24px; justify-content:center; margin:90px 0 0; }
+  .tossrow .tb{ display:flex; flex-direction:column; align-items:center; gap:16px; }
+  .tossrow .bx{ width:132px; height:160px; border:3px solid color-mix(in srgb, var(--lens) 45%, #fff); border-radius:12px; background:#fff; }
+  .tossrow .n{ font-family:var(--serif); font-size:36px; color:var(--tcd-grey-75); }
+  /* lettered items inside an example */
+  .lettered{ display:grid; grid-template-columns:1fr 1fr; gap:26px 70px; margin-top:4px; }
+  .lettered span{ font-family:var(--serif); font-style:italic; font-size:54px; color:var(--tcd-ink); }
+  .lettered span b{ font-style:normal; font-weight:400; color:var(--tcd-grey-75); margin-right:20px; }
+  .eg .ex .sub{ display:block; margin-top:14px; }
+  /* probabilities under the four objects */
+  .objrow .ob .pv{ font-family:var(--serif); font-size:40px; color:var(--lens); }
+  /* name plates sized to the photos beside them */
+  .figrow > .portrait.npf .npmono{ height:360px; }
+  .bhc .npf .npmono{ height:300px; }
+  /* tables on answer slides */
+  .ltab .nm.sm{ font-size:34px; }
+  .ltab .th.c{ justify-content:center; text-align:center; }
+  /* definitions table on Bayes' rule */
+  .ntab.defs{ border-top:2px solid var(--lens); margin-top:10px; }
+  .ntab.defs .nr{ grid-template-columns:420px 1fr; padding:13px 0; }
+  .ntab.defs .no1{ font-size:36px; } .ntab.defs .no2{ font-family:var(--serif); font-size:33px; }
+  .ntab.defs .no1 b{ font-weight:700; }
+  /* figures */
+  .ifig .door{ fill:color-mix(in srgb, var(--lens) 14%, #fff); stroke:var(--tcd-ink); stroke-width:3; }
+  .ifig .door.open{ fill:#fff; stroke-dasharray:10 7; }
+  .ifig .dn{ font-family:var(--serif); font-size:58px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ifig .gt{ font-family:var(--serif); font-style:italic; font-size:40px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .ifig .tn{ font-family:var(--serif); font-size:31px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ifig .tn.hl{ fill:var(--lens); font-weight:700; }
+  .ifig .ed{ stroke:var(--tcd-grey-75); stroke-width:2.5; fill:none; }
+  .ifig .bar{ fill:color-mix(in srgb, var(--lens) 50%, #fff); stroke:var(--tcd-ink); stroke-width:1.5; }
+  .ifig .bar.off{ fill:#fff; stroke:var(--tcd-grey-50); stroke-dasharray:6 5; }
+  .ifig .wl{ font-family:var(--serif); font-style:italic; font-size:28px; fill:var(--tcd-ink); text-anchor:middle; }
+  .ifig .pv{ font-family:var(--serif); font-size:24px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .ifig .hd{ font-family:var(--sans); font-size:26px; font-weight:700; fill:var(--lens); text-anchor:middle; }
+  .ifig .br{ stroke:var(--lens); stroke-width:3; fill:none; }
+  /* code panel (WebPPL) */
+  .code{ font-family:var(--mono); font-size:30px; line-height:1.5; color:var(--tcd-ink); white-space:pre;
+    background:color-mix(in srgb, var(--lens) 6%, #fff); border-left:5px solid var(--lens); border-radius:0 10px 10px 0;
+    padding:20px 30px; margin:2px 0 10px; }
+  .code .k{ color:var(--lens); font-weight:600; }
+  .tx code{ font-family:var(--mono); font-size:.86em; color:var(--lens); }
+  .ltab .nm.inf{ color:var(--tcd-grey-50); }
+  .ltab .lab{ font-family:var(--serif); font-size:34px; color:var(--tcd-ink); }
+  .ltab .ic{ justify-content:center; }
+  .ltab .th em{ text-transform:none; }
+  .lettered[style*="repeat(4"] span{ font-size:46px; }
+  .ntab.n7 .nr{ padding:6px 0; } .ntab.n7 .no1{ font-size:31px; } .ntab.n7 .no1 small{ font-size:19px; } .ntab.n7 .no2{ font-size:27px; }
+  .egpanel.opts{ display:flex; justify-content:space-around; padding:22px 30px; }
+  .egpanel.opts span{ font-family:var(--serif); font-size:46px; color:var(--tcd-ink); white-space:nowrap; }
+  .egpanel.opts span b{ font-weight:400; color:var(--tcd-grey-75); margin-right:16px; }
+  .fig.bg{ width:740px; height:600px; overflow:hidden; border:1px solid var(--tcd-grey-25); border-radius:10px; } .bground{ display:block; width:1194px; height:968px; transform:scale(0.62); transform-origin:0 0; border:0; border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; }
+  .egpanel.annot .fx, .b-main.dense .egpanel.annot .fx{ font-size:58px; padding:6px 0 2px; }
+  .ifig.ctr{ display:block; margin:0 auto; }
+  .obj32{ text-align:center; font-family:var(--sans); font-size:30px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--lens); margin:0 0 10px; }
+  .photo.wide{ height:auto; margin:24px 0 18px; } .photo.wide img{ height:auto; width:100%; max-width:1560px; box-shadow:none; border-radius:0; }
+  .photo{ display:flex; justify-content:center; align-items:center; height:690px; margin-top:6px; }
+  .photo img{ height:690px; width:auto; max-width:100%; object-fit:contain; border-radius:8px; box-shadow:0 6px 24px rgba(0,0,0,.12); }
+  .ntab.defs.tightdefs .nr{ padding:7px 0; }
+  .ifig .ax{ stroke:var(--tcd-grey-75); stroke-width:2; }
+  .ifig.pop .pos{ fill:var(--lens); } .ifig.pop .neg{ fill:var(--tcd-grey-25); }
+  .ltab .lab b{ font-weight:600; }
+  /* print: Chrome draws MathJax's zero-width glyph strokes as hairlines in PDF, which makes formulas look bold */
+  @media print { mjx-container[jax="SVG"] svg g, mjx-container[jax="SVG"] svg use, mjx-container[jax="SVG"] svg path { stroke:none !important; } }
+
 </style>
 </head>
 <body class="pal-a" data-week="5">
 
-<deck-stage width="1920" height="1080">
 
-<section class="slide" data-label="Title">
-  <div class="a-watermark" style="font-style:italic">¶</div>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
+  </defs>
+</svg>
+
+
+<deck-stage>
+
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark"><svg viewBox="0 0 100 100" style="width:620px;height:620px;display:block" fill="none" stroke="var(--tcd-blue-10)" stroke-width="4" stroke-linecap="round"><circle cx="50" cy="18" r="7" fill="var(--tcd-blue-10)" stroke="none"/><path d="M46 24 L26 52 M54 24 L74 52"/><circle cx="24" cy="58" r="6"/><circle cx="76" cy="58" r="6"/><path d="M21 64 L12 86 M27 64 L36 86 M73 64 L64 86 M79 64 L88 86"/></svg></div>
   <div class="a-title-wrap">
     <div class="tcd-lockup">
       <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
       <div class="tcd-rule"></div>
-      <div class="tcd-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
-      </div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
     </div>
     <div style="margin-top:74px">
       <div class="a-course-code">LIU44008 · Pragmatics II</div>
       <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 5</h1>
-      <div class="a-course-sub">Rational Speech Act Models</div>
+      <div class="a-course-sub">Probability and Priors</div>
     </div>
-    <div class="a-meta">
-      <div class="who">Thomas Stephen</div>
-      <div>School of Linguistic, Speech &amp; Communication Sciences</div>
-      <div class="a-hairline"></div>
-      <div>Semester 1 · Michaelmas</div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · Michaelmas</div></div>
+  </div>
+</section>
+
+<section class="slide" data-label="This week" data-screen-label="02">
+  <div class="b-slide pal-a dB" data-sec="wk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">This week</h2>
+      <div class="q-banner">How should a listener&rsquo;s beliefs change when someone speaks?</div>
+      <div class="erow nolb" style="border-top:none"><div class="tx">A listener&rsquo;s uncertainty can be modelled as a probability distribution over the ways the world might be, and interpreting an utterance as updating that distribution: <strong>probability</strong>, <strong>entropy</strong>, <strong>conditional probability</strong>, <strong>Bayes&rsquo; rule</strong> and <strong>expected value</strong>.</div></div>
+      <div class="figs-line"><b>Figures:</b> Pascal · Bayes · Ramsey · de Finetti · Degen &nbsp;·&nbsp; <b>Data:</b> the medical test paradox · probability words · Linda · the wager · the St Petersburg game · colour terms · three doors · odd sentences · Indo-European cognates</div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-label="This week">
-  <div class="b-slide pal-a">
-    <div class="b-rail"></div>
-    <div class="b-main">
-      <div class="b-kick">The Model · where we are</div>
-      <h2 class="b-h">Rational Speech Act Models</h2>
-      <div class="spine-cards">
-        <div class="spine-card "><div class="ci">Approach 1</div><h3>Inference</h3><p>Meaning from speaker intentions.</p></div>
-        <div class="spine-card on"><div class="ci">Approach 2</div><h3>Grammar</h3><p>Meaning encoded &amp; computed by the system.</p></div>
-        <div class="spine-card "><div class="ci">Approach 3</div><h3>Information</h3><p>Meaning in the signal — probability, surprisal, LLMs.</p></div>
+<section class="slide" data-label="Concepts and skills" data-screen-label="03">
+  <div class="b-slide pal-a dB" data-sec="cs">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">Concepts and skills</h2>
+      <div class="cs-grid dense">
+        <div class="cs-col" data-step="1"><div class="cs-head">Concepts</div><ol class="cs-list">
+          <li>Probability distributions, written as functions.</li>
+          <li>Independent events and the product rule.</li>
+          <li>The normal distribution.</li>
+          <li>Surprisal, entropy and information.</li>
+          <li>Conditional probability.</li>
+          <li>Hypothesis, evidence, prior, likelihood and posterior.</li>
+          <li>Expected value; degrees of belief.</li>
+        </ol></div>
+        <div class="cs-col" data-step="2"><div class="cs-head">Skills</div><ol class="cs-list">
+          <li>Compute probabilities from counts.</li>
+          <li>Multiply probabilities along a tree for independent events.</li>
+          <li>Compute surprisal and entropy by hand.</li>
+          <li>Compute a conditional probability from counts.</li>
+          <li>Annotate Bayes&rsquo; rule and compute a posterior.</li>
+          <li>Update a belief one piece of evidence at a time.</li>
+          <li>Read a conditional probability table by row and by column.</li>
+        </ol></div>
       </div>
-      <div class="chip-row">
-        <span class="chip">Diagnostic · Scalar implicature</span>
-        <span class="chip">Diagnostic · Presupposition</span>
-        <span class="chip">Thread · Semantics / pragmatics interface</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Roadmap" data-screen-label="04">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical" data-pstep="1"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>The medical test paradox</li><li>Probability words</li><li>The probability yardstick</li><li>Linda</li><li>Pascal&rsquo;s wager</li><li>The St Petersburg game</li><li>Pascal&rsquo;s mugging</li></ul></div>
+        <div class="stop lens-historical" data-pstep="2"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Probable</li><li>Reverend Thomas Bayes</li><li>Ramsey and de Finetti</li><li>A Dutch book</li></ul></div>
+        <div class="stop lens-formal" data-pstep="3"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li>Probability</li><li>Probability distributions</li><li>The normal distribution</li><li>Entropy</li><li>Independent events</li><li>Conditional probability</li><li>Reading Bayes&rsquo; rule</li><li>Updating beliefs</li><li>A speaker&rsquo;s choices</li></ul></div>
+        <div class="stop lens-typological" data-pstep="4"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></div><span class="lab">Applied</span></div><div class="track"></div><ul class="rmb"><li>Three doors</li><li>The noisy channel</li><li>Colour terms as compression</li><li>The Indo-European homeland</li><li>Chains of learners</li><li>Prior beliefs and projection</li></ul></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-label="Session 1">
-  <div class="b-slide pal-a">
-    <div class="b-rail"></div>
-    <div class="b-main">
-      <div class="b-kick">Session 1</div>
-      <h2 class="b-h">Scalar implicature via the exhaustivity operator; embedded implicatures as the decisive argument for grammar — or are they?</h2>
-      <div class="todo-box"><b>Content to add.</b> Build out this session — mirror the worked deck in <b>weeks-pragmatics/week-02/deck.html</b> for callout cards (<b>.c-box</b>), worked examples and diagrams.</div>
+<section class="slide" data-label="Readings" data-screen-label="05">
+  <div class="b-slide pal-a dB" data-sec="rd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Readings</h2>
+      <div data-pstep="1">
+        <div class="qref" style="font-size:33px">Kunin, Daniel, Jingru Guo, Tyler Dae Devlin &amp; Daniel Xiang. <em>Seeing Theory: A Visual Introduction to Probability and Statistics</em>, chapters 1, 2, 3 and 5. seeing-theory.brown.edu.</div>
+        <div class="qref" style="font-size:33px;margin-top:20px">Tonhauser, Judith, David Beaver &amp; Judith Degen (2018). How Projective is Projective Content? Gradience in Projectivity and At-issueness. <em>Journal of Semantics</em> 35.</div>
+        <div class="qref" style="font-size:33px;margin-top:20px">Olah, Christopher (2015). <em>Visual Information Theory</em>. colah.github.io/posts/2015-09-Visual-Information.</div>
+        <div class="qref" style="font-size:33px;margin-top:20px">Arbital. <em>Bayes&rsquo; rule</em>. lesswrong.com/w/bayes-rule.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-label="Session 2">
-  <div class="b-slide pal-a">
-    <div class="b-rail"></div>
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">STRAND 01 / 04 · LIU44008 · Week 5</div><h2>Bets and judgements</h2><div class="ask">How people reason about chance</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="A positive test, Q" data-screen-label="06">
+  <div class="b-slide pal-a lens-empirical" data-sec="pt">
+    <aside class="mrail"></aside>
     <div class="b-main">
-      <div class="b-kick">Session 2</div>
-      <h2 class="b-h">Presupposition projection as dynamic semantics (Karttunen filtering; Heim's context-change potential) — the grammar corner's flagship case.</h2>
-      <div class="todo-box"><b>Content to add.</b> Build out this session's slides.</div>
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>The medical test paradox</div>
+        <div class="egpanel anim" style="--d:.15s;margin-top:24px"><div class="eg"><span class="no">(1)</span><span class="ex" style="font-size:42px">Suppose 1 in 10,000 people have a certain disease, and there is a medical test that is 99% accurate. This means that if you do have the disease, the test comes back positive with 99% probability, and if you do not have the disease, the test comes back negative with 99% probability. It is wrong 1% of the time.<span class="sub">If your test result comes back positive, what&rsquo;s the probability that you have the disease?</span></span></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="slide" data-label="Wrap">
-  <div class="b-slide pal-a">
-    <div class="b-rail"></div>
+<section class="slide" data-label="A positive test, A" data-screen-label="07">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="pt">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The medical test paradox</h2>
+      <div class="sidefig">
+        <div class="col">
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight">Of 1,000,000 people, 100 have the disease and 99 of them test positive. Of the 999,900 without it, 9,999 test positive.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">Of the 10,098 positive results, 99 come from people with the disease, so \(P(\text{disease} \mid +) = 99/10{,}098 \approx 0.0098\), about 1 in 100. The disease is so rare that false positives swamp true ones.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">The <strong>base-rate fallacy</strong> is neglecting how rare the disease is, its base rate. It was named in Maya Bar-Hillel&rsquo;s 1975 thesis; she is the daughter of the logician Yehoshua Bar-Hillel.</div></div>
+        </div>
+        <div class="fig" data-pstep="1"><svg class="ifig" viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" style="width:700px"><text class="tn" x="350" y="40">1,000,000 people</text><path class="ed" d="M320,56 L180,140 M380,56 L520,140"/><text class="tn" x="170" y="176">100 with the disease</text><text class="tn" x="530" y="176">999,900 without</text><path class="ed" d="M150,192 L90,290 M190,192 L250,290 M510,192 L450,290 M550,192 L610,290"/><text class="tn hl" x="90" y="326">99</text><text class="tn" x="250" y="326">1</text><text class="tn hl" x="450" y="326">9,999</text><text class="tn" x="610" y="326">989,901</text><text class="pv" x="90" y="362">positive</text><text class="pv" x="250" y="362">negative</text><text class="pv" x="450" y="362">positive</text><text class="pv" x="610" y="362">negative</text></svg></div>
+      </div>
+      <div class="srcl" data-pstep="1">Bar-Hillel (1980), <em>Acta Psychologica</em> 44.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Probability words, Q" data-screen-label="08">
+  <div class="b-slide pal-a lens-empirical" data-sec="pw">
+    <aside class="mrail"></aside>
     <div class="b-main">
-      <div class="b-kick">Week 5 — wrap-up</div>
-      <h2 class="b-h">Where this sits</h2>
-      <div class="todo-box"><b>Summary to add.</b> Restate the week through the three approaches and the two diagnostics, and flag the interface question. Next: Approach 3 — Statistics / Information.</div>
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Probability words</div>
+        <div class="egpanel anim" style="--d:.15s;margin-top:30px"><div class="eg"><span class="no">(2)</span><span class="ex"><span class="lettered"><span><b>a.</b>possible</span><span><b>b.</b>likely</span><span><b>c.</b>probably</span><span><b>d.</b>a real possibility</span><span><b>e.</b>almost certainly</span><span><b>f.</b>highly unlikely</span></span></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Probability words, A" data-screen-label="09">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="pw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Probability words</h2>
+      <div class="erow nolb" style="border-top:none" data-pstep="1"><div class="tx tight"><strong>Kent (1964)</strong> recalls a 1951 intelligence estimate that called a Soviet attack on Yugoslavia a serious possibility. His colleagues read the phrase as anything from a 20% to an 80% chance.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Mauboussin &amp; Mauboussin (2018)</strong> asked 1,700 people to put numbers on such phrases. <em>A real possibility</em> ranged from 20% to 80%, and <em>likely</em> from 55% to 90%.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">On the Horn scale ⟨<em>possible</em>, <em>likely</em>, <em>certain</em>⟩, saying <em>possible</em> implicates that <em>likely</em> does not hold.</div></div>
+      <div class="srcl" data-pstep="1">Kent (1964), <em>Studies in Intelligence</em> 8; Mauboussin &amp; Mauboussin (2018), <em>Harvard Business Review</em>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The probability yardstick" data-screen-label="10">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="yard">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The probability yardstick</h2>
+      <div class="photo wide" data-pstep="1"><img src="images/phia-yardstick.png" alt="The PHIA probability yardstick, from remote chance to almost certain"></div>
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight">The UK&rsquo;s Professional Head of Intelligence Assessment ties each probability word to a range of the scale, from <em>remote chance</em>, under 5%, to <em>almost certain</em>, 95% and above. The ranges leave gaps between them.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">Analysts use the words in place of numbers, so that judgements based on little quantitative data do not read as more precise than they are.</div></div>
+      <div class="srcl" data-pstep="1">PHIA Probability Yardstick, <em>Explaining uncertainty in UK intelligence assessment</em>, gov.uk (2025).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Linda, Q" data-screen-label="11">
+  <div class="b-slide pal-a lens-empirical" data-sec="lin">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Linda</div>
+        <div class="egpanel anim" style="--d:.15s;margin-top:24px"><div class="eg"><span class="no">(3)</span><span class="ex">Linda is 31, single, outspoken and very bright. She studied philosophy and as a student campaigned against discrimination and joined anti-nuclear protests.<span class="sub">a.&ensp;Linda is a bank teller.</span><span class="sub">b.&ensp;Linda is a bank teller and is active in the feminist movement.</span></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Linda, A" data-screen-label="12">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="lin">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The conjunction fallacy</h2>
+      <div class="erow nolb" style="border-top:none" data-pstep="1"><div class="tx tight"><strong>Tversky &amp; Kahneman (1983)</strong> found that 85% of participants judged (3b) more probable than (3a). A conjunction can never be more probable than either of its parts: \(P(A \text{ and } B) \le P(A)\).</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Dulany &amp; Hilton (1991)</strong> and <strong>Politzer &amp; Noveck (1991)</strong> argue that, beside (3b), (3a) is heard as <em>Linda is a bank teller and is not active in the feminist movement</em>, a quantity implicature.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Hertwig &amp; Gigerenzer (1999)</strong> found that the error falls when the question asks how many of 100 women like Linda are bank tellers.</div></div>
+      <div class="srcl" data-pstep="1">Tversky &amp; Kahneman (1983), <em>Psychological Review</em> 90, (3) adapted; Dulany &amp; Hilton (1991), <em>Social Cognition</em> 9; Politzer &amp; Noveck (1991), <em>Journal of Psycholinguistic Research</em> 20; Hertwig &amp; Gigerenzer (1999), <em>Journal of Behavioral Decision Making</em> 12.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The wager, Q" data-screen-label="13">
+  <div class="b-slide pal-a lens-empirical" data-sec="wag">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Pascal&rsquo;s Wager</div>
+        <div class="paytab anim" style="--d:.15s"><div></div><div class="h">God exists</div><div class="h">God does not exist</div><div class="r">Wager that God exists</div><div class="c" data-pstep="1">infinite reward</div><div class="c" data-pstep="2">small loss</div><div class="r">Wager that God does not exist</div><div class="c" data-pstep="3">infinite loss</div><div class="c" data-pstep="4">small gain</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The wager, A" data-screen-label="14">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="wag">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Pascal&rsquo;s wager</h2>
+      <div class="figrow">
+        <!-- Portrait: Commons, Blaise_Pascal_Versailles.JPG, public domain; a copy of the portrait by François II Quesnel, Palace of Versailles -->
+        <div class="portrait" data-pstep="1"><img src="images/pascal.jpg" alt="Blaise Pascal" style="object-position:50% 22%"><div class="pc"><div class="nm">Blaise Pascal</div><div class="dt">1623 – 1662</div></div></div>
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight"><strong>Pascal (1670)</strong>, <em>Pensées</em>, published after his death: if the probability that God exists is above zero, an infinite reward multiplied by it outweighs any finite stake, so the wager favours belief.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Expected value</strong> is the payoff of each outcome multiplied by its probability, summed over the outcomes. <strong>Hacking (1972)</strong> reads the wager as the first argument that chooses between acts by their expected value.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Pascal had worked out the mathematics of fair stakes in his 1654 letters with Fermat, starting from the Chevalier de Méré&rsquo;s question about dividing the stakes of an unfinished game.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-pstep="1">Pascal (1670), <em>Pensées</em>; Hacking (1972), <em>American Philosophical Quarterly</em> 9.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The St Petersburg game, Q" data-screen-label="15">
+  <div class="b-slide pal-a lens-empirical" data-sec="stp">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>The St Petersburg game</div>
+        <div class="bigq anim" style="--d:.15s;font-size:62px;margin-top:40px">A fair coin is tossed until it lands heads. Heads on the first toss pays €2, on the second €4, on the third €8, doubling each time.</div>
+        <div class="bigq anim" style="--d:.45s;font-size:50px;margin-top:44px;font-style:normal;color:var(--lens)">How much would you pay to play this game?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The St Petersburg game, A" data-screen-label="16">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="stp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The St Petersburg paradox</h2>
+      <div class="sidefig">
+        <div class="col">
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx">Every row adds €1 to the expected value of the payout, so the expected value of the game is infinite.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx">Nicolaus Bernoulli posed the game in a letter to Montmort in 1713, and his cousin Daniel published an answer in St Petersburg in 1738.</div></div>
+        </div>
+        <div class="fig" data-pstep="1" style="width:760px"><div class="ltab tight" style="grid-template-columns:130px 1fr 1fr 1fr;margin-top:0"><div class="th">Toss</div><div class="th c">P</div><div class="th c">Payout</div><div class="th c">P × payout</div><div class="nm sm" style="justify-content:flex-start">1</div><div class="nm sm">0.5</div><div class="nm sm">€2</div><div class="nm sm">€1</div><div class="nm sm" style="justify-content:flex-start">2</div><div class="nm sm">0.25</div><div class="nm sm">€4</div><div class="nm sm">€1</div><div class="nm sm" style="justify-content:flex-start">3</div><div class="nm sm">0.125</div><div class="nm sm">€8</div><div class="nm sm">€1</div><div class="nm sm" style="justify-content:flex-start">4</div><div class="nm sm">0.0625</div><div class="nm sm">€16</div><div class="nm sm">€1</div><div class="nm sm" style="justify-content:flex-start">&hellip;</div><div class="nm sm">&hellip;</div><div class="nm sm">&hellip;</div><div class="nm sm">&hellip;</div><div class="foot">Total</div><div class="foot"></div><div class="foot"></div><div class="foot nm best">∞</div></div></div>
+      </div>
+      <div class="srcl" data-pstep="1">N. Bernoulli (1713), letter to Montmort; D. Bernoulli (1738), <em>Commentarii Academiae Scientiarum Imperialis Petropolitanae</em> 5.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Pascal's mugging" data-screen-label="17">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="mug">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Pascal&rsquo;s mugging</h2>
+      <div class="erow nolb" style="border-top:none" data-pstep="1"><div class="tx"><strong>Bostrom (2009)</strong>: an unarmed mugger asks Pascal for his wallet and promises to return twice the money the next day. Pascal refuses, because the chance that the mugger keeps his word is too small.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx">The mugger then promises a thousand quadrillion happy days of life. Pascal&rsquo;s probability that the promise is kept is tiny, but the reward is large enough to make the expected value of paying positive, and Pascal hands over the wallet.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx"><strong>Yudkowsky (2007)</strong>: in his version the mugger asks for five dollars and threatens to kill an astronomically large number of simulated people if refused.</div></div>
+      <div class="srcl" data-pstep="1">Bostrom (2009), <em>Analysis</em> 69; Yudkowsky (2007), Pascal&rsquo;s Mugging: Tiny Probabilities of Vast Utilities, <em>Overcoming Bias</em>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">STRAND 02 / 04 · LIU44008 · Week 5</div><h2>Belief and evidence</h2><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Probable" data-screen-label="18">
+  <div class="b-slide pal-a lens-historical dB" data-sec="prob">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Probable</h2>
+      <div class="erow nolb" style="border-top:none" data-pstep="1"><div class="tx"><strong>Hacking (1975)</strong> dates probability in its modern sense to around 1660. Before then, a probable opinion was one approved by authorities or by respected testimony.</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx">Gibbon could still write in the eighteenth century of a report that was &ldquo;probable but undoubtedly false&rdquo;. Hacking traces the change through Wilkins, who wrote once in 1640 and again in 1668.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx">The vocabulary of chance comes from dice. <em>Hazard</em> first named a dice game, <em>aleatory</em> comes from Latin <em>alea</em>, a die, and <em>chance</em> from Old French <em>cheance</em>, the fall of the dice.</div></div>
+      <div class="srcl" data-pstep="1">Hacking (1975), <em>The Emergence of Probability</em>, ch. 3; <em>Online Etymology Dictionary</em>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Bayes" data-screen-label="19">
+  <div class="b-slide pal-a lens-historical dB" data-sec="bay">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Reverend Thomas Bayes</h2>
+      <div class="figrow">
+        <!-- Portrait: Commons, Thomas_Bayes.gif, public domain; from O'Donnell (1936), History of Life Insurance; identification doubtful -->
+        <div class="portrait" data-pstep="1"><img src="images/bayes.jpg" alt="Portrait said to be of Thomas Bayes" style="object-position:50% 20%"><div class="pc"><div class="nm">Thomas Bayes</div><div class="dt">c. 1701 – 1761</div></div></div>
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight"><strong>An Essay towards Solving a Problem in the Doctrine of Chances</strong> was found among Bayes&rsquo;s papers by Richard Price, who read it to the Royal Society in 1763, two years after Bayes died.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">The essay made two contributions. First, it expressed beliefs as probabilities, defining probability by the value it is reasonable to put on an expectation.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Second, it gave a rule for updating beliefs on evidence, which <strong>Laplace (1774)</strong> later stated in its general modern form.</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight">The only known portrait comes from a 1936 history of life insurance and is of doubtful authenticity. A note on it remarks that &ldquo;Bayes&rsquo;s posterior is better known than his prior&rdquo;.</div></div>
+      <div class="erow nolb" data-pstep="6"><div class="tx tight">Bayes had been a Presbyterian minister in Tunbridge Wells.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-pstep="1">Bayes (1763), <em>Philosophical Transactions</em> 53; Laplace (1774); portrait note in P. M. Lee, History of Statistics pages, University of York.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo supplied by Thomas; source to confirm -->
+<section class="slide" data-label="Royal Tunbridge Wells 1" data-screen-label="20">
+  <div class="b-slide pal-a lens-historical dB" data-sec="tw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">&ldquo;Royal&rdquo; Tunbridge Wells</h2>
+      <div class="photo"><img src="images/tunbridge-wells-aerial.jpg" alt="Tunbridge Wells from the air"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo supplied by Thomas; source to confirm -->
+<section class="slide" data-label="Royal Tunbridge Wells 2" data-screen-label="21">
+  <div class="b-slide pal-a lens-historical dB" data-sec="tw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">&ldquo;Royal&rdquo; Tunbridge Wells</h2>
+      <div class="photo"><img src="images/tunbridge-wells-opera-house.jpg" alt="The Opera House, Tunbridge Wells"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo supplied by Thomas; Scotney Castle is near Lamberhurst, south-east of Tunbridge Wells; source to confirm -->
+<section class="slide" data-label="Royal Tunbridge Wells 3" data-screen-label="22">
+  <div class="b-slide pal-a lens-historical dB" data-sec="tw">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">&ldquo;Royal&rdquo; Tunbridge Wells</h2>
+      <div class="photo"><img src="images/scotney-castle.jpg" alt="Scotney Castle"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo supplied by Thomas; watermark www.aladyinlondon.com -->
+<section class="slide" data-label="Sevenoaks 1" data-screen-label="23">
+  <div class="b-slide pal-a lens-historical dB" data-sec="so">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Sevenoaks</h2>
+      <div class="photo"><img src="images/sevenoaks-high-street.jpg" alt="A Shepherd Neame pub in Sevenoaks"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo supplied by Thomas; watermark www.aladyinlondon.com -->
+<section class="slide" data-label="Sevenoaks 2" data-screen-label="24">
+  <div class="b-slide pal-a lens-historical dB" data-sec="so">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Sevenoaks</h2>
+      <div class="photo"><img src="images/sevenoaks-six-bells-lane.jpg" alt="A lane of cottages in Sevenoaks"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo supplied by Thomas; source to confirm -->
+<section class="slide" data-label="Sevenoaks 3" data-screen-label="25">
+  <div class="b-slide pal-a lens-historical dB" data-sec="so">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Sevenoaks</h2>
+      <div class="photo"><img src="images/sevenoaks-knole.jpg" alt="Deer in Knole Park, with Knole House behind"></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Ramsey and de Finetti" data-screen-label="26">
+  <div class="b-slide pal-a lens-historical dB" data-sec="ram">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Ramsey and de Finetti</h2>
+      <div class="figrow bhc">
+        <div style="display:flex;gap:22px;flex:0 0 auto" data-pstep="1">
+        <!-- Photo supplied by Thomas -->
+        <div class="portrait" data-pstep="1"><img src="images/ramsey.jpg" alt="Frank Ramsey" style="object-position:50% 20%"><div class="pc"><div class="nm">Frank Ramsey</div><div class="dt">1903 – 1930</div></div></div>
+        <!-- Photo supplied by Thomas -->
+        <div class="portrait" data-pstep="1"><img src="images/definetti.jpg" alt="Bruno de Finetti" style="object-position:50% 20%"><div class="pc"><div class="nm">Bruno de Finetti</div><div class="dt">1906 – 1985</div></div></div>
+        </div>
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight"><strong>Ramsey (1926)</strong> treats probability as degree of belief, measured by the odds at which a person is willing to bet. Being rational is acting according to the laws of probability on your beliefs. Anyone whose degrees of belief break the laws of probability could have a book made against them.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>de Finetti (1937)</strong>: a bookmaker can then sell you a set of bets that you lose whatever happens, a Dutch book.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Ramsey did most of the English translation of Wittgenstein&rsquo;s <em>Tractatus</em> as an undergraduate, and died at 26. <strong>de Finetti (1974)</strong>, <em>Theory of Probability</em>, opens with PROBABILITY DOES NOT EXIST, in capitals.</div></div>
+        </div>
+      </div>
+      <div class="srcl" data-pstep="1">Ramsey (1926), in Ramsey (1931), <em>The Foundations of Mathematics</em>; de Finetti (1937), <em>Annales de l&rsquo;Institut Henri Poincaré</em> 7; de Finetti (1974), <em>Theory of Probability</em>, vol. 1, preface.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="A Dutch book" data-screen-label="27">
+  <div class="b-slide pal-a lens-historical dB" data-sec="db">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">A Dutch book</h2>
+      <div class="ltab tight" style="grid-template-columns:330px repeat(3,1fr);margin-top:0"><div class="th">England v France</div><div class="th c">Anna&rsquo;s degree of belief</div><div class="th c">Bookmaker&rsquo;s price for a €1 ticket</div><div class="th c">If it happens, Anna gets</div><div class="lab" data-pstep="1">France win</div><div class="nm best" data-pstep="1">0.55</div><div class="nm" data-pstep="1">€0.52</div><div class="nm" data-pstep="1">€1</div><div class="lab" data-pstep="2">Draw</div><div class="nm best" data-pstep="2">0.30</div><div class="nm" data-pstep="2">€0.28</div><div class="nm" data-pstep="2">€1</div><div class="lab" data-pstep="3">England win</div><div class="nm best" data-pstep="3">0.25</div><div class="nm" data-pstep="3">€0.23</div><div class="nm" data-pstep="3">€1</div><div class="foot" data-pstep="4">Total</div><div class="foot nm best" data-pstep="4">1.10</div><div class="foot nm" data-pstep="4">€1.03</div><div class="foot nm" data-pstep="4">€1</div></div>
+      <div class="erow nolb" data-pstep="5"><div class="tx tight">Anna favours France, the stronger side, and her degrees of belief sum to 1.10. Each price is below her degree of belief, so by her own lights every ticket is a good bet: the French ticket costs €0.52, and she thinks it is worth €0.55. She buys all three; exactly one result happens, so whatever the score she loses:</div></div>
+      <div class="egpanel" data-pstep="6" style="margin-top:6px"><div class="fx" style="font-size:38px">\[\text{€}1 - (\text{€}0.52 + \text{€}0.28 + \text{€}0.23) = -\text{€}0.03\]</div></div>
+      <div class="srcl" data-pstep="1">After de Finetti (1937).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">STRAND 03 / 04 · LIU44008 · Week 5</div><h2>Conditioning</h2><div class="ask">Conditional probability and Bayes&rsquo; rule</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Probability" data-screen-label="28">
+  <div class="b-slide pal-a lens-formal dB" data-sec="pr">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Probability</h2>
+      <div data-pstep="1"><div class="obj32">32 objects</div><div class="objrow"><div class="ob"><span class="ico"><svg viewBox="0 0 10 10" style="width:104px;height:104px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></span><div class="fq">14</div><div class="pv">0.44</div></div><div class="ob"><span class="ico"><svg viewBox="0 0 10 10" style="width:104px;height:104px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></span><div class="fq">3</div><div class="pv">0.09</div></div><div class="ob"><span class="ico"><svg viewBox="0 0 10 10" style="width:104px;height:104px"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></span><div class="fq">9</div><div class="pv">0.28</div></div><div class="ob"><span class="ico"><svg viewBox="0 0 10 10" style="width:104px;height:104px"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></span><div class="fq">6</div><div class="pv">0.19</div></div></div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">With counts, the probability of an outcome is its count divided by the total: 14 of the 32 objects are blue squares, a probability of 0.44.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">The probability of an event is the sum over its outcomes: \(P(\text{blue}) = 0.44 + 0.28 = 0.72\). The probability that an event does not happen is 1 minus the probability that it does.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Probability distributions" data-screen-label="29">
+  <div class="b-slide pal-a lens-formal dB" data-sec="pd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Probability distributions</h2>
+      <div class="ltab tight" data-pstep="1" style="grid-template-columns:560px 1fr;margin-top:0"><div class="th">Distribution</div><div class="th">Outcomes and probabilities</div><div class="lab"><span>a fair coin</span></div><div class="nm sm" style="justify-content:flex-start"><span>heads, 0.5 · tails, 0.5</span></div><div class="lab"><span>a fair die</span></div><div class="nm sm" style="justify-content:flex-start"><span>1, 0.17 · 2, 0.17 · 3, 0.17 · 4, 0.17 · 5, 0.17 · 6, 0.17</span></div><div class="lab"><span>signalling game</span></div><div class="nm sm" style="justify-content:flex-start"><span><span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></span>, 0.44 · <span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></span>, 0.09 · <span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></span>, 0.28 · <span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></span>, 0.19</span></div><div class="lab"><span>the next word after <em>the cat sat on the</em></span></div><div class="nm sm" style="justify-content:flex-start"><span><em>mat</em>, 0.7 · <em>floor</em>, 0.15 · <em>sofa</em>, 0.1 · other, 0.05</span></div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">A <strong>probability distribution</strong> lists the possible outcomes and gives each one a probability between 0 and 1. The probabilities sum to 1.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">A <strong>uniform</strong> or flat distribution gives every outcome the same probability, like a fair coin or a fair die.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">A listener&rsquo;s beliefs are distributions too: over the objects a word could pick out, or over the words that might come next.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Distributions as functions" data-screen-label="30">
+  <div class="b-slide pal-a lens-formal dB" data-sec="pf">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Distributions as functions</h2>
+      <div class="ltab" data-pstep="1" style="grid-template-columns:330px 1fr;margin-top:0"><div class="lab">\(P\)</div><div class="nm" style="justify-content:flex-start"><span>{&thinsp;⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></span>,&thinsp;0.44⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></span>,&thinsp;0.09⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></span>,&thinsp;0.28⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></span>,&thinsp;0.19⟩&thinsp;}</span></div><div class="lab">\(\sem{\textit{blue}}\)</div><div class="nm" style="justify-content:flex-start"><span>{&thinsp;⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></span>,&thinsp;1⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></span>,&thinsp;0⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></span>,&thinsp;1⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></span>,&thinsp;0⟩&thinsp;}</span></div><div class="lab">\(P(\cdot \mid \textit{blue})\)</div><div class="nm best" style="justify-content:flex-start"><span>{&thinsp;⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></span>,&thinsp;0.61⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></span>,&thinsp;0⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></span>,&thinsp;0.39⟩, ⟨<span class="ico"><svg viewBox="0 0 10 10" style="width:30px;height:30px"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></span>,&thinsp;0⟩&thinsp;}</span></div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">A probability distribution over a set of outcomes \(S\) is a function \(P : S \to [0, 1]\) whose values sum to 1. Like any function, it is a set of ordered pairs: each outcome paired with its probability.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">The meaning of <em>blue</em> has the same shape. \(\sem{\textit{blue}}\), of type \(\langle e, t \rangle\), pairs each object with 1 or 0; a distribution pairs it with a number between 0 and 1, and the numbers must sum to 1.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Multiplying the two functions object by object and normalising gives the listener&rsquo;s distribution after <em>blue</em>.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The normal distribution" data-screen-label="31">
+  <div class="b-slide pal-a lens-formal dB" data-sec="nd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">The normal distribution</h2>
+      <div class="fig" data-pstep="1" style="text-align:center"><svg class="ifig ctr" viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="width:600px"><polygon points="206.3,280.0 206.3,248.9 214.4,244.5 222.5,239.7 230.6,234.5 238.8,228.8 246.9,222.6 255.0,216.1 263.1,209.0 271.2,201.5 279.4,193.7 287.5,185.4 295.6,176.9 303.8,168.0 311.9,159.0 320.0,149.8 328.1,140.5 336.2,131.2 344.4,122.0 352.5,113.0 360.6,104.2 368.8,95.8 376.9,87.9 385.0,80.5 393.1,73.7 401.2,67.7 409.4,62.4 417.5,58.0 425.6,54.6 433.8,52.0 441.9,50.5 450.0,50.0 458.1,50.5 466.3,52.0 474.4,54.6 482.5,58.0 490.6,62.4 498.8,67.7 506.9,73.7 515.0,80.5 523.1,87.9 531.2,95.8 539.4,104.2 547.5,113.0 555.6,122.0 563.8,131.2 571.9,140.5 580.0,149.8 588.1,159.0 596.2,168.0 604.4,176.9 612.5,185.4 620.6,193.7 628.8,201.5 636.9,209.0 645.0,216.1 653.1,222.6 661.2,228.8 669.4,234.5 677.5,239.7 685.6,244.5 693.8,248.9 693.8,280.0" style="fill:var(--lens);opacity:0.18"/><polygon points="328.1,280.0 328.1,140.5 332.2,135.8 336.2,131.2 340.3,126.6 344.4,122.0 348.4,117.5 352.5,113.0 356.6,108.6 360.6,104.2 364.7,100.0 368.8,95.8 372.8,91.8 376.9,87.9 380.9,84.1 385.0,80.5 389.1,77.0 393.1,73.7 397.2,70.6 401.2,67.7 405.3,65.0 409.4,62.4 413.4,60.1 417.5,58.0 421.6,56.2 425.6,54.6 429.7,53.2 433.8,52.0 437.8,51.1 441.9,50.5 445.9,50.1 450.0,50.0 454.1,50.1 458.1,50.5 462.2,51.1 466.3,52.0 470.3,53.2 474.4,54.6 478.4,56.2 482.5,58.0 486.6,60.1 490.6,62.4 494.7,65.0 498.8,67.7 502.8,70.6 506.9,73.7 510.9,77.0 515.0,80.5 519.1,84.1 523.1,87.9 527.2,91.8 531.2,95.8 535.3,100.0 539.4,104.2 543.4,108.6 547.5,113.0 551.6,117.5 555.6,122.0 559.7,126.6 563.8,131.2 567.8,135.8 571.9,140.5 571.9,280.0" style="fill:var(--lens);opacity:0.35"/><polyline points="60.0,278.6 63.9,278.5 67.8,278.3 71.7,278.1 75.6,277.9 79.5,277.7 83.4,277.5 87.3,277.3 91.2,277.0 95.1,276.7 99.0,276.4 102.9,276.0 106.8,275.6 110.7,275.2 114.6,274.8 118.5,274.3 122.4,273.8 126.3,273.2 130.2,272.6 134.1,272.0 138.0,271.3 141.9,270.6 145.8,269.8 149.7,268.9 153.6,268.0 157.5,267.1 161.4,266.1 165.3,265.0 169.2,263.8 173.1,262.6 177.0,261.3 180.9,259.9 184.8,258.4 188.7,256.9 192.6,255.3 196.5,253.6 200.4,251.8 204.3,249.9 208.2,247.9 212.1,245.8 216.0,243.6 219.9,241.3 223.8,238.9 227.7,236.4 231.6,233.8 235.5,231.1 239.4,228.3 243.3,225.4 247.2,222.4 251.1,219.3 255.0,216.1 258.9,212.7 262.8,209.3 266.7,205.8 270.6,202.2 274.5,198.4 278.4,194.6 282.3,190.8 286.2,186.8 290.1,182.7 294.0,178.6 297.9,174.4 301.8,170.2 305.7,165.9 309.6,161.5 313.5,157.2 317.4,152.7 321.3,148.3 325.2,143.8 329.1,139.4 333.0,134.9 336.9,130.5 340.8,126.0 344.7,121.6 348.6,117.3 352.5,113.0 356.4,108.7 360.3,104.6 364.2,100.5 368.1,96.5 372.0,92.6 375.9,88.8 379.8,85.2 383.7,81.6 387.6,78.3 391.5,75.0 395.4,72.0 399.3,69.1 403.2,66.3 407.1,63.8 411.0,61.5 414.9,59.3 418.8,57.4 422.7,55.7 426.6,54.2 430.5,52.9 434.4,51.9 438.3,51.1 442.2,50.5 446.1,50.1 450.0,50.0 453.9,50.1 457.8,50.5 461.7,51.1 465.6,51.9 469.5,52.9 473.4,54.2 477.3,55.7 481.2,57.4 485.1,59.3 489.0,61.5 492.9,63.8 496.8,66.3 500.7,69.1 504.6,72.0 508.5,75.0 512.4,78.3 516.3,81.6 520.2,85.2 524.1,88.8 528.0,92.6 531.9,96.5 535.8,100.5 539.7,104.6 543.6,108.7 547.5,113.0 551.4,117.3 555.3,121.6 559.2,126.0 563.1,130.5 567.0,134.9 570.9,139.4 574.8,143.8 578.7,148.3 582.6,152.7 586.5,157.2 590.4,161.5 594.3,165.9 598.2,170.2 602.1,174.4 606.0,178.6 609.9,182.7 613.8,186.8 617.7,190.8 621.6,194.6 625.5,198.4 629.4,202.2 633.3,205.8 637.2,209.3 641.1,212.7 645.0,216.1 648.9,219.3 652.8,222.4 656.7,225.4 660.6,228.3 664.5,231.1 668.4,233.8 672.3,236.4 676.2,238.9 680.1,241.3 684.0,243.6 687.9,245.8 691.8,247.9 695.7,249.9 699.6,251.8 703.5,253.6 707.4,255.3 711.3,256.9 715.2,258.4 719.1,259.9 723.0,261.3 726.9,262.6 730.8,263.8 734.7,265.0 738.6,266.1 742.5,267.1 746.4,268.0 750.3,268.9 754.2,269.8 758.1,270.6 762.0,271.3 765.9,272.0 769.8,272.6 773.7,273.2 777.6,273.8 781.5,274.3 785.4,274.8 789.3,275.2 793.2,275.6 797.1,276.0 801.0,276.4 804.9,276.7 808.8,277.0 812.7,277.3 816.6,277.5 820.5,277.7 824.4,277.9 828.3,278.1 832.2,278.3 836.1,278.5 840.0,278.6" style="fill:none;stroke:var(--tcd-ink);stroke-width:3"/><path class="ax" d="M60,280 H840"/><path class="ed" d="M206.3,280 V290"/><text class="pv" x="206.3" y="316">μ − 2σ</text><path class="ed" d="M328.1,280 V290"/><text class="pv" x="328.1" y="316">μ − σ</text><path class="ed" d="M450.0,280 V290"/><text class="pv" x="450.0" y="316">μ</text><path class="ed" d="M571.9,280 V290"/><text class="pv" x="571.9" y="316">μ + σ</text><path class="ed" d="M693.8,280 V290"/><text class="pv" x="693.8" y="316">μ + 2σ</text><text class="tn hl" x="450.0" y="200">68%</text></svg></div>
+      <div class="erow nolb" data-pstep="1"><div class="tx tight">A <strong>normal distribution</strong> is a symmetric bell curve fixed by its mean μ and standard deviation σ. About 68% of values lie within one standard deviation of the mean, and about 95% within two.</div></div>
+      <div class="ltab tight" data-pstep="2" style="grid-template-columns:1fr 1fr;margin-top:6px"><div class="th">Outside language</div><div class="th">In speech</div><div class="nm sm" style="justify-content:flex-start"><span>heights of adults of the same sex</span></div><div class="nm sm" style="justify-content:flex-start"><span>voice onset time of one speaker&rsquo;s /p/, or of their /b/</span></div><div class="nm sm" style="justify-content:flex-start"><span>errors in repeated measurements</span></div><div class="nm sm" style="justify-content:flex-start"><span>first and second formants of one speaker&rsquo;s vowel</span></div><div class="nm sm" style="justify-content:flex-start"><span>birth weights</span></div><div class="nm sm" style="justify-content:flex-start"><span>a speech category, as listeners learn it</span></div></div>
+      <div class="srcl" data-pstep="1">Clayards, Tanenhaus, Aslin &amp; Jacobs (2008), <em>Cognition</em> 108.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Surprisal" data-screen-label="32">
+  <div class="b-slide pal-a lens-formal dB" data-sec="sur">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Surprisal</h2>
+      <div class="ltab" data-pstep="1" style="grid-template-columns:300px repeat(5,1fr);margin-top:0"><div class="lab">probability</div><div class="nm">1</div><div class="nm">0.5</div><div class="nm">0.25</div><div class="nm">0.125</div><div class="nm">0.44</div><div class="lab">surprisal</div><div class="nm best">0 bits</div><div class="nm best">1 bit</div><div class="nm best">2 bits</div><div class="nm best">3 bits</div><div class="nm best">1.2 bits</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">The <strong>surprisal</strong> of an outcome with probability \(p\) is \(\log_2(1/p)\) bits: the number of times 1 has to be halved to get down to \(p\).</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">A certain outcome carries no surprise, and each halving of the probability adds one bit. Probabilities between the halvings give fractions of a bit: the blue square, at 0.44, carries about 1.2 bits.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">The rarer the outcome, the more you learn when it happens.</div></div>
+      <div class="srcl" data-pstep="1">Shannon (1948), <em>Bell System Technical Journal</em> 27.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Entropy" data-screen-label="33">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ent">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Entropy</h2>
+      <div class="egpanel" data-pstep="1" style="margin-top:0"><div class="fx">\[H = \sum_x P(x)\,\log_2 \frac{1}{P(x)}\]</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Entropy</strong> is the average surprisal of a distribution: the surprisal of each outcome, weighted by its probability, added up.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">For a distribution of 0.5, 0.25, 0.125 and 0.125: 0.5&nbsp;×&nbsp;1 + 0.25&nbsp;×&nbsp;2 + 0.125&nbsp;×&nbsp;3 + 0.125&nbsp;×&nbsp;3 = 1.75 bits.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Entropy is also the average number of yes/no questions needed to find the outcome when the best questions are asked. For that distribution, the best first question asks about the likeliest outcome.</div></div>
+      <div class="srcl" data-pstep="1">Shannon (1948), <em>Bell System Technical Journal</em> 27.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The entropy of a distribution" data-screen-label="34">
+  <div class="b-slide pal-a lens-formal dB" data-sec="dist">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">The entropy of a distribution</h2>
+      <div class="fig" data-pstep="1" style="text-align:center"><svg class="ifig ctr" viewBox="0 0 750 380" xmlns="http://www.w3.org/2000/svg" style="width:780px"><text class="hd" x="125" y="28">certain</text><path class="ax" d="M16,262 H232"/><rect class="bar" x="22" y="72.0" width="40" height="190.0"/><text class="pv" x="42" y="63.0">1</text><rect x="29" y="277" width="26" height="26" fill="#2b6cb0"/><text class="pv" x="94" y="253.0">0</text><rect x="81" y="277" width="26" height="26" fill="#2f855a"/><text class="pv" x="146" y="253.0">0</text><circle cx="146" cy="290" r="13" fill="#2b6cb0"/><text class="pv" x="198" y="253.0">0</text><circle cx="198" cy="290" r="13" fill="#2f855a"/><text class="tn" x="125" y="350">0 bits</text><text class="hd" x="375" y="28">uneven</text><path class="ax" d="M266,262 H482"/><rect class="bar" x="272" y="167.0" width="40" height="95.0"/><text class="pv" x="292" y="158.0">.5</text><rect x="279" y="277" width="26" height="26" fill="#2b6cb0"/><rect class="bar" x="324" y="214.5" width="40" height="47.5"/><text class="pv" x="344" y="205.5">.25</text><rect x="331" y="277" width="26" height="26" fill="#2f855a"/><rect class="bar" x="376" y="238.2" width="40" height="23.8"/><text class="pv" x="396" y="229.2">.125</text><circle cx="396" cy="290" r="13" fill="#2b6cb0"/><rect class="bar" x="428" y="238.2" width="40" height="23.8"/><text class="pv" x="448" y="229.2">.125</text><circle cx="448" cy="290" r="13" fill="#2f855a"/><text class="tn" x="375" y="350">1.75 bits</text><text class="hd" x="625" y="28">flat</text><path class="ax" d="M516,262 H732"/><rect class="bar" x="522" y="214.5" width="40" height="47.5"/><text class="pv" x="542" y="205.5">.25</text><rect x="529" y="277" width="26" height="26" fill="#2b6cb0"/><rect class="bar" x="574" y="214.5" width="40" height="47.5"/><text class="pv" x="594" y="205.5">.25</text><rect x="581" y="277" width="26" height="26" fill="#2f855a"/><rect class="bar" x="626" y="214.5" width="40" height="47.5"/><text class="pv" x="646" y="205.5">.25</text><circle cx="646" cy="290" r="13" fill="#2b6cb0"/><rect class="bar" x="678" y="214.5" width="40" height="47.5"/><text class="pv" x="698" y="205.5">.25</text><circle cx="698" cy="290" r="13" fill="#2f855a"/><text class="tn" x="625" y="350">2 bits</text></svg></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">Entropy is a property of a whole distribution. It is 0 bits when one outcome is certain, and largest when the distribution is flat: \(\log_2 n\) bits for \(n\) equally likely outcomes, so 1 bit for a coin, 2 for four objects and about 2.58 for a die.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">Most beliefs sit in between. The four objects with counts 14, 3, 9 and 6 have 1.81 bits, and the next-word distribution for <em>the cat sat on the</em> has 1.32 bits.</div></div>
+      <div class="srcl" data-pstep="1">Shannon (1948).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Independent events" data-screen-label="35">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ind">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Independent events</h2>
+      <div class="fig" data-pstep="1" style="text-align:center"><svg class="ifig ctr" viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg" style="width:820px"><circle cx="60" cy="190" r="10" fill="var(--tcd-ink)"/><path class="ed" d="M70,185 L290,100 M70,195 L290,280"/><text class="pv" x="170" y="125">0.5</text><text class="pv" x="170" y="270">0.5</text><text class="tn" x="320" y="108">H</text><text class="tn" x="320" y="288">T</text><path class="ed" d="M340,95 L560,45 M340,108 L560,150 M340,275 L560,230 M340,288 L560,335"/><text class="pv" x="450" y="60">0.5</text><text class="pv" x="450" y="148">0.5</text><text class="pv" x="450" y="244">0.5</text><text class="pv" x="450" y="332">0.5</text><text class="tn" x="585" y="52">H</text><text class="tn" x="585" y="158">T</text><text class="tn" x="585" y="238">H</text><text class="tn" x="585" y="343">T</text><text class="tn" x="700" y="52">HH</text><text class="tn" x="700" y="158">HT</text><text class="tn" x="700" y="238">TH</text><text class="tn" x="700" y="343">TT</text><text class="tn hl" x="820" y="52">0.25</text><text class="tn hl" x="820" y="158">0.25</text><text class="tn hl" x="820" y="238">0.25</text><text class="tn hl" x="820" y="343">0.25</text></svg></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">Two events are <strong>independent</strong> when one happening leaves the probability of the other unchanged, like two tosses of a fair coin.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">For independent events, multiply along the branches: \(P(A \text{ and } B) = P(A) \times P(B)\). Two heads in a row: 0.5&nbsp;×&nbsp;0.5 = 0.25. The four leaves sum to 1.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">With unequal probabilities the rule is the same. If it rains on 30% of days and, independently, the bus is late on 20%, both happen on 0.3&nbsp;×&nbsp;0.2 = 0.06 of days.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Conditional probability" data-screen-label="36">
+  <div class="b-slide pal-a lens-formal dB" data-sec="cp">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Conditional probability</h2>
+      <div class="egpanel" data-pstep="1" style="margin-top:0"><div class="fx">\[P(A \mid B) = \frac{P(A \text{ and } B)}{P(B)}\]</div></div>
+      <div data-pstep="2"><div class="objrow small"><div class="ob"><span class="ico"><svg viewBox="0 0 10 10" style="width:84px;height:84px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></span><div class="fq">14</div><div class="pv">0.82</div></div><div class="ob"><span class="ico"><svg viewBox="0 0 10 10" style="width:84px;height:84px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></span><div class="fq">3</div><div class="pv">0.18</div></div></div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">The <strong>conditional probability</strong> of A given B keeps only the outcomes in B and rescales them to sum to 1.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Of the 17 squares, 14 are blue, so \(P(\text{blue} \mid \text{square}) = 0.82\). Hearing <em>square</em> raises the probability of the blue square from 0.44 to 0.82.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Entropy and information" data-screen-label="37">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ei">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Entropy and information</h2>
+      <div class="fig" data-pstep="1" style="text-align:center"><svg class="ifig ctr" viewBox="0 0 750 380" xmlns="http://www.w3.org/2000/svg" style="width:780px"><text class="hd" x="125" y="28">before</text><path class="ax" d="M16,262 H232"/><rect class="bar" x="22" y="214.5" width="40" height="47.5"/><text class="pv" x="42" y="205.5">.25</text><rect x="29" y="277" width="26" height="26" fill="#2b6cb0"/><rect class="bar" x="74" y="214.5" width="40" height="47.5"/><text class="pv" x="94" y="205.5">.25</text><rect x="81" y="277" width="26" height="26" fill="#2f855a"/><rect class="bar" x="126" y="214.5" width="40" height="47.5"/><text class="pv" x="146" y="205.5">.25</text><circle cx="146" cy="290" r="13" fill="#2b6cb0"/><rect class="bar" x="178" y="214.5" width="40" height="47.5"/><text class="pv" x="198" y="205.5">.25</text><circle cx="198" cy="290" r="13" fill="#2f855a"/><text class="tn" x="125" y="350">2 bits</text><text class="hd" x="375" y="28">after <tspan font-style="italic">blue</tspan></text><path class="ax" d="M266,262 H482"/><rect class="bar" x="272" y="167.0" width="40" height="95.0"/><text class="pv" x="292" y="158.0">.5</text><rect x="279" y="277" width="26" height="26" fill="#2b6cb0"/><text class="pv" x="344" y="253.0">0</text><rect x="331" y="277" width="26" height="26" fill="#2f855a"/><rect class="bar" x="376" y="167.0" width="40" height="95.0"/><text class="pv" x="396" y="158.0">.5</text><circle cx="396" cy="290" r="13" fill="#2b6cb0"/><text class="pv" x="448" y="253.0">0</text><circle cx="448" cy="290" r="13" fill="#2f855a"/><text class="tn" x="375" y="350">1 bit</text><text class="hd" x="625" y="28">after <tspan font-style="italic">blue circle</tspan></text><path class="ax" d="M516,262 H732"/><text class="pv" x="542" y="253.0">0</text><rect x="529" y="277" width="26" height="26" fill="#2b6cb0"/><text class="pv" x="594" y="253.0">0</text><rect x="581" y="277" width="26" height="26" fill="#2f855a"/><rect class="bar" x="626" y="72.0" width="40" height="190.0"/><text class="pv" x="646" y="63.0">1</text><circle cx="646" cy="290" r="13" fill="#2b6cb0"/><text class="pv" x="698" y="253.0">0</text><circle cx="698" cy="290" r="13" fill="#2f855a"/><text class="tn" x="625" y="350">0 bits</text></svg></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">Conditioning on a word lowers the listener&rsquo;s entropy. With four equally likely objects the listener starts at 2 bits; <em>blue</em> leaves 1 bit, and <em>blue circle</em> leaves none.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">The <strong>information</strong> a word carries is how far it lowers the entropy: here <em>blue</em> carries 1 bit and <em>circle</em> another. With the counts on the Probability slide the figures are less round: 1.81 bits before, 0.97 after <em>blue</em>.</div></div>
+      <div class="srcl" data-pstep="1">Shannon (1948).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Hypothesis and evidence" data-screen-label="38">
+  <div class="b-slide pal-a lens-formal dB" data-sec="he">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Hypothesis and evidence</h2>
+      <div class="ltab tight" data-pstep="1" style="grid-template-columns:260px 1fr 1fr;margin-top:0"><div class="th"></div><div class="th c">\(H\), the hypothesis</div><div class="th c">\(E\), the evidence</div><div class="lab">the weather</div><div class="nm sm"><span>it will rain today</span></div><div class="nm sm"><span>dark clouds this morning</span></div><div class="lab">the test</div><div class="nm sm"><span>you have the disease</span></div><div class="nm sm"><span>a positive test result</span></div><div class="lab">a word</div><div class="nm sm"><span>the speaker means the blue circle</span></div><div class="nm sm"><span>the word <em>circle</em></span></div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">The <strong>hypothesis</strong> \(H\) is the claim you want to know about.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">The <strong>evidence</strong> \(E\) is what you have observed.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">\(P(H \mid E)\), read <em>the probability of H given E</em>, is how probable \(H\) is once \(E\) is known.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Reading Bayes' rule" data-screen-label="39">
+  <div class="b-slide pal-a lens-formal dB" data-sec="rb">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Reading Bayes&rsquo; rule</h2>
+      <div class="egpanel annot" data-pstep="1" style="margin-top:0"><div class="fx" style="font-size:50px">\[\color{#9b2c1f}{\underbrace{P(H \mid E)}_{\text{posterior}}} \;=\; \frac{\color{#2f855a}{\overbrace{P(E \mid H)}^{\text{likelihood}}}\;\cdot\;\color{#2b6cb0}{\overbrace{P(H)}^{\text{prior}}}}{\color{#6b6b6b}{\underbrace{P(E)}_{\text{evidence}}}}\]</div></div>
+      <div class="ntab defs tightdefs" data-pstep="2">
+        <div class="nr"><div class="no1"><b style="color:#2b6cb0">prior</b> \(P(H)\)</div><div class="no2">how probable the hypothesis was before the evidence</div></div>
+        <div class="nr"><div class="no1"><b style="color:#2f855a">likelihood</b> \(P(E \mid H)\)</div><div class="no2">how expected the evidence is if the hypothesis is true</div></div>
+        <div class="nr"><div class="no1"><b style="color:#6b6b6b">evidence</b> \(P(E)\)</div><div class="no2">how expected the evidence is overall</div></div>
+        <div class="nr"><div class="no1"><b style="color:#9b2c1f">posterior</b> \(P(H \mid E)\)</div><div class="no2">how probable the hypothesis is after the evidence</div></div>
+      </div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">The rule takes the prior, multiplies it by how well the hypothesis predicts the evidence, and divides by how common the evidence is overall.</div></div>
+      <div class="srcl" data-pstep="1">Bayes (1763), <em>Philosophical Transactions</em> 53; Laplace (1774).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Bayes' rule in numbers" data-screen-label="40">
+  <div class="b-slide pal-a lens-formal dB" data-sec="bn">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Bayes&rsquo; rule in numbers</h2>
+      <div class="egpanel annot" data-pstep="1" style="margin-top:0"><div class="fx">\[\color{#9b2c1f}{\underbrace{0.0098}_{\text{posterior}}} \;=\; \frac{\color{#2f855a}{\overbrace{0.99}^{\text{likelihood}}}\;\times\;\color{#2b6cb0}{\overbrace{0.0001}^{\text{prior}}}}{\color{#6b6b6b}{\underbrace{0.0101}_{\text{evidence}}}}\]</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">For (1), \(H\) is <em>you have the disease</em> and \(E\) is <em>a positive result</em>. The evidence term is the chance of a positive result overall: 0.0001&nbsp;×&nbsp;0.99 + 0.9999&nbsp;×&nbsp;0.01 ≈ 0.0101, the true positives plus the false positives.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">Since \(P(E)\) only rescales, the rule is often written \(P(H \mid E) \propto P(E \mid H)\,P(H)\).</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Updating beliefs" data-screen-label="41">
+  <div class="b-slide pal-a lens-formal dB" data-sec="up">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Updating beliefs</h2>
+      <div class="fig" data-pstep="1" style="text-align:center"><svg class="ifig ctr" viewBox="0 0 840 320" xmlns="http://www.w3.org/2000/svg" style="width:900px"><text class="hd" x="105" y="28">before</text><path class="ax" d="M32,262 H172"/><rect class="bar" x="40" y="252.0" width="44" height="10.0"/><text class="pv" x="62" y="243.0">0.05</text><rect class="bar off" x="120" y="72.0" width="44" height="190.0"/><text class="pv" x="142" y="63.0">0.95</text><text class="wl" x="62" y="294" style="font-size:23px">sarcastic</text><text class="wl" x="142" y="294" style="font-size:23px">sincere</text><text class="hd" x="315" y="28">intonation</text><path class="ax" d="M242,262 H382"/><rect class="bar" x="250" y="228.0" width="44" height="34.0"/><text class="pv" x="272" y="219.0">0.17</text><rect class="bar off" x="330" y="96.0" width="44" height="166.0"/><text class="pv" x="352" y="87.0">0.83</text><text class="wl" x="272" y="294" style="font-size:23px">sarcastic</text><text class="wl" x="352" y="294" style="font-size:23px">sincere</text><text class="hd" x="525" y="28">+ rain</text><path class="ax" d="M452,262 H592"/><rect class="bar" x="460" y="184.0" width="44" height="78.0"/><text class="pv" x="482" y="175.0">0.39</text><rect class="bar off" x="540" y="140.0" width="44" height="122.0"/><text class="pv" x="562" y="131.0">0.61</text><text class="wl" x="482" y="294" style="font-size:23px">sarcastic</text><text class="wl" x="562" y="294" style="font-size:23px">sincere</text><text class="hd" x="735" y="28">+ wink</text><path class="ax" d="M662,262 H802"/><rect class="bar" x="670" y="110.0" width="44" height="152.0"/><text class="pv" x="692" y="101.0">0.76</text><rect class="bar off" x="750" y="214.0" width="44" height="48.0"/><text class="pv" x="772" y="205.0">0.24</text><text class="wl" x="692" y="294" style="font-size:23px">sarcastic</text><text class="wl" x="772" y="294" style="font-size:23px">sincere</text></svg></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">A listener hears <em>Great weather for a picnic!</em> and starts from a low prior that it is sarcastic, 0.05. Each cue that is more likely with sarcasm than without raises it: a drawn-out intonation to 0.17, the rain outside to 0.39, a wink to 0.76.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">A posterior becomes the prior for the next cue, and no single cue settles it.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="A speaker's choices" data-screen-label="42">
+  <div class="b-slide pal-a lens-formal dB" data-sec="sc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">A speaker&rsquo;s choices</h2>
+      <div class="ltab tight" data-pstep="1" style="grid-template-columns:110px 150px 1fr 1fr 1fr 1fr;margin-top:0"><div class="th"></div><div class="th c">Prior</div><div class="th c"><em>blue</em></div><div class="th c"><em>green</em></div><div class="th c"><em>square</em></div><div class="th c"><em>circle</em></div><div class="ic"><span class="ico"><svg viewBox="0 0 10 10" style="width:44px;height:44px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></span></div><div class="nm sm">0.44</div><div class="nm sm">0.42</div><div class="nm sm inf">0</div><div class="nm sm">0.58</div><div class="nm sm inf">0</div><div class="ic"><span class="ico"><svg viewBox="0 0 10 10" style="width:44px;height:44px"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></span></div><div class="nm sm">0.09</div><div class="nm sm inf">0</div><div class="nm sm">0.65</div><div class="nm sm">0.35</div><div class="nm sm inf">0</div><div class="ic"><span class="ico"><svg viewBox="0 0 10 10" style="width:44px;height:44px"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></span></div><div class="nm sm">0.28</div><div class="nm sm">0.39</div><div class="nm sm inf">0</div><div class="nm sm inf">0</div><div class="nm sm best">0.61</div><div class="ic"><span class="ico"><svg viewBox="0 0 10 10" style="width:44px;height:44px"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></span></div><div class="nm sm">0.19</div><div class="nm sm inf">0</div><div class="nm sm">0.63</div><div class="nm sm inf">0</div><div class="nm sm best">0.37</div></div>
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight">Each row is a conditional distribution \(P(w \mid s)\): how often a speaker uses each word for one object. Each row sums to 1.</div></div>
+      <div class="egpanel" data-pstep="3" style="margin-top:6px"><div class="fx" style="font-size:34px">\[P(\text{blue circle} \mid \textit{circle}) = \frac{P(\textit{circle} \mid \text{blue circle})\,P(\text{blue circle})}{P(\textit{circle})} = \frac{0.61 \times 0.28}{0.61 \times 0.28 + 0.37 \times 0.19} \approx 0.71\]</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">A listener who hears <em>circle</em> reads down its column and applies Bayes&rsquo; rule with the prior. From the meaning of <em>circle</em> alone, the same listener would assign 0.6 and 0.4.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§ Applied" data-screen-label="§ Applied">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-app"/></svg></div></div>
+    <div class="r"><div class="lab">Applied</div><div class="ct">STRAND 04 / 04 · LIU44008 · Week 5</div><h2>Inference from evidence</h2><div class="ask">Probabilistic reasoning in and around language</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Three doors, Q" data-screen-label="43">
+  <div class="b-slide pal-a lens-typological" data-sec="mh">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Three doors</div>
+        <div class="anim" style="--d:.15s"><svg class="ifig" viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" style="width:760px;margin:24px auto 0"><rect class="door" x="40" y="20" width="220" height="290" rx="6"/><text class="dn" x="150" y="190">1</text><rect class="door" x="340" y="20" width="220" height="290" rx="6"/><text class="dn" x="450" y="190">2</text><rect class="door open" x="640" y="20" width="220" height="290" rx="6"/><text class="gt" x="750" y="180">goat</text></svg></div>
+        <div class="bigq anim" style="--d:.3s;font-size:44px;margin-top:26px">A car is behind one door and goats are behind the other two. You pick door 1. The host, who knows where the car is, opens door 3, which hides a goat.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Three doors, A" data-screen-label="44">
+  <div class="b-slide pal-a lens-typological dB" data-sec="mh">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">The Monty Hall problem</h2>
+      <div class="ltab tight" data-pstep="1" style="grid-template-columns:260px 1fr 1fr 1fr 1fr;margin-top:0"><div class="th">Car behind</div><div class="th c">Prior</div><div class="th c">P(host opens 3)</div><div class="th c">Prior × likelihood</div><div class="th c">Posterior</div><div class="st">Door 1</div><div class="nm sm">0.33</div><div class="nm sm">0.5</div><div class="nm sm">0.17</div><div class="nm sm">0.33</div><div class="st">Door 2</div><div class="nm sm">0.33</div><div class="nm sm">1</div><div class="nm sm">0.33</div><div class="nm sm best">0.67</div><div class="st">Door 3</div><div class="nm sm">0.33</div><div class="nm sm">0</div><div class="nm sm">0</div><div class="nm sm">0</div></div>
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight">Switching wins with probability 0.67. The host never opens your door or the door with the car, and that rule sets the likelihoods.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">If the host opens a door at random and it happens to show a goat, the likelihoods are equal and switching wins with probability 0.5 (<strong>Rosenthal 2008</strong>).</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">After <strong>vos Savant (1990)</strong> gave the answer in <em>Parade</em>, about 10,000 readers wrote in, nearly 1,000 of them with PhDs, most saying she was wrong. Erdős accepted it only after seeing a computer simulation.</div></div>
+      <div class="srcl" data-pstep="1">Selvin (1975), <em>American Statistician</em> 29; vos Savant (1990), <em>Parade</em>; Rosenthal (2008), <em>Math Horizons</em>; Vazsonyi (1999).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Odd sentences, Q" data-screen-label="45">
+  <div class="b-slide pal-a lens-typological" data-sec="nc">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Odd sentences</div>
+        <div class="egpanel anim" style="--d:.15s;margin-top:30px"><div class="eg"><span class="no">(6)</span><span class="ex">The mother gave the candle the daughter.</span></div><div class="eg"><span class="no">(7)</span><span class="ex">The girl was kicked by the ball.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Odd sentences, A" data-screen-label="46">
+  <div class="b-slide pal-a lens-typological dB" data-sec="nc">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">The noisy channel</h2>
+      <div class="egpanel" data-pstep="1" style="margin-top:0"><div class="fx">\[P(\text{meant} \mid \text{read}) \propto P(\text{meant}) \cdot P(\text{read} \mid \text{meant})\]</div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Gibson, Bergen &amp; Piantadosi (2013)</strong>: readers treat a sentence as a possibly corrupted signal. They often take (6) to mean that the candle went to the daughter, since a plausible meaning is a single dropped word away.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight">Readers corrected more when fewer changes were needed, and more readily assumed a dropped word than an added one. Reading (7) as <em>the ball was kicked by the girl</em> needs words exchanged, and readers rarely did it.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">The model adapts <strong>Shannon&rsquo;s (1948)</strong> noisy channel, a model of telephone lines; <strong>Levy (2008)</strong> applied it to parsing.</div></div>
+      <div class="srcl" data-pstep="1">Gibson, Bergen &amp; Piantadosi (2013), <em>PNAS</em> 110, (6) and (7) adapted; Levy (2008), EMNLP; Shannon (1948).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Colour terms as compression" data-screen-label="47">
+  <div class="b-slide pal-a lens-typological dB" data-sec="ct">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Colour terms as compression</h2>
+      <div class="fig" data-pstep="1" style="text-align:center"><svg class="ifig ctr" viewBox="0 0 1040 300" xmlns="http://www.w3.org/2000/svg" style="width:900px"><text class="hd" x="850" y="24">per word</text><text class="hd" x="975" y="24">left over</text><text class="tn" x="70" y="78">2 words</text><rect x="150" y="44" width="30" height="48" rx="3" fill="hsl(0,65%,55%)"/><rect x="184" y="44" width="30" height="48" rx="3" fill="hsl(22,65%,55%)"/><rect x="218" y="44" width="30" height="48" rx="3" fill="hsl(44,65%,55%)"/><rect x="252" y="44" width="30" height="48" rx="3" fill="hsl(66,65%,55%)"/><rect x="286" y="44" width="30" height="48" rx="3" fill="hsl(88,65%,55%)"/><rect x="320" y="44" width="30" height="48" rx="3" fill="hsl(110,65%,55%)"/><rect x="354" y="44" width="30" height="48" rx="3" fill="hsl(132,65%,55%)"/><rect x="388" y="44" width="30" height="48" rx="3" fill="hsl(154,65%,55%)"/><rect x="432" y="44" width="30" height="48" rx="3" fill="hsl(176,65%,55%)"/><rect x="466" y="44" width="30" height="48" rx="3" fill="hsl(198,65%,55%)"/><rect x="500" y="44" width="30" height="48" rx="3" fill="hsl(220,65%,55%)"/><rect x="534" y="44" width="30" height="48" rx="3" fill="hsl(242,65%,55%)"/><rect x="568" y="44" width="30" height="48" rx="3" fill="hsl(264,65%,55%)"/><rect x="602" y="44" width="30" height="48" rx="3" fill="hsl(286,65%,55%)"/><rect x="636" y="44" width="30" height="48" rx="3" fill="hsl(308,65%,55%)"/><rect x="670" y="44" width="30" height="48" rx="3" fill="hsl(330,65%,55%)"/><text class="tn" x="850" y="78">1 bit</text><text class="tn" x="975" y="78">3 bits</text><text class="tn" x="70" y="164">4 words</text><rect x="150" y="130" width="30" height="48" rx="3" fill="hsl(0,65%,55%)"/><rect x="184" y="130" width="30" height="48" rx="3" fill="hsl(22,65%,55%)"/><rect x="218" y="130" width="30" height="48" rx="3" fill="hsl(44,65%,55%)"/><rect x="252" y="130" width="30" height="48" rx="3" fill="hsl(66,65%,55%)"/><rect x="296" y="130" width="30" height="48" rx="3" fill="hsl(88,65%,55%)"/><rect x="330" y="130" width="30" height="48" rx="3" fill="hsl(110,65%,55%)"/><rect x="364" y="130" width="30" height="48" rx="3" fill="hsl(132,65%,55%)"/><rect x="398" y="130" width="30" height="48" rx="3" fill="hsl(154,65%,55%)"/><rect x="442" y="130" width="30" height="48" rx="3" fill="hsl(176,65%,55%)"/><rect x="476" y="130" width="30" height="48" rx="3" fill="hsl(198,65%,55%)"/><rect x="510" y="130" width="30" height="48" rx="3" fill="hsl(220,65%,55%)"/><rect x="544" y="130" width="30" height="48" rx="3" fill="hsl(242,65%,55%)"/><rect x="588" y="130" width="30" height="48" rx="3" fill="hsl(264,65%,55%)"/><rect x="622" y="130" width="30" height="48" rx="3" fill="hsl(286,65%,55%)"/><rect x="656" y="130" width="30" height="48" rx="3" fill="hsl(308,65%,55%)"/><rect x="690" y="130" width="30" height="48" rx="3" fill="hsl(330,65%,55%)"/><text class="tn" x="850" y="164">2 bits</text><text class="tn" x="975" y="164">2 bits</text><text class="tn" x="70" y="250">8 words</text><rect x="150" y="216" width="30" height="48" rx="3" fill="hsl(0,65%,55%)"/><rect x="184" y="216" width="30" height="48" rx="3" fill="hsl(22,65%,55%)"/><rect x="228" y="216" width="30" height="48" rx="3" fill="hsl(44,65%,55%)"/><rect x="262" y="216" width="30" height="48" rx="3" fill="hsl(66,65%,55%)"/><rect x="306" y="216" width="30" height="48" rx="3" fill="hsl(88,65%,55%)"/><rect x="340" y="216" width="30" height="48" rx="3" fill="hsl(110,65%,55%)"/><rect x="384" y="216" width="30" height="48" rx="3" fill="hsl(132,65%,55%)"/><rect x="418" y="216" width="30" height="48" rx="3" fill="hsl(154,65%,55%)"/><rect x="462" y="216" width="30" height="48" rx="3" fill="hsl(176,65%,55%)"/><rect x="496" y="216" width="30" height="48" rx="3" fill="hsl(198,65%,55%)"/><rect x="540" y="216" width="30" height="48" rx="3" fill="hsl(220,65%,55%)"/><rect x="574" y="216" width="30" height="48" rx="3" fill="hsl(242,65%,55%)"/><rect x="618" y="216" width="30" height="48" rx="3" fill="hsl(264,65%,55%)"/><rect x="652" y="216" width="30" height="48" rx="3" fill="hsl(286,65%,55%)"/><rect x="696" y="216" width="30" height="48" rx="3" fill="hsl(308,65%,55%)"/><rect x="730" y="216" width="30" height="48" rx="3" fill="hsl(330,65%,55%)"/><text class="tn" x="850" y="250">3 bits</text><text class="tn" x="975" y="250">1 bit</text></svg></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">A colour vocabulary compresses a continuous space into a few words. With 16 equally likely shades and four words, a word carries 2 bits and leaves 2 bits of uncertainty about the shade.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Zaslavsky et al. (2018)</strong> treat a vocabulary as minimising \(I(M;W) - \beta\, I(W;U)\): its complexity, the bits the words spend on meanings, minus \(\beta\) times its accuracy, the bits a word carries about the colour. The colour systems of the languages they studied are close to optimal at values of \(\beta\) just above 1, about 1.03.</div></div>
+      <div class="srcl" data-pstep="1">Zaslavsky, Kemp, Regier &amp; Tishby (2018), <em>PNAS</em> 115.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The Indo-European homeland" data-screen-label="48">
+  <div class="b-slide pal-a lens-typological dB" data-sec="ie">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">The Indo-European homeland</h2>
+      <div class="egpanel" data-pstep="1" style="margin-top:0;margin-bottom:6px"><div class="eg"><span class="no">(8)</span><span class="ex">English <em>mother</em> · German <em>Mutter</em> · Spanish <em>madre</em> · Sanskrit <em>mātṛ</em></span></div></div>
+      <div class="sidefig">
+        <div class="col">
+      <div class="erow nolb" style="border-top:none" data-pstep="2"><div class="tx tight"><strong>Bouckaert et al. (2012)</strong> coded cognates like (8) in basic vocabulary from 103 Indo-European languages and adapted a Bayesian method used to trace virus outbreaks. The posterior favoured an origin in Anatolia, 8,000 to 9,500 years ago, spreading with farming.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Chang et al. (2015)</strong> added ancestry constraints, fixing known ancestors such as Latin above their descendants. The analysis then supported the steppe north of the Black Sea, about 6,500 years ago.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight">Ancient DNA has since found a large migration from the steppe into Europe about 4,500 years ago (<strong>Haak et al. 2015</strong>).</div></div>
+        </div>
+        <div class="fig" data-pstep="1"><img src="images/ie-steppe-homeland-map.png" alt="The steppe homeland of Indo-European, within the present-day spread of Indo-European languages" style="height:560px;width:auto;display:block"></div>
+      </div>
+      <div class="srcl" data-pstep="1">Bouckaert et al. (2012), <em>Science</em> 337; Chang, Cathcart, Hall &amp; Garrett (2015), <em>Language</em> 91; Haak et al. (2015), <em>Nature</em> 522; map: Joe Roe, Wikimedia Commons, CC BY-SA 4.0.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Chains of learners" data-screen-label="49">
+  <div class="b-slide pal-a lens-typological dB" data-sec="il">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Chains of learners</h2>
+      <div class="fig" data-pstep="1" style="text-align:center"><svg class="ifig ctr" viewBox="0 0 960 150" xmlns="http://www.w3.org/2000/svg" style="width:860px"><rect x="20" y="40" width="150" height="70" rx="10" class="door"/><text class="tn" x="95" y="84">learner 1</text><path class="ed" d="M176,75 H252" marker-end="url(#arr5)"/><text class="pv" x="214" y="62">data</text><rect x="260" y="40" width="150" height="70" rx="10" class="door"/><text class="tn" x="335" y="84">learner 2</text><path class="ed" d="M416,75 H492" marker-end="url(#arr5)"/><text class="pv" x="454" y="62">data</text><rect x="500" y="40" width="150" height="70" rx="10" class="door"/><text class="tn" x="575" y="84">learner 3</text><path class="ed" d="M656,75 H732" marker-end="url(#arr5)"/><text class="pv" x="694" y="62">data</text><rect x="740" y="40" width="150" height="70" rx="10" class="door"/><text class="tn" x="815" y="84">learner 4</text><defs><marker id="arr5" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#777"/></marker></defs></svg></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight">Each generation learns a language from the speech of the one before, and its own speech becomes the next generation&rsquo;s data.</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Griffiths &amp; Kalish (2007)</strong> proved that if Bayesian learners each pick a language at random from their posterior, the chain settles on the learners&rsquo; prior: languages come to reflect what learners expect.</div></div>
+      <div class="erow nolb" data-pstep="4"><div class="tx tight"><strong>Kirby, Cornish &amp; Smith (2008)</strong> passed an artificial language for coloured moving shapes along chains of participants. It became easier to learn and, when ambiguous words were filtered out, compositional.</div></div>
+      <div class="srcl" data-pstep="1">Griffiths &amp; Kalish (2007), <em>Cognitive Science</em> 31; Kirby, Cornish &amp; Smith (2008), <em>PNAS</em> 105.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Prior beliefs and projection" data-screen-label="50">
+  <div class="b-slide pal-a lens-typological dB" data-sec="pj">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-app"/></svg></span>Applied</div>
+      <h2 class="b-h">Prior beliefs and projection</h2>
+      <div class="egpanel" data-pstep="1" style="margin-top:0"><div class="eg"><span class="no">(4)</span><span class="ex">Julian is Cuban. Did Sandra discover that Julian dances salsa?</span></div><div class="eg"><span class="no">(5)</span><span class="ex">Julian is German. Did Sandra discover that Julian dances salsa?</span></div></div>
+      <div class="erow nolb" data-pstep="2"><div class="tx tight"><strong>Degen &amp; Tonhauser (2021)</strong> asked participants how certain the speaker of questions like (4) and (5) is that Julian dances salsa. Certainty was rated higher when the fact made the content more probable, as in (4).</div></div>
+      <div class="erow nolb" data-pstep="3"><div class="tx tight"><strong>Tonhauser, Beaver &amp; Degen (2018)</strong> found that projection comes in degrees and varies across expressions. Their Gradient Projection Principle states that content projects to the extent that it is not at issue.</div></div>
+      <div class="srcl" data-pstep="1">Degen &amp; Tonhauser (2021), <em>Open Mind</em> 5, items adapted; Tonhauser, Beaver &amp; Degen (2018), <em>Journal of Semantics</em> 35.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Other notations" data-screen-label="51">
+  <div class="b-slide pal-a lens-formal dB" data-sec="not">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Other notations</h2>
+      <div class="ntab n7" data-pstep="1">
+        <div class="nh"><span>This module</span><span>Also written</span></div>
+        <div class="nr"><div class="no1">\(P(A \mid B)\)<small>conditional probability</small></div><div class="no2">\(\Pr(A \mid B)\), \(p(A \mid B)\)</div></div>
+        <div class="nr"><div class="no1">\(P(A \text{ and } B)\)<small>probability of both</small></div><div class="no2">\(P(A \wedge B)\), \(P(A \cap B)\), \(P(A, B)\)</div></div>
+        <div class="nr"><div class="no1">\(P(x) \propto f(x)\)<small>proportional to</small></div><div class="no2">\(P(x) = f(x)/Z\) <i>with \(Z = \sum_y f(y)\), the normalising constant</i></div></div>
+        <div class="nr"><div class="no1">\(\{\langle s, P(s) \rangle, \dots\}\)<small>a distribution as a set of pairs</small></div><div class="no2">a table; \((0.44, 0.09, 0.28, 0.19)\) <i>as a vector</i></div></div>
+        <div class="nr"><div class="no1">\(\sem{u}(s)\)<small>1 if \(u\) is true of \(s\), 0 if not</small></div><div class="no2">\(\mathbb{1}[s \in \sem{u}]\) <i>an indicator function</i></div></div>
+      </div>
+      <div class="srcl" data-pstep="1">Scontras, Tessler &amp; Franke, <em>Probabilistic Language Understanding</em>, problang.org.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Concepts and skills" data-screen-label="52">
+  <div class="b-slide pal-a dB" data-sec="cs2">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">Concepts and skills</h2>
+      <div class="cs-grid dense">
+        <div class="cs-col" data-step="1"><div class="cs-head">Concepts</div><ol class="cs-list">
+          <li>Probability distributions, written as functions.</li>
+          <li>Independent events and the product rule.</li>
+          <li>The normal distribution.</li>
+          <li>Surprisal, entropy and information.</li>
+          <li>Conditional probability.</li>
+          <li>Hypothesis, evidence, prior, likelihood and posterior.</li>
+          <li>Expected value; degrees of belief.</li>
+        </ol></div>
+        <div class="cs-col" data-step="2"><div class="cs-head">Skills</div><ol class="cs-list">
+          <li>Compute probabilities from counts.</li>
+          <li>Multiply probabilities along a tree for independent events.</li>
+          <li>Compute surprisal and entropy by hand.</li>
+          <li>Compute a conditional probability from counts.</li>
+          <li>Annotate Bayes&rsquo; rule and compute a posterior.</li>
+          <li>Update a belief one piece of evidence at a time.</li>
+          <li>Read a conditional probability table by row and by column.</li>
+        </ol></div>
+      </div>
     </div>
   </div>
 </section>
 
 </deck-stage>
 
-<script src="../../shared/deck-stage.js"></script>
-<script src="../../shared/prag2-meta.js"></script>
-<script src="../../shared/prag2-rail.js"></script>
+<script>
 
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#5a1c0e"/>
-    <rect x="8" y="10" width="84" height="3" rx="1.5" fill="#efcab9" opacity=".6"/>
-    <rect x="8" y="20" width="84" height="22" rx="3" fill="#7a2410"/>
-    <rect x="8" y="48" width="84" height="44" rx="3" fill="#7a2410" opacity=".7"/>
-    <text x="50" y="96" font-family="serif" font-size="7" fill="#d99878" text-anchor="middle">LIU44008 · LECTURE DECK</text>
-  </svg>
-</template>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-pragmatics2/week-03. */
+(function () {
+  var TITLES = {
+    wk:"This week", cs:"Concepts and skills", road:"Roadmap", rd:"Readings", ol:"Online introductions", cs2:"Concepts and skills",
+    wag:"Pascal's wager", ht:"Heads or tails", stp:"The St Petersburg game", bl:"Bernoulli's logarithm", mug:"Pascal's mugging", pw:"Probability words", lin:"Linda",
+    prob:"Probable", bay:"Reverend Thomas Bayes", tw:"\u201cRoyal\u201d Tunbridge Wells", so:"Sevenoaks", ram:"Ramsey and de Finetti", def:"De Finetti", tg:"Turing and Good",
+    pr:"Probability", ind:"Independent events", nd:"The normal distribution", yard:"The probability yardstick", db:"A Dutch book", pd:"Probability distributions", pf:"Distributions as functions", dist:"Entropy of a distribution", sur:"Surprisal", ent:"Entropy", ei:"Entropy and information", he:"Hypothesis and evidence", rb:"Reading Bayes' rule", bn:"Bayes' rule in numbers", up:"Updating beliefs", cp:"Conditional probability", nz:"Normalising", hw:"Hearing a word", pt:"The medical test paradox", ss:"Sensitivity and specificity", gyn:"Same numbers, different words", qe:"Quick estimates", wt:"What a test tells you", bf:"The Bayes factor", od:"Odds", bo:"Bayes' rule with odds", stv:"Steve", ba:"Bayes' rule as areas", oop:"Odds or probabilities", sc:"A speaker's choices", wp:"Hearing a word in WebPPL", cg:"Common ground", pj:"Priors and projection", not:"Other notations",
+    mh:"Three doors", nc:"The noisy channel", ie:"The Indo-European homeland", il:"Chains of learners", ct:"Colour terms", pp:"Priors in perception",
+  };
+  var GROUPS = [
+    { t:"Introduction", sc:null,         keys:["wk","cs","road","rd"] },
+    { t:"Empirical",    sc:"--lens-emp", keys:["pt","pw","yard","lin","wag","stp","mug"] },
+    { t:"Historical",   sc:"--lens-his", keys:["prob","bay","ram","db"] },
+    { t:"Formal",       sc:"--lens-for", keys:["pr","pd","pf","nd","sur","ent","dist","ind","cp","ei"] },
+        { t:"Bayes' rule",     sc:"--lens-for", keys:["he","rb","bn","up","sc"] },
+    { t:"Applied",      sc:"--lens-typ", keys:["mh","nc","ct","ie","il","pj"] },
+    { t:"Notation",     sc:"--lens-for", keys:["not"] },
+    { t:"Concepts and skills", sc:null, keys:["cs2"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "\u25be" : "\u25b8";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LIU44008<br>Week 5</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 5</div><div class="t2">Probability and Priors</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+
+</script>
+
 </body>
 </html>
