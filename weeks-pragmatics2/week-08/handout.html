@@ -1,92 +1,129 @@
 <!DOCTYPE html>
+<!--
+  CLASSIC HANDOUT SHEET — the house pattern for printed handouts.
+
+  READ docs/handout-style.md BEFORE FILLING THIS IN. In short:
+    · one numbered block per page, numbered from 0
+    · examples numbered continuously across the whole sheet, (1)…(N)
+    · every block opens with a DEFINITIONS strip; use Thomas's own wording
+      from the earlier version of the course wherever it exists
+    · the margin column takes BARE CITATIONS ONLY — no commentary, no
+      teaching voice, no forward-pointing to later weeks
+    · a Context line is the exception, not the default
+    · exercises run a procedure on data; cut anything that asks the student
+      to comment on how the account is put together
+    · recap only what this week needs; let later weeks build their own material
+    · plain names for titles; no em-dashes; Unicode not MathJax for inline notation
+
+  Worked reference: weeks-pragmatics2/week-01/handout.html
+  Styling lives in shared/handout-classic.css — do not re-declare it here.
+  The older lens-based sheet is templates/week/handout-lenses.html.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LIU44008 · Week 8 · Models, Data and Language Models · Handout</title>
+<title>LIU44008 · Week 8, Cognition, Relevance and Grammar · Handout</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
 <script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]] }, svg:{fontCache:"global"}, startup:{typeset:true} };
+window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="../../shared/tokens.css" />
-<link rel="stylesheet" href="../../shared/lens.css" />
-<link rel="stylesheet" href="../../shared/handout.css" />
-<link rel="stylesheet" href="../../shared/theme-rust.css" />
-<style>
-  @media print { :root { --tcd-blue:#000; --tcd-blue-75:#555; --tcd-blue-50:#888; --tcd-blue-25:#bbb; --tcd-blue-10:#f2f2f2; --tcd-ink:#000; --c-def:#000; } }
-</style>
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
 </head>
 <body>
 
-<div class="handout-week" data-week="8"><div class="page">
+<div class="sheet">
 
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU44008 · Pragmatics II</div>
+      <div>Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 8 · Handout</div>
+  <h1 class="doc-title">Cognition, Relevance and Grammar</h1>
+
+  <!-- ══ 0 ══ ─────────────────────────────────────────────────────────────
+       Block 0 below shows every component the sheet has. Delete what this
+       week does not use; a block of bare data with no instruction and no
+       answer lines is a legitimate block.
+  ────────────────────────────────────────────────────────────────────────── -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Block title, a plain name</h2>
+
+      <!-- Context line: leave it out unless it does work the definitions
+           cannot. Never use it to restate a definition row. -->
+      <p><span class="runin">Context.</span> One or two sentences, only if needed.</p>
+
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Term</span><span class="g">One line. Thomas's own wording where it exists.</span></div>
+        <div class="d"><span class="t">Term</span><span class="g">Prefer entailment-based glosses to informal ones.</span></div>
+      </div>
+
+      <!-- A procedure, or a named set: diagnostics, a derivation template,
+           the environments, the tests. -->
+      <div class="proc">
+        <div class="sc proc-head">Procedure name</div>
+        <ol class="steps">
+          <li><b>Step.</b> What to do.</li>
+          <li><b>Step.</b> What to do.</li>
+        </ol>
+      </div>
+
+      <!-- Object-language data. .s is the sentence (italic); .ctx is a
+           bracketed context or a roman type label. Numbering runs on
+           across the whole sheet; do not restart it per block. -->
+      <ol class="exs">
+        <li><span>(1)</span><span class="s">A sentence.</span></li>
+        <li><span>(2)</span><span><span class="ctx">[a context]</span> &nbsp; <span class="s">A sentence.</span></span></li>
+      </ol>
+
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Run a procedure on the data. Three lines is the usual answer space.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Judge, classify, or derive. Never: comment on how the account is put together.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
       </div>
     </div>
-    <div class="h-meta">
-      <div class="code">LIU44008 · Pragmatics II</div>
-      <div class="term">Thomas Stephen · Semester 1, Michaelmas</div>
-    </div>
-  </header>
 
-  <div class="h-title-row">
-    <div class="h-week">Week 8</div>
-    <h1 class="h-title">Models, Data and Language Models</h1>
-  </div>
-
-  <div class="h-band">
-    <span class="tag">Application</span>
-    <span class="tag">Scalar implicature</span>
-    <span class="tag">Presupposition</span>
-    <span class="tag">Interface</span>
-  </div>
-
-  <div class="callout callout-note">
-    <span class="badge">This week</span>
-    <p><strong>Session 1.</strong> Scalar implicature probabilistically — RSA (Frank & Goodman); informativity; the processing evidence (Bott & Noveck; Huang & Snedeker).</p>
-    <p><strong>Session 2.</strong> Presupposition via informativity / Bayesian accounts; what LLMs actually do with both diagnostics (Ruis et al.; Hu et al.); LLM surprisal ↔ reading times.</p>
-  </div>
-
-  <div class="ex-block">
-    <div class="ex-tool-intro">
-      <div class="tl-label">Skeleton</div>
-      <div class="tl-name">Content to add</div>
-      <p>Build out this week's handout — mirror the worked sheet in <b>weeks-pragmatics/week-02/handout.html</b>: callouts (<b>.callout</b>), tool intros + tasks (<b>.ex-block</b>), progressive items (<b>.ex-prog</b>), and ruled <b>.answer-space</b>. Frame the tasks around the two diagnostics and the interface thread.</p>
+    <!-- BARE CITATIONS ONLY. Author, year, title, and where relevant
+         journal, volume and pages. An empty margin is fine. -->
+    <div class="note">
+      <p><b>Author Year.</b> Title. <i>Journal</i> 00: 000–000.</p>
     </div>
   </div>
 
-  <div class="todo-box"><b>Exercises to add.</b></div>
-
-  <div class="h-footer">
-    <span class="left">LIU44008 · Pragmatics II</span>
-    <span>Week 8 · Models, Data and Language Models</span>
-    <span>1</span>
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Block title</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Term</span><span class="g">Gloss.</span></div>
+      </div>
+      <p>Content to add.</p>
+    </div>
+    <div class="note"></div>
   </div>
 
-</div></div>
+</div>
 
-<p class="print-note">To print: open the browser print dialog · Paper = A4 · no headers/footers · Background graphics ON.</p>
-
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#faeae2"/>
-    <rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#b23a1e" stroke-width="2"/>
-    <line x1="36" y1="32" x2="64" y2="32" stroke="#b23a1e" stroke-width="2.5"/>
-    <line x1="36" y1="42" x2="58" y2="42" stroke="#efcab9" stroke-width="2"/>
-    <line x1="36" y1="50" x2="62" y2="50" stroke="#efcab9" stroke-width="2"/>
-    <line x1="36" y1="58" x2="54" y2="58" stroke="#efcab9" stroke-width="2"/>
-    <text x="50" y="92" font-family="serif" font-size="7" fill="#b23a1e" text-anchor="middle">LIU44008 · HANDOUT</text>
-  </svg>
-</template>
+<template id="__bundler_thumbnail"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="#f8ece7"/><rect x="30" y="20" width="40" height="56" rx="3" fill="#fff" stroke="#b23a1e" stroke-width="2"/><line x1="36" y1="32" x2="64" y2="32" stroke="#b23a1e" stroke-width="2.5"/><line x1="36" y1="42" x2="58" y2="42" stroke="#eac4b5" stroke-width="2"/><line x1="36" y1="50" x2="62" y2="50" stroke="#eac4b5" stroke-width="2"/><text x="50" y="92" font-family="serif" font-size="7" fill="#b23a1e" text-anchor="middle">LIU44008</text></svg></template>
 </body>
 </html>

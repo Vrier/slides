@@ -26,12 +26,11 @@
 
 window.MODULE_SECTIONS = [
   "Introduction",        // 0 — wk 1
-  "Frameworks",          // 1 — wk 2, 3, 4
-  "The Model",           // 2 — wk 5
-  "Cognition",           // 3 — wk 6
-  "Reading Week",        // 4 — wk 7
-  "Application",         // 5 — wk 8
-  "Presentations",       // 6 — wk 9, 10, 11, 12
+  "Frameworks",          // 1 — wk 2, 3, 4, 5
+  "The Model",           // 2 — wk 6
+  "Reading Week",        // 3 — wk 7
+  "Cognition",           // 4 — wk 8
+  "Presentations",       // 5 — wk 9, 10, 11, 12
 ];
 
 /* The four frameworks the course builds, in dependency order. Each
@@ -61,19 +60,19 @@ window.WEEKS = [
     figures: ["Lewis", "Parikh", "Franke", "Jäger"] },
   { no: 3,  title: "Information Theory", section: 1, approach: "information",
     figures: ["Shannon", "Zipf", "Jaeger", "Gibson"] },
-  { no: 4,  title: "Probability, Priors and Common Ground", section: 1, approach: "rsa",
-    figures: ["Stalnaker", "von Fintel", "Tonhauser", "Degen"] },
-  { no: 5,  title: "Probability and Priors", section: 2, approach: "rsa",
+  { no: 4,  title: "Information Theory", section: 1, approach: "information",
+    figures: ["Shannon", "Zipf", "Jaeger", "Gibson"] },
+  { no: 5,  title: "Probability and Priors", section: 1, approach: "rsa",
     figures: ["Pascal", "Bayes", "Ramsey", "de Finetti", "Degen"] },
-  { no: 6,  title: "Cognitive Science and Resource Limits", section: 3, approach: "cognition",
-    figures: ["Sperber & Wilson", "Simon", "Anderson", "Bott & Noveck"] },
-  { no: 7,  title: "Reading Week",            section: 4, reading: true },
-  { no: 8,  title: "Models, Data and Language Models", section: 5, approach: null,
-    figures: ["Oh & Schuler", "Mahowald et al.", "Bender & Koller", "Hu et al."] },
-  { no: 9,  title: "Student Presentations",   section: 6, present: true },
-  { no: 10, title: "Student Presentations",   section: 6, present: true },
-  { no: 11, title: "Student Presentations",   section: 6, present: true },
-  { no: 12, title: "Student Presentations",   section: 6, present: true },
+  { no: 6,  title: "The Rational Speech Act Framework", section: 2, approach: "rsa",
+    figures: ["Frank & Goodman", "Goodman & Stuhlmüller", "Scontras"] },
+  { no: 7,  title: "Reading Week",            section: 3, reading: true },
+  { no: 8,  title: "Cognition, Relevance and Grammar", section: 4, approach: "cognition",
+    figures: ["Sperber & Wilson", "Bott & Noveck", "Chierchia, Fox & Spector"] },
+  { no: 9,  title: "Student Presentations",   section: 5, present: true },
+  { no: 10, title: "Student Presentations",   section: 5, present: true },
+  { no: 11, title: "Student Presentations",   section: 5, present: true },
+  { no: 12, title: "Student Presentations",   section: 5, present: true },
 ];
 
 window.getWeek = function (no) { return window.WEEKS.find((w) => w.no === Number(no)); };
