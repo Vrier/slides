@@ -3,138 +3,342 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LI7862 · Week 6 — Information · Homework</title>
+<title>LI7862 · Week 6, Information · Exercises</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>
-window.MathJax = { tex:{ inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1] } }, svg:{fontCache:"global"}, startup:{typeset:true} };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
-<link rel="stylesheet" href="../../shared/tokens.css" />
-<link rel="stylesheet" href="../../shared/lens.css" />
-<link rel="stylesheet" href="../../shared/handout.css" />
-<link rel="stylesheet" href="../../shared/exercises.css" />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  table.rec td, table.rec th { text-align:left !important; }
+  table.rec.fill td.it { width:42%; }
+  table.rec.fill td:first-child { white-space:nowrap; }
+</style>
+<style>
+  .frac { display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; line-height:1.15; margin:0 1pt; font-size:92%; }
+  .frac > span { padding:0 2pt; white-space:nowrap; }
+  .frac > span:first-child { border-bottom:.6pt solid currentColor; }
+  .eqn { display:flex; align-items:center; justify-content:center; gap:14pt; margin:6pt 0 10pt; }
+  .eqn.wrap { display:block; text-align:left; margin-left:18pt; line-height:2.1; }
+  .eqn .sc { font-size:8pt; letter-spacing:.12em; }
+  table.board { border-collapse:collapse; margin:4pt auto 10pt; }
+  table.board td { border:.6pt solid #000; padding:5pt 12pt; text-align:center; font-style:italic; }
+  table.rec caption { caption-side:top; text-align:left; font-variant:small-caps; letter-spacing:.08em; font-size:8.6pt; padding:4pt 0 2pt; }
+  table.rec td.span { text-align:center; }
+  table.rec .frac { font-size:86%; }
+  .lbl { display:inline-flex; flex-direction:column; align-items:center; vertical-align:bottom; }
+  .lbl .lt { font-size:6.8pt; font-variant:small-caps; letter-spacing:.08em; color:#555; line-height:1; margin-bottom:1.5pt; }
+  .lbl.lb { vertical-align:top; }
+  .lbl.lb .lt { margin:1.5pt 0 0; }
+  .mono { font-family:var(--mono, ui-monospace, monospace); font-size:9pt; }
+  .tasks + .tasks { margin-top:0; }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; }
+  .ans { font-family: var(--sans, sans-serif); font-size: 9pt; line-height: 1.6; color: #1f4e79; margin: 2pt 0 8pt 18pt; }
+  .ans i { font-style: italic; }
+  table.rec.fill td.av { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:8.6pt; }
+</style>
 </head>
-<body class="pal-a">
+<body>
 
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <defs>
-    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
-    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
-    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
-    <symbol id="g-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="5.6" cy="18.4" r="2.1" fill="currentColor" stroke="none"/><path d="M4 13.1c4.4 0 7.9 3.5 7.9 7.9"/><path d="M4 8.2c7 0 12.6 5.6 12.6 12.6"/><path d="M4 3.4c9.6 0 17.4 7.8 17.4 17.4"/></symbol>
-  </defs>
-</svg>
+<div class="sheet">
 
-<div class="handout-week hw" data-week="6"><div class="page">
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LI7862 · Linguistic Pragmatics</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
 
-  <header class="h-header">
-    <div class="h-lockup">
-      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:38pt;height:44pt;object-fit:contain;display:block">
-      <div class="h-vr"></div>
-      <div class="h-names">
-        <div class="en">Trinity College Dublin</div>
-        <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
-        <div class="uni">The University of Dublin</div>
+  <div class="sc doc-kicker">Week 6 · Exercises</div>
+  <h1 class="doc-title">Information</h1>
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Probability Theory Basics</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Probability distribution</span><span class="g">A function <i>P</i>, which gives each outcome a number from 0 to 1, with the numbers for all the outcomes adding up to 1.</span></div>
+        <div class="d"><span class="t"><i>P</i>(<i>x</i>)</span><span class="g">The probability of outcome <i>x</i>.</span></div>
+        <div class="d"><span class="t">Conditional probability</span><span class="g"><i>P</i>(<i>B</i> | <i>A</i>), the probability of <i>B</i> given <i>A</i>: the share of <i>A</i> taken up by <i>B</i>. <i>P</i>(<i>A</i> and <i>B</i>) = <i>P</i>(<i>A</i>) · <i>P</i>(<i>B</i> | <i>A</i>).</span></div>
+        <div class="d"><span class="t"><i>H</i>, <i>E</i></span><span class="g"><i>H</i> is the hypothesis, the claim you want to know about. <i>E</i> is the evidence, what you have observed.</span></div>
+        <div class="d"><span class="t">Prior</span><span class="g"><i>P</i>(<i>H</i>): how probable the hypothesis was before the evidence.</span></div>
+        <div class="d"><span class="t">Likelihood</span><span class="g"><i>P</i>(<i>E</i> | <i>H</i>): how expected the evidence is if the hypothesis is true.</span></div>
+        <div class="d"><span class="t">Evidence</span><span class="g"><i>P</i>(<i>E</i>): how expected the evidence is overall. It is the products of prior and likelihood added up.</span></div>
+        <div class="d"><span class="t">Posterior</span><span class="g"><i>P</i>(<i>H</i> | <i>E</i>): how probable the hypothesis is once you have seen the evidence.</span></div>
+      </div>
+      <div class="eqn"><span class="sc">Bayes’ rule</span><span><span class="lbl lb"><span><i>P</i>(<i>H</i> | <i>E</i>)</span><span class="lt">posterior</span></span> = <span class="frac"><span><span class="lbl"><span class="lt">likelihood</span><span><i>P</i>(<i>E</i> | <i>H</i>)</span></span> · <span class="lbl"><span class="lt">prior</span><span><i>P</i>(<i>H</i>)</span></span></span><span><span class="lbl lb"><span><i>P</i>(<i>E</i>)</span><span class="lt">evidence</span></span></span></span></span></div>
+      <p><span class="runin">Example.</span> Olah’s weather and clothing.</p>
+      <table class="rec">
+        <thead><tr><th></th><th>Sunny</th><th>Rain</th></tr></thead>
+        <tr><td><i>P</i>(weather)</td><td>0.75</td><td>0.25</td></tr>
+        <tr><td><i>P</i>(coat | weather)</td><td>0.26</td><td>0.75</td></tr>
+        <tr><td><i>P</i>(weather and coat)</td><td>0.75 · 0.26 ≈ 0.19</td><td>0.25 · 0.75 ≈ 0.19</td></tr>
+      </table>
+      <p><i>P</i>(coat) = 0.19 + 0.19 = 0.38, so <i>P</i>(rain | coat) = <span class="frac"><span>0.75 · 0.25</span><span>0.38</span></span> ≈ 0.49.</p>
+      <p>At a party in Dublin you meet a stranger. Your prior is over where they grew up; the likelihood is how often someone from each city says each word. They say <i>wee</i>.</p>
+      <table class="rec fill">
+        <thead><tr><th></th><th>Dublin</th><th>Belfast</th><th>Glasgow</th></tr></thead>
+        <tr><td>Prior</td><td>0.5</td><td>0.3</td><td>0.2</td></tr>
+        <tr><td><i>P</i>(<i>wee</i> | city)</td><td>0.1</td><td>0.6</td><td>0.8</td></tr>
+        <tr><td>Prior × likelihood</td><td></td><td></td><td></td></tr>
+        <tr><td><i>P</i>(<i>wee</i>)</td><td colspan="3" class="span">0.5 · 0.1 + 0.3 · 0.6 + 0.2 · 0.8 = 0.39</td></tr>
+        <tr><td>Posterior</td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Complete the table.</span></div>
+      </div>
+      <p>They then say <i>grand</i>. The posterior after <i>wee</i> is the new prior.</p>
+      <table class="rec fill">
+        <thead><tr><th></th><th>Dublin</th><th>Belfast</th><th>Glasgow</th></tr></thead>
+        <tr><td>Prior, after <i>wee</i></td><td>0.13</td><td>0.46</td><td>0.41</td></tr>
+        <tr><td><i>P</i>(<i>grand</i> | city)</td><td>0.6</td><td>0.4</td><td>0.05</td></tr>
+        <tr><td>Prior × likelihood</td><td></td><td></td><td></td></tr>
+        <tr><td><i>P</i>(<i>grand</i>)</td><td colspan="3" class="span">0.13 · 0.6 + 0.46 · 0.4 + 0.41 · 0.05 ≈ 0.28</td></tr>
+        <tr><td>Posterior</td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(b)</span><span>Complete the table.</span></div>
+        <div class="task"><span>(c)</span><span>What is the city that is now most likely?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(d)</span><span>Hearing <i>grand</i> on its own would make Dublin most likely. Why is it useful to treat a listener’s beliefs as a distribution that each word updates, rather than as a single guess that each word replaces?</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
       </div>
     </div>
-    <div class="h-meta">
-      <div class="code">LI7862 · Linguistic Pragmatics</div>
-      <div class="term">Dr. Thomas Stephen · Semester 2, 2026</div>
+    <div class="note"><p><b>Bayes 1763.</b> An essay towards solving a problem in the doctrine of chances. <i>Philosophical Transactions</i> 53.</p><p><b>Olah 2015.</b> Visual information theory.</p></div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Information Theory Basics</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Bit</span><span class="g">The basic unit of information. log<sub>2</sub> <span class="frac"><span>1</span><span>0.5</span></span>, the amount of information needed to eliminate half of the options.</span></div>
+        <div class="d"><span class="t">Logarithm</span><span class="g">log<sub>2</sub> <i>m</i> = <i>n</i> iff 2<sup><i>n</i></sup> = <i>m</i>. log<sub>2</sub> <i>m</i> counts the halvings that bring <i>m</i> down to 1.</span></div>
+        <div class="d"><span class="t">A helpful equivalence for calculators</span><span class="g">log<sub>2</sub> <i>x</i> = <span class="frac"><span>log<sub>10</sub> <i>x</i></span><span>log<sub>10</sub> 2</span></span></span></div>
+        <div class="d"><span class="t">Surprisal</span><span class="g">log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>x</i>)</span></span>, in bits: the number of times you halve the possibilities to reach <i>x</i>.</span></div>
+        <div class="d"><span class="t">Bits in an answer</span><span class="g">Its surprisal, log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i></span></span>, where <i>P</i> is the probability, before asking, that the answer comes out that way.</span></div>
+        <div class="d"><span class="t">Expected information gain</span><span class="g">What a yes/no question is worth before the answer is heard: <i>P</i>(yes) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(yes)</span></span> + <i>P</i>(no) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(no)</span></span>.</span></div>
+      </div>
+      <p>One player picks a person from the board, and the other asks yes/no questions until only one person is left. Each of the 16 people is equally likely to have been picked.</p>
+      <table class="board">
+        <tr><td>Alice</td><td>Ben</td><td>Charlotte</td><td>Derek</td></tr>
+        <tr><td>Emily</td><td>Freddie</td><td>Grace</td><td>Harry</td></tr>
+        <tr><td>Isla</td><td>Jack</td><td>Katie</td><td>Lewis</td></tr>
+        <tr><td>Molly</td><td>Nathan</td><td>Olivia</td><td>Peter</td></tr>
+      </table>
+      <p><span class="runin">Example.</span> <i>Glasses?</i> <i>P</i>(yes) = <span class="frac"><span>8</span><span>16</span></span> = 0.5, carrying log<sub>2</sub> <span class="frac"><span>1</span><span>0.5</span></span> = 1 bit; <i>P</i>(no) = 0.5, also 1 bit. Expected gain 0.5 · 1 + 0.5 · 1 = 1.</p>
+      <table class="rec fill">
+        <thead><tr><th>Question</th><th><i>P</i>(yes)</th><th>Bits</th><th><i>P</i>(no)</th><th>Bits</th><th>Expected gain</th></tr></thead>
+        <tr><td><i>Glasses?</i></td><td>0.5</td><td>1</td><td>0.5</td><td>1</td><td>1</td></tr>
+        <tr><td><i>Hat?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Beard?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Scarf?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Is it Derek?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Fill in the table.</span></div>
+        <div class="task"><span>(b)</span><span>What is the answer that carries the most information, and the answer that carries the least?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(c)</span><span>What is the number of questions needed to find one of 16 when every answer halves the board? The real game has 24 people. What are the bits needed to find one of them, and the number of questions in the worst case?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span><i>Is it Derek?</i> could find the person in one go. Why is it more useful to judge a question by its expected information gain than by its best possible answer?</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <p>The opponent’s grandfather is called Derek and looks a lot like the Derek in the picture. You think there’s about a 50% chance that they picked Derek: <i>P</i>(Derek) = 0.5, and the other 0.5 is spread evenly over the other 15, <span class="frac"><span>0.5</span><span>15</span></span> each. Derek wears glasses and has a beard.</p>
+      <p><span class="runin">Example.</span> <i>Glasses?</i> <i>P</i>(yes) = 0.5 + 7 · <span class="frac"><span>0.5</span><span>15</span></span> ≈ 0.733, carrying log<sub>2</sub> <span class="frac"><span>1</span><span>0.733</span></span> ≈ 0.45 bits; <i>P</i>(no) = 1 − 0.733 = 0.267, carrying log<sub>2</sub> <span class="frac"><span>1</span><span>0.267</span></span> ≈ 1.91 bits. Expected gain 0.733 · 0.45 + 0.267 · 1.91 ≈ 0.84.</p>
+      <table class="rec fill">
+        <thead><tr><th>Question</th><th><i>P</i>(yes)</th><th>Bits</th><th><i>P</i>(no)</th><th>Bits</th><th>Expected gain</th></tr></thead>
+        <tr><td><i>Glasses?</i></td><td>0.733</td><td>0.45</td><td>0.267</td><td>1.91</td><td>0.84</td></tr>
+        <tr><td><i>Hat?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Beard?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Scarf?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Is it Derek?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(e)</span><span>Fill in the table.</span></div>
+        <div class="task"><span>(f)</span><span>What is the question to ask first now, and which questions are worth less than in the first table?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(g)</span><span>The board is the same, but the best question has changed. Why is it useful that how informative a question is depends on what the asker already believes?</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+      </div>
     </div>
-  </header>
-
-  <div class="h-title-row">
-    <div class="h-week">Week 6 · Homework</div>
-    <h1 class="h-title">Information</h1>
+    <div class="note"><p><b>Shannon 1948.</b> A mathematical theory of communication.</p></div>
   </div>
 
-  <div class="hw-band">
-    <span class="tag">Homework</span>
-    <span class="due">Due <b>Week 7 · 17:00</b> · submit via Blackboard</span>
-    <span class="pts">— marks</span>
-  </div>
-
-  <div class="hw-sub">
-    <div class="f"><span class="lab">Name</span><span class="ln"></span></div>
-    <div class="f"><span class="lab">Student no.</span><span class="ln"></span></div>
-  </div>
-
-  <p class="hw-intro">Homework problem set for Week 6. <b>Content to add</b> — the four lens problems below are placeholders. Replace each with take-home problems distinct from the in-class handout.</p>
-  <p class="hw-intro" style="margin-top:-6pt"><b>Key figures:</b> Shannon · Huffman · Zipf · Hamming. <i>Case study — the most common words in Irish.</i></p>
-
-  <div class="hw-legend">
-    <span class="lg lens-empirical"><i style="background:var(--lens)"></i>Empirical</span>
-    <span class="lg lens-historical"><i style="background:var(--lens)"></i>Historical</span>
-    <span class="lg lens-formal"><i style="background:var(--lens)"></i>Formal</span>
-    <span class="lg lens-typological"><i style="background:var(--lens)"></i>Applied</span>
-  </div>
-
-  <div class="hw-prob lens-empirical">
-    <div class="hw-prob-head">
-      <span class="n">1</span>
-      <span class="q">Empirical — Information<span class="lens-pip">Empirical</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Entropy, Compression, and Redundancy</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">From counts</span><span class="g"><i>P</i>(<i>x</i>) = <span class="frac"><span>number of times <i>x</i> occurs</span><span>total</span></span></span></div>
+        <div class="d"><span class="t">Event</span><span class="g">A set of outcomes, such as the speaker referring to something blue. Its probability is the sum of the probabilities of the outcomes in it.</span></div>
+        <div class="d"><span class="t">Function word</span><span class="g">A word that marks grammatical relations, such as <i>the</i>, <i>of</i>, <i>and</i>, <i>in</i>.</span></div>
+        <div class="d"><span class="t">Content word</span><span class="g">A word with lexical meaning, such as <i>house</i>, <i>run</i>, <i>dog</i>, <i>beautiful</i>.</span></div>
+        <div class="d"><span class="t">Zipf’s law of abbreviation</span><span class="g">The more often a word is used, the shorter it tends to be.</span></div>
+        <div class="d"><span class="t">Entropy</span><span class="g">The average surprisal of a distribution: <i>H</i>(<i>X</i>) = Σ<sub><i>x</i></sub> <i>P</i>(<i>x</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>x</i>)</span></span>. A property of the whole distribution; surprisal is a property of one outcome.</span></div>
+        <div class="d"><span class="t"><i>X</i>, Σ<sub><i>x</i></sub></span><span class="g"><i>X</i>: the outcomes, with distribution <i>P</i>. Σ<sub><i>x</i></sub> adds up the expression after it once for every outcome <i>x</i>.</span></div>
+        <div class="d"><span class="t">Maximum entropy</span><span class="g">log<sub>2</sub> <i>N</i> for <i>N</i> outcomes, reached when the distribution is flat: all <i>N</i> equally likely. A certain outcome gives 0.</span></div>
+        <div class="d"><span class="t">Redundancy</span><span class="g">Signal beyond what the message strictly needs. Redundancy = 1 − <span class="frac"><span><i>H</i></span><span><i>H</i><sub>max</sub></span></span>.</span></div>
+        <div class="d"><span class="t"><i>H</i><sub>max</sub></span><span class="g">The entropy if every symbol were equally likely: log<sub>2</sub> <i>N</i> for <i>N</i> symbols.</span></div>
+      </div>
+      <p>A speaker uses only these eight words, as often as each occurs in the British National Corpus. The counts add up to 13,785,690.</p>
+      <table class="rec fill">
+        <thead><tr><th>Word</th><th>Count</th><th>Letters</th><th><i>P</i></th><th>Surprisal</th></tr></thead>
+        <tr><td><i>the</i></td><td>6,187,927</td><td>3</td><td></td><td></td></tr>
+        <tr><td><i>of</i></td><td>2,941,790</td><td>2</td><td></td><td></td></tr>
+        <tr><td><i>and</i></td><td>2,682,878</td><td>3</td><td></td><td></td></tr>
+        <tr><td><i>in</i></td><td>1,883,295</td><td>2</td><td></td><td></td></tr>
+        <tr><td><i>house</i></td><td>50,926</td><td>5</td><td></td><td></td></tr>
+        <tr><td><i>run</i></td><td>22,125</td><td>3</td><td></td><td></td></tr>
+        <tr><td><i>dog</i></td><td>8,079</td><td>3</td><td></td><td></td></tr>
+        <tr><td><i>beautiful</i></td><td>8,670</td><td>9</td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>What is the probability of each word among the eight, and its surprisal?</span></div>
+        <div class="task"><span>(b)</span><span>What is the probability of the event <i>function word</i>?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(c)</span><span>Which words fit the law of abbreviation, and which do not?</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Why might it be more helpful to explain word length with surprisal than with frequency counts alone?</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <p>One player thinks of one of the eight words, and the other asks yes/no questions to find it. Consider two circumstances. First where you have no guesses about frequency and likelihood such that the chance of any one of the eight words coming up is equally likely (<span class="frac"><span>1</span><span>8</span></span> = 0.125). Then a second where you assume the choice of word is distributed as it is in the British National Corpus data above.</p>
+      <table class="rec fill"><caption>Every word equally likely</caption>
+        <thead><tr><th>Question</th><th><i>P</i>(yes)</th><th>Bits</th><th><i>P</i>(no)</th><th>Bits</th><th>Expected gain</th></tr></thead>
+        <tr><td><i>Is it a function word?</i></td><td>0.5</td><td>1.00</td><td>0.5</td><td>1.00</td><td>1.00</td></tr>
+        <tr><td><i>Is it a preposition?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Does it have one syllable?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Is it the?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <table class="rec fill"><caption>Words as likely as in the British National Corpus</caption>
+        <thead><tr><th>Question</th><th><i>P</i>(yes)</th><th>Bits</th><th><i>P</i>(no)</th><th>Bits</th><th>Expected gain</th></tr></thead>
+        <tr><td><i>Is it a function word?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Is it a preposition?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Does it have one syllable?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td><i>Is it the?</i></td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(e)</span><span>Fill in both tables.</span></div>
+        <div class="task"><span>(f)</span><span>What is the expected gain of each question in each circumstance, and which is the best first question in each?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(g)</span><span>Why is a question about word class worth so little once the words are as likely as in the corpus?</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+      <p>The entropy of a distribution over the eight words is</p>
+      <div class="eqn wrap"><span><i>H</i>(<i>X</i>) = Σ<sub><i>x</i></sub> <i>P</i>(<i>x</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>x</i>)</span></span> = <i>P</i>(<i>the</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>the</i>)</span></span> + <i>P</i>(<i>of</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>of</i>)</span></span> + <i>P</i>(<i>and</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>and</i>)</span></span> + <i>P</i>(<i>in</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>in</i>)</span></span> + <i>P</i>(<i>house</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>house</i>)</span></span> + <i>P</i>(<i>run</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>run</i>)</span></span> + <i>P</i>(<i>dog</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>dog</i>)</span></span> + <i>P</i>(<i>beautiful</i>) · log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i>(<i>beautiful</i>)</span></span></span></div>
+      <div class="tasks">
+        <div class="task"><span>(h)</span><span>What is the entropy of the distribution in each circumstance, with every word equally likely and with the words as likely as in the British National Corpus?</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <p>Two codes write the eight words in 0s and 1s.</p>
+      <table class="rec">
+        <thead><tr><th>Word</th><th>Code A</th><th>Code B</th></tr></thead>
+        <tr><td><i>the</i></td><td><span class="mono">000</span></td><td><span class="mono">0</span></td></tr>
+        <tr><td><i>of</i></td><td><span class="mono">001</span></td><td><span class="mono">10</span></td></tr>
+        <tr><td><i>and</i></td><td><span class="mono">010</span></td><td><span class="mono">110</span></td></tr>
+        <tr><td><i>in</i></td><td><span class="mono">011</span></td><td><span class="mono">1110</span></td></tr>
+        <tr><td><i>house</i></td><td><span class="mono">100</span></td><td><span class="mono">11110</span></td></tr>
+        <tr><td><i>run</i></td><td><span class="mono">101</span></td><td><span class="mono">111110</span></td></tr>
+        <tr><td><i>dog</i></td><td><span class="mono">110</span></td><td><span class="mono">1111110</span></td></tr>
+        <tr><td><i>beautiful</i></td><td><span class="mono">111</span></td><td><span class="mono">1111111</span></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(i)</span><span>What is the average length of code A and of code B when the words are as likely as in the British National Corpus, and how do they compare with the entropy of that distribution?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(j)</span><span>Which code suits the first circumstance, with every word equally likely, and why?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(k)</span><span>What is the redundancy of code A when the words are as likely as in the British National Corpus, taking the entropy of the first circumstance as <i>H</i><sub>max</sub>?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(l)</span><span>Why is it useful to compare the words of a language with a code like code B?</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+      </div>
     </div>
-    <p class="lead">What utterance data motivates this week’s analysis?</p>
-    <div class="hw-todo">Draft a empirical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
+    <div class="note"><p><b>Kilgarriff 1996.</b> British National Corpus word-frequency lists.</p><p><b>Zipf 1949.</b> <i>Human Behavior and the Principle of Least Effort</i>.</p></div>
   </div>
 
-  <div class="hw-prob lens-historical">
-    <div class="hw-prob-head">
-      <span class="n">2</span>
-      <span class="q">Historical — Information<span class="lens-pip">Historical</span></span>
-      <span class="marks">— marks</span>
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Next word prediction</h2>
+      <p>Here are two probability distributions for the next word in a sequence:</p>
+      <table class="rec fill"><caption>After <i>the cat sat on the</i></caption>
+        <thead><tr><th>Word</th><th><i>P</i></th><th>log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i></span></span></th><th>Product</th></tr></thead>
+        <tr><td><i>mat</i></td><td>0.7</td><td></td><td></td></tr>
+        <tr><td><i>floor</i></td><td>0.15</td><td></td><td></td></tr>
+        <tr><td><i>sofa</i></td><td>0.1</td><td></td><td></td></tr>
+        <tr><td><i>other</i></td><td>0.05</td><td></td><td></td></tr>
+        <tr><td><i>H</i></td><td></td><td></td><td></td></tr>
+      </table>
+      <table class="rec fill"><caption>After <i>she wiped her feet on the</i></caption>
+        <thead><tr><th>Word</th><th><i>P</i></th><th>log<sub>2</sub> <span class="frac"><span>1</span><span><i>P</i></span></span></th><th>Product</th></tr></thead>
+        <tr><td><i>mat</i></td><td>0.7</td><td></td><td></td></tr>
+        <tr><td><i>rug</i></td><td>0.3</td><td></td><td></td></tr>
+        <tr><td><i>H</i></td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Fill in both tables.</span></div>
+        <div class="task"><span>(b)</span><span>Why is it useful to describe the listener’s uncertainty with the entropy of the whole distribution, rather than with the probability of the likeliest word?</span></div>
+        <div class="lines"><span></span><span></span><span></span><span></span></div>
+      </div>
     </div>
-    <p class="lead">Who developed this, and in what intellectual context?</p>
-    <div class="hw-todo">Draft a historical homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
+    <div class="note"><p><b>Shannon 1948.</b> A mathematical theory of communication, Part I, §&nbsp;6.</p></div>
   </div>
 
-  <div class="hw-prob lens-formal">
-    <div class="hw-prob-head">
-      <span class="n">3</span>
-      <span class="q">Formal — Information<span class="lens-pip">Formal</span></span>
-      <span class="marks">— marks</span>
+  <div class="sec wyntk">
+    <div class="num"></div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>Probability distributions and conditional probability.</li>
+          <li>Bayes’ rule, with prior, likelihood, evidence and posterior.</li>
+          <li>Bits, logarithms and surprisal.</li>
+          <li>Expected information gain.</li>
+          <li>The entropy of a distribution, and maximum entropy.</li>
+          <li>Codes, compression and redundancy.</li>
+          <li>Zipf’s law of abbreviation.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Compute probabilities from counts.</li>
+          <li>Update a belief with Bayes’ rule, one piece of evidence at a time.</li>
+          <li>Compute the surprisal of an outcome in bits.</li>
+          <li>Compute the expected information gain of a yes/no question.</li>
+          <li>Compute the entropy of a distribution by hand, and its maximum.</li>
+          <li>Compare the average length of a code with the entropy, and compute its redundancy.</li>
+          <li>Check Zipf’s law of abbreviation against word frequencies.</li>
+        </ol>
+      </div>
+      </div>
     </div>
-    <p class="lead">What analytical machinery do we need?</p>
-    <div class="hw-todo">Draft a formal homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
+    <div class="note"></div>
   </div>
 
-  <div class="hw-prob lens-typological">
-    <div class="hw-prob-head">
-      <span class="n">4</span>
-      <span class="q">Applied — Information<span class="lens-pip">Applied</span></span>
-      <span class="marks">— marks</span>
-    </div>
-    <p class="lead">How does it play out in real social use?</p>
-    <div class="hw-todo">Draft a applied homework problem here. Mirror the worked sheet in <b>weeks-pragmatics/week-02/exercises.html</b> (Speech Acts): a <b>.hw-prob</b> with a lead, optional <b>.hw-parts</b> sub-items (a)(b)(c), and <b>.answer-space</b> or <b>.hw-work</b> for students to write in.</p>
-    <div class="answer-space" style="--lines:3"></div>
-  </div>
-
-  <div class="h-footer">
-    <span class="left">LI7862 · Homework</span>
-    <span>Week 6 · Information</span>
-    <span>1</span>
-  </div>
-
-</div></div><!-- /handout-week 6 -->
-
-<p class="print-note">To save as PDF: open the browser print dialog · Destination = Save as PDF · Paper = A4 · Background graphics ON.</p>
-
-<template id="__bundler_thumbnail">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="100" height="100" fill="#fbeae3"/>
-    <rect x="30" y="18" width="40" height="60" rx="3" fill="#fff" stroke="#c0512c" stroke-width="2"/>
-    <text x="38" y="34" font-family="serif" font-size="11" font-weight="700" fill="#c0512c">1</text>
-    <line x1="46" y1="31" x2="64" y2="31" stroke="#e0b3a3" stroke-width="2"/>
-    <line x1="38" y1="44" x2="64" y2="44" stroke="#e0b3a3" stroke-width="1.6"/>
-    <line x1="38" y1="52" x2="64" y2="52" stroke="#e0b3a3" stroke-width="1.6"/>
-    <text x="50" y="92" font-family="serif" font-size="6.5" fill="#c0512c" text-anchor="middle">LI7862 · HOMEWORK</text>
-  </svg>
-</template>
+</div>
 </body>
 </html>
