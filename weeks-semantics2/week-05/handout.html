@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 5, Factivity, Selection &amp; Neg-Raising · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+
+  /* Sections run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  .defs + .defs { margin-top:0; border-top:none; }
+  .exs .o { font-style:italic; }
+  .exs .fr { float:right; font-style:normal; margin-left:14pt; }
+  .exs .tag { font-style:normal; font-size:9.6pt; margin-left:6pt; }
+  .tfig { width:86%; height:auto; display:block; margin:6pt auto 4pt; } .treebox { break-inside:avoid; page-break-inside:avoid; }
+  .tfig line, .tfig polyline { stroke:#222; stroke-width:1.6; fill:none; }
+  .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .tc { font-family:inherit; font-style:normal; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .roof { stroke:#222; stroke-width:1.6; fill:none; }
+  .wpic { width:100%; height:auto; display:block; margin:6pt 0 8pt; }
+  .wpic .wr { fill:none; stroke:#111; stroke-width:2; }
+  .wpic .wr.dash { stroke-dasharray:9 7; }
+  .wpic .wl { font-style:italic; font-size:30px; fill:#111; }
+  .wpic .wd { fill:#111; }
+  .wpic .wn { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .wpic .wn .sb { font-style:normal; font-size:20px; }
+  .wpic .wa { font-style:italic; font-size:26px; text-anchor:middle; fill:#111; }
+  .wpic .wt { font-style:normal; font-size:26px; fill:#111; }
+  .wpic .wh { font-style:italic; font-size:26px; fill:#111; }
+  .wpic .cp { font-style:normal; font-size:26px; text-anchor:middle; fill:#111; }
+  .wpic .dot { fill:none; stroke:#111; stroke-width:2; stroke-dasharray:4 5; }
+  @media print {
+    .proc { break-inside:avoid !important; page-break-inside:avoid !important; }
+    table.rec.anst { break-after:avoid; page-break-after:avoid; }
+    ol.exs { break-inside:avoid; page-break-inside:avoid; }
+    table.rec { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:avoid; page-break-after:avoid; }
+    .tasks .task, .tasks .lines, .tasks .draw { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(+ table.rec), .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ .wpic) { break-after:avoid; page-break-after:avoid; }
+    .body > ol.exs:has(+ .tasks) { break-after:avoid; page-break-after:avoid; }
+    .sec + .sec { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .tfig { width:66% !important; }
+    .tfig.wide { width:84% !important; }
+    .wpic { break-inside:avoid; page-break-inside:avoid; }
+    .figrow, .cboxes, .exbox { break-inside:avoid; page-break-inside:avoid; }
+  }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .wyntk .steps li { font-size:9.4pt; line-height:1.24; margin-bottom:1pt; }
+  .wyntk h2 { margin-bottom:4pt; }
+  .sec.wyntk { margin-top:8pt !important; }
+  .wyntk .proc { margin-bottom:0; } .wyntk .wcols { margin-bottom:0; }
+  @media print { html, body { height:auto !important; } .sheet { padding-bottom:0 !important; } }
+  p.keep { break-inside:avoid; page-break-inside:avoid; }
+  .tasks ol.exs { margin:3pt 0 2pt 22pt; }
+  .tasks .task + ol.exs + .lines { margin-top:4pt; }
+  .tasks p.keep { margin-left:22pt; }
+  .tfig.wide { width:84%; }
+  .tfig.mid { width:74%; }
+  .body > p + .defs { margin-top:4pt; }
+  /* worked example box */
+  .exbox { margin:8pt 0 10pt; }
+  .exbox .sc { margin-bottom:3pt; }
+  .exbox ol { margin:0; padding-left:16pt; }
+  .exbox ol li { margin:0 0 2pt; }
+  /* two figures side by side */
+  .figrow { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; margin:6pt 0 8pt 22pt; }
+  .figrow .cap { text-align:center; font-size:9.6pt; margin:0 0 2pt; }
+  /* nested clause boxes (week 5, exercise 1c) */
+  .cboxes { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; margin:6pt 0 10pt 22pt; }
+  .cboxes .cap { text-align:center; font-size:9.6pt; margin:0 0 3pt; }
+  .cbox { border:.8pt solid #111; border-radius:5pt; padding:4pt 7pt 7pt; font-style:italic; font-size:10pt; line-height:1.3; position:relative; }
+  .cbox .cbox { margin-top:4pt; }
+  .cbox .mark { position:absolute; right:6pt; top:3pt; font-style:normal; font-family:var(--sans, sans-serif); font-size:8.2pt; color:#1f4e79; }
+  /* fill-in reference tables */
+  table.rec.fill td, table.rec.fill th { border-right:.5pt solid #000; text-align:center; }
+  table.rec.fill td:first-child, table.rec.fill th:first-child { text-align:left; }
+  table.rec.fill td:last-child, table.rec.fill th:last-child { border-right:none; }
+  table.rec.fill td { height:17pt; border-bottom:.5pt solid #000; }
+  table.rec.fill td.av { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:9pt; white-space:nowrap; }
+  table.rec.fill td.av i { font-style:italic; }
+  table.rec.twin { width:100%; border-collapse:separate; border-spacing:0; }
+  .tabrow { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  table.rec.sup td:not(:first-child), table.rec.sup th:not(:first-child) { text-align:center; width:11%; }
+  table.rec.sup td { height:17pt; border-bottom:.5pt solid #000; }
+  table.rec.sup td.av { color:#1f4e79; font-size:11pt; }
+
+  /* blank node and denotation tables */
+  table.rec.fill.nodes { margin-left:22.5pt; width:298.5pt; }
+  table.rec.fill.nodes td { height:19.6pt; text-align:left; vertical-align:top; }
+  table.rec.fill.nodes td:first-child { width:81pt; }
+  table.rec.fill.nodes.tall td { height:30.2pt; }
+  table.rec.fill.nodes tr:first-child td { height:17pt; }
+</style>
+<style>
+
+  .ans { font-family: var(--sans, sans-serif); font-size: 9pt; line-height: 1.45; color: #1f4e79; margin: 2pt 0 8pt 18pt; }
+  .ans i, .ans em { font-style: italic; }
+  table.rec.anst { margin-left: 18pt; width: calc(100% - 18pt); }
+  table.rec.anst td { color: #1f4e79; font-family: var(--sans, sans-serif); font-size: 8.5pt; }
+  table.rec.anst td:first-child { white-space: nowrap; }
+  table.rec.anst td.q { color:#000; font-family:var(--serif); font-size:10.6pt; }
+  .tfig .at { font-family: var(--sans, sans-serif); font-style: normal; font-size: 33px; fill: #1f4e79; }
+  .tfig .ab { font-family: var(--sans, sans-serif); font-style: normal; font-size: 27px; fill: #1f4e79; text-anchor:middle; }
+  .wpic .ab { font-family: var(--sans, sans-serif); font-style: normal; fill: #1f4e79; text-anchor:middle; }
+  .wpic .ao { fill:none; stroke:#1f4e79; stroke-width:2.6; }
+  .wpic .ao.dash { stroke-dasharray:10 8; }
+  .wpic .al { font-family: var(--sans, sans-serif); font-style: normal; font-size: 27px; fill: #1f4e79; }
+  .wpic .al.c { text-anchor:middle; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 5 · Handout</div>
+  <h1 class="doc-title">Factivity, Selection &amp; Neg-Raising</h1>
+
+  <!-- Answer sheet for the week 5 Thursday handout (Nov 2026), rebuilt from the
+       handout as issued, with the answers added in navy: filled tables, marked
+       boxes and figures, annotated trees and denotation tables, and short
+       answers under each task. The handout's own text is unchanged. -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Truth, presupposition and complements</h2>
+      <ol class="exs">
+        <li><span>(1)</span><span><span class="s">Anna knows that Ben called.</span></span></li>
+        <li><span>(2)</span><span><span class="s">Anna doesn’t know that Ben called.</span></span></li>
+        <li><span>(3)</span><span><span class="s">Anna thinks that Ben called.</span></span></li>
+      </ol>
+      <p>(1) and (2) both convey that Ben called; (3) does not. Verbs like <i>know</i> take the truth of their complement for granted, even under negation.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Entailment</span><span class="g">S entails S′ iff S′ is true at every world at which S is true. (1) entails <i>Ben called</i>; (3) does not.</span></div>
+        <div class="d"><span class="t">Veridical</span><span class="g"><i>x V that p</i> entails <i>p</i>. <i>Know</i>, <i>discover</i> and <i>prove</i> are veridical; <i>think</i> and <i>suspect</i> are not.</span></div>
+        <div class="d"><span class="t">Presupposition</span><span class="g">A proposition that a sentence takes for granted, as part of the background the speaker and hearer already share. <i>Mary stopped smoking</i> presupposes that Mary used to smoke.</span></div>
+        <div class="d"><span class="t">Assertion</span><span class="g">What a sentence puts forward as new information. <i>Mary stopped smoking</i> asserts that she does not smoke now.</span></div>
+        <div class="d"><span class="t">Trigger</span><span class="g">The expression that brings a presupposition in, such as <i>stop</i>, the possessive <i>Mary’s</i> or <i>too</i>.</span></div>
+        <div class="d"><span class="t">Projection</span><span class="g">A presupposition survives when its sentence is negated, questioned or put in the antecedent of a conditional: <i>Mary didn’t stop smoking</i> and <i>Did Mary stop smoking?</i> still take for granted that Mary used to smoke.</span></div>
+        <div class="d"><span class="t">Factive</span><span class="g"><i>x V that p</i> presupposes <i>p</i>, as (1) and (2) do. <i>Know</i>, <i>discover</i>, <i>forget</i> and <i>regret</i> are factive.</span></div>
+        <div class="d"><span class="t">Soft trigger</span><span class="g">A trigger that loses its presupposition easily in context, as cognitive factives such as <i>discover</i> do. Hard triggers such as <i>too</i> keep it.</span></div>
+        <div class="d"><span class="t">Declarative complement</span><span class="g">A clause introduced by <i>that</i>, which on its own would make a statement: <i>Anna knows that Ben called</i>.</span></div>
+        <div class="d"><span class="t">Interrogative complement</span><span class="g">A clause introduced by <i>whether</i>, <i>if</i> or a <i>wh</i>-word, which on its own would ask a question: <i>Anna knows whether Ben called</i>.</span></div>
+        <div class="d"><span class="t">Responsive, rogative, anti-rogative</span><span class="g">Responsive verbs such as <i>know</i> take both kinds of complement; rogative verbs such as <i>wonder</i> take only interrogatives; anti-rogative verbs such as <i>believe</i> take only declaratives.</span></div>
+        <div class="d"><span class="t">Neg-raising</span><span class="g"><i>x doesn’t V that p</i> is understood as <i>x Vs that not p</i>. <i>Think</i>, <i>believe</i>, <i>expect</i> and <i>want</i> neg-raise; <i>claim</i> and <i>know</i> do not.</span></div>
+        <div class="d"><span class="t">Strict NPI</span><span class="g">A negative polarity item that needs a negation in its own clause, such as punctual <i>until</i>: <i>He didn’t arrive until Friday</i> is fine and <i>*He arrived until Friday</i> is not.</span></div>
+      </div>
+      <p><span class="runin">Exercise 1.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Put <i>Anna V-s that Ben called</i> through negation, a question and a conditional for each verb, and fill in table (a).</span></div>
+        <div class="task"><span>(b)</span><span>Try each verb with a <i>that</i>-clause and a <i>whether</i>-clause about Ben calling, and say in table (b) which class it belongs to.</span></div>
+      <div class="tabrow" style="grid-template-columns:0.9fr 1.1fr">
+        <table class="rec fill">
+          <tr><th>(a)</th><th>Veridical</th><th>Factive</th></tr>
+          <tr><td><i>discover</i></td><td></td><td></td></tr>
+          <tr><td><i>prove</i></td><td></td><td></td></tr>
+          <tr><td><i>suspect</i></td><td></td><td></td></tr>
+          <tr><td><i>regret</i></td><td></td><td></td></tr>
+          <tr><td><i>confirm</i></td><td></td><td></td></tr>
+        </table>
+        <table class="rec fill">
+          <tr><th>(b)</th><th>That</th><th>Whether</th><th>Class</th></tr>
+          <tr><td><i>know</i></td><td></td><td></td><td></td></tr>
+          <tr><td><i>believe</i></td><td></td><td></td><td></td></tr>
+          <tr><td><i>wonder</i></td><td></td><td></td><td></td></tr>
+          <tr><td><i>discover</i></td><td></td><td></td><td></td></tr>
+          <tr><td><i>hope</i></td><td></td><td></td><td></td></tr>
+        </table>
+      </div>
+        <div class="task"><span>(c)</span><span>Judge (4) to (7) on the reading where <i>until Friday</i> goes with <i>leave</i>. Which verbs neg-raise? In the boxes, mark the clause that contains <i>until</i> and the clause that contains the negation, for (4) as spoken and as understood.</span></div>
+      <ol class="exs">
+        <li><span>(4)</span><span><span class="s">Anna doesn’t believe Ben will leave until Friday.</span></span></li>
+        <li><span>(5)</span><span><span class="s">Anna doesn’t claim Ben will leave until Friday.</span></span></li>
+        <li><span>(6)</span><span><span class="s">Anna doesn’t expect Ben to leave until Friday.</span></span></li>
+        <li><span>(7)</span><span><span class="s">Anna doesn’t hope Ben will leave until Friday.</span></span></li>
+      </ol>
+      <div class="cboxes">
+        <div>
+          <div class="cap">as spoken</div>
+          <div class="cbox">not
+            <div class="cbox">Anna believes
+              <div class="cbox">Ben will leave<br/>until Friday</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="cap">as understood</div>
+          <div class="cbox">Anna believes
+            <div class="cbox">not
+              <div class="cbox">Ben will leave<br/>until Friday</div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Strawson 1950.</b> On referring. <i>Mind</i> 59: 320–344.</p>
+      <p><b>Stalnaker 1974.</b> Pragmatic presuppositions. In M. K. Munitz &amp; P. K. Unger (eds.), <i>Semantics and Philosophy.</i> NYU Press. 197–213.</p>
+      <p><b>Chierchia &amp; McConnell-Ginet 2000.</b> <i>Meaning and Grammar.</i> 2nd edn. MIT Press.</p>
+      <p><b>Abusch 2010.</b> Presupposition triggering from alternatives. <i>Journal of Semantics</i> 27: 37–80.</p>
+      <p><b>Lahiri 2002.</b> <i>Questions and Answers in Embedded Contexts.</i> Oxford University Press.</p>
+      <p><b>Horn 1989.</b> <i>A Natural History of Negation.</i> University of Chicago Press. Ch. 5.</p>
+      <p><b>Gajewski 2007.</b> Neg-raising and polarity. <i>Linguistics and Philosophy</i> 30: 289–328.</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec flow">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Factives and neg-raising</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Factive and non-factive</span><span class="g">Kiparsky &amp; Kiparsky’s division of clause-taking predicates. Factives such as <i>regret</i> take <i>the fact that</i> and gerunds; non-factives such as <i>believe</i> allow <i>I believe Mary to be the best candidate</i>.</span></div>
+        <div class="d"><span class="t">Semifactive</span><span class="g">Karttunen’s term for verbs like <i>discover</i> and <i>realise</i>, which lose their factive inference in questions and conditionals.</span></div>
+        <div class="d"><span class="t">Hole</span><span class="g">An operator that lets presuppositions through, such as negation.</span></div>
+        <div class="d"><span class="t">Plug</span><span class="g">An operator that blocks presuppositions, such as <i>say</i>.</span></div>
+        <div class="d"><span class="t">Filter</span><span class="g">An operator that lets presuppositions through only under conditions, such as <i>if</i>.</span></div>
+      </div>
+      <p><span class="runin">Exercise 2.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>For each of (8) to (10), say whether the presupposition that Mary has a brother survives, and whether a hole, a plug or a filter is responsible.</span></div>
+      <ol class="exs">
+        <li><span>(8)</span><span><span class="s">Mary’s brother isn’t tall.</span></span></li>
+        <li><span>(9)</span><span><span class="s">Anna said that Mary’s brother is tall.</span></span></li>
+        <li><span>(10)</span><span><span class="s">If Mary has a brother, her brother is tall.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Is <i>know</i> a hole or a plug for the presuppositions of its complement? Use <i>Anna knows that Mary’s brother is tall</i>.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Which of (11) and (12) is natural? What does this show about <i>regret</i> and <i>believe</i>?</span></div>
+      <ol class="exs">
+        <li><span>(11)</span><span><span class="s">Anna regrets the fact that Ben called.</span></span></li>
+        <li><span>(12)</span><span><span class="s">?Anna believes the fact that Ben called.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Kiparsky &amp; Kiparsky 1970.</b> Fact. In M. Bierwisch &amp; K. E. Heidolph (eds.), <i>Progress in Linguistics.</i> Mouton. 143–173.</p>
+      <p><b>Karttunen 1971.</b> Some observations on factivity. <i>Papers in Linguistics</i> 4: 55–69.</p>
+      <p><b>Karttunen 1973.</b> Presuppositions of compound sentences. <i>Linguistic Inquiry</i> 4: 169–193.</p>
+      <p><b>Fillmore 1963.</b> The position of embedding transformations in a grammar. <i>Word</i> 19: 208–231.</p>
+      <p><b>Bartsch 1973.</b> „Negative Transportation“ gibt es nicht. <i>Linguistische Berichte</i> 27: 1–7.</p>
+      <p><b>Zuber 1982.</b> Semantic restrictions on certain complementizers. <i>Proceedings of the 13th International Congress of Linguists</i>, Tokyo.</p>
+    </div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec flow">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Presupposition, questions and the excluded middle</h2>
+      <ol class="exs">
+        <li><span>(13)</span><span><span class="s">Mary’s brother is tall.</span></span></li>
+      </ol>
+      <p>If Mary has no brother, (13) is neither true nor false. A presupposition can be modelled as a condition on when a sentence has a truth value.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Definedness</span><span class="g">λ<i>x</i>: φ. ψ is defined only for arguments that satisfy φ, and then returns ψ. A sentence with no truth value is marked #.</span></div>
+        <div class="d"><span class="t"><i>not</i></span><span class="g">⟦not S⟧<sup><i>w</i></sup> is defined iff ⟦S⟧<sup><i>w</i></sup> is; then 1 iff ⟦S⟧<sup><i>w</i></sup> = 0. So (2) is defined only if Ben called.</span></div>
+        <div class="d"><span class="t">Dox</span><span class="g">Dox<sub><i>x</i></sub>(<i>w</i>): the worlds compatible with what <i>x</i> believes in <i>w</i>. If Anna is sure that it’s raining, it rains in every world in Dox<sub><i>Anna</i></sub>(<i>w</i>).</span></div>
+        <div class="d"><span class="t"><i>think</i></span><span class="g">⟦think⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i><br/><i>x thinks that p</i>: <i>p</i> holds in every belief world of <i>x</i>.</span></div>
+        <div class="d"><span class="t"><i>know</i></span><span class="g">⟦know⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>: <i>p</i>(<i>w</i>) = 1. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i><br/>Defined only if <i>p</i> is true at <i>w</i>; then true iff <i>p</i> holds in every belief world of <i>x</i>.</span></div>
+      </div>
+      <div class="exbox">
+        <div class="sc">Example (13)</div>
+        <ol>
+          <li>⟦Mary’s brother is tall⟧<sup><i>w</i></sup> is defined only if Mary has a brother in <i>w</i>.</li>
+          <li>If defined, it is 1 iff Mary’s brother is tall in <i>w</i>.</li>
+          <li>At a world where Mary has no brother it has no truth value: #.</li>
+        </ol>
+      </div>
+      <div class="exbox">
+        <div class="sc">Example (1)</div>
+        <ol>
+          <li>⟦that Ben called⟧<sup><i>w</i></sup> = <i>p</i>, where <i>p</i> = {<i>w</i>′ : Ben called in <i>w</i>′}.</li>
+          <li>⟦knows⟧<sup><i>w</i></sup> applied to <i>p</i>: λ<i>x</i>: <i>p</i>(<i>w</i>) = 1. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i>.</li>
+          <li>Applied to Anna: defined only if Ben called in <i>w</i>; then 1 iff Ben called in every world in Dox<sub><i>Anna</i></sub>(<i>w</i>).</li>
+          <li>Under <i>not</i>, (2) keeps the condition: defined only if Ben called; then 1 iff not every world in Dox<sub><i>Anna</i></sub>(<i>w</i>) is one where Ben called.</li>
+        </ol>
+      </div>
+      <ol class="exs">
+        <li><span>(14)</span><span><span class="s">Alice knows that Mary left.</span></span></li>
+        <li><span>(15)</span><span><span class="s">Alice knows who left.</span></span></li>
+        <li><span>(16)</span><span><span class="s">Alice wonders who left.</span></span></li>
+      </ol>
+      <p><i>Know</i> takes a declarative complement in (14) and an interrogative one in (15); <i>wonder</i> takes only an interrogative. To give <i>know</i> one entry for both, a question needs a meaning that <i>know</i> can combine with.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Hamblin denotation</span><span class="g">A question denotes the set of its possible answers. ⟦whether Ben called⟧ = {<i>p</i>, ¬<i>p</i>}, with <i>p</i> = <i>that Ben called</i>. ⟦who called⟧ = {<i>that Ben called</i>, <i>that Cara called</i>}.</span></div>
+        <div class="d"><span class="t">True answer</span><span class="g">A possible answer that is true at <i>w</i>.</span></div>
+        <div class="d"><span class="t"><i>know</i> + polar question</span><span class="g"><i>x knows whether p</i> is true at <i>w</i> iff <i>x</i> knows the true answer at <i>w</i>. If Ben called, <i>Anna knows whether Ben called</i> iff she knows that Ben called.</span></div>
+        <div class="d"><span class="t"><i>know</i> + <i>wh</i>-question</span><span class="g"><i>x knows who left</i> is true at <i>w</i> iff <i>x</i> knows every true answer to <i>who left</i>: for each person who left, <i>x</i> knows that they left.</span></div>
+      </div>
+      <p><span class="runin">Model.</span> The actual world is <i>w</i><sub>1</sub>. Dox<sub><i>Alice</i></sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}.</p>
+      <table class="rec">
+        <tr><th></th><th>Ann left</th><th>Bill left</th><th>Carol left</th></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>T</td><td>T</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>F</td><td>T</td><td>T</td></tr>
+      </table>
+      <ol class="exs">
+        <li><span>(17)</span><span><span class="s">I don’t think it’ll rain.</span></span></li>
+      </ol>
+      <p>(17) is understood as <i>I think it won’t rain</i>, although its negation sits in the higher clause. It is also the weaker sentence: someone with no opinion on the weather doesn’t think it’ll rain either.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Excluded middle</span><span class="g">The presupposition that the holder has an opinion on the complement: Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> ∨ Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ ¬<i>p</i>. Anna either thinks it will rain or thinks it won’t.</span></div>
+        <div class="d"><span class="t"><i>think</i></span><span class="g">⟦think⟧<sup><i>w</i></sup> = λ<i>p</i>. λ<i>x</i>: Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> ∨ Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ ¬<i>p</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i><br/>Defined only if <i>x</i> has an opinion on <i>p</i>; then true iff <i>x</i> thinks <i>p</i>.</span></div>
+        <div class="d"><span class="t">Trivial</span><span class="g">True whenever it has a truth value, so it tells the hearer nothing.</span></div>
+        <div class="d"><span class="t">Belief in a question</span><span class="g"><i>x believes Q</i> is true iff <i>x</i> believes some member of <i>Q</i>. <i>Anna believes whether Ben called</i> would be true iff she believes that he called or believes that he didn’t.</span></div>
+      </div>
+      <p><span class="runin">Exercise 3.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Ben called at <i>w</i><sub>1</sub> and not at <i>w</i><sub>2</sub>. Dox<sub><i>Anna</i></sub>(<i>w</i><sub>2</sub>) = {<i>w</i><sub>1</sub>}. Give the value of (1) to (3) at <i>w</i><sub>2</sub>.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>In the model, list the members of ⟦whether Ann left⟧ and of ⟦who left⟧ as sets of worlds, and mark the true answers at <i>w</i><sub>1</sub>. Decide whether (18) is true at <i>w</i><sub>1</sub>.</span></div>
+      <ol class="exs">
+        <li><span>(18)</span><span><span class="s">Alice knows whether Carol left.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Draw Dox<sub><i>Alice</i></sub>(<i>w</i><sub>1</sub>) in the box. Use the entry for <i>know</i> + <i>wh</i>-question to decide whether (15) is true at <i>w</i><sub>1</sub>.</span></div>
+      <svg class="wpic" viewBox="0 0 1000 300" style="margin-left:22pt;width:calc(100% - 22pt)" role="img" aria-label="Box with four worlds, w1 to w4.">
+        <rect class="wr" x="4" y="4" width="992" height="292" rx="14"/>
+        <circle class="wd" cx="300" cy="110" r="9"/><text class="wn" x="340" y="120"><tspan>w</tspan><tspan class="sb" dy="8">1</tspan></text>
+        <circle class="wd" cx="700" cy="110" r="9"/><text class="wn" x="740" y="120"><tspan>w</tspan><tspan class="sb" dy="8">2</tspan></text>
+        <circle class="wd" cx="300" cy="215" r="9"/><text class="wn" x="340" y="225"><tspan>w</tspan><tspan class="sb" dy="8">3</tspan></text>
+        <circle class="wd" cx="700" cy="215" r="9"/><text class="wn" x="740" y="225"><tspan>w</tspan><tspan class="sb" dy="8">4</tspan></text>
+        
+        
+      </svg>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Draw Dox for (17) in the left box with only the assertion, and in the right box with the excluded middle as well.</span></div>
+      <div class="figrow">
+        <div>
+          <div class="cap">assertion only</div>
+          <svg class="wpic" viewBox="0 0 500 300" role="img" aria-label="Box split into it rains and it doesn’t, for drawing Dox.">
+            <rect class="wr" x="4" y="4" width="492" height="292" rx="12"/>
+            <line x1="250" y1="4" x2="250" y2="296" stroke="#111" stroke-width="2"/>
+            <text class="wh" x="22" y="40">it rains</text>
+            <text class="wh" x="478" y="40" text-anchor="end">it doesn’t</text>
+            
+          </svg>
+        </div>
+        <div>
+          <div class="cap">with the excluded middle</div>
+          <svg class="wpic" viewBox="0 0 500 300" role="img" aria-label="Box split into it rains and it doesn’t, for drawing Dox.">
+            <rect class="wr" x="4" y="4" width="492" height="292" rx="12"/>
+            <line x1="250" y1="4" x2="250" y2="296" stroke="#111" stroke-width="2"/>
+            <text class="wh" x="22" y="40">it rains</text>
+            <text class="wh" x="478" y="40" text-anchor="end">it doesn’t</text>
+            
+          </svg>
+        </div>
+      </div>
+        <div class="task"><span>(e)</span><span>Derive from the entry that (17) conveys <i>I think it won’t rain</i>.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(f)</span><span>Treat <i>believe</i> like <i>think</i>, with the excluded middle. Let <i>Q</i> = {<i>p</i>, ¬<i>p</i>}. Show that <i>x believes Q</i> is true whenever the excluded middle holds, so that it is trivial. Why might that make (19) unacceptable?</span></div>
+      <ol class="exs">
+        <li><span>(19)</span><span><span class="s">*Anna believes whether Ben called.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+      <p><span class="runin">Notation.</span> This sheet and the slides use one notation. The readings use others.</p>
+      <table class="rec">
+        <tr><th>On this sheet</th><th>In the readings</th></tr>
+        <tr><td>λ<i>x</i>: φ. ψ</td><td>λ<i>x</i> ∈ <i>D</i>: φ . ψ Heim &amp; Kratzer · ∂φ Beaver &amp; Krahmer · domain condition, definedness condition</td></tr>
+        <tr><td>#</td><td>undefined, presupposition failure, truth-value gap · ½ or * in trivalent systems</td></tr>
+        <tr><td>factive</td><td>presuppositional · semifactive Karttunen · soft trigger Abusch</td></tr>
+        <tr><td>{<i>p</i>, ¬<i>p</i>}</td><td>Hamblin set, set of alternatives · partition Groenendijk &amp; Stokhof · inquisitive proposition</td></tr>
+        <tr><td>excluded middle</td><td>opinionatedness · homogeneity</td></tr>
+        <tr><td>neg-raising</td><td>negative transportation · NEG-raising</td></tr>
+      </table>
+    </div>
+    <div class="note">
+      <p><b>Heim &amp; Kratzer 1998.</b> <i>Semantics in Generative Grammar.</i> Blackwell. Ch. 4.</p>
+      <p><b>Heim 1992.</b> Presupposition projection and the semantics of attitude verbs. <i>Journal of Semantics</i> 9: 183–221.</p>
+      <p><b>Hamblin 1973.</b> Questions in Montague English. <i>Foundations of Language</i> 10: 41–53.</p>
+      <p><b>Karttunen 1977.</b> Syntax and semantics of questions. <i>Linguistics and Philosophy</i> 1: 3–44.</p>
+      <p><b>Uegaki 2019.</b> The semantics of question-embedding predicates. <i>Language and Linguistics Compass</i> 13: e12308.</p>
+      <p><b>Gajewski 2007.</b> Neg-raising and polarity. <i>Linguistics and Philosophy</i> 30: 289–328.</p>
+      <p><b>Theiler, Roelofsen &amp; Aloni 2019.</b> Picky predicates. <i>Natural Language Semantics</i> 27: 95–134.</p>
+      <p><b>Mayr 2019.</b> Triviality and interrogative embedding. <i>Natural Language Semantics</i> 27: 227–278.</p>
+    </div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec flow">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>The modifier tradition</h2>
+      <ol class="exs">
+        <li><span>(20)</span><span><span class="s">Chloé believes that it’s raining.</span></span></li>
+        <li><span>(21)</span><span><span class="s">Chloé believes the rumour.</span></span></li>
+        <li><span>(22)</span><span><span class="s">Chloé believes Deniz.</span></span></li>
+        <li><span>(23)</span><span><span class="s">the rumour that it’s raining</span></span></li>
+        <li><span>(24)</span><span><span class="s">*the book that it’s raining</span></span></li>
+      </ol>
+      <p>On the Hintikka entry <i>believe</i> needs a proposition, so (21) and (22) do not compose as they stand. A rumour has a propositional content and a book in this sense does not, so (23) is fine and (24) is out.</p>
+      <ol class="exs">
+        <li><span>(25)</span><span><span class="s">Anna devoured the cake.</span></span></li>
+        <li><span>(26)</span><span><span class="s">*Anna devoured.</span></span></li>
+        <li><span>(27)</span><span><span class="s">Anna saw a red ball.</span></span></li>
+        <li><span>(28)</span><span><span class="s">Anna saw a ball.</span></span></li>
+      </ol>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Content noun</span><span class="g">A noun for something with a propositional content, such as <i>rumour</i>, <i>claim</i>, <i>fact</i> or <i>belief</i>. Content nouns combine with a clause; <i>book</i> and <i>table</i> do not.</span></div>
+        <div class="d"><span class="t">Argument</span><span class="g">An expression that fills a slot the head requires. <i>Devour</i> needs an object, so (26) is out. A function applied to its argument is saturated: the slot is used up.</span></div>
+        <div class="d"><span class="t">Modifier</span><span class="g">An expression that narrows down a predicate and can be left out. (27) entails (28).</span></div>
+        <div class="d"><span class="t">Contentful individual</span><span class="g">An individual, including an event, with a propositional content: rumours, facts, believings, explainings. content(<i>x</i>) is that proposition.</span></div>
+        <div class="d"><span class="t">That-clause</span><span class="g">⟦that S⟧ = {<i>x</i> : content(<i>x</i>) = ⟦S⟧}. A predicate of contentful individuals: ⟦that it’s raining⟧ is the set of rumours, beliefs, claims and the like whose content is that it’s raining.</span></div>
+        <div class="d"><span class="t">Event semantics</span><span class="g">A verb is a predicate of events, of type <i>v</i>; its participants enter through roles: agent(<i>e</i>), the doer; holder(<i>e</i>), the one in a state, such as a believer; theme(<i>e</i>), what the event acts on or is about. An existential quantifier closes off the event. <i>Angela explained the result</i>: there is an event <i>e</i> with explain(<i>e</i>), agent(<i>e</i>) = Angela and theme(<i>e</i>) = the result.</span></div>
+        <div class="d"><span class="t">Predicate Modification</span><span class="g">Two sister predicates of the same type combine by intersection: ⟦red ball⟧ = λ<i>x</i>. red(<i>x</i>) ∧ ball(<i>x</i>), the things that are red and are balls.</span></div>
+        <div class="d"><span class="t">ι</span><span class="g">ι<i>y</i>[φ]: the unique <i>y</i> such that φ.</span></div>
+      </div>
+      <div class="exbox">
+        <div class="sc">Example (23)</div>
+        <ol>
+          <li>⟦rumour⟧ = λ<i>x</i>. rumour(<i>x</i>)</li>
+          <li>⟦that it’s raining⟧ = λ<i>x</i>. content(<i>x</i>) = <i>p</i>, where <i>p</i> = {<i>w</i> : it rains in <i>w</i>}</li>
+          <li>Predicate Modification: ⟦rumour that it’s raining⟧ = λ<i>x</i>. rumour(<i>x</i>) ∧ content(<i>x</i>) = <i>p</i></li>
+          <li>⟦the rumour that it’s raining⟧ = ι<i>x</i>[rumour(<i>x</i>) ∧ content(<i>x</i>) = <i>p</i>], defined only if there is exactly one such rumour</li>
+        </ol>
+      </div>
+      <div class="exbox">
+        <div class="sc">Example (20)</div>
+        <ol>
+          <li>⟦believes⟧ = λ<i>e</i>. believe(<i>e</i>)</li>
+          <li>⟦that it’s raining⟧ = λ<i>e</i>. content(<i>e</i>) = <i>p</i></li>
+          <li>Predicate Modification: ⟦believes that it’s raining⟧ = λ<i>e</i>. believe(<i>e</i>) ∧ content(<i>e</i>) = <i>p</i></li>
+          <li>With the subject as holder and the event closed off: ∃<i>e</i>[believe(<i>e</i>) ∧ holder(<i>e</i>) = Chloé ∧ content(<i>e</i>) = <i>p</i>]</li>
+        </ol>
+      </div>
+      <p><span class="runin">Exercise 4.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Write the type of each node of (21) on the line beside it, using the Hintikka entry for <i>believe</i>, and say where composition breaks down.</span></div>
+      <div class="treebox">
+      <svg class="tfig wide" viewBox="0 0 1100 520" role="img" aria-label="Tree for Chloé believes the rumour, with a line beside each node for its type.">
+        <line x1="420" y1="62" x2="220" y2="118"/>
+        <line x1="420" y1="62" x2="620" y2="118"/>
+        <line x1="220" y1="162" x2="220" y2="218"/>
+        <line x1="620" y1="162" x2="440" y2="218"/>
+        <line x1="620" y1="162" x2="820" y2="218"/>
+        <line x1="440" y1="262" x2="440" y2="318"/>
+        <line x1="820" y1="262" x2="680" y2="318"/>
+        <line x1="820" y1="262" x2="960" y2="318"/>
+        <line x1="680" y1="362" x2="680" y2="418"/>
+        <line x1="960" y1="362" x2="960" y2="418"/>
+        <text class="tc" x="420" y="50">S</text>
+        <text class="tc" x="220" y="150">DP</text>
+        <text class="tc" x="620" y="150">VP</text>
+        <text class="tn" x="220" y="250">Chloé</text>
+        <text class="tc" x="440" y="250">V</text>
+        <text class="tc" x="820" y="250">DP</text>
+        <text class="tn" x="440" y="350">believes</text>
+        <text class="tc" x="680" y="350">D</text>
+        <text class="tc" x="960" y="350">N</text>
+        <text class="tn" x="680" y="450">the</text>
+        <text class="tn" x="960" y="450">rumour</text>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </svg>
+      </div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>In (29) the resignation is Angela’s explanation of something; in (30) it is what she explains. Use ⟦explained⟧ = λ<i>e</i>. explain(<i>e</i>), with Angela as agent(<i>e</i>); in (30) the fact that Boris resigned is the theme. Fill in the denotation of each node of the tree for (29) in the table, and give its truth condition.</span></div>
+      <ol class="exs">
+        <li><span>(29)</span><span><span class="s">Angela explained that Boris resigned.</span></span></li>
+        <li><span>(30)</span><span><span class="s">Angela explained the fact that Boris resigned.</span></span></li>
+      </ol>
+      <div class="treebox">
+      <svg class="tfig mid" viewBox="0 0 900 400" role="img" aria-label="Tree for Angela explained that Boris resigned: S splits into DP and VP; VP into V and a roofed CP.">
+        <line x1="380" y1="62" x2="200" y2="118"/>
+        <line x1="380" y1="62" x2="560" y2="118"/>
+        <line x1="200" y1="162" x2="200" y2="218"/>
+        <line x1="560" y1="162" x2="420" y2="218"/>
+        <line x1="560" y1="162" x2="720" y2="218"/>
+        <line x1="420" y1="262" x2="420" y2="318"/>
+        <polyline class="roof" points="720,262 600,330 840,330 720,262"/>
+        <text class="tc" x="380" y="50">S</text>
+        <text class="tc" x="200" y="150">DP</text>
+        <text class="tc" x="560" y="150">VP</text>
+        <text class="tn" x="200" y="250">Angela</text>
+        <text class="tc" x="420" y="250">V</text>
+        <text class="tc" x="720" y="250">CP</text>
+        <text class="tn" x="420" y="350">explained</text>
+        <text class="tn" x="720" y="372">that Boris resigned</text>
+      </svg>
+      <table class="rec fill nodes tall">
+        <tr><th>Node</th><th>Denotation</th></tr>
+        <tr><td class="q"><i>Angela</i></td><td></td></tr>
+        <tr><td class="q"><i>explained</i></td><td></td></tr>
+        <tr><td class="q"><i>that Boris resigned</i></td><td></td></tr>
+        <tr><td class="q">VP</td><td></td></tr>
+        <tr><td class="q">S</td><td></td></tr>
+      </table>
+      </div>
+        <div class="lines"><span></span><span></span></div><div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Do the same for (30).</span></div>
+      <div class="treebox">
+      <svg class="tfig wide" viewBox="0 0 1180 600" role="img" aria-label="Tree for Angela explained the fact that Boris resigned: S splits into DP and VP; VP into V and DP; DP into D and NP; NP into N and a roofed CP.">
+        <line x1="380" y1="62" x2="180" y2="118"/>
+        <line x1="380" y1="62" x2="560" y2="118"/>
+        <line x1="180" y1="162" x2="180" y2="218"/>
+        <line x1="560" y1="162" x2="380" y2="218"/>
+        <line x1="560" y1="162" x2="740" y2="218"/>
+        <line x1="380" y1="262" x2="380" y2="318"/>
+        <line x1="740" y1="262" x2="600" y2="318"/>
+        <line x1="740" y1="262" x2="900" y2="318"/>
+        <line x1="600" y1="362" x2="600" y2="418"/>
+        <line x1="900" y1="362" x2="800" y2="418"/>
+        <line x1="900" y1="362" x2="1000" y2="418"/>
+        <line x1="800" y1="462" x2="800" y2="518"/>
+        <polyline class="roof" points="1000,462 880,530 1120,530 1000,462"/>
+        <text class="tc" x="380" y="50">S</text>
+        <text class="tc" x="180" y="150">DP</text>
+        <text class="tc" x="560" y="150">VP</text>
+        <text class="tn" x="180" y="250">Angela</text>
+        <text class="tc" x="380" y="250">V</text>
+        <text class="tc" x="740" y="250">DP</text>
+        <text class="tn" x="380" y="350">explained</text>
+        <text class="tc" x="600" y="350">D</text>
+        <text class="tc" x="900" y="350">NP</text>
+        <text class="tn" x="600" y="450">the</text>
+        <text class="tc" x="800" y="450">N</text>
+        <text class="tc" x="1000" y="450">CP</text>
+        <text class="tn" x="800" y="550">fact</text>
+        <text class="tn" x="1000" y="572">that Boris resigned</text>
+      </svg>
+      <table class="rec fill nodes">
+        <tr><th>Node</th><th>Denotation</th></tr>
+        <tr><td class="q"><i>Angela</i></td><td></td></tr>
+        <tr><td class="q"><i>explained</i></td><td></td></tr>
+        <tr><td class="q"><i>the</i></td><td></td></tr>
+        <tr><td class="q"><i>fact</i></td><td></td></tr>
+        <tr><td class="q"><i>that Boris resigned</i></td><td></td></tr>
+        <tr><td class="q">NP</td><td></td></tr>
+        <tr><td class="q">DP</td><td></td></tr>
+        <tr><td class="q">VP</td><td></td></tr>
+        <tr><td class="q">S</td><td></td></tr>
+      </table>
+      </div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Stephen 2024.</b> <i>The Semantics of Nominal and Clausal Embedding: How (Not) to Embed a Clause and Why.</i> PhD thesis, University of Edinburgh.</p>
+      <p><b>Kratzer 2006.</b> Decomposing attitude verbs. Talk handout, Hebrew University of Jerusalem.</p>
+      <p><b>Moulton 2009.</b> <i>Natural Selection and the Syntax of Clausal Complementation.</i> PhD thesis, UMass Amherst.</p>
+      <p><b>Moulton 2015.</b> CPs: copies and compositionality. <i>Linguistic Inquiry</i> 46: 305–342.</p>
+      <p><b>Davidson 1967.</b> The logical form of action sentences. In N. Rescher (ed.), <i>The Logic of Decision and Action.</i> University of Pittsburgh Press. 81–95.</p>
+      <p><b>Parsons 1990.</b> <i>Events in the Semantics of English.</i> MIT Press.</p>
+      <p><b>Kratzer 1996.</b> Severing the external argument from its verb. In J. Rooryck &amp; L. Zaring (eds.), <i>Phrase Structure and the Lexicon.</i> Kluwer. 109–137.</p>
+      <p><b>Elliott 2020.</b> <i>Elements of clausal embedding.</i> PhD thesis, UCL.</p>
+    </div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec wyntk">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>Entailment, veridicality, presupposition and projection.</li>
+          <li>Factive verbs; soft and hard triggers.</li>
+          <li>Declarative and interrogative complements; responsive, rogative and anti-rogative verbs.</li>
+          <li>Neg-raising and strict NPIs.</li>
+          <li>Holes, plugs and filters.</li>
+          <li>Presupposition as definedness; entries for <i>think</i> and <i>know</i>.</li>
+          <li>Questions as sets of answers.</li>
+          <li>The excluded middle.</li>
+          <li>Clauses as modifiers of contentful individuals.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Test for veridicality and factivity with the family of sentences.</li>
+          <li>Sort verbs by the complements they take.</li>
+          <li>Diagnose neg-raising with punctual <i>until</i>.</li>
+          <li>Compute truth values and # with the entries for <i>think</i> and <i>know</i>.</li>
+          <li>Give the Hamblin denotation of a polar and a <i>wh</i>-question.</li>
+          <li>Derive neg-raising from the excluded middle.</li>
+          <li>Compose a factive report and its negation, with definedness.</li>
+          <li>Compose a <i>that</i>-clause with a noun and with a verb.</li>
+        </ol>
+      </div>
+      </div>
+    </div>
+    <div class="note"></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Semantics II · Assessment 2</title>
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Assessment 2 as released (the LaTeX paper of 2 November 2026), in the same frame as Assessment 1. Assessment 1 as released (the LaTeX paper), on the classic sheet's page
+     frame and New Computer Modern. Page breaks follow the paper: before
+     Q2a, Q4, Q7, Q8b and Q10. NB no subscript digits in the face: w<sub>1</sub>, never w₁. */
+  @page { size:A4; margin:25.4mm 25.4mm 25.4mm 25.4mm; }
+  body { font-size:10.95pt; line-height:1.245; }
+  .sheet { padding:25.4mm; }
+  h1.paper { font-size:14.3pt; font-weight:700; text-align:center; margin:4pt 0 0; padding-bottom:3pt; border-bottom:.5pt solid #000; }
+  .instr { margin:14pt 0 0; }
+  .q { margin-top:22pt; }
+  .q h2 { display:flex; justify-content:space-between; font-size:10.95pt; font-weight:700; margin:0 0 1pt; line-height:1.245; }
+  .q h2 .pts { font-weight:700; }
+  .q p { margin:0 0 6.5pt; }
+  ul.facts { margin:9pt 0 9pt; padding-left:21pt; list-style:none; }
+  ul.facts li { position:relative; margin:0 0 1.9pt; }
+  ul.facts li::before { content:'•'; position:absolute; left:-10pt; }
+  ol.items { margin:12pt 0 6pt; padding-left:22pt; }
+  ol.items > li { margin:0 0 9.1pt; padding-left:3pt; }
+  ol.items.pairs > li { margin-bottom:9.2pt; }
+  ol.roman { list-style:none; margin:12pt 0 6pt; padding-left:22pt; }
+  ol.roman > li { margin:0 0 9.1pt; position:relative; }
+  ol.roman > li > .rn { position:absolute; right:calc(100% + 4pt); }
+  .part { margin:0 0 6.5pt; }
+  .part b.pl { margin-right:4pt; }
+  .sp { margin-top:11pt; }
+  table.bk { border-collapse:collapse; margin:12pt auto 14pt; font-size:10pt; }
+  table.bk th, table.bk td { padding:1pt 9pt; text-align:center; font-weight:400; }
+  table.bk thead tr:first-child th { border-top:.8pt solid #000; padding-top:3pt; }
+  table.bk thead tr:last-child th { border-bottom:.5pt solid #000; padding-bottom:2pt; }
+  table.bk tbody tr:last-child td { border-bottom:.8pt solid #000; padding-bottom:3pt; }
+  table.bk td.l, table.bk th.l { text-align:left; }
+  .disp { text-align:center; margin:10pt 0; }
+  .disp span + span { margin-left:22pt; }
+  .q7fig { display:flex; gap:12pt; align-items:flex-start; margin:14pt 0 14pt 22pt; }
+  .q7fig table.bk { margin:4pt 0 0; font-size:10.95pt; }
+  .q7fig .ideals p { margin:0 0 3pt; }
+  .q7fig .ideals p.gw { margin-bottom:7pt; }
+  .big { font-size:120%; line-height:0; }
+  @media print {
+    .sheet { padding:0; }
+    .q { break-inside:auto; }
+    .q h2 { break-after:avoid; page-break-after:avoid; }
+    .pb { break-before:page; page-break-before:always; margin-top:0; }
+    .q.newpage { break-before:page; page-break-before:always; margin-top:0; }
+    ol.items > li, ol.roman > li, table.bk, .q7fig { break-inside:avoid; page-break-inside:avoid; }
+  }
+</style>
+<style>
+  .part .mk { float:right; margin-left:10pt; }
+  ol.roman.ex > li { margin-bottom:4pt; }
+  .gl { margin:4pt 0 9pt 22pt; position:relative; }
+  .gl .n { position:absolute; left:-25pt; top:0; }
+  .gl .lang { font-style:italic; margin-bottom:1pt; }
+  .gl .ctx { margin-bottom:2pt; }
+  .gl table { border-collapse:collapse; }
+  .gl td { padding:0 9pt 0 0; vertical-align:top; white-space:nowrap; }
+  .gl tr.o td { font-style:italic; }
+  .gl .tr { margin-top:1pt; }
+  .gl .jd { margin-top:1pt; }
+  .wfig { display:flex; gap:26pt; align-items:center; justify-content:center; margin:12pt 0 12pt; }
+  table.grid { border-collapse:collapse; font-size:10pt; }
+  table.grid td, table.grid th { padding:3pt 10pt; text-align:center; font-weight:400; }
+  table.grid td.c { border:.6pt solid #000; width:46pt; height:22pt; font-style:italic; }
+  table.grid th.r { text-align:right; padding-right:8pt; }
+  .doxl div { margin:0 0 1pt; }
+  .entries { border:.6pt solid #000; padding:5pt 10pt 6pt; margin:10pt 0 12pt; }
+  .entries .h { font-variant:small-caps; letter-spacing:.06em; margin-bottom:3pt; }
+  .entries div.e { margin:0 0 2pt; }
+  u { text-underline-offset:2pt; }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1 class="paper">Semantics II: Assessment 2</h1>
+  <p class="instr"><b>Instructions.</b> Answer <b>all six</b> questions. Show working where appropriate. Use the entries and definitions from the course materials unless a question gives its own.</p>
+
+  <div class="q">
+    <h2><span>Q1. Belief and knowledge in a model</span><span class="pts">(15 points)</span></h2>
+    <p>Take four worlds, where <i>w</i><sub>1</sub> is the actual world. Let <i>r</i> = ⟦<i>it is raining</i>⟧ and <i>c</i> = ⟦<i>Ben called</i>⟧. Use the entries with definedness conditions: <i>think</i> with the excluded middle, and <i>know</i> defined only if its complement is true. For the purposes of this question, treat ‘believe’ as synonymous with ‘think’.</p>
+    <div class="wfig">
+      <table class="grid"><tr><th></th><th>Ben called</th><th>Ben didn’t call</th></tr>
+        <tr><th class="r">it is raining</th><td class="c"><i>w</i><sub>2</sub></td><td class="c"><i>w</i><sub>1</sub></td></tr>
+        <tr><th class="r">it is not raining</th><td class="c"><i>w</i><sub>3</sub></td><td class="c"><i>w</i><sub>4</sub></td></tr></table>
+      <div class="doxl"><div>Dox<sub>Anna</sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}</div><div>Dox<sub>Anna</sub>(<i>w</i><sub>2</sub>) = {<i>w</i><sub>2</sub>}</div><div>Dox<sub>Anna</sub>(<i>w</i><sub>3</sub>) = {<i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}</div><div>Dox<sub>Anna</sub>(<i>w</i><sub>4</sub>) = {<i>w</i><sub>4</sub>}</div><div>Dox<sub>Cara</sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>}</div></div>
+    </div>
+    <p class="part"><b class="pl">a.</b> What values do (1) and (2) have at <i>w</i><sub>1</sub>: 1, 0 or #? Give a brief explanation why.<span class="mk">[4]</span></p>
+    <ol class="roman ex">
+      <li><span class="rn">(1)</span>Anna thinks that Ben called.</li>
+      <li><span class="rn">(2)</span>Anna doesn’t think that it is raining.</li>
+    </ol>
+    <p class="part sp"><b class="pl">b.</b> What value does (3) have at <i>w</i><sub>1</sub>? What does this show about the requirement that <i>know</i> places on its complement?<span class="mk">[3]</span></p>
+    <ol class="roman ex">
+      <li><span class="rn">(3)</span>Anna doesn’t know that Ben called.</li>
+    </ol>
+    <p class="part sp"><b class="pl">c.</b> What value does (4) have at <i>w</i><sub>1</sub>? On these entries, why would it make sense that <i>believe</i> cannot take a <i>whether</i>-clause?<span class="mk">[4]</span></p>
+    <ol class="roman ex">
+      <li><span class="rn">(4)</span>*Anna believes whether it is raining.</li>
+    </ol>
+    <p class="part sp"><b class="pl">d.</b> Is (5) defined at <i>w</i><sub>1</sub>? Is it true? Does it convey its neg-raised reading, <i>Cara thinks that Anna doesn’t know whether it is raining</i>?<span class="mk">[4]</span></p>
+    <ol class="roman ex">
+      <li><span class="rn">(5)</span>Cara doesn’t think that Anna knows whether it is raining.</li>
+    </ol>
+  </div>
+
+  <div class="q">
+    <h2><span>Q2. <i>De dicto</i>, <i>de re</i> and <i>de se</i></span><span class="pts">(15 points)</span></h2>
+    <p>A man pulls a child out of a river and leaves before anyone learns his name. The man is John. He hit his head during the rescue and remembers nothing of it. The next day he reads about the rescue in the paper and says: “Whoever saved that child is a hero.”</p>
+    <p>Let Say<sub><i>x</i></sub>(<i>w</i>) be the set of worlds compatible with what <i>x</i> says in <i>w</i>. It works for saying as Dox<sub><i>x</i></sub>(<i>w</i>) works for belief.</p>
+    <ol class="roman ex">
+      <li><span class="rn">(6)</span>John says that whoever saved the child is a hero.</li>
+      <li><span class="rn">(7)</span>John says that he is a hero.</li>
+      <li><span class="rn">(8)</span>John claims to be a hero.</li>
+    </ol>
+    <div class="gl"><span class="n">(9)</span><div class="lang">Amharic</div><table><tr class="o"><td>ǰon</td><td>ǰəgna</td><td>nə-ññ</td><td>yɨl-all</td></tr><tr><td>John</td><td>hero</td><td>be.PF-1SO</td><td>3M.say-AUX.3M</td></tr></table><div class="tr">‘John says that he is a hero.’ (Literally: ‘John says that I am a hero.’)</div></div>
+    <p class="part sp"><b class="pl">a.</b> Give the <i>de dicto</i> truth condition of (6), using Say<sub>John</sub>(<i>w</i>). Is (6) true in the scenario?<span class="mk">[3]</span></p>
+    <p class="part sp"><b class="pl">b.</b> (7) has a <i>de re</i> reading on which it is true in the scenario: John says of a certain man, who is in fact John himself, that he is a hero. How is John acquainted with that man? Why is (7) true on this reading?<span class="mk">[4]</span></p>
+    <p class="part sp"><b class="pl">c.</b> (8), and (9) with its shifted <i>I</i>, can only be read <i>de se</i>: they report what John would put in the first person, as <i>I am a hero</i>. Are (8) and (9) true in the scenario? Why do the <i>de re</i> reading of (7) and the <i>de se</i> reading of (8) come apart here?<span class="mk">[4]</span></p>
+    <p class="part sp"><b class="pl">d.</b> Describe a scenario in which (7) and (8) would both be true. What would John have to know?<span class="mk">[4]</span></p>
+  </div>
+
+  <div class="q newpage">
+    <h2><span>Q3. A belief verb in Mandarin</span><span class="pts">(20 points)</span></h2>
+    <p>The Mandarin verb <i>yǐwéi</i> reports a belief. The following are reports of judgements from native speakers.</p>
+    <div class="gl"><span class="n">(10)</span><table><tr class="o"><td>Māma</td><td>yǐwéi</td><td>wǒ</td><td>bìng</td><td>le.</td></tr><tr><td>mother</td><td><i>yǐwéi</i></td><td>I</td><td>sick</td><td><span class="sc">asp</span></td></tr></table><div class="tr">‘Mom is under the impression that I’m sick.’</div></div>
+    <p>Out of the blue, (10) suggests that the speaker is not sick. If everyone knows that the speaker is sick, (10) is rejected. If everyone knows that the speaker is not sick, (10) is fine.</p>
+    <div class="gl"><span class="n">(11)</span><table><tr class="o"><td>Rénmen</td><td>yǐwéi</td><td>tā</td><td>shì</td><td>yìwànfùwēng</td><td>… ér</td><td>tā</td><td>díquè</td><td>shì.</td></tr><tr><td>person-<span class="sc">pl</span></td><td><i>yǐwéi</i></td><td><span class="sc">3sg</span></td><td>be</td><td>billionaire</td><td>… and</td><td><span class="sc">3sg</span></td><td>indeed</td><td>be</td></tr></table><div class="tr">‘People are under the impression that she’s a billionaire … and she actually is.’</div></div>
+    <p>(11) is marked, but coherent. It is not a contradiction.</p>
+    <div class="gl"><span class="n">(12)</span><table><tr class="o"><td>Lìlì</td><td>yǐwéi</td><td>míngtiān</td><td>yǒu</td><td>kǎoshì</td><td>ma?</td></tr><tr><td>Lili</td><td><i>yǐwéi</i></td><td>tomorrow</td><td>have</td><td>test</td><td><span class="sc">q</span></td></tr></table><div class="tr">‘Is Lili under the impression that there’s a test tomorrow?’</div></div>
+    <p>Out of the blue, (12) suggests that the speaker thinks there is no test.</p>
+    <div class="gl"><span class="n">(13)</span><table><tr class="o"><td>Rúguǒ</td><td>tā</td><td>yǐwéi</td><td>míngtiān</td><td>yǒu</td><td>kǎoshì</td><td>de-huà,</td><td>tā</td><td>yīnggāi</td><td>zài</td><td>xuéxí.</td></tr><tr><td>if</td><td><span class="sc">3sg</span></td><td><i>yǐwéi</i></td><td>tomorrow</td><td>have</td><td>test</td><td>in-that-case</td><td><span class="sc">3sg</span></td><td>should</td><td><span class="sc">prog</span></td><td>study</td></tr></table><div class="tr">‘If she thinks there’s a test tomorrow, she should be studying.’</div></div>
+    <p>Out of the blue, (13) suggests that she would be wrong to think there is a test.</p>
+    <div class="gl"><span class="n">(14)</span><div class="ctx"><i>Context:</i> Everyone knows there is no test tomorrow. Lili knows it too.</div><table><tr class="o"><td>Lìlì</td><td>bìng-bù</td><td>yǐwéi</td><td>míngtiān</td><td>yǒu</td><td>kǎoshì,</td><td>ér</td><td>quèshí</td><td>méiyǒu.</td></tr><tr><td>Lili</td><td>definitely-not</td><td><i>yǐwéi</i></td><td>tomorrow</td><td>have</td><td>test</td><td>and</td><td>actually</td><td>not-have</td></tr></table><div class="tr">‘Lili definitely doesn’t think there’s a test tomorrow, and there’s not.’</div><div class="jd">Judged fine.</div></div>
+    <div class="gl"><span class="n">(15)</span><div class="ctx"><i>Context:</i> Everyone knows there is a test tomorrow. Lili has been absent and doesn’t know.</div><table><tr class="o"><td>Lìlì</td><td>bìng-bù</td><td>yǐwéi</td><td>míngtiān</td><td>yǒu</td><td>kǎoshì,</td><td>dànshì</td><td>yǒu.</td></tr><tr><td>Lili</td><td>definitely-not</td><td><i>yǐwéi</i></td><td>tomorrow</td><td>have</td><td>test</td><td>but</td><td>have</td></tr></table><div class="tr">‘Lili definitely doesn’t think there’s a test tomorrow, but there is.’</div><div class="jd">Judged fine.</div></div>
+    <p>Plain <i>bù</i> ‘not’ before <i>yǐwéi</i> is rejected for an unrelated reason, so (14) and (15) use <i>bìng-bù</i>.</p>
+    <div class="entries"><div class="h">Four entries</div>
+      <div class="e">(A) ⟦<i>yǐwéi</i>⟧<sup><i>w</i></sup> = <i>λp</i>.<i>λx</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></div>
+      <div class="e">(B) ⟦<i>yǐwéi</i>⟧<sup><i>w</i></sup> = <i>λp</i>.<i>λx</i>: <i>p</i>(<i>w</i>) = 1. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></div>
+      <div class="e">(C) ⟦<i>yǐwéi</i>⟧<sup><i>w</i></sup> = <i>λp</i>.<i>λx</i>. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i> ∧ <i>p</i>(<i>w</i>) = 0</div>
+      <div class="e">(D) ⟦<i>yǐwéi</i>⟧<sup><i>w</i></sup> = <i>λp</i>.<i>λx</i>: <i>p</i>(<i>w</i>) = 0. Dox<sub><i>x</i></sub>(<i>w</i>) ⊆ <i>p</i></div>
+    </div>
+    <p class="part sp"><b class="pl">a.</b> In (10), <i>yǐwéi</i> suggests that its complement is false. Is this suggestion entailed? Does it survive in a question, in the antecedent of a conditional, and under negation? Cite the example that shows each answer.<span class="mk">[6]</span></p>
+    <p class="part sp"><b class="pl">b.</b> Which of the entries (A) to (D) comes closest to the data? Explain where it succeeds and where it fails, and compare it with at least one other entry.<span class="mk">[8]</span></p>
+    <p class="part sp"><b class="pl">c.</b> Holton (2017) claims that no language has a contrafactive: a verb that presupposes that its complement is false. Does <i>yǐwéi</i> refute this claim?<span class="mk">[6]</span></p>
+  </div>
+
+  <div class="q">
+    <h2><span>Q4. Neg-raising</span><span class="pts">(15 points)</span></h2>
+    <ol class="roman ex">
+      <li><span class="rn">(16)</span>Anna doesn’t think that Ben called.</li>
+      <li><span class="rn">(17)</span>Anna thinks that Ben didn’t call.</li>
+    </ol>
+    <div class="gl"><span class="n">(18)</span><div class="lang">German</div><table><tr class="o"><td>Ich</td><td>hoffe</td><td>nicht,</td><td>dass</td><td>es</td><td>morgen</td><td>regnet.</td></tr><tr><td>I</td><td>hope</td><td>not</td><td>that</td><td>it</td><td>tomorrow</td><td>rains</td></tr></table><div class="tr">‘I hope it won’t rain tomorrow.’</div></div>
+    <p>German <i>hoffen</i> neg-raises. English <i>hope</i> does not (Horn 1978). Neither takes a <i>whether</i>-clause.</p>
+    <p class="part sp"><b class="pl">a.</b> Use punctual <i>until</i> to test whether <i>think</i>, <i>hope</i> and <i>know</i> neg-raise for you. Give your three test sentences with your judgements, and say what they show.<span class="mk">[4]</span></p>
+    <p class="part sp"><b class="pl">b.</b> Show that, with the excluded middle, (16) entails (17) wherever (16) is defined. Why does the plain entry for <i>think</i> not give this result?<span class="mk">[5]</span></p>
+    <p class="part sp"><b class="pl">c.</b> Zuber (1982) observed that verbs that neg-raise do not take interrogative complements. What does the contrast between <i>hoffen</i> in (18) and English <i>hope</i> show about where the excluded middle comes from? Is the pair a problem for Zuber’s observation, or for the triviality account of *<i>believe whether</i>?<span class="mk">[6]</span></p>
+  </div>
+
+  <div class="q">
+    <h2><span>Q5. Hyperintensional contexts</span><span class="pts">(15 points)</span></h2>
+    <p>Assume that the Shard is the tallest building in London, and that 2 + 2 = 4 is true at every possible world.</p>
+    <p class="part sp"><b class="pl">a.</b> Is the underlined position in each of (19) to (22) extensional, intensional or hyperintensional? Give the swap that decides each.<span class="mk">[4]</span></p>
+    <ol class="roman ex">
+      <li><span class="rn">(19)</span><u>The Shard</u> is in Southwark.</li>
+      <li><span class="rn">(20)</span>Necessarily, the Shard is <u>the Shard</u>.</li>
+      <li><span class="rn">(21)</span>Anna saw <u>the gorse catch fire</u>.</li>
+      <li><span class="rn">(22)</span>The hillside turned yellow because <u>the gorse was in flower</u>.</li>
+    </ol>
+    <p>For b and c, take three possible worlds, <i>W</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}, where <i>w</i><sub>1</sub> is the actual world, and two impossible worlds, <i>I</i> = {<i>i</i><sub>1</sub>, <i>i</i><sub>2</sub>}. Let <i>p</i> be <i>it is raining</i>, <i>q</i> be <i>the ferry is running</i>, and <i>t</i> be <i>2 + 2 = 4</i>.</p>
+    <div class="wfig"><table class="bk"><thead><tr><th></th><th><i>p</i></th><th><i>q</i></th><th><i>p</i> ∧ <i>q</i></th><th><i>t</i></th></tr></thead><tbody>
+      <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+      <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+      <tr><td><i>w</i><sub>3</sub></td><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+      <tr><td><i>i</i><sub>1</sub></td><td>F</td><td>T</td><td>T</td><td>F</td></tr>
+      <tr><td><i>i</i><sub>2</sub></td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+    </tbody></table>
+      <div class="doxl"><div>Dox<sub>Anna</sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>2</sub>, <i>i</i><sub>1</sub>}</div><div>Dox<sub>Ben</sub>(<i>w</i><sub>1</sub>) = {<i>w</i><sub>2</sub>, <i>i</i><sub>2</sub>}</div></div></div>
+    <p class="part sp"><b class="pl">b.</b> Which of (23) to (26) are true at <i>w</i><sub>1</sub>? Show the sets of worlds you use.<span class="mk">[5]</span></p>
+    <ol class="roman ex">
+      <li><span class="rn">(23)</span>Anna believes that it is raining and the ferry is running.</li>
+      <li><span class="rn">(24)</span>Anna believes that it is raining.</li>
+      <li><span class="rn">(25)</span>Ben believes that it is raining and the ferry is running.</li>
+      <li><span class="rn">(26)</span>Ben believes that 2 + 2 = 4.</li>
+    </ol>
+    <p class="part sp"><b class="pl">c.</b> What do Anna’s and Ben’s beliefs show about whether belief is closed under conjunction? Could this happen if all belief worlds were possible? Is it a good result for a theory of belief?<span class="mk">[6]</span></p>
+  </div>
+
+  <div class="q newpage">
+    <h2><span>Q6. Pierre’s puzzle: an essay</span><span class="pts">(20 points)</span></h2>
+    <p>Pierre grows up in France speaking only French. From postcards, he comes to say sincerely, <i>Londres est jolie</i> ‘London is pretty’. Later he moves to a run-down part of London, learns English without translating, and says sincerely, <i>London is not pretty</i>. He never finds out that the two names name one city.</p>
+    <ol class="roman ex">
+      <li><span class="rn">(27)</span>Pierre believes that London is pretty.</li>
+      <li><span class="rn">(28)</span>Pierre believes that London is not pretty.</li>
+    </ol>
+    <p>Assume that <i>London</i> and <i>Londres</i> are rigid names of the same city.</p>
+    <p>Is Kripke’s puzzle a problem of hyperintensionality? Write one contiguous essay which addresses all of the following points. (Approx 1000 words)</p>
+    <ol class="roman">
+      <li><span class="rn">(i)</span>Explain why (27) and (28) both seem true, and why the puzzle arises without substituting one expression for another.</li>
+      <li><span class="rn">(ii)</span>Show what (27) and (28) together say about Dox<sub>Pierre</sub>(<i>w</i>), given rigid names and the Hintikka entry for <i>believe</i>.</li>
+      <li><span class="rn">(iii)</span>Is the position of <i>London</i> in (27) hyperintensional? Is hyperintensionality what goes wrong for Pierre?</li>
+      <li><span class="rn">(iv)</span>Suggest a possible repair to the semantics of belief that would solve the puzzle. Explain how it handles (27) and (28), and what it gets wrong.</li>
+      <li><span class="rn">(v)</span>Reach a conclusion, and answer the strongest objection to it.</li>
+    </ol>
+  </div>
+
+</div>
+</body>
+</html>
