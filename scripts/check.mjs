@@ -76,7 +76,8 @@ const DIV_BASELINE = {
      rebuilt as the Brexit PMQs data sheet, now balances (24/24). */
   /* weeks-pragmatics/week-05/exercises.html: baseline removed 2026-10-13 —
      rebuilt as the BBC Panorama committee data sheet, now balances (105/105). */
-  "weeks-pragmatics/week-06/exercises.html": [35, 31],
+  /* weeks-pragmatics/week-06/exercises.html: baseline removed 2026-11-04 —
+     rebuilt as the Information exercise sheet, now balances (121/121). */
   "weeks-pragmatics/week-08/exercises.html": [35, 31],
   "weeks-pragmatics/week-09/exercises.html": [35, 31],
   "weeks-pragmatics/week-10/exercises.html": [35, 31],

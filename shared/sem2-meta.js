@@ -74,11 +74,11 @@ window.WEEKS = [
 
   { no: 7, title: "Reading Week", section: 3, reading: true, lenses: blankLenses() },
 
-  { no: 8, title: "Indicatives & the Restrictor Analysis", section: 4,
-    figures: ["Kratzer", "Lewis", "Stalnaker"], lenses: blankLenses() },
+  { no: 8, title: "Fiction & Counterfactuals", section: 4,
+    figures: ["Goodman", "Lewis", "Kripke", "Walton"], lenses: blankLenses() },
 
-  { no: 9, title: "Counterfactuals & Similarity", section: 4,
-    figures: ["Stalnaker", "Lewis", "Iatridou"], lenses: blankLenses() },
+  { no: 9, title: "Conditionals", section: 4,
+    figures: ["Kratzer", "Lewis", "Stalnaker"], lenses: blankLenses() },
 
   { no: 10, title: "Aspect & the Perfect", section: 5,
     figures: ["Klein", "Dowty", "Vendler"], lenses: blankLenses() },
@@ -107,7 +107,7 @@ window.MODULE = {
       overview: { file: "overview-liu33008.html", status: "ready" },
       assessments: [
         { no: 1, title: "Assessment 1", weight: 10, file: "assessments/liu33008-a1.html", status: "ready" },
-        { no: 2, title: "Assessment 2", weight: 30, file: "assessments/liu33008-a2.html", status: "none" },
+        { no: 2, title: "Assessment 2", weight: 30, file: "assessments/liu33008-a2.html", status: "ready" },
         { no: 3, title: "Assessment 3", weight: 60, file: "assessments/liu33008-a3.html", status: "none" },
       ] },
   ],
