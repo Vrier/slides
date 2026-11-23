@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 9, Neo-Gricean Pragmatics · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+
+  /* Sections run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  .defs + .defs { margin-top:0; border-top:none; }
+  .exs .o { font-style:italic; }
+  .exs .fr { float:right; font-style:normal; margin-left:14pt; }
+  .exs .tag { font-style:normal; font-size:9.6pt; margin-left:6pt; }
+  .tfig { width:86%; height:auto; display:block; margin:6pt auto 4pt; } .treebox { break-inside:avoid; page-break-inside:avoid; }
+  .tfig line, .tfig polyline { stroke:#222; stroke-width:1.6; fill:none; }
+  .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .tc { font-family:inherit; font-style:normal; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .roof { stroke:#222; stroke-width:1.6; fill:none; }
+  .wpic { width:100%; height:auto; display:block; margin:6pt 0 8pt; }
+  .wpic .wr { fill:none; stroke:#111; stroke-width:2; }
+  .wpic .wr.dash { stroke-dasharray:9 7; }
+  .wpic .wl { font-style:italic; font-size:30px; fill:#111; }
+  .wpic .wd { fill:#111; }
+  .wpic .wn { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .wpic .wn .sb { font-style:normal; font-size:20px; }
+  .wpic .wa { font-style:italic; font-size:26px; text-anchor:middle; fill:#111; }
+  .wpic .wt { font-style:normal; font-size:26px; fill:#111; }
+  .wpic .wh { font-style:italic; font-size:26px; fill:#111; }
+  .wpic .cp { font-style:normal; font-size:26px; text-anchor:middle; fill:#111; }
+  .wpic .dot { fill:none; stroke:#111; stroke-width:2; stroke-dasharray:4 5; }
+  @media print {
+    .proc { break-inside:avoid !important; page-break-inside:avoid !important; }
+    table.rec.anst { break-after:avoid; page-break-after:avoid; }
+    ol.exs { break-inside:avoid; page-break-inside:avoid; }
+    table.rec { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:avoid; page-break-after:avoid; }
+    .tasks .task, .tasks .lines, .tasks .draw { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(+ table.rec), .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ .wpic) { break-after:avoid; page-break-after:avoid; }
+    .body > ol.exs:has(+ .tasks) { break-after:avoid; page-break-after:avoid; }
+    .sec + .sec { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .tfig { width:66% !important; }
+    .tfig.wide { width:84% !important; }
+    .wpic { break-inside:avoid; page-break-inside:avoid; }
+    .figrow, .cboxes, .exbox { break-inside:avoid; page-break-inside:avoid; }
+  }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .wyntk .steps li { font-size:9.4pt; line-height:1.24; margin-bottom:1pt; }
+  .wyntk h2 { margin-bottom:4pt; }
+  .sec.wyntk { margin-top:8pt !important; }
+  .wyntk .proc { margin-bottom:0; } .wyntk .wcols { margin-bottom:0; }
+  @media print { html, body { height:auto !important; } .sheet { padding-bottom:0 !important; } }
+  p.keep { break-inside:avoid; page-break-inside:avoid; }
+  .tasks ol.exs { margin:3pt 0 2pt 22pt; }
+  .tasks .task + ol.exs + .lines { margin-top:4pt; }
+  .tasks p.keep { margin-left:22pt; }
+  .tfig.wide { width:84%; }
+  .tfig.mid { width:74%; }
+  .body > p + .defs { margin-top:4pt; }
+  /* worked example box */
+  .exbox { margin:8pt 0 10pt; }
+  .exbox .sc { margin-bottom:3pt; }
+  .exbox ol { margin:0; padding-left:16pt; }
+  .exbox ol li { margin:0 0 2pt; }
+  /* two figures side by side */
+  .figrow { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; margin:6pt 0 8pt 22pt; }
+  .figrow .cap { text-align:center; font-size:9.6pt; margin:0 0 2pt; }
+  /* nested clause boxes (week 5, exercise 1c) */
+  .cboxes { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; margin:6pt 0 10pt 22pt; }
+  .cboxes .cap { text-align:center; font-size:9.6pt; margin:0 0 3pt; }
+  .cbox { border:.8pt solid #111; border-radius:5pt; padding:4pt 7pt 7pt; font-style:italic; font-size:10pt; line-height:1.3; position:relative; }
+  .cbox .cbox { margin-top:4pt; }
+  .cbox .mark { position:absolute; right:6pt; top:3pt; font-style:normal; font-family:var(--sans, sans-serif); font-size:8.2pt; color:#1f4e79; }
+  /* fill-in reference tables */
+  table.rec.fill td, table.rec.fill th { border-right:.5pt solid #000; text-align:center; }
+  table.rec.fill td:first-child, table.rec.fill th:first-child { text-align:left; }
+  table.rec.fill td:last-child, table.rec.fill th:last-child { border-right:none; }
+  table.rec.fill td { height:17pt; border-bottom:.5pt solid #000; }
+  table.rec.fill td.av { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:9pt; white-space:nowrap; }
+  table.rec.fill td.av i { font-style:italic; }
+  table.rec.twin { width:100%; border-collapse:separate; border-spacing:0; }
+  .tabrow { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  table.rec.sup td:not(:first-child), table.rec.sup th:not(:first-child) { text-align:center; width:11%; }
+  table.rec.sup td { height:17pt; border-bottom:.5pt solid #000; }
+  table.rec.sup td.av { color:#1f4e79; font-size:11pt; }
+
+  table.rec.fill.nodes td { height:36pt; text-align:left; vertical-align:top; }
+  table.rec.fill.nodes { margin-left:18pt; width:calc(100% - 18pt); }
+
+  /* week 9 (LI7862) additions */
+  table.rec.l td, table.rec.l th { text-align:left !important; vertical-align:top; }
+  table.rec.l td.n { white-space:nowrap; width:1%; padding-right:8pt; }
+  table.rec.l td.c2 { width:46%; }
+  table.rec .pu { font-size:9.4pt; }
+  table.rec.fill.lab td.it { width:40%; text-align:left; }
+  table.rec.ctr td:not(:first-child), table.rec.ctr th:not(:first-child) { text-align:center; }
+  ol.exs .gl { display:block; }
+  /* tighter page for a definitions-heavy sheet: narrower margins and note column, tables may break between rows */
+  @page { size:A4; margin:12mm 12mm 12mm 12mm; }
+  .sec { grid-template-columns:22pt 1fr 100pt; column-gap:12pt; }
+  .sec + .sec { margin-top:10pt; }
+  .defs > div.d { grid-template-columns:104pt 1fr; }
+  @media print {
+    .sheet { padding:0; }
+    table.rec { break-inside:auto !important; page-break-inside:auto !important; }
+    table.rec tr { break-inside:avoid; page-break-inside:avoid; }
+    .defs { break-inside:auto !important; page-break-inside:auto !important; }
+    ol.exs { break-inside:auto; page-break-inside:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LI7862 · Linguistic Pragmatics</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+    <div class="sc doc-kicker">Week 9 · Handout</div>
+  <h1 class="doc-title">Neo-Gricean Pragmatics</h1>
+
+  <!-- Explanatory sheet for the week 9 lecture: the phenomena, definitions and theories of the deck, with five short exercises.
+       Examples follow the deck; (7a) and (7b) are Grice's, (6) McCawley's, (12)-(14) Levinson's, (22)-(23) Cohen's. -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Grice’s maxims and notation</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">What is said</span><span class="g">The content a sentence expresses by its conventional meaning.</span></div>
+        <div class="d"><span class="t">Implicature</span><span class="g">What a speaker conveys beyond what is said. The hearer works it out by assuming the speaker is cooperative. An implicature can be cancelled without contradiction.</span></div>
+        <div class="d"><span class="t">Cooperative Principle</span><span class="g">Make your contribution such as is required by the accepted purpose of the talk exchange. The maxims below all serve it.</span></div>
+        <div class="d"><span class="t">Quantity 1</span><span class="g">Make your contribution as informative as is required.</span></div>
+        <div class="d"><span class="t">Quantity 2</span><span class="g">Do not make your contribution more informative than is required.</span></div>
+        <div class="d"><span class="t">Quality</span><span class="g">Try to make your contribution one that is true. Do not say what you believe to be false, or that for which you lack adequate evidence.</span></div>
+        <div class="d"><span class="t">Relation</span><span class="g">Be relevant.</span></div>
+        <div class="d"><span class="t">Manner</span><span class="g">Be perspicuous. 1 Avoid obscurity of expression. 2 Avoid ambiguity. 3 Be brief. 4 Be orderly.</span></div>
+        <div class="d"><span class="t">Generalised implicature</span><span class="g">An implicature an expression carries in most contexts, unless something blocks it.</span></div>
+        <div class="d"><span class="t">Particularised implicature</span><span class="g">An implicature that depends on the particular context of the utterance.</span></div>
+      </div>
+      <div class="defs">
+        <div class="sc">Notation</div>
+        <div class="d"><span class="t"><i>p</i> +&gt; <i>q</i></span><span class="g">Saying <i>p</i> implicates <i>q</i>.</span></div>
+        <div class="d"><span class="t"><i>p</i> entails <i>q</i></span><span class="g"><i>q</i> is true whenever <i>p</i> is.</span></div>
+        <div class="d"><span class="t">⟨<i>all</i>, <i>some</i>⟩</span><span class="g">A scale, written strongest first. A sentence with <i>all</i> entails the same sentence with <i>some</i>.</span></div>
+        <div class="d"><span class="t">¬<i>p</i>, <i>p</i> ∧ <i>q</i></span><span class="g">Not <i>p</i>. <i>p</i> and <i>q</i>.</span></div>
+        <div class="d"><span class="t">K<sub>S</sub> <i>p</i></span><span class="g">The speaker knows that <i>p</i>.</span></div>
+        <div class="d"><span class="t">P<sub>S</sub> <i>p</i></span><span class="g">For all the speaker knows, <i>p</i>. The same as ¬K<sub>S</sub>¬<i>p</i>.</span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Grice 1975.</b> Logic and conversation. <i>Syntax and Semantics</i> 3: 41–58.</p></div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Implicatures</h2>
+      <table class="rec l">
+        <thead><tr><th></th><th>Sentence</th><th>Implicated</th></tr></thead>
+        <tr><td class="n">(1)</td><td class="c2"><i>Some of the students passed.</i></td><td>Not all of them passed.</td></tr>
+        <tr><td class="n">(2)</td><td class="c2"><i>I believe she’s in.</i></td><td>The speaker does not know that she is in.</td></tr>
+        <tr><td class="n">(3)</td><td class="c2"><i>If you mow the lawn, I’ll give you five dollars.</i></td><td>If you don’t, I won’t.</td></tr>
+        <tr><td class="n">(4)</td><td class="c2"><i>She turned the key and the engine started.</i></td><td>Then, and because she turned it, the engine started.</td></tr>
+        <tr><td class="n">(5)</td><td class="c2"><i>I don’t think she’ll come.</i></td><td>I think she won’t come.</td></tr>
+        <tr><td class="n">(6)</td><td class="c2"><i>Black Bart caused the sheriff to die.</i></td><td>He did not kill him in the ordinary, direct way.</td></tr>
+        <tr><td class="n">(7a)</td><td class="c2"><i>I broke a finger yesterday.</i></td><td>My own finger.</td></tr>
+        <tr><td class="n">(7b)</td><td class="c2"><i>X is meeting a woman this evening.</i></td><td>Someone other than his wife.</td></tr>
+      </table>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Upper-bounding implicature</span><span class="g">An implicature that limits what is said from above. (1) says that at least some passed, and implicates that not all did. So do (2) and (7b).</span></div>
+        <div class="d"><span class="t">Lower-bounding implicature</span><span class="g">An implicature that strengthens what is said towards a more specific, stereotypical case. (7a) says that some finger was broken, and implicates that it was the speaker’s own. So do (3), (4) and (5).</span></div>
+        <div class="d"><span class="t">Conditional perfection</span><span class="g">Reading <i>if</i> as <i>only if</i>, as in (3).</span></div>
+        <div class="d"><span class="t">Conjunction buttressing</span><span class="g">Reading <i>and</i> as <i>and then</i>, or <i>and as a result</i>, as in (4).</span></div>
+        <div class="d"><span class="t">Negative strengthening</span><span class="g">Reading <i>don’t think</i> as <i>think not</i>, as in (5).</span></div>
+      </div>
+      <p>(7a) and (7b) have the same form, with implicatures in opposite directions. Grice noted both, and called (7a) a reverse implicature. His maxims do not say when each arises. (6) is taken up in section 2.</p>
+    </div>
+    <div class="note"><p><b>Grice 1975.</b> Logic and conversation. <i>Syntax and Semantics</i> 3: 41–58.</p><p><b>Geis &amp; Zwicky 1971.</b> On invited inferences. <i>Linguistic Inquiry</i> 2: 561–566.</p></div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Marked forms</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Unmarked expression</span><span class="g">The shorter, more usual way of saying something.</span></div>
+        <div class="d"><span class="t">Marked expression</span><span class="g">A longer or more roundabout way of saying much the same thing.</span></div>
+        <div class="d"><span class="t">Stereotypical situation</span><span class="g">The most typical situation an expression describes. Killing someone directly. Stopping a car with the brake pedal.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(8a)</span><span><span class="s">Bill stopped the car.</span></span></li>
+        <li><span>(8b)</span><span><span class="s">Bill caused the car to stop.</span></span></li>
+        <li><span>(9a)</span><span><span class="s">The flag is pink.</span></span></li>
+        <li><span>(9b)</span><span><span class="s">The flag is pale red.</span></span></li>
+        <li><span>(10a)</span><span><span class="s">It’s likely that she’ll win.</span></span></li>
+        <li><span>(10b)</span><span><span class="s">It’s not unlikely that she’ll win.</span></span></li>
+        <li><span>(11a)</span><span><span class="s">My brother went to school.</span></span></li>
+        <li><span>(11b)</span><span><span class="s">My brother went to the school.</span></span></li>
+      </ol>
+      <p>Each (b) form is marked, and conveys that the situation is not the stereotypical one. (8b): Bill stopped the car in some unusual way, perhaps with the handbrake. (9b): a shade that <i>pink</i> does not cover. (10b): a more guarded estimate than (10a). (11b): a visit to the building, perhaps for a meeting. In (6), Black Bart might have tampered with the sheriff’s gun so that it backfired.</p>
+      <p class="keep"><span class="runin">Exercise 1.</span> For each sentence, give the unmarked alternative and say what the marked form conveys.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span><i>The corners of Sue’s lips turned slightly upward.</i></span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span><i>That’s my father’s wife.</i></span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span><i>He went to the prison.</i></span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>McCawley 1978.</b> Conversational implicature and the lexicon. <i>Syntax and Semantics</i> 9: 245–259.</p><p><b>Levinson 2000.</b> <i>Presumptive Meanings</i>. MIT Press.</p></div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Horn’s Q and R principles</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Speaker’s economy</span><span class="g">The pressure to say as little as possible. Taken to its limit, one word for every meaning.</span></div>
+        <div class="d"><span class="t">Auditor’s economy</span><span class="g">The hearer’s economy. The pressure to be told everything explicitly. Taken to its limit, a separate word for each meaning.</span></div>
+        <div class="d"><span class="t">Q principle</span><span class="g">Make your contribution sufficient. Say as much as you can, given R. Hearer-based. It collects Quantity 1 and Manner 1 and 2.</span></div>
+        <div class="d"><span class="t">R principle</span><span class="g">Make your contribution necessary. Say no more than you must, given Q. Speaker-based. It collects Quantity 2, Relation and Manner 3 and 4.</span></div>
+        <div class="d"><span class="t">Q-based implicature</span><span class="g">Upper-bounding. The speaker said no more, so nothing stronger holds.</span></div>
+        <div class="d"><span class="t">R-based implicature</span><span class="g">Lower-bounding. The speaker said no more than was needed, so the hearer fills in the stereotypical case.</span></div>
+        <div class="d"><span class="t">Division of pragmatic labour</span><span class="g">Where a marked and an unmarked expression could say the same thing, the unmarked one is used for the stereotypical situation, by R. The marked one implicates, by Q, that the situation is not stereotypical.</span></div>
+        <div class="d"><span class="t">Partial blocking</span><span class="g">The marked form survives with the meaning the unmarked form leaves over. <i>Pale red</i> beside <i>pink</i>.</span></div>
+      </div>
+      <p>Zipf (1949) saw a vocabulary as a compromise between the two economies. Horn’s Q principle corresponds to the auditor’s economy and his R principle to the speaker’s. Quality stays outside both principles.</p>
+      <div class="proc">
+        <div class="sc proc-head">Example</div>
+        <ol class="steps">
+          <li>(1). <i>All</i> was available and more informative. By Q, the speaker would have said <i>all</i> if she could. So not all.</li>
+          <li>(4). <i>And then, as a result</i> would say more than is needed. By R, the hearer fills in the usual order and connection.</li>
+          <li>(6). <i>Killed</i> was available and shorter. By the division of pragmatic labour, <i>caused to die</i> implicates a killing that was not direct.</li>
+        </ol>
+      </div>
+      <div class="defs">
+        <div class="sc">In the lexicon</div>
+        <div class="d"><span class="t">Q-based narrowing</span><span class="g">A general term comes to exclude what a more specific term covers. <i>Finger</i> often excludes the thumb, and <i>rectangle</i> the square.</span></div>
+        <div class="d"><span class="t">R-based narrowing</span><span class="g">A general term narrows to its stereotypical case. <i>Drink</i> for alcoholic drink.</span></div>
+        <div class="d"><span class="t">R-based broadening</span><span class="g">A specific term widens to its whole category. <i>Hoover</i> for any vacuum cleaner.</span></div>
+        <div class="d"><span class="t">*<i>nall</i></span><span class="g">Languages have single words for <i>all</i>, <i>no</i> and <i>some</i>, and none that means <i>not all</i>. <i>Some</i> already implicates <i>not all</i> by Q, so such a word would add little.</span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Zipf 1949.</b> <i>Human Behavior and the Principle of Least Effort</i>. Addison-Wesley.</p><p><b>Horn 1984.</b> Toward a new taxonomy for pragmatic inference. In Schiffrin (ed.), <i>Meaning, Form, and Use in Context</i>: 11–42.</p></div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Levinson’s heuristics</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Q-heuristic</span><span class="g">What isn’t said, isn’t. From Quantity 1.</span></div>
+        <div class="d"><span class="t">I-heuristic</span><span class="g">What is expressed simply is stereotypically exemplified. From Quantity 2.</span></div>
+        <div class="d"><span class="t">M-heuristic</span><span class="g">What’s said in an abnormal way isn’t normal. From Manner: avoid obscurity, be brief.</span></div>
+        <div class="d"><span class="t">Priority</span><span class="g">Where the heuristics conflict, Q-implicatures defeat M-implicatures, and M-implicatures defeat I-implicatures. Q &gt; M &gt; I.</span></div>
+      </div>
+      <p><span class="runin">Correspondences.</span> Each of Grice’s maxims, with the principle or heuristic that takes it over.</p>
+      <table class="rec l">
+        <thead><tr><th>Grice</th><th>Horn</th><th>Levinson</th></tr></thead>
+        <tr><td class="n">Quantity 1</td><td>Q</td><td>Q</td></tr>
+        <tr><td class="n">Quantity 2</td><td>R</td><td>I</td></tr>
+        <tr><td class="n">Quality</td><td>outside Q and R</td><td>background to all three</td></tr>
+        <tr><td class="n">Relation</td><td>R</td><td>no heuristic; left to particularised implicature</td></tr>
+        <tr><td class="n">Manner 1, avoid obscurity</td><td>Q</td><td>M</td></tr>
+        <tr><td class="n">Manner 2, avoid ambiguity</td><td>Q</td><td>none</td></tr>
+        <tr><td class="n">Manner 3, be brief</td><td>R</td><td>M</td></tr>
+        <tr><td class="n">Manner 4, be orderly</td><td>R</td><td>none; its cases fall under I</td></tr>
+      </table>
+      <p><span class="runin">The implicatures of section 1 in the three systems.</span> Entries marked putative are guesses at an analysis in Grice’s terms. He did not discuss those cases.</p>
+      <table class="rec l">
+        <thead><tr><th></th><th>Grice</th><th>Horn</th><th>Levinson</th></tr></thead>
+        <tr><td class="n">(1) <i>some</i></td><td>Quantity 1</td><td>Q, scalar</td><td>Q, scalar</td></tr>
+        <tr><td class="n">(2) <i>believe</i></td><td>Quantity 1</td><td>Q</td><td>Q, clausal</td></tr>
+        <tr><td class="n">(3) <i>if</i></td><td>Relation <span class="pu">(putative)</span></td><td>R</td><td>I, conditional perfection</td></tr>
+        <tr><td class="n">(4) <i>and</i></td><td>Manner 4, be orderly</td><td>R</td><td>I, conjunction buttressing</td></tr>
+        <tr><td class="n">(5) <i>don’t think</i></td><td>Quantity 1 <span class="pu">(putative)</span></td><td>R</td><td>I, negative strengthening</td></tr>
+        <tr><td class="n">(6) <i>caused to die</i></td><td>Manner 3, be brief</td><td>Q, division of labour</td><td>M</td></tr>
+        <tr><td class="n">(7a) <i>a finger</i></td><td>Quantity 2 <span class="pu">(putative)</span></td><td>R</td><td>I</td></tr>
+        <tr><td class="n">(7b) <i>a woman</i></td><td>Quantity 1</td><td>Q</td><td>Q</td></tr>
+      </table>
+      <ol class="exs">
+        <li><span>(12)</span><span><span class="s">John came in and he sat down.</span></span></li>
+        <li><span>(13)</span><span><span class="s">John likes him.</span></span></li>
+        <li><span>(14)</span><span><span class="s">John came in and the man sat down.</span></span></li>
+      </ol>
+      <div class="proc">
+        <div class="sc proc-head">Example</div>
+        <ol class="steps">
+          <li>(12). The I-heuristic gives the simplest reading: <i>he</i> is John.</li>
+          <li>(13). The I-heuristic again favours John. But <i>himself</i> was available and more informative. By Q, <i>him</i> is someone else. Q defeats I.</li>
+          <li>(14). <i>The man</i> is a marked way to refer to John. By M, <i>the man</i> is someone else. M defeats I.</li>
+        </ol>
+      </div>
+      <p class="keep"><span class="runin">Exercise 2.</span> </p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Without looking at the tables, say which of Grice’s maxims the M-heuristic draws on, and which of Horn’s principles collects each.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Fill in the table for (15) to (18).</span></div>
+      </div>
+      <table class="rec fill lab">
+        <thead><tr><th></th><th>Implicated</th><th>Grice</th><th>Horn</th><th>Levinson</th></tr></thead>
+        <tr><td class="it">(15) <i>The soup is warm.</i></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="it">(16) <i>Wendy’s house is on the corner.</i></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="it">(17) <i>It’s not impossible that she’ll win.</i></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="it">(18) <i>X went into a house yesterday and found a tortoise inside the front door.</i></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(c)</span><span><i>Mary came in and the woman sat down.</i> Say which two heuristics conflict, and which reading wins.</span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Levinson 2000.</b> <i>Presumptive Meanings</i>. MIT Press.</p><p><b>Atlas &amp; Levinson 1981.</b> <i>It</i>-clefts, informativeness and logical form. In Cole (ed.), <i>Radical Pragmatics</i>: 1–61.</p><p><b>Horn 2000.</b> From <i>if</i> to <i>iff</i>. <i>Journal of Pragmatics</i> 32: 289–326.</p></div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Scalar and clausal implicature</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Horn scale</span><span class="g">Expressions of the same kind ordered by strength, ⟨S, W⟩. A sentence with S entails the same sentence with W.</span></div>
+        <div class="d"><span class="t">Conditions on scales</span><span class="g">Scale-mates are equally lexicalised, and from the same field and register. <i>Some</i> is compared with <i>all</i>. It is not compared with <i>some but not all</i>.</span></div>
+        <div class="d"><span class="t">Scalar implicature</span><span class="g">Saying a sentence with W implicates that the speaker does not know the sentence with S to be true: ¬K<sub>S</sub> S.</span></div>
+        <div class="d"><span class="t">Competence</span><span class="g">The assumption that the speaker knows whether the sentence with S is true. With competence, the scalar implicature becomes K<sub>S</sub>¬S.</span></div>
+        <div class="d"><span class="t">Clausal implicature</span><span class="g">Where a stronger form would entail an embedded clause <i>p</i> and the weaker form used does not, the speaker implicates P<sub>S</sub> <i>p</i> ∧ P<sub>S</sub>¬<i>p</i>: she does not know whether <i>p</i>.</span></div>
+        <div class="d"><span class="t">Clausal pairs</span><span class="g">⟨<i>know p</i>, <i>believe p</i>⟩. ⟨<i>since p, q</i>; <i>if p, q</i>⟩. ⟨<i>p and q</i>; <i>p or q</i>⟩.</span></div>
+        <div class="d"><span class="t">Negation</span><span class="g">Negation reverses a scale. <i>Not all of them came</i> implicates that some did.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Example</div>
+        <ol class="steps">
+          <li>(1) <i>Some of the students passed.</i> Scale ⟨<i>all</i>, <i>some</i>⟩. Stronger sentence: <i>All of the students passed.</i></li>
+          <li>Scalar implicature: ¬K<sub>S</sub>(all passed). With competence: K<sub>S</sub>¬(all passed).</li>
+          <li>(2) <i>I believe she’s in.</i> Pair ⟨<i>know p</i>, <i>believe p</i>⟩, with <i>p</i> = she’s in. <i>I know she’s in</i> would entail <i>p</i>.</li>
+          <li>Clausal implicature: P<sub>S</sub> <i>p</i> ∧ P<sub>S</sub>¬<i>p</i>. She may be in, and she may not.</li>
+        </ol>
+      </div>
+      <p class="keep"><span class="runin">Exercise 3.</span> Give the scale or pair for each sentence, and its implicature in the notation. Method: find the stronger form the speaker did not use.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span><i>Most of the guests left.</i></span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span><i>If the shop is open, I’ll buy milk.</i></span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span><i>The keys are in the kitchen or in the car.</i></span></div>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Gazdar 1979.</b> <i>Pragmatics: Implicature, Presupposition, and Logical Form</i>. Academic Press.</p><p><b>Horn 1972.</b> <i>On the Semantic Properties of Logical Operators in English</i>. UCLA dissertation.</p></div>
+  </div>
+
+  <!-- ══ 6 ══ -->
+  <div class="sec">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Increments and cancellation</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Context</span><span class="g">The propositions taken for granted at a point in the conversation. Written <i>c</i>.</span></div>
+        <div class="d"><span class="t">Consistent</span><span class="g">A proposition is consistent with <i>c</i> if it and everything in <i>c</i> can be true together.</span></div>
+        <div class="d"><span class="t">Incrementation</span><span class="g">What an utterance conveys is added to <i>c</i> in a fixed order: entailments, then clausal implicatures, then scalar implicatures, then M-implicatures, then I-implicatures. Each is added only if it is consistent with <i>c</i> so far.</span></div>
+        <div class="d"><span class="t">Cancellation</span><span class="g">An implicature is cancelled when it is not added, because it is inconsistent with <i>c</i>. No contradiction results.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(19)</span><span><span class="s">Some of the students passed; in fact, all of them did.</span></span></li>
+      </ol>
+      <div class="proc">
+        <div class="sc proc-head">Example</div>
+        <ol class="steps">
+          <li>Entailments. All of the students passed. Added.</li>
+          <li>Clausal implicatures. None.</li>
+          <li>Scalar implicature of <i>some</i>: K<sub>S</sub>¬(all passed). Inconsistent with step 1. Not added.</li>
+          <li>M- and I-implicatures. None.</li>
+        </ol>
+      </div>
+      <p class="keep"><span class="runin">Exercise 4.</span> Run the increments on (20) and on (21). Say which implicature is not added, and why. Method: list the entailments and the clausal implicatures before the scalar one.</p>
+      <ol class="exs">
+        <li><span>(20)</span><span><span class="s">Some or all of the students passed.</span></span></li>
+        <li><span>(21)</span><span><span class="s">I believe she’s in. In fact, I know she is.</span></span></li>
+      </ol>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>(20)</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>(21)</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Gazdar 1979.</b> <i>Pragmatics: Implicature, Presupposition, and Logical Form</i>. Academic Press.</p><p><b>Levinson 2000.</b> <i>Presumptive Meanings</i>. MIT Press.</p></div>
+  </div>
+
+  <!-- ══ 7 ══ -->
+  <div class="sec">
+    <div class="num">7</div>
+    <div class="body">
+      <h2>Defaults</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Default inference</span><span class="g">An inference drawn unless something blocks it, without working out the particular speaker’s intentions.</span></div>
+        <div class="d"><span class="t">Presumptive meaning</span><span class="g">Levinson’s term for a generalised implicature seen as a default.</span></div>
+        <div class="d"><span class="t">Sentence meaning</span><span class="g">What a sentence means by its words and structure. The province of semantics.</span></div>
+        <div class="d"><span class="t">Utterance-type meaning</span><span class="g">What an utterance of a given form normally conveys. Generalised implicatures belong here.</span></div>
+        <div class="d"><span class="t">Utterance-token meaning</span><span class="g">What a particular utterance conveys in its context. Particularised implicatures belong here.</span></div>
+        <div class="d"><span class="t">Default rule</span><span class="g"><i>A</i> : <i>B</i> / <i>C</i>. From <i>A</i>, conclude <i>C</i>, provided <i>B</i> can consistently be assumed.</span></div>
+        <div class="d"><span class="t">Non-monotonic inference</span><span class="g">Inference in which adding a premise can withdraw a conclusion.</span></div>
+        <div class="d"><span class="t">Pragmatic intrusion</span><span class="g">An implicature that contributes to what is said.</span></div>
+        <div class="d"><span class="t">Grice’s circle</span><span class="g">What is said seems to depend on implicature, and implicature depends on what is said.</span></div>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Example</div>
+        <ol class="steps">
+          <li>Bird(<i>t</i>) : Flies(<i>t</i>) / Flies(<i>t</i>). Tweety is a bird, so Tweety flies.</li>
+          <li>Add Penguin(<i>t</i>). Flies(<i>t</i>) can no longer be consistently assumed. The conclusion is withdrawn.</li>
+          <li><i>some</i> : <i>not all</i> / <i>not all</i>. From (1), not all of the students passed.</li>
+          <li>Add <i>in fact, all of them did</i>. <i>Not all</i> is withdrawn, as in section 6.</li>
+        </ol>
+      </div>
+      <ol class="exs">
+        <li><span>(22)</span><span><span class="s">If the old king has died of a heart attack and a republic has been declared, then Tom will be quite content.</span></span></li>
+        <li><span>(23)</span><span><span class="s">If a republic has been declared and the old king has died of a heart attack, then Tom will be quite content.</span></span></li>
+      </ol>
+      <p><i>And</i> in (22) and (23) is read as <i>and then</i>. The reading is an I-implicature, and it falls inside the <i>if</i>-clause, so (22) and (23) can differ in truth value. For Levinson, generalised implicatures are defaults that arise locally, before the whole sentence has been heard, and so can feed what is said.</p>
+    </div>
+    <div class="note"><p><b>Levinson 2000.</b> <i>Presumptive Meanings</i>. MIT Press.</p><p><b>Reiter 1980.</b> A logic for default reasoning. <i>Artificial Intelligence</i> 13: 81–132.</p><p><b>Cohen 1971.</b> Some remarks on Grice’s views about the logical particles of natural language. In Bar-Hillel (ed.), <i>Pragmatics of Natural Languages</i>: 50–68.</p></div>
+  </div>
+
+  <!-- ══ 8 ══ -->
+  <div class="sec">
+    <div class="num">8</div>
+    <div class="body">
+      <h2>Heuristics and rational models</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Bottleneck</span><span class="g">Speech transmits about 7 syllables per second, under 100 bits of information. Inference is much faster, and hearers make up the difference with it.</span></div>
+        <div class="d"><span class="t">Heuristic</span><span class="g">A fast shortcut that gives the right answer in the usual case. Levinson’s Q, I and M are heuristics.</span></div>
+        <div class="d"><span class="t">Bounded rationality</span><span class="g">Agents with limited time and information settle for options that are good enough.</span></div>
+        <div class="d"><span class="t">Calculability</span><span class="g">Grice’s requirement that an implicature can be worked out by an argument, even when it is grasped intuitively.</span></div>
+        <div class="d"><span class="t">Rational model</span><span class="g">A model in which the hearer works out which utterance a rational speaker would choose in each state of affairs.</span></div>
+        <div class="d"><span class="t">Default view</span><span class="g">The implicature is drawn at once. Cancelling it, where the context requires, costs time.</span></div>
+        <div class="d"><span class="t">Context-driven view</span><span class="g">The literal meaning comes first. The implicature is drawn when the context supports it, and drawing it costs time.</span></div>
+      </div>
+      <table class="rec ctr">
+        <thead><tr><th>State</th><th><i>none</i></th><th><i>some</i></th><th><i>all</i></th></tr></thead>
+        <tr><td>none passed</td><td>chosen</td><td></td><td></td></tr>
+        <tr><td>some but not all passed</td><td></td><td>chosen</td><td></td></tr>
+        <tr><td>all passed</td><td></td><td>true</td><td>chosen</td></tr>
+      </table>
+      <p>In each state a rational speaker chooses the most informative true utterance. <i>Some</i> is chosen only when not all passed, so a hearer who hears <i>some</i> infers <i>not all</i>.</p>
+      <ol class="exs">
+        <li><span>(24)</span><span><span class="s">Some elephants are mammals.</span></span></li>
+      </ol>
+      <p><span class="runin">Bott &amp; Noveck 2004.</span> Participants judged sentences like (24) true or false. Those told to read <i>some</i> as <i>some but not all</i> answered over 600 ms more slowly than those told to read it as <i>at least some</i>. Under a 900 ms deadline there were fewer <i>false</i> answers than with 3 seconds. Both results count against the default view.</p>
+      <p><span class="runin">van Tiel et al. 2016.</span> Across 43 scales, the rate of scalar implicature ran from 4% for ⟨<i>happy</i>, <i>content</i>⟩ to 100% for ⟨<i>free</i>, <i>cheap</i>⟩. The default view expects every scale to behave alike.</p>
+      <p class="keep"><span class="runin">Exercise 5.</span> </p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Is (24) true or false? Give the reading of <i>some</i> behind each answer.</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Say what the default view and the context-driven view each predict about which answer to (24) is slower.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Bott &amp; Noveck 2004.</b> Some utterances are underinformative. <i>Journal of Memory and Language</i> 51: 437–457.</p><p><b>van Tiel, van Miltenburg, Zevakhina &amp; Geurts 2016.</b> Scalar diversity. <i>Journal of Semantics</i> 33: 137–175.</p><p><b>Simon 1955.</b> A behavioral model of rational choice. <i>Quarterly Journal of Economics</i> 69: 99–118.</p></div>
+  </div>
+
+  <!-- ══ 9 ══ -->
+  <div class="sec wyntk">
+    <div class="num">9</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>The neo-Gricean reduction of Grice’s maxims; speaker’s and hearer’s economy.</li>
+          <li>Horn’s Q and R principles; upper-bounding and lower-bounding implicature.</li>
+          <li>Levinson’s Q, I and M heuristics and their priority; correspondences with the maxims and with Horn’s principles.</li>
+          <li>Scalar and clausal implicature; marked and unmarked expressions; the division of pragmatic labour.</li>
+          <li>Generalised implicature as default inference; default logic; pragmatic intrusion.</li>
+          <li>Fast heuristics and rational models.</li>
+          <li>Processing cost and scalar diversity as tests of the default view.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Map Grice’s maxims onto Horn’s principles and Levinson’s heuristics.</li>
+          <li>Label an implicature with Grice’s maxim, Horn’s principle and Levinson’s heuristic, and name the alternative or stereotype it rests on.</li>
+          <li>Derive the scalar and clausal implicatures of an utterance.</li>
+          <li>Give the unmarked alternative to a marked expression and say what the marked choice conveys.</li>
+          <li>Resolve a clash between implicatures with the priority Q &gt; M &gt; I.</li>
+          <li>Decide whether a default implicature survives or is cancelled, by adding entailments and implicatures to the context in order.</li>
+          <li>Contrast what a default account and a rational account predict about an implicature and the cost of drawing it.</li>
+        </ol>
+      </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

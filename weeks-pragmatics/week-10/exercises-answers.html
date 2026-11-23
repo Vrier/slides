@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LI7862 · Week 10, Relevance Theory · Data analysis task · Answers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Data analysis task: no definitions strip, no margin notes; blocks run on. */
+  .sec { display:block; position:relative; padding-left:46pt; }
+  .sec > .num { position:absolute; left:0; top:0; }
+  .sec > .note { display:none; }
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:16pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body p { orphans:3; widows:3; }
+  /* transcript turns */
+  .tr { margin:5pt 0 2pt; font-size:9.8pt; line-height:1.33; }
+  .tr .t { display:grid; grid-template-columns:34pt 1fr; margin:0 0 2pt; }
+  .tr .t .q { font-family:var(--serif); font-size:9pt; color:#000; padding-top:1.5pt; }
+  .tr .t .sp { font-weight:700; }
+  .tr .t .sp::after { content:" "; }
+  .tr .t .omit { font-style:normal; }
+  .src { font-size:8.6pt; line-height:1.35; margin:6pt 0 0; }
+  /* tagging tables */
+  table.rec.tag td, table.rec.tag th { border-right:.5pt solid #000; padding:3pt 5pt; }
+  table.rec.tag th:first-child, table.rec.tag td:first-child { width:34pt; padding-left:0; }
+  table.rec.tag td:last-child, table.rec.tag th:last-child { border-right:none; }
+  table.rec.tag td { height:28pt; vertical-align:top; border-bottom:.5pt solid #000; font-size:9.4pt; line-height:1.28; }
+  table.rec.tag th { white-space:normal; vertical-align:bottom; line-height:1.3; }
+  table.rec.tag td.ex { font-style:italic; }
+  table.rec.tag td.w, table.rec.tag td.gv { font-style:normal; }
+  .sec table.rec.tag.ref { margin-bottom:9pt; }
+  .sec table.rec.tag.ref td { height:auto; font-size:8.8pt; line-height:1.25; padding-top:2pt; padding-bottom:2pt; }
+  @media print { .sec table.rec.tag.ref { break-inside:avoid !important; page-break-inside:avoid !important; } }
+  /* wide grids use the number gutter as well */
+  .sec table.rec.tag.wide { margin-left:-46pt; width:calc(100% + 46pt); table-layout:fixed; }
+  .sec table.rec.tag.wide th, .sec table.rec.tag.wide td { box-sizing:border-box; }
+  .sec table.rec.tag.wide td { overflow-wrap:break-word; }
+  .sheet .sec table.rec.tag.wide th { letter-spacing:.07em; font-size:7.4pt; }
+  .sec table.rec.tag.wide th:first-child, .sec table.rec.tag.wide td:first-child { width:35pt; }
+  @media print {
+    table.rec.fill.tag, table.rec.tag, table.rec.tag tbody { break-inside:auto !important; page-break-inside:auto !important; }
+    table.rec.tag thead { display:table-header-group; }
+    table.rec.tag tr { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  }
+  ol.qs { margin:4pt 0 0 18pt; padding:0; }
+  ol.qs li { margin:0 0 5pt; }
+  /* definitions reminders above the grids */
+  .defs { margin:5pt 0 9pt; padding:4.5pt 0 4pt; }
+  .defs > .sc.gh { margin-top:6pt; }
+  .defs > div.d { grid-template-columns:92pt 1fr; column-gap:10pt; margin:0 0 2pt; }
+  .sheet .defs .g { font-size:9.6pt; line-height:1.32; }
+  .defs .t { line-height:1.32; font-size:9.6pt; }
+  @media print {
+    .defs, .defs.brk { break-inside:auto !important; page-break-inside:auto !important; }
+    .defs > div.d { break-inside:avoid; page-break-inside:avoid; }
+    .defs > .sc { break-after:avoid; page-break-after:avoid; }
+  }
+</style>
+<style>
+  ul.bg { margin:2pt 0 7pt 14pt; padding:0; font-size:8.4pt; line-height:1.35; }
+  ul.bg li { margin:0 0 1pt; }
+  ul.bg a { font-family:var(--mono, ui-monospace, monospace); font-size:7.4pt; color:inherit; text-decoration:none; }
+</style>
+<style>
+  table.rec.tag td { height:auto; }
+  table.rec.tag td.av { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:8.6pt; }
+  .ans { font-family:var(--sans, sans-serif); font-size:9pt; line-height:1.6; color:#1f4e79; margin:2pt 0 8pt 0; }
+  .ans i { font-style:italic; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LI7862 · Linguistic Pragmatics</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 10 · Data analysis task · Answers</div>
+  <h1 class="doc-title">Relevance Theory</h1>
+
+  <!-- Data: House of Commons, Prime Minister's Questions of 1 December 2021 (Hansard vol. 704, cols 908–909), 8 December 2021 (vol. 705, cols 371–379)
+       and 12 January 2022 (vol. 706, cols 562–565), and the statement on Sue Gray's report of 31 January 2022 (vol. 708, cols 27–29), text from TheyWorkForYou,
+       debates 2021-12-01c.908.3, 2021-12-08c.371.5, 2022-01-12b.562.6 and 2022-01-31c.23.0; Committee of Privileges, Oral evidence: Matter referred on 21 April 2022:
+       Conduct of Rt Hon Boris Johnson MP, HC 564, 22 March 2023 (committees-api OralEvidence 12878), Q4–Q142.
+       Excerpts verbatim, cuts marked […], each checked against the source text.
+       Contains Parliamentary information licensed under the Open Parliament Licence v3.0.
+       The same data serve the week 9 (neo-Gricean) and week 10 (Relevance Theory) tasks.
+       Terms and definitions follow the week 10 deck: explicature, higher-level explicature, saturation, disambiguation, free enrichment,
+       ad hoc concepts (capitals with an asterisk), narrowing and broadening; positive cognitive effects, processing effort, relevance;
+       optimal relevance with clauses (a) and (b) and the deck's example (19); strong and weak implicature, implicated premise and conclusion.
+       The last grid follows the deck's slide Some implicatures compared (Horn · Levinson beside Relevance Theory). -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>The data</h2>
+      <p>Five excerpts about gatherings held in 10 Downing Street in 2020 and 2021, while covid rules were in force. On 30 November 2021 the <i>Daily Mirror</i> reported that gatherings had been held there in November and December 2020 in breach of the rules. In Excerpts A to C the Prime Minister, Boris Johnson, speaks at Prime Minister’s Questions, and in Excerpt D an opposition leader replies to a statement of his. The police later issued fixed-penalty notices for several of the gatherings, one of them to Johnson. In Excerpt E, on 22 March 2023, the Committee of Privileges questions Johnson on whether what he told the House misled it. In June 2023 the Committee reported that he had misled the House, a finding that Johnson rejected.</p>
+
+      <p><span class="runin">Excerpt A.</span> Prime Minister’s Questions, 1 December 2021. Keir Starmer, the Leader of the Opposition, questions the Prime Minister. Background:</p>
+      <ul class="bg">
+        <li>Did the Prime Minister mislead Parliament over ‘Partygate’?, Full Fact, 25 May 2022. <a href="https://fullfact.org/news/partygate-parliament/" target="_blank" rel="noopener">fullfact.org/news/partygate-parliament</a></li>
+      </ul>
+      <div class="tr">
+        <div class="t"><span class="q">A1</span><span><span class="sp">Keir Starmer:</span><span class="omit">[…]</span> As millions of people were locked down last year, was a Christmas party thrown in Downing Street for dozens of people on 18 December?</span></div>
+        <div class="t"><span class="q">A2</span><span><span class="sp">The Prime Minister:</span>What I can tell the right hon. and learned Gentleman is that all guidance was followed completely in No. 10. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">A3</span><span><span class="sp">Keir Starmer:</span>Nice try, but that won’t work. The defence seems to be that no rules were broken. <span class="omit">[…]</span> Does the Prime Minister really expect the country to believe that while people were banned from seeing their loved ones at Christmas last year, it was fine for him and his friends to throw a boozy party in Downing Street?</span></div>
+        <div class="t"><span class="q">A4</span><span><span class="sp">The Prime Minister:</span>I have said what I have said about No. 10 and the events of 12 months ago, but since the right hon. and learned Gentleman asks about what we are asking the country to do this year, which I think is a more relevant consideration, let me say that the important thing to do is not only to follow the guidance that we have set out <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">A5</span><span><span class="sp">Keir Starmer:</span>The Prime Minister says that we should concentrate on what he is asking the country to do. We are asking the country to follow the rules. The Prime Minister does not deny that there was a Downing Street Christmas party last year. He says that no rules were broken. Both those things cannot be true. He is taking the British public for fools. <span class="omit">[…]</span></span></div>
+      </div>
+      <p class="src">Hansard, HC Deb 1 December 2021, vol. 704, cols 908–909.</p>
+
+      <p style="margin-top:10pt"><span class="runin">Excerpt B.</span> Prime Minister’s Questions, 8 December 2021. The evening before, ITV News had broadcast a video of No. 10 staff joking about a party on 18 December 2020. The Prime Minister’s opening statement, and a question from the Labour MP Catherine West later in the session. Background:</p>
+      <ul class="bg">
+        <li>Downing Street staff shown joking in leaked recording about Christmas party they later denied, ITV News, 7 December 2021. <a href="https://www.itv.com/news/2021-12-07/no-10-staff-joke-in-leaked-recording-about-christmas-party-they-later-denied" target="_blank" rel="noopener">www.itv.com/news/2021-12-07/no-10-staff-joke-in-leaked-recording-about-christmas-party-they-later-denied</a></li>
+      </ul>
+      <div class="tr">
+        <div class="t"><span class="q">B1</span><span><span class="sp">The Prime Minister:</span><span class="omit">[…]</span> I can understand how infuriating it must be to think that the people who have been setting the rules have not been following the rules, because I was also furious to see that clip. I apologise unreservedly for the offence that it has caused up and down the country, and I apologise for the impression that it gives. I repeat that I have been repeatedly assured since these allegations emerged that there was no party and that no covid rules were broken. That is what I have been repeatedly assured. But I have asked the Cabinet Secretary to establish all the facts and to report back as soon as possible. It goes without saying that if those rules were broken, there will be disciplinary action for all those involved. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">B2</span><span><span class="sp">Catherine West:</span>Will the Prime Minister tell the House whether there was a party in Downing Street on 13 November?</span></div>
+        <div class="t"><span class="q">B3</span><span><span class="sp">The Prime Minister:</span>No, but I am sure that whatever happened, the guidance was followed and the rules were followed at all times.</span></div>
+      </div>
+      <p class="src">Hansard, HC Deb 8 December 2021, vol. 705, cols 371–379.</p>
+
+      <p style="margin-top:10pt"><span class="runin">Excerpt C.</span> Prime Minister’s Questions, 12 January 2022. Two days earlier ITV News had published an email inviting No. 10 staff to drinks in the garden on 20 May 2020, during the first lockdown. Johnson had attended. Part of his opening statement, and part of a later answer to Keir Starmer. Background:</p>
+      <ul class="bg">
+        <li>Metropolitan Police in contact with Cabinet Office over Number 10 May 2020 lockdown party reports, ITV News, 10 January 2022. <a href="https://www.itv.com/news/2022-01-10/met-police-in-contact-with-cabinet-office-over-number-10-lockdown-party-reports" target="_blank" rel="noopener">www.itv.com/news/2022-01-10/met-police-in-contact-with-cabinet-office-over-number-10-lockdown-party-reports</a></li>
+      </ul>
+      <div class="tr">
+        <div class="t"><span class="q">C1</span><span><span class="sp">The Prime Minister:</span><span class="omit">[…]</span> When I went into that garden just after 6 o’clock on 20 May 2020, to thank groups of staff before going back into my office 25 minutes later to continue working, I believed implicitly that this was a work event, but with hindsight, I should have sent everyone back inside. I should have found some other way to thank them, and I should have recognised that even if it could be said technically to fall within the guidance, there would be millions and millions of people who simply would not see it that way <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">C2</span><span><span class="sp">The Prime Minister:</span><span class="omit">[…]</span> I repeat that I wish things had been done differently on that evening, and I repeat my apology for all the misjudgments that may have been made—that were made—on my watch in No. 10 and across the Government <span class="omit">[…]</span></span></div>
+      </div>
+      <p class="src">Hansard, HC Deb 12 January 2022, vol. 706, cols 562–565.</p>
+
+      <p style="margin-top:10pt"><span class="runin">Excerpt D.</span> House of Commons, 31 January 2022. Johnson has made a statement on the interim report of Sue Gray, the civil servant who investigated the gatherings. Ian Blackford, the leader of the Scottish National Party at Westminster, is replying to it. Members may not accuse one another of lying or of deliberately misleading the House. Between D2 and D3 the Speaker asks Blackford four more times to withdraw, and he does not. Background:</p>
+      <ul class="bg">
+        <li>Ian Blackford thrown out of Commons after refusing to retract claim PM ‘misled Parliament’, LBC, 31 January 2022. <a href="https://www.lbc.co.uk/politics/ian-blackford-commons-retract-claims-pm-misled-house/" target="_blank" rel="noopener">www.lbc.co.uk/politics/ian-blackford-commons-retract-claims-pm-misled-house</a></li>
+      </ul>
+      <div class="tr">
+        <div class="t"><span class="q">D1</span><span><span class="sp">Ian Blackford:</span><span class="omit">[…]</span> That is the crux. No ifs, no buts; he has wilfully misled Parliament.</span></div>
+        <div class="t"><span class="q">D2</span><span><span class="sp">Mr Speaker:</span>Order. It would be acceptable to say “inadvertently misled the House”, but “misled the House” is not acceptable. The right hon. Member must withdraw that comment.</span></div>
+        <div class="t"><span class="q">D3</span><span><span class="sp">Mr Speaker:</span><span class="omit">[…]</span> Would you like to say “inadvertently”?</span></div>
+        <div class="t"><span class="q">D4</span><span><span class="sp">Ian Blackford:</span>Mr Speaker, if the Prime Minister has inadvertently misled the House, I will state that.</span></div>
+        <div class="t"><span class="q">D5</span><span><span class="sp">Mr Speaker:</span>Right. We will leave it at that.</span></div>
+        <div class="t"><span class="q">D6</span><span><span class="sp">The Prime Minister:</span>I am grateful to the right hon. Gentleman for withdrawing what he just said, because he was wrong <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">D7</span><span><span class="sp">Mr Speaker:</span>Can I just say: I take it that the right hon. Member has withdrawn his remark?</span></div>
+        <div class="t"><span class="q">D8</span><span><span class="sp">Ian Blackford:</span>The Prime Minister may have inadvertently misled the House—[Interruption.]</span></div>
+        <div class="t"><span class="q">D9</span><span><span class="sp">Mr Speaker:</span>Order. To help me and to help the House, has the right hon. Gentleman withdrawn his earlier comment and replaced it with “inadvertently”?</span></div>
+        <div class="t"><span class="q">D10</span><span><span class="sp">Ian Blackford:</span>Mr Speaker, it is not my fault if the Prime Minister cannot be trusted to tell the truth—[Interruption.]</span></div>
+        <div class="t"><span class="q">D11</span><span><span class="sp">Mr Speaker:</span>Order. Under the power given to me by Standing Order No. 43, I order the right hon. Member to withdraw immediately from the House <span class="omit">[…]</span></span></div>
+      </div>
+      <p class="src">Hansard, HC Deb 31 January 2022, vol. 708, cols 27–29.</p>
+
+      <p style="margin-top:10pt"><span class="runin">Excerpt E.</span> Committee of Privileges, 22 March 2023. The Chair is Harriet Harman. The question numbers are the Committee’s own, and each covers a question and the answers to it. In Q4 Johnson is reading his opening statement, and has come to what he told the House on 8 December, in B1. Q9 to Q25 are about a leaving gathering for the Director of Communications, Lee Cain, on 13 November 2020, the date in Catherine West’s question in B2. Johnson attended and gave a speech, and the Committee had shown photographs of it. Q57 and Q58 are about a gathering in the Cabinet Room on Johnson’s birthday, 19 June 2020, which his wife and a contractor working in the building also attended. Q73 and Q74 are about the garden gathering of Excerpt C. Q82 is about a leaving gathering on 14 January 2021, also shown in a photograph, and Q89 about the gathering on 18 December 2020. Jack Doyle, who gave Johnson the assurance about it, was his Director of Communications in December 2021. Martin Reynolds was his Principal Private Secretary, and Q97 is about his advice on the opening statement in B1. Before Q141 the Committee has raised attacks on it by supporters of Johnson. Background:</p>
+      <ul class="bg">
+        <li>Boris Johnson promises ‘hand on heart’ he didn’t lie over Partygate rule-breaking, ITV News, 22 March 2023. <a href="https://www.itv.com/news/2023-03-22/johnson-faces-tv-grilling-by-mps-over-partygate-accusations" target="_blank" rel="noopener">www.itv.com/news/2023-03-22/johnson-faces-tv-grilling-by-mps-over-partygate-accusations</a></li>
+        <li>Matter referred on 21 April 2022 (conduct of Rt Hon Boris Johnson): Final Report, Committee of Privileges, 15 June 2023. <a href="https://committees.parliament.uk/publications/40412/documents/197897/default/" target="_blank" rel="noopener">committees.parliament.uk/publications/40412/documents/197897/default</a></li>
+      </ul>
+      <div class="tr">
+        <div class="t"><span class="q">Q4</span><span><span class="sp">Chair:</span>We will now resume this evidence session. Mr Johnson, would you like to resume your opening statement?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span><span class="omit">[…]</span> My statement was entirely accurate. The Committee criticises the fact that I had not received assurances in relation to the guidance, but I never said that I had. <span class="omit">[…]</span> The Committee is critical of the fact that I did not receive assurances in respect of any event other than the 18 December event, but I never said that I had.</span></div>
+        <div class="t"><span class="q">Q9</span><span><span class="sp">Sir Bernard Jenkin:</span><span class="omit">[…]</span> Do you accept that you were present at this gathering and that people were not socially distanced while you were there?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>Thank you very much, Sir Bernard. I don’t accept that people were not making an effort to distance themselves socially from each other, and that happened the whole time in No. 10. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q11</span><span><span class="sp">Sir Bernard Jenkin:</span>You didn’t quite answer my question to begin with, because you suggested that the picture doesn’t show that people weren’t “making an effort” to comply with the guidance. I am just asking whether the evidence is that the guidance was being complied with <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I believe that the guidance is being complied with.</span></div>
+        <div class="t"><span class="q">Q13</span><span><span class="sp">Sir Bernard Jenkin:</span>I will come to that, but the first point is that it is fair to say that you didn’t say, “We made every effort to comply with the guidance,” to the House of Commons, and you didn’t say that social distancing—</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>No, I’m saying that we followed the guidance completely, because you can’t—</span></div>
+        <div class="t"><span class="q">Q20</span><span><span class="sp">Sir Bernard Jenkin:</span><span class="omit">[…]</span> Why did you think that it was within the rules?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I thought it was essential for work purposes, or at least reasonably necessary for work purposes, for the reason I have given, Sir Bernard. November 13th was a day on which two senior officials—senior advisers—in Government had left their jobs in difficult and challenging circumstances, and it was necessary to steady the ship. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q25</span><span><span class="sp">Sir Bernard Jenkin:</span>There were lots of people leading critical organisations around the country, and a leaving do for everyone else around the country was not acceptable under the guidelines or the rules. So why was it acceptable and necessary for work purposes in No. 10?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span><span class="omit">[…]</span> I understand that people looking at that photograph will think that it looks like a social event. It was not a social event. If anybody thinks that I was partying during lockdown, they are completely wrong. That was not a party. I was there to—</span></div>
+        <div class="t"><span class="q">Q57</span><span><span class="sp">Yvonne Fovargue:</span><span class="omit">[…]</span> Why did you think that this was “reasonably necessary” for work purposes, as required by the rules at the time?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span><span class="omit">[…]</span> I thought it was reasonably necessary for work purposes because I was standing at my desk, surrounded by officials who had been asked to come and wish me a happy birthday. <span class="omit">[…]</span> We were about to have another meeting, and they were largely the same officials.</span></div>
+        <div class="t"><span class="q">Q58</span><span><span class="sp">Yvonne Fovargue:</span>Presumably your wife and the contractor were not attending that meeting.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>It is one of the peculiarities of No. 10 that the Prime Minister and his family live in the same building. My understanding of the rules is that the Prime Minister’s family is entitled to use every part of that building.</span></div>
+        <div class="t"><span class="q">Q73</span><span><span class="sp">Yvonne Fovargue:</span><span class="omit">[…]</span> we have evidence that trestle tables were set up on which alcohol was laid out <span class="omit">[…]</span> Did you see that when you were at the gathering?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I had no hand in organising this, when you talk about trestle tables and so on. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q74</span><span><span class="sp">Chair:</span><span class="omit">[…]</span> she was not asking whether you organised the trestle tables with the alcohol on them; she was asking whether you saw the trestle tables with the alcohol on them.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I did see—I don’t remember what exactly was on the trestle tables. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q82</span><span><span class="sp">Allan Dorans:</span>The picture of this gathering appears to show multiple bottles of alcohol in the bottom right-hand corner. Would you say that that is strictly necessary for a work event?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>It is customary to say farewell to people in this country with a toast. I did not see any sign of drunkenness or excess <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q89</span><span><span class="sp">Andy Carter:</span><span class="omit">[…]</span> Why did you tell the House that all guidance was followed completely in No. 10?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span><span class="omit">[…]</span> I talked to Jack Doyle about what had happened at that event. <span class="omit">[…]</span> He told me that it was within the rules. He said that people were sitting at their desks, drinking admittedly, but that was not banned; under any of either the rules or the guidance, it was not prohibited. It was regular, I am afraid, for people to drink on Fridays. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q97</span><span><span class="sp">Andy Carter:</span>On reflection, and given that Mr Reynolds says that you agreed to delete the reference to guidance, do you wish you’d corrected the record at that point?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span><span class="omit">[…]</span> It was true to say that I had received reassurances about that event as far as the rules went, but it was also true to say that no one had explicitly reassured me about the guidance. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q125</span><span><span class="sp">Chair:</span>Could I just put a point to you? I, along with my colleagues, was in the House at the time when these assurances were given, and we took them to be serious assurances. You told the House you had received assurances. Would you not expect us to be a bit dismayed to hear that it was not from the senior civil servants, but from political appointees; that they themselves had doubts about it; that it only covered one gathering, not the other three; and that it only covered the rules, not the guidance. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I was—</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Chair:</span><span class="omit">[…]</span> If I was going at 100 miles an hour, and I saw the speedometer saying “100 miles an hour”, it would be a bit odd, wouldn’t it, if I said, “Somebody assured me that I wasn’t”. It is what you see with your own eyes.</span></div>
+        <div class="t gap"><span class="q"></span><span><span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>First of all, with great respect, Chair, if you are talking about the 18 December 2020 event, there is some confusion. I was not there.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Chair:</span>That is one of the three.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I was not there.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Chair:</span>There were three others where you were there.</span></div>
+        <div class="t"><span class="q">Q134</span><span><span class="sp">Sir Bernard Jenkin:</span>The question is: why did you not take proper advice?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>Sorry, the answer is, quite simply, that over the—I have tried to describe what I felt about these events as they were happening. Nobody raised with me or had any concern, before I stood up on 1 December, about those events—</span></div>
+        <div class="t"><span class="q">Q135</span><span><span class="sp">Sir Bernard Jenkin:</span>You didn’t ask. You did not ask.</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I asked—I did. This is complete nonsense. I mean, complete nonsense. I asked the relevant people. <span class="omit">[…]</span></span></div>
+        <div class="t"><span class="q">Q141</span><span><span class="sp">Sir Charles Walker:</span>So as a parliamentarian, do you regret that colleagues of ours, who are also parliamentarians, have called the Privileges Committee a kangaroo court?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>I don’t want anybody to cause any colleague—there should be no intimidation or attempt to bully any colleague in any matter whatever.</span></div>
+        <div class="t"><span class="q">Q142</span><span><span class="sp">Sir Bernard Jenkin:</span>Is that a yes or a no?</span></div>
+        <div class="t"><span class="q"></span><span><span class="sp">Boris Johnson:</span>Yes.</span></div>
+      </div>
+      <p class="src">Committee of Privileges, <i>Oral evidence: Matter referred on 21 April 2022: Conduct of Rt Hon Boris Johnson MP</i>, HC 564, 22 March 2023, Q4–Q142. All five excerpts contain Parliamentary information licensed under the Open Parliament Licence v3.0.</p>
+    </div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Explicature</h2>
+      <p>The rows already filled in are models to follow, and short notes are enough in the cells. Only the explicatures and the questions need full sentences.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Explicature</span><span class="g">A communicated proposition that the hearer recovers by developing the decoded meaning of the sentence through inference.</span></div>
+        <div class="d"><span class="t">Saturation</span><span class="g">Filling a slot that the sentence provides, such as the referent of <i>he</i>.</span></div>
+        <div class="d"><span class="t">Free enrichment</span><span class="g">Adding content that no word in the sentence calls for, such as <i>from that cut</i> in <i>You’re not going to die</i>, said to a child crying over a cut finger.</span></div>
+        <div class="d"><span class="t">Ad hoc concept</span><span class="g">A concept built during comprehension from the concept a word encodes, with a narrower or a broader extension. It is written in capitals with an asterisk, as TIRED*.</span></div>
+        <div class="d"><span class="t">Narrowing</span><span class="g">The ad hoc concept covers less than the encoded one, as TIRED* in <i>I’m tired. Let’s go to the cinema</i>, too tired to go on working.</span></div>
+        <div class="d"><span class="t">Broadening</span><span class="g">The ad hoc concept covers more than the encoded one, as RAW* in <i>This steak is raw</i>, cooked too little to eat.</span></div>
+        <div class="d"><span class="t">Higher-level explicature</span><span class="g">A description of the speech act or attitude, with the explicature embedded in it, as in <i>Mary is telling Peter that …</i></span></div>
+      </div>
+      <p>For each expression, say what the words leave open, write the explicature of the sentence it is in as a full sentence with the gaps filled in, and name the processes that get from the words to the explicature.</p>
+      <p>Four checks find the processes. Is there a word such as <i>it</i>, <i>that</i> or <i>No</i> whose content comes from the context? Filling it in is saturation. Is a word used more narrowly or more loosely than usual? That gives an ad hoc concept, written in capitals with an asterisk and a few words on what it covers. Does the hearer add something that no word calls for, such as when, where or which one? That is free enrichment. Is the speaker doing something by speaking, such as apologising? The higher-level explicature says so.</p>
+      <table class="rec tag wide">
+        <thead><tr><th>Turn</th><th style="width:20%">Expression</th><th style="width:21%">What the words leave open</th><th style="width:31%">Explicature</th><th>Process</th></tr></thead>
+        <tr><td class="w">Q25</td><td class="ex"><i>That was not a party.</i></td><td class="w">what <i>that</i> refers to, and what counts as a party</td><td class="w">The gathering on 13 November 2020 was not a PARTY*, an event held to socialise.</td><td class="w">saturation, narrowing</td></tr>
+        <tr><td class="w">A2</td><td class="ex"><i>all guidance was followed completely in No. 10</i></td><td class="w">which guidance, and on which occasion</td><td class="w">All the covid guidance was followed completely in No. 10 at the event on 18 December 2020. A hearer could also take it as at all times.</td><td class="w">free enrichment</td></tr>
+        <tr><td>B3</td><td class="ex"><i>No</i></td><td class="av">what <i>No</i> answers, and what counts as a party</td><td class="av">There was no PARTY* in Downing Street on 13 November 2020. The words also allow that he will not tell the House.</td><td class="av">saturation from the question in B2, narrowing</td></tr>
+        <tr><td>B1</td><td class="ex"><i>I apologise for the impression that it gives</i></td><td class="av">what <i>it</i> refers to, and what act this is</td><td class="av">Johnson is apologising for the impression that the clip of his staff gives.</td><td class="av">saturation, higher-level explicature</td></tr>
+        <tr><td>B1</td><td class="ex"><i>I have been repeatedly assured … that there was no party</i></td><td class="av">which party, and who gave the assurances</td><td class="av">Johnson has been repeatedly assured that there was no PARTY* in No. 10 on 18 December 2020. Who gave the assurances stays open, since no slot in the sentence calls for it.</td><td class="av">free enrichment, narrowing</td></tr>
+        <tr><td>Q20</td><td class="ex"><i>it was necessary to steady the ship</i></td><td class="av">what steadying the ship amounts to in an office</td><td class="av">It was necessary to STEADY THE SHIP*, to keep the staff of No. 10 calm and at work after two advisers left.</td><td class="av">broadening, by metaphor</td></tr>
+      </table>
+    </div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Effects and effort</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Positive cognitive effect</span><span class="g">A worthwhile difference to a person’s representation of the world, such as a true conclusion.</span></div>
+        <div class="d"><span class="t">Processing effort</span><span class="g">The effort of perception, memory and inference that it takes to derive the effects. A longer, rarer or more complex input takes more.</span></div>
+        <div class="d"><span class="t">Relevance</span><span class="g">Other things being equal, the greater the positive cognitive effects of an input, the more relevant it is, and the greater the processing effort, the less relevant it is.</span></div>
+      </div>
+      <p>Each row sets what was said beside something the speaker could have said instead. In some rows the alternative says the same thing in other words, and in others it is a different answer. Say whether what was said costs the hearer more or less processing effort than the alternative, whether it gives the hearer more or fewer cognitive effects, and whether it is more or less relevant. Judge each for the person being answered, at the time it was said.</p>
+      <p>For effort, compare how long each one is, how ordinary its wording is, and how much the hearer has to work out for themselves. For effects, ask what the hearer can now conclude about the question they asked. Then weigh the two.</p>
+      <table class="rec tag wide">
+        <thead><tr><th>Turn</th><th style="width:21%">Said</th><th style="width:19%">Alternative</th><th style="width:16%">Effort</th><th style="width:21%">Effects</th><th>More or less relevant</th></tr></thead>
+        <tr><td class="w">D4</td><td class="ex"><i>if the Prime Minister has inadvertently misled the House, I will state that</i></td><td class="gv"><i>The Prime Minister inadvertently misled the House.</i></td><td class="w">more, a conditional to interpret</td><td class="w">fewer, it leaves open whether he has withdrawn</td><td class="w">less relevant to the Speaker, who asks again in D7 and D9</td></tr>
+        <tr><td class="w">Q89</td><td class="ex"><i>drinking</i></td><td class="gv"><i>drinking alcohol</i></td><td class="w">less, it is shorter, and alcohol comes to mind first</td><td class="w">the same</td><td class="w">more relevant</td></tr>
+        <tr><td>A2</td><td class="ex"><i>all guidance was followed completely in No. 10</i></td><td class="gv"><i>No, there was no Christmas party.</i></td><td class="av">more, Starmer has to work out how guidance bears on his question</td><td class="av">fewer, it leaves open whether there was a party</td><td class="av">less relevant to Starmer</td></tr>
+        <tr><td>B1</td><td class="ex"><i>I have been repeatedly assured … that no covid rules were broken</i></td><td class="gv"><i>No covid rules were broken.</i></td><td class="av">more, a report of what others said</td><td class="av">fewer, the House learns what Johnson was told, and cannot conclude that no rules were broken</td><td class="av">less relevant to the House</td></tr>
+        <tr><td>A2</td><td class="ex"><i>all guidance was followed completely in No. 10</i></td><td class="gv"><i>We made every effort to comply with the guidance</i></td><td class="av">about the same</td><td class="av">more, the House concludes that the guidance was followed. The alternative, Jenkin’s in Q13, shows only that people tried</td><td class="av">more relevant to the House at the time. The Committee later found the conclusion false, and a false conclusion is no positive cognitive effect</td></tr>
+      </table>
+    </div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Optimal relevance</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Optimal relevance</span><span class="g">An utterance is optimally relevant to a hearer if and only if (a) it is relevant enough to be worth the hearer’s effort to process, and (b) it is the most relevant one that the speaker’s abilities and preferences allow.</span></div>
+        <div class="d"><span class="t">Clause (b)</span><span class="g">The hearer of <i>I have already written a third of the paper</i> takes the speaker to have written only a third. Two thirds would have been more relevant, and nothing prevented her from saying so.</span></div>
+        <div class="d"><span class="t">Expectation of relevance</span><span class="g">The hearer’s expectation about how an utterance will be relevant. After a question, the questioner expects an answer to it.</span></div>
+        <div class="d"><span class="t">Abilities</span><span class="g">What the speaker is able to say, given what she knows and can truthfully claim.</span></div>
+        <div class="d"><span class="t">Preferences</span><span class="g">What the speaker is willing to say.</span></div>
+      </div>
+      <p>In each row the answer gives less than the question asked for. The questioner can ask again, or can conclude by clause (b) that the speaker was unable or unwilling to give more. Say what the question asked for, what the questioner does and where, and whether any conclusion is about the speaker’s abilities or preferences. The question comes just before the answer, and the questioner’s response comes in the next turn or two.</p>
+      <table class="rec tag wide">
+        <thead><tr><th>Turn</th><th style="width:23%">Answer</th><th style="width:20%">What the question asked for</th><th style="width:25%">What the questioner does, and where</th><th>Abilities or preferences</th></tr></thead>
+        <tr><td class="w">D10</td><td class="ex"><i>it is not my fault if the Prime Minister cannot be trusted to tell the truth</i></td><td class="w">yes or no, whether he has withdrawn his comment, D9</td><td class="w">concludes that he has not, and orders him out, D11</td><td class="w">preferences, he will not withdraw it</td></tr>
+        <tr><td class="w">Q141</td><td class="ex"><i>there should be no intimidation or attempt to bully any colleague</i></td><td class="w">yes or no, whether he regrets that colleagues called the Committee a kangaroo court</td><td class="w">Jenkin asks again, Q142, <i>Is that a yes or a no?</i></td><td class="w">preferences, a hearer could take him to be unwilling to say so. Asked again, he says <i>Yes</i></td></tr>
+        <tr><td>A2</td><td class="ex"><i>all guidance was followed completely in No. 10</i></td><td class="av">whether a Christmas party was held on 18 December, A1</td><td class="av">concludes that Johnson cannot deny the party, A5, <i>does not deny</i></td><td class="av">abilities, he cannot deny it, or preferences, he will not</td></tr>
+        <tr><td>A4</td><td class="ex"><i>I have said what I have said … a more relevant consideration</i></td><td class="av">whether the country should believe the party was fine, A3</td><td class="av">concludes that Johnson wants to talk about this year, A5, <i>we should concentrate on what he is asking the country to do</i></td><td class="av">preferences</td></tr>
+        <tr><td>Q73</td><td class="ex"><i>I had no hand in organising this</i></td><td class="av">whether he saw the trestle tables with alcohol on them</td><td class="av">the Chair asks again, Q74, <i>she was asking whether you saw the trestle tables</i>. No conclusion is stated</td><td class="av">neither yet. Asked again, Johnson gives abilities, Q74, <i>I don’t remember</i></td></tr>
+        <tr><td>Q134</td><td class="ex"><i>Nobody raised with me or had any concern</i></td><td class="av">why Johnson did not take proper advice</td><td class="av">concludes that he did not ask, Q135, <i>You didn’t ask</i></td><td class="av">abilities, he could not say that he had asked. Johnson rejects it</td></tr>
+      </table>
+    </div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Explicature or implicature</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Implicature</span><span class="g">A communicated proposition that is not an explicature. Every implicature is an implicated premise or an implicated conclusion.</span></div>
+        <div class="d"><span class="t">Implicated premise</span><span class="g">A contextual assumption that the speaker intends the hearer to supply. After <i>Did John pay back the money he owed you?</i>, the answer <i>No. He forgot to go to the bank</i> needs the premise that forgetting to go to the bank can leave a person unable to repay money.</span></div>
+        <div class="d"><span class="t">Implicated conclusion</span><span class="g">A conclusion that the speaker intends the hearer to draw from the explicature and the context together. Here, that John could not repay because he forgot to go to the bank.</span></div>
+        <div class="d"><span class="t">Strong implicature</span><span class="g">An implicature that the hearer has to recover for the utterance to satisfy the expectation of relevance. That conclusion is one, since without it the answer explains nothing.</span></div>
+        <div class="d"><span class="t">Weak implicature</span><span class="g">One of a range of similar conclusions that the utterance encourages, none of which the hearer has to draw. The hearer takes part of the responsibility for it. That John may repay when he next goes to the bank is one.</span></div>
+        <div class="d"><span class="t">Extra effort</span><span class="g">A form that costs the hearer more effort than a simpler one is taken to offer extra effects in return. <i>Black Bart caused the sheriff to die</i> conveys that the killing was indirect.</span></div>
+      </div>
+      <p><span class="runin">From the lecture.</span> The lecture’s examples, with what Relevance Theory does with each.</p>
+      <table class="rec tag wide ref">
+        <thead><tr><th></th><th style="width:20%">Lecture example</th><th style="width:20%">Conveys</th><th style="width:13%">Horn · Levinson</th><th style="width:17%">Explicature or implicature</th><th>How it is derived</th></tr></thead>
+        <tr><td class="gv">(30)</td><td class="ex">Some of the students passed.</td><td class="gv">not all of them passed</td><td class="gv">Q · Q, scalar</td><td class="gv">explicature</td><td class="gv">narrowing to SOME*, some but not all</td></tr>
+        <tr><td class="gv">(31)</td><td class="ex">I believe she’s in.</td><td class="gv">the speaker is not sure that she is in</td><td class="gv">Q · Q, clausal</td><td class="gv">implicature</td><td class="gv">by clause (b), she could not say that she knew</td></tr>
+        <tr><td class="gv">(32)</td><td class="ex">If you mow the lawn, I’ll give you five dollars.</td><td class="gv">no mowing, no five dollars</td><td class="gv">R · I</td><td class="gv">implicature</td><td class="gv">an implicated conclusion</td></tr>
+        <tr><td class="gv">(35)</td><td class="ex">Black Bart caused the sheriff to die.</td><td class="gv">the killing was indirect</td><td class="gv">Q · M</td><td class="gv">implicature</td><td class="gv">extra effort for extra effects</td></tr>
+      </table>
+      <p>Each row below gives an inference from the data with its labels in Horn’s and Levinson’s frameworks. Say whether Relevance Theory treats it as part of the explicature or as an implicature, and how it is derived. If the inference adjusts the meaning of a word in the sentence, it is part of the explicature. If it is a separate proposition, it is an implicature, and the last column says what kind. The four rows after the first each match a lecture example. For the last two, use the definitions of strong and weak implicature.</p>
+      <table class="rec tag wide">
+        <thead><tr><th>Turn</th><th style="width:20%">Expression</th><th style="width:20%">Conveys</th><th style="width:13%">Horn · Levinson</th><th style="width:17%">Explicature or implicature</th><th>How it is derived</th></tr></thead>
+        <tr><td class="w">Q89</td><td class="ex"><i>drinking</i></td><td class="gv">drinking alcohol</td><td class="gv">R · I</td><td class="w">explicature</td><td class="w">narrowing to DRINK*</td></tr>
+        <tr><td>Q57</td><td class="ex"><i>they were largely the same officials</i></td><td class="gv">some of the people there were not at the meeting</td><td class="gv">Q · Q, scalar</td><td class="av">explicature</td><td class="av">narrowing to LARGELY*, largely but not entirely</td></tr>
+        <tr><td>C1</td><td class="ex"><i>I believed implicitly that this was a work event</i></td><td class="gv">Johnson does not know that it was a work event</td><td class="gv">Q · Q, clausal</td><td class="av">implicature</td><td class="av">by clause (b), he could not say that he knew</td></tr>
+        <tr><td>D4</td><td class="ex"><i>if the Prime Minister has inadvertently misled the House, I will state that</i></td><td class="gv">if he has not, Blackford will not state it</td><td class="gv">R · I</td><td class="av">implicature</td><td class="av">an implicated conclusion, drawn from the explicature and the context</td></tr>
+        <tr><td>C1</td><td class="ex"><i>it could be said technically to fall within the guidance</i></td><td class="gv">it was not within the guidance in the ordinary way</td><td class="gv">Q · M</td><td class="av">implicature</td><td class="av">extra effort for extra effects</td></tr>
+        <tr><td>Q82</td><td class="ex"><i>It is customary to say farewell to people in this country with a toast.</i></td><td class="gv">the bottles were for a farewell toast, so they belonged at the event</td><td class="gv">R · none</td><td class="av">implicature</td><td class="av">a strong implicature. Implicated premise, the bottles were for a toast. Implicated conclusion, they belonged at the event</td></tr>
+        <tr><td>B1</td><td class="ex"><i>I have been repeatedly assured</i></td><td class="gv">the assurances came from senior civil servants</td><td class="gv">R · I</td><td class="av">implicature</td><td class="av">a weak implicature, one of several conclusions a hearer could draw about who gave them. The hearer takes part of the responsibility for it</td></tr>
+      </table>
+    </div>
+    <div class="note"></div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Questions</h2>
+      <p>Discuss these with a partner and write a few sentences on each, with rows from your tables as evidence.</p>
+      <ol class="qs">
+        <li>Several inferences that Horn and Levinson treat as implicatures belong to the explicature for Relevance Theory. Does it matter which side of the line an inference falls on? Think about what a speaker can later say they never said, as Johnson does in Q4.</li>
+        <li>Taking the data as a whole, how well does Relevance Theory explain what questioners do when an answer gives less than they asked for? When do they ask again, and when do they draw a conclusion?</li>
+        <li>For Relevance Theory only true conclusions are positive cognitive effects. Is that a useful way of thinking about a statement that later proves false?</li>
+        <li>Think of a time someone answered your question with something other than what you asked. What did you conclude, and what in the answer led you there?</li>
+      </ol>
+    </div>
+    <div class="note"></div>
+  </div>
+
+</div>
+</body>
+</html>

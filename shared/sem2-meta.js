@@ -78,10 +78,20 @@ window.WEEKS = [
     figures: ["Goodman", "Lewis", "Kripke", "Walton"], lenses: blankLenses() },
 
   { no: 9, title: "Conditionals", section: 4,
-    figures: ["Kratzer", "Lewis", "Stalnaker"], lenses: blankLenses() },
+    figures: ["Kratzer", "Lewis", "Stalnaker"], lenses: {
+      empirical:   { q: "What does if mean?", d: "Wason's cards, the Oswald pair, biscuit and concessive conditionals, the paradoxes of material implication, modals under if, Sobel sequences and the three failed inferences." },
+      historical:  { q: "Who gave if its semantics?", d: "The Stoic debate, Ramsey's test, Stalnaker's selection function, Lewis's spheres, Gibbard's Sly Pete, and the restrictor view of Lewis and Kratzer." },
+      formal:      { q: "What does an if-clause do?", d: "The strict conditional, Kratzer's thesis with the restricted modal base, covert operators and tripartite structures, the ordering source, Bizet and Verdi, and yo-yo conditionals." },
+      typological: { q: "How do languages mark conditionals?", d: "Conditionals as topics in Japanese and Turkish, inversion and parataxis, and the Chinese counterfactual debate." },
+  }},
 
   { no: 10, title: "Aspect & the Perfect", section: 5,
-    figures: ["Klein", "Dowty", "Vendler"], lenses: blankLenses() },
+    figures: ["Vendler", "Dowty", "Landman", "Klein", "Portner"], lenses: {
+      empirical:   { q: "Progressives and perfects", d: "Viewpoint aspect, the imperfective paradox, interrupted events, the present perfect puzzle, the readings of the perfect and lifetime effects." },
+      historical:  { q: "Vendler, Dowty, Klein", d: "Vendler's classes, Bennett and Partee's intervals, Dowty's inertia worlds, and Reichenbach's reference point as Klein's topic time." },
+      formal:      { q: "Aspect, intervals and worlds", d: "Aspect heads in the tree, interval semantics, inertia worlds, continuation branches, the progressive as a Kratzer modal, and the perfect time span." },
+      typological: { q: "Aspect across languages", d: "Perfective and perfect marking in WALS, non-culminating accomplishments in St'át'imcets and Hindi, and the Irish English perfects." },
+  }},
 
   { no: 11, title: "Evidentiality", section: 6,
     figures: ["Aikhenvald", "Faller", "Matthewson"], lenses: blankLenses() },

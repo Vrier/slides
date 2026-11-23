@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 8, Fiction &amp; Counterfactuals · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+
+  /* As week 2: blocks run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  /* two definition strips in a row share one rule */
+  .defs + .defs { margin-top:0; border-top:none; }
+  table.rec.fill.wide td:not(:first-child) { width:auto; }
+  .exs .ig { display:flex; flex-wrap:wrap; gap:0 14pt; }
+  .exs .ig .wg { display:inline-flex; flex-direction:column; }
+  .exs .ig .o { font-style:italic; }
+  .exs .ig .g { font-size:9pt; }
+  .exs .tr { display:block; margin-top:2pt; }
+  .tfig { width:86%; height:auto; display:block; margin:6pt auto 4pt; } .treebox { break-inside:avoid; page-break-inside:avoid; }
+  .tfig line { stroke:#222; stroke-width:1.6; }
+  .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .tk { font-style:normal; font-size:24px; fill:#777; }
+  .proc .tfig { margin-top:8pt; }
+  .lat { width:58%; height:auto; display:block; margin:8pt auto 6pt; }
+  .lat .oa { stroke:#111; stroke-width:2.2; fill:none; }
+  .lat .on { fill:#fff; stroke:#111; stroke-width:2.2; }
+  .lat .on.top { fill:#e6e6e6; }
+  .lat .ot { font-style:italic; font-size:34px; text-anchor:middle; fill:#111; }
+  .wpic { width:100%; height:auto; display:block; margin:6pt 0 8pt; }
+  .wpic .wr { fill:none; stroke:#111; stroke-width:2; }
+  .wpic .wl { font-style:italic; font-size:30px; fill:#111; }
+  .wpic .wd { fill:#111; }
+  .wpic .wn { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .wpic .wn .sb { font-style:normal; font-size:20px; }
+  .wpic .wa { font-style:italic; font-size:28px; text-anchor:middle; fill:#111; }
+  .exs .fr { float:right; font-style:normal; margin-left:14pt; }
+  @media print {
+    .proc, .defs { break-inside:avoid !important; page-break-inside:avoid !important; }
+    ol.exs { break-inside:avoid; page-break-inside:avoid; }
+    table.rec { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:avoid; page-break-after:avoid; }
+    .tasks .task, .tasks .lines, .tasks .draw { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(+ table.rec), .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ .wpic), .body > p:has(+ .lat) { break-after:avoid; page-break-after:avoid; }
+    .body > ol.exs:has(+ .tasks) { break-after:avoid; page-break-after:avoid; }
+    .sec + .sec { break-before:page !important; page-break-before:always !important; margin-top:0; }
+    .sec + .sec.wyntk { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .sec + .sec.flow { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .tfig { width:66% !important; }
+  }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .wyntk .steps li { font-size:9.6pt; line-height:1.28; margin-bottom:1.5pt; }
+  .wyntk h2 { margin-bottom:4pt; }
+  .sec.wyntk { margin-top:8pt !important; margin-bottom:0 !important; padding-bottom:0 !important; border-bottom:none; }
+  @media print { html, body { height:auto !important; } .sheet { padding-bottom:0 !important; } }
+  .wyntk .proc { margin-bottom:0; } .wyntk .wcols { margin-bottom:0; } .wyntk .body > :last-child { margin-bottom:0; }
+  .wyntk .steps li { font-size:9.4pt; line-height:1.24; margin-bottom:1pt; }
+  @media print {
+    .tasks .draw { height:26mm !important; }
+  }
+  /* Week 4: object-language forms inside raw example rows */
+  .exs .o { font-style:italic; }
+  .body > p + .defs { margin-top:4pt; }
+  .sec.wide { grid-template-columns:30pt 1fr; }
+  .tfig.t4 { width:84%; }
+  @media print { .tfig.t4 { width:80% !important; } }
+  p.keep { break-inside:avoid; page-break-inside:avoid; }
+  /* examples set under the task that uses them */
+  .tasks ol.exs { margin:3pt 0 2pt 22pt; }
+  .tasks .task + ol.exs + .lines { margin-top:4pt; }
+  .tasks p.keep { margin-left:22pt; }
+  table.rec.prob td:nth-child(2) { width:38%; }
+  ul.sum { margin:2pt 0 6pt 0; padding-left:14pt; }
+  ul.sum li { margin:0 0 5pt 0; line-height:1.42; }
+  .tfig.t4.small { width:80%; }
+  .tfig.t4.blank { width:100%; }
+  @media print { .tfig.t4.small { width:78% !important; } .tfig.t4.blank { width:100% !important; } }
+  /* Week 8 */
+  .exbox { border:.8pt solid var(--rule); padding:5pt 8pt 6pt; margin:5pt 0 9pt; break-inside:avoid; page-break-inside:avoid; }
+  .exbox > .sc { margin-bottom:2.5pt; }
+  .exbox p { margin:0 0 2.5pt; font-size:10pt; }
+  .exbox p:last-child { margin-bottom:0; }
+  table.rec.mod td, table.rec.mod th { text-align:center; }
+  table.rec.mod td:first-child, table.rec.mod th:first-child { text-align:left; }
+  .sph { width:62%; height:auto; display:block; margin:6pt auto 6pt; break-inside:avoid; }
+  .sph .ring { fill:none; stroke:#111; stroke-width:1.6; }
+  .sph .w0 { fill:#111; }
+  .sph .wl { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .sph .wl.inv { fill:#fff; }
+  .sph .rk { font-size:22px; fill:#555; text-anchor:middle; }
+  .tasks table.rec { margin-left:22pt; width:calc(100% - 22pt); }
+  .exs .gl { display:block; font-size:9pt; font-style:normal; }
+  table.rec.th3 td:first-child { width:46%; white-space:nowrap; }
+  table.rec.th3 th { font-size:7pt; }
+  @media print { ol.exs.brk { break-inside:auto !important; page-break-inside:auto !important; } }
+  .exs .sc2 { font-variant:small-caps; text-transform:lowercase; letter-spacing:.03em; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 8 · Handout</div>
+  <h1 class="doc-title">Fiction &amp; Counterfactuals</h1>
+
+  <!-- Thursday handout (Nov 2026, refocused on fiction; the counterfactual-only exercises are held in week-09/held-from-week-08.md). Sections: closest-worlds semantics for counterfactuals in a model, with Stalnaker's
+       selection function and conditional excluded middle; failures of strengthening, transitivity and contraposition,
+       and a Sobel sequence in spheres against a strict conditional; Lewis's Analyses 0, 1 and 2 of truth in fiction in a
+       Lord of the Rings model, with incompleteness and vacuity; fictional, metafictional and parafictional uses and the three theories
+       of fictional characters, with counterfactuals about Holmes; fake past, the epic preterite, Konjunktiv II and
+       pretend-play pasts. The facts in the Lord of the Rings model (hairs on Sam’s foot, chalk under Hobbiton) are stipulated for the exercise. -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Counterfactuals and similarity</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Counterfactual</span><span class="g">A conditional whose antecedent is known or assumed to be false. <i>If A were, C would be</i>: <i>A</i> □→ <i>C</i>.</span></div>
+        <div class="d"><span class="t">Similarity ordering</span><span class="g"><i>w</i><sub>1</sub> ≤<sub><i>w</i></sub> <i>w</i><sub>2</sub> iff <i>w</i><sub>1</sub> is at least as similar to <i>w</i> as <i>w</i><sub>2</sub> is. No world is as similar to <i>w</i> as <i>w</i> itself.</span></div>
+        <div class="d"><span class="t">Closest worlds</span><span class="g">Min<sub><i>w</i></sub>(<i>p</i>): the <i>p</i>-worlds to which no <i>p</i>-world is more similar.</span></div>
+        <div class="d"><span class="t">Limit assumption</span><span class="g">Min<sub><i>w</i></sub>(<i>p</i>) ≠ ∅ whenever <i>p</i> is true at some world.</span></div>
+        <div class="d"><span class="t">Would-counterfactual</span><span class="g">⟦<i>A</i> □→ <i>C</i>⟧<sup><i>w</i></sup> = 1 iff Min<sub><i>w</i></sub>(⟦<i>A</i>⟧) ⊆ ⟦<i>C</i>⟧.</span></div>
+        <div class="d"><span class="t">Might-counterfactual</span><span class="g">⟦<i>A</i> ◇→ <i>C</i>⟧<sup><i>w</i></sup> = 1 iff Min<sub><i>w</i></sub>(⟦<i>A</i>⟧) ∩ ⟦<i>C</i>⟧ ≠ ∅.</span></div>
+      </div>
+      <p><span class="runin">Model.</span> A match. The actual world is <i>w</i><sub>0</sub>. Rank 1 is closest to <i>w</i><sub>0</sub> after <i>w</i><sub>0</sub> itself.</p>
+      <table class="rec mod">
+        <tr><th></th><th>struck</th><th>wet</th><th>lights</th><th>rank</th></tr>
+        <tr><td><i>w</i><sub>0</sub></td><td>F</td><td>F</td><td>F</td><td>0</td></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>F</td><td>T</td><td>1</td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>F</td><td>T</td><td>F</td><td>1</td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>T</td><td>T</td><td>F</td><td>2</td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>T</td><td>F</td><td>F</td><td>3</td></tr>
+        <tr><td><i>w</i><sub>5</sub></td><td>T</td><td>T</td><td>T</td><td>4</td></tr>
+      </table>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <p><i>If the match had been struck, it would have lit.</i></p>
+        <p>⟦struck⟧ = {<i>w</i><sub>1</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>, <i>w</i><sub>5</sub>}. Lowest rank among them: 1. Min<sub><i>w</i><sub>0</sub></sub>(⟦struck⟧) = {<i>w</i><sub>1</sub>}.</p>
+        <p><i>w</i><sub>1</sub> ∈ ⟦lights⟧. So {<i>w</i><sub>1</sub>} ⊆ ⟦lights⟧. True at <i>w</i><sub>0</sub>.</p>
+      </div>
+      <p><span class="runin">Exercise 1.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Evaluate (1) to (5) at <i>w</i><sub>0</sub>. Method: find the antecedent worlds, keep those of lowest rank, check the consequent there.</span></div>
+      <ol class="exs">
+        <li><span>(1)</span><span><span class="s">If the match had been struck, it would have been dry.</span></span></li>
+        <li><span>(2)</span><span><span class="s">If the match had been wet, it would not have been struck.</span></span></li>
+        <li><span>(3)</span><span><span class="s">If the match had been struck and been wet, it would have lit.</span></span></li>
+        <li><span>(4)</span><span><span class="s">If the match had been struck, it might not have lit.</span></span></li>
+        <li><span>(5)</span><span><span class="s">If the match had not been wet, it would have lit.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Goodman 1947.</b> The problem of counterfactual conditionals. <i>Journal of Philosophy</i> 44: 113–128.</p>
+      <p><b>Lewis 1973.</b> <i>Counterfactuals.</i> Blackwell.</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec flow">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Truth in fiction</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t"><i>In f</i>, φ</span><span class="g">φ is true in the fiction <i>f</i>.</span></div>
+        <div class="d"><span class="t">Told as known fact</span><span class="g"><i>T<sub>f</sub></i>: the worlds where <i>f</i> is told as a report of known fact.</span></div>
+        <div class="d"><span class="t">Analysis 0</span><span class="g">⟦<i>In f</i>, φ⟧<sup><i>w</i></sup> = 1 iff <i>T<sub>f</sub></i> ⊆ ⟦φ⟧.</span></div>
+        <div class="d"><span class="t">Analysis 1</span><span class="g">⟦<i>In f</i>, φ⟧<sup><i>w</i></sup> = 1 iff Min<sub><i>w</i></sub>(<i>T<sub>f</sub></i>) ⊆ ⟦φ⟧. Vacuously true if <i>T<sub>f</sub></i> = ∅.</span></div>
+        <div class="d"><span class="t">Reality Principle</span><span class="g">Walton’s name for the idea behind Analysis 1. The world of the story is as like the actual world as the story allows.</span></div>
+        <div class="d"><span class="t">Collective belief worlds</span><span class="g">CB<sub><i>f</i></sub>(<i>w</i>): the worlds where everything overtly believed in the community where <i>f</i> was told is true.</span></div>
+        <div class="d"><span class="t">Analysis 2</span><span class="g">⟦<i>In f</i>, φ⟧<sup><i>w</i></sup> = 1 iff Min<sub><i>w</i>′</sub>(<i>T<sub>f</sub></i>) ⊆ ⟦φ⟧ for every <i>w</i>′ ∈ CB<sub><i>f</i></sub>(<i>w</i>).</span></div>
+        <div class="d"><span class="t">Mutual Belief Principle</span><span class="g">Walton’s name for the idea behind Analysis 2. The world of the story is as like what the community where it was told believed as the story allows.</span></div>
+        <div class="d"><span class="t">Explicit, implicit truth</span><span class="g">True in <i>f</i> and stated in it; true in <i>f</i> without being stated.</span></div>
+        <div class="d"><span class="t">Incompleteness</span><span class="g">For some φ, neither <i>In f</i>, φ nor <i>In f</i>, ¬φ is true.</span></div>
+      </div>
+      <p><span class="runin">Model.</span> <i>f</i> is <i>The Lord of the Rings</i>. <i>T<sub>f</sub></i> = {<i>t</i><sub>1</sub>, <i>t</i><sub>2</sub>, <i>t</i><sub>3</sub>, <i>t</i><sub>4</sub>}. The actual world is <i>w</i><sub>0</sub> and CB<sub><i>f</i></sub>(<i>w</i><sub>0</sub>) = {<i>b</i><sub>0</sub>}. <i>h</i>: Frodo cannot breathe under water. <i>e</i>: Sam has an even number of hairs on his left foot. <i>v</i>: Frodo throws the Ring into the fire. <i>z</i>: Hobbiton lies on chalk. The last two columns rank the worlds of <i>T<sub>f</sub></i> by similarity to <i>w</i><sub>0</sub> and to <i>b</i><sub>0</sub>.</p>
+      <table class="rec mod">
+        <tr><th></th><th><i>h</i></th><th><i>e</i></th><th><i>v</i></th><th><i>z</i></th><th>rank from <i>w</i><sub>0</sub></th><th>rank from <i>b</i><sub>0</sub></th></tr>
+        <tr><td><i>t</i><sub>1</sub></td><td>T</td><td>T</td><td>F</td><td>T</td><td>1</td><td>2</td></tr>
+        <tr><td><i>t</i><sub>2</sub></td><td>T</td><td>F</td><td>F</td><td>T</td><td>1</td><td>2</td></tr>
+        <tr><td><i>t</i><sub>3</sub></td><td>T</td><td>T</td><td>F</td><td>F</td><td>2</td><td>1</td></tr>
+        <tr><td><i>t</i><sub>4</sub></td><td>F</td><td>F</td><td>F</td><td>F</td><td>3</td><td>3</td></tr>
+      </table>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <p><i>In f</i>, <i>h</i>. Analysis 0. <i>t</i><sub>4</sub> ∈ <i>T<sub>f</sub></i> and <i>t</i><sub>4</sub> ∉ ⟦<i>h</i>⟧. So <i>T<sub>f</sub></i> ⊄ ⟦<i>h</i>⟧. False.</p>
+        <p>Analysis 1. Min<sub><i>w</i><sub>0</sub></sub>(<i>T<sub>f</sub></i>) = {<i>t</i><sub>1</sub>, <i>t</i><sub>2</sub>} ⊆ ⟦<i>h</i>⟧. True.</p>
+      </div>
+      <p><span class="runin">Exercise 2.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Evaluate (6) to (9) under Analysis 0 and under Analysis 1.</span></div>
+      <ol class="exs">
+        <li><span>(6)</span><span><i>In f</i>, ¬<i>v</i>.</span></li>
+        <li><span>(7)</span><span><i>In f</i>, <i>e</i>.</span></li>
+        <li><span>(8)</span><span><i>In f</i>, ¬<i>e</i>.</span></li>
+        <li><span>(9)</span><span><i>In f</i>, <i>e</i> ∨ ¬<i>e</i>.</span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Which of (6) to (9) show that <i>In f</i> does not distribute over <i>or</i>? Which show that <i>The Lord of the Rings</i> is incomplete?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Evaluate (10) to (12) under Analysis 1 and under Analysis 2.</span></div>
+      <ol class="exs">
+        <li><span>(10)</span><span><i>In f</i>, <i>z</i>.</span></li>
+        <li><span>(11)</span><span><i>In f</i>, <i>h</i>.</span></li>
+        <li><span>(12)</span><span><i>In f</i>, <i>e</i>.</span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Suppose no world tells <i>f</i> as known fact. What does Analysis 1 say about (6) and about <i>In f</i>, <i>v</i>?</span></div>
+        <div class="lines"><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Lewis 1978.</b> Truth in fiction. <i>American Philosophical Quarterly</i> 15: 37–46.</p>
+      <p><b>Lewis 1983.</b> Postscripts to “Truth in fiction”. In <i>Philosophical Papers</i> I. Oxford University Press. 276–280.</p>
+      <p><b>Tolkien 1954–55.</b> <i>The Lord of the Rings.</i> Allen &amp; Unwin.</p>
+      <p><b>Walton 1990.</b> <i>Mimesis as Make-Believe.</i> Harvard University Press. 144–150.</p>
+      <p><b>Badura &amp; Berto 2019.</b> Truth in fiction, impossible worlds, and belief revision. <i>Australasian Journal of Philosophy</i> 97: 178–193.</p>
+    </div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec flow">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>Narrators</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Narrator</span><span class="g">The teller of a story, inside the fiction.</span></div>
+        <div class="d"><span class="t">Unreliable narrator</span><span class="g">A narrator whose statements are not all true in the story.</span></div>
+        <div class="d"><span class="t">Authorial authority</span><span class="g">The principle that what the text of a fiction states is true in the fiction. Unreliable narrators are counterexamples.</span></div>
+        <div class="d"><span class="t">Free indirect discourse</span><span class="g">A character’s thought given without a verb of thinking, in the narrator’s tense and person.</span></div>
+        <div class="d"><span class="t">Context of utterance</span><span class="g">The narrator’s context. It fixes tense and pronouns.</span></div>
+        <div class="d"><span class="t">Context of thought</span><span class="g">The character’s context. In free indirect discourse it fixes <i>now</i>, <i>today</i>, <i>tomorrow</i> and exclamations.</span></div>
+      </div>
+      <p><span class="runin">Data.</span> The first edition of <i>The Hobbit</i> (1937) tells that Gollum promised Bilbo a present if he lost the riddle game, and that the present was a ring. The Prologue to <i>The Lord of the Rings</i> (1954) says that this was the account Bilbo gave his friends and wrote in his diary, a lie, and that in fact Bilbo found the Ring and Gollum never offered it to him.</p>
+      <p><span class="runin">Exercise 3.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Which of (13) to (15) are true?</span></div>
+      <ol class="exs">
+        <li><span>(13)</span><span><span class="s">In <i>The Lord of the Rings</i>, Gollum promised Bilbo the Ring as a present.</span></span></li>
+        <li><span>(14)</span><span><span class="s">In <i>The Lord of the Rings</i>, Bilbo said that Gollum had promised him the Ring as a present.</span></span></li>
+        <li><span>(15)</span><span><span class="s">In <i>The Lord of the Rings</i>, Bilbo found the Ring.</span></span></li>
+      </ol>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(b)</span><span>In (16), which expressions are fixed by the narrator’s context, and which by the character’s?</span></div>
+      <ol class="exs">
+        <li><span>(16)</span><span><span class="s">Tomorrow was Monday, Monday, the beginning of another school week!</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Rewrite (17) as indirect discourse and as free indirect discourse.</span></div>
+      <ol class="exs">
+        <li><span>(17)</span><span><span class="s">Frodo thought, “Tomorrow I leave the Shire.”</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Tolkien 1954.</b> <i>The Fellowship of the Ring.</i> Allen &amp; Unwin. Prologue.</p>
+      <p><b>Maier &amp; Semeijn 2021.</b> Extracting fictional truth from unreliable sources. In E. Maier &amp; A. Stokke (eds.), <i>The Language of Fiction.</i> Oxford University Press. 186–220.</p>
+      <p><b>Schlenker 2004.</b> Context of thought and context of utterance. <i>Mind &amp; Language</i> 19: 279–304.</p>
+      <p><b>Lawrence 1920.</b> <i>Women in Love.</i> As cited in Banfield 1982 and Schlenker 2004: (16).</p>
+    </div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec flow">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Fictional names</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Fictional use</span><span class="g">A name used in telling a story. Pretence; it refers to nothing.</span></div>
+        <div class="d"><span class="t">Metafictional use</span><span class="g">A name used for a character as a cultural artefact. <i>Holmes was created by Conan Doyle.</i></span></div>
+        <div class="d"><span class="t">Parafictional use</span><span class="g">A name used to report what holds in a story, with <i>in the story</i> said or left silent.</span></div>
+        <div class="d"><span class="t">Mixed discourse</span><span class="g">Talk that moves between parafictional and metafictional uses of the same name, as in (28).</span></div>
+        <div class="d"><span class="t">Negative existential</span><span class="g">A sentence of the form <i>N does not exist</i>.</span></div>
+        <div class="d"><span class="t">Possibilism</span><span class="g">Fictional characters are merely possible objects. Holmes exists at the worlds where the stories are told as known fact.</span></div>
+        <div class="d"><span class="t">Meinongianism</span><span class="g">Fictional characters are objects that do not exist.</span></div>
+        <div class="d"><span class="t">Creationism</span><span class="g">Fictional characters are abstract artefacts, created by their authors.</span></div>
+        <div class="d"><span class="t">Pretence theory</span><span class="g">There are no fictional characters. Talk of them is make-believe, or reports what is true in make-believe.</span></div>
+      </div>
+      <p><span class="runin">Exercise 4.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Classify each use of a name in (18) to (24) as fictional, metafictional or parafictional.</span></div>
+      <ol class="exs">
+        <li><span>(18)</span><span><span class="ctx">[Tolkien, writing the novel]</span> <span class="s">Frodo set out from Bag End.</span></span></li>
+        <li><span>(19)</span><span><span class="ctx">[a reader, explaining the stories]</span> <span class="s">Holmes lived in Baker Street.</span></span></li>
+        <li><span>(20)</span><span><span class="s">Holmes is a fictional character.</span></span></li>
+        <li><span>(21)</span><span><span class="s">Holmes was killed off by Conan Doyle, but later resurrected.</span></span></li>
+        <li><span>(22)</span><span><span class="ctx">[a fan, describing the books]</span> <span class="s">Gandalf comes back as Gandalf the White.</span></span></li>
+        <li><span>(23)</span><span><span class="s">Frodo was played by Elijah Wood.</span></span></li>
+        <li><span>(24)</span><span><span class="s">In <i>The Lord of the Rings</i>, Frodo leaves the Shire.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(b)</span><span>Fill in the table. T: literally true. F: literally false. R: true only when read as parafictional or as pretence.</span></div>
+      <table class="rec mod th3">
+        <tr><th></th><th>Meinongianism</th><th>Creationism</th><th>Pretence theory</th></tr>
+        <tr><td>(25) <i>Holmes is a detective.</i></td><td></td><td></td><td></td></tr>
+        <tr><td>(26) <i>Holmes does not exist.</i></td><td></td><td></td><td></td></tr>
+        <tr><td>(27) <i>Holmes was created by Conan Doyle.</i></td><td></td><td></td><td></td></tr>
+      </table>
+        <div class="task" style="margin-top:8pt"><span>(c)</span><span>Why is (28) a problem for the view that a fictional name is ambiguous, naming a person in the story and an artefact outside it?</span></div>
+      <ol class="exs">
+        <li><span>(28)</span><span><span class="s">Sherlock Holmes is a fictional character created by Conan Doyle. In Conan Doyle’s stories, he is a private detective.</span></span></li>
+      </ol>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task" style="margin-top:8pt"><span>(d)</span><span>Assume, with Kripke, that no possible world contains Holmes. What truth values does Lewis’s semantics give (29) and (30)?</span></div>
+      <ol class="exs">
+        <li><span>(29)</span><span><span class="s">If Holmes had existed, he would have lived nearer to Paddington than to Waterloo.</span></span></li>
+        <li><span>(30)</span><span><span class="s">If Holmes had existed, he would have lived nearer to Waterloo than to Paddington.</span></span></li>
+      </ol>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(e)</span><span>Is the result of (d) the right one? Say what a better account would need.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Recanati 2018.</b> Fictional, metafictional, parafictional. <i>Proceedings of the Aristotelian Society</i> 118: 25–54.</p>
+      <p><b>Semeijn &amp; Zalta 2021.</b> Revisiting the ‘wrong kind of object’ problem. <i>Organon F</i> 28: 168–197. (28), adapted from Recanati 2018.</p>
+      <p><b>Maier 2017.</b> Fictional names in psychologistic semantics. <i>Theoretical Linguistics</i> 43: 1–45.</p>
+      <p><b>Lewis 1978.</b> Truth in fiction. <i>American Philosophical Quarterly</i> 15: 37–46.</p>
+      <p><b>Parsons 1980.</b> <i>Nonexistent Objects.</i> Yale University Press.</p>
+      <p><b>van Inwagen 1977.</b> Creatures of fiction. <i>American Philosophical Quarterly</i> 14: 299–308.</p>
+      <p><b>Thomasson 1999.</b> <i>Fiction and Metaphysics.</i> Cambridge University Press.</p>
+      <p><b>Walton 1990.</b> <i>Mimesis as Make-Believe.</i> Harvard University Press.</p>
+      <p><b>Kripke 1980.</b> <i>Naming and Necessity.</i> Harvard University Press. Addenda.</p>
+      <p><b>Bassford 2023.</b> Ambifictional counterfactuals. <i>Philosophies</i> 8: 108.</p>
+    </div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec flow">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Fake past</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Topic time</span><span class="g">The time a sentence is about.</span></div>
+        <div class="d"><span class="t">Fake past</span><span class="g">Past morphology that does not place the eventuality before the time of utterance.</span></div>
+        <div class="d"><span class="t">Exclusion feature</span><span class="g">T(<i>x</i>) excludes C(<i>x</i>). T(<i>x</i>): the <i>x</i> we are talking about. C(<i>x</i>): the <i>x</i> that for all we know is the speaker’s. <i>x</i> ranges over times or worlds.</span></div>
+        <div class="d"><span class="t">Epic preterite</span><span class="g">The past tense of narrative fiction. It combines with present and future adverbs.</span></div>
+        <div class="d"><span class="t">Konjunktiv II</span><span class="g">The German past subjunctive: <i>hätte</i>, <i>wäre</i>.</span></div>
+      </div>
+      <ol class="exs brk">
+        <li><span>(31)</span><span><span class="s">If Mia had a dog, she would be happy.</span><span class="gl">English</span></span></li>
+        <li><span>(32)</span><span><span class="s">Morgen war Weihnachten.</span><span class="gl">German · tomorrow be.<span class="sc2">pst</span>.<span class="sc2">3sg</span> Christmas · ‘Tomorrow was Christmas.’</span></span></li>
+        <li><span>(33)</span><span><span class="s">Wenn Mia einen Hund hätte, wäre sie glücklich.</span><span class="gl">German · if Mia a dog have.<span class="sc2">sbjv</span>.<span class="sc2">pst</span>, be.<span class="sc2">sbjv</span>.<span class="sc2">pst</span> she happy · ‘If Mia had a dog, she would be happy.’</span></span></li>
+        <li><span>(34)</span><span><span class="s">Io ero il papà che stava a sega’ per finta.</span><span class="gl">Italian, Rome · <i>ero</i> be.<span class="sc2">ipfv</span>.<span class="sc2">1sg</span>, <i>stava</i> be.<span class="sc2">ipfv</span>.<span class="sc2">3sg</span> · ‘I’m the daddy who’s sawing, pretend.’</span></span></li>
+        <li><span>(35)</span><span><span class="s">Moi j’étais le papa, et toi tu étais la maman.</span><span class="gl">French · <i>étais</i> be.<span class="sc2">ipfv</span>.<span class="sc2">1sg</span>/<span class="sc2">2sg</span> · ‘I’m the daddy, and you’re the mummy.’</span></span></li>
+        <li><span>(36)</span><span><span class="s">Tää olis prinsessa ja tässä olis sen linna.</span><span class="gl">Finnish · <i>olis</i> be.<span class="sc2">cond</span>.<span class="sc2">3sg</span> · ‘This is a princess, and here is her castle.’</span></span></li>
+      </ol>
+      <p><span class="runin">Exercise 5.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>In which of (31), (32), (34) and (35) does the past morphology place the eventuality before the time of utterance?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(b)</span><span>Apply the exclusion feature to (31). What does <i>x</i> range over, and what is excluded?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(c)</span><span>Replace <i>war</i> in (32) with Konjunktiv II <i>wäre</i>. Does the sentence still tell what happens in the story?</span></div>
+        <div class="lines"><span></span><span></span></div>
+        <div class="task"><span>(d)</span><span>Which of (34) to (36) mark the pretend frame with a past tense, and which with a mood?</span></div>
+        <div class="lines"><span></span></div>
+        <div class="task"><span>(e)</span><span>Does the exclusion feature cover the pretend-play imperfect? If so, say what is excluded.</span></div>
+        <div class="lines"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Iatridou 2000.</b> The grammatical ingredients of counterfactuality. <i>Linguistic Inquiry</i> 31: 231–270.</p>
+      <p><b>Hamburger 1957.</b> <i>Die Logik der Dichtung.</i> Klett.</p>
+      <p><b>Bücking 2022.</b> Narration without narrating. <i>Zeitschrift für Literaturwissenschaft und Linguistik</i> 52: 35–64.</p>
+      <p><b>Musatti &amp; Orsolini 1993.</b> Uses of past forms in the social pretend play of Italian children. <i>Journal of Child Language</i> 20: 619–639.</p>
+      <p><b>Patard 2010.</b> L’emploi préludique de l’imparfait entre temporalité et modalité. <i>Journal of French Language Studies</i> 20: 189–211.</p>
+      <p><b>Kauppinen 1996.</b> The Italian indicativo imperfetto compared to the Finnish conditional verb form. <i>Journal of Pragmatics</i> 26: 109–136.</p>
+    </div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec wyntk">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>Counterfactual conditionals; similarity orderings; the limit assumption.</li>
+          <li>Truth in fiction; Lewis’s Analyses 0, 1 and 2; the Reality and Mutual Belief Principles.</li>
+          <li>Incompleteness, impossible fictions and unreliable narrators.</li>
+          <li>Fictional, metafictional and parafictional statements; mixed discourse.</li>
+          <li>Possibilism, Meinongianism, creationism and pretence theory; the wrong kind of object.</li>
+          <li>Fiction as pretence and make-believe; the paradox of fiction; modal fictionalism.</li>
+          <li>Fake past; the exclusion feature; free indirect discourse; the epic preterite.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Evaluate counterfactuals in a model with a similarity ordering.</li>
+          <li>Decide what is true in a fiction under Analyses 0, 1 and 2.</li>
+          <li>Separate what a narrator says from what is true in a story.</li>
+          <li>Classify statements as fictional, metafictional or parafictional.</li>
+          <li>Decide which theory of fictional characters makes a sentence true.</li>
+          <li>Split free indirect discourse into the narrator’s and the character’s contributions.</li>
+          <li>Apply the exclusion feature to counterfactual, narrative and pretend-play pasts.</li>
+        </ol>
+      </div>
+      </div>
+      <p><span class="runin">Notation.</span> This sheet and the slides use one notation. The readings use others.</p>
+      <table class="rec">
+        <tr><th>On this sheet</th><th>In the readings</th></tr>
+        <tr><td><i>A</i> □→ <i>C</i></td><td><i>A</i> &gt; <i>C</i> Stalnaker · □<sub><i>A</i></sub><i>C</i> · subjunctive conditional</td></tr>
+        <tr><td>Min<sub><i>w</i></sub>(<i>p</i>)</td><td><i>f</i>(<i>p</i>, <i>w</i>) Stalnaker, a single world · Best<sub><i>g</i>(<i>w</i>)</sub>(<i>f</i>(<i>w</i>) ∩ <i>p</i>) Kratzer · nearest, most similar <i>p</i>-worlds</td></tr>
+        <tr><td>≤<sub><i>w</i></sub></td><td>≼<sub><i>w</i></sub> · $<sub><i>w</i></sub> Lewis’s systems of spheres · comparative similarity, closeness</td></tr>
+        <tr><td><i>In f</i>, φ</td><td>according to <i>f</i> · it is fictional that φ Walton · story operator, fiction operator</td></tr>
+        <tr><td>Analyses 1 and 2</td><td>Reality Principle, Mutual Belief Principle Walton · principle of minimal departure</td></tr>
+        <tr><td><i>T<sub>f</sub></i></td><td>story worlds, fictional worlds, the worlds of <i>f</i></td></tr>
+      </table>
+    </div>
+    <div class="note"></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 9 &mdash; Conditionals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/tokens.css" />
+<link rel="stylesheet" href="../../shared/dir-a.css" />
+<link rel="stylesheet" href="../../shared/dir-b.css" />
+<link rel="stylesheet" href="../../shared/dir-c.css" />
+<link rel="stylesheet" href="../../shared/lens.css" />
+<link rel="stylesheet" href="../../shared/deck-slides.css" />
+<link rel="stylesheet" href="../../shared/theme-teal.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<script>
+window.MathJax = { tex: { inlineMath:[["\\(","\\)"]], displayMath:[["\\[","\\]"]], macros:{ sem:["{\\mathopen{⟦}#1\\mathclose{⟧}}",1], cf:"{\\mathrel{\\Box\\!\\!\\rightarrow}}", mcf:"{\\mathrel{\\Diamond\\!\\!\\rightarrow}}", Min:"{\\mathrm{Min}}", Best:"{\\mathrm{Best}}" } }, svg:{fontCache:"global"}, startup:{typeset:true} };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+<style>
+  html,body{margin:0;padding:0;background:#11151a;}
+  deck-stage:not(:defined){visibility:hidden}
+  .lxd2 .l, .lxd2 .r { padding-bottom: 112px; }
+  a{color:var(--tcd-blue);text-decoration:none;} a:hover{color:var(--tcd-ink);text-decoration:underline;}
+
+  /* entrance stagger — gated on active slide + motion, visible end-state is the base */
+  @keyframes riseIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: no-preference){
+    .slide[data-deck-active] .anim{ animation:riseIn .55s both; animation-delay:var(--d,0s); }
+  }
+  .slide .a-watermark{ bottom:30px; }
+
+  /* roadmap agenda bullets */
+  .lxr3 .rmb{ list-style:none; margin:16px 0 0; padding:0; }
+  .lxr3 .rmb li{ position:relative; padding:5px 0 5px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.3; }
+  .lxr3 .rmb li::before{ content:""; position:absolute; left:0; top:12px; width:7px; height:7px; border-radius:2px; background:var(--lens); }
+
+  /* three-column fields */
+  .cols3{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:34px; margin-top:12px; }
+  .cols3 .ch{ font-family:var(--sans); font-size:21px; font-weight:700; color:var(--tcd-ink); padding-bottom:10px; border-bottom:2px solid color-mix(in srgb, var(--tcd-blue) 30%, #fff); margin-bottom:14px; }
+  .cols3 ul{ list-style:none; margin:0; padding:0; }
+  .cols3 li{ position:relative; padding:7px 0 7px 18px; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); line-height:1.32; }
+  .cols3 li::before{ content:""; position:absolute; left:0; top:14px; width:7px; height:7px; border-radius:2px; background:var(--tcd-blue); }
+  .cols3 .cfoot{ margin-top:12px; font-family:var(--mono); font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .cols3 .cfoot b{ color:var(--tcd-blue); font-weight:600; }
+
+  /* ============ compact, lecture-aware sidebar (expandable TOC) ============ */
+  .mrail{ width:262px; flex:0 0 262px; background:var(--tcd-blue-10); border-right:1px solid var(--tcd-blue-25);
+    padding:48px 28px 36px; display:flex; flex-direction:column; }
+  .mrail .mhd{ display:flex; align-items:center; gap:13px; }
+  .mrail .mhd img{ width:37px; height:43px; object-fit:contain; display:block; }
+  .mrail .mhd .tt{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.11em;
+    text-transform:uppercase; color:var(--tcd-blue); line-height:1.4; }
+  .mrail .toc{ margin-top:22px; display:flex; flex-direction:column; }
+  .mrail .grp + .grp{ margin-top:2px; }
+  .mrail .ghd{ display:flex; align-items:center; gap:9px; padding:9px 0; text-decoration:none;
+    font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--tcd-grey-100); line-height:1.3; }
+  .mrail .ghd .gcar{ flex:0 0 11px; width:11px; font-size:10px; color:var(--tcd-grey-50); text-align:center; }
+  .mrail .ghd .gt{ font-family:var(--sans); font-size:11px; font-weight:700; font-style:normal; letter-spacing:.11em; text-transform:uppercase; color:inherit; margin:0; line-height:1.3; }
+  .mrail .ghd:hover{ color:var(--gc); }
+  .mrail .grp.active .ghd{ color:var(--gc); }
+  .mrail .grp.active .ghd .gcar{ color:var(--gc); }
+  .mrail .grp.done .ghd{ color:var(--tcd-grey-75); }
+  .mrail .gitems{ display:flex; flex-direction:column; margin:1px 0 6px 5px; padding:2px 0 2px 18px;
+    border-left:2px solid color-mix(in srgb, var(--gc) 34%, var(--tcd-blue-25)); }
+  .mrail a.si2{ display:block; padding:5px 0; text-decoration:none; font-family:var(--sans);
+    font-size:14px; color:var(--tcd-grey-75); line-height:1.25; }
+  .mrail a.si2:hover{ color:var(--gc); }
+  .mrail a.si2.cur{ color:var(--gc); font-weight:700; }
+  .mrail a.si2.done{ color:var(--tcd-grey-100); }
+  .mrail .mft{ margin-top:auto; padding-top:18px; }
+  .mrail .mft .wk{ font-family:var(--sans); font-size:13px; font-weight:600; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); }
+  .mrail .mft .t2{ font-family:var(--serif); font-size:24px; font-weight:600; color:var(--tcd-ink); line-height:1.08; margin-top:6px; }
+
+  /* ============ editorial content (Direction B) + emphasis ============ */
+  .dB .lead{ font-family:var(--serif); font-size:36px; line-height:1.28; color:var(--tcd-ink); }
+  .dB .accrule{ width:118px; height:5px; border-radius:3px; background:var(--lens, var(--tcd-blue)); margin:24px 0 4px; }
+  .dB .erow{ display:grid; grid-template-columns:236px 1fr; gap:34px; padding:22px 0; border-top:1px solid var(--tcd-grey-25); }
+  .dB .erow .lb{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.11em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding-top:5px; line-height:1.3; }
+  .dB .erow .tx{ font-size:29px; line-height:1.36; color:var(--tcd-black); }
+  .dB .erow .tx.tight{ font-size:27px; }
+  .dB strong{ color:var(--tcd-ink); font-weight:700; }
+  .dB em{ font-style:italic; }
+  .mk{ background:linear-gradient(transparent 56%, #ffdf8f 56%); padding:0 .06em; font-weight:600; color:var(--tcd-ink); }
+
+  /* ============ question / answer slide furniture ============ */
+  .qwrap{ flex:1 1 0; display:flex; flex-direction:column; justify-content:center; }
+  .qask{ display:flex; align-items:center; gap:14px; font-family:var(--sans); font-size:20px; font-weight:700;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--lens); margin-bottom:34px; }
+  .qask .ik{ width:26px; height:26px; flex:0 0 26px; } .qask .ik svg{ width:100%; height:100%; }
+  .bigq{ font-family:var(--serif); font-style:italic; color:var(--tcd-ink); line-height:1.16; letter-spacing:-.01em; }
+  .bigq .src{ display:block; font-style:normal; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75);
+    margin-top:30px; letter-spacing:.01em; }
+  .qref{ background:color-mix(in srgb, var(--lens) 7%, #fff); border:1px solid color-mix(in srgb, var(--lens) 22%, #fff);
+    border-radius:11px; padding:19px 28px; font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink);
+    line-height:1.28; margin:2px 0 6px; }
+  .qref .src{ display:block; font-style:normal; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-75); margin-top:8px; }
+
+  .brn{ margin:14px 0 4px; }
+  .brn .split{ display:flex; gap:24px; margin-bottom:8px; }
+  .brn .split span{ flex:1 1 0; font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .brn .arms{ display:flex; gap:24px; }
+  .brn .arm{ flex:1 1 0; background:#fff; border:1px solid var(--tcd-grey-25); border-radius:11px; padding:18px 22px; }
+  .brn .arm .h{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-grey-75); margin-bottom:9px; }
+  .brn .arm .t{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.24; }
+  .brn .arm.meant{ border-color:color-mix(in srgb, var(--lens) 45%, #fff); background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .brn .arm.meant .h{ color:var(--lens); }
+
+  /* ============ numbered example panel ============ */
+  .egpanel{ background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 6%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 24%, #fff);
+    border-radius:11px; padding:4px 30px 10px; margin-top:18px; }
+  .eghead{ font-family:var(--sans); font-size:14px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); padding:15px 0 3px; }
+  .eg{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:13px 0; align-items:baseline; }
+  .eg + .eg{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 16%, #fff); }
+  .eg .no{ font-family:var(--mono); font-size:19px; color:var(--tcd-grey-75); font-variant-numeric:tabular-nums; }
+  .eg .ex{ font-family:var(--serif); font-style:italic; font-size:29px; color:var(--tcd-ink); line-height:1.28; }
+  .eg .ex .gl{ display:block; font-style:normal; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:5px; line-height:1.3; }
+  .egpanel .fx{ padding:8px 0 4px; font-size:26px; text-align:center; }
+  .egpanel .fx mjx-container{ margin:8px 0 !important; }
+  .egpanel .fxnote{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-75); text-align:center; padding:0 0 13px; }
+
+  /* ============ conversations (paired sentences, Q/A dialogues) ============ */
+  .convo{ margin:6px 0; }
+  .convo .cv{ display:grid; grid-template-columns:190px 1fr; gap:0 26px; padding:11px 0; align-items:baseline; }
+  .convo .cv + .cv{ border-top:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 12%, #fff); }
+  .convo .who{ font-family:var(--mono); font-size:16px; letter-spacing:.08em; text-transform:uppercase; color:var(--tcd-grey-75); }
+  .convo .say{ font-family:var(--serif); font-style:italic; font-size:33px; color:var(--tcd-ink); line-height:1.25; }
+  .convo.big .say{ font-size:42px; }
+  .convo.big .cv{ padding:14px 0; }
+
+  /* week-tag chip on answer slides */
+  .wktag{ display:inline-block; font-family:var(--mono); font-size:15px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens, var(--tcd-blue)); background:color-mix(in srgb, var(--lens, var(--tcd-blue)) 8%, #fff);
+    border:1px solid color-mix(in srgb, var(--lens, var(--tcd-blue)) 26%, #fff); border-radius:999px;
+    padding:5px 16px; margin-left:20px; vertical-align:middle; transform:translateY(-6px); }
+
+  /* ============ figure portraits & name plates ============ */
+  .figrow{ display:flex; gap:48px; align-items:flex-start; margin-top:8px; }
+  .portrait{ width:320px; flex:0 0 320px; background:#fff; border:1px solid var(--tcd-grey-25);
+    border-radius:12px; padding:12px 12px 4px; box-shadow:0 12px 34px rgba(7,40,74,.16); }
+  .portrait img{ width:100%; height:360px; object-fit:cover; border-radius:7px; display:block; background:var(--tcd-blue-10); }
+  .portrait .pc{ padding:13px 6px 11px; }
+  .portrait .pc .nm{ font-family:var(--serif); font-size:29px; font-weight:600; color:var(--tcd-ink); line-height:1.02; }
+  .portrait .pc .dt{ font-family:var(--mono); font-size:13px; letter-spacing:.02em; color:var(--tcd-grey-75); margin-top:7px; }
+  .portrait .pc .rl{ font-family:var(--sans); font-size:15.5px; color:var(--tcd-grey-100); margin-top:8px; line-height:1.3; }
+  .figbody{ flex:1 1 0; min-width:0; }
+  .figbody .erow:first-child{ border-top:none; padding-top:2px; }
+  .figtwo{ display:flex; gap:34px; margin:2px 0 20px; }
+  .figtwo .portrait{ width:266px; flex:0 0 266px; }
+  .figtwo .portrait img{ height:276px; }
+  .figtwo .figbody{ align-self:center; }
+  .figthree{ display:flex; gap:30px; margin:6px 0 22px; }
+  .figthree .portrait{ flex:1 1 0; width:auto; }
+  .figthree .portrait img{ height:300px; }
+  .npf .npmono{ width:100%; height:276px; border-radius:7px; background:var(--tcd-ink); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:64px; font-weight:600; letter-spacing:.02em; }
+  .figthree .npf .npmono{ height:300px; }
+
+  /* ============ lineage / genealogy strip ============ */
+  .lineage{ position:relative; display:flex; margin-top:36px; }
+  .lineage::before{ content:""; position:absolute; left:26px; right:26px; top:9px; height:3px;
+    background:color-mix(in srgb, var(--lens) 32%, white); }
+  .lineage .ln{ flex:1 1 0; padding:0 22px 0 0; }
+  .lineage .ln .dot{ position:relative; z-index:1; width:20px; height:20px; border-radius:50%;
+    background:var(--lens); box-shadow:0 0 0 6px color-mix(in srgb, var(--lens) 13%, white); }
+  .lineage .ln .era{ font-family:var(--mono); font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--lens); margin-top:22px; }
+  .lineage .ln .nm{ font-family:var(--serif); font-size:27px; font-weight:600; color:var(--tcd-ink); margin-top:9px; line-height:1.08; }
+  .lineage .ln .ds{ font-family:var(--sans); font-size:16px; color:var(--tcd-grey-100); margin-top:9px; line-height:1.32; }
+  .roots{ margin-top:38px; font-family:var(--serif); font-style:italic; font-size:var(--type-small); color:var(--tcd-grey-100); }
+  .roots b{ font-style:normal; font-weight:600; color:var(--tcd-ink); }
+
+  /* shared test-case rows */
+  .fourways{ margin-top:8px; }
+  .fourways .fw{ display:grid; grid-template-columns:280px 1fr; gap:0 28px; padding:16px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .fourways .fw:first-child{ border-top:none; }
+  .fourways .fw .fl{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--fc); }
+  .fourways .fw .fl small{ display:block; font-family:var(--mono); font-weight:400; font-size:13px; letter-spacing:.04em; color:var(--tcd-grey-75); margin-top:3px; text-transform:none; }
+  .fourways .fw .ft2{ font-family:var(--sans); font-size:23px; color:var(--tcd-black); line-height:1.35; }
+  .fourways .fw .ft2 em{ font-style:italic; } .fourways .fw .ft2 b{ color:var(--tcd-ink); }
+
+  /* ============ housekeeping / week grids / recap ============ */
+  .facts{ display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:6px; }
+  .fact{ border:1px solid var(--tcd-grey-25); border-radius:10px; background:#fff; padding:24px 28px; }
+  .fact .fh{ font-family:var(--sans); font-size:var(--type-micro); font-weight:700; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--tcd-blue); margin-bottom:12px; }
+  .fact .fb{ font-family:var(--serif); font-size:30px; color:var(--tcd-ink); line-height:1.22; }
+  .fact .fb small{ display:block; font-family:var(--sans); font-size:18px; color:var(--tcd-grey-100); margin-top:6px; }
+  .hnote{ margin-top:24px; font-family:var(--sans); font-size:22px; color:var(--tcd-grey-100); line-height:1.4; border-top:2px solid var(--tcd-blue-25); padding-top:20px; }
+  .hnote b{ color:var(--tcd-ink); }
+
+  .weeks{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 44px; margin-top:8px; }
+  .weeks .wch{ font-family:var(--sans); font-size:17px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--tcd-blue); padding-bottom:8px; border-bottom:2px solid var(--tcd-blue-25); }
+  .weeks .wkr{ display:flex; gap:14px; align-items:baseline; padding:10px 0; border-bottom:1px solid var(--tcd-grey-10); font-size:23px; }
+  .weeks .wkr .n{ font-family:var(--mono); font-size:16px; color:var(--tcd-blue); flex:0 0 30px; }
+  .weeks .wkr .t{ font-family:var(--serif); color:var(--tcd-ink); line-height:1.15; }
+  .weeks .wkr.now .t{ font-weight:600; } .weeks .wkr.now .n{ font-weight:600; }
+  .weeks .wkr.rw .t{ font-style:italic; color:var(--tcd-grey-75); }
+
+  .recap{ display:flex; flex-direction:column; margin-top:6px; }
+  .recap .rr{ display:grid; grid-template-columns:206px 1fr; gap:0 30px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--tcd-grey-25); }
+  .recap .rr:first-child{ border-top:none; }
+  .recap .rr .rl{ display:flex; align-items:center; gap:13px; font-family:var(--sans); font-size:16px;
+    font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--rc); }
+  .recap .rr .rl::before{ content:""; width:28px; height:4px; border-radius:2px; background:var(--rc); flex:0 0 28px; }
+  .recap .rr .rt{ font-family:var(--serif); font-size:26px; color:var(--tcd-ink); line-height:1.28; }
+
+  /* hatched to-confirm box (print twin of the scaffold todo-box) */
+  .todo-line{ margin-top:18px; border:1.5px dashed var(--tcd-blue-50); border-radius:9px; background:var(--tcd-blue-10);
+    padding:13px 20px; font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); }
+  .todo-line b{ color:var(--tcd-blue); }
+
+  /* question-slide footnote line (as weeks-pragmatics/week-01) */
+  .qsrc{ display:block; font-family:var(--sans); font-size:21px; color:var(--tcd-grey-75); margin-top:22px; letter-spacing:.01em; }
+  .qsrc em{ font-style:italic; }
+
+  /* Kripke-model figure (week 2): worlds as nodes, R as arrows */
+  .kfig{ width:100%; height:auto; display:block; margin:8px 0 0; }
+  .kfig .nd{ fill:#fff; stroke:var(--lens, var(--tcd-blue)); stroke-width:3; }
+  .kfig .ar{ stroke:var(--tcd-ink); stroke-width:3; fill:none; }
+  .kfig .wl{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .kfig .vl{ font-family:var(--sans); font-size:23px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .fourways .fw .fl .fm{ display:block; font-family:var(--serif); font-weight:400; font-size:21px; letter-spacing:0; text-transform:none; color:var(--tcd-grey-100); margin-top:4px; }
+
+  /* world diagrams (week 2): logical space, propositions as regions, accessibility */
+  .wfig{ width:100%; height:auto; display:block; margin:4px 0 6px; }
+  .wfig .sp{ fill:#fff; stroke:var(--tcd-grey-50); stroke-width:2; }
+  .wfig .pr{ fill:color-mix(in srgb, var(--lens) 13%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .qr{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .acc{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:10 7; }
+  .wfig .ar{ stroke:var(--tcd-ink); stroke-width:2.5; fill:none; }
+  .wfig .wd{ fill:#fff; stroke:var(--tcd-ink); stroke-width:2.5; }
+  .wfig .wd.dim{ stroke:var(--tcd-grey-50); }
+  .wfig .w0{ fill:var(--tcd-ink); }
+  .wfig .wl{ font-family:var(--serif); font-style:italic; font-size:29px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .wl.inv{ fill:#fff; } .wfig .wl.dim{ fill:var(--tcd-grey-75); }
+  .wfig .ws{ font-family:var(--sans); font-size:20px; fill:var(--tcd-grey-100); text-anchor:middle; }
+  .wfig .lp{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--lens); }
+  .wfig .lps{ font-family:var(--serif); font-size:24px; fill:var(--lens); }
+  .wfig .lq{ font-family:var(--sans); font-size:23px; font-weight:700; fill:var(--tcd-ink); }
+  .wfig .lqs{ font-family:var(--serif); font-size:24px; fill:var(--tcd-ink); }
+  .wfig .la{ font-family:var(--sans); font-size:21px; font-weight:600; fill:var(--tcd-ink); }
+  .wfig .lw{ font-family:var(--mono); font-size:16px; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .sd{ fill:color-mix(in srgb, var(--lens) 8%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .sdt{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .rl{ stroke:var(--tcd-grey-25); stroke-width:1.5; }
+  .wfig .rs{ font-family:var(--serif); font-style:italic; font-size:32px; fill:var(--tcd-ink); }
+  .wfig .tv{ font-family:var(--mono); font-size:28px; font-weight:600; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .tv.off{ fill:var(--tcd-grey-50); }
+  .wfig .rn{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; fill:var(--tcd-grey-75); }
+  .wfig .rn.on{ fill:var(--lens); }
+
+  /* ============ week 2 type pass: New Computer Modern + larger small text ============
+     Same patterns as week 1. Computer Modern runs small on the body, so running
+     text goes up a step, and nothing on a slide is set below 15px. */
+  .dB .erow .tx{ font-size:31px; line-height:1.34; } .dB .erow .tx.tight{ font-size:29px; }
+  .dB .erow .lb{ font-size:17px; }
+  .dB .lead{ font-size:38px; }
+  .eg .ex{ font-size:31px; } .eg .ex .gl{ font-size:22px; line-height:1.32; } .eg .no{ font-size:21px; }
+  .eghead{ font-size:16px; } .egpanel .fxnote{ font-size:20px; }
+  .fourways .fw{ grid-template-columns:300px 1fr; }
+  .fourways .fw .fl{ font-size:18px; } .fourways .fw .fl small{ font-size:16.5px; margin-top:4px; }
+  .fourways .fw .fl .fm{ font-size:24px; }
+  .fourways .fw .ft2{ font-size:27px; line-height:1.34; }
+  .brn .split span{ font-size:16px; } .brn .arm .h{ font-size:16px; } .brn .arm .t{ font-size:28px; }
+  .convo .who{ font-size:18px; } .qsrc{ font-size:25px; } .qask{ font-size:21px; }
+  .qref .src{ font-size:20px; } .bigq .src{ font-size:24px; }
+  .portrait .pc .dt{ font-size:15px; } .portrait .pc .rl{ font-size:19px; line-height:1.32; }
+  .lineage .ln .era{ font-size:16px; } .lineage .ln .ds{ font-size:19.5px; } .lineage .ln .nm{ font-size:26px; }
+  .roots{ font-size:27px; }
+  .lxr3 .rmb li{ font-size:20px; }
+  .mrail a.si2{ font-size:15px; } .mrail .ghd, .mrail .ghd .gt{ font-size:12px; }
+  .wktag{ font-size:16px; }
+
+  /* notation table (week 2) */
+  .ntab{ margin-top:6px; border-top:2px solid var(--lens); }
+  .ntab .nh{ display:grid; grid-template-columns:370px 1fr; gap:34px; padding:12px 0 10px; font-family:var(--sans); font-size:18px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .ntab .nr{ display:grid; grid-template-columns:370px 1fr; gap:34px; align-items:baseline; padding:15px 0; border-top:1px solid var(--tcd-grey-25); }
+  .ntab .no1{ font-family:var(--serif); font-size:32px; color:var(--tcd-ink); }
+  .ntab .no1 small{ display:block; font-family:var(--sans); font-size:20px; color:var(--tcd-grey-100); margin-top:2px; }
+  .ntab .no2{ font-family:var(--serif); font-size:27px; line-height:1.4; color:var(--tcd-ink); }
+  .ntab .no2 i{ font-family:var(--sans); font-style:normal; font-size:21px; color:var(--tcd-grey-100); }
+
+  /* ============ week 2 type pass, second round: projector floor ============
+     Floors on the 1920 canvas: running text 27px, glosses and notes 22px,
+     uppercase labels 19px, credits 17px, sidebar 13px. */
+  .dB .erow .lb{ font-size:20px; } .dB .erow{ grid-template-columns:250px 1fr; }
+  .eghead{ font-size:19px; } .eg .ex .gl{ font-size:24px; } .eg .no{ font-size:23px; }
+  .egpanel .fxnote{ font-size:22px; }
+  .brn .split span{ font-size:19px; } .brn .arm .h{ font-size:19px; }
+  .fourways .fw .fl{ font-size:20px; } .fourways .fw .fl small{ font-size:19px; }
+  .fourways .fw .ft2{ font-size:28px; }
+  .portrait .pc .dt{ font-size:17px; line-height:1.35; } .portrait .pc .rl{ font-size:21px; }
+  .wktag{ font-size:18px; }
+  .qask{ font-size:24px; } .convo .who{ font-size:21px; } .qsrc{ font-size:27px; }
+  .qref .src{ font-size:22px; }
+  .lxr3 .stop .head .lab{ font-size:20px; } .lxr3 .rmb li{ font-size:22px; }
+  .lxd2 .r .ct{ font-size:20px; }
+  .ntab .nh{ font-size:19px; } .ntab .no1 small{ font-size:21px; } .ntab .no2 i{ font-size:22px; }
+  .tcd-names .uni{ font-size:18px; }
+  .mrail a.si2{ font-size:16px; } .mrail .ghd .gt{ font-size:13px; } .mrail .ghd .gcar{ font-size:11px; }
+  .mrail .mhd .tt{ font-size:14px; } .mrail .mft .wk{ font-size:14px; }
+  .kfig .vl{ font-size:26px; }
+  .wfig .ws{ font-size:24px; } .wfig .lp, .wfig .lq{ font-size:26px; } .wfig .lps, .wfig .lqs{ font-size:26px; }
+  .wfig .la{ font-size:25px; } .wfig .lw{ font-size:20px; } .wfig .rn{ font-size:24px; }
+
+  /* ============ week 2 type pass, third round: fill the slide ============
+     Week 1's patterns leave the lower third of most slides empty. Default sizes
+     go up again; a slide that would overflow takes class "dense" on .b-main and
+     keeps the second-round sizes. */
+  .dB .erow .tx{ font-size:36px; line-height:1.32; } .dB .erow .tx.tight{ font-size:33px; }
+  .dB .erow{ grid-template-columns:270px 1fr; padding:20px 0; } .dB .erow .lb{ font-size:21px; padding-top:9px; }
+  .eg .ex{ font-size:36px; } .eg .ex .gl{ font-size:26px; } .eg .no{ font-size:25px; }
+  .eghead{ font-size:20px; } .egpanel .fx{ font-size:36px; } .egpanel .fxnote{ font-size:24px; }
+  .fourways .fw{ grid-template-columns:330px 1fr; padding:18px 0; }
+  .fourways .fw .fl{ font-size:22px; } .fourways .fw .fl small{ font-size:20px; } .fourways .fw .fl .fm{ font-size:27px; }
+  .fourways .fw .ft2{ font-size:32px; }
+  .brn .arm .t{ font-size:32px; } .brn .arm .h{ font-size:20px; } .brn .split span{ font-size:20px; }
+  .convo .say{ font-size:40px; } .convo.big .say{ font-size:50px; } .qask{ font-size:26px; } .qsrc{ font-size:29px; }
+  .qref{ font-size:32px !important; } .qref .src{ font-size:23px; }
+  .ntab .no1{ font-size:36px; } .ntab .no2{ font-size:30px; } .ntab .no2 i{ font-size:24px; } .ntab .no1 small{ font-size:22px; }
+  .lxr3 .rmb li{ font-size:24px; } .figs-line{ font-size:25px; } .q-banner{ font-size:34px; }
+  .b-step-lab{ font-size:24px; } .b-step-math{ font-size:44px; }
+  /* dense slides keep the second-round sizes */
+  .b-main.dense .erow .tx{ font-size:31px; } .b-main.dense .erow .tx.tight{ font-size:29px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; }
+  .b-main.dense .eg .ex{ font-size:31px; } .b-main.dense .eg .ex .gl{ font-size:24px; }
+  .b-main.dense .fourways .fw .ft2{ font-size:28px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:32px; }
+  .b-main.dense .ntab .no1{ font-size:32px; } .b-main.dense .ntab .no2{ font-size:27px; } .b-main.dense .ntab .nr{ padding:12px 0; }
+
+  /* ============ fourth round: body text at 40px (about 20pt on a 13.3in slide) ============ */
+  .dB .erow .tx{ font-size:40px; line-height:1.3; } .dB .erow .tx.tight{ font-size:37px; }
+  .dB .erow{ grid-template-columns:280px 1fr; padding:22px 0; } .dB .erow .lb{ font-size:22px; padding-top:12px; }
+  .eg .ex{ font-size:40px; } .eg .ex .gl{ font-size:28px; } .eg .no{ font-size:27px; } .eg{ padding:13px 0; }
+  .egpanel .fx{ font-size:40px; } .egpanel .fxnote{ font-size:25px; } .eghead{ font-size:21px; }
+  .fourways .fw{ grid-template-columns:340px 1fr; padding:20px 0; }
+  .fourways .fw .fl{ font-size:23px; } .fourways .fw .fl small{ font-size:21px; } .fourways .fw .fl .fm{ font-size:29px; }
+  .fourways .fw .ft2{ font-size:35px; line-height:1.3; }
+  .brn .arm .t{ font-size:35px; } .brn .arm .h{ font-size:21px; } .brn .split span{ font-size:21px; }
+  .convo .say{ font-size:44px; } .convo.big .say{ font-size:56px; } .convo .who{ font-size:23px; } .qask{ font-size:28px; } .qsrc{ font-size:31px; }
+  .qref{ font-size:35px !important; } .qref .src{ font-size:24px; }
+  .ntab .no1{ font-size:38px; } .ntab .no2{ font-size:32px; } .ntab .no2 i{ font-size:25px; }
+  .lxr3 .rmb li{ font-size:26px; line-height:1.35; } .lxr3 .stop .head .lab{ font-size:22px; }
+  .figs-line{ font-size:27px; } .q-banner{ font-size:38px; }
+  .b-step-lab{ font-size:26px; } .b-step-math{ font-size:46px; }
+  .portrait .pc .nm{ font-size:30px; }
+  .wfig .ws{ font-size:28px; } .wfig .lp, .wfig .lq{ font-size:30px; } .wfig .lps, .wfig .lqs{ font-size:29px; }
+  .wfig .la{ font-size:28px; } .wfig .lw{ font-size:22px; } .wfig .wl{ font-size:32px; }
+  .kfig .vl{ font-size:30px; } .kfig .wl{ font-size:36px; }
+  /* dense fallback, restated after the defaults so it still wins */
+  .b-main.dense .erow .tx{ font-size:32px; } .b-main.dense .erow .tx.tight{ font-size:30px; } .b-main.dense .erow{ padding:15px 0; grid-template-columns:250px 1fr; } .b-main.dense .erow .lb{ font-size:20px; padding-top:7px; }
+  .b-main.dense .eg .ex{ font-size:33px; } .b-main.dense .eg .ex .gl{ font-size:25px; } .b-main.dense .eg{ padding:9px 0; }
+  .b-main.dense .fourways .fw .ft2{ font-size:30px; } .b-main.dense .fourways .fw{ padding:14px 0; grid-template-columns:300px 1fr; }
+  .b-main.dense .egpanel .fx{ font-size:34px; }
+  .b-main.dense .brn .arm .t{ font-size:30px; }
+  .b-main.dense .ntab .no1{ font-size:33px; } .b-main.dense .ntab .no2{ font-size:28px; } .b-main.dense .ntab .nr{ padding:11px 0; }
+
+  /* snug: default sizes, tighter row padding (a slide that is a row or two too tall) */
+  .b-main.snug .fourways .fw{ padding:12px 0; } .b-main.snug .erow{ padding:13px 0; } .b-main.snug .erow .tx.tight{ font-size:34px; }
+  .b-main.snug .fourways .fw .ft2{ font-size:33px; }
+
+  /* interlinear gloss (week 2): word over gloss, aligned by column */
+  .igl{ display:flex; flex-wrap:wrap; gap:4px 30px; margin:2px 0 6px; }
+  .igl .wd2{ display:flex; flex-direction:column; }
+  .igl .wd2 b{ font-family:var(--serif); font-style:italic; font-weight:400; font-size:40px; color:var(--tcd-ink); line-height:1.15; }
+  .igl .wd2 i{ font-family:var(--sans); font-style:normal; font-size:25px; color:var(--tcd-grey-100); line-height:1.25; }
+  .igl .wd2 i .sc2{ font-variant:small-caps; letter-spacing:.04em; text-transform:lowercase; }
+  .eg .ex .ctx2{ display:block; font-family:var(--sans); font-style:normal; font-size:24px; color:var(--tcd-grey-100); margin-bottom:4px; }
+  .eg .ex .tr{ display:block; font-family:var(--serif); font-style:normal; font-size:32px; color:var(--tcd-ink); }
+
+  /* week 2: extension table header, small frame figures */
+  .wfig .hw{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .nd2{ fill:#fff; stroke:var(--lens, var(--tcd-blue)); stroke-width:3; }
+  .wfig .fn{ font-family:var(--sans); font-weight:700; font-size:32px; fill:var(--lens); }
+  .wfig .fa{ font-family:var(--serif); font-size:34px; fill:var(--tcd-ink); }
+  .wfig .fg{ font-family:var(--sans); font-size:25px; fill:var(--tcd-grey-100); }
+
+  /* examples under the row labels (Problems for extensional semantics) */
+  .fourways.exl .fw .fl small{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:27px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); margin-top:6px; line-height:1.22; }
+  /* an unlabelled closing sentence under a panel */
+  .plainline{ font-family:var(--serif); font-size:34px; line-height:1.3; color:var(--tcd-ink); margin:18px 0 0; }
+
+  /* week 2: displacement answer carries the sentence under its number */
+  .b-main .fourways.disp .fw{ grid-template-columns:470px 1fr; padding:11px 0; }
+  .fourways.disp .fw .fl .sent{ display:block; font-family:var(--serif); font-style:italic; font-weight:400; font-size:26px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); line-height:1.2; margin-top:3px; }
+  .fourways.disp .fw .fl small{ display:inline; margin-left:14px; }
+  /* week 2: intension table cells that are not truth values */
+  .wfig .ev{ font-family:var(--sans); font-size:24px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .es{ font-family:var(--serif); font-size:28px; fill:var(--tcd-ink); text-anchor:middle; }
+
+  /* ============ week 4 ============ */
+  /* label columns retired (Sept 2026): full-width rows, larger type */
+  .dB .erow.nolb{ grid-template-columns:1fr; gap:0; padding:22px 0; }
+  .dB .erow.nolb .tx{ font-size:40px; line-height:1.36; }
+  .dB .erow.nolb .tx.tight{ font-size:36px; line-height:1.34; }
+  .b-main.dense .erow.nolb .tx{ font-size:33px; } .b-main.dense .erow.nolb .tx.tight{ font-size:31px; }
+  .b-main.dense .erow.nolb{ padding:15px 0; }
+  .b-main.snug .erow.nolb{ padding:14px 0; }
+  .figbody .erow.nolb .tx.tight{ font-size:36px; }
+  .figrow .portrait img{ height:400px; }
+  /* axioms table */
+  .axt{ margin-top:6px; border-top:2px solid var(--lens); }
+  .axt .r{ display:grid; grid-template-columns:230px 1fr 1fr 250px; gap:30px; padding:17px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .axt .r.h{ border-top:none; padding:12px 0 8px; font-family:var(--sans); font-size:21px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--lens); }
+  .axt .ax{ font-family:var(--serif); font-size:34px; color:var(--tcd-ink); }
+  .axt .ax small{ font-family:var(--sans); font-size:22px; color:var(--tcd-grey-75); margin-right:12px; }
+  .axt .c{ font-family:var(--serif); font-size:31px; line-height:1.28; color:var(--tcd-ink); }
+  .axt .c b{ font-weight:700; }
+  .axt .c.no b{ color:var(--tcd-grey-75); }
+  .axt .fc{ font-family:var(--sans); font-size:25px; color:var(--tcd-grey-100); }
+  /* the convo label column holds an axiom name or a formula */
+  .convo.ax .cv{ grid-template-columns:420px 1fr; }
+  .convo.ax .who{ font-family:var(--serif); font-size:36px; letter-spacing:0; text-transform:none; color:var(--tcd-ink); }
+  .convo.ax .who small{ font-family:var(--sans); font-size:24px; color:var(--lens); font-weight:700; margin-right:18px; }
+  .convo.ax .say{ font-size:38px; }
+  /* display formulas set left in a panel */
+  .egpanel .fx.l{ text-align:left; font-size:52px; }
+  .srcline{ margin-top:auto; margin-bottom:40px; padding-top:16px; font-family:var(--sans); font-size:21px; line-height:1.35; color:var(--tcd-grey-75); border-top:1px solid var(--tcd-grey-25); }
+  .srcline em{ font-style:italic; }
+  .qctx{ font-family:var(--serif); font-size:34px; line-height:1.4; color:var(--tcd-ink); margin:6px 0 26px; max-width:1460px; }
+  .egpanel .fx.l.sm{ font-size:36px; padding:4px 0; }
+  .texpanel{ padding:14px 22px; }
+  .texf{ color:var(--tcd-ink); padding:6px 0; line-height:0; }
+  .texf svg{ display:block; max-width:100%; height:auto; }
+  .b-main.xdense .figbody .erow.nolb .tx.tight{ font-size:30px; line-height:1.3; } .b-main.xdense .erow.nolb{ padding:11px 0; }
+  .egpanel.lg .eg .ex{ font-size:46px; } .egpanel.lg .eg .ex .gl{ font-size:28px; } .egpanel.lg .eg{ padding:14px 0; }
+  .fourways.nlab .fw .fl small{ font-family:var(--serif); font-size:36px; font-weight:400; color:var(--tcd-ink); letter-spacing:0; margin-top:8px; }
+  .fourways.nlab .fw .fl{ font-size:22px; }
+  .b-main .fourways.nlab .fw .ft2{ font-size:36px; font-family:var(--serif); }
+  .convo.pairs .cv{ grid-template-columns:150px 1fr; }
+  .convo.pairs .who{ text-transform:none; letter-spacing:.04em; }
+  .convo.pairs .cv.b{ border-top:none; padding-top:0; }
+  .convo.pairs .cv.a{ margin-top:10px; }
+  .convo.pairs .say b{ font-weight:700; font-style:normal; }
+  svg.ghost{ display:inline-block; vertical-align:-6px; color:var(--tcd-ink); }
+  .b-main.dB > *{ flex-shrink:0; }
+  .wfig .tn{ font-family:var(--serif); font-size:34px; fill:var(--tcd-ink); }
+  .wfig .tt2{ font-family:var(--sans); font-size:26px; fill:var(--lens); font-weight:700; }
+  .wfig .tl{ font-family:var(--serif); font-style:italic; font-size:34px; fill:var(--tcd-ink); }
+  .wfig .te{ stroke:var(--tcd-ink); stroke-width:2.2; }
+  .wfig .tv{ font-family:var(--sans); font-size:24px; fill:var(--tcd-grey-100); }
+
+  .wfig .dl{ font-family:var(--sans); font-size:34px; font-weight:700; letter-spacing:.12em; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .dl.inv{ fill:#fff; }
+  .wfig rect.w0{ fill:var(--tcd-ink); stroke:var(--tcd-ink); stroke-width:2.4; }
+  .wfig rect.wd{ fill:#fff; stroke:var(--tcd-ink); stroke-width:2.4; }
+  .egpanel .fxl{ font-family:var(--sans); font-size:22px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); padding-top:12px; }
+
+  /* ============ week 9 additions ============ */
+  .cards{ display:flex; gap:44px; justify-content:center; margin:26px 0 10px; }
+  .cards .card{ width:230px; height:320px; border-radius:18px; background:#fff; border:3px solid var(--tcd-ink);
+    box-shadow:0 10px 24px rgba(0,0,0,.08); display:flex; align-items:center; justify-content:center;
+    font-family:var(--serif); font-size:150px; font-weight:600; color:var(--tcd-ink); }
+  .cards .card.alt{ background:color-mix(in srgb, var(--lens) 7%, #fff); }
+  .wtab{ display:grid; margin:10px 0 4px; border-top:2px solid var(--lens); }
+  .wtab .r{ display:grid; grid-template-columns:150px repeat(var(--nc,2),1fr); gap:0 20px; padding:11px 0; border-top:1px solid var(--tcd-grey-25); align-items:baseline; }
+  .wtab .r.h{ border-top:none; padding:10px 0 7px; font-family:var(--sans); font-size:20px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); }
+  .wtab .r > div{ font-family:var(--serif); font-size:31px; color:var(--tcd-ink); }
+  .wtab .r > div.c{ font-family:var(--mono); font-size:27px; text-align:center; }
+  .wtab .r > div.c.f{ color:var(--tcd-grey-75); }
+  .wtab .r.h > div{ font-family:var(--sans); font-size:20px; text-align:center; } .wtab .r.h > div:first-child{ text-align:left; }
+  .ilg{ margin:12px 0 4px; }
+  .ilg .ex{ display:grid; grid-template-columns:56px 1fr; gap:0 16px; padding:10px 0; align-items:baseline; }
+  .ilg .ex + .ex{ border-top:1px solid color-mix(in srgb, var(--lens) 16%, #fff); }
+  .ilg .no{ font-family:var(--mono); font-size:21px; color:var(--tcd-grey-75); }
+  .ilg .lang{ font-family:var(--sans); font-size:16px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--lens); align-self:flex-start; margin-right:4px; padding-top:6px; }
+  .ilg .ws{ display:flex; flex-wrap:wrap; gap:0 22px; }
+  .ilg .w{ display:inline-flex; flex-direction:column; }
+  .ilg .w .o{ font-family:var(--serif); font-style:italic; font-size:30px; color:var(--tcd-ink); line-height:1.2; }
+  .ilg .w .g{ font-family:var(--sans); font-size:17px; color:var(--tcd-grey-100); line-height:1.25; }
+  .ilg .tr{ font-family:var(--serif); font-size:25px; color:var(--tcd-ink); align-self:flex-start; margin-left:14px; }
+  .ilg .ws{ align-items:flex-start; }
+  .b-main.dense .ilg .w .o{ font-size:27px; } .b-main.dense .ilg .w .g{ font-size:16px; } .b-main.dense .ilg .tr{ font-size:23px; } .b-main.dense .ilg .ex{ padding:7px 0; }
+  .wfig .sph{ fill:none; stroke:var(--tcd-grey-50); stroke-width:2.5; }
+  .wfig .sph.on{ stroke:var(--lens); stroke-width:3.5; }
+  .wfig .reg{ fill:color-mix(in srgb, var(--lens) 12%, #fff); stroke:var(--lens); stroke-width:2.5; }
+  .wfig .reg2{ fill:none; stroke:var(--tcd-ink); stroke-width:2.5; stroke-dasharray:11 8; }
+  .wfig .wd.hi{ fill:var(--lens); stroke:var(--lens); }
+  .wfig .wl.hi{ fill:#fff; }
+  .wfig .road{ stroke:var(--tcd-grey-50); stroke-width:11; fill:none; stroke-linecap:round; }
+  .wfig .road.on{ stroke:var(--lens); }
+  .wfig .town{ fill:var(--tcd-ink); }
+  .wfig .tnm{ font-family:var(--sans); font-size:27px; font-weight:600; fill:var(--tcd-ink); }
+  .wfig .rnm{ font-family:var(--mono); font-size:22px; letter-spacing:.04em; fill:var(--tcd-grey-100); }
+  .wfig .rnm.on{ fill:var(--lens); font-weight:600; }
+  .wfig .cat{ font-family:var(--sans); font-size:26px; font-weight:700; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .cat.on{ fill:var(--lens); }
+  .wfig .lf{ font-family:var(--serif); font-style:italic; font-size:27px; fill:var(--tcd-ink); text-anchor:middle; }
+  .wfig .lf.m{ font-style:normal; }
+  .figrow.fr2{ gap:40px; }
+  .figrow.fr2 .figbody{ flex:1 1 0; min-width:0; }
+  .figrow.fr2 svg.wfig{ flex:0 0 700px; width:700px; margin-top:12px; }
+  .egpanel .fx.mid{ font-size:38px; padding:10px 0; }
+  .erow.nolb .tx .ok{ font-family:var(--mono); font-size:24px; color:var(--lens); margin-right:10px; }
+  .dB .qref.rd{ font-size:27px !important; padding:11px 22px; } .qref.rd .src{ font-size:19px; margin-top:4px; }
+  .convo.sm .say{ font-size:28px; } .convo.sm .cv{ padding:8px 0; } .convo.sm .who{ font-size:16px; }
+  .ilg.cmp .w .o{ font-size:25px; } .ilg.cmp .w .g{ font-size:14.5px; } .ilg.cmp .tr{ font-size:21px; margin-top:2px; } .ilg.cmp .ex{ padding:5px 0; } .ilg.cmp .lang{ font-size:14px; margin-bottom:2px; }
+  .ntab.tight .nr{ padding:11px 0; } .ntab.tight .no2{ font-size:25px; } .ntab.tight .no1{ font-size:30px; }
+  .wtab.cmp .r{ padding:6px 0; } .wtab.cmp .r > div{ font-size:27px; } .wtab.cmp .r > div.c{ font-size:24px; }
+  .tx .ld{ color:var(--lens); font-weight:700; }
+  .nw{ white-space:nowrap; }
+  .b-main.roomy .erow .tx, .b-main.roomy .erow .tx.tight{ font-size:37px; line-height:1.42; }
+  .b-main.roomy .erow{ padding:24px 0; }
+  .b-main.xdense .erow .tx.tight{ font-size:28px; }
+  .b-main.xdense .erow{ padding:12px 0; }
+  .tx .xr{ color:var(--lens); }
+  .wfig .nd0{ fill:var(--tcd-ink); }
+  .wfig .nd{ fill:#fff; stroke:var(--tcd-ink); stroke-width:3; }
+  .wfig .nd.hi{ fill:var(--lens); stroke:var(--lens); }
+  .wfig .nd.dim{ stroke:var(--tcd-grey-50); }
+  .wfig .nl{ font-family:var(--serif); font-style:italic; font-size:34px; text-anchor:middle; fill:var(--tcd-ink); }
+  .wfig .nl.inv{ fill:#fff; } .wfig .nl.dim{ fill:var(--tcd-grey-75); }
+  .wfig .fl{ font-family:var(--sans); font-size:32px; fill:var(--tcd-ink); }
+  .wfig .fl.c{ text-anchor:middle; } .wfig .fl.e{ text-anchor:end; }
+  .wfig .fl.on{ fill:var(--lens); font-weight:600; }
+  .wfig .fl.it{ font-family:var(--serif); font-style:italic; font-size:36px; }
+  .wfig .fl.cat{ font-weight:700; font-size:34px; }
+  .wfig .tl{ stroke:var(--tcd-grey-75); stroke-width:3; fill:none; }
+  .wfig .tl.on{ stroke:var(--lens); }
+  .wfig .fl.halo{ paint-order:stroke; stroke:#fff; stroke-width:10px; stroke-linejoin:round; }
+  .wfig.zf .fl{ font-size:44px; } .wfig.zf .nl{ font-size:42px; } .wfig.zf .fl .it{ font-family:var(--serif); font-style:italic; }
+  .wfig.zt .fl{ font-size:42px; } .wfig.zt .fl.it{ font-size:44px; } .wfig.zt .fl.cat{ font-size:40px; }
+  .wfig .bar{ fill:color-mix(in srgb, var(--tcd-ink) 22%, #fff); }
+  .wfig .bar.on{ fill:var(--lens); }
+  .wfig .ax{ stroke:var(--tcd-grey-75); stroke-width:3; }
+  .wfig.zf .fl.sm{ font-size:40px; }
+  .figrow.fr2 img.pubfig{ flex:0 0 430px; width:430px; height:auto; align-self:center; }
+  .tt{ border-collapse:collapse; margin:6px auto 10px; font-family:var(--mono); font-size:32px; }
+  .tt th{ font-family:var(--serif); font-weight:400; font-size:31px; padding:8px 30px 10px; border-bottom:3px solid var(--lens); color:var(--tcd-ink); }
+  .tt td{ text-align:center; padding:8px 30px; border-bottom:1px solid var(--tcd-grey-25); color:var(--tcd-ink); }
+  .tt td.f{ color:var(--tcd-grey-75); }
+  .tt .mc{ background:color-mix(in srgb, var(--lens) 9%, #fff); }
+  .tt td.mc.f{ color:var(--lens); font-weight:700; }
+  .tt td.lab{ font-family:var(--sans); font-size:24px; color:var(--tcd-grey-100); text-align:left; }
+  .convo .say .mk{ font-style:normal; font-family:var(--mono); font-size:30px; color:var(--lens); margin-right:14px; }
+
+</style>
+</head>
+<body class="pal-a" data-week="9">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="g-emp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M5.5 7.5l13 9M18.5 7.5l-13 9"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="g-his" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5l8-4 8 4M5.5 8.5v9M12 8.5v9M18.5 8.5v9M3.5 20.5h17M3.5 8.5h17"/></symbol>
+    <symbol id="g-for" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H5v16h4M9.5 4H8v16h1.5M15 4h4v16h-4M14.5 4H16v16h-1.5"/></symbol>
+    <symbol id="g-typ" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.6 2.3 4 5.4 4 8.5s-1.4 6.2-4 8.5c-2.6-2.3-4-5.4-4-8.5s1.4-6.2 4-8.5z"/></symbol>
+  </defs>
+</svg>
+
+
+<deck-stage width="1920" height="1080">
+
+<section class="slide" data-label="Title" data-screen-label="01">
+  <div class="a-watermark">&forall;</div>
+  <div class="a-title-wrap">
+    <div class="tcd-lockup">
+      <img class="crest" src="../../shared/tcd-crest.webp" alt="Trinity College Dublin crest" style="width:72px;height:84px;object-fit:contain;display:block">
+      <div class="tcd-rule"></div>
+      <div class="tcd-names"><div class="en">Trinity College Dublin</div><div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div><div class="uni">The University of Dublin</div></div>
+    </div>
+    <div style="margin-top:74px">
+      <div class="a-course-code">LIU33008 · Semantics II</div>
+      <h1 class="a-course-title" style="font-size:118px;margin:18px 0 0">Week 9</h1>
+      <div class="a-course-sub">Conditionals</div>
+    </div>
+    <div class="a-meta"><div class="who">Dr. Thomas Stephen</div><div>School of Linguistic, Speech &amp; Communication Sciences</div><div class="a-hairline"></div><div>Semester 1 · Michaelmas</div></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Concepts and skills" data-screen-label="02">
+  <div class="b-slide pal-a dB" data-sec="cs">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">Concepts and skills</h2>
+      <div class="cs-grid dense">
+        <div class="cs-col" data-step="1"><div class="cs-head">Concepts</div><ol class="cs-list">
+          <li>Truth-functional connectives; the material conditional and its paradoxes.</li>
+          <li>Indicative, counterfactual and biscuit conditionals; the if-clause as topic.</li>
+          <li>The strict and the variably strict conditional; Sobel sequences.</li>
+          <li>Similarity orderings; closest antecedent worlds; failures of strengthening, transitivity and contraposition.</li>
+          <li>The selection function; conditional excluded middle; <em>would</em> and <em>might</em> counterfactuals.</li>
+          <li>The restrictor analysis; tripartite structures; covert operators; ordering sources.</li>
+          <li>Iterated counterfactuals; yo-yo conditionals.</li>
+        </ol></div>
+        <div class="cs-col" data-step="2"><div class="cs-head">Skills</div><ol class="cs-list">
+          <li>Give the truth table of the material conditional and test an inference with it.</li>
+          <li>Classify a conditional as indicative, counterfactual, biscuit, concessive or anankastic.</li>
+          <li>Evaluate a conditional under the material, strict and closest-worlds analyses.</li>
+          <li>Draw a sphere model where strengthening, transitivity or contraposition fails.</li>
+          <li>Decide a <em>would</em> and <em>might</em> pair under Stalnaker and under Lewis.</li>
+          <li>Compute the restrictor analysis of a conditional, and best worlds from an ordering source.</li>
+          <li>Show that the closest-worlds analysis can make a yo-yo conditional true.</li>
+        </ol></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Roadmap" data-screen-label="03">
+  <div class="b-slide pal-a" data-sec="road">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <h2 class="b-h">Today</h2>
+      <div class="lxr3">
+        <div class="stop lens-empirical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></div><span class="lab">Empirical</span></div><div class="track"></div><ul class="rmb"><li>Wason&rsquo;s cards</li><li>Truth functions</li><li>The material conditional</li><li>Difficult cases for the material conditional</li><li>Indicatives and counterfactuals</li><li>Kinds of conditional</li><li>Modals under <em>if</em></li><li>Strengthening the antecedent</li><li>Transitivity and contraposition</li></ul></div>
+        <div class="stop lens-historical"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></div><span class="lab">Historical</span></div><div class="track"></div><ul class="rmb"><li>Ancient logic</li><li>Lewis Carroll</li><li>Ramsey and Stalnaker</li><li>David Lewis</li><li>Lewis and Kratzer</li></ul></div>
+        <div class="stop lens-formal"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></div><span class="lab">Formal</span></div><div class="track"></div><ul class="rmb"><li><em>If</em> as a strict conditional</li><li>Kratzer&rsquo;s thesis</li><li>Covert operators</li><li>The Lockhart model</li><li>The ordering source</li><li>Bizet and Verdi</li><li>Yo-yo conditionals</li><li>Other notations</li></ul></div>
+        <div class="stop lens-typological"><div class="head"><div class="node"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></div><span class="lab">Typological</span></div><div class="track"></div><ul class="rmb"><li>Conditionals are topics</li><li>Clause order</li><li>Marking the protasis</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Readings" data-screen-label="04">
+  <div class="b-slide pal-a dB" data-sec="rd">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="b-kick">This week</div>
+      <h2 class="b-h">Readings</h2>
+      <div class="qref rd" style="">von Fintel &amp; Heim, <em>Intensional Semantics</em>, ch. 4 &ldquo;Conditionals&rdquo; and &sect;5.4 &ldquo;Non-monotonicity of conditionals&rdquo;. <span class="src">Textbook</span></div>
+      <div class="qref rd" style="margin-top:12px">Stalnaker (1968), &ldquo;A theory of conditionals&rdquo;, in Rescher (ed.), <em>Studies in Logical Theory</em>. <span class="src">Classical</span></div>
+      <div class="qref rd" style="margin-top:12px">Lewis (1973), <em>Counterfactuals</em>, &sect;&sect;1.1&ndash;1.6. <span class="src">Classical</span></div>
+      <div class="qref rd" style="margin-top:12px">Kratzer (1986), &ldquo;Conditionals&rdquo;, <em>Chicago Linguistic Society</em> 22. <span class="src">Classical</span></div>
+      <div class="qref rd" style="margin-top:12px">von Fintel (2011), &ldquo;Conditionals&rdquo;, in von Heusinger, Maienborn &amp; Portner (eds.), <em>Semantics</em>, vol. 2. <span class="src">Contemporary</span></div>
+      <div class="qref rd" style="margin-top:12px">von Fintel &amp; Gillies (2026), &ldquo;Yo-yo conditionals and counterfactual suppositions&rdquo;, handout, UT Austin. <span class="src">Contemporary</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§ Empirical" data-screen-label="§ Empirical">
+  <div class="lxd2 lens-empirical pal-a">
+    <div class="l"><div class="num">I</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-emp"/></svg></div></div>
+    <div class="r"><div class="lab">Empirical</div><div class="ct">LENS 01 / 04 · LIU33008 · Week 9</div><h2>Conditionals</h2><div class="ask">Truth functions, the material conditional and the problems for a truth-functional <em>if</em>.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="empirical"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Wason&rsquo;s cards, Q" data-screen-label="05">
+  <div class="b-slide pal-a lens-empirical" data-sec="wason">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Wason&rsquo;s cards</div>
+        <div class="qctx anim" data-step="1" style="--d:.15s">Four cards lie on a table. Each has a letter on one side and a number on the other.</div>
+        <div class="convo">
+          <div class="cv anim" data-step="2" style="--d:0.30s"><div class="who">(1)</div><div class="say">If a card has a vowel on one side, then it has an even number on the other side.</div></div>
+        </div>
+        <div class="cards"><div class="card">E</div><div class="card">K</div><div class="card alt">4</div><div class="card alt">7</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Wason&rsquo;s cards, A" data-screen-label="06">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="wason">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense xdense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Wason&rsquo;s cards</h2>
+      <div class="figrow fr2">
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">Wason (1968):</b> the rule <span class="xr">(1)</span> is false only of a card with a vowel on one side and an odd number on the other, so the cards to turn are E and 7. Few participants choose those two cards.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Griggs & Cox (1982)</b> gave the rule <em>If a person is drinking beer, then the person must be over 19</em>, with cards for drinks and ages. About three quarters of their participants turned <em>drinking beer</em> and <em>16 years old</em>.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Cheng & Holyoak (1985):</b> people are more likely to guess correctly when concerning rules of permission and obligation, like the drinking rule with its modal <em>must</em>.</div></div>
+        </div>
+      <svg class="wfig zf" style="max-height:330px" viewBox="0 0 1100 440" data-step="2" role="img" aria-label="Bar chart of card choices in the abstract selection task: E and 4, 46 per cent; E alone, 33; E, 4 and 7, 7; E and 7, 4; other, 10.">
+        <text class="fl sm" x="30" y="44">cards chosen, share of participants</text>
+        <rect class="bar" x="71.6" y="113.4" width="124.8" height="246.6"/>
+        <text class="fl c" x="134.0" y="99.4">46%</text>
+        <text class="fl c sm" x="134.0" y="410">E and 4</text>
+        <rect class="bar" x="279.6" y="183.1" width="124.8" height="176.9"/>
+        <text class="fl c" x="342.0" y="169.1">33%</text>
+        <text class="fl c sm" x="342.0" y="410">E alone</text>
+        <rect class="bar" x="487.6" y="322.5" width="124.8" height="37.5"/>
+        <text class="fl c" x="550.0" y="308.5">7%</text>
+        <text class="fl c sm" x="550.0" y="410">E, 4, 7</text>
+        <rect class="bar on" x="695.6" y="338.6" width="124.8" height="21.4"/>
+        <text class="fl c on" x="758.0" y="324.6">4%</text>
+        <text class="fl c sm on" x="758.0" y="410">E and 7</text>
+        <rect class="bar" x="903.6" y="306.4" width="124.8" height="53.6"/>
+        <text class="fl c" x="966.0" y="292.4">10%</text>
+        <text class="fl c sm" x="966.0" y="410">other</text>
+        <line class="ax" x1="30" y1="360" x2="1070" y2="360"/>
+      </svg>
+      </div>
+      <div class="srcline">Wason (1968), &ldquo;Reasoning about a rule&rdquo;, <em>Quarterly Journal of Experimental Psychology</em> 20; Johnson-Laird &amp; Wason (1970), <em>Cognitive Psychology</em> 1, pooled results as reported by Oaksford &amp; Chater (1994), <em>Psychological Review</em> 101; Griggs &amp; Cox (1982), <em>British Journal of Psychology</em> 73; Cheng &amp; Holyoak (1985), <em>Cognitive Psychology</em> 17.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Empirical ·Truth functions" data-screen-label="07">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="tf">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Truth functions</h2>
+      <table class="tt" data-step="1"><tr><th></th><th>\(A\)</th><th>\(C\)</th><th>\(\neg A\)</th><th>\(A \wedge C\)</th><th>\(A \vee C\)</th><th class="mc">\(A \rightarrow C\)</th></tr><tr><td class="lab">(a)</td><td class="t">T</td><td class="t">T</td><td class="f">F</td><td class="t">T</td><td class="t">T</td><td class="t mc">T</td></tr><tr><td class="lab">(b)</td><td class="t">T</td><td class="f">F</td><td class="f">F</td><td class="f">F</td><td class="t">T</td><td class="f mc">F</td></tr><tr><td class="lab">(c)</td><td class="f">F</td><td class="t">T</td><td class="t">T</td><td class="f">F</td><td class="t">T</td><td class="t mc">T</td></tr><tr><td class="lab">(d)</td><td class="f">F</td><td class="f">F</td><td class="t">T</td><td class="f">F</td><td class="f">F</td><td class="t mc">T</td></tr></table>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Truth-functional connective:</b> the truth value of the whole is fixed by the truth values of the parts. <em>Anna is home and the lights are on</em> is true iff both parts are true, whatever they are about.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Validity:</b> an inference is valid iff no row makes all its premises true and its conclusion false. Modus ponens, from \(A \rightarrow C\) and \(A\) to \(C\), is valid, since only row (a) makes both premises true.</div></div>
+      <div class="srcline">Gamut (1991), <em>Logic, Language, and Meaning</em>, vol. 1, ch. 2.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The material conditional, Q" data-screen-label="08">
+  <div class="b-slide pal-a lens-empirical" data-sec="mcq">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>The material conditional</div>
+        <div class="qctx anim" data-step="1" style="--d:.15s">Before her exam, Anna&rsquo;s father tells her:</div>
+        <div class="convo sm">
+          <div class="cv anim" data-step="2" style="--d:0.30s"><div class="who">(2)</div><div class="say">If you pass the exam, I will take you out for dinner.</div></div>
+          <div class="cv anim" data-step="3" style="--d:0.45s"><div class="who">(a)</div><div class="say">Anna passes, and they go out for dinner.</div></div>
+          <div class="cv anim" data-step="4" style="--d:0.60s"><div class="who">(b)</div><div class="say">Anna passes, and they stay at home.</div></div>
+          <div class="cv anim" data-step="5" style="--d:0.75s"><div class="who">(c)</div><div class="say">Anna fails, and they go out for dinner anyway.</div></div>
+          <div class="cv anim" data-step="6" style="--d:0.90s"><div class="who">(d)</div><div class="say">Anna fails, and they stay at home.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The material conditional, A" data-screen-label="09">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="mcq">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">The material conditional</h2>
+      <table class="tt" data-step="1"><tr><th></th><th>pass \((A)\)</th><th>dinner \((C)\)</th><th class="mc">\(A \rightarrow C\)</th><th>promise</th></tr><tr><td class="lab">(a)</td><td class="t">T</td><td class="t">T</td><td class="t mc">T</td><td class="lab">kept</td></tr><tr><td class="lab">(b)</td><td class="t">T</td><td class="f">F</td><td class="f mc">F</td><td class="lab">broken</td></tr><tr><td class="lab">(c)</td><td class="f">F</td><td class="t">T</td><td class="t mc">T</td><td class="lab">not tested</td></tr><tr><td class="lab">(d)</td><td class="f">F</td><td class="f">F</td><td class="t mc">T</td><td class="lab">not tested</td></tr></table>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Material conditional:</b> \(A \rightarrow C\) is false when \(A\) is true and \(C\) is false, and true otherwise. <span class="xr">(2)</span> is false only in (b), where the promise is broken.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">False antecedent:</b> in (c) and (d) Anna fails, so the promise is never tested, and the material conditional counts <span class="xr">(2)</span> as true, since nothing has made it false.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Philo of Megara</b> gave this truth table around 300 BC, and it is the only one available if <em>if</em> is a truth function.</div></div>
+      <div class="srcline">Gamut (1991), <em>Logic, Language, and Meaning</em>, vol. 1, ch. 2; Sextus Empiricus, <em>Outlines of Pyrrhonism</em> II.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Difficult cases for the material conditional, Q" data-screen-label="10">
+  <div class="b-slide pal-a lens-empirical" data-sec="hard">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Difficult cases for the material conditional</div>
+        <div class="convo sm">
+          <div class="cv anim" data-step="1" style="--d:0.15s"><div class="who">(3)</div><div class="say">If Dublin is in France, then 2 + 2 = 5.</div></div>
+          <div class="cv anim" data-step="2" style="--d:0.30s"><div class="who">(4)</div><div class="say">If the moon is made of cheese, then Paris is in France.</div></div>
+          <div class="cv anim" data-step="3" style="--d:0.45s"><div class="who">(5)</div><div class="say">If I am the Pope, I am Irish.</div></div>
+          <div class="cv anim" data-step="4" style="--d:0.60s"><div class="who">(6)</div><div class="say">If I am the Pope, I am not Irish.</div></div>
+          <div class="cv anim" data-step="5" style="--d:0.75s"><div class="who">(7)</div><div class="say">If that&rsquo;s a Picasso, I&rsquo;m a monkey&rsquo;s uncle.</div></div>
+          <div class="cv anim" data-step="6" style="--d:0.90s"><div class="who">(8)</div><div class="say">Either if it rains the match is off, or if the match is off it rains.</div></div>
+          <div class="cv anim" data-step="7" style="--d:1.05s"><div class="who">(9)</div><div class="say">It is not true that if there is a major earthquake in Cambridge tomorrow, my house will collapse.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Difficult cases for the material conditional, A" data-screen-label="11">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="hard">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Difficult cases for the material conditional</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">False antecedent:</b> <span class="xr">(3)</span>, <span class="xr">(5)</span> and <span class="xr">(6)</span> come out true, since their antecedents are false. So <em>if A, C</em> and <em>if A, not C</em> are compatible, and true together exactly when \(A\) is false.</div></div>
+      <div class="erow nolb" data-step="2"><div class="tx tight"><b class="ld">True consequent:</b> <span class="xr">(4)</span> comes out true because Paris is in France. <span class="xr">(8)</span> is a tautology, since \((A \rightarrow C) \vee (C \rightarrow A)\) is true in every row.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Denial:</b> <span class="xr">(9)</span> comes out equivalent to <em>There will be a major earthquake in Cambridge tomorrow, and my house will not collapse</em> (<b class="ld">von Fintel & Heim 2011</b>).</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Dutchman conditionals:</b> <span class="xr">(7)</span> has an absurd consequent and conveys that its antecedent is false, by modus tollens. Here the material reading gives the right result.</div></div>
+      <div class="erow nolb" data-step="5"><div class="tx tight"><b class="ld">Grice (1989)</b> and <b class="ld">Jackson (1979)</b> keep the material conditional and explain why <span class="xr">(3)</span> and <span class="xr">(4)</span> sound odd by what a speaker can properly assert.</div></div>
+      <div class="srcline">von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, &sect;4.1; Grice (1989), &ldquo;Indicative conditionals&rdquo;, in <em>Studies in the Way of Words</em>; Jackson (1979), &ldquo;On assertion and indicative conditionals&rdquo;, <em>Philosophical Review</em> 88.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Empirical ·Indicatives and counterfactuals" data-screen-label="12">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="kinds2">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense xdense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Indicatives and counterfactuals</h2>
+      <div class="egpanel" data-step="1">
+        <div class="eg"><span class="no">(10)</span><span class="ex">If Oswald did not kill Kennedy, someone else did.</span></div>
+        <div class="eg"><span class="no">(11)</span><span class="ex">If Oswald had not killed Kennedy, someone else would have.</span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Adams (1970):</b> Lee Harvey Oswald shot President Kennedy in Dallas in 1963. <span class="xr">(10)</span> is true, since someone killed Kennedy, and <span class="xr">(11)</span> is doubtful or false, though the two differ only in their verb forms.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Indicative conditional:</b> a conditional like <span class="xr">(10)</span>, with ordinary tense in both clauses, read against what is known. The if-clause is the <strong>antecedent</strong> or <strong>protasis</strong>, and the main clause the <strong>consequent</strong> or <strong>apodosis</strong>.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Counterfactual conditional:</b> a conditional like <span class="xr">(11)</span>, with past morphology in the antecedent and <em>would</em> in the consequent, read against an antecedent taken to be false.</div></div>
+      <div class="erow nolb" data-step="5"><div class="tx tight"><b class="ld">Not truth-functional:</b> <em>If the match had been struck, it would have lit</em> and <em>If the match had been struck, it would have turned into a frog</em> both have a false antecedent and a false consequent, and only the first is true.</div></div>
+      <div class="srcline">Adams (1970), &ldquo;Subjunctive and indicative conditionals&rdquo;, <em>Foundations of Language</em> 6.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Kinds of conditional, Q" data-screen-label="13">
+  <div class="b-slide pal-a lens-empirical" data-sec="kinds">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Kinds of conditional</div>
+        <div class="convo">
+          <div class="cv anim" data-step="1" style="--d:0.15s"><div class="who">(12)</div><div class="say">If it rains tomorrow, the match will be cancelled.</div></div>
+          <div class="cv anim" data-step="2" style="--d:0.30s"><div class="who">(13)</div><div class="say">If the match had been cancelled, we would have gone to the pub.</div></div>
+          <div class="cv anim" data-step="3" style="--d:0.45s"><div class="who">(14)</div><div class="say">There are biscuits on the sideboard if you want them.</div></div>
+          <div class="cv anim" data-step="4" style="--d:0.60s"><div class="who">(15)</div><div class="say">Even if it rains, the match will go ahead.</div></div>
+          <div class="cv anim" data-step="5" style="--d:0.75s"><div class="who">(16)</div><div class="say">If you want to go to Harlem, you have to take the A train.</div></div>
+          <div class="cv anim" data-step="6" style="--d:0.90s"><div class="who">(17)</div><div class="say">Unless it rains, we will eat outside.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Kinds of conditional, A" data-screen-label="14">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="kinds">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Kinds of conditional</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">Hypothetical conditionals:</b> <span class="xr">(12)</span> and <span class="xr">(13)</span> make the consequent depend on the antecedent. <span class="xr">(12)</span> is an indicative about the future and <span class="xr">(13)</span> a counterfactual about the past.</div></div>
+      <div class="erow nolb" data-step="2"><div class="tx tight"><b class="ld">Biscuit conditionals:</b> in <span class="xr">(14)</span>, from <b class="ld">Austin (1956)</b>, the biscuits are on the sideboard whether or not you want them. The if-clause says when the assertion is relevant, so these are also called <strong>relevance conditionals</strong>.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Concessive conditionals:</b> <em>even if</em> in <span class="xr">(15)</span> asserts the consequent and adds that the antecedent would not change it (<b class="ld">König 1986</b>).</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Anankastic conditionals:</b> <span class="xr">(16)</span> states what is necessary for a goal (<b class="ld">von Fintel & Iatridou 2005</b>). <em>Unless</em> in <span class="xr">(17)</span> means roughly <em>if not</em> (<b class="ld">von Fintel 1991</b>).</div></div>
+      <div class="srcline">Austin (1956), &ldquo;Ifs and cans&rdquo;, <em>Proceedings of the British Academy</em> 42; K&ouml;nig (1986), in Traugott et al. (eds.), <em>On Conditionals</em>; von Fintel &amp; Iatridou (2005), &ldquo;What to do if you want to go to Harlem&rdquo;, ms., MIT; von Fintel (1991), &ldquo;Exceptive conditionals&rdquo;, <em>NELS</em> 22.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Empirical ·Modals under if" data-screen-label="15">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="lock">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Modals under <em>if</em></h2>
+      <div class="egpanel" data-step="1">
+        <div class="eg"><span class="no">(18)</span><span class="ex">If we are on Route 183, we might be in Lockhart now.</span></div>
+        <div class="eg"><span class="no">(19)</span><span class="ex">If we are on Route 80, we might be in Lockhart now.</span></div>
+      </div>
+      <div class="figrow fr2">
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-step="3"><div class="tx tight"><b class="ld">von Fintel & Heim (2011):</b> Mary, reading the map, says <span class="xr">(18)</span> to Susan, who is driving; neither knows where they are. <span class="xr">(18)</span> is true, since Route 183 runs through Lockhart, a town in Texas, and <span class="xr">(19)</span> is false, since Route 80 does not.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Truth-functional if:</b> with <em>if</em> outside <em>might</em>, <span class="xr">(19)</span> is true as soon as they are not on Route 80, and with <em>might</em> outside <em>if</em>, as long as Mary is not sure they are. Either way it comes out true, like <span class="xr">(18)</span>.</div></div>
+        </div>
+      <svg class="wfig zf" viewBox="150 20 1180 445" data-step="2" role="img" aria-label="Map after von Fintel and Heim: Route 183 runs from Austin through Lockhart to Luling; Route 142 runs from Martindale to Lockhart; Route 80 runs from Martindale to Luling.">
+        <polyline class="road on" points="1060,70 1000,235 1110,410"/>
+        <polyline class="road" points="440,245 1000,235"/>
+        <polyline class="road" points="440,245 1110,410"/>
+        <circle class="town" cx="1060" cy="70" r="15"/><text class="fl" x="1092" y="81">Austin</text>
+        <circle class="town" cx="1000" cy="235" r="15"/><text class="fl" x="1030" y="225">Lockhart</text>
+        <circle class="town" cx="440" cy="245" r="15"/><text class="fl e" x="414" y="256">Martindale</text>
+        <circle class="town" cx="1110" cy="410" r="15"/><text class="fl" x="1142" y="421">Luling</text>
+        <text class="fl on" x="1072" y="330">Route 183</text>
+        <text class="fl c" x="720" y="218">Route 142</text>
+        <text class="fl c" x="700" y="386">Route 80</text>
+      </svg>
+      </div>
+      <div class="srcline">von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, &sect;&sect;4.1&ndash;4.2 and fig. 4.3.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Empirical ·Strengthening the antecedent" data-screen-label="16">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="streng">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense xdense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Strengthening the antecedent</h2>
+      <div class="egpanel" data-step="1">
+        <div class="eg"><span class="no">(20)</span><span class="ex">If kangaroos had no tails, they would topple over.</span></div>
+        <div class="eg"><span class="no">(21)</span><span class="ex">If kangaroos had no tails but used crutches, they would topple over.</span></div>
+        <div class="eg"><span class="no">(22)</span><span class="ex">If the USA threw its weapons into the sea tomorrow, there would be war; but if the USA and the other nuclear powers all threw their weapons into the sea tomorrow, there would be peace.</span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Strengthening the antecedent:</b> from <em>if A, C</em> infer <em>if A and B, C</em>. A universal quantifier over a fixed set of worlds validates it, since the A-and-B worlds are among the A-worlds, yet <span class="xr">(20)</span> is true and <span class="xr">(21)</span> false.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Sobel sequence:</b> a sequence of conditionals with ever stronger antecedents and alternating consequents that still sounds consistent, as <span class="xr">(22)</span> does. The name honours J. Howard Sobel, and <b class="ld">Lewis (1973)</b> uses such sequences against the strict conditional.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Indicatives:</b> <em>If I strike this match, it will light</em> and <em>If I dip this match in water and strike it, it will light</em> fail in the same way.</div></div>
+      <div class="srcline">Lewis (1973), <em>Counterfactuals</em>, ch. 1; von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, &sect;5.4.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Empirical ·Transitivity and contraposition" data-screen-label="17">
+  <div class="b-slide pal-a lens-empirical dB" data-sec="trans">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-emp"/></svg></span>Empirical</div>
+      <h2 class="b-h">Transitivity and contraposition</h2>
+      <div class="egpanel" data-step="1">
+        <div class="eg"><span class="no">(23)</span><span class="ex">If J. Edgar Hoover had been born a Russian, then he would today be a communist.</span></div>
+        <div class="eg"><span class="no">(24)</span><span class="ex">If J. Edgar Hoover were today a communist, then he would be a traitor.</span></div>
+        <div class="eg"><span class="no">(25)</span><span class="ex">If J. Edgar Hoover had been born a Russian, he would be a traitor.</span></div>
+        <div class="eg"><span class="no">(26)</span><span class="ex">Even if Goethe hadn&rsquo;t died in 1832, he would still be dead now.</span></div>
+        <div class="eg"><span class="no">(27)</span><span class="ex">If Goethe were alive now, he would have died in 1832.</span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Transitivity:</b> from <em>if A, B</em> and <em>if B, C</em> infer <em>if A, C</em>. J. Edgar Hoover ran the FBI from 1924 to 1972 and was a fierce anti-communist, and <b class="ld">Stalnaker (1968)</b> has <span class="xr">(23)</span> and <span class="xr">(24)</span> true and <span class="xr">(25)</span> false.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Contraposition:</b> from <em>if A, C</em> infer <em>if not C, not A</em>. The poet Goethe died in 1832, and Kratzer&rsquo;s <span class="xr">(26)</span> is true while its contrapositive <span class="xr">(27)</span> is absurd.</div></div>
+      <div class="srcline">Stalnaker (1968), &ldquo;A theory of conditionals&rdquo;; von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, &sect;5.4.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§ Historical" data-screen-label="§ Historical">
+  <div class="lxd2 lens-historical pal-a">
+    <div class="l"><div class="num">II</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-his"/></svg></div></div>
+    <div class="r"><div class="lab">Historical</div><div class="ct">LENS 02 / 04 · LIU33008 · Week 9</div><h2>Theories of the conditional</h2><div class="ask">Ancient Logical Theories and the Restrictor Analysis</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="historical"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Historical ·Ancient logic" data-screen-label="18">
+  <div class="b-slide pal-a lens-historical dB" data-sec="stoic">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Ancient logic</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">Philo of Megara:</b> a conditional is true unless its antecedent is true and its consequent false, the material reading. His teacher <b class="ld">Diodorus Cronus</b> required that this combination hold at no time, an early version of the strict conditional.</div></div>
+      <div class="erow nolb" data-step="2"><div class="tx tight"><b class="ld">Chrysippus:</b> a conditional is sound when the negation of its consequent conflicts with its antecedent. <em>If it is day, it is day</em> passes this test, and <em>If it is day, I am talking</em> fails it.</div></div>
+      <div class="srcline">Sextus Empiricus, <em>Outlines of Pyrrhonism</em> II.110&ndash;112; Bobzien (2020), &ldquo;Ancient logic&rdquo;, <em>Stanford Encyclopedia of Philosophy</em>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Historical ·Lewis Carroll" data-screen-label="19">
+  <div class="b-slide pal-a lens-historical dB" data-sec="barber">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Lewis Carroll</h2>
+      <div class="figrow">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:LewisCarrollSelfPhoto.jpg — self-portrait, 2 June 1857, public domain per Commons; local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/carroll.jpg" alt="Lewis Carroll" style="object-position:50% 18%"><div class="pc"><div class="nm">Lewis Carroll</div><div class="dt">1832 – 1898</div></div></div>
+        <div class="figbody">
+      <div class="egpanel" data-step="2">
+        <div class="eg"><span class="no">(28)</span><span class="ex">If Carr is out, then if Allen is out, Brown is in.</span></div>
+        <div class="eg"><span class="no">(29)</span><span class="ex">If Allen is out, Brown is out.</span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="3"><div class="tx tight"><b class="ld">Carroll (1894):</b> Allen, Brown and Carr run a barber&rsquo;s shop. One of them must always be in, and Allen never goes out without Brown. Uncle Joe argues that Carr must be in, since if Carr were out, <span class="xr">(28)</span> and <span class="xr">(29)</span> would both hold, and their consequents contradict each other.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Johnson (1894)</b> and <b class="ld">Russell (1903):</b> on the material reading <em>if A, B</em> and <em>if A, not B</em> are compatible, and together they entail <em>not A</em>. With Carr out, <span class="xr">(28)</span> and <span class="xr">(29)</span> only show that Allen is in, so Carr is free to go out.</div></div>
+        </div>
+      </div>
+      <div class="srcline">Carroll (1894), &ldquo;A logical paradox&rdquo;, <em>Mind</em> 3; Johnson (1894), &ldquo;A logical paradox&rdquo;, <em>Mind</em> 3; Russell (1903), <em>The Principles of Mathematics</em>, &sect;19 n. 1.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Historical ·Ramsey and Stalnaker" data-screen-label="20">
+  <div class="b-slide pal-a lens-historical dB" data-sec="stal">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Ramsey and Stalnaker</h2>
+      <div class="figrow">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:Robert_Stalnaker_2017_(cropped).jpg — CC BY 3.0, Dipartimento di Filosofia "Piero Martinetti", University of Milan (Casalegno Lecture, 2017); local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/stalnaker.jpg" alt="Robert Stalnaker" style="object-position:50% 12%"><div class="pc"><div class="nm">Robert Stalnaker</div><div class="dt">born 1940</div></div></div>
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Ramsey (1929):</b> two people arguing about <em>If p, will q?</em> add p hypothetically to their stock of knowledge and argue about q on that basis. This is the <strong>Ramsey test</strong>.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Stalnaker (1968):</b> a <strong>selection function</strong> \(f\) picks, for an antecedent \(A\) and a world \(w\), the <span class="nw">\(A\)-world</span> most similar to \(w\). <em>If A, C</em> is true at \(w\) iff \(C\) is true at \(f(A, w)\), and \(f(A, w)\) is \(w\) itself whenever \(A\) is true at \(w\).</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Conditional excluded middle:</b> since the selected world is unique, <em>if A, C</em> or <em>if A, not C</em> is true. <b class="ld">Stalnaker (1975)</b> gives indicatives the same semantics, with the selected world inside the context set whenever the antecedent is compatible with it.</div></div>
+        </div>
+      </div>
+      <div class="srcline">Ramsey (1929), &ldquo;General propositions and causality&rdquo;, in <em>The Foundations of Mathematics</em> (1931); Stalnaker (1968), &ldquo;A theory of conditionals&rdquo;; Stalnaker (1975), &ldquo;Indicative conditionals&rdquo;, <em>Philosophia</em> 5.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Historical ·David Lewis" data-screen-label="21">
+  <div class="b-slide pal-a lens-historical dB" data-sec="lew">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">David Lewis</h2>
+      <div class="figrow">
+        <!-- Portrait: https://commons.wikimedia.org/wiki/File:David_Lewis_(1962)_(cropped).webp — public domain per Commons; local copy in images/ (the file used in week 2) -->
+        <div class="portrait" data-step="1"><img src="images/dlewis.jpg" alt="David Lewis" style="object-position:50% 15%"><div class="pc"><div class="nm">David Lewis</div><div class="dt">1941 – 2001</div></div></div>
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Lewis (1973)</b> orders worlds by <strong>spheres</strong> of similarity around \(w\). \(A \cf C\) is true at \(w\) iff some sphere contains an <span class="nw">\(A\)-world</span> and every <span class="nw">\(A\)-world</span> in that sphere is a <span class="nw">\(C\)-world</span>, and it is vacuously true if no sphere contains an <span class="nw">\(A\)-world</span>.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Variably strict conditional:</b> each antecedent is read over the smallest sphere that contains one of its worlds, so strengthening, transitivity and contraposition fail. The <strong>might counterfactual</strong> \(A \mcf C\) is true iff \(A \cf \neg C\) is false.</div></div>
+        </div>
+      </div>
+      <div class="srcline">Lewis (1973), <em>Counterfactuals</em>, &sect;&sect;1.2&ndash;1.5.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Historical ·Lewis and Kratzer" data-screen-label="22">
+  <div class="b-slide pal-a lens-historical dB" data-sec="lk">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-his"/></svg></span>Historical</div>
+      <h2 class="b-h">Lewis and Kratzer</h2>
+      <div class="figrow">
+        <!-- Portrait: supplied by Thomas Stephen, September 2026 (the file used in week 3); local copy in images/ -->
+        <div class="portrait" data-step="1"><img src="images/kratzer.jpg" alt="Angelika Kratzer" style="object-position:50% 25%"><div class="pc"><div class="nm">Angelika Kratzer</div><div class="dt">PhD Konstanz, 1979</div></div></div>
+        <div class="figbody">
+      <div class="egpanel" data-step="2">
+        <div class="eg"><span class="no">(30)</span><span class="ex">Most of the time, if a man buys a horse, he pays cash for it.</span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="3"><div class="tx tight"><b class="ld">Lewis (1975):</b> in <em>always if A, C</em> or <em>usually if A, C</em> the adverb of quantification is the only operator, and the if-clause restricts it. This <em>if</em> has no meaning of its own and marks an argument place.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Kratzer (1986):</b> there is no two-place <em>if … then</em> connective in the logical forms of natural languages, and every if-clause restricts an operator. A material conditional under <em>most of the time</em> would make <span class="xr">(30)</span> true as soon as most of the time nobody buys a horse.</div></div>
+      <div class="erow nolb" data-step="5"><div class="tx tight"><b class="ld">Heim (1982)</b> builds the restriction into a <strong>tripartite structure</strong>, Operator [Restriction] [Nuclear scope], and uses it for donkey anaphora.</div></div>
+        </div>
+      </div>
+      <div class="srcline">Lewis (1975), &ldquo;Adverbs of quantification&rdquo;, in Keenan (ed.), <em>Formal Semantics of Natural Language</em>; Kratzer (1986), &ldquo;Conditionals&rdquo;, <em>CLS</em> 22; Heim (1982), UMass dissertation.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§ Formal" data-screen-label="§ Formal">
+  <div class="lxd2 lens-formal pal-a">
+    <div class="l"><div class="num">III</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-for"/></svg></div></div>
+    <div class="r"><div class="lab">Formal</div><div class="ct">LENS 03 / 04 · LIU33008 · Week 9</div><h2>If-clauses as restrictors</h2><div class="ask">The if-clause restricts a modal or an adverb.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="formal"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Formal ·If as a strict conditional" data-screen-label="23">
+  <div class="b-slide pal-a lens-formal dB" data-sec="strict">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h"><em>If</em> as a strict conditional</h2>
+      <div class="egpanel" data-step="1">
+        <div class="eg"><span class="no">(19)</span><span class="ex">If we are on Route 80, we might be in Lockhart now.</span></div>
+      </div>
+      <div class="egpanel" data-step="2" style="margin-top:6px"><div class="fx l sm">\(\sem{\textit{if}}^{w} = \lambda R.\,\lambda p.\,\lambda q.\ \forall w'\,[(R(w)(w') \wedge p(w')) \rightarrow q(w')] \qquad\text{in set talk: } R(w) \cap p \subseteq q\)</div></div>
+      <div class="erow nolb" style="border-top:none" data-step="3"><div class="tx tight"><b class="ld">Strict conditional:</b> <em>if</em> takes a covert accessibility relation \(R\), and <em>if A, C</em> is true at \(w\) iff every accessible <span class="nw">\(A\)-world</span> is a <span class="nw">\(C\)-world</span>. With an epistemic \(R\), the conditional inside <span class="xr">(9)</span> says that the earthquake worlds compatible with what we know are collapse worlds, which is what <span class="xr">(9)</span> denies.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Might inside if:</b> <span class="xr">(19)</span> is predicted true as long as Lockhart is possible for all Mary knows, since being on Route 80 would not change what she knows. Mary knows, though, that on Route 80 they cannot be in Lockhart.</div></div>
+      <div class="erow nolb" data-step="5"><div class="tx tight"><b class="ld">Might outside if:</b> <span class="xr">(18)</span> says that for all Mary knows, being on Route 183 settles that they are in Lockhart. Mary knows that she does not know where they are.</div></div>
+      <div class="srcline">von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, &sect;4.2.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Formal ·Kratzer&rsquo;s thesis" data-screen-label="24">
+  <div class="b-slide pal-a lens-formal dB" data-sec="thesis">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense xdense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Kratzer&rsquo;s thesis</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">Kratzer (1986):</b> if-clauses restrict the domains of operators. In <span class="xr">(18)</span> the if-clause narrows the modal base of <em>might</em> to the worlds where they are on Route 183.</div></div>
+      <svg class="wfig zt" style="max-height:262px" viewBox="130 0 1110 465" data-step="2" role="img" aria-label="Tree for the restrictor analysis: S branches into ModalP and the consequent; ModalP branches into might and the restriction, which branches into the covert restriction R and the if-clause.">
+        <line class="tl" x1="700" y1="62" x2="440" y2="122"/><line class="tl" x1="700" y1="62" x2="1000" y2="122"/>
+        <line class="tl" x1="440" y1="172" x2="260" y2="236"/><line class="tl" x1="440" y1="172" x2="630" y2="232"/>
+        <line class="tl" x1="630" y1="282" x2="480" y2="346"/><line class="tl" x1="630" y1="282" x2="790" y2="336"/>
+        <polygon class="tl" points="1000,172 860,244 1140,244"/>
+        <polygon class="tl" points="790,336 620,398 960,398"/>
+        <text class="fl c cat" x="700" y="48">S</text>
+        <text class="fl c cat on" x="440" y="160">ModalP</text>
+        <text class="fl c cat" x="1000" y="160">S</text>
+        <text class="fl c it" x="1000" y="290">we are in Lockhart</text>
+        <text class="fl c it" x="260" y="276">might</text>
+        <text class="fl c cat on" x="630" y="270">restriction</text>
+        <text class="fl c it" x="480" y="388">R<tspan dy="9" font-size="70%">w*</tspan></text>
+        <text class="fl c it" x="790" y="446">if we are on Route 183</text>
+      </svg>
+      <div class="egpanel" data-step="3" style="margin-top:6px"><div class="fx l">\(\sem{\textit{if A, might C}}^{w} = 1 \text{ iff } \underbrace{\textstyle\bigcap f(w)}_{\text{modal base}} \cap \underbrace{\sem{A}}_{\text{if-clause}} \cap \underbrace{\sem{C}}_{\text{consequent}} \neq \emptyset\)</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Restricted modal base:</b> the if-clause is the sister of the covert restriction \(R\) and is intersected with it. <span class="xr">(18)</span> is true, since some Route 183 world compatible with what Mary knows has them in Lockhart, and <span class="xr">(19)</span> is false, since no Route 80 world does.</div></div>
+      <div class="srcline">Kratzer (1986), &ldquo;Conditionals&rdquo;, <em>CLS</em> 22; von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, &sect;4.3.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Formal ·Covert operators" data-screen-label="25">
+  <div class="b-slide pal-a lens-formal dB" data-sec="covert">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Covert operators</h2>
+      <div class="egpanel" data-step="1">
+        <div class="eg"><span class="no">(31)</span><span class="ex">If this dog is approached, he bites.</span></div>
+        <div class="eg"><span class="no">(32)</span><span class="ex">If John was here on time, he left Cambridge at noon.</span></div>
+        <div class="eg"><span class="no">(33)</span><span class="ex">If a farmer owns a donkey, he usually beats it.</span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Bare conditionals:</b> a conditional with no overt operator restricts a covert one, a frequency adverb like <em>always</em> in <span class="xr">(31)</span> and epistemic <em>must</em> in <span class="xr">(32)</span> (<b class="ld">Kratzer 1986</b>).</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Tripartite structure:</b> in <span class="xr">(33)</span> <em>usually</em> quantifies over cases, pairs of a farmer and a donkey he owns, and the if-clause gives the restriction, MOST\(_{\langle x, y\rangle}\) [farmer(\(x\)) &and; donkey(\(y\)) &and; owns(\(x, y\))] [beats(\(x, y\))]. The pronouns are bound from the restriction (<b class="ld">Heim 1982</b>).</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">von Fintel (2007):</b> to study predictive conditionals, study <em>will</em>, and to study bare indicatives like <span class="xr">(32)</span>, study epistemic <em>must</em>.</div></div>
+      <div class="srcline">Kratzer (1986), &ldquo;Conditionals&rdquo;; Heim (1982), UMass dissertation; von Fintel (2007), &ldquo;If: the biggest little word&rdquo;, Georgetown University Round Table.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The Lockhart model, Q" data-screen-label="26">
+  <div class="b-slide pal-a lens-formal" data-sec="lockm">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>The Lockhart model</div>
+        <div class="convo sm">
+          <div class="cv anim" data-step="1" style="--d:.15s"><div class="who">(19)</div><div class="say">If we are on Route 80, we might be in Lockhart now.</div></div>
+        </div>
+        <div class="qctx anim" data-step="2" style="--d:.3s">Mary&rsquo;s modal base \(\bigcap f(w_2) = \{w_1, w_2, w_3, w_4\}\).</div>
+      <div class="wtab cmp anim" data-step="3" style="--nc:2">
+        <div class="r h"><div></div><div>on Route 80 &nbsp;(\(A\))</div><div>in Lockhart &nbsp;(\(C\))</div></div>
+        <div class="r"><div>\(w_1\)</div><div class="c">T</div><div class="c f">F</div></div>
+        <div class="r"><div>\(w_2\) &nbsp;<span style="font-family:var(--sans);font-size:20px;color:var(--tcd-grey-75)">actual</span></div><div class="c">T</div><div class="c f">F</div></div>
+        <div class="r"><div>\(w_3\)</div><div class="c f">F</div><div class="c">T</div></div>
+        <div class="r"><div>\(w_4\)</div><div class="c f">F</div><div class="c f">F</div></div>
+      </div>
+        <div class="convo sm">
+          <div class="cv anim" data-step="4" style="--d:.45s"><div class="who">(a)</div><div class="say">\(\Diamond(A \rightarrow C)\)</div></div>
+          <div class="cv anim" data-step="5" style="--d:.60s"><div class="who">(b)</div><div class="say">\(A \rightarrow \Diamond C\)</div></div>
+          <div class="cv anim" data-step="6" style="--d:.75s"><div class="who">(c)</div><div class="say">\(\bigcap f(w_2) \cap A \cap C \neq \emptyset\)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="The Lockhart model, A" data-screen-label="27">
+  <div class="b-slide pal-a lens-formal dB" data-sec="lockm">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">The Lockhart model</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">Material under the modal:</b> (a) is true iff some world in the modal base makes \(A \rightarrow C\) true. \(A\) is false at \(w_3\) and \(w_4\), so (a) is true.</div></div>
+      <div class="erow nolb" data-step="2"><div class="tx tight"><b class="ld">Modal under the material:</b> (b) is true at \(w_2\) unless \(A\) holds there and \(\Diamond C\) fails. \(\Diamond C\) holds, since \(w_3\) is a Lockhart world in the modal base, so (b) is true.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Restrictor:</b> (c) restricts the modal base to \(\{w_1, w_2\}\), the Route 80 worlds, and neither is a Lockhart world, so (c) is false, as the map requires.</div></div>
+      <div class="srcline">von Fintel &amp; Heim (2011), <em>Intensional Semantics</em>, &sect;&sect;4.1&ndash;4.3.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Formal ·The ordering source" data-screen-label="28">
+  <div class="b-slide pal-a lens-formal dB" data-sec="ord">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">The ordering source</h2>
+      <div class="figrow fr2">
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">von Fintel & Gillies (2026):</b> \(s\) is the actual world, \(r\) the rain worlds and \(w\) the worlds where the seats got wet. The closest <span class="nw">\(r\)-worlds</span>, shaded, are all <span class="nw">\(w\)-worlds</span>, so <em>if it had rained, the seats would have been wet</em> is true.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Kratzer (1981):</b> counterfactuals have an empty modal base and the facts of the world as <strong>ordering source</strong>, and Best picks the worlds that keep most of them (<b class="ld">Lewis 1981</b>).</div></div>
+        </div>
+        <!-- Figure: von Fintel & Gillies (2026), "Yo-yo conditionals and counterfactual suppositions", handout, University of Texas at Austin, fig. 1, p. 3 (doi:10.5281/zenodo.22116790). The Zenodo record carries no licence: shown for teaching; ask the authors before posting publicly. Local copy in images/. -->
+        <img class="pubfig" src="images/fintel-gillies-2026-fig1.png" alt="Nested spheres around the actual situation s, with the rain worlds r and the wet worlds w; the closest r-worlds, shaded, lie inside w." data-step="1">
+      </div>
+      <div class="egpanel" data-step="4" style="margin-top:6px"><div class="fx l sm">\(\sem{\textit{if A, must C}}^{w} = 1 \text{ iff } \Best_{g(w)}\big(\textstyle\bigcap f(w) \cap \sem{A}\big) \subseteq \sem{C}\)</div></div>
+      <div class="erow nolb" data-step="5"><div class="tx tight"><b class="ld">Non-monotonicity:</b> the best <span class="nw">\(A\)-and</span>-\(B\) worlds need not be among the best <span class="nw">\(A\)-worlds</span>, so strengthening, transitivity and contraposition fail, for indicatives and counterfactuals alike.</div></div>
+      <div class="srcline">von Fintel &amp; Gillies (2026), handout, fig. 1; Kratzer (1981), &ldquo;Partition and revision&rdquo;, <em>Journal of Philosophical Logic</em> 10; Lewis (1981), &ldquo;Ordering semantics and premise semantics for counterfactuals&rdquo;, <em>Journal of Philosophical Logic</em> 10.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Bizet and Verdi, Q" data-screen-label="29">
+  <div class="b-slide pal-a lens-formal" data-sec="bv">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Bizet and Verdi</div>
+        <div class="qctx anim" data-step="1" style="--d:.15s">Georges Bizet was a French composer and Giuseppe Verdi an Italian one. \(w_1\) and \(w_2\) are equally close to \(w_0\), and \(w_3\) is further away.</div>
+      <svg class="wfig zf" style="max-height:330px" viewBox="300 10 820 510" data-step="2" role="img" aria-label="Spheres around w0, where Bizet is French and Verdi Italian. On the first sphere lie w1, where both are French, and w2, where both are Italian. On the second sphere lies w3, where both are German.">
+        <circle class="sph" cx="700" cy="265" r="235"/>
+        <circle class="sph on" cx="700" cy="265" r="150"/>
+        <circle class="nd0" cx="700" cy="265" r="30"/><text class="nl inv" x="700" y="279">w<tspan dy="8" font-size="66%">0</tspan></text>
+        <text class="fl c halo" x="700" y="345">Bizet French, Verdi Italian</text>
+        <circle class="nd" cx="565" cy="200" r="30"/><text class="nl" x="565" y="214">w<tspan dy="8" font-size="66%">1</tspan></text>
+        <text class="fl c halo" x="565" y="148">both French</text>
+        <circle class="nd" cx="835" cy="200" r="30"/><text class="nl" x="835" y="214">w<tspan dy="8" font-size="66%">2</tspan></text>
+        <text class="fl c halo" x="835" y="148">both Italian</text>
+        <circle class="nd" cx="818" cy="470" r="30"/><text class="nl" x="818" y="484">w<tspan dy="8" font-size="66%">3</tspan></text>
+        <text class="fl halo" x="862" y="484">both German</text>
+      </svg>
+        <div class="convo sm">
+          <div class="cv anim" data-step="3" style="--d:.45s"><div class="who">(34)</div><div class="say">If Bizet and Verdi had been compatriots, Bizet would have been Italian.</div></div>
+          <div class="cv anim" data-step="4" style="--d:.60s"><div class="who">(35)</div><div class="say">If Bizet and Verdi had been compatriots, Verdi would have been French.</div></div>
+          <div class="cv anim" data-step="5" style="--d:.75s"><div class="who">(36)</div><div class="say">If Bizet and Verdi had been compatriots, Bizet might have been Italian.</div></div>
+          <div class="cv anim" data-step="6" style="--d:.90s"><div class="who">(37)</div><div class="say">If Bizet and Verdi had been compatriots, they would both have been German.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Bizet and Verdi, A" data-screen-label="30">
+  <div class="b-slide pal-a lens-formal dB" data-sec="bv">
+    <aside class="mrail"></aside>
+    <div class="b-main dB roomy">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Bizet and Verdi</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">Lewis (1973):</b> the closest compatriot worlds are \(w_1\) and \(w_2\). <span class="xr">(34)</span> and <span class="xr">(35)</span> are false, since each fails at one of them, and <span class="xr">(37)</span> is false, since \(w_3\) is further away. <span class="xr">(36)</span> is true, since Bizet is Italian at \(w_2\).</div></div>
+      <div class="erow nolb" data-step="2"><div class="tx tight"><b class="ld">Stalnaker (1968):</b> the selection function picks \(w_1\) or \(w_2\), and whichever it picks, one of <span class="xr">(34)</span> and <span class="xr">(35)</span> is true. A <em>might</em> counterfactual defined as the dual then says the same as <span class="xr">(34)</span>, so the <em>might</em> of <span class="xr">(36)</span> has to be epistemic.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Stalnaker (1981):</b> the choice between \(w_1\) and \(w_2\) is indeterminate, so <span class="xr">(34)</span> and <span class="xr">(35)</span> are neither true nor false, and their disjunction is true.</div></div>
+      <div class="srcline">Lewis (1973), <em>Counterfactuals</em>, pp. 79&ndash;81, after Quine (1950), <em>Methods of Logic</em>; Stalnaker (1968); Stalnaker (1981), &ldquo;A defense of conditional excluded middle&rdquo;, in Harper, Stalnaker &amp; Pearce (eds.), <em>Ifs</em>.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Yo-yo conditionals, Q" data-screen-label="31">
+  <div class="b-slide pal-a lens-formal" data-sec="yoyo">
+    <aside class="mrail"></aside>
+    <div class="b-main">
+      <div class="qwrap">
+        <div class="qask anim" style="--d:0s"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Yo-yo conditionals</div>
+        <div class="qctx anim" data-step="1" style="--d:.15s">We left the convertible outside with the top up. It did not rain, and the seats are dry.</div>
+        <div class="convo big">
+          <div class="cv anim" data-step="2" style="--d:0.30s"><div class="who">(38)</div><div class="say">If it had rained, then if the top had been down, the seats would have been wet.</div></div>
+          <div class="cv anim" data-step="3" style="--d:0.45s"><div class="who">(39)</div><div class="say">If it had rained, then if it hadn&rsquo;t rained, the seats would be dry.</div></div>
+          <div class="cv anim" data-step="4" style="--d:0.60s"><div class="who">(40)</div><div class="say">Suppose it had rained. Suppose it hadn&rsquo;t rained &hellip;</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Yo-yo conditionals, A" data-screen-label="32">
+  <div class="b-slide pal-a lens-formal dB" data-sec="yoyo">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense xdense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Yo-yo conditionals</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">von Fintel & Gillies (2026):</b> a <strong>yo-yo conditional</strong> is an iterated counterfactual whose inner antecedent takes back the outer one, as in <span class="xr">(39)</span>. <span class="xr">(38)</span> is fine and true, and <span class="xr">(39)</span> and <span class="xr">(40)</span> are infelicitous in every context.</div></div>
+      <svg class="wfig zf" style="max-height:290px" viewBox="0 30 1440 450" data-step="2" role="img" aria-label="Two systems of spheres. On the left, spheres around w; the dashed rain region first meets the middle sphere at v, the closest rain world. On the right, spheres around v; the dashed no-rain region first meets the middle sphere at u, which need not be w.">
+        <circle class="sph" cx="230" cy="230" r="165"/><circle class="sph on" cx="230" cy="230" r="110"/><circle class="sph" cx="230" cy="230" r="55"/>
+        <ellipse class="reg2" cx="440" cy="230" rx="140" ry="110"/>
+        <circle class="nd0" cx="230" cy="230" r="27"/><text class="nl inv" x="230" y="242">w</text>
+        <circle class="nd hi" cx="318" cy="210" r="25"/><text class="nl inv" x="318" y="222">v</text>
+        <circle class="nd dim" cx="500" cy="280" r="18"/>
+        <text class="fl c halo" x="440" y="100">rain</text>
+        <text class="fl c halo" x="230" y="460">spheres around <tspan class="it">w</tspan></text>
+        <circle class="sph" cx="1200" cy="230" r="165"/><circle class="sph on" cx="1200" cy="230" r="110"/><circle class="sph" cx="1200" cy="230" r="55"/>
+        <ellipse class="reg2" cx="990" cy="230" rx="140" ry="110"/>
+        <circle class="nd0" cx="1200" cy="230" r="27"/><text class="nl inv" x="1200" y="242">v</text>
+        <circle class="nd hi" cx="1112" cy="250" r="25"/><text class="nl inv" x="1112" y="262">u</text>
+        <circle class="nd dim" cx="900" cy="190" r="25"/><text class="nl dim" x="900" y="202">w</text>
+        <text class="fl c halo" x="990" y="100">no rain</text>
+        <text class="fl c halo" x="1200" y="460">spheres around <tspan class="it">v</tspan></text>
+      </svg>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Closest-worlds analysis:</b> <span class="xr">(39)</span> is true at \(w\) iff <em>if it hadn&rsquo;t rained, the seats would be dry</em> is true at every closest rain world \(v\), and that depends on the ordering \(\leq_v\) around \(v\). Nothing ties \(\leq_v\) to \(\leq_w\), so <span class="xr">(39)</span> is predicted to be an ordinary conditional, often true.</div></div>
+      <div class="srcline">von Fintel &amp; Gillies (2026), &ldquo;Yo-yo conditionals and counterfactual suppositions&rdquo;, handout, University of Texas at Austin.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Formal ·Other notations" data-screen-label="33">
+  <div class="b-slide pal-a lens-formal dB" data-sec="nota">
+    <aside class="mrail"></aside>
+    <div class="b-main dB snug">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-for"/></svg></span>Formal</div>
+      <h2 class="b-h">Other notations</h2>
+      <div class="ntab tight">
+        <div class="nh"><span>In this module</span><span>In the readings and elsewhere</span></div>
+        <div class="nr" data-step="1"><div class="no1">\(A \cf C\)<small>would counterfactual</small></div><div class="no2">\(A > C\) <i>Stalnaker</i> &middot; \(A \Rightarrow C\) &middot; <i>subjunctive conditional</i></div></div>
+        <div class="nr" data-step="2"><div class="no1">\(A \mcf C\)<small>might counterfactual</small></div><div class="no2">\(\neg(A \cf \neg C)\) <i>Lewis, the dual</i> &middot; <i>on a selection function, read epistemically</i></div></div>
+        <div class="nr" data-step="3"><div class="no1">\(\Min_w(A)\)<small>closest A-worlds</small></div><div class="no2">\(f(A, w)\) <i>Stalnaker, a single world</i> &middot; \(\Best_{g(w)}(\bigcap f(w) \cap A)\) <i>Kratzer</i> &middot; \(S_A\), <i>the smallest A-permitting sphere, Lewis</i></div></div>
+        <div class="nr" data-step="4"><div class="no1"><em>if A</em>, must <em>C</em><small>restrictor analysis</small></div><div class="no2"><i>must</i> [if A] [C] &middot; OPERATOR [Restriction] [Nuclear scope] <i>Heim</i> &middot; \(A \supset C\) <i>the horseshoe, for the material conditional</i></div></div>
+        <div class="nr" data-step="5"><div class="no1">indicative &middot; counterfactual</div><div class="no2"><i>subjunctive, in philosophy</i> &middot; <i>O-marked, X-marked, von Fintel &amp; Iatridou</i> &middot; <i>protasis, apodosis</i> &middot; <i>antecedent, consequent</i></div></div>
+      </div>
+      <div class="srcline">Stalnaker (1968); Lewis (1973); Kratzer (1981, 1986); Heim (1982); von Fintel &amp; Iatridou (2023).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="§ Typological" data-screen-label="§ Typological">
+  <div class="lxd2 lens-typological pal-a">
+    <div class="l"><div class="num">IV</div><div class="glyph"><svg viewBox="0 0 24 24" style="width:100%;height:100%"><use href="#g-typ"/></svg></div></div>
+    <div class="r"><div class="lab">Typological</div><div class="ct">LENS 04 / 04 · LIU33008 · Week 9</div><h2>Conditionals across languages</h2><div class="ask">Topics, clause order and conditional marking.</div><div class="lx-rule"></div></div>
+    <div class="lxd2-foot" data-lens="typological"></div>
+  </div>
+</section>
+
+<section class="slide" data-label="Typological ·Conditionals are topics" data-screen-label="34">
+  <div class="b-slide pal-a lens-typological dB" data-sec="topic">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Conditionals are topics</h2>
+      <div class="ilg cmp" data-step="1">
+        <div class="ex"><span class="no">(41)</span><span><div class="ws"><span class="lang">Japanese</span><span class="w"><span class="o">Ame</span><span class="g">rain</span></span><span class="w"><span class="o">ga</span><span class="g">NOM</span></span><span class="w"><span class="o">fur-u</span><span class="g">fall-NPST</span></span><span class="w"><span class="o">nara,</span><span class="g">COND</span></span><span class="w"><span class="o">dekake-nai.</span><span class="g">go.out-NEG</span></span><span class="tr">&lsquo;If it rains, I won&rsquo;t go out.&rsquo;</span></div></span></div>
+        <div class="ex"><span class="no">(42)</span><span><div class="ws"><span class="lang">Japanese</span><span class="w"><span class="o">Tanaka-san</span><span class="g">Tanaka-HON</span></span><span class="w"><span class="o">nara,</span><span class="g">TOP</span></span><span class="w"><span class="o">moo</span><span class="g">already</span></span><span class="w"><span class="o">kaet-ta.</span><span class="g">go.home-PST</span></span><span class="tr">&lsquo;As for Tanaka, he has already gone home.&rsquo;</span></div></span></div>
+        <div class="ex"><span class="no">(43)</span><span><div class="ws"><span class="lang">Turkish</span><span class="w"><span class="o">Gel-ir-se,</span><span class="g">come-AOR-COND</span></span><span class="w"><span class="o">gid-er-im.</span><span class="g">go-AOR-1SG</span></span><span class="tr">&lsquo;If he comes, I will go.&rsquo;</span></div></span></div>
+        <div class="ex"><span class="no">(44)</span><span><div class="ws"><span class="lang">Turkish</span><span class="w"><span class="o">Ali</span><span class="g">Ali</span></span><span class="w"><span class="o">ise</span><span class="g">TOP</span></span><span class="w"><span class="o">gel-me-di.</span><span class="g">come-NEG-PST</span></span><span class="tr">&lsquo;Ali, for his part, did not come.&rsquo;</span></div></span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Haiman (1978):</b> in several unrelated languages conditional clauses and topics carry the same marker, and conditionals are topics, frames against which the main clause is asserted. Japanese <em>nara</em> marks a protasis in <span class="xr">(41)</span> and a topic in <span class="xr">(42)</span>, and Turkish <em>ise</em>, the conditional form of the copula, marks a contrastive topic in <span class="xr">(44)</span>.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Biscuit conditionals:</b> on this view the if-clause of <span class="xr">(14)</span> limits the relevance of the assertion, as a topic does. In some Chadic languages conditionals pattern with focus instead (<b class="ld">Caron 2006</b>).</div></div>
+      <div class="srcline">Haiman (1978), &ldquo;Conditionals are topics&rdquo;, <em>Language</em> 54; Lewis (1967), <em>Turkish Grammar</em>; Akatsuka (1985), <em>Language</em> 61; Caron (2006), <em>ZAS Papers in Linguistics</em> 46.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Typological ·Clause order" data-screen-label="35">
+  <div class="b-slide pal-a lens-typological dB" data-sec="order">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Clause order</h2>
+      <div class="erow nolb" style="border-top:none" data-step="1"><div class="tx tight"><b class="ld">Greenberg (1963)</b>, Universal 14: the conditional clause precedes the conclusion as the normal order in every language.</div></div>
+      <div class="figrow fr2">
+        <div class="figbody">
+      <div class="erow nolb" style="border-top:none" data-step="3"><div class="tx tight"><b class="ld">Diessel (2001):</b> in a sample of forty languages, conditional clauses precede the main clause more often than temporal clauses, which precede it more often than causal, result and purpose clauses. In all nine languages with data on each type, conditional clauses come first.</div></div>
+      <div class="erow nolb" data-step="4"><div class="tx tight"><b class="ld">Topics:</b> on Haiman&rsquo;s analysis an if-clause is a topic, and topics tend to come first in the sentence.</div></div>
+        </div>
+      <svg class="wfig zf" style="max-height:330px" viewBox="0 0 1100 440" data-step="2" role="img" aria-label="Bar chart from Diessel 2001, table 4: share of adverbial clauses before the main clause in the Brown corpus; conditional 53 per cent, temporal 18.5, causal 5.5, result 0, purpose 1.">
+        <text class="fl sm" x="30" y="44">clauses before the main clause, Brown corpus</text>
+        <rect class="bar on" x="71.6" y="123.3" width="124.8" height="236.7"/>
+        <text class="fl c on" x="134.0" y="109.3">53%</text>
+        <text class="fl c sm on" x="134.0" y="410">conditional</text>
+        <rect class="bar" x="279.6" y="277.4" width="124.8" height="82.6"/>
+        <text class="fl c" x="342.0" y="263.4">18.5%</text>
+        <text class="fl c sm" x="342.0" y="410">temporal</text>
+        <rect class="bar" x="487.6" y="335.4" width="124.8" height="24.6"/>
+        <text class="fl c" x="550.0" y="321.4">5.5%</text>
+        <text class="fl c sm" x="550.0" y="410">causal</text>
+        <rect class="bar" x="695.6" y="360.0" width="124.8" height="0.0"/>
+        <text class="fl c" x="758.0" y="346.0">0%</text>
+        <text class="fl c sm" x="758.0" y="410">result</text>
+        <rect class="bar" x="903.6" y="355.5" width="124.8" height="4.5"/>
+        <text class="fl c" x="966.0" y="341.5">1%</text>
+        <text class="fl c sm" x="966.0" y="410">purpose</text>
+        <line class="ax" x1="30" y1="360" x2="1070" y2="360"/>
+      </svg>
+      </div>
+      <div class="srcline">Greenberg (1963), &ldquo;Some universals of grammar&rdquo;; Diessel (2001), &ldquo;The ordering distribution of main and adverbial clauses: a typological study&rdquo;, <em>Language</em> 77, tables 4 and 5; Haiman (1978).</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Typological ·Marking the protasis" data-screen-label="36">
+  <div class="b-slide pal-a lens-typological dB" data-sec="mark">
+    <aside class="mrail"></aside>
+    <div class="b-main dB dense">
+      <div class="lens-kick"><span class="ik"><svg viewBox="0 0 24 24"><use href="#g-typ"/></svg></span>Typological</div>
+      <h2 class="b-h">Marking the protasis</h2>
+      <div class="ilg cmp" data-step="1">
+        <div class="ex"><span class="no">(45)</span><span><div class="ws"><span class="lang">German</span><span class="w"><span class="o">Kommt</span><span class="g">comes</span></span><span class="w"><span class="o">er</span><span class="g">he</span></span><span class="w"><span class="o">morgen,</span><span class="g">tomorrow</span></span><span class="w"><span class="o">(so)</span><span class="g">(so)</span></span><span class="w"><span class="o">gehe</span><span class="g">go</span></span><span class="w"><span class="o">ich.</span><span class="g">I</span></span><span class="tr">&lsquo;If he comes tomorrow, I will go.&rsquo;</span></div></span></div>
+        <div class="ex"><span class="no">(46)</span><span><div class="ws"><span class="lang">English</span><span class="w"><span class="o">Had</span><span class="g">had</span></span><span class="w"><span class="o">I</span><span class="g">I</span></span><span class="w"><span class="o">known,</span><span class="g">known</span></span><span class="w"><span class="o">I</span><span class="g">I</span></span><span class="w"><span class="o">would</span><span class="g">would</span></span><span class="w"><span class="o">have</span><span class="g">have</span></span><span class="w"><span class="o">stayed.</span><span class="g">stayed</span></span><span class="tr">&lsquo;If I had known, I would have stayed.&rsquo;</span></div></span></div>
+        <div class="ex"><span class="no">(47)</span><span><div class="ws"><span class="lang">Mandarin</span><span class="w"><span class="o">N&#464;</span><span class="g">you</span></span><span class="w"><span class="o">b&ugrave;</span><span class="g">not</span></span><span class="w"><span class="o">l&aacute;i,</span><span class="g">come</span></span><span class="w"><span class="o">w&#466;</span><span class="g">I</span></span><span class="w"><span class="o">ji&ugrave;</span><span class="g">then</span></span><span class="w"><span class="o">z&#466;u.</span><span class="g">leave</span></span><span class="tr">&lsquo;If you don&rsquo;t come, I will leave.&rsquo;</span></div></span></div>
+        <div class="ex"><span class="no">(48)</span><span><div class="ws"><span class="lang">Irish</span><span class="w"><span class="o">M&aacute;</span><span class="g">if.REAL</span></span><span class="w"><span class="o">thagann</span><span class="g">come.PRS</span></span><span class="w"><span class="o">s&eacute;,</span><span class="g">he</span></span><span class="w"><span class="o">beidh</span><span class="g">be.FUT</span></span><span class="w"><span class="o">&aacute;thas</span><span class="g">joy</span></span><span class="w"><span class="o">orm.</span><span class="g">on.me</span></span><span class="tr">&lsquo;If he comes, I will be glad.&rsquo;</span></div></span></div>
+        <div class="ex"><span class="no">(49)</span><span><div class="ws"><span class="lang">Irish</span><span class="w"><span class="o">D&aacute;</span><span class="g">if.IRR</span></span><span class="w"><span class="o">dtiocfadh</span><span class="g">come.COND</span></span><span class="w"><span class="o">s&eacute;,</span><span class="g">he</span></span><span class="w"><span class="o">bheadh</span><span class="g">be.COND</span></span><span class="w"><span class="o">&aacute;thas</span><span class="g">joy</span></span><span class="w"><span class="o">orm.</span><span class="g">on.me</span></span><span class="tr">&lsquo;If he came, I would be glad.&rsquo;</span></div></span></div>
+      </div>
+      <div class="erow nolb" style="border-top:none" data-step="2"><div class="tx tight"><b class="ld">Comrie (1986):</b> a protasis is marked by a conjunction, as with English <em>if</em> or Hindi <em>agar</em>, by verb morphology, as with Turkish <em>-sA</em>, by verb-first order, as in <span class="xr">(45)</span> and <span class="xr">(46)</span>, or not at all, with an apodosis marker such as Mandarin <em>jiù</em> in <span class="xr">(47)</span>.</div></div>
+      <div class="erow nolb" data-step="3"><div class="tx tight"><b class="ld">Irish</b> has two words for <em>if</em>: <em>má</em> introduces open conditions with indicative verbs, as in <span class="xr">(48)</span>, and <em>dá</em> introduces hypothetical ones with the conditional mood, as in <span class="xr">(49)</span>.</div></div>
+      <div class="srcline">Comrie (1986), &ldquo;Conditionals: a typology&rdquo;, in Traugott et al. (eds.), <em>On Conditionals</em>; Stenson (2019), <em>Modern Irish: A Comprehensive Grammar</em>, Routledge.</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-label="Concepts and skills" data-screen-label="37">
+  <div class="b-slide pal-a dB" data-sec="cs2">
+    <aside class="mrail"></aside>
+    <div class="b-main dB">
+      <h2 class="b-h">Concepts and skills</h2>
+      <div class="cs-grid dense">
+        <div class="cs-col" data-step="1"><div class="cs-head">Concepts</div><ol class="cs-list">
+          <li>Truth-functional connectives; the material conditional and its paradoxes.</li>
+          <li>Indicative, counterfactual and biscuit conditionals; the if-clause as topic.</li>
+          <li>The strict and the variably strict conditional; Sobel sequences.</li>
+          <li>Similarity orderings; closest antecedent worlds; failures of strengthening, transitivity and contraposition.</li>
+          <li>The selection function; conditional excluded middle; <em>would</em> and <em>might</em> counterfactuals.</li>
+          <li>The restrictor analysis; tripartite structures; covert operators; ordering sources.</li>
+          <li>Iterated counterfactuals; yo-yo conditionals.</li>
+        </ol></div>
+        <div class="cs-col" data-step="2"><div class="cs-head">Skills</div><ol class="cs-list">
+          <li>Give the truth table of the material conditional and test an inference with it.</li>
+          <li>Classify a conditional as indicative, counterfactual, biscuit, concessive or anankastic.</li>
+          <li>Evaluate a conditional under the material, strict and closest-worlds analyses.</li>
+          <li>Draw a sphere model where strengthening, transitivity or contraposition fails.</li>
+          <li>Decide a <em>would</em> and <em>might</em> pair under Stalnaker and under Lewis.</li>
+          <li>Compute the restrictor analysis of a conditional, and best worlds from an ordering source.</li>
+          <li>Show that the closest-worlds analysis can make a yo-yo conditional true.</li>
+        </ol></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</deck-stage>
+
+<script src="../../shared/deck-stage.js"></script>
+<script src="../../shared/sem2-meta.js"></script>
+<script src="../../shared/sem2-rail.js"></script>
+<script>
+/* Fills the compact, lecture-aware sidebar (.mrail) on each content slide.
+   Same pattern as weeks-semantics2/week-02. */
+(function () {
+  var TITLES = {
+    cs:"Concepts and skills", road:"Roadmap", rd:"Readings", cs2:"Concepts and skills",
+    wason:"Wason\u2019s cards", tf:"Truth functions", mcq:"The material conditional", hard:"Difficult cases for the material conditional", kinds2:"Indicatives and counterfactuals", kinds:"Kinds of conditional", lock:"Modals under if", streng:"Strengthening the antecedent", trans:"Transitivity and contraposition",
+    stoic:"Ancient logic", barber:"Lewis Carroll", stal:"Ramsey and Stalnaker", lew:"David Lewis", lk:"Lewis and Kratzer",
+    strict:"If as a strict conditional", thesis:"Kratzer\u2019s thesis", covert:"Covert operators", lockm:"The Lockhart model", ord:"The ordering source", bv:"Bizet and Verdi", yoyo:"Yo-yo conditionals", nota:"Other notations",
+    topic:"Conditionals are topics", order:"Clause order", mark:"Marking the protasis"
+  };
+  var GROUPS = [
+    { t:"Introduction", sc:null,         keys:["cs","road","rd"] },
+    { t:"Empirical",    sc:"--lens-emp", keys:["wason","tf","mcq","hard","kinds2","kinds","lock","streng","trans"] },
+    { t:"Historical",   sc:"--lens-his", keys:["stoic","barber","stal","lew","lk"] },
+    { t:"Formal",       sc:"--lens-for", keys:["strict","thesis","covert","lockm","ord","bv","yoyo","nota"] },
+    { t:"Typological",  sc:"--lens-typ", keys:["topic","order","mark"] },
+    { t:"Concepts and skills", sc:null, keys:["cs2"] }
+  ];
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+  var idxOf = {};
+  function build(sec) {
+    var curG = -1;
+    GROUPS.forEach(function (g, gi) { if (g.keys.indexOf(sec) >= 0) curG = gi; });
+    return GROUPS.map(function (g, gi) {
+      var gc = g.sc ? "var(" + g.sc + ")" : "var(--tcd-blue)";
+      var active = gi === curG;
+      var gcls = active ? "active" : (gi < curG ? "done" : "");
+      var car = active ? "\u25be" : "\u25b8";
+      var first = idxOf[g.keys[0]] == null ? 0 : idxOf[g.keys[0]];
+      var head = '<a class="ghd" href="#' + (first + 1) + '"><span class="gcar">' + car + '</span><span class="gt">' + esc(g.t) + '</span></a>';
+      var items = "";
+      if (active) {
+        var pos = g.keys.indexOf(sec);
+        items = '<div class="gitems">' + g.keys.map(function (k, ki) {
+          var icls = k === sec ? "cur" : (ki < pos ? "done" : "");
+          var ix = idxOf[k] == null ? 0 : idxOf[k];
+          return '<a class="si2 ' + icls + '" href="#' + (ix + 1) + '"><span>' + esc(TITLES[k] || k) + '</span></a>';
+        }).join("") + '</div>';
+      }
+      return '<div class="grp ' + gcls + '" style="--gc:' + gc + '">' + head + items + '</div>';
+    }).join("");
+  }
+  function init() {
+    Array.prototype.forEach.call(document.querySelectorAll("deck-stage > section.slide"), function (sl, i) {
+      var d = sl.querySelector("[data-sec]");
+      if (d) { var k = d.getAttribute("data-sec"); if (!(k in idxOf)) idxOf[k] = i; }
+    });
+    document.querySelectorAll(".b-slide[data-sec]").forEach(function (s) {
+      var rail = s.querySelector(".mrail");
+      if (!rail) return;
+      rail.innerHTML =
+        '<div class="mhd"><img src="../../shared/tcd-crest.webp" alt=""><div class="tt">LIU33008<br>Week 9</div></div>' +
+        '<div class="toc">' + build(s.getAttribute("data-sec")) + '</div>' +
+        '<div class="mft"><div class="wk">Week 9</div><div class="t2">Conditionals</div></div>';
+    });
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest(".mrail a[href^='#']");
+      if (!a) return;
+      var m = a.getAttribute("href").match(/^#(\d+)$/);
+      if (!m) return;
+      e.preventDefault();
+      var st = document.querySelector("deck-stage");
+      if (st && st.goTo) st.goTo(parseInt(m[1], 10) - 1);
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+</script>
+
+</body>
+</html>

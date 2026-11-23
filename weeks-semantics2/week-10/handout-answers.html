@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Answers · LIU33008 · Week 10, Aspect and the Perfect · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+
+  /* Sections run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  .defs + .defs { margin-top:0; border-top:none; }
+  .exs .o { font-style:italic; }
+  .exs .fr { float:right; font-style:normal; margin-left:14pt; }
+  .exs .tag { font-style:normal; font-size:9.6pt; margin-left:6pt; }
+  .tfig { width:86%; height:auto; display:block; margin:6pt auto 4pt; } .treebox { break-inside:avoid; page-break-inside:avoid; }
+  .tfig line, .tfig polyline { stroke:#222; stroke-width:1.6; fill:none; }
+  .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .tc { font-family:inherit; font-style:normal; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .roof { stroke:#222; stroke-width:1.6; fill:none; }
+  .wpic { width:100%; height:auto; display:block; margin:6pt 0 8pt; }
+  .wpic .wr { fill:none; stroke:#111; stroke-width:2; }
+  .wpic .wr.dash { stroke-dasharray:9 7; }
+  .wpic .wl { font-style:italic; font-size:30px; fill:#111; }
+  .wpic .wd { fill:#111; }
+  .wpic .wn { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .wpic .wn .sb { font-style:normal; font-size:20px; }
+  .wpic .wa { font-style:italic; font-size:26px; text-anchor:middle; fill:#111; }
+  .wpic .wt { font-style:normal; font-size:26px; fill:#111; }
+  .wpic .wh { font-style:italic; font-size:26px; fill:#111; }
+  .wpic .cp { font-style:normal; font-size:26px; text-anchor:middle; fill:#111; }
+  .wpic .dot { fill:none; stroke:#111; stroke-width:2; stroke-dasharray:4 5; }
+  @media print {
+    .proc { break-inside:avoid !important; page-break-inside:avoid !important; }
+    table.rec.anst { break-after:avoid; page-break-after:avoid; }
+    ol.exs { break-inside:avoid; page-break-inside:avoid; }
+    table.rec { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:avoid; page-break-after:avoid; }
+    .tasks .task, .tasks .lines, .tasks .draw { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(+ table.rec), .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ .wpic) { break-after:avoid; page-break-after:avoid; }
+    .body > ol.exs:has(+ .tasks) { break-after:avoid; page-break-after:avoid; }
+    .sec + .sec { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .tfig { width:66% !important; }
+    .tfig.wide { width:84% !important; }
+    .wpic { break-inside:avoid; page-break-inside:avoid; }
+    .figrow, .cboxes, .exbox { break-inside:avoid; page-break-inside:avoid; }
+  }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .wyntk .steps li { font-size:9.4pt; line-height:1.24; margin-bottom:1pt; }
+  .wyntk h2 { margin-bottom:4pt; }
+  .sec.wyntk { margin-top:8pt !important; }
+  .wyntk .proc { margin-bottom:0; } .wyntk .wcols { margin-bottom:0; }
+  @media print { html, body { height:auto !important; } .sheet { padding-bottom:0 !important; } }
+  p.keep { break-inside:avoid; page-break-inside:avoid; }
+  .tasks ol.exs { margin:3pt 0 2pt 22pt; }
+  .tasks .task + ol.exs + .lines { margin-top:4pt; }
+  .tasks p.keep { margin-left:22pt; }
+  .tfig.wide { width:84%; }
+  .tfig.mid { width:74%; }
+  .body > p + .defs { margin-top:4pt; }
+  /* worked example box */
+  .exbox { margin:8pt 0 10pt; }
+  .exbox .sc { margin-bottom:3pt; }
+  .exbox ol { margin:0; padding-left:16pt; }
+  .exbox ol li { margin:0 0 2pt; }
+  /* two figures side by side */
+  .figrow { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; margin:6pt 0 8pt 22pt; }
+  .figrow .cap { text-align:center; font-size:9.6pt; margin:0 0 2pt; }
+  /* nested clause boxes (week 5, exercise 1c) */
+  .cboxes { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; margin:6pt 0 10pt 22pt; }
+  .cboxes .cap { text-align:center; font-size:9.6pt; margin:0 0 3pt; }
+  .cbox { border:.8pt solid #111; border-radius:5pt; padding:4pt 7pt 7pt; font-style:italic; font-size:10pt; line-height:1.3; position:relative; }
+  .cbox .cbox { margin-top:4pt; }
+  .cbox .mark { position:absolute; right:6pt; top:3pt; font-style:normal; font-family:var(--sans, sans-serif); font-size:8.2pt; color:#1f4e79; }
+  /* fill-in reference tables */
+  table.rec.fill td, table.rec.fill th { border-right:.5pt solid #000; text-align:center; }
+  table.rec.fill td:first-child, table.rec.fill th:first-child { text-align:left; }
+  table.rec.fill td:last-child, table.rec.fill th:last-child { border-right:none; }
+  table.rec.fill td { height:17pt; border-bottom:.5pt solid #000; }
+  table.rec.fill td.av { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:9pt; white-space:nowrap; }
+  table.rec.fill td.av i { font-style:italic; }
+  table.rec.twin { width:100%; border-collapse:separate; border-spacing:0; }
+  .tabrow { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  table.rec.sup td:not(:first-child), table.rec.sup th:not(:first-child) { text-align:center; width:11%; }
+  table.rec.sup td { height:17pt; border-bottom:.5pt solid #000; }
+  table.rec.sup td.av { color:#1f4e79; font-size:11pt; }
+
+  table.rec.fill.nodes td { height:36pt; text-align:left; vertical-align:top; }
+  table.rec.fill.nodes { margin-left:18pt; width:calc(100% - 18pt); }
+</style>
+<style>
+
+  .ans { font-family: var(--sans, sans-serif); font-size: 9pt; line-height: 1.45; color: #1f4e79; margin: 2pt 0 8pt 18pt; }
+  .ans i, .ans em { font-style: italic; }
+  table.rec.anst { margin-left: 18pt; width: calc(100% - 18pt); }
+  table.rec.anst td { color: #1f4e79; font-family: var(--sans, sans-serif); font-size: 8.5pt; }
+  table.rec.anst td:first-child { white-space: nowrap; }
+  table.rec.anst td.q { color:#000; font-family:var(--serif); font-size:10.6pt; }
+  .tfig .at { font-family: var(--sans, sans-serif); font-style: normal; font-size: 33px; fill: #1f4e79; }
+  .tfig .ab { font-family: var(--sans, sans-serif); font-style: normal; font-size: 27px; fill: #1f4e79; text-anchor:middle; }
+  .wpic .ab { font-family: var(--sans, sans-serif); font-style: normal; fill: #1f4e79; text-anchor:middle; }
+  .wpic .ao { fill:none; stroke:#1f4e79; stroke-width:2.6; }
+  .wpic .ao.dash { stroke-dasharray:10 8; }
+  .wpic .al { font-family: var(--sans, sans-serif); font-style: normal; font-size: 27px; fill: #1f4e79; }
+  .wpic .al.c { text-anchor:middle; }
+  .blank { display:inline-block; width:22pt; border-bottom:.8pt solid #000; vertical-align:baseline; }
+  .bonus { display:inline-block; font-size:7.6pt; font-weight:600; letter-spacing:.14em; text-transform:uppercase; border:.8pt solid #000; padding:1pt 5pt 0; margin-left:8pt; vertical-align:middle; }
+  ol.exs .s u { text-decoration:underline; text-underline-offset:2pt; }
+</style>
+</head>
+<style>
+  /* week 10 */
+  .tline { width:100%; height:auto; display:block; margin:4pt 0 6pt; }
+  .tline .ax { stroke:#111; stroke-width:1.6; }
+  .tline .tk { stroke:#111; stroke-width:2.2; }
+  .tline .bx { fill:none; stroke:#111; stroke-width:2.2; }
+  .tline .ev { fill:#111; }
+  .tline .evo { fill:#fff; stroke:#111; stroke-width:2.2; }
+  .tline .x { stroke:#111; stroke-width:2.6; }
+  .tline text { font-size:29px; fill:#111; }
+  .tline .it { font-style:italic; }
+  .ptree .nl { font-size:31px; font-weight:600; text-anchor:middle; }
+  .ptree .nw { font-size:29px; font-style:italic; text-anchor:middle; }
+  .ptree .nd { font-size:29px; text-anchor:middle; }
+  .ptree .br { stroke:#111; stroke-width:1.6; }
+  .tline .sm { font-size:25px; }
+  .tline .abx { fill:none; stroke:#1f4e79; stroke-width:3; }
+  .tline .aev { fill:#1f4e79; }
+  .tline .at { font-family:var(--sans, sans-serif); font-size:24px; fill:#1f4e79; }
+  .ansin { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:9pt; }
+  table.rec.fill td.q { font-style:italic; text-align:left; }
+  table.rec.fill td.w { font-style:italic; text-align:left; white-space:nowrap; }
+  table.rec.fill td.w small { font-style:normal; font-size:8.4pt; margin-left:4pt; }
+  table.rec.fill.given td { height:auto; padding:3pt 6pt 3pt 0; }
+  table.rec.fill th { font-size:7.6pt; }
+  table.rec.fill { table-layout:fixed; }
+  table.rec th i { font-variant:normal; text-transform:none; letter-spacing:0; font-style:italic; }
+  table.rec.fill.given { table-layout:auto; }
+  table.rec.fill.given.narrow th { letter-spacing:.02em; font-size:7pt; padding-left:1pt; padding-right:1pt; }
+  table.rec.fill td.av { white-space:normal; }
+  .exbox ol li .fr { float:right; }
+  .tfig .tn2 { font-size:30px; text-anchor:middle; fill:#111; }
+  .tfig .ti2 { font-size:28px; font-style:italic; text-anchor:middle; fill:#111; }
+  .tfig .slot { fill:none; stroke:#111; stroke-width:1.4; stroke-dasharray:5 6; }
+  .tfig .at2 { font-family:var(--sans, sans-serif); font-size:21px; fill:#1f4e79; }
+  .tfig.full { width:100% !important; }
+  @media print {
+    .tline { break-inside:avoid; page-break-inside:avoid; }
+    table.rec.fill.brk { break-inside:auto !important; page-break-inside:auto !important; }
+    table.rec.fill tr { break-inside:avoid; page-break-inside:avoid; }
+    table.rec.fill thead { display:table-header-group; }
+    .tfig.full { width:100% !important; }
+  }
+</style>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 10 · Handout · Answers</div>
+  <h1 class="doc-title">Aspect and the Perfect</h1>
+
+  <!-- Answer sheet for the week 10 Thursday handout. Built from the handout source, with the
+       answers added in navy: T and E drawn on the timelines, the tables filled, and short answers
+       under each task. The handout's own text is unchanged. -->
+
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Times and aspect</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">S, T, E</span><span class="g">Speech time, topic time, event time.</span></div>
+        <div class="d"><span class="t">Past tense</span><span class="g">T &lt; S.</span></div>
+        <div class="d"><span class="t">Perfective</span><span class="g">E ⊆ T.<br/>⟦PFV⟧ = λ<i>P</i>. λ<i>t</i>. ∃<i>e</i> [E ⊆ <i>t</i> ∧ <i>P</i>(<i>e</i>)]</span></div>
+        <div class="d"><span class="t">Imperfective</span><span class="g">T ⊆ E. The English progressive.<br/>⟦IPFV⟧ = λ<i>P</i>. λ<i>t</i>. ∃<i>e</i> [<i>t</i> ⊆ E ∧ <i>P</i>(<i>e</i>)]</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(1)</span><span><span class="s">Mary made tea.</span></span></li>
+      </ol>
+      <div class="exbox">
+        <div class="sc">Example (1)</div>
+        <ol>
+          <li>[<sub>TP</sub> PAST [<sub>AspP</sub> PFV [<sub>VP</sub> Mary make tea]]]</li>
+          <li>⟦VP⟧ = λ<i>e</i>. make-tea(<i>m</i>, <i>e</i>)</li>
+          <li>⟦AspP⟧ = λ<i>t</i>. ∃<i>e</i> [E ⊆ <i>t</i> ∧ make-tea(<i>m</i>, <i>e</i>)]</li>
+          <li>⟦TP⟧ = 1 iff ∃<i>e</i> [E ⊆ T ∧ make-tea(<i>m</i>, <i>e</i>)], with T &lt; S</li>
+        </ol>
+      </div>
+      <svg class="tline" viewBox="0 0 1000 108" role="img" aria-label="A timeline with the event inside the topic time, both before the speech time.">
+        <line class="ax" x1="20" y1="66" x2="980" y2="66"/>
+        <rect class="bx" x="330" y="40" width="330" height="52"/><text x="495" y="30" text-anchor="middle">T</text>
+        <rect class="ev" x="420" y="59" width="150" height="14"/><text x="676" y="58">E inside T</text>
+        <line class="tk" x1="900" y1="50" x2="900" y2="82"/><text x="910" y="48">S</text>
+      </svg>
+      <p class="keep"><span class="runin">Exercise 1.</span> Draw T and E on each line. S is marked. As a reminder, adverbial <i>when</i> clauses typically give the topic time explicitly.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>(2) <span class="s">At noon, Anna was writing an email.</span></span></div>
+        <svg class="tline" viewBox="0 0 1000 92" role="img" aria-label="A blank timeline with the speech time marked.">
+        <line class="ax" x1="20" y1="58" x2="980" y2="58"/>
+        <line class="tk" x1="900" y1="42" x2="900" y2="74"/><text x="910" y="40">S</text>
+        <rect class="aev" x="300" y="51" width="330" height="14"/><text class="at" x="640" y="88">E</text>
+        <rect class="abx" x="430" y="34" width="70" height="48"/><text class="at" x="465.0" y="26" text-anchor="middle">T, noon</text>
+        </svg>
+        <p class="keep" style="margin:0 0 6pt 22pt">Relation of E and T: <span class="ansin">T ⊆ E</span></p>
+        <div class="task"><span>(b)</span><span>(3) <span class="s">Anna wrote an email yesterday.</span></span></div>
+        <svg class="tline" viewBox="0 0 1000 92" role="img" aria-label="A blank timeline with the speech time marked.">
+        <line class="ax" x1="20" y1="58" x2="980" y2="58"/>
+        <line class="tk" x1="900" y1="42" x2="900" y2="74"/><text x="910" y="40">S</text>
+        <rect class="abx" x="300" y="34" width="330" height="48"/><text class="at" x="465.0" y="26" text-anchor="middle">T, yesterday</text>
+        <rect class="aev" x="410" y="51" width="110" height="14"/><text class="at" x="530" y="88">E</text>
+        </svg>
+        <p class="keep" style="margin:0 0 6pt 22pt">Relation of E and T: <span class="ansin">E ⊆ T</span></p>
+        <div class="task"><span>(c)</span><span>(4) <span class="s">When the bell rang, Brian was crossing the yard.</span></span></div>
+        <svg class="tline" viewBox="0 0 1000 92" role="img" aria-label="A blank timeline with the speech time marked.">
+        <line class="ax" x1="20" y1="58" x2="980" y2="58"/>
+        <line class="tk" x1="900" y1="42" x2="900" y2="74"/><text x="910" y="40">S</text>
+        <rect class="aev" x="300" y="51" width="330" height="14"/><text class="at" x="640" y="88">E</text>
+        <rect class="abx" x="430" y="34" width="70" height="48"/><text class="at" x="465.0" y="26" text-anchor="middle">T, the bell</text>
+        </svg>
+        <p class="keep" style="margin:0 0 6pt 22pt">Relation of E and T: <span class="ansin">T ⊆ E</span></p>
+        <div class="task"><span>(d)</span><span>(5) <span class="s">When the bell rang, Brian crossed the yard.</span></span></div>
+        <svg class="tline" viewBox="0 0 1000 92" role="img" aria-label="A blank timeline with the speech time marked.">
+        <line class="ax" x1="20" y1="58" x2="980" y2="58"/>
+        <line class="tk" x1="900" y1="42" x2="900" y2="74"/><text x="910" y="40">S</text>
+        <rect class="abx" x="380" y="34" width="260" height="48"/><text class="at" x="510.0" y="26" text-anchor="middle">T, from the bell</text>
+        <rect class="aev" x="430" y="51" width="130" height="14"/><text class="at" x="570" y="88">E</text>
+        </svg>
+        <p class="keep" style="margin:0 0 6pt 22pt">Relation of E and T: <span class="ansin">E ⊆ T</span></p>
+      </div>
+      <ol class="exs">
+        <li><span>(6)</span><span><span class="s">Anna was writing the email.</span></span></li>
+      </ol>
+      <p class="keep">[<sub>TP</sub> PAST [<sub>AspP</sub> IPFV [<sub>VP</sub> Anna write the email]]]</p>
+      <p class="keep"><span class="runin">Exercise 2.</span> Give the denotations for (6), as in Example (1).</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>⟦VP⟧ =</span></div>
+        <div class="ans">λ<i>e</i>. write-email(<i>a</i>, <i>e</i>)</div>
+        <div class="task"><span>(b)</span><span>⟦AspP⟧ =</span></div>
+        <div class="ans">λ<i>t</i>. ∃<i>e</i> [<i>t</i> ⊆ E ∧ write-email(<i>a</i>, <i>e</i>)]</div>
+        <div class="task"><span>(c)</span><span>⟦TP⟧ = 1 iff</span></div>
+        <div class="ans">∃<i>e</i> [T ⊆ E ∧ write-email(<i>a</i>, <i>e</i>)], with T &lt; S</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Klein 1994.</b> <i>Time in Language.</i> Routledge.</p>
+      <p><b>Kratzer 1998.</b> More structural analogies between pronouns and tenses. <i>SALT</i> 8: 92–110.</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>The imperfective paradox</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">State</span><span class="g">No change. It holds at every moment while it lasts. <i>own a car</i></span></div>
+        <div class="d"><span class="t">Activity</span><span class="g">Every part of the event is an event of the same kind. <i>push a cart</i></span></div>
+        <div class="d"><span class="t">Accomplishment</span><span class="g">The event has an endpoint. A part of it is not an event of the same kind. <i>draw a circle</i></span></div>
+        <div class="d"><span class="t">Imperfective paradox</span><span class="g">The progressive of an accomplishment does not entail its simple past.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(7)</span><span><span class="s">John was pushing a cart.</span> <span class="fr">⇒ <i>John pushed a cart.</i></span></span></li>
+        <li><span>(8)</span><span><span class="s">John was drawing a circle.</span> <span class="fr">⇏ <i>John drew a circle.</i></span></span></li>
+      </ol>
+      <div class="exbox">
+        <div class="sc">Example (8)</div>
+        <ol>
+          <li>(8) with IPFV, tense left aside. ∃<i>e</i>∃<i>x</i> [draw(<i>e</i>) ∧ agent(<i>e</i>, <i>j</i>) ∧ circle(<i>x</i>) ∧ theme(<i>e</i>, <i>x</i>) ∧ T ⊆ E]</li>
+          <li><i>John drew a circle</i>, tense and aspect left aside. ∃<i>e</i>∃<i>x</i> [draw(<i>e</i>) ∧ agent(<i>e</i>, <i>j</i>) ∧ circle(<i>x</i>) ∧ theme(<i>e</i>, <i>x</i>)]</li>
+          <li>Line 1 is line 2 with one more conjunct, so (8) is predicted to entail <i>John drew a circle</i>.</li>
+          <li>But (8) is true if John stops halfway, and then no circle is ever drawn.</li>
+        </ol>
+      </div>
+      <p class="keep"><span class="runin">Exercise 3.</span> For each sentence give the class of the verb phrase, state, activity or accomplishment, and say whether the sentence entails its simple past.</p>
+      <table class="rec fill brk">
+        <thead><tr><th style="width:56%">Sentence</th><th style="width:25%">Class</th><th>Entails simple past</th></tr></thead>
+        <tbody>
+          <tr><td class="q">(9) Ciara was running.</td><td class="av">activity</td><td class="av">yes</td></tr>
+          <tr><td class="q">(10) Ciara was running a mile.</td><td class="av">accomplishment</td><td class="av">no</td></tr>
+          <tr><td class="q">(11) Niamh was living in Cork.</td><td class="av">state</td><td class="av">yes</td></tr>
+          <tr><td class="q">(12) Declan was eating apples.</td><td class="av">activity</td><td class="av">yes</td></tr>
+          <tr><td class="q">(13) Declan was eating an apple.</td><td class="av">accomplishment</td><td class="av">no</td></tr>
+          <tr><td class="q">(14) Seán was singing.</td><td class="av">activity</td><td class="av">yes</td></tr>
+          <tr><td class="q">(15) Omar was building a sandcastle.</td><td class="av">accomplishment</td><td class="av">no</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <p><b>Vendler 1957.</b> Verbs and times. <i>The Philosophical Review</i> 66: 143–160.</p>
+      <p><b>Dowty 1977.</b> Toward a semantic analysis of verb aspect and the English ‘imperfective’ progressive. <i>Linguistics and Philosophy</i> 1: 45–77.</p>
+    </div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>The progressive as a modal</h2>
+      <p>On Portner’s analysis the progressive is a modal with the shape of <i>must</i>. (8) says that in the best worlds, the drawing John has started goes on to a complete circle.</p>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Modal base</span><span class="g">Circ(<i>e</i>, <i>P</i>): the circumstances of <i>e</i>. ∩Circ(<i>e</i>, <i>P</i>): the worlds where they all hold.</span></div>
+        <div class="d"><span class="t">Ordering source</span><span class="g">NI(<i>e</i>): propositions saying that <i>e</i> is not interrupted.</span></div>
+        <div class="d"><span class="t">Better</span><span class="g"><i>w</i>′ is better than <i>w</i>″ if <i>w</i>′ makes true every proposition of NI(<i>e</i>) that <i>w</i>″ does, and more.</span></div>
+        <div class="d"><span class="t">Best</span><span class="g">Best(Circ(<i>e</i>, <i>P</i>), NI(<i>e</i>)): the worlds of ∩Circ(<i>e</i>, <i>P</i>) with no better world.</span></div>
+        <div class="d"><span class="t">PROG</span><span class="g">PROG(<i>e</i>, <i>P</i>) is true at <i>w</i> iff in every world of Best(Circ(<i>e</i>, <i>P</i>), NI(<i>e</i>)), <i>e</i> goes on to a complete <i>P</i> event.</span></div>
+        <div class="d"><span class="t">IPFV<sub>mod</sub></span><span class="g">⟦IPFV<sub>mod</sub>⟧ = λ<i>P</i>. λ<i>t</i>. ∃<i>e</i> [<i>t</i> ⊆ E ∧ PROG(<i>e</i>, <i>P</i>)]. The English progressive.</span></div>
+        <div class="d"><span class="t"><i>must</i></span><span class="g"><i>must</i> φ is true at <i>w</i> iff φ is true in every world of Best(<i>f</i>(<i>w</i>), <i>g</i>(<i>w</i>)). PROG has the same shape.</span></div>
+      </div>
+      <ol class="exs" style="break-before:page">
+        <li><span>(16)</span><span><span class="s">Max was crossing the street when he was hit by a truck.</span></span></li>
+      </ol>
+      <p class="keep"><i>e</i>: Max’s first steps. <i>P</i> = <i>cross the street</i>. ∩Circ(<i>e</i>, <i>P</i>) = {<i>w</i><sub>0</sub>, <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>}. NI(<i>e</i>) = {<i>n</i><sub>1</sub>, <i>n</i><sub>2</sub>}.</p>
+      <table class="rec fill given">
+        <thead><tr><th>World</th><th><i>n</i><sub>1</sub>: no truck</th><th><i>n</i><sub>2</sub>: no aliens</th><th>Complete crossing</th></tr></thead>
+        <tbody>
+          <tr><td class="w"><i>w</i><sub>0</sub><small>actual</small></td><td>F</td><td>T</td><td>no</td></tr>
+          <tr><td class="w"><i>w</i><sub>1</sub></td><td>T</td><td>T</td><td>yes</td></tr>
+          <tr><td class="w"><i>w</i><sub>2</sub></td><td>T</td><td>T</td><td>yes</td></tr>
+          <tr><td class="w"><i>w</i><sub>3</sub></td><td>T</td><td>F</td><td>no</td></tr>
+        </tbody>
+      </table>
+      <div class="exbox">
+        <div class="sc">Example (16)</div>
+        <ol>
+          <li><i>w</i><sub>1</sub> and <i>w</i><sub>2</sub> make <i>n</i><sub>1</sub> and <i>n</i><sub>2</sub> true. <i>w</i><sub>0</sub> and <i>w</i><sub>3</sub> make one each. Best(Circ(<i>e</i>, <i>P</i>), NI(<i>e</i>)) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}.</li>
+          <li>Max completes the crossing in <i>w</i><sub>1</sub> and in <i>w</i><sub>2</sub>. PROG(<i>e</i>, <i>P</i>) is true at <i>w</i><sub>0</sub>.</li>
+          <li><i>w</i><sub>0</sub> is not a best world, so (16) does not entail that Max crossed the street.</li>
+        </ol>
+      </div>
+      <ol class="exs">
+        <li><span>(17)</span><span><span class="s">John was drawing a circle when his pencil broke.</span></span></li>
+      </ol>
+      <p class="keep"><span class="runin">Exercise 4.</span> <i>e</i>: John’s first strokes. <i>P</i> = <i>draw a circle</i>. NI(<i>e</i>) = {<i>k</i><sub>1</sub>, <i>k</i><sub>2</sub>}. Method: find Best first, then look for a complete circle in each best world.</p>
+      <table class="rec fill given">
+        <thead><tr><th>World</th><th><i>k</i><sub>1</sub>: the pencil does not break</th><th><i>k</i><sub>2</sub>: John is not called away</th><th>Complete circle</th></tr></thead>
+        <tbody>
+          <tr><td class="w"><i>u</i><sub>0</sub><small>actual</small></td><td>F</td><td>T</td><td>no</td></tr>
+          <tr><td class="w"><i>u</i><sub>1</sub></td><td>T</td><td>T</td><td>yes</td></tr>
+          <tr><td class="w"><i>u</i><sub>2</sub></td><td>T</td><td>F</td><td>no</td></tr>
+          <tr><td class="w"><i>u</i><sub>3</sub></td><td>T</td><td>T</td><td>yes</td></tr>
+        </tbody>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Give Best(Circ(<i>e</i>, <i>P</i>), NI(<i>e</i>)).</span></div>
+        <div class="ans">{<i>u</i><sub>1</sub>, <i>u</i><sub>3</sub>}. They make <i>k</i><sub>1</sub> and <i>k</i><sub>2</sub> true, and no world is better.</div>
+        <div class="task"><span>(b)</span><span>Is (17) true at <i>u</i><sub>0</sub>?</span></div>
+        <div class="ans">True. John completes the circle in <i>u</i><sub>1</sub> and in <i>u</i><sub>3</sub>.</div>
+        <div class="task"><span>(c)</span><span>Does (17) entail <i>John drew a circle</i>? Use <i>u</i><sub>0</sub>.</span></div>
+        <div class="ans">No. (17) is true at <i>u</i><sub>0</sub>, and no circle is drawn in <i>u</i><sub>0</sub>.</div>
+      </div>
+      <ol class="exs" style="break-before:page">
+        <li><span>(18)</span><span><span class="s">Mary was swimming across the Atlantic when she drowned.</span></span></li>
+      </ol>
+      <p class="keep"><span class="runin">Exercise 5.</span> Mary is a very bad swimmer. <i>e</i>: her first strokes off the coast of Kerry. <i>P</i> = <i>swim across the Atlantic</i>. Circ(<i>e</i>, <i>P</i>) = {<i>c</i><sub>1</sub>, <i>c</i><sub>2</sub>}. NI(<i>e</i>) = {<i>m</i><sub>1</sub>, <i>m</i><sub>2</sub>, <i>m</i><sub>3</sub>}.</p>
+      <table class="rec fill given narrow" style="table-layout:fixed;width:100%">
+        <thead><tr><th style="width:12%">World</th><th style="width:15%"><i>c</i><sub>1</sub>: very bad swimmer</th><th style="width:15%"><i>c</i><sub>2</sub>: ocean 3,000 km</th><th style="width:11%"><i>m</i><sub>1</sub>: no storm</th><th style="width:11%"><i>m</i><sub>2</sub>: no cramp</th><th style="width:11%"><i>m</i><sub>3</sub>: no shark</th><th style="width:16%">Complete crossing</th><th style="width:9%">Best</th></tr></thead>
+        <tbody>
+          <tr><td class="w"><i>v</i><sub>0</sub><small>actual</small></td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>no</td><td class="av"></td></tr>
+          <tr><td class="w"><i>v</i><sub>1</sub></td><td>T</td><td>T</td><td>T</td><td>F</td><td>T</td><td>no</td><td class="av"></td></tr>
+          <tr><td class="w"><i>v</i><sub>2</sub></td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>no</td><td class="av">best</td></tr>
+          <tr><td class="w"><i>v</i><sub>3</sub></td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>yes</td><td class="av"></td></tr>
+          <tr><td class="w"><i>v</i><sub>4</sub></td><td>T</td><td>T</td><td>T</td><td>T</td><td>F</td><td>no</td><td class="av"></td></tr>
+          <tr><td class="w"><i>v</i><sub>5</sub></td><td>T</td><td>F</td><td>T</td><td>F</td><td>T</td><td>yes</td><td class="av"></td></tr>
+          <tr><td class="w"><i>v</i><sub>6</sub></td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>no</td><td class="av">best</td></tr>
+        </tbody>
+      </table>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Mark the best worlds in the last column.</span></div>
+        <div class="task"><span>(b)</span><span>Is (18) true at <i>v</i><sub>0</sub>?</span></div>
+        <div class="ans">False. The best worlds are <i>v</i><sub>2</sub> and <i>v</i><sub>6</sub>, and Mary does not reach America in either. <i>v</i><sub>3</sub> makes <i>m</i><sub>1</sub>, <i>m</i><sub>2</sub> and <i>m</i><sub>3</sub> true, but there Mary is a strong swimmer, so <i>v</i><sub>3</sub> is not in ∩Circ(<i>e</i>, <i>P</i>) and cannot be a best world.</div>
+      </div>
+      <div class="exbox">
+        <div class="sc">John was drawing a circle</div>
+      <svg class="tline ptree" viewBox="0 0 1000 410" role="img" aria-label="The tree for John was drawing a circle, with IPFV-mod, with the denotation of each node.">
+        <text class="nl" x="500" y="32">TP</text>
+        <text class="nd" x="500" y="68">1 iff ∃<tspan class="it">e</tspan> [T ⊆ E ∧ PROG(<tspan class="it">e</tspan>, λ<tspan class="it">e</tspan>′. draw-circle(<tspan class="it">j</tspan>, <tspan class="it">e</tspan>′))], with T &lt; S</text>
+        <line class="br" x1="500" y1="82" x2="240" y2="138"/><line class="br" x1="500" y1="82" x2="640" y2="138"/>
+        <text class="nl" x="240" y="166">PAST</text>
+        <text class="nd" x="240" y="202">T &lt; S</text>
+        <text class="nl" x="640" y="166">AspP</text>
+        <text class="nd" x="640" y="202">λ<tspan class="it">t</tspan>. ∃<tspan class="it">e</tspan> [<tspan class="it">t</tspan> ⊆ E ∧ PROG(<tspan class="it">e</tspan>, λ<tspan class="it">e</tspan>′. draw-circle(<tspan class="it">j</tspan>, <tspan class="it">e</tspan>′))]</text>
+        <line class="br" x1="640" y1="216" x2="410" y2="272"/><line class="br" x1="640" y1="216" x2="830" y2="272"/>
+        <text class="nl" x="410" y="300">IPFV<tspan dy="7" font-size="70%">mod</tspan></text>
+        <text class="nd" x="410" y="336">λ<tspan class="it">P</tspan>. λ<tspan class="it">t</tspan>. ∃<tspan class="it">e</tspan> [<tspan class="it">t</tspan> ⊆ E ∧ PROG(<tspan class="it">e</tspan>, <tspan class="it">P</tspan>)]</text>
+        <text class="nl" x="830" y="300">VP</text>
+        <text class="nw" x="830" y="335">John draw a circle</text>
+        <text class="nd" x="830" y="371">λ<tspan class="it">e</tspan>. draw-circle(<tspan class="it">j</tspan>, <tspan class="it">e</tspan>)</text>
+      </svg>
+        <ol>
+          <li>⟦IPFV<sub>mod</sub>⟧ is ⟦IPFV⟧ with PROG(<i>e</i>, <i>P</i>) in place of <i>P</i>(<i>e</i>).</li>
+          <li>⟦TP⟧ says that an event <i>e</i> is going on at T, before S, and that in every world of Best(Circ(<i>e</i>, <i>P</i>), NI(<i>e</i>)) <i>e</i> goes on to a complete drawing of a circle by John.</li>
+          <li>With IPFV, ⟦TP⟧ needed draw-circle(<i>j</i>, <i>e</i>) in the actual world. With IPFV<sub>mod</sub>, a complete drawing is needed only in the best worlds.</li>
+          <li>The actual world need not be a best world, so (8) can be true when John stops halfway and no circle is ever drawn. It does not entail <i>John drew a circle</i>.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Portner 1998.</b> The progressive in modal semantics. <i>Language</i> 74: 760–787.</p>
+      <p><b>Kratzer 1981.</b> The notional category of modality. In H.-J. Eikmeyer &amp; H. Rieser (eds.), <i>Words, Worlds, and Contexts.</i> De Gruyter.</p>
+    </div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec wyntk">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>Topic time, event time and speech time; perfective, imperfective and progressive.</li>
+          <li>The imperfective paradox.</li>
+          <li>Inertia worlds.</li>
+          <li>The progressive as a modal; a circumstantial modal base and a non-interruption ordering source.</li>
+          <li>Readings of the perfect; the present perfect puzzle; lifetime effects.</li>
+          <li>Non-culminating accomplishments; the after-perfect.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Place topic time, event time and speech time on a timeline.</li>
+          <li>Give the truth conditions of a sentence with an aspect head from its tree.</li>
+          <li>Decide whether a progressive entails its simple past.</li>
+          <li>Compute the best worlds for a progressive from a modal base and an ordering source.</li>
+          <li>Classify a perfect by its reading.</li>
+          <li>Test glossed data for a culmination entailment.</li>
+        </ol>
+      </div>
+      </div>
+    </div>
+    <div class="note"></div>
+  </div>
+
+</div>
+</body>
+</html>

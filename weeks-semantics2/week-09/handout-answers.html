@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU33008 · Week 9, Conditionals · Handout · Answers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+
+  /* As week 2: blocks run on without a page break; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body > h2 + p { break-after:avoid; page-break-after:avoid; break-inside:avoid; page-break-inside:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  /* two definition strips in a row share one rule */
+  .defs + .defs { margin-top:0; border-top:none; }
+  table.rec.fill.wide td:not(:first-child) { width:auto; }
+  .exs .ig { display:flex; flex-wrap:wrap; gap:0 14pt; }
+  .exs .ig .wg { display:inline-flex; flex-direction:column; }
+  .exs .ig .o { font-style:italic; }
+  .exs .ig .g { font-size:9pt; }
+  .exs .tr { display:block; margin-top:2pt; }
+  .tfig { width:86%; height:auto; display:block; margin:6pt auto 4pt; } .treebox { break-inside:avoid; page-break-inside:avoid; }
+  .tfig line { stroke:#222; stroke-width:1.6; }
+  .tfig .tn { font-family:inherit; font-style:italic; font-size:38px; text-anchor:middle; fill:#111; }
+  .tfig .tk { font-style:normal; font-size:24px; fill:#777; }
+  .proc .tfig { margin-top:8pt; }
+  .lat { width:58%; height:auto; display:block; margin:8pt auto 6pt; }
+  .lat .oa { stroke:#111; stroke-width:2.2; fill:none; }
+  .lat .on { fill:#fff; stroke:#111; stroke-width:2.2; }
+  .lat .on.top { fill:#e6e6e6; }
+  .lat .ot { font-style:italic; font-size:34px; text-anchor:middle; fill:#111; }
+  .wpic { width:100%; height:auto; display:block; margin:6pt 0 8pt; }
+  .wpic .wr { fill:none; stroke:#111; stroke-width:2; }
+  .wpic .wl { font-style:italic; font-size:30px; fill:#111; }
+  .wpic .wd { fill:#111; }
+  .wpic .wn { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .wpic .wn .sb { font-style:normal; font-size:20px; }
+  .wpic .wa { font-style:italic; font-size:28px; text-anchor:middle; fill:#111; }
+  .exs .fr { float:right; font-style:normal; margin-left:14pt; }
+  @media print {
+    .proc, .defs { break-inside:avoid !important; page-break-inside:avoid !important; }
+    ol.exs { break-inside:avoid; page-break-inside:avoid; }
+    table.rec { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:avoid; page-break-after:avoid; }
+    .tasks .task, .tasks .lines, .tasks .draw { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(+ table.rec), .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ .wpic), .body > p:has(+ .lat) { break-after:avoid; page-break-after:avoid; }
+    .body > ol.exs:has(+ .tasks) { break-after:avoid; page-break-after:avoid; }
+    .sec + .sec { break-before:page !important; page-break-before:always !important; margin-top:0; }
+    .sec + .sec.wyntk { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .sec + .sec.flow { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; }
+    .tfig { width:66% !important; }
+  }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .wyntk .steps li { font-size:9.6pt; line-height:1.28; margin-bottom:1.5pt; }
+  .wyntk h2 { margin-bottom:4pt; }
+  .sec.wyntk { margin-top:8pt !important; margin-bottom:0 !important; padding-bottom:0 !important; border-bottom:none; }
+  @media print { html, body { height:auto !important; } .sheet { padding-bottom:0 !important; } }
+  .wyntk .proc { margin-bottom:0; } .wyntk .wcols { margin-bottom:0; } .wyntk .body > :last-child { margin-bottom:0; }
+  .wyntk .steps li { font-size:9.4pt; line-height:1.24; margin-bottom:1pt; }
+  @media print {
+    .tasks .draw { height:26mm !important; }
+  }
+  /* Week 4: object-language forms inside raw example rows */
+  .exs .o { font-style:italic; }
+  .body > p + .defs { margin-top:4pt; }
+  .sec.wide { grid-template-columns:30pt 1fr; }
+  .tfig.t4 { width:84%; }
+  @media print { .tfig.t4 { width:80% !important; } }
+  p.keep { break-inside:avoid; page-break-inside:avoid; }
+  /* examples set under the task that uses them */
+  .tasks ol.exs { margin:3pt 0 2pt 22pt; }
+  .tasks .task + ol.exs + .lines { margin-top:4pt; }
+  .tasks p.keep { margin-left:22pt; }
+  table.rec.prob td:nth-child(2) { width:38%; }
+  ul.sum { margin:2pt 0 6pt 0; padding-left:14pt; }
+  ul.sum li { margin:0 0 5pt 0; line-height:1.42; }
+  .tfig.t4.small { width:80%; }
+  .tfig.t4.blank { width:100%; }
+  @media print { .tfig.t4.small { width:78% !important; } .tfig.t4.blank { width:100% !important; } }
+
+  /* worked example box */
+  .exbox { margin:8pt 0 10pt; break-inside:avoid; page-break-inside:avoid; }
+  .exbox .sc { margin-bottom:3pt; }
+  .exbox ol { margin:0; padding-left:16pt; }
+  .exbox ol li { margin:0 0 2pt; }
+  /* sphere figures */
+  .spf { width:66%; height:auto; display:block; margin:4pt auto 4pt; }
+  .spf.wide { width:84%; }
+  .spf .sp { fill:none; stroke:#555; stroke-width:1.6; }
+  .spf .sp.on { stroke:#000; stroke-width:2.6; }
+  .spf .rg { fill:none; stroke:#000; stroke-width:1.8; stroke-dasharray:7 5; }
+  .spf .rg2 { fill:#ddd; fill-opacity:.55; stroke:#000; stroke-width:1.6; }
+  .spf .nd { fill:#fff; stroke:#000; stroke-width:1.8; }
+  .spf .nd.c { fill:#000; }
+  .spf .nd.hi { fill:#aaa; }
+  .spf .wl { font-family:var(--serif); font-style:italic; font-size:27px; text-anchor:middle; fill:#000; }
+  .spf .wl.inv { fill:#fff; }
+  .spf .lb { font-family:var(--serif); font-size:24px; fill:#000; }
+  .spf .lb.i { font-style:italic; }
+  .spf .ds { font-family:var(--serif); font-size:25px; fill:#333; text-anchor:middle; paint-order:stroke; stroke:#fff; stroke-width:6px; stroke-linejoin:round; }
+  .draw.sph { height:120pt; border:none; display:flex; justify-content:center; }
+  .draw.sph svg { height:100%; width:auto; }
+  table.rec.mod td, table.rec.mod th { text-align:center; }
+  table.rec.mod td:first-child, table.rec.mod th:first-child { text-align:left; }
+  table.rec.mod td { padding:2.5pt 8pt 2.5pt 0; }
+  table.rec.fill.tri th:not(:first-child) { text-align:center; }
+  .exs .fr { float:right; font-style:normal; font-size:8.5pt; color:#444; margin-left:14pt; }
+  .tfig.cond { width:92%; }
+  .tfig .roof { fill:none; stroke:#111; stroke-width:1.6; }
+  @media print { .tfig.cond { width:92% !important; } }
+  .tfig .tc { font-family:inherit; font-style:normal; font-size:30px; text-anchor:middle; fill:#111; }
+  .tfig .tx { font-style:italic; font-size:30px; text-anchor:middle; fill:#111; }
+  .tfig .tb { font-style:normal; font-size:26px; text-anchor:middle; fill:#555; }
+  .bonus { font-style:italic; font-size:9.5pt; margin:0 0 6pt; }
+  .fml { text-align:center; margin:4pt 0 9pt; font-size:11.5pt; break-inside:avoid; }
+  .fml .pt { display:inline-block; vertical-align:top; text-align:center; margin:0 1pt; }
+  .fml .pt .lbl { display:block; font-variant:small-caps; font-size:7.5pt; letter-spacing:.06em; border-top:0.6pt solid #000; margin-top:2pt; padding-top:1pt; }
+  .tfig.cond .tc { font-size:40px !important; } .tfig.cond .tx { font-size:40px !important; } .tfig.cond .at { font-size:28px !important; }
+  @media print { .tfig.cond { width:100% !important; } .sec .body > h2 { break-after:avoid; page-break-after:avoid; } .sec .body > h2 + .defs, .sec .body > h2 + p.bonus { break-before:avoid; page-break-before:avoid; } .defs > .sc + .d { break-before:avoid; } }
+  /* week 9: let long units break so blocks run on without gaps */
+  @media print {
+    ol.exs { break-inside:auto !important; page-break-inside:auto !important; }
+    ol.exs li { break-inside:avoid; page-break-inside:avoid; }
+    .tasks .task { break-after:auto !important; page-break-after:auto !important; }
+    .tasks .task + ol.exs, .tasks .task + .lines, .tasks .task + table { break-before:avoid; page-break-before:avoid; }
+    .exbox, .proc { break-inside:auto !important; page-break-inside:auto !important; }
+    .defs { break-inside:auto !important; page-break-inside:auto !important; }
+    .defs > .d { break-inside:avoid; page-break-inside:avoid; }
+    .defs > .d:nth-child(2), .defs > .d:nth-child(3) { break-before:avoid; page-break-before:avoid; }
+    .exbox li, .defs .d { break-inside:avoid; page-break-inside:avoid; }
+    .body > p:has(> .runin) { break-after:avoid !important; page-break-after:avoid !important; }
+    .body > p:has(+ ol.exs), .body > p:has(+ .tasks), .body > p:has(+ table.rec) { break-after:auto !important; page-break-after:auto !important; }
+    .spf, .tfig, .draw { break-inside:avoid; page-break-inside:avoid; }
+  }
+</style>
+
+<style>
+  .ans { font-family: var(--sans, sans-serif); font-size: 9pt; line-height: 1.45; color: #1f4e79; margin: 2pt 0 8pt 18pt; }
+  .ans i, .ans em { font-style: italic; }
+  table.rec.anst { margin-left: 18pt; width: calc(100% - 18pt); }
+  table.rec.anst td { color: #1f4e79; font-family: var(--sans, sans-serif); font-size: 8.5pt; }
+  table.rec.anst td:nth-child(-n+2) { white-space: nowrap; }
+  .spf .at { font-family: var(--sans, sans-serif); font-style: normal; font-size: 19px; fill: #1f4e79; }
+  .tfig .at { font-family: var(--sans, sans-serif); font-style: normal; font-size: 26px; fill: #1f4e79; text-anchor:middle; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU33008 · Semantics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 9 · Handout · Answers</div>
+  <h1 class="doc-title">Conditionals</h1>
+
+  <!-- Thursday handout (Nov 2026), the formal companion to the week 9 deck, following its line:
+       0 truth functions and the material conditional (truth tables, the dinner promise row by row, the
+       difficult cases, Carroll's barbershop); 1 kinds of conditional; 2 the strict conditional and Sobel
+       sequences; 3 similarity orderings and the variably strict conditional (Goodman's match, spheres, would
+       and might, contraposition); 4 Stalnaker against Lewis (Bizet and Verdi; Henry's handball); 5 the
+       restrictor analysis (Lockhart, a lights model, a tree, covert operators and tripartite structures,
+       stacked if-clauses after Kipling, the horse-sale argument); 6 counterfactuals as restricted modals
+       (ordering source, Best); 7 What you need to know, word for word as the deck. -->
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>Truth functions and the material conditional</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Truth-functional connective</span><span class="g">A connective whose truth value is fixed by the truth values of its parts. <i>Not</i>, <i>and</i>, <i>or</i>.</span></div>
+        <div class="d"><span class="t">Material conditional</span><span class="g"><i>A</i> → <i>C</i>. False when <i>A</i> is true and <i>C</i> is false, true otherwise. Equivalent to ¬<i>A</i> ∨ <i>C</i>.</span></div>
+        <div class="d"><span class="t">Valid inference</span><span class="g">No row makes all the premises true and the conclusion false.</span></div>
+        <div class="d"><span class="t">Tautology</span><span class="g">True in every row.</span></div>
+        <div class="d"><span class="t">Paradoxes of material implication</span><span class="g">From ¬<i>A</i> infer <i>A</i> → <i>C</i>. From <i>C</i> infer <i>A</i> → <i>C</i>. Both valid for →.</span></div>
+      </div>
+      <table class="rec mod">
+        <tr><th></th><th><i>A</i></th><th><i>C</i></th><th>¬<i>A</i></th><th><i>A</i> ∧ <i>C</i></th><th><i>A</i> ∨ <i>C</i></th><th><i>A</i> → <i>C</i></th></tr>
+        <tr><td>(a)</td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td></tr>
+        <tr><td>(b)</td><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td></tr>
+        <tr><td>(c)</td><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td>(d)</td><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+      </table>
+      <ol class="exs">
+        <li><span>(1)</span><span><span class="s">If you pass the exam, I will take you out for dinner.</span></span></li>
+      </ol>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <ol>
+          <li><i>A</i>, you pass. <i>C</i>, dinner. Anna&rsquo;s father says (1).</li>
+          <li>(a) Pass, dinner. Promise kept. True. (b) Pass, no dinner. Promise broken. False.</li>
+          <li>(c) Fail, dinner. (d) Fail, no dinner. Promise not tested. True.</li>
+        </ol>
+      </div>
+      <p class="keep"><span class="runin">Exercise 1.</span> Method: work row by row, computing the parts before the whole. A formula is a tautology, and an inference valid, iff no row makes it false.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Complete the truth table, and say which formulas are equivalent to <i>A</i> → <i>C</i>.</span></div>
+      <table class="rec fill tri">
+        <tr><th></th><th><i>A</i></th><th><i>C</i></th><th>¬<i>A</i> ∨ <i>C</i></th><th>¬(<i>A</i> ∧ ¬<i>C</i>)</th><th><i>C</i> → <i>A</i></th><th>¬<i>C</i> → ¬<i>A</i></th></tr>
+        <tr><td>(a)</td><td>T</td><td>T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td></tr>
+        <tr><td>(b)</td><td>T</td><td>F</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">F</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">F</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">F</td></tr>
+        <tr><td>(c)</td><td>F</td><td>T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">F</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td></tr>
+        <tr><td>(d)</td><td>F</td><td>F</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td><td style="color:#1f4e79;font-family:var(--sans,sans-serif)">T</td></tr>
+      </table>
+        <div class="ans">Equivalent to <i>A</i> → <i>C</i>. ¬<i>A</i> ∨ <i>C</i>, ¬(<i>A</i> ∧ ¬<i>C</i>) and ¬<i>C</i> → ¬<i>A</i>. Not equivalent. <i>C</i> → <i>A</i>, which differs in rows (b) and (c).</div>
+        <div class="task"><span>(b)</span><span>Anna is Irish and is not the Pope. Decide each sentence on the material conditional, and give the row that decides it.</span></div>
+      <ol class="exs">
+        <li><span>(2)</span><span><span class="s">If Dublin is in France, then 2 + 2 = 5.</span></span></li>
+        <li><span>(3)</span><span><span class="s">If the moon is made of cheese, then Paris is in France.</span></span></li>
+        <li><span>(4)</span><span><span class="s">If Anna is the Pope, she is Irish.</span></span></li>
+        <li><span>(5)</span><span><span class="s">If Anna is the Pope, she is not Irish.</span></span></li>
+      </ol>
+        <div class="ans">(2) True, row (d). (3) True, row (c). (4) True, row (c). (5) True, row (d).</div>
+        <div class="task"><span>(c)</span><span>Show by truth table that (<i>A</i> → <i>C</i>) ∨ (<i>C</i> → <i>A</i>) is a tautology, and that ¬(<i>A</i> → <i>C</i>) entails <i>A</i>.</span></div>
+        <div class="ans">Row (a) T ∨ T. Row (b) F ∨ T. Row (c) T ∨ F. Row (d) T ∨ T. True in every row. ¬(<i>A</i> → <i>C</i>) true only in row (b), where <i>A</i> is true.</div>
+        <div class="task"><span>(d)</span><span>Allen, Brown and Carr run a barber&rsquo;s shop. One of them is always in, and Allen never goes out without Brown. Find a situation in which Carr is out and the two sentences are both true on the material conditional.</span></div>
+      <ol class="exs">
+        <li><span>(6)</span><span><span class="s">If Carr is out, then if Allen is out, Brown is in.</span></span></li>
+        <li><span>(7)</span><span><span class="s">If Allen is out, Brown is out.</span></span></li>
+      </ol>
+        <div class="ans">Allen in, Brown in, Carr out. (7) true, antecedent false. <i>If Allen is out, Brown is in</i> true, antecedent false, so (6) true.</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Gamut 1991.</b> <i>Logic, Language, and Meaning.</i> Vol. 1, ch. 2. University of Chicago Press.</p>
+      <p><b>Carroll 1894.</b> A logical paradox. <i>Mind</i> 3: 436–438.</p>
+      <p><b>Grice 1989.</b> Indicative conditionals. In <i>Studies in the Way of Words.</i> Harvard University Press. 58–85.</p>
+    </div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec flow">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>Indicatives and counterfactuals</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Antecedent</span><span class="g">The if-clause, or protasis. The main clause is the consequent, or apodosis.</span></div>
+        <div class="d"><span class="t">Indicative conditional</span><span class="g">Ordinary tense in both clauses, read against what is known.</span></div>
+        <div class="d"><span class="t">Counterfactual conditional</span><span class="g">Past morphology in the antecedent and <i>would</i> in the consequent, read against an antecedent taken to be false.</span></div>
+        <div class="d"><span class="t">Biscuit conditional</span><span class="g">The consequent holds whether or not the antecedent does. The if-clause says when the assertion is relevant.</span></div>
+        <div class="d"><span class="t">Concessive conditional</span><span class="g"><i>Even if A, C</i>. Asserts <i>C</i>, and adds that <i>A</i> would not change it.</span></div>
+        <div class="d"><span class="t">Anankastic conditional</span><span class="g">States what is necessary for a goal. <i>If you want X, you have to Y.</i></span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(8)</span><span><span class="s">If Oswald did not kill Kennedy, someone else did.</span></span></li>
+        <li><span>(9)</span><span><span class="s">If Oswald had not killed Kennedy, someone else would have.</span></span></li>
+      </ol>
+      <p class="keep"><span class="runin">Exercise 2.</span> Method: look at the verb forms first, then ask whether the consequent depends on the antecedent.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Classify each sentence as indicative, counterfactual, biscuit, concessive or anankastic.</span></div>
+      <ol class="exs">
+        <li><span>(10)</span><span><span class="s">If it rains tomorrow, the match will be cancelled.</span></span></li>
+        <li><span>(11)</span><span><span class="s">If it had rained, the match would have been cancelled.</span></span></li>
+        <li><span>(12)</span><span><span class="s">There is beer in the fridge if you want some.</span></span></li>
+        <li><span>(13)</span><span><span class="s">Even if it rains, the match will go ahead.</span></span></li>
+        <li><span>(14)</span><span><span class="s">If the ground is wet, it rained last night.</span></span></li>
+        <li><span>(15)</span><span><span class="s">If you want to catch the 8.15, you have to leave now.</span></span></li>
+        <li><span>(16)</span><span><span class="s">If I were you, I would take the job.</span></span></li>
+        <li><span>(17)</span><span><span class="s">If you are hungry, there is a sandwich on the counter.</span></span></li>
+      </ol>
+        <div class="ans">(10) Indicative. (11) Counterfactual. (12) Biscuit. (13) Concessive. (14) Indicative. (15) Anankastic. (16) Counterfactual. (17) Biscuit.</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Adams 1970.</b> Subjunctive and indicative conditionals. <i>Foundations of Language</i> 6: 89–94.</p>
+      <p><b>Austin 1956.</b> Ifs and cans. <i>Proceedings of the British Academy</i> 42: 109–132.</p>
+    </div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec flow">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>The strict conditional</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Accessibility relation</span><span class="g"><i>R</i>(<i>w</i>), the set of worlds accessible from <i>w</i>. For an epistemic <i>R</i>, the worlds compatible with what is known at <i>w</i>.</span></div>
+        <div class="d"><span class="t">Strict conditional</span><span class="g"><i>If A, C</i> is true at <i>w</i> iff <i>R</i>(<i>w</i>) ∩ <i>A</i> ⊆ <i>C</i>. Every accessible <i>A</i>-world is a <i>C</i>-world.</span></div>
+        <div class="d"><span class="t">Vacuous truth</span><span class="g">A strict conditional is vacuously true at <i>w</i> when <i>R</i>(<i>w</i>) contains no <i>A</i>-world.</span></div>
+        <div class="d"><span class="t">Strengthening the antecedent</span><span class="g">From <i>if A, C</i> to <i>if A and B, C</i>.</span></div>
+        <div class="d"><span class="t">Sobel sequence</span><span class="g"><i>If A, C</i>; <i>if A and B, not C</i>; <i>if A and B and D, C</i> &hellip; Each antecedent stronger, the whole consistent.</span></div>
+      </div>
+      <ol class="exs">
+        <li><span>(18)</span><span><span class="s">If kangaroos had no tails, they would topple over.</span></span></li>
+        <li><span>(19)</span><span><span class="s">If kangaroos had no tails but used crutches, they would topple over.</span></span></li>
+      </ol>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <ol>
+          <li><i>R</i> a fixed set of worlds. (18) strict, <i>R</i> ∩ <i>NoTails</i> ⊆ <i>Topple</i>. (19) strict, <i>R</i> ∩ <i>NoTails</i> ∩ <i>Crutches</i> ⊆ <i>Topple</i>.</li>
+          <li><i>R</i> ∩ <i>NoTails</i> ∩ <i>Crutches</i> ⊆ <i>R</i> ∩ <i>NoTails</i>, so strengthening is valid. Yet (18) is true and (19) false.</li>
+        </ol>
+      </div>
+      <p><i>U</i>, the USA throws its weapons into the sea tomorrow. <i>N</i>, all the nuclear powers do. <i>P</i>, they do so without precautions against polluting the fisheries. <i>War</i>, there is war.</p>
+      <table class="rec mod">
+        <tr><th></th><th><i>U</i></th><th><i>N</i></th><th><i>P</i></th><th><i>War</i></th></tr>
+        <tr><td><i>u</i><sub>0</sub> (actual)</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+        <tr><td><i>u</i><sub>1</sub></td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td><i>u</i><sub>2</sub></td><td>T</td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td><i>u</i><sub>3</sub></td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+      </table>
+      <p class="keep"><span class="runin">Exercise 3.</span> Method: for each <i>R</i>, collect the antecedent worlds in <i>R</i> and check the consequent at each. With none, the conditional is vacuously true.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Read each sentence as a strict conditional over each <i>R</i> in the table. Fill the table, marking vacuous truths.</span></div>
+      <ol class="exs">
+        <li><span>(20)</span><span><span class="s">If the USA threw its weapons into the sea tomorrow, there would be war.</span></span></li>
+        <li><span>(21)</span><span><span class="s">If the USA and the other nuclear powers all threw their weapons into the sea tomorrow, there would be peace.</span></span></li>
+        <li><span>(22)</span><span><span class="s">If they did so without sufficient precautions against polluting the world&rsquo;s fisheries, there would be war.</span></span></li>
+      </ol>
+      <table class="rec anst">
+        <tr><th></th><th>(20)</th><th>(21)</th><th>(22)</th></tr>
+        <tr><td>{<i>u</i><sub>0</sub>, <i>u</i><sub>1</sub>}</td><td>true</td><td>vacuous</td><td>vacuous</td></tr>
+        <tr><td>{<i>u</i><sub>0</sub>, <i>u</i><sub>1</sub>, <i>u</i><sub>2</sub>}</td><td>false (<i>u</i><sub>2</sub>)</td><td>true</td><td>vacuous</td></tr>
+        <tr><td>all four worlds</td><td>false (<i>u</i><sub>2</sub>)</td><td>false (<i>u</i><sub>3</sub>)</td><td>true</td></tr>
+      </table>
+        <div class="task"><span>(b)</span><span>Say what the table shows about a strict conditional and the sequence.</span></div>
+        <div class="ans">No <i>R</i> makes (20) and (21) both true without vacuity.</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> §4.2.</p>
+      <p><b>Lewis 1973.</b> <i>Counterfactuals.</i> Blackwell. p. 10.</p>
+    </div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec flow">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Similarity and the variably strict conditional</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Similarity ordering</span><span class="g"><i>v</i> ≤<sub><i>w</i></sub> <i>u</i> iff <i>v</i> is at least as similar to <i>w</i> as <i>u</i> is. Centred (<i>w</i> is closer to <i>w</i> than any other world) and total (any two worlds are comparable).</span></div>
+        <div class="d"><span class="t">Spheres</span><span class="g">The sets {<i>v</i> : <i>v</i> ≤<sub><i>w</i></sub> <i>u</i>}, nested around <i>w</i>.</span></div>
+        <div class="d"><span class="t">Closest antecedent worlds</span><span class="g">Min<sub><i>w</i></sub>(<i>A</i>), the <i>A</i>-worlds to which no <i>A</i>-world is more similar. The <i>A</i>-worlds in the smallest sphere that contains one.</span></div>
+        <div class="d"><span class="t">Limit assumption</span><span class="g">Min<sub><i>w</i></sub>(<i>A</i>) is non-empty whenever <i>A</i> is true at some world.</span></div>
+        <div class="d"><span class="t">Would counterfactual</span><span class="g"><i>A</i> □→ <i>C</i> is true at <i>w</i> iff <i>C</i> is true at all the closest <i>A</i>-worlds, Min<sub><i>w</i></sub>(<i>A</i>) ⊆ <i>C</i>.</span></div>
+        <div class="d"><span class="t">Might counterfactual</span><span class="g"><i>A</i> ◇→ <i>C</i> is true at <i>w</i> iff <i>C</i> is true at some closest <i>A</i>-world. Equivalent to ¬(<i>A</i> □→ ¬<i>C</i>).</span></div>
+        <div class="d"><span class="t">Contraposition</span><span class="g">From <i>A</i> □→ <i>C</i> to ¬<i>C</i> □→ ¬<i>A</i>.</span></div>
+      </div>
+      <p><i>S</i>, the match is struck. <i>D</i>, it is dry. <i>O</i>, there is oxygen. <i>L</i>, it lights. <i>w</i><sub>0</sub> is the actual world, where the match lies unstruck. <i>w</i><sub>0</sub> is closest to itself; other worlds are closer to <i>w</i><sub>0</sub> the more they agree with it on <i>D</i> and <i>O</i>.</p>
+      <table class="rec mod">
+        <tr><th></th><th><i>S</i></th><th><i>D</i></th><th><i>O</i></th><th><i>L</i></th><th>agrees with <i>w</i><sub>0</sub> on</th></tr>
+        <tr><td><i>w</i><sub>0</sub></td><td>F</td><td>T</td><td>T</td><td>F</td><td><i>D</i>, <i>O</i></td></tr>
+        <tr><td><i>w</i><sub>1</sub></td><td>T</td><td>T</td><td>T</td><td>T</td><td><i>D</i>, <i>O</i></td></tr>
+        <tr><td><i>w</i><sub>2</sub></td><td>T</td><td>F</td><td>T</td><td>F</td><td><i>O</i></td></tr>
+        <tr><td><i>w</i><sub>3</sub></td><td>T</td><td>T</td><td>F</td><td>F</td><td><i>D</i></td></tr>
+        <tr><td><i>w</i><sub>4</sub></td><td>T</td><td>F</td><td>F</td><td>F</td><td>neither</td></tr>
+        <tr><td><i>w</i><sub>5</sub></td><td>F</td><td>F</td><td>T</td><td>F</td><td><i>O</i></td></tr>
+        <tr><td><i>w</i><sub>6</sub></td><td>F</td><td>T</td><td>F</td><td>F</td><td><i>D</i></td></tr>
+      </table>
+      <ol class="exs">
+        <li><span>(23)</span><span><span class="s">If the match had been struck, it would have lit.</span></span></li>
+        <li><span>(24)</span><span><span class="s">If the match had been struck and had been wet, it would have lit.</span></span></li>
+      </ol>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <ol>
+          <li><i>S</i>-worlds <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>. Only <i>w</i><sub>1</sub> agrees with <i>w</i><sub>0</sub> on <i>D</i> and <i>O</i>. Min<sub><i>w</i><sub>0</sub></sub>(<i>S</i>) = {<i>w</i><sub>1</sub>}.</li>
+          <li><i>L</i> true at <i>w</i><sub>1</sub>. (23) true at <i>w</i><sub>0</sub>.</li>
+          <li><i>S</i> ∧ ¬<i>D</i> worlds <i>w</i><sub>2</sub>, <i>w</i><sub>4</sub>. <i>w</i><sub>2</sub> agrees with <i>w</i><sub>0</sub> on <i>O</i>, <i>w</i><sub>4</sub> on neither. Min<sub><i>w</i><sub>0</sub></sub>(<i>S</i> ∧ ¬<i>D</i>) = {<i>w</i><sub>2</sub>}.</li>
+          <li><i>L</i> false at <i>w</i><sub>2</sub>. (24) false at <i>w</i><sub>0</sub>. Strengthening fails.</li>
+        </ol>
+      </div>
+      <p class="keep"><span class="runin">Exercise 4.</span> Method: find the antecedent worlds, keep those in the smallest sphere that contains one, and check the consequent there.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Draw the spheres around <i>w</i><sub>0</sub> on the figure: {<i>w</i><sub>0</sub>}, the worlds that agree with <i>w</i><sub>0</sub> on <i>D</i> and <i>O</i>, the worlds that agree on at least one, and all worlds.</span></div>
+      <svg class="spf" style="width:52%" viewBox="90 0 420 400" role="img">
+        <circle class="sp" cx="300" cy="200" r="25"/>
+        <circle class="sp" cx="300" cy="200" r="75"/>
+        <circle class="sp" cx="300" cy="200" r="135"/>
+        <circle class="sp" cx="300" cy="200" r="195"/>
+        <ellipse class="rg" cx="420" cy="200" rx="100" ry="110"/><text class="lb i" x="450" y="88">S</text>
+        <circle class="nd c" cx="300" cy="200" r="17"/><text class="wl inv" x="300" y="209">w<tspan dy="5" font-size="70%">0</tspan></text>
+        <circle class="nd" cx="355" cy="200" r="17"/><text class="wl" x="355" y="209">w<tspan dy="5" font-size="70%">1</tspan></text>
+        <circle class="nd" cx="388" cy="274" r="17"/><text class="wl" x="388" y="283">w<tspan dy="5" font-size="70%">2</tspan></text>
+        <circle class="nd" cx="388" cy="126" r="17"/><text class="wl" x="388" y="135">w<tspan dy="5" font-size="70%">3</tspan></text>
+        <circle class="nd" cx="475" cy="200" r="17"/><text class="wl" x="475" y="209">w<tspan dy="5" font-size="70%">4</tspan></text>
+        <circle class="nd" cx="185" cy="200" r="17"/><text class="wl" x="185" y="209">w<tspan dy="5" font-size="70%">5</tspan></text>
+        <circle class="nd" cx="212" cy="126" r="17"/><text class="wl" x="212" y="135">w<tspan dy="5" font-size="70%">6</tspan></text>
+        <text class="lb" x="100" y="30">spheres around w<tspan dy="5" font-size="70%">0</tspan></text>
+      </svg>
+        <div class="task"><span>(b)</span><span>Decide each sentence at <i>w</i><sub>0</sub>, giving the closest antecedent worlds each time.</span></div>
+      <ol class="exs">
+        <li><span>(25)</span><span><span class="s">If there had been no oxygen, the match would have been dry.</span></span></li>
+        <li><span>(26)</span><span><span class="s">If there had been no oxygen, the match might have been struck.</span></span></li>
+        <li><span>(27)</span><span><span class="s">If there had been no oxygen, the match would have been struck.</span></span></li>
+        <li><span>(28)</span><span><span class="s">If the match had been wet, it would not have lit.</span></span></li>
+        <li><span>(29)</span><span><span class="s">If the match had been struck and wet, it might have lit.</span></span></li>
+      </ol>
+        <div class="ans">(25) Min<sub><i>w</i>0</sub>(¬<i>O</i>) = {<i>w</i><sub>3</sub>, <i>w</i><sub>6</sub>} ⊆ <i>D</i>. True. (26) <i>w</i><sub>3</sub> ∈ <i>S</i>. True. (27) <i>w</i><sub>6</sub> ∉ <i>S</i>. False. (28) Min<sub><i>w</i>0</sub>(¬<i>D</i>) = {<i>w</i><sub>2</sub>, <i>w</i><sub>5</sub>} ⊆ ¬<i>L</i>. True. (29) Min<sub><i>w</i>0</sub>(<i>S</i> ∧ ¬<i>D</i>) = {<i>w</i><sub>2</sub>}, <i>L</i> false there. False.</div>
+        <div class="task"><span>(c)</span><span>Build a countermodel to contraposition from (30) and (31). Name the worlds, say what holds at each, order them, and decide both sentences.</span></div>
+      <ol class="exs">
+        <li><span>(30)</span><span><span class="s">Even if Goethe hadn&rsquo;t died in 1832, he would still be dead now.</span></span></li>
+        <li><span>(31)</span><span><span class="s">If Goethe were alive now, he would have died in 1832.</span></span></li>
+      </ol>
+        <div class="ans"><i>w</i>, Goethe dies in 1832 and is dead now. <i>g</i><sub>1</sub>, dies in 1840 and is dead now. <i>g</i><sub>2</sub>, alive now. <i>g</i><sub>1</sub> &lt;<sub><i>w</i></sub> <i>g</i><sub>2</sub>. (30) Min<sub><i>w</i></sub>(¬<i>Die1832</i>) = {<i>g</i><sub>1</sub>} ⊆ <i>DeadNow</i>. True. (31) Min<sub><i>w</i></sub>(¬<i>DeadNow</i>) = {<i>g</i><sub>2</sub>} ⊄ <i>Die1832</i>. False.</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Lewis 1973.</b> <i>Counterfactuals.</i> §§1.3–1.4.</p>
+      <p><b>Goodman 1947.</b> The problem of counterfactual conditionals. <i>Journal of Philosophy</i> 44: 113–128.</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> §5.4.</p>
+    </div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec flow">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Stalnaker and Lewis</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Selection function</span><span class="g"><i>f</i>(<i>A</i>, <i>w</i>), the <i>A</i>-world most similar to <i>w</i>. <i>f</i>(<i>A</i>, <i>w</i>) = <i>w</i> whenever <i>A</i> is true at <i>w</i>.</span></div>
+        <div class="d"><span class="t">Stalnaker conditional</span><span class="g"><i>A</i> &gt; <i>C</i> is true at <i>w</i> iff <i>C</i> is true at <i>f</i>(<i>A</i>, <i>w</i>).</span></div>
+        <div class="d"><span class="t">Uniqueness assumption</span><span class="g">Exactly one closest <i>A</i>-world. Min<sub><i>w</i></sub>(<i>A</i>) = {<i>f</i>(<i>A</i>, <i>w</i>)}.</span></div>
+        <div class="d"><span class="t">Conditional excluded middle</span><span class="g">(<i>A</i> &gt; <i>C</i>) ∨ (<i>A</i> &gt; ¬<i>C</i>). Valid for &gt;, invalid for □→.</span></div>
+      </div>
+      <p>Bizet is French and Verdi Italian at <i>w</i><sub>0</sub>. Both are French at <i>w</i><sub>1</sub>, Italian at <i>w</i><sub>2</sub>, German at <i>w</i><sub>3</sub>. <i>w</i><sub>1</sub> and <i>w</i><sub>2</sub> are equally close to <i>w</i><sub>0</sub>, and <i>w</i><sub>3</sub> is further away.</p>
+      <svg class="spf" style="width:50%" viewBox="20 0 560 400" role="img">
+        <circle class="sp" cx="300" cy="200" r="30"/><circle class="sp on" cx="300" cy="200" r="100"/><circle class="sp" cx="300" cy="200" r="175"/>
+        <circle class="nd c" cx="300" cy="200" r="17"/><text class="wl inv" x="300" y="209">w<tspan dy="5" font-size="70%">0</tspan></text>
+        <circle class="nd" cx="231" cy="160" r="17"/><text class="wl" x="231" y="169">w<tspan dy="5" font-size="70%">1</tspan></text>
+        <circle class="nd" cx="369" cy="160" r="17"/><text class="wl" x="369" y="169">w<tspan dy="5" font-size="70%">2</tspan></text>
+        <circle class="nd" cx="375" cy="330" r="17"/><text class="wl" x="375" y="339">w<tspan dy="5" font-size="70%">3</tspan></text>
+        <text class="ds" x="199" y="167" style="text-anchor:end">both French</text>
+        <text class="ds" x="401" y="167" style="text-anchor:start">both Italian</text>
+        <text class="ds" x="407" y="337" style="text-anchor:start">both German</text>
+      </svg>
+      <ol class="exs">
+        <li><span>(32)</span><span><span class="s">If Bizet and Verdi had been compatriots, Bizet would have been Italian.</span></span></li>
+        <li><span>(33)</span><span><span class="s">If Bizet and Verdi had been compatriots, Verdi would have been French.</span></span></li>
+        <li><span>(34)</span><span><span class="s">If Bizet and Verdi had been compatriots, Bizet might have been Italian.</span></span></li>
+        <li><span>(35)</span><span><span class="s">If Bizet and Verdi had been compatriots, Bizet would not have been Italian.</span></span></li>
+      </ol>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <ol>
+          <li>Lewis. Min<sub><i>w</i><sub>0</sub></sub>(<i>Compatriots</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>}.</li>
+          <li>(32) fails at <i>w</i><sub>1</sub>, false. (33) fails at <i>w</i><sub>2</sub>, false. (34) Bizet Italian at <i>w</i><sub>2</sub>, true. (35) fails at <i>w</i><sub>2</sub>, false. (32) and (35) both false, so conditional excluded middle fails for □→.</li>
+          <li>Stalnaker. <i>f</i>(<i>Compatriots</i>, <i>w</i><sub>0</sub>) = <i>w</i><sub>1</sub> or <i>w</i><sub>2</sub>. If <i>w</i><sub>1</sub>, (33) and (35) true, (32) false. If <i>w</i><sub>2</sub>, (32) true, (33) and (35) false. (32) or (35) true either way.</li>
+        </ol>
+      </div>
+      <p>In November 2009 Thierry Henry handled the ball before William Gallas scored France&rsquo;s extra-time goal against Ireland, and France went to the 2010 World Cup. At <i>w</i><sub>0</sub> Henry handles the ball. In the closest worlds where he does not, the tie stays level for now. France score later at <i>h</i><sub>1</sub>, Ireland score at <i>h</i><sub>2</sub>, Ireland win on penalties at <i>h</i><sub>3</sub> and France win on penalties at <i>h</i><sub>4</sub>.</p>
+      <p class="keep"><span class="runin">Exercise 5.</span> Method: Lewis checks every closest antecedent world. Stalnaker checks the one world the selection function picks.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Decide each sentence under Lewis and under Stalnaker.</span></div>
+      <ol class="exs">
+        <li><span>(36)</span><span><span class="s">If Henry hadn&rsquo;t handled the ball, Ireland would have gone to the World Cup.</span></span></li>
+        <li><span>(37)</span><span><span class="s">If Henry hadn&rsquo;t handled the ball, Ireland might have gone to the World Cup.</span></span></li>
+        <li><span>(38)</span><span><span class="s">If Henry hadn&rsquo;t handled the ball, France or Ireland would have gone to the World Cup.</span></span></li>
+      </ol>
+        <div class="ans">Lewis. Min<sub><i>w</i>0</sub>(¬<i>Handle</i>) = {<i>h</i><sub>1</sub>, <i>h</i><sub>2</sub>, <i>h</i><sub>3</sub>, <i>h</i><sub>4</sub>}. (36) False, fails at <i>h</i><sub>1</sub> and <i>h</i><sub>4</sub>. (37) True, <i>h</i><sub>2</sub> and <i>h</i><sub>3</sub>. (38) True. Stalnaker. (36) True if <i>f</i> picks <i>h</i><sub>2</sub> or <i>h</i><sub>3</sub>, false otherwise. (37) Same as (36), its <i>might</i> read epistemically. (38) True.</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Stalnaker 1968.</b> A theory of conditionals. In N. Rescher (ed.), <i>Studies in Logical Theory.</i> Blackwell. 98–112.</p>
+      <p><b>Lewis 1973.</b> <i>Counterfactuals.</i> §1.7; pp. 79–81.</p>
+      <p><b>Stalnaker 1981.</b> A defense of conditional excluded middle. In W. L. Harper, R. Stalnaker &amp; G. Pearce (eds.), <i>Ifs.</i> Reidel. 87–104.</p>
+    </div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec flow">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>The restrictor analysis</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Modal base</span><span class="g"><i>f</i>(<i>w</i>), a set of propositions. ∩<i>f</i>(<i>w</i>) is the set of worlds where all of them are true.</span></div>
+        <div class="d"><span class="t">Restrictor analysis</span><span class="g">The if-clause is added to the modal base, as below. For <i>might</i>, ∩<i>f</i>(<i>w</i>) ∩ <i>A</i> ∩ <i>C</i> ≠ ∅.</span></div>
+        <div class="d"><span class="t">Material under the modal</span><span class="g">□(<i>A</i> → <i>C</i>), true iff ∩<i>f</i>(<i>w</i>) ⊆ <i>A</i> → <i>C</i>. For <i>might</i>, ◇(<i>A</i> → <i>C</i>).</span></div>
+        <div class="d"><span class="t">Modal under the material</span><span class="g"><i>A</i> → □<i>C</i>, true at <i>w</i> iff <i>A</i> is false at <i>w</i> or ∩<i>f</i>(<i>w</i>) ⊆ <i>C</i>. For <i>might</i>, <i>A</i> → ◇<i>C</i>.</span></div>
+        <div class="d"><span class="t">Covert operator</span><span class="g">A bare conditional restricts a silent operator, such as epistemic <i>must</i> or a generic <i>always</i>.</span></div>
+        <div class="d"><span class="t">Tripartite structure</span><span class="g">OPERATOR [Restriction] [Nuclear scope]. The if-clause is the restriction. An adverb of quantification quantifies over cases.</span></div>
+      </div>
+      <div class="fml">⟦<i>if A, must C</i>⟧<sup><i>w</i></sup> = 1 iff <span class="pt">∩<i>f</i>(<i>w</i>)<span class="lbl">modal base</span></span> ∩ <span class="pt">⟦<i>A</i>⟧<span class="lbl">if-clause</span></span> ⊆ <span class="pt">⟦<i>C</i>⟧<span class="lbl">consequent</span></span></div>
+      <ol class="exs">
+        <li><span>(39)</span><span><span class="s">If we are on Route 80, we might be in Lockhart now.</span></span></li>
+      </ol>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <ol>
+          <li>Mary&rsquo;s modal base ∩<i>f</i>(<i>w</i>) = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>, <i>w</i><sub>3</sub>, <i>w</i><sub>4</sub>}. On Route 80 at <i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>. In Lockhart at <i>w</i><sub>3</sub>. Actual world <i>w</i><sub>2</sub>.</li>
+          <li>Restrictor. ∩<i>f</i>(<i>w</i>) ∩ <i>A</i> ∩ <i>C</i> = {<i>w</i><sub>1</sub>, <i>w</i><sub>2</sub>} ∩ {<i>w</i><sub>3</sub>} = ∅. (39) false.</li>
+          <li>Material under the modal. <i>A</i> → <i>C</i> true at <i>w</i><sub>3</sub> and <i>w</i><sub>4</sub>. (39) true.</li>
+          <li>Modal under the material. <i>A</i> true at <i>w</i><sub>2</sub>, and ◇<i>C</i> true, since <i>w</i><sub>3</sub> is in the base. (39) true.</li>
+        </ol>
+      </div>
+      <p>What Ben knows about Anna, ∩<i>f</i>(<i>v</i>) = {<i>v</i><sub>1</sub>, &hellip;, <i>v</i><sub>6</sub>}. <i>L</i>, the lights are on. <i>H</i>, Anna is home. <i>C</i>, the car is in the drive. The actual world is <i>v</i><sub>5</sub>.</p>
+      <table class="rec mod">
+        <tr><th></th><th><i>L</i></th><th><i>H</i></th><th><i>C</i></th></tr>
+        <tr><td><i>v</i><sub>1</sub></td><td>T</td><td>T</td><td>T</td></tr>
+        <tr><td><i>v</i><sub>2</sub></td><td>T</td><td>T</td><td>F</td></tr>
+        <tr><td><i>v</i><sub>3</sub></td><td>T</td><td>F</td><td>F</td></tr>
+        <tr><td><i>v</i><sub>4</sub></td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td><i>v</i><sub>5</sub> (actual)</td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td><i>v</i><sub>6</sub></td><td>F</td><td>F</td><td>F</td></tr>
+      </table>
+      <p class="keep"><span class="runin">Exercise 6.</span> Method: for the restrictor, intersect the modal base with the antecedent before applying the modal. For the other two, apply → and the modal in the order given.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Decide each sentence at <i>v</i><sub>5</sub> under the three analyses. Fill the table with T or F.</span></div>
+      <ol class="exs">
+        <li><span>(40)</span><span><span class="s">If the lights are on, Anna must be home.</span></span></li>
+        <li><span>(41)</span><span><span class="s">If the lights are on, Anna might be out.</span></span></li>
+        <li><span>(42)</span><span><span class="s">If the car is in the drive, Anna must be home.</span></span></li>
+        <li><span>(43)</span><span><span class="s">If the lights are off, Anna might be home without the car.</span></span></li>
+      </ol>
+      <table class="rec anst">
+        <tr><th></th><th>material under the modal</th><th>modal under the material</th><th>restrictor</th></tr>
+        <tr><td>(40)</td><td>F (<i>v</i><sub>3</sub>)</td><td>T (<i>L</i> false at <i>v</i><sub>5</sub>)</td><td>F ({<i>v</i><sub>1</sub>, <i>v</i><sub>2</sub>, <i>v</i><sub>3</sub>} ⊄ <i>H</i>)</td></tr>
+        <tr><td>(41)</td><td>T (<i>v</i><sub>4</sub>)</td><td>T (<i>L</i> false at <i>v</i><sub>5</sub>)</td><td>T (<i>v</i><sub>3</sub>)</td></tr>
+        <tr><td>(42)</td><td>F (<i>v</i><sub>5</sub>)</td><td>F (□<i>H</i> false)</td><td>F (<i>v</i><sub>5</sub>)</td></tr>
+        <tr><td>(43)</td><td>T (<i>v</i><sub>1</sub>)</td><td>T (<i>v</i><sub>2</sub>)</td><td>F (no ¬<i>L</i> world with <i>H</i> ∧ ¬<i>C</i>)</td></tr>
+      </table>
+        <div class="task"><span>(b)</span><span>Annotate the tree for (40) with the set of worlds each node contributes.</span></div>
+      <svg class="tfig cond" style="width:86%" viewBox="-100 0 1000 515">
+        <line x1="400" y1="56" x2="220" y2="118"/><line x1="400" y1="56" x2="660" y2="118"/>
+        <line x1="220" y1="164" x2="90" y2="254"/><line x1="220" y1="164" x2="380" y2="254"/>
+        <line x1="380" y1="304" x2="230" y2="372"/><line x1="380" y1="304" x2="560" y2="350"/>
+        <polygon class="roof" points="660,164 560,230 760,230"/>
+        <polygon class="roof" points="560,350 440,414 680,414"/>
+        <text class="tc" x="400" y="44">S</text>
+        <text class="tc" x="220" y="150">ModalP</text>
+        <text class="tc" x="660" y="150">S</text>
+        <text class="tx" x="660" y="266">Anna be home</text>
+        <text class="tx" x="90" y="290">must</text>
+        <text class="tc" x="380" y="290">restriction</text>
+        <text class="tx" x="230" y="404">R<tspan dy="8" font-size="70%">w*</tspan></text>
+        <text class="tx" x="560" y="452">if the lights are on</text>
+        <text class="at" x="440" y="44" style="text-anchor:start">False.</text>
+        <text class="at" x="175" y="112" style="text-anchor:end">λp. {v1, v2, v3} ⊆ p</text>
+        <text class="at" x="660" y="306">{v1, v2, v4}</text>
+        <text class="at" x="405" y="356">{v1, v2, v3}</text>
+        <text class="at" x="230" y="446">{v1, …, v6}</text>
+        <text class="at" x="560" y="496">{v1, v2, v3}</text>
+      </svg>
+        <div class="task"><span>(c)</span><span>Name the operator, overt or covert, that each if-clause restricts, and give the tripartite structure.</span></div>
+      <ol class="exs">
+        <li><span>(44)</span><span><span class="s">If Anna is home, the lights are on.</span></span></li>
+        <li><span>(45)</span><span><span class="s">If it rains, the match is usually cancelled.</span></span></li>
+        <li><span>(46)</span><span><span class="s">If you heat ice, it melts.</span></span></li>
+        <li><span>(47)</span><span><span class="s">If Ben calls, I will answer.</span></span></li>
+        <li><span>(48)</span><span><span class="s">If Anna has an essay due, she must be in the library.</span></span></li>
+        <li><span>(49)</span><span><span class="s">If you can keep your head when all about you are losing theirs, and if you can trust yourself when all men doubt you, you&rsquo;ll be a Man.</span></span></li>
+      </ol>
+        <div class="ans">(44) Covert epistemic <i>must</i>. <i>must</i> [Anna is home] [the lights are on]. (45) <i>usually</i>. MOST [it rains] [the match is cancelled]. (46) Covert generic <i>always</i>. ALWAYS [you heat ice] [it melts]. (47) <i>will</i>. WILL [Ben calls] [I answer]. (48) Overt epistemic <i>must</i>. <i>must</i> [Anna has an essay due] [she is in the library]. (49) <i>will</i>, with both if-clauses in the restriction. WILL [you can keep your head ∩ you can trust yourself] [you&rsquo;ll be a Man].</div>
+        <div class="task"><span>(d)</span><span>Decide (50) for the students in the table, first with the if-clause restricting <i>usually</i> (most of the restricted cases), then with a material conditional under <i>usually</i> (most of all the cases).</span></div>
+      <ol class="exs">
+        <li><span>(50)</span><span><span class="s">If a student has a laptop, she usually brings it.</span></span></li>
+      </ol>
+      <table class="rec mod">
+        <tr><th></th><th><i>s</i><sub>1</sub></th><th><i>s</i><sub>2</sub></th><th><i>s</i><sub>3</sub></th><th><i>s</i><sub>4</sub></th><th><i>s</i><sub>5</sub></th><th><i>s</i><sub>6</sub></th></tr>
+        <tr><td>has a laptop</td><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+        <tr><td>brings it</td><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+      </table>
+        <div class="ans">Restricted. MOST<sub><i>x</i></sub> [laptop(<i>x</i>)] [brings(<i>x</i>)]. One case in three. False. Material. MOST<sub><i>x</i></sub> [student(<i>x</i>)] [laptop(<i>x</i>) → brings(<i>x</i>)]. Four cases in six. True.</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Kratzer 1986.</b> Conditionals. <i>Chicago Linguistic Society</i> 22(2): 1–15.</p>
+      <p><b>Lewis 1975.</b> Adverbs of quantification. In E. Keenan (ed.), <i>Formal Semantics of Natural Language.</i> Cambridge University Press. 3–15.</p>
+      <p><b>Heim 1982.</b> <i>The Semantics of Definite and Indefinite Noun Phrases.</i> University of Massachusetts dissertation.</p>
+      <p><b>Kipling 1910.</b> <i>Rewards and Fairies.</i> Macmillan.</p>
+    </div>
+  </div>
+
+  <!-- ══ 6 ══ -->
+  <div class="sec flow">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>Counterfactuals as restricted modals</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Ordering source</span><span class="g"><i>g</i>(<i>w</i>), a set of propositions that ranks worlds. For a counterfactual, the facts of <i>w</i> to be kept.</span></div>
+        <div class="d"><span class="t">Ordering</span><span class="g"><i>v</i> ≤<sub><i>g</i>(<i>w</i>)</sub> <i>u</i> iff every proposition in <i>g</i>(<i>w</i>) true at <i>u</i> is also true at <i>v</i>. <i>v</i> is at least as good as <i>u</i>.</span></div>
+        <div class="d"><span class="t">Best worlds</span><span class="g">Best<sub><i>g</i>(<i>w</i>)</sub>(<i>X</i>), the worlds in <i>X</i> with no strictly better world in <i>X</i>.</span></div>
+        <div class="d"><span class="t">Counterfactual</span><span class="g">With an empty modal base, <i>A</i> □→ <i>C</i> is true at <i>w</i> iff Best<sub><i>g</i>(<i>w</i>)</sub>(<i>A</i>) ⊆ <i>C</i>, and <i>A</i> ◇→ <i>C</i> iff Best<sub><i>g</i>(<i>w</i>)</sub>(<i>A</i>) ∩ <i>C</i> ≠ ∅.</span></div>
+      </div>
+      <div class="exbox">
+        <div class="sc">Example</div>
+        <ol>
+          <li>The match model of section 3. <i>g</i>(<i>w</i><sub>0</sub>) = {<i>D</i>, <i>O</i>}. <i>w</i><sub>1</sub> keeps <i>D</i> and <i>O</i>, <i>w</i><sub>2</sub> keeps <i>O</i>, <i>w</i><sub>3</sub> keeps <i>D</i>, <i>w</i><sub>4</sub> keeps neither.</li>
+          <li><i>S</i>-worlds <i>w</i><sub>1</sub> to <i>w</i><sub>4</sub>. <i>w</i><sub>1</sub> keeps everything any other <i>S</i>-world keeps. Best<sub><i>g</i>(<i>w</i><sub>0</sub>)</sub>(<i>S</i>) = {<i>w</i><sub>1</sub>}. <i>L</i> true at <i>w</i><sub>1</sub>. (23) true.</li>
+          <li><i>w</i><sub>2</sub> and <i>w</i><sub>3</sub> incomparable, each keeping a fact the other loses.</li>
+          <li>Best agrees with Min<sub><i>w</i>0</sub> in this model.</li>
+        </ol>
+      </div>
+      <p>Anna cycled to work and was on time. <i>B</i>, Anna takes the bus. <i>H</i>, the traffic is heavy. <i>N</i>, there is no bus lane. <i>T</i>, Anna is on time. At <i>w</i><sub>0</sub>, <i>B</i> is false and <i>H</i>, <i>N</i> and <i>T</i> are true. <i>g</i>(<i>w</i><sub>0</sub>) = {<i>H</i>, <i>N</i>}.</p>
+      <table class="rec mod">
+        <tr><th></th><th><i>B</i></th><th><i>H</i></th><th><i>N</i></th><th><i>T</i></th></tr>
+        <tr><td><i>v</i><sub>1</sub></td><td>T</td><td>T</td><td>T</td><td>F</td></tr>
+        <tr><td><i>v</i><sub>2</sub></td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+        <tr><td><i>v</i><sub>3</sub></td><td>T</td><td>T</td><td>F</td><td>T</td></tr>
+        <tr><td><i>v</i><sub>4</sub></td><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+        <tr><td><i>v</i><sub>5</sub></td><td>T</td><td>F</td><td>T</td><td>F</td></tr>
+      </table>
+      <p class="keep"><span class="runin">Exercise 7.</span> Method: list the facts in <i>g</i>(<i>w</i><sub>0</sub>) that each world keeps. A world is better than another iff it keeps everything the other keeps, and more.</p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Compute Best<sub><i>g</i>(<i>w</i><sub>0</sub>)</sub>(<i>B</i>), Best<sub><i>g</i>(<i>w</i><sub>0</sub>)</sub>(<i>B</i> ∧ ¬<i>N</i>) and Best<sub><i>g</i>(<i>w</i><sub>0</sub>)</sub>(<i>B</i> ∧ <i>T</i>).</span></div>
+        <div class="ans">Best<sub><i>g</i>(<i>w</i><sub>0</sub>)</sub>(<i>B</i>) = {<i>v</i><sub>1</sub>}. Best<sub><i>g</i>(<i>w</i><sub>0</sub>)</sub>(<i>B</i> ∧ ¬<i>N</i>) = {<i>v</i><sub>3</sub>}. Best<sub><i>g</i>(<i>w</i><sub>0</sub>)</sub>(<i>B</i> ∧ <i>T</i>) = {<i>v</i><sub>2</sub>, <i>v</i><sub>3</sub>}, incomparable.</div>
+        <div class="task"><span>(b)</span><span>Decide each sentence at <i>w</i><sub>0</sub>.</span></div>
+      <ol class="exs">
+        <li><span>(51)</span><span><span class="s">If Anna had taken the bus, she would have been late.</span></span></li>
+        <li><span>(52)</span><span><span class="s">If Anna had taken the bus and there had been a bus lane, she would have been late.</span></span></li>
+        <li><span>(53)</span><span><span class="s">If Anna had taken the bus and been on time, the traffic would have been light.</span></span></li>
+        <li><span>(54)</span><span><span class="s">If Anna had taken the bus and been on time, the traffic might have been light.</span></span></li>
+      </ol>
+        <div class="ans">(51) <i>T</i> false at <i>v</i><sub>1</sub>. True. (52) <i>T</i> true at <i>v</i><sub>3</sub>. False. (53) <i>H</i> true at <i>v</i><sub>3</sub>. False. (54) <i>H</i> false at <i>v</i><sub>2</sub>. True.</div>
+        <div class="task"><span>(c)</span><span>Name the two sentences that show strengthening failing.</span></div>
+        <div class="ans">(51) and (52).</div>
+      </div>
+    </div>
+    <div class="note">
+      <p><b>Kratzer 1981.</b> Partition and revision. <i>Journal of Philosophical Logic</i> 10: 201–216.</p>
+      <p><b>Lewis 1981.</b> Ordering semantics and premise semantics for counterfactuals. <i>Journal of Philosophical Logic</i> 10: 217–234.</p>
+      <p><b>von Fintel &amp; Heim.</b> <i>Intensional Semantics.</i> ch. 5.</p>
+    </div>
+  </div>
+
+  <div class="sec wyntk">
+    <div class="num">7</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>Truth-functional connectives; the material conditional and its paradoxes.</li>
+          <li>Indicative, counterfactual and biscuit conditionals; the if-clause as topic.</li>
+          <li>The strict and the variably strict conditional; Sobel sequences.</li>
+          <li>Similarity orderings; closest antecedent worlds; failures of strengthening, transitivity and contraposition.</li>
+          <li>The selection function; conditional excluded middle; <i>would</i> and <i>might</i> counterfactuals.</li>
+          <li>The restrictor analysis; tripartite structures; covert operators; ordering sources.</li>
+          <li>Iterated counterfactuals; yo-yo conditionals.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Give the truth table of the material conditional and test an inference with it.</li>
+          <li>Classify a conditional as indicative, counterfactual, biscuit, concessive or anankastic.</li>
+          <li>Evaluate a conditional under the material, strict and closest-worlds analyses.</li>
+          <li>Draw a sphere model where strengthening, transitivity or contraposition fails.</li>
+          <li>Decide a <i>would</i> and <i>might</i> pair under Stalnaker and under Lewis.</li>
+          <li>Compute the restrictor analysis of a conditional, and best worlds from an ordering source.</li>
+          <li>Show that the closest-worlds analysis can make a yo-yo conditional true.</li>
+        </ol>
+      </div>
+      </div>
+    </div>
+    <div class="note"></div>
+  </div>
+</div>
+</body>
+</html>
