@@ -31,6 +31,8 @@ when a home for research talks is decided (still open — see W-open below).
 - Repo deploy key `.deploy-key`(+`.pub`) in the repo root, gitignored, unique
   to this repo, added on GitHub WITH write access. Cowork pushes with:
   `GIT_SSH_COMMAND="ssh -i .deploy-key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new" git push origin HEAD:main`
+- Claude chat sessions push directly once Thomas says yes (since
+  2026-11-23); see CLAUDE.md § 6 Deploy.
 - One-time setup recipe: `DEPLOY.md` (already done for this repo).
 
 ## Checks — `npm test`
@@ -42,7 +44,8 @@ files must balance, changes to legacy counts fail); every `deck.html` loads
 `deck-stage.js` and has ≥1 slide; the hub's `WEEKS`/`IDENTITIES` mirror the
 five `shared/*-meta.js` catalogues (week set · title · section name ·
 reading/present flags · identity codes+names — the CLAUDE.md double-entry
-gotcha, now CI-enforced). Add a check for every feature you ship.
+gotcha, now CI-enforced); no leftover merge-conflict markers in any text
+file (added 2026-11-23). Add a check for every feature you ship.
 
 ## Work items
 

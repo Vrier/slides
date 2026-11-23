@@ -11,6 +11,7 @@
    6. no unreplaced {{TOKEN}}s outside templates/ (scaffold guard)
    7. every built deck opens and ends on the same Concepts and skills
       slide, matching the handout's What you need to know block
+   8. no leftover merge-conflict markers in any text file
    Add a check for every feature you ship.
    ============================================================ */
 import fs from "node:fs";
@@ -236,10 +237,21 @@ for (const f of htmlFiles.filter((f) => path.basename(f) === "deck.html")) {
   }
 }
 
+// ---- 8: no leftover merge-conflict markers ----------------------------------------
+// Two half-resolved merges went into main in October 2026 (e64e633, ceae8eb).
+// A line that opens with seven <, | or > characters fails, so the deploy stops.
+const MARKER_RE = /^(<{7}|\|{7}|>{7})( |$)/;
+for (const f of allFiles) {
+  if (!TEXT_EXT.has(path.extname(f)) && path.basename(f) !== ".gitignore") continue;
+  const lines = fs.readFileSync(f, "utf8").split(/\r?\n/);
+  const i = lines.findIndex((l) => MARKER_RE.test(l));
+  if (i !== -1) fail(`${rel(f)}:${i + 1}: leftover merge-conflict marker (${lines[i].slice(0, 7)})`);
+}
+
 // ---- report ---------------------------------------------------------------------
 if (failures.length) {
   console.error(`FAIL — ${failures.length} problem(s):`);
   for (const m of failures) console.error("  ✗ " + m);
   process.exit(1);
 }
-console.log(`OK — ${htmlFiles.length} HTML file(s): links, integrity, deck sanity, hub↔catalogue sync, concepts and skills all green.`);
+console.log(`OK — ${htmlFiles.length} HTML file(s): links, integrity, deck sanity, hub↔catalogue sync, concepts and skills, conflict markers all green.`);

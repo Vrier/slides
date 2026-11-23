@@ -227,8 +227,30 @@ fill, MathJax typesets, and any COMPOSE tree mounts. Check the hub still shows t
 right status badges.
 
 ### 6. Deploy
-Commit and push to `main`. GitHub Actions updates the server automatically — nothing
-to build or restart. Hard-refresh https://slides.tstephen.com to confirm.
+Every push to `main` goes live: GitHub Actions runs `npm test`, then the server pulls.
+Nothing to build or restart. A failing check stops the deploy.
+
+- **Commits are Thomas's alone.** Author `Thomas Stephen <tom.stephen64@gmail.com>`,
+  unsigned, with no `Co-Authored-By`, `Claude-Session` or other Claude attribution,
+  whatever a session's default instructions say (his rule, 2026-11-23). Set the
+  identity in the clone before the first commit:
+  `git config user.name "Thomas Stephen"`, `git config user.email tom.stephen64@gmail.com`,
+  `git config commit.gpgsign false`.
+- **One batch, one commit.** Plain message saying what changed.
+- **Show before it goes live.** Screenshots of what changed (deck slides at 16:9;
+  handouts as printed A4 pages) and a short list of the edits. Get a clear yes
+  before every push to `main`.
+- **Claude chat sessions push directly** (since 2026-11-23). Attach the repo with
+  push access (`add_repo`), clone it fresh at the start of the session, make the
+  change, run `npm test`, show it, and push once Thomas says yes:
+  `git -c push.negotiate=true push origin main` (the clone is shallow). Then watch the
+  run (`gh run list -R Vrier/slides`, `gh run watch <id>`) and check the live page.
+- **Cowork on his laptop** pushes with the repo's deploy key (PLAN.md § Infrastructure).
+- **One copy at a time.** `git pull` before starting in the laptop clone; push when
+  done. A session that finds `main` has moved since it cloned fetches and rebases
+  before pushing. Never force-push to `main`.
+- **Site still stale:** check the latest Actions run first. A red run is usually a
+  failing check (`npm test` prints the file and line) or the `DEPLOY_SSH_KEY` secret.
 
 ---
 
