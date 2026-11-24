@@ -93,8 +93,8 @@ window.WEEKS = [
       typological: { q: "Aspect across languages", d: "Perfective and perfect marking in WALS, non-culminating accomplishments in St'át'imcets and Hindi, and the Irish English perfects." },
   }},
 
-  { no: 11, title: "Evidentiality", section: 6,
-    figures: ["Aikhenvald", "Faller", "Matthewson"], lenses: blankLenses() },
+  { no: 11, title: "Evidentiality & Mood", section: 6,
+    figures: ["Boas", "Aikhenvald", "Izvorski", "Faller", "Matthewson", "Murray"], lenses: blankLenses() },
 
   { no: 12, title: "Modals & Tense", section: 7,
     figures: ["Condoravdi", "Hacquard", "Bhatt"], lenses: blankLenses() },

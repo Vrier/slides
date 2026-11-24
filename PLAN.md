@@ -1346,3 +1346,17 @@ what the next session must know)*
   check.mjs baselines for the week 9 and 10 exercises removed. Week 9 deck still to come.
 - Pragmatics II weeks 2 and 3: readings marked ready on the hub (the pages were already finished).
 - The Twilight recap deck was dropped.
+
+### 2026-11-24 — Upload from the week chats (Semantics II week 11, LI7862 weeks 9 and 11, Pragmatics II weeks 6 and 9)
+- Lecture PDFs as deck.pdf (hub files deck): Semantics II week 11, LI7862 week 9 (Neo-Gricean Pragmatics) and
+  week 11 (Rational Speech Acts). Semantics II week 11 renamed Evidentiality & Mood after its lecture (hub,
+  sem2-meta.js, overview), figures Boas · Aikhenvald · Izvorski · Faller · Matthewson · Murray. Its readings page
+  is still the old one; the handout, answers and new readings are in week11-fresh-1-week.patch and
+  week11-fresh-2-hub.patch, not yet uploaded.
+- Pragmatics II week 6: handout-answers.html built from the live handout and the answers in
+  prag2-week06-handout-answers.pdf (22 Oct). Not on the hub, like weeks 3 and 5.
+- Pragmatics II week 9: handout.html, handout-code.html and handout.ipynb from patch 0011, applied to a regenerated
+  scaffold (its handout blob 1da9427 is the patch base). The patch's deck.html hunk waits for the deck (patches
+  0001–0010). All five WebPPL boxes and the notebook run and print the handout's outputs. Hub handout ready.
+- prag2-peer-feedback-2.patch not applied: it edits presentation-feedback.html, which comes from
+  prag2-peer-feedback.patch.

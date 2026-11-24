@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LIU44008 · Week 9, Implementing RSA in WebPPL or Python · Handout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../shared/handout-classic.css" />
+<link rel="stylesheet" href="../../shared/font-latex.css" />
+<style>
+  /* Week 3: blocks run on without a page break, as week 2; small units still avoid splitting. */
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:12pt; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  .body p { orphans:3; widows:3; }
+  .body > p:has(> .runin) { break-after:avoid; page-break-after:avoid; }
+  @media print { .proc, .defs { break-inside:auto; page-break-inside:auto; } .proc li, .defs .d { break-inside:avoid; page-break-inside:avoid; } .defs .sc, .proc-head { break-after:avoid; page-break-after:avoid; } }
+  svg.icon { width:9pt; height:9pt; vertical-align:-1pt; }
+  .defs > div.d { grid-template-columns:104pt 1fr; }
+  .mfig { max-width:330pt; }
+  table.pay { margin:5pt 0 7pt 22pt; border-collapse:collapse; break-inside:avoid; page-break-inside:avoid; }
+  table.pay th, table.pay td { border:.6pt solid var(--rule); padding:2pt 10pt; text-align:center; }
+  table.pay th { border:none; font-weight:600; font-size:9.2pt; }
+  table.pay td.rl { border:none; font-weight:600; font-size:9.2pt; text-align:right; padding-right:8pt; }
+  table.rec.lex, table.rec.parity { width:auto; min-width:60%; }
+  table.rec.pow, table.rec.calc, table.rec.perf, table.rec.toy, table.rec.rates { width:auto; min-width:62%; }
+  table.rec.pow td, table.rec.pow th, table.rec.calc td, table.rec.calc th, table.rec.perf td, table.rec.perf th, table.rec.toy td, table.rec.toy th, table.rec.rates td, table.rec.rates th { padding-right:16pt; }
+  table.rec.l0 { width:auto; min-width:62%; } table.rec.l0 td, table.rec.l0 th { padding-right:14pt; }
+  table.rec.cand td, table.rec.cand th { text-align:center; } table.rec.cand td:first-child { text-align:left; }
+  table.rec.gw td, table.rec.gw th { text-align:center; } table.rec.gw td:first-child { text-align:left; } table.rec.gw td { height:15pt; }
+  table.rec.gain td, table.rec.gain th { text-align:center; } table.rec.gain td:first-child { text-align:left; } table.rec.gain td { height:15pt; }
+  table.rec.words td, table.rec.words th { padding-right:12pt; } table.rec.words td { height:15pt; }
+  table.rec tr.wr td { font-size:8.4pt; line-height:1.25; padding-top:3pt; padding-bottom:3pt; }
+  table.rec.notat { margin-top:10pt; } table.rec.notat td { font-size:9.4pt; padding-right:12pt; }
+  table.rec.small td { font-size:9pt; padding-right:12pt; }
+  table.rec.rates td { height:15pt; }
+  table.rec.lex td, table.rec.lex th { padding-right:22pt; }
+  table.rec.tally td { width:22pt; } table.rec.tally td:first-child { width:52pt; }
+  table.rec.fill.bits td, table.rec.fill.bits3 td { height:15pt; }
+  table.rec.grid20 th { font-size:6.6pt; letter-spacing:0; padding:2pt 0; text-align:center; }
+  table.rec.grid20 td { height:16pt; width:12pt; padding:0; }
+  table.rec.grid20 td:first-child { width:30pt; font-size:8.6pt; text-align:left; }
+  .tasks .task + .lines:empty { display:none; }
+  table.rec th.st { text-transform:none; letter-spacing:0; font-size:9.5pt; font-weight:400; text-align:center; }
+  .mfig.plot { max-width:290pt; }
+  .mfig.small { max-width:270pt; }
+  .dens { margin:4pt 0 8pt 0; font-size:9.6pt; } .dens span + span { margin-left:14pt; }
+  table.rec th.st { text-align:left; }
+  .keep { break-inside:avoid; page-break-inside:avoid; }
+  span.ans { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:8.5pt; font-style:normal; }
+  div.ans { font-family:var(--sans, sans-serif); font-size:9pt; line-height:1.45; color:#1f4e79; margin:2pt 0 8pt 22pt; }
+  div.ans i, div.ans em { font-style:italic; }
+  .ansl { margin:6pt 0 12pt 22pt; color:#1f4e79; line-height:19pt;
+          background-image:linear-gradient(to bottom, transparent 18.2pt, #000 18.2pt); background-size:100% 19pt; background-repeat:repeat-y; }
+  @media print { .mfig, table.rec.fill, table.rec.lex, table.pay, .draw { break-inside:avoid; page-break-inside:avoid; } }
+
+  /* week 5 */
+  span.ans { color:#1f4e79; font-family:var(--sans, sans-serif); font-size:8.5pt; font-style:normal; }
+  div.ans { font-family:var(--sans, sans-serif); font-size:9pt; line-height:1.5; color:#1f4e79; margin:2pt 0 8pt 22pt; }
+  div.ans i, div.ans em { font-style:italic; }
+  div.ans .frac, span.ans .frac { font-size:.95em; }
+  .frac { display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; font-size:.86em; line-height:1.1; margin:0 1.5pt; }
+  .frac > span:first-child { border-bottom:.6pt solid currentColor; padding:0 2pt 0.5pt; }
+  .frac > span:last-child { padding:0.5pt 2pt 0; }
+  table.rec td.box { border:.8pt solid var(--rule); height:17pt; }
+  table.rec td.tot { font-weight:bold; white-space:nowrap; }
+  @media print { .sec + .sec { break-before:auto !important; page-break-before:auto !important; margin-top:14pt; } }
+  .sec + .sec { margin-top:14pt; }
+  .exbox { border:.6pt solid var(--rule); padding:5pt 9pt 4pt; margin:6pt 0 9pt; break-inside:avoid; page-break-inside:avoid; }
+  .exbox > .sc { margin-bottom:2pt; }
+  .exbox p { margin:0 0 3pt; }
+  .exbox p:last-child { margin-bottom:0; }
+  table.rec.tiles td, table.rec.tiles th { text-align:center; padding:2pt 3pt; font-size:9.6pt; }
+  table.rec.tiles td:first-child, table.rec.tiles th:first-child { text-align:left; padding-right:8pt; }
+  table.rec.mid { width:auto; min-width:58%; }
+  table.rec.mid td, table.rec.mid th { padding-right:16pt; }
+  table.rec.c td, table.rec.c th { text-align:center; } table.rec.c td:first-child, table.rec.c th:first-child { text-align:left; }
+  table.rec.fill td { height:16pt; }
+  .fx { text-align:center; margin:4pt 0 6pt; font-size:11.5pt; }
+  .anno { display:grid; grid-template-columns:repeat(4, 1fr); gap:0 14pt; margin:8pt 0 4pt 22pt; }
+  .anno div { border-bottom:.8pt solid var(--rule); height:18pt; font-size:9.6pt; }
+  ol.opts { margin:2pt 0 4pt 22pt; padding-left:16pt; } ol.opts li { margin:0 0 1pt; }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 18pt; align-items:start; }
+  .wcols .proc { margin-top:0; }
+  .sec.wyntk { margin-top:10pt; break-inside:avoid; page-break-inside:avoid; }
+  .wyntk .proc { margin-bottom:0; }
+  .wyntk .steps li { font-size:9.6pt; line-height:1.28; margin-bottom:1.5pt; }
+</style>
+<style>
+  @media print { .sec + .sec { break-before:auto; page-break-before:auto; } }
+  .sec + .sec { margin-top:14pt; break-before:auto; page-break-before:auto; }
+  .sec h2 { break-after:avoid; page-break-after:avoid; }
+  :root { --kr:#b0362a; --kg:#2f855a; --kb:#2b6cb0; --kx:#7a7a7a; }
+  .kr { color:var(--kr); } .kg { color:var(--kg); } .kb { color:var(--kb); } .kx { color:var(--kx); }
+  .defs .t.kr, .defs .t.kg, .defs .t.kb, .defs .t.kx { font-weight:inherit; }
+  svg.icon { width:9pt; height:9pt; vertical-align:-1pt; display:inline-block; }
+  .frac { display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; line-height:1.15; margin:0 1pt; font-size:90%; }
+  .frac > span { padding:0 2pt; white-space:nowrap; } .frac > span:first-child { border-bottom:.6pt solid currentColor; }
+  .fx { display:flex; align-items:center; justify-content:center; gap:10pt; margin:3pt 0 5pt; }
+  .fx .eq, .fx .op { color:#111; }
+  .pt { display:inline-flex; flex-direction:column; align-items:center; vertical-align:middle; }
+  .pt .lab { font-size:6.6pt; font-variant:small-caps; letter-spacing:.1em; text-transform:lowercase; line-height:1; margin-top:2pt; }
+  .pt.above .lab { margin:0 0 2pt; }
+  .ffrac { display:inline-flex; flex-direction:column; align-items:center; }
+  .ffrac .n { padding:0 4pt 2pt; border-bottom:.7pt solid #111; } .ffrac .d { padding:2pt 4pt 0; }
+  .exbox2 { border:.8pt solid #111; padding:3pt 7pt 4pt; margin:5pt 0 7pt; break-inside:avoid; page-break-inside:avoid; }
+  .exbox2 > .sc { margin-bottom:2pt; } .exbox2 p { margin:3pt 0; }
+  .exbox2 table.rec { margin:3pt 0; }
+  table.rec.c td, table.rec.c th { text-align:center; }
+  table.rec.c td:first-child, table.rec.c th:first-child { text-align:left; }
+  table.rec.narrow { width:auto; min-width:52%; }
+  table.rec td.gz { color:#9a9a9a; } table.rec td.tot { color:var(--kx); }
+  table.rec td.obj { vertical-align:top; }
+  .twin { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; } .twin .cap { font-size:7.6pt; margin:4pt 0 2pt; }
+  .wcols { display:grid; grid-template-columns:1fr 1fr; gap:0 14pt; }
+</style>
+<style>
+  /* week 9: code and output */
+  .lang { font-family: var(--sans, sans-serif); font-size:7.2pt; letter-spacing:.14em; text-transform:uppercase; font-weight:600; color:#9b2c1f; margin:6pt 0 1pt; }
+  pre.code, pre.out { font-family: "IBM Plex Mono", "DejaVu Sans Mono", monospace; font-size:7.6pt; line-height:1.32; white-space:pre; overflow:hidden; margin:0 0 4pt; padding:4pt 7pt; border-radius:2pt; }
+  pre.code { background:#f7f5f2; border:0.6pt solid #ddd5ce; }
+  pre.out { background:#fff; border:0.6pt dashed #c9c0b8; color:#222; }
+  .code .k { color:#7a2a8c; } .code .s { color:#9b2c1f; } .code .n { color:#1d5d99; } .code .c { color:#777; font-style:italic; }
+  .pair { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="mast">
+    <div>
+      <div class="inst">Trinity College Dublin</div>
+      <div class="ga">Coláiste na Tríonóide, Baile Átha Cliath</div>
+      <div class="sc uni">The University of Dublin</div>
+    </div>
+    <div class="right">
+      <div class="sc code">LIU44008 · Pragmatics II</div>
+      <div>Dr. Thomas Stephen</div>
+      <div>Semester 1, Michaelmas</div>
+    </div>
+  </div>
+  <div class="mast-rule"></div>
+
+  <div class="sc doc-kicker">Week 9 · Handout</div>
+  <h1 class="doc-title">Implementing RSA in WebPPL or Python</h1>
+
+  
+  <!-- ══ 0 ══ -->
+  <div class="sec">
+    <div class="num">0</div>
+    <div class="body">
+      <h2>The reference game</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Objects</span><span class="g">The four objects of the Rational Speech Act handout, with the prior measured in class: 0.44, 0.09, 0.28 and 0.19.</span></div>
+        <div class="d"><span class="t">Meaning</span><span class="g">A word or signal is true of an object if each of its words is in the object&rsquo;s name.</span></div>
+        <div class="d"><span class="t">Distribution</span><span class="g">Python: a dictionary from outcomes to probabilities. WebPPL: the result of <code>Infer</code>.</span></div>
+        <div class="d"><span class="t"><code>show</code></span><span class="g">Prints a distribution with two decimals.</span></div>
+      </div>
+      <p>Each section adds to the program so far. The Python is in <a href="handout.ipynb">handout.ipynb</a>, and the WebPPL runs on <a href="handout-code.html">the code page</a>.</p>
+      <div class="pair">
+        <div class="lang">Python</div>
+        <pre class="code"><span class="k">from</span> math <span class="k">import</span> log2
+
+objects = [<span class="s">&quot;blue square&quot;</span>, <span class="s">&quot;green square&quot;</span>,
+           <span class="s">&quot;blue circle&quot;</span>, <span class="s">&quot;green circle&quot;</span>]
+prior = {<span class="s">&quot;blue square&quot;</span>: <span class="n">0.44</span>, <span class="s">&quot;green square&quot;</span>: <span class="n">0.09</span>,
+         <span class="s">&quot;blue circle&quot;</span>: <span class="n">0.28</span>, <span class="s">&quot;green circle&quot;</span>: <span class="n">0.19</span>}
+words = [<span class="s">&quot;blue&quot;</span>, <span class="s">&quot;green&quot;</span>, <span class="s">&quot;square&quot;</span>, <span class="s">&quot;circle&quot;</span>]
+
+<span class="k">def</span> meaning(u, s):
+    <span class="k">return</span> all(w <span class="k">in</span> s <span class="k">for</span> w <span class="k">in</span> u.split())
+
+<span class="k">def</span> show(d):
+    <span class="k">for</span> k, v <span class="k">in</span> d.items():
+        print(k, round(v, <span class="n">2</span>))</pre>
+        <div class="lang">WebPPL</div>
+        <pre class="code"><span class="k">var</span> objects = [<span class="s">&quot;blue square&quot;</span>, <span class="s">&quot;green square&quot;</span>,
+               <span class="s">&quot;blue circle&quot;</span>, <span class="s">&quot;green circle&quot;</span>]
+<span class="k">var</span> prior = [<span class="n">0.44</span>, <span class="n">0.09</span>, <span class="n">0.28</span>, <span class="n">0.19</span>]
+<span class="k">var</span> words = [<span class="s">&quot;blue&quot;</span>, <span class="s">&quot;green&quot;</span>, <span class="s">&quot;square&quot;</span>, <span class="s">&quot;circle&quot;</span>]
+
+<span class="k">var</span> meaning = <span class="k">function</span>(u, s) {
+  <span class="k">return</span> all(<span class="k">function</span>(w) { <span class="k">return</span> s.indexOf(w) &gt;= <span class="n">0</span> },
+             u.split(<span class="s">&quot; &quot;</span>))
+}
+
+<span class="k">var</span> show = <span class="k">function</span>(d) {
+  <span class="k">return</span> map(<span class="k">function</span>(s) {
+    <span class="k">return</span> s + <span class="s">&quot;: &quot;</span> + Math.exp(d.score(s)).toFixed(<span class="n">2</span>)
+  }, d.support())
+}</pre>
+      </div>
+    </div>
+    <div class="note"><p><b>Scontras, Tessler &amp; Franke 2018.</b> <i>Probabilistic Language Understanding</i>, chapter 1 and appendix 6. problang.org.</p><p><b>Goodman &amp; Stuhlmüller 2014.</b> <i>The Design and Implementation of Probabilistic Programming Languages</i>. dippl.org.</p></div>
+  </div>
+
+  <!-- ══ 1 ══ -->
+  <div class="sec">
+    <div class="num">1</div>
+    <div class="body">
+      <h2>The literal listener</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t"><i>L</i><sub>0</sub>(<i>s</i> | <i>u</i>)</span><span class="g">The prior, with the objects of which <i>u</i> is false removed, divided by what is left.</span></div>
+        <div class="d"><span class="t"><code>Infer</code></span><span class="g">Runs a function over every outcome of its random choices and returns the distribution of what it returns.</span></div>
+        <div class="d"><span class="t"><code>condition(c)</code></span><span class="g">Drops the run when <code>c</code> is false.</span></div>
+      </div>
+      <div class="exbox2">
+        <div class="sc">Example</div>
+        <p>Hearing <i>blue</i>.</p>
+      <div class="pair">
+        <div class="lang">Python</div>
+        <pre class="code"><span class="k">def</span> L0(u):
+    total = sum(meaning(u, s) * prior[s] <span class="k">for</span> s <span class="k">in</span> objects)
+    <span class="k">return</span> {s: meaning(u, s) * prior[s] / total <span class="k">for</span> s <span class="k">in</span> objects}
+
+show(L0(<span class="s">&quot;blue&quot;</span>))</pre>
+        <pre class="out">blue square 0.61
+green square 0.0
+blue circle 0.39
+green circle 0.0</pre>
+        <div class="lang">WebPPL</div>
+        <pre class="code"><span class="k">var</span> L0 = cache(<span class="k">function</span>(u) {
+  <span class="k">return</span> Infer(<span class="k">function</span>() {
+    <span class="k">var</span> s = categorical({ps: prior, vs: objects})
+    condition(meaning(u, s))
+    <span class="k">return</span> s
+  })
+})
+
+show(L0(<span class="s">&quot;blue&quot;</span>))</pre>
+        <pre class="out">[&quot;blue circle: 0.39&quot;,&quot;blue square: 0.61&quot;]</pre>
+      </div>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Change <i>blue</i> to each of the other words in turn, and fill in the table.</span></div>
+      <table class="rec fill c narrow">
+        <tr><th><i>L</i><sub>0</sub>(<i>s</i> | <i>u</i>)</th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></th></tr>
+        <tr><td><i>blue</i></td><td>0.61</td><td>0</td><td>0.39</td><td>0</td></tr><tr><td><i>green</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>square</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>circle</i></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      </div>
+    </div>
+    <div class="note"><p><b>Frank &amp; Goodman 2012.</b> Predicting pragmatic reasoning in language games. <i>Science</i> 336.</p></div>
+  </div>
+
+  <!-- ══ 2 ══ -->
+  <div class="sec">
+    <div class="num">2</div>
+    <div class="body">
+      <h2>The speaker</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t"><i>S</i><sub>1</sub>(<i>u</i> | <i>s</i>)</span><span class="g">Each true utterance in proportion to <span style="white-space:nowrap">2<sup>α · <i>U</i>(<i>u</i>; <i>s</i>)</sup></span>, with <i>U</i>(<i>u</i>; <i>s</i>) = log<sub>2</sub> <i>L</i><sub>0</sub>(<i>s</i> | <i>u</i>) − <i>C</i>(<i>u</i>).</span></div>
+        <div class="d"><span class="t"><code>factor(x)</code></span><span class="g">Weights the run by <i>e</i><sup><i>x</i></sup>. <code>score</code> gives a natural logarithm, so <code>factor(alpha * L0(u).score(s))</code> weights by <i>L</i><sub>0</sub>(<i>s</i> | <i>u</i>)<sup>α</sup>, as the formula does with no cost.</span></div>
+      </div>
+      <div class="exbox2">
+        <div class="sc">Example</div>
+        <p>The blue square&rsquo;s speaker at α = 1.</p>
+      <div class="pair">
+        <div class="lang">Python</div>
+        <pre class="code"><span class="k">def</span> S1(s, alpha=<span class="n">1</span>, utterances=None, cost=<span class="k">lambda</span> u: <span class="n">0</span>):
+    scores = {u: <span class="n">2</span> ** (alpha * (log2(L0(u)[s]) - cost(u)))
+              <span class="k">for</span> u <span class="k">in</span> (utterances or words) <span class="k">if</span> meaning(u, s)}
+    total = sum(scores.values())
+    <span class="k">return</span> {u: scores[u] / total <span class="k">for</span> u <span class="k">in</span> scores}
+
+show(S1(<span class="s">&quot;blue square&quot;</span>))</pre>
+        <pre class="out">blue 0.42
+square 0.58</pre>
+        <div class="lang">WebPPL</div>
+        <pre class="code"><span class="k">var</span> S1 = cache(<span class="k">function</span>(s, alpha) {
+  <span class="k">return</span> Infer(<span class="k">function</span>() {
+    <span class="k">var</span> u = uniformDraw(filter(<span class="k">function</span>(w) {
+      <span class="k">return</span> meaning(w, s)
+    }, words))
+    factor(alpha * L0(u).score(s))
+    <span class="k">return</span> u
+  })
+})
+
+show(S1(<span class="s">&quot;blue square&quot;</span>, <span class="n">1</span>))</pre>
+        <pre class="out">[&quot;square: 0.58&quot;,&quot;blue: 0.42&quot;]</pre>
+      </div>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>What is each object&rsquo;s speaker&rsquo;s probability of each word at α = 1?</span></div>
+      <table class="rec fill c narrow">
+        <tr><th><i>S</i><sub>1</sub>(<i>u</i> | <i>s</i>)</th><th><i>blue</i></th><th><i>green</i></th><th><i>square</i></th><th><i>circle</i></th></tr>
+        <tr><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></td><td>0.42</td><td>0</td><td>0.58</td><td>0</td></tr><tr><td><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></td><td></td><td></td><td></td><td></td></tr><tr><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></td><td></td><td></td><td></td><td></td></tr><tr><td><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+        <div class="task"><span>(b)</span><span>Change α (the second argument in WebPPL, <code>alpha=</code> in Python). How do the blue circle&rsquo;s and the green circle&rsquo;s speakers split between their two words?</span></div>
+      <table class="rec fill c narrow">
+        <tr><th>α</th><th><i>S</i><sub>1</sub>(<i>blue</i> | <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>)</th><th><i>S</i><sub>1</sub>(<i>circle</i> | <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg>)</th><th><i>S</i><sub>1</sub>(<i>green</i> | <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg>)</th><th><i>S</i><sub>1</sub>(<i>circle</i> | <svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg>)</th></tr>
+        <tr><td>0</td><td></td><td></td><td></td><td></td></tr><tr><td>1</td><td></td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td><td></td></tr><tr><td>20</td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      </div>
+    </div>
+    <div class="note"><p><b>Goodman &amp; Frank 2016.</b> Pragmatic language interpretation as probabilistic inference. <i>Trends in Cognitive Sciences</i> 20.</p></div>
+  </div>
+
+  <!-- ══ 3 ══ -->
+  <div class="sec">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>The pragmatic listener</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t"><i>L</i><sub>1</sub>(<i>s</i> | <i>u</i>)</span><span class="g">The prior times the speaker&rsquo;s probability of <i>u</i>, divided by the evidence.</span></div>
+        <div class="d"><span class="t"><code>observe(d, v)</code></span><span class="g">Weights the run by the probability that the distribution <code>d</code> gives to <code>v</code>.</span></div>
+      </div>
+      <div class="exbox2">
+        <div class="sc">Example</div>
+        <p>Hearing <i>circle</i>, α = 1.</p>
+      <div class="pair">
+        <div class="lang">Python</div>
+        <pre class="code"><span class="k">def</span> L1(u, alpha=<span class="n">1</span>):
+    products = {s: S1(s, alpha).get(u, <span class="n">0</span>) * prior[s]
+                <span class="k">for</span> s <span class="k">in</span> objects}
+    evidence = sum(products.values())
+    <span class="k">return</span> {s: products[s] / evidence <span class="k">for</span> s <span class="k">in</span> objects}
+
+show(L1(<span class="s">&quot;circle&quot;</span>))</pre>
+        <pre class="out">blue square 0.0
+green square 0.0
+blue circle 0.7
+green circle 0.3</pre>
+        <div class="lang">WebPPL</div>
+        <pre class="code"><span class="k">var</span> L1 = cache(<span class="k">function</span>(u, alpha) {
+  <span class="k">return</span> Infer(<span class="k">function</span>() {
+    <span class="k">var</span> s = categorical({ps: prior, vs: objects})
+    observe(S1(s, alpha), u)
+    <span class="k">return</span> s
+  })
+})
+
+show(L1(<span class="s">&quot;circle&quot;</span>, <span class="n">1</span>))</pre>
+        <pre class="out">[&quot;green circle: 0.30&quot;,&quot;blue circle: 0.70&quot;]</pre>
+      </div>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>What does the pragmatic listener believe after each word, at α = 1?</span></div>
+      <table class="rec fill c narrow">
+        <tr><th><i>L</i><sub>1</sub>(<i>s</i> | <i>u</i>)</th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></th></tr>
+        <tr><td><i>blue</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>green</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>square</i></td><td></td><td></td><td></td><td></td></tr><tr><td><i>circle</i></td><td>0</td><td>0</td><td>0.70</td><td>0.30</td></tr>
+      </table>
+        <div class="task"><span>(b)</span><span>What does the pragmatic listener believe after <i>circle</i> as α grows?</span></div>
+      <table class="rec fill c narrow">
+        <tr><th>α</th><th><i>L</i><sub>1</sub>(<svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg> | <i>circle</i>)</th><th><i>L</i><sub>1</sub>(<svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg> | <i>circle</i>)</th></tr>
+        <tr><td>0</td><td></td><td></td></tr><tr><td>1</td><td>0.70</td><td>0.30</td></tr><tr><td>2</td><td></td><td></td></tr><tr><td>3</td><td></td><td></td></tr><tr><td>20</td><td></td><td></td></tr>
+      </table>
+      </div>
+    </div>
+    <div class="note"><p><b>Frank &amp; Goodman 2012.</b> Predicting pragmatic reasoning in language games. <i>Science</i> 336.</p></div>
+  </div>
+
+  <!-- ══ 4 ══ -->
+  <div class="sec">
+    <div class="num">4</div>
+    <div class="body">
+      <h2>Costs</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">Two-word signal</span><span class="g"><i>blue square</i>, <i>green square</i>, <i>blue circle</i>, <i>green circle</i>: true of one object only.</span></div>
+        <div class="d"><span class="t">Cost</span><span class="g">1 bit for each word after the first. WebPPL works in natural logarithms, so a bit is <code>Math.log(2)</code>.</span></div>
+      </div>
+      <div class="exbox2">
+        <div class="sc">Example</div>
+        <p>The blue square&rsquo;s speaker with the two-word signals, α = 2.</p>
+      <div class="pair">
+        <div class="lang">Python</div>
+        <pre class="code">signals = words + [<span class="s">&quot;blue square&quot;</span>, <span class="s">&quot;green square&quot;</span>,
+                   <span class="s">&quot;blue circle&quot;</span>, <span class="s">&quot;green circle&quot;</span>]
+cost = <span class="k">lambda</span> u: len(u.split()) - <span class="n">1</span>
+
+show(S1(<span class="s">&quot;blue square&quot;</span>, alpha=<span class="n">2</span>, utterances=signals, cost=cost))</pre>
+        <pre class="out">blue 0.28
+square 0.53
+blue square 0.19</pre>
+        <div class="lang">WebPPL</div>
+        <pre class="code"><span class="k">var</span> signals = words.concat([<span class="s">&quot;blue square&quot;</span>, <span class="s">&quot;green square&quot;</span>,
+                            <span class="s">&quot;blue circle&quot;</span>, <span class="s">&quot;green circle&quot;</span>])
+<span class="k">var</span> cost = <span class="k">function</span>(u) {
+  <span class="k">return</span> (u.split(<span class="s">&quot; &quot;</span>).length - <span class="n">1</span>) * Math.log(<span class="n">2</span>)
+}
+
+<span class="k">var</span> S1cost = cache(<span class="k">function</span>(s, alpha) {
+  <span class="k">return</span> Infer(<span class="k">function</span>() {
+    <span class="k">var</span> u = uniformDraw(filter(<span class="k">function</span>(w) {
+      <span class="k">return</span> meaning(w, s)
+    }, signals))
+    factor(alpha * (L0(u).score(s) - cost(u)))
+    <span class="k">return</span> u
+  })
+})
+
+show(S1cost(<span class="s">&quot;blue square&quot;</span>, <span class="n">2</span>))</pre>
+        <pre class="out">[&quot;blue square: 0.19&quot;,&quot;square: 0.53&quot;,&quot;blue: 0.28&quot;]</pre>
+      </div>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>Which signal does each object&rsquo;s speaker choose most often at a cost of 1 bit?</span></div>
+      <table class="rec fill c narrow">
+        <tr><th>Cost</th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><rect x="0.5" y="0.5" width="9" height="9" fill="#2f855a"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2b6cb0"/></svg></th><th><svg class="icon" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4.5" fill="#2f855a"/></svg></th></tr>
+        <tr><td>1 bit</td><td><i>square</i></td><td></td><td></td><td></td></tr><tr><td>0.5 bits</td><td></td><td></td><td></td><td></td></tr><tr><td>2 bits</td><td></td><td></td><td></td><td></td></tr>
+      </table>
+        <div class="task"><span>(b)</span><span>Multiply the cost by 0.5, and then by 2, and fill in the other rows.</span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Goodman &amp; Frank 2016.</b> Pragmatic language interpretation as probabilistic inference. <i>Trends in Cognitive Sciences</i> 20.</p></div>
+  </div>
+
+  <!-- ══ 5 ══ -->
+  <div class="sec">
+    <div class="num">5</div>
+    <div class="body">
+      <h2>Scalar implicature</h2>
+      <div class="defs">
+        <div class="sc">Definitions</div>
+        <div class="d"><span class="t">States</span><span class="g">The number of red apples in a bowl of three: 0, 1, 2 or 3.</span></div>
+        <div class="d"><span class="t">Utterances</span><span class="g"><i>none</i>, true of 0; <i>some</i>, true of 1, 2 and 3; <i>all</i>, true of 3.</span></div>
+      </div>
+      <p>Replace the definitions of section 0 with these. The functions of sections 1 to 3 work unchanged.</p>
+      <div class="exbox2">
+        <div class="sc">Example</div>
+        <p>Flat prior, α = 1.</p>
+      <div class="pair">
+        <div class="lang">Python</div>
+        <pre class="code">objects = [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+prior = {<span class="n">0</span>: <span class="n">0.25</span>, <span class="n">1</span>: <span class="n">0.25</span>, <span class="n">2</span>: <span class="n">0.25</span>, <span class="n">3</span>: <span class="n">0.25</span>}
+words = [<span class="s">&quot;none&quot;</span>, <span class="s">&quot;some&quot;</span>, <span class="s">&quot;all&quot;</span>]
+
+<span class="k">def</span> meaning(u, n):
+    <span class="k">return</span> {<span class="s">&quot;none&quot;</span>: n == <span class="n">0</span>, <span class="s">&quot;some&quot;</span>: n &gt; <span class="n">0</span>, <span class="s">&quot;all&quot;</span>: n == <span class="n">3</span>}[u]
+
+show(S1(<span class="n">3</span>))
+show(L1(<span class="s">&quot;some&quot;</span>))</pre>
+        <pre class="out">some 0.25
+all 0.75
+0 0.0
+1 0.44
+2 0.44
+3 0.11</pre>
+        <div class="lang">WebPPL</div>
+        <pre class="code"><span class="k">var</span> objects = [<span class="n">0</span>, <span class="n">1</span>, <span class="n">2</span>, <span class="n">3</span>]
+<span class="k">var</span> prior = [<span class="n">0.25</span>, <span class="n">0.25</span>, <span class="n">0.25</span>, <span class="n">0.25</span>]
+<span class="k">var</span> words = [<span class="s">&quot;none&quot;</span>, <span class="s">&quot;some&quot;</span>, <span class="s">&quot;all&quot;</span>]
+
+<span class="k">var</span> meaning = <span class="k">function</span>(u, n) {
+  <span class="k">return</span> u == <span class="s">&quot;none&quot;</span> ? n == <span class="n">0</span> : u == <span class="s">&quot;some&quot;</span> ? n &gt; <span class="n">0</span> : n == <span class="n">3</span>
+}
+
+<span class="k">var</span> results = [show(S1(<span class="n">3</span>, <span class="n">1</span>)), show(L1(<span class="s">&quot;some&quot;</span>, <span class="n">1</span>))]
+results</pre>
+        <pre class="out">[[&quot;all: 0.75&quot;,&quot;some: 0.25&quot;],[&quot;1: 0.44&quot;,&quot;2: 0.44&quot;,&quot;3: 0.11&quot;]]</pre>
+      </div>
+      </div>
+      <p><span class="runin">Exercise.</span></p>
+      <div class="tasks">
+        <div class="task"><span>(a)</span><span>What does the pragmatic listener believe after <i>some</i> as α grows?</span></div>
+      <table class="rec fill c narrow">
+        <tr><th>α</th><th><i>L</i><sub>1</sub>(1 | <i>some</i>)</th><th><i>L</i><sub>1</sub>(2 | <i>some</i>)</th><th><i>L</i><sub>1</sub>(3 | <i>some</i>)</th></tr>
+        <tr><td>0</td><td></td><td></td><td></td></tr><tr><td>1</td><td>0.44</td><td>0.44</td><td>0.11</td></tr><tr><td>2</td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td></tr><tr><td>20</td><td></td><td></td><td></td></tr>
+      </table>
+        <div class="task"><span>(b)</span><span>Set the prior to 0.1, 0.1, 0.2 and 0.6, apples that usually come all red. Fill in the literal listener and the pragmatic listener after <i>some</i>.</span></div>
+      <table class="rec fill c narrow">
+        <tr><th></th><th>1 red</th><th>2 red</th><th>3 red</th></tr>
+        <tr><td><i>L</i><sub>0</sub>(<i>s</i> | <i>some</i>)</td><td></td><td></td><td></td></tr><tr><td><i>L</i><sub>1</sub>(<i>s</i> | <i>some</i>), α = 1</td><td></td><td></td><td></td></tr><tr><td><i>L</i><sub>1</sub>(<i>s</i> | <i>some</i>), α = 3</td><td></td><td></td><td></td></tr><tr><td><i>L</i><sub>1</sub>(<i>s</i> | <i>some</i>), α = 20</td><td></td><td></td><td></td></tr>
+      </table>
+        <div class="task"><span>(c)</span><span>With that prior, find the smallest α at which the pragmatic listener thinks two red apples likelier than three.</span></div>
+        <div class="task"><span>(d)</span><span>Back with the flat prior, add <i>most</i>, true of 2 and 3, to the words and the meaning. What does the pragmatic listener now believe after <i>some</i>?</span></div>
+      </div>
+    </div>
+    <div class="note"><p><b>Goodman &amp; Stuhlmüller 2013.</b> Knowledge and implicature: Modeling language understanding as social cognition. <i>Topics in Cognitive Science</i> 5.</p></div>
+  </div>
+
+  <!-- ══ 6 ══ -->
+  <div class="sec wyntk">
+    <div class="num">6</div>
+    <div class="body">
+      <h2>What you need to know</h2>
+      <div class="wcols">
+      <div class="proc">
+        <div class="sc proc-head">Concepts</div>
+        <ol class="steps">
+          <li>A model as a program; sampling against enumeration.</li>
+          <li><code>condition</code>, <code>factor</code> and <code>observe</code>.</li>
+          <li>The literal listener, the speaker and the pragmatic listener as functions.</li>
+          <li>α, costs and priors as parameters.</li>
+          <li>What the speaker has seen.</li>
+        </ol>
+      </div>
+      <div class="proc">
+        <div class="sc proc-head">Skills</div>
+        <ol class="steps">
+          <li>Run and edit an RSA program in WebPPL or in Python.</li>
+          <li>Read a listener&rsquo;s or a speaker&rsquo;s distribution from the output.</li>
+          <li>Predict the effect of a change to α, a cost or a prior before running it.</li>
+          <li>Write the meaning of a new word.</li>
+          <li>Match each line of the program to its line in the formulas.</li>
+        </ol>
+      </div>
+      </div>
+    </div>
+    <div class="note"></div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIU44008 · Week 9 · The handout in WebPPL</title>
+<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/cdn.webppl.org/webppl-editor-1.0.9.css">
+<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/cdn.webppl.org/webppl-viz-0.7.11.css">
+<style>
+ body { margin:0; background:#fff; color:#111; font-family: Georgia, "Times New Roman", serif; }
+ .wrap { max-width:900px; margin:0 auto; padding:26px 24px 80px; }
+ h1 { font-size:28px; margin:0 0 4px; } .sub { color:#555; margin:0 0 20px; font-size:15px; }
+ h2 { font-size:20px; margin:30px 0 8px; } .CodeMirror { font-size:15px; height:auto; }
+</style>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/cdn.webppl.org/webppl-editor-1.0.9.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/cdn.webppl.org/webppl-v0.9.13.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/cdn.webppl.org/webppl-viz-0.7.11.js"></script>
+</head><body><div class="wrap">
+<h1>Week 9 · The handout in WebPPL</h1>
+<p class="sub">One box per section of the handout, each with the program so far. Press <b>run</b>, edit in place, and reload the page to restore it.</p>
+
+  <section class="ex"><h2>1 · The literal listener</h2>
+  <pre><code>var objects = [&quot;blue square&quot;, &quot;green square&quot;,
+               &quot;blue circle&quot;, &quot;green circle&quot;]
+var prior = [0.44, 0.09, 0.28, 0.19]
+var words = [&quot;blue&quot;, &quot;green&quot;, &quot;square&quot;, &quot;circle&quot;]
+
+var meaning = function(u, s) {
+  return all(function(w) { return s.indexOf(w) &gt;= 0 },
+             u.split(&quot; &quot;))
+}
+
+var show = function(d) {
+  return map(function(s) {
+    return s + &quot;: &quot; + Math.exp(d.score(s)).toFixed(2)
+  }, d.support())
+}
+
+var L0 = cache(function(u) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    condition(meaning(u, s))
+    return s
+  })
+})
+
+show(L0(&quot;blue&quot;))</code></pre></section>
+  <section class="ex"><h2>2 · The speaker</h2>
+  <pre><code>var objects = [&quot;blue square&quot;, &quot;green square&quot;,
+               &quot;blue circle&quot;, &quot;green circle&quot;]
+var prior = [0.44, 0.09, 0.28, 0.19]
+var words = [&quot;blue&quot;, &quot;green&quot;, &quot;square&quot;, &quot;circle&quot;]
+
+var meaning = function(u, s) {
+  return all(function(w) { return s.indexOf(w) &gt;= 0 },
+             u.split(&quot; &quot;))
+}
+
+var show = function(d) {
+  return map(function(s) {
+    return s + &quot;: &quot; + Math.exp(d.score(s)).toFixed(2)
+  }, d.support())
+}
+
+var L0 = cache(function(u) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    condition(meaning(u, s))
+    return s
+  })
+})
+
+var S1 = cache(function(s, alpha) {
+  return Infer(function() {
+    var u = uniformDraw(filter(function(w) {
+      return meaning(w, s)
+    }, words))
+    factor(alpha * L0(u).score(s))
+    return u
+  })
+})
+
+show(S1(&quot;blue square&quot;, 1))</code></pre></section>
+  <section class="ex"><h2>3 · The pragmatic listener</h2>
+  <pre><code>var objects = [&quot;blue square&quot;, &quot;green square&quot;,
+               &quot;blue circle&quot;, &quot;green circle&quot;]
+var prior = [0.44, 0.09, 0.28, 0.19]
+var words = [&quot;blue&quot;, &quot;green&quot;, &quot;square&quot;, &quot;circle&quot;]
+
+var meaning = function(u, s) {
+  return all(function(w) { return s.indexOf(w) &gt;= 0 },
+             u.split(&quot; &quot;))
+}
+
+var show = function(d) {
+  return map(function(s) {
+    return s + &quot;: &quot; + Math.exp(d.score(s)).toFixed(2)
+  }, d.support())
+}
+
+var L0 = cache(function(u) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    condition(meaning(u, s))
+    return s
+  })
+})
+
+var S1 = cache(function(s, alpha) {
+  return Infer(function() {
+    var u = uniformDraw(filter(function(w) {
+      return meaning(w, s)
+    }, words))
+    factor(alpha * L0(u).score(s))
+    return u
+  })
+})
+
+var L1 = cache(function(u, alpha) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    observe(S1(s, alpha), u)
+    return s
+  })
+})
+
+show(L1(&quot;circle&quot;, 1))</code></pre></section>
+  <section class="ex"><h2>4 · Costs</h2>
+  <pre><code>var objects = [&quot;blue square&quot;, &quot;green square&quot;,
+               &quot;blue circle&quot;, &quot;green circle&quot;]
+var prior = [0.44, 0.09, 0.28, 0.19]
+var words = [&quot;blue&quot;, &quot;green&quot;, &quot;square&quot;, &quot;circle&quot;]
+
+var meaning = function(u, s) {
+  return all(function(w) { return s.indexOf(w) &gt;= 0 },
+             u.split(&quot; &quot;))
+}
+
+var show = function(d) {
+  return map(function(s) {
+    return s + &quot;: &quot; + Math.exp(d.score(s)).toFixed(2)
+  }, d.support())
+}
+
+var L0 = cache(function(u) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    condition(meaning(u, s))
+    return s
+  })
+})
+
+var S1 = cache(function(s, alpha) {
+  return Infer(function() {
+    var u = uniformDraw(filter(function(w) {
+      return meaning(w, s)
+    }, words))
+    factor(alpha * L0(u).score(s))
+    return u
+  })
+})
+
+var L1 = cache(function(u, alpha) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    observe(S1(s, alpha), u)
+    return s
+  })
+})
+
+var signals = words.concat([&quot;blue square&quot;, &quot;green square&quot;,
+                            &quot;blue circle&quot;, &quot;green circle&quot;])
+var cost = function(u) {
+  return (u.split(&quot; &quot;).length - 1) * Math.log(2)
+}
+
+var S1cost = cache(function(s, alpha) {
+  return Infer(function() {
+    var u = uniformDraw(filter(function(w) {
+      return meaning(w, s)
+    }, signals))
+    factor(alpha * (L0(u).score(s) - cost(u)))
+    return u
+  })
+})
+
+show(S1cost(&quot;blue square&quot;, 2))</code></pre></section>
+  <section class="ex"><h2>5 · Scalar implicature</h2>
+  <pre><code>var objects = [0, 1, 2, 3]
+var prior = [0.25, 0.25, 0.25, 0.25]
+var words = [&quot;none&quot;, &quot;some&quot;, &quot;all&quot;]
+
+var meaning = function(u, n) {
+  return u == &quot;none&quot; ? n == 0 : u == &quot;some&quot; ? n &gt; 0 : n == 3
+}
+
+var show = function(d) {
+  return map(function(s) {
+    return s + &quot;: &quot; + Math.exp(d.score(s)).toFixed(2)
+  }, d.support())
+}
+
+var L0 = cache(function(u) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    condition(meaning(u, s))
+    return s
+  })
+})
+
+var S1 = cache(function(s, alpha) {
+  return Infer(function() {
+    var u = uniformDraw(filter(function(w) {
+      return meaning(w, s)
+    }, words))
+    factor(alpha * L0(u).score(s))
+    return u
+  })
+})
+
+var L1 = cache(function(u, alpha) {
+  return Infer(function() {
+    var s = categorical({ps: prior, vs: objects})
+    observe(S1(s, alpha), u)
+    return s
+  })
+})
+
+var results = [show(S1(3, 1)), show(L1(&quot;some&quot;, 1))]
+results</code></pre></section>
+</div>
+<script>$(function() { $('pre > code').map(function(i, el) { wpEditor.setup($(el).parent()[0], {language: 'webppl'}) }) })</script>
+</body></html>
