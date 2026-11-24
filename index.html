@@ -84,10 +84,6 @@
   .search input:focus { outline: none; border-color: var(--sem); box-shadow: 0 0 0 3px color-mix(in srgb, var(--sem) 16%, transparent); }
   .search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--tcd-grey-50); }
 
-  .statusbar { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin: -8px 0 22px; font-size: 12.5px; color: var(--tcd-grey-75); }
-  .statusbar .key { display: inline-flex; align-items: center; gap: 6px; }
-  .statusbar .key i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-  .statusbar .count { margin-left: auto; font-family: var(--mono); font-size: 12px; }
 
   /* ── Grid ── */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 18px; }
@@ -240,13 +236,6 @@
     </div>
   </div>
 
-  <div class="statusbar">
-    <span class="key"><i style="background:var(--st-ready)"></i>Ready</span>
-    <span class="key"><i style="background:var(--st-prog)"></i>In progress</span>
-    <span class="key"><i style="background:var(--st-soon)"></i>Upcoming</span>
-    <span class="count" id="count"></span>
-  </div>
-
   <div class="grid" id="grid"></div>
 
   <footer>
@@ -364,7 +353,7 @@ const rowsFor = m => CARD_ROWS[m] || CARD_ROWS.default;
 const STATUS_KEYS = { default:['deck','handout'], prag:['deck','ex'] };
 // Card notes for reading weeks and presentation weeks.
 const READING_NOTE = { default:'No lecture, handout or homework', sem2:'No lecture or handout', prag:'No lecture or data analysis task' };
-const PRESENT_NOTE = { default:'From the topic pool. Student-led, no lecture materials.',
+const PRESENT_NOTE = { default:'From the topic pool. Student presentations, no lecture materials.',
                        prag2:'Two student presentations, one on Thursday and one on Friday, from the topics sheet.' };
 
 /* Module identities. Describing Meaning & Linguistic Pragmatics are dual-coded:
@@ -486,7 +475,7 @@ function cardHTML(w){
   }
   if (w.present){
     return `<article class="card ${w.m} card-reading" data-mod="${w.m}" data-status="soon" data-title="student presentations">
-      <div class="c-top"><span class="c-sec">${w.sec}</span><span class="c-status soon"><i></i>Student-led</span></div>
+      <div class="c-top"><span class="c-sec">${w.sec}</span><span class="c-status soon"><i></i>Student presentations</span></div>
       <div class="c-title"><div class="c-no"><small>Week</small>${w.no}</div><div class="c-namewrap"><div class="c-name">Student Presentations</div><div class="c-fig">${PRESENT_NOTE[w.m] || PRESENT_NOTE.default}</div></div></div>
     </article>`;
   }
@@ -521,7 +510,7 @@ function render(){
     (curQ==='' || (w.title+' '+w.sec).toLowerCase().includes(curQ))
   );
   let html = '';
-  if (!list.length) { grid.innerHTML = '<div class="empty">No weeks match the current filters.</div>'; updateCount(0); updateTermUI(); return; }
+  if (!list.length) { grid.innerHTML = '<div class="empty">No weeks match the current filters.</div>'; updateTermUI(); return; }
   const base = curMod==='all' ? ALL_MODS : [curMod];
   const groups = base.filter(g => curTerm==='all' || termOf(g)===curTerm);
   for (const g of groups){
@@ -533,10 +522,8 @@ function render(){
     html += ws.map(cardHTML).join('');
   }
   grid.innerHTML = html;
-  updateCount(list.length);
   updateTermUI();
 }
-function updateCount(n){ document.getElementById('count').textContent = n + (n===1?' week':' weeks') + ' shown'; }
 
 // term-dependent UI: live counts + highlight the modules taught in the active term
 function updateTermUI(){
