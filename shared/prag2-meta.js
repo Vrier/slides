@@ -78,10 +78,11 @@ window.WEEKS = [
 window.getWeek = function (no) { return window.WEEKS.find((w) => w.no === Number(no)); };
 
 /* Module-level documents. Pragmatics II is a single Year-4 module (LIU44008) — no
-   MPhil twin. Two assessments per the TJH Linguistics handbook 2025-26: 40/60
-   (named here Presentation + Essay; confirm split). Under the revised design the
-   natural fit is: presentation = propose the analysis; essay = the modelling paper
-   with study design. status: 'none' until authored. */
+   MPhil twin. Two assessments per the TJH Linguistics handbook 2025-26: 40/60.
+   Presentation (weeks 10–12, topics on presentation-topics.html) and Essay (limit
+   2,500 words, due Fri 18 Dec 2026; brief + writing guidance). The essay may be on
+   the presentation topic, any other topic, or the student's own question; no
+   modelling requirement. status: 'none' until authored. */
 window.MODULE = {
   default: "liu44008",
   identities: [
@@ -89,7 +90,7 @@ window.MODULE = {
       overview: { file: "overview-liu44008.html", status: "ready" },
       assessments: [
         { no: 1, title: "Presentation", weight: 40, file: "assessments/liu44008-a1.html", status: "none" },
-        { no: 2, title: "Essay", weight: 60, file: "assessments/liu44008-a2.html", status: "none" },
+        { no: 2, title: "Essay", weight: 60, words: "2500 limit", file: "assessments/liu44008-a2.html", guidance: "assessments/liu44008-a2-guidance.html", status: "ready" },
       ] },
   ],
 };
