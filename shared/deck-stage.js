@@ -19,6 +19,8 @@
  *  (f) print — `@media print` lays every slide out as its own page at the
  *      design size, so the browser's Print → Save as PDF produces a clean
  *      one-page-per-slide PDF with no extra setup.
+ *  (f2) phones held upright (touch screen, portrait) get a small hint at
+ *      the top to turn sideways; × hides it for the visit. Never printed.
  *  (g) thumbnail rail — resizable left-hand column of per-slide thumbnails
  *      (static clones). Click to navigate; ↑/↓ with a thumbnail focused to
  *      step between slides; drag to reorder; right-click for
@@ -559,7 +561,30 @@
         page-break-after: auto;
       }
       ::slotted([data-deck-skip]) { display: none !important; }
-      .overlay, .rail, .rail-resize, .ctxmenu, .confirm-backdrop { display: none !important; }
+      .overlay, .rail, .rail-resize, .ctxmenu, .confirm-backdrop, .rotate-hint { display: none !important; }
+    }
+
+    /* ── Phones held upright: a dismissible hint to turn sideways ────────
+       A 16:9 slide on an upright phone is a thin strip, so touch screens
+       in portrait get a small pill at the top of the letterbox. Tapping ×
+       hides it for the rest of the visit (sessionStorage). Never printed. */
+    .rotate-hint { display: none; }
+    @media screen and (orientation: portrait) and (pointer: coarse) {
+      .rotate-hint {
+        display: flex; align-items: center; gap: 9px;
+        position: fixed; left: 50%; top: max(14px, env(safe-area-inset-top));
+        transform: translateX(-50%);
+        padding: 8px 8px 8px 13px; border-radius: 999px;
+        background: #fff; color: #111; white-space: nowrap;
+        font: 500 13px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+        box-shadow: 0 4px 18px rgba(0,0,0,.28); z-index: 2147483001;
+      }
+    }
+    :host([data-rotate-dismissed]) .rotate-hint { display: none !important; }
+    .rotate-hint svg { width: 18px; height: 18px; flex: none; }
+    .rotate-hint button {
+      appearance: none; border: 0; background: #eee; color: #111; cursor: pointer;
+      width: 24px; height: 24px; border-radius: 50%; font: 600 15px/24px system-ui, sans-serif; padding: 0;
     }
   `;
 
@@ -1005,7 +1030,21 @@
         this._deleteSlide(i);
       });
 
-      this._root.append(style, rail, resize, stage, overlay, menu, confirm);
+      const hint = document.createElement('div');
+      hint.className = 'rotate-hint export-hidden';
+      hint.setAttribute('data-omelette-chrome', '');
+      hint.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="17" rx="2"/><path d="M3 15a8 8 0 0 0 7 6.5M18.5 4.5A8 8 0 0 1 21 10"/><path d="M8 20l2 1.5-1.2 2"/></svg>
+        <span>Turn your phone sideways for bigger slides</span>
+        <button type="button" aria-label="Hide this hint">×</button>`;
+      hint.querySelector('button').addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.setAttribute('data-rotate-dismissed', '');
+        try { sessionStorage.setItem('deck-rotate-hint', 'off'); } catch (err) { /* storage blocked */ }
+      });
+      try { if (sessionStorage.getItem('deck-rotate-hint') === 'off') this.setAttribute('data-rotate-dismissed', ''); } catch (err) { /* storage blocked */ }
+
+      this._root.append(style, rail, resize, stage, overlay, menu, confirm, hint);
       this._canvas = canvas;
       this._stage = stage;
       this._slot = slot;

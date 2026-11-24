@@ -6,3 +6,6 @@
 Thumbs.db
 *.tmp
 readings/_MANIFEST.md
+
+node_modules/
+*.pdf.part

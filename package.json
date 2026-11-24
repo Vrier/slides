@@ -5,6 +5,10 @@
   "description": "Research talk decks served at slides.tstephen.com — static HTML, no build.",
   "scripts": {
     "test": "node scripts/check.mjs",
-    "new": "node scripts/new-week.mjs"
+    "new": "node scripts/new-week.mjs",
+    "pdfs": "node scripts/make-pdfs.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.65.1"
   }
 }

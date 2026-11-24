@@ -45,7 +45,9 @@ files must balance, changes to legacy counts fail); every `deck.html` loads
 five `shared/*-meta.js` catalogues (week set · title · section name ·
 reading/present flags · identity codes+names — the CLAUDE.md double-entry
 gotcha, now CI-enforced); no leftover merge-conflict markers in any text
-file (added 2026-11-23). Add a check for every feature you ship.
+file (added 2026-11-23); every PDF in shared/pdf-list.js exists, with a warning
+for hub pages whose PDF is missing or out of date (added 2026-11-24). Add a
+check for every feature you ship.
 
 ## Work items
 
@@ -1363,3 +1365,19 @@ what the next session must know)*
   0001–0010). All five WebPPL boxes and the notebook run and print the handout's outputs. Hub handout ready.
 - prag2-peer-feedback-2.patch not applied: it edits presentation-feedback.html, which comes from
   prag2-peer-feedback.patch.
+
+### 2026-11-24 — Hub tidy, PDF buttons, phones
+- Hub: the status key and "N weeks shown" line removed; presentation weeks' badge and note say Student presentations.
+- PDF buttons: every ready row, module document and ready assessment on the hub carries a PDF button beside it that
+  downloads a premade PDF (named e.g. "LIU33008 Week 10 Handout answers.pdf"); rows that are already PDFs download
+  themselves. `npm run pdfs` (scripts/make-pdfs.mjs, playwright-core + Chrome) prints each page beside itself
+  (x.html → x.pdf) the way Chrome's Print → Save as PDF does and records a hash of the page and its local
+  CSS/JS/images in shared/pdf-list.js; the hub reads that list. 131 PDFs, 64 MB. check.mjs check 9 fails on a
+  listed PDF that is missing and warns on missing or out-of-date ones. Deck PDFs checked: one page per
+  non-skipped slide, builds shown as on the last step.
+- Phones: handout-classic.css and handout.css reflow below 840 px (screen only; print and PDFs unchanged), as do
+  the inline Semantics I summary and exercises; all 105 ready non-deck pages now fit 390 px with only tables,
+  code and long maths scrolling in their own box. Decks show a dismissible "Turn your phone sideways" pill when a
+  touch screen is upright (deck-stage.js, never printed). Hub on phones: the identity switch wraps under the
+  module name, compact cards without "open →", masthead left-aligned, and it opens on the current term
+  (Michaelmas September to December, Hilary January to April).

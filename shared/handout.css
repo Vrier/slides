@@ -222,6 +222,14 @@ em.sent { font-style: italic; font-family: var(--serif); }
   .page img { max-width: 100%; height: auto; }
   .tree-frame { overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
   .print-note { display: none; }
+  /* anything still wider than the screen scrolls inside its own box */
+  .page { overflow-wrap: break-word; }
+  .page a { overflow-wrap: anywhere; }
+  .h-title { font-size: 17pt; overflow-wrap: anywhere; }
+  .page mjx-container[display="true"] { max-width: 100%; overflow-x: auto; overflow-y: hidden; }
+  .page mjx-container:not([display="true"]) { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; }
+  .page table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .page .pb, .page .tb { display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: top; }
 }
 
 @media print { .print-note { display: none; } }

@@ -80,7 +80,23 @@
     .sec h2, .proc-head, .hd { break-after:avoid; page-break-after:avoid; }
     .sec > .note { break-inside:auto; }
   }
- sup { font-size:.7em; line-height:0; } .task { margin-bottom:7pt; } .sec { margin-top:16pt; } </style>
+ sup { font-size:.7em; line-height:0; } .task { margin-bottom:7pt; } .sec { margin-top:16pt; } 
+  /* Phones: the sheet reflows to the screen, as in shared/handout-classic.css. Print unchanged. */
+  @media screen and (max-width: 840px) {
+    html, body { background:#fff; }
+    .sheet { width:auto; min-height:0; margin:0; padding:18px 16px 44px; }
+    .sheet .mast { flex-wrap:wrap; row-gap:8pt; } .sheet .mast .right { text-align:left; }
+    .sheet .sec { grid-template-columns:20pt minmax(0, 1fr); column-gap:10pt; }
+    .sheet .sec > .note { grid-column:2; margin-top:4pt; padding-top:5pt; border-top:.6pt solid #bbb; }
+    .sheet .sec > .note:empty { display:none; }
+    .sheet .sec h2::before { left:-30pt; right:0; }
+    .sheet .defs > div.d, .sheet .rules > div { grid-template-columns:minmax(0, 1fr); column-gap:0; }
+    .sheet ol.exs li.two { grid-template-columns:26pt minmax(0, 1fr); } .sheet ol.exs li.two > :nth-child(3) { grid-column:2; }
+    .sheet table { display:block; width:auto !important; max-width:100%; overflow-x:auto; }
+    .sheet .drv { overflow-x:auto; }
+    .sheet a { overflow-wrap:anywhere; }
+  }
+</style>
 <link rel="stylesheet" href="../shared/font-latex.css" />
 </head>
 <body>

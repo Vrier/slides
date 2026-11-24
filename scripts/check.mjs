@@ -12,16 +12,21 @@
    7. every built deck opens and ends on the same Concepts and skills
       slide, matching the handout's What you need to know block
    8. no leftover merge-conflict markers in any text file
+   9. every PDF in shared/pdf-list.js exists; warns (does not fail)
+      when a page the hub links to has no PDF yet or has changed since
+      its PDF was made: run `npm run pdfs` (scripts/make-pdfs.mjs)
    Add a check for every feature you ship.
    ============================================================ */
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
+import { hubPages, pdfOf, sourceHash, readPdfList, PDF_LIST } from "./hub-pdfs.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const failures = [];
 const fail = (msg) => failures.push(msg);
+const warnings = [];
 const rel = (p) => path.relative(ROOT, p).replaceAll(path.sep, "/");
 
 const SKIP_DIRS = new Set([".git", "node_modules"]);
@@ -248,10 +253,27 @@ for (const f of allFiles) {
   if (i !== -1) fail(`${rel(f)}:${i + 1}: leftover merge-conflict marker (${lines[i].slice(0, 7)})`);
 }
 
+// ---- 9: premade PDFs behind the hub's PDF buttons ----------------------------
+{
+  let list = {};
+  try { list = readPdfList(ROOT); } catch (e) { fail(`${PDF_LIST}: did not evaluate (${e.message})`); }
+  for (const page of Object.keys(list))
+    if (!fs.existsSync(path.join(ROOT, pdfOf(page)))) fail(`${PDF_LIST}: lists ${page}, but ${pdfOf(page)} is missing`);
+  const missing = [], stale = [];
+  for (const page of hubPages(ROOT)) {
+    if (!(page in list)) missing.push(page);
+    else if (list[page] !== sourceHash(ROOT, page)) stale.push(page);
+  }
+  if (missing.length) warnings.push(`${missing.length} hub page(s) have no PDF yet, so no PDF button: ${missing.slice(0, 6).join(", ")}${missing.length > 6 ? ", …" : ""}`);
+  if (stale.length) warnings.push(`${stale.length} PDF(s) older than their page: ${stale.slice(0, 6).join(", ")}${stale.length > 6 ? ", …" : ""}`);
+  if (missing.length || stale.length) warnings.push("run `npm run pdfs` and commit the PDFs with shared/pdf-list.js");
+}
+
 // ---- report ---------------------------------------------------------------------
+for (const m of warnings) console.warn("  ! " + m);
 if (failures.length) {
   console.error(`FAIL — ${failures.length} problem(s):`);
   for (const m of failures) console.error("  ✗ " + m);
   process.exit(1);
 }
-console.log(`OK — ${htmlFiles.length} HTML file(s): links, integrity, deck sanity, hub↔catalogue sync, concepts and skills, conflict markers all green.`);
+console.log(`OK — ${htmlFiles.length} HTML file(s): links, integrity, deck sanity, hub↔catalogue sync, concepts and skills, conflict markers, PDFs all green.`);

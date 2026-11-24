@@ -101,3 +101,32 @@ table.rec.trans td:first-child, table.rec.trans th:first-child { width:24pt; whi
 table.rec.trans td:nth-child(2) { width:44%; font-style:italic; }
 table.rec.trans thead { display:table-header-group; }
 @media print { table.rec.trans { break-inside:auto; page-break-inside:auto; } table.rec.trans tr { break-inside:avoid; page-break-inside:avoid; } }
+
+/* ── Phones and narrow windows: the A4 sheet reflows to the screen ─────
+   Screen only, so printing and the premade PDFs are unchanged. The block
+   number column narrows, the citation margin moves under each block,
+   definitions put the term above its gloss, two-column grids stack, and
+   anything still wider than the screen (tables, figures, code, display
+   maths) scrolls sideways inside its own box instead of the whole page.
+   Selectors start with .sheet so they outrank page-local rules. */
+@media screen and (max-width: 840px) {
+  html, body { background:#fff; }
+  body { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  .sheet { width:auto; min-height:0; margin:0; padding:18px 16px 44px; }
+  .sheet .mast { flex-wrap:wrap; row-gap:8pt; }
+  .sheet .mast .right { text-align:left; }
+  .sheet .doc-title { font-size:20pt; overflow-wrap:anywhere; }
+  .sheet .sec { grid-template-columns:20pt minmax(0, 1fr); column-gap:10pt; }
+  .sheet .sec > .num { font-size:17pt; }
+  .sheet .sec > .note { grid-column:2; margin-top:4pt; padding-top:5pt; border-top:.6pt solid #bbb; }
+  .sheet .sec > .note:empty { display:none; }
+  .sheet .defs > div.d, .sheet .rules div { grid-template-columns:minmax(0, 1fr); column-gap:0; margin-bottom:4pt; }
+  .sheet .wcols, .sheet .twin, .sheet .cols, .sheet .two { grid-template-columns:minmax(0, 1fr); }
+  .sheet table { display:block; width:auto !important; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  .sheet table.rec { min-width:0; }
+  .sheet a { overflow-wrap:anywhere; }
+  .sheet span[style*="nowrap"] { white-space:normal !important; }
+  .sheet img, .sheet svg:not(.icon), .sheet .mfig { max-width:100%; height:auto; }
+  .sheet pre, .sheet .fx, .sheet mjx-container[display="true"] { max-width:100%; overflow-x:auto; overflow-y:hidden; }
+  .sheet .lines, .sheet .draw, .sheet .ans, .sheet .anno { margin-left:0; }
+}

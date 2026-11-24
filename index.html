@@ -143,6 +143,13 @@
   .lk .badge.draft { color: var(--st-prog); background: color-mix(in srgb, var(--st-prog) 14%, white); }
   .lk .open { font-size: 11px; color: var(--tcd-grey-50); }
   a.lk:hover .open { color: var(--accent); }
+  /* PDF button: sits on the right of a ready row and downloads the premade PDF */
+  .lkw { position: relative; }
+  .lkw > a.lk { padding-right: 66px; }
+  .lk-pdf, .mt-pdf { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .06em; line-height: 1; color: var(--accent); background: #fff; border: 1px solid color-mix(in srgb, var(--accent) 40%, white); border-radius: 6px; padding: 5px 8px; text-decoration: none; transition: background .12s, color .12s; }
+  .lk-pdf { position: absolute; top: 50%; right: 9px; transform: translateY(-50%); }
+  .lk-pdf:hover, .mt-pdf:hover, .lk-pdf:focus-visible, .mt-pdf:focus-visible { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .mt-pair { display: inline-flex; align-items: center; gap: 5px; }
   .lk.disabled { opacity: 0.5; cursor: default; background: repeating-linear-gradient(45deg,#fafafa,#fafafa 7px,#f4f4f4 7px,#f4f4f4 14px); }
   .lk.disabled .ico { color: var(--tcd-grey-50); }
   .lk.disabled .badge { color: var(--tcd-grey-75); background: #eee; }
@@ -172,7 +179,7 @@
   .mt-as { display: inline-flex; align-items: center; gap: 9px; flex-wrap: wrap; }
   .mt-lab { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
   .mt-sum { font-family: var(--mono); font-size: 11.5px; color: var(--tcd-grey-75); }
-  .mt-chips { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+  .mt-chips { display: inline-flex; gap: 6px; flex-wrap: wrap; align-items: center; }
   .achip { display: inline-flex; align-items: baseline; gap: 5px; font-size: 12px; font-weight: 600; color: var(--tcd-grey-100); border: 1px dashed var(--tcd-grey-50); border-radius: 7px; padding: 4px 9px; background: #fafafa; }
   .achip .aw { font-family: var(--mono); font-size: 10.5px; color: var(--accent); font-weight: 700; }
   a.achip.ready { border: 1px solid var(--tcd-grey-25); border-style: solid; background: #fff; color: var(--tcd-ink); text-decoration: none; cursor: pointer; }
@@ -190,6 +197,25 @@
     .hero h1 { font-size: 30px; }
     .search { margin-left: 0; width: 100%; }
     .search input { width: 100%; }
+    /* phones: the name/term block sits under the crest, left-aligned */
+    .mast { gap: 14px; }
+    .mast .meta { text-align: left; }
+    /* module heading: the identity switch takes its own line instead of running off the screen */
+    .modhead { flex-wrap: wrap; row-gap: 8px; align-items: center; }
+    .modhead .ln { display: none; }
+    .mod-twin { order: 5; }
+    .mod-tools { padding: 9px 12px; }
+    /* compact cards: tighter padding and type, no "open →" (the whole row is the link) */
+    .grid { gap: 12px; }
+    .card { padding: 14px 14px 12px; }
+    .c-top { margin-bottom: 8px; }
+    .c-title { margin-bottom: 11px; gap: 10px; }
+    .c-no { font-size: 25px; min-width: 26px; }
+    .c-name { font-size: 17.5px; }
+    .c-links { gap: 6px; }
+    .lk { padding: 9px 10px; font-size: 13.5px; gap: 10px; }
+    .lk .open { display: none; }
+    .card-reading .c-title { margin-bottom: 2px; }
   }
 </style>
 </head>
@@ -255,6 +281,7 @@
   <symbol id="i-read" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.5 5 8 4.5 4 4.7v13C8 17.5 10.5 18 12 19.5M12 6.5C13.5 5 16 4.5 20 4.7v13C16 17.5 13.5 18 12 19.5M12 6.5v13"/></symbol>
 </defs></svg>
 
+<script src="shared/pdf-list.js"></script>
 <script>
 /* ============================================================
    DATA — mirrors shared/week-meta.js (LI7869) and
@@ -406,6 +433,16 @@ function overall(w){
   return {k:'prog', t:'In progress'};
 }
 
+// Premade PDFs (scripts/make-pdfs.mjs → shared/pdf-list.js). A row that is
+// already a PDF downloads itself; an HTML page downloads x.pdf when listed.
+const PDFS = window.PDF_LIST || {};
+const pdfFor = href => /\.pdf$/i.test(href) ? href : (PDFS[href] ? href.replace(/\.html$/, '.pdf') : '');
+const dlAttr = name => name.replace(/[\\/:*?"<>|]/g, '').replace(/"/g, '');
+function pdfBtn(href, name, cls){
+  const pdf = pdfFor(href);
+  return pdf ? `<a class="${cls}" href="${pdf}" download="${dlAttr(name)}.pdf" title="Download the PDF">PDF</a>` : '';
+}
+
 function linkRow(w, kind, file, label, icon, opt){
   const state = w[kind] || 'none';
   if (opt && state === 'none') return '';
@@ -417,8 +454,10 @@ function linkRow(w, kind, file, label, icon, opt){
       + `<span class="lab">${label}</span><span class="badge">not created</span></div>`;
   }
   const badge = state==='ready' ? '<span class="badge ready">ready</span>' : '<span class="badge draft">draft</span>';
-  return `<a class="lk" href="${href}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#${icon}"/></svg></span>`
+  const row = `<a class="lk" href="${href}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#${icon}"/></svg></span>`
     + `<span class="lab">${label}</span>${badge}<span class="open">open →</span></a>`;
+  const pdf = state==='ready' ? pdfBtn(href, `${activeId(w.m).code} Week ${w.no} ${label}`, 'lk-pdf') : '';
+  return pdf ? `<div class="lkw">${row}${pdf}</div>` : row;
 }
 
 function modToolsHTML(g, id){
@@ -429,21 +468,23 @@ function modToolsHTML(g, id){
   const chips = as.map(a => {
     const main = a.st === 'ready'
       ? `<a class="achip ready" href="${dir}/assessments/${id.key}-a${a.no}.html" title="${a.title}"><span class="an">A${a.no}</span><span class="aw">${a.w}%</span></a>`
+        + pdfBtn(`${dir}/assessments/${id.key}-a${a.no}.html`, `${id.code} A${a.no}`, 'mt-pdf')
       : `<span class="achip" title="${a.title} — ${dir}/assessments/${id.key}-a${a.no}.html (not created)"><span class="an">A${a.no}</span><span class="aw">${a.w}%</span></span>`;
     const guide = a.st === 'ready' && a.guide
       ? `<a class="achip ready" href="${dir}/assessments/${a.guide}" title="Writing guidance for A${a.no}"><span class="an">A${a.no}</span><span class="aw">guide</span></a>`
+        + pdfBtn(`${dir}/assessments/${a.guide}`, `${id.code} A${a.no} guide`, 'mt-pdf')
       : '';
     return main + guide;
   }).join('');
   const ovHref = `${dir}/overview-${id.key}.html`;
   const ov = id.ov === 'ready'
-    ? `<a class="mt-ov ready" href="${ovHref}" title="${ovHref}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Overview</span><span class="badge ready">ready</span></a>`
+    ? `<span class="mt-pair"><a class="mt-ov ready" href="${ovHref}" title="${ovHref}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Overview</span><span class="badge ready">ready</span></a>${pdfBtn(ovHref, `${id.code} Overview`, 'mt-pdf')}</span>`
     : `<div class="mt-ov" title="${ovHref} (not created)"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Overview</span><span class="badge">not created</span></div>`;
   const tp = id.topics
-    ? `<a class="mt-ov ready" href="${dir}/${id.topics}" title="${dir}/${id.topics}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Topics</span><span class="badge ready">ready</span></a>`
+    ? `<span class="mt-pair"><a class="mt-ov ready" href="${dir}/${id.topics}" title="${dir}/${id.topics}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>Topics</span><span class="badge ready">ready</span></a>${pdfBtn(`${dir}/${id.topics}`, `${id.code} Topics`, 'mt-pdf')}</span>`
     : '';
   const dc = (id.docs || []).map(([file, label]) =>
-    `<a class="mt-ov ready" href="${dir}/${file}" title="${dir}/${file}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>${label}</span><span class="badge ready">ready</span></a>`).join('');
+    `<span class="mt-pair"><a class="mt-ov ready" href="${dir}/${file}" title="${dir}/${file}"><span class="ico"><svg viewBox="0 0 24 24"><use href="#i-handout"/></svg></span><span>${label}</span><span class="badge ready">ready</span></a>${pdfBtn(`${dir}/${file}`, `${id.code} ${label}`, 'mt-pdf')}</span>`).join('');
   return `<div class="mod-tools ${g}">
     <div class="mt-docs">${ov}${tp}${dc}</div>
     <div class="mt-as">
@@ -588,7 +629,13 @@ grid.addEventListener('click', e => {
   saveIdentity(); render();
 });
 
-render();
+// Phones open on the term being taught now (Michaelmas September to December,
+// Hilary January to April), so the page starts short; the term buttons still
+// reach every week. Wider screens, and May to August, open on all terms.
+const NOW_TERM = (m => m >= 8 ? 'michaelmas' : m <= 3 ? 'hilary' : null)(new Date().getMonth());
+const startTerm = matchMedia('(max-width: 560px)').matches && NOW_TERM
+  && document.querySelector(`#termseg button[data-term="${NOW_TERM}"]`);
+if (startTerm) startTerm.click(); else render();
 </script>
 
 <template id="__bundler_thumbnail">
