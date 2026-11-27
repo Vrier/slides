@@ -87,7 +87,6 @@ const DIV_BASELINE = {
   "weeks-pragmatics/week-08/exercises.html": [35, 31],
   /* weeks-pragmatics/week-09/exercises.html and week-10/exercises.html: baselines
      removed 2026-11-18 — rebuilt as the Partygate data sheets, which balance. */
-  "weeks-pragmatics/week-11/exercises.html": [35, 31],
   "weeks-pragmatics/week-12/exercises.html": [35, 31],
   "weeks-semantics1/week-01/exercises.html": [35, 31],
   "weeks-semantics1/week-02/exercises.html": [35, 31],

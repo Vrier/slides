@@ -37,6 +37,8 @@ window.PDF_LIST = {
   "weeks-pragmatics/week-10/exercises-answers.html": "5eabd5fe92f213fb",
   "weeks-pragmatics/week-10/exercises.html": "189c09a3177cd24a",
   "weeks-pragmatics/week-10/readings.html": "86c3181a6dab431d",
+  "weeks-pragmatics/week-11/exercises-answers.html": "1209371cfd442a13",
+  "weeks-pragmatics/week-11/exercises.html": "82ae3b5b419685a2",
   "weeks-pragmatics/week-11/readings.html": "949792d765560fb6",
   "weeks-pragmatics/week-12/readings.html": "10af0de88ea37633",
   "weeks-pragmatics2/overview-liu44008.html": "b51e9620d257bf9a",
